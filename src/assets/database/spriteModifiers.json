@@ -1,0 +1,107 @@
+[
+    {
+        "spriteModifierId":"wire_rotation_2",
+        "spriteInfoSuffix":"_1",
+        "scale": {"x": -1, "y":1},
+        "rotation":0
+    },
+    {
+        "spriteModifierId":"wire_rotation_4",
+        "spriteInfoSuffix":"_1",
+        "rotation":90
+    },
+    {
+        "spriteModifierId":"wire_rotation_5",
+        "spriteInfoSuffix":"_9",
+        "rotation":90
+    },
+    {
+        "spriteModifierId":"wire_rotation_6",
+        "spriteInfoSuffix":"_9",
+        "rotation":180
+    },
+    {
+        "spriteModifierId":"wire_rotation_7",
+        "spriteInfoSuffix":"_11",
+        "rotation":180
+    },
+    {
+        "spriteModifierId":"wire_rotation_8",
+        "spriteInfoSuffix":"_1",
+        "scale": {"x": 1, "y":-1},
+        "rotation":90
+    },
+    {
+        "spriteModifierId":"wire_rotation_10",
+        "spriteInfoSuffix":"_9",
+        "rotation":270
+    },
+    {
+        "spriteModifierId":"wire_rotation_12",
+        "spriteInfoSuffix":"_3",
+        "rotation":90
+    },
+    {
+        "spriteModifierId":"wire_rotation_13",
+        "spriteInfoSuffix":"_11",
+        "rotation":90
+    },
+    {
+        "spriteModifierId":"wire_rotation_14",
+        "spriteInfoSuffix":"_11",
+        "rotation":270
+    },
+
+    {
+        "spriteModifierId":"gas_rotation_2",
+        "spriteInfoSuffix":"_1",
+        "scale": {"x": -1, "y":1}
+    },
+    {
+        "spriteModifierId":"gas_rotation_4",
+        "spriteInfoSuffix":"_1",
+        "rotation":90
+    },
+    {
+        "spriteModifierId":"gas_rotation_5",
+        "rotation":90
+    },
+    {
+        "spriteModifierId":"gas_rotation_6",
+        "rotation":90,
+        "scale": {"x": -1, "y":1}
+    },
+    {
+        "spriteModifierId":"gas_rotation_7",
+        "scale": {"x": 1, "y":-1}
+    },
+    {
+        "spriteModifierId":"gas_rotation_8",
+        "spriteInfoSuffix":"_1",
+        "rotation":90,
+        "scale": {"x": 1, "y":-1}
+    },
+    {
+        "spriteModifierId":"gas_rotation_10",
+        "spriteInfoSuffix":"_5",
+        "rotation":180,
+        "scale": {"x": 1, "y":-1}
+    },
+    {
+        "spriteModifierId":"gas_rotation_12",
+        "spriteInfoSuffix":"_3",
+        "rotation":90
+    },
+    {
+        "spriteModifierId":"gas_rotation_13",
+        "spriteInfoSuffix":"_11",
+        "rotation":90,
+        "scale": {"x": 1, "y":-1}
+    },
+    {
+        "spriteModifierId":"gas_rotation_14",
+        "spriteInfoSuffix":"_7",
+        "rotation":270
+    }
+
+]

@@ -1,0 +1,2778 @@
+[
+  {
+    "id": "Wire",
+    "imageId": "utilities_electric_0",
+    "defaultOverlay":1,
+    "spriteInfoId": "utilities_electric_0",
+    "spriteModifierId": "wire_rotation",
+    "isWire": true,
+    "size": {
+      "x": 1,
+      "y": 1
+    }
+  },
+  {
+    "id": "HighWattageWire",
+    "imageId": "utilities_electric_0",
+    "defaultOverlay":1,
+    "spriteInfoId": "utilities_electric_0",
+    "spriteModifierId": "wire_rotation",
+    "isWire": true,
+    "size": {
+      "x": 1,
+      "y": 1
+    }
+  },
+  {
+    "id": "Tile",
+    "imageId": "tiles_solid_place",
+    "spriteInfoId": "tiles",
+    "isTile": true,
+    "size": {
+      "x": 1,
+      "y": 1
+    }
+  },
+  {
+    "id": "InsulationTile",
+    "imageId": "tiles_insulated_place",
+    "spriteInfoId": "tiles",
+    "isTile": true,
+    "size": {
+      "x": 1,
+      "y": 1
+    }
+  },
+  {
+    "id": "AdvancedResearchCenter",
+    "size": {
+      "x": 3,
+      "y": 3
+    },
+    "utilityConnections": [
+      {
+        "connectionType": 1,
+        "connectionOffset": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "AirConditioner",
+    "size": {
+      "x": 2,
+      "y": 2
+    },
+    "utilityConnections": [
+      {
+        "connectionType": 1,
+        "connectionOffset": {
+          "x": 1,
+          "y": 0
+        }
+      },
+      {
+        "connectionType": 8,
+        "connectionOffset": {
+          "x": 0,
+          "y": 1
+        }
+      },
+      {
+        "connectionType": 6,
+        "connectionOffset": {
+          "x": 1,
+          "y": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "AirFilter",
+    "size": {
+      "x": 1,
+      "y": 1
+    }
+  },
+  {
+    "id": "AlgaeDistillery",
+    "size": {
+      "x": 3,
+      "y": 4
+    },
+    "utilityConnections": [
+      {
+        "connectionType": 1,
+        "connectionOffset": {
+          "x": 1,
+          "y": 0
+        }
+      },
+      {
+        "connectionType": 2,
+        "connectionOffset": {
+          "x": 1,
+          "y": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "AlgaeHabitat",
+    "size": {
+      "x": 1,
+      "y": 2
+    }
+  },
+  {
+    "id": "Apothecary",
+    "size": {
+      "x": 2,
+      "y": 3
+    },
+    "utilityConnections": [
+      {
+        "connectionType": 1,
+        "connectionOffset": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "Battery",
+    "size": {
+      "x": 1,
+      "y": 2
+    },
+    "utilityConnections": [
+      {
+        "connectionType": 1,
+        "connectionOffset": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "BatteryMedium",
+    "size": {
+      "x": 2,
+      "y": 2
+    },
+    "utilityConnections": [
+      {
+        "connectionType": 1,
+        "connectionOffset": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "BatterySmart",
+    "imageId": "smartbattery_0",
+    "size": {
+      "x": 2,
+      "y": 2
+    },
+    "utilityConnections": [
+      {
+        "connectionType": 1,
+        "connectionOffset": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "Bed",
+    "size": {
+      "x": 2,
+      "y": 2
+    }
+  },
+  {
+    "id": "BottleEmptier",
+    "size": {
+      "x": 1,
+      "y": 3
+    }
+  },
+  {
+    "id": "BunkerDoor",
+    "size": {
+      "x": 4,
+      "y": 1
+    },
+    "utilityConnections": [
+      {
+        "connectionType": 1,
+        "connectionOffset": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "BunkerTile",
+    "imageId": "tiles_bunker_place",
+    "spriteInfoId": "tiles",
+    "isTile": true,
+    "size": {
+      "x": 1,
+      "y": 1
+    }
+  },
+  {
+    "id": "CeilingLight",
+    "size": {
+      "x": 1,
+      "y": 1
+    },
+    "utilityConnections": [
+      {
+        "connectionType": 1,
+        "connectionOffset": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "Checkpoint",
+    "size": {
+      "x": 1,
+      "y": 3
+    },
+    "utilityConnections": [
+      {
+        "connectionType": 1,
+        "connectionOffset": {
+          "x": 0,
+          "y": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": "ClothingFabricator",
+    "size": {
+      "x": 4,
+      "y": 3
+    },
+    "utilityConnections": [
+      {
+        "connectionType": 1,
+        "connectionOffset": {
+          "x": 2,
+          "y": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "CO2Scrubber",
+    "size": {
+      "x": 2,
+      "y": 2
+    },
+    "utilityConnections": [
+      {
+        "connectionType": 1,
+        "connectionOffset": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "connectionType": 2,
+        "connectionOffset": {
+          "x": 1,
+          "y": 1
+        }
+      },
+      {
+        "connectionType": 4,
+        "connectionOffset": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "CometDetector",
+    "size": {
+      "x": 2,
+      "y": 4
+    },
+    "utilityConnections": [
+      {
+        "connectionType": 1,
+        "connectionOffset": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "Compost",
+    "size": {
+      "x": 2,
+      "y": 2
+    }
+  },
+  {
+    "id": "ConduitSensor",
+    "size": {
+      "x": 1,
+      "y": 1
+    }
+  },
+  {
+    "id": "CookingStation",
+    "size": {
+      "x": 3,
+      "y": 2
+    },
+    "utilityConnections": [
+      {
+        "connectionType": 1,
+        "connectionOffset": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "CreatureFeeder",
+    "size": {
+      "x": 1,
+      "y": 2
+    }
+  },
+  {
+    "id": "DiningTable",
+    "size": {
+      "x": 1,
+      "y": 1
+    }
+  },
+  {
+    "id": "Door",
+    "size": {
+      "x": 1,
+      "y": 2
+    }
+  },
+  {
+    "id": "EggCracker",
+    "size": {
+      "x": 2,
+      "y": 2
+    }
+  },
+  {
+    "id": "EggIncubator",
+    "size": {
+      "x": 2,
+      "y": 3
+    },
+    "utilityConnections": [
+      {
+        "connectionType": 1,
+        "connectionOffset": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "Electrolyzer",
+    "imageId": "electrolyzer_0",
+    "size": {
+      "x": 2,
+      "y": 2
+    },
+    "utilityConnections": [
+      {
+        "connectionType": 1,
+        "connectionOffset": {
+          "x": 1,
+          "y": 0
+        }
+      },
+      {
+        "connectionType": 4,
+        "connectionOffset": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "ExteriorWall",
+    "size": {
+      "x": 1,
+      "y": 1
+    }
+  },
+  {
+    "id": "FacilityBackWallWindow",
+    "size": {
+      "x": 1,
+      "y": 6
+    }
+  },
+  {
+    "id": "FarmStation",
+    "size": {
+      "x": 2,
+      "y": 3
+    }
+  },
+  {
+    "id": "FarmTile",
+    "size": {
+      "x": 1,
+      "y": 1
+    }
+  },
+  {
+    "id": "FertilizerMaker",
+    "size": {
+      "x": 4,
+      "y": 3
+    },
+    "utilityConnections": [
+      {
+        "connectionType": 1,
+        "connectionOffset": {
+          "x": 1,
+          "y": 0
+        }
+      },
+      {
+        "connectionType": 4,
+        "connectionOffset": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "FirePole",
+    "size": {
+      "x": 1,
+      "y": 1
+    }
+  },
+  {
+    "id": "FishFeeder",
+    "size": {
+      "x": 1,
+      "y": 3
+    }
+  },
+  {
+    "id": "FloorLamp",
+    "size": {
+      "x": 1,
+      "y": 2
+    },
+    "utilityConnections": [
+      {
+        "connectionType": 1,
+        "connectionOffset": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "FloorSwitch",
+    "size": {
+      "x": 1,
+      "y": 1
+    }
+  },
+  {
+    "id": "FlowerVase",
+    "size": {
+      "x": 1,
+      "y": 1
+    }
+  },
+  {
+    "id": "FlushToilet",
+    "size": {
+      "x": 2,
+      "y": 3
+    },
+    "utilityConnections": [
+      {
+        "connectionType": 2,
+        "connectionOffset": {
+          "x": 1,
+          "y": 1
+        }
+      },
+      {
+        "connectionType": 4,
+        "connectionOffset": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "GasConduitBridge",
+    "imageId": "utilitygasbridge_0",
+    "defaultOverlay":3,
+    "spriteInfoId": "utilitygasbridge_0",
+    "size": {
+      "x": 3,
+      "y": 1
+    },
+    "utilityConnections": [
+      {
+        "connectionType": 8,
+        "connectionOffset": {
+          "x": -1,
+          "y": 0
+        }
+      },
+      {
+        "connectionType": 6,
+        "connectionOffset": {
+          "x": 1,
+          "y": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "GasConduit",
+    "imageId": "utilities_gas_0",
+    "defaultOverlay":3,
+    "spriteInfoId": "utilities_gas_0",
+    "spriteModifierId": "gas_rotation",
+    "isWire": true,
+    "defaultColor": "#FF0000",
+    "size": {
+      "x": 1,
+      "y": 1
+    }
+  },
+  {
+    "id": "GasConduitOverflow",
+    "size": {
+      "x": 2,
+      "y": 2
+    }
+  },
+  {
+    "id": "GasConduitPreferentialFlow",
+    "size": {
+      "x": 2,
+      "y": 2
+    }
+  },
+  {
+    "id": "GasConduitRadiant",
+    "defaultOverlay":3,
+    "isWire": true,
+    "size": {
+      "x": 1,
+      "y": 1
+    }
+  },
+  {
+    "id": "GasFilter",
+    "size": {
+      "x": 3,
+      "y": 1
+    },
+    "utilityConnections": [
+      {
+        "connectionType": 1,
+        "connectionOffset": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "connectionType": 8,
+        "connectionOffset": {
+          "x": -1,
+          "y": 0
+        }
+      },
+      {
+        "connectionType": 7,
+        "connectionOffset": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "connectionType": 6,
+        "connectionOffset": {
+          "x": 1,
+          "y": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "GasLogicValve",
+    "size": {
+      "x": 1,
+      "y": 2
+    },
+    "utilityConnections": [
+      {
+        "connectionType": 1,
+        "connectionOffset": {
+          "x": 0,
+          "y": 1
+        }
+      },
+      {
+        "connectionType": 8,
+        "connectionOffset": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "connectionType": 6,
+        "connectionOffset": {
+          "x": 0,
+          "y": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "GasMiniPump",
+    "size": {
+      "x": 1,
+      "y": 2
+    },
+    "utilityConnections": [
+      {
+        "connectionType": 1,
+        "connectionOffset": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "connectionType": 6,
+        "connectionOffset": {
+          "x": 0,
+          "y": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "GasPermeableMembrane",
+    "imageId": "tiles_gasmembrane_place",
+    "spriteInfoId": "tiles",
+    "isTile": true,
+    "size": {
+      "x": 1,
+      "y": 1
+    }
+  },
+  {
+    "id": "GasPump",
+    "imageId": "pumpgas_0",
+    "size": {
+      "x": 2,
+      "y": 2
+    },
+    "utilityConnections": [
+      {
+        "connectionType": 1,
+        "connectionOffset": {
+          "x": 0,
+          "y": 1
+        }
+      },
+      {
+        "connectionType": 6,
+        "connectionOffset": {
+          "x": 1,
+          "y": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "GasValve",
+    "imageId":"valvegas_0",
+    "size": {
+      "x": 1,
+      "y": 2
+    },
+    "utilityConnections": [
+      {
+        "connectionType": 8,
+        "connectionOffset": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "connectionType": 6,
+        "connectionOffset": {
+          "x": 0,
+          "y": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "GasVent",
+    "size": {
+      "x": 1,
+      "y": 1
+    },
+    "utilityConnections": [
+      {
+        "connectionType": 8,
+        "connectionOffset": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "GasVentHighPressure",
+    "size": {
+      "x": 1,
+      "y": 1
+    },
+    "utilityConnections": [
+      {
+        "connectionType": 8,
+        "connectionOffset": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "Generator",
+    "size": {
+      "x": 3,
+      "y": 3
+    },
+    "utilityConnections": [
+      {
+        "connectionType": 0,
+        "connectionOffset": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "GenericFabricator",
+    "size": {
+      "x": 3,
+      "y": 3
+    }
+  },
+  {
+    "id": "GlassForge",
+    "size": {
+      "x": 5,
+      "y": 4
+    },
+    "utilityConnections": [
+      {
+        "connectionType": 1,
+        "connectionOffset": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "connectionType": 2,
+        "connectionOffset": {
+          "x": 1,
+          "y": 3
+        }
+      }
+    ]
+  },
+  {
+    "id": "GlassTile",
+    "imageId": "tiles_glass_place",
+    "spriteInfoId": "tiles",
+    "isTile": true,
+    "size": {
+      "x": 1,
+      "y": 1
+    }
+  },
+  {
+    "id": "Grave",
+    "size": {
+      "x": 1,
+      "y": 2
+    }
+  },
+  {
+    "id": "HandSanitizer",
+    "size": {
+      "x": 2,
+      "y": 3
+    }
+  },
+  {
+    "id": "Headquarters",
+    "size": {
+      "x": 4,
+      "y": 4
+    }
+  },
+  {
+    "id": "HydrogenGenerator",
+    "imageId": "generatormerc_0",
+    "size": {
+      "x": 4,
+      "y": 3
+    },
+    "utilityConnections": [
+      {
+        "connectionType": 0,
+        "connectionOffset": {
+          "x": 1,
+          "y": 0
+        }
+      },
+      {
+        "connectionType": 8,
+        "connectionOffset": {
+          "x": -1,
+          "y": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "HydroponicFarm",
+    "size": {
+      "x": 1,
+      "y": 1
+    },
+    "utilityConnections": [
+      {
+        "connectionType": 4,
+        "connectionOffset": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "InsulatedGasConduit",
+    "defaultOverlay":3,
+    "isWire": true,
+    "size": {
+      "x": 1,
+      "y": 1
+    }
+  },
+  {
+    "id": "InsulatedLiquidConduit",
+    "defaultOverlay":2,
+    "isWire": true,
+    "size": {
+      "x": 1,
+      "y": 1
+    }
+  },
+  {
+    "id": "Kiln",
+    "size": {
+      "x": 2,
+      "y": 2
+    }
+  },
+  {
+    "id": "Ladder",
+    "size": {
+      "x": 1,
+      "y": 1
+    }
+  },
+  {
+    "id": "LadderFast",
+    "size": {
+      "x": 1,
+      "y": 1
+    }
+  },
+  {
+    "id": "LiquidConditioner",
+    "imageId":"liquidconditioner_0",
+    "size": {
+      "x": 2,
+      "y": 2
+    },
+    "utilityConnections": [
+      {
+        "connectionType": 1,
+        "connectionOffset": {
+          "x": 1,
+          "y": 0
+        }
+      },
+      {
+        "connectionType": 2,
+        "connectionOffset": {
+          "x": 1,
+          "y": 0
+        }
+      },
+      {
+        "connectionType": 4,
+        "connectionOffset": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "LiquidConduitBridge",
+    "defaultOverlay":2,
+    "size": {
+      "x": 3,
+      "y": 1
+    },
+    "utilityConnections": [
+      {
+        "connectionType": 2,
+        "connectionOffset": {
+          "x": 1,
+          "y": 0
+        }
+      },
+      {
+        "connectionType": 4,
+        "connectionOffset": {
+          "x": -1,
+          "y": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "LiquidConduit",
+    "imageId": "utilities_liquid_0",
+    "defaultOverlay":2,
+    "spriteInfoId": "utilities_liquid_0",
+    "spriteModifierId": "wire_rotation",
+    "isWire": true,
+    "size": {
+      "x": 1,
+      "y": 1
+    }
+  },
+  {
+    "id": "LiquidConduitOverflow",
+    "size": {
+      "x": 2,
+      "y": 2
+    }
+  },
+  {
+    "id": "LiquidConduitPreferentialFlow",
+    "size": {
+      "x": 2,
+      "y": 2
+    }
+  },
+  {
+    "id": "LiquidConduitRadiant",
+    "defaultOverlay":2,
+    "isWire": true,
+    "size": {
+      "x": 1,
+      "y": 1
+    }
+  },
+  {
+    "id": "LiquidCooledFan",
+    "size": {
+      "x": 2,
+      "y": 2
+    }
+  },
+  {
+    "id": "LiquidFilter",
+    "size": {
+      "x": 3,
+      "y": 1
+    },
+    "utilityConnections": [
+      {
+        "connectionType": 1,
+        "connectionOffset": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "connectionType": 2,
+        "connectionOffset": {
+          "x": 1,
+          "y": 0
+        }
+      },
+      {
+        "connectionType": 4,
+        "connectionOffset": {
+          "x": -1,
+          "y": 0
+        }
+      },
+      {
+        "connectionType": 3,
+        "connectionOffset": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "LiquidHeater",
+    "size": {
+      "x": 4,
+      "y": 1
+    },
+    "utilityConnections": [
+      {
+        "connectionType": 1,
+        "connectionOffset": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "LiquidLogicValve",
+    "size": {
+      "x": 1,
+      "y": 2
+    },
+    "utilityConnections": [
+      {
+        "connectionType": 1,
+        "connectionOffset": {
+          "x": 0,
+          "y": 1
+        }
+      },
+      {
+        "connectionType": 2,
+        "connectionOffset": {
+          "x": 0,
+          "y": 1
+        }
+      },
+      {
+        "connectionType": 4,
+        "connectionOffset": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "LiquidMiniPump",
+    "size": {
+      "x": 1,
+      "y": 2
+    },
+    "utilityConnections": [
+      {
+        "connectionType": 1,
+        "connectionOffset": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "connectionType": 2,
+        "connectionOffset": {
+          "x": 0,
+          "y": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "LiquidPump",
+    "size": {
+      "x": 2,
+      "y": 2
+    },
+    "utilityConnections": [
+      {
+        "connectionType": 1,
+        "connectionOffset": {
+          "x": 0,
+          "y": 1
+        }
+      },
+      {
+        "connectionType": 2,
+        "connectionOffset": {
+          "x": 1,
+          "y": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "LiquidPumpingStation",
+    "size": {
+      "x": 2,
+      "y": 4
+    }
+  },
+  {
+    "id": "LiquidValve",
+    "size": {
+      "x": 1,
+      "y": 2
+    },
+    "utilityConnections": [
+      {
+        "connectionType": 2,
+        "connectionOffset": {
+          "x": 0,
+          "y": 1
+        }
+      },
+      {
+        "connectionType": 4,
+        "connectionOffset": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "LiquidVent",
+    "size": {
+      "x": 1,
+      "y": 1
+    },
+    "utilityConnections": [
+      {
+        "connectionType": 4,
+        "connectionOffset": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "LogicDiseaseSensor",
+    "size": {
+      "x": 1,
+      "y": 1
+    }
+  },
+  {
+    "id": "LogicElementSensorGas",
+    "size": {
+      "x": 1,
+      "y": 1
+    },
+    "utilityConnections": [
+      {
+        "connectionType": 1,
+        "connectionOffset": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "LogicElementSensorLiquid",
+    "size": {
+      "x": 1,
+      "y": 1
+    }
+  },
+  {
+    "id": "LogicMemory",
+    "size": {
+      "x": 2,
+      "y": 2
+    }
+  },
+  {
+    "id": "LogicPowerRelay",
+    "size": {
+      "x": 1,
+      "y": 1
+    }
+  },
+  {
+    "id": "LogicPressureSensorGas",
+    "size": {
+      "x": 1,
+      "y": 1
+    }
+  },
+  {
+    "id": "LogicPressureSensorLiquid",
+    "size": {
+      "x": 1,
+      "y": 1
+    }
+  },
+  {
+    "id": "LogicSwitch",
+    "size": {
+      "x": 1,
+      "y": 1
+    }
+  },
+  {
+    "id": "LogicTemperatureSensor",
+    "size": {
+      "x": 1,
+      "y": 1
+    }
+  },
+  {
+    "id": "LogicTimeOfDaySensor",
+    "size": {
+      "x": 1,
+      "y": 1
+    }
+  },
+  {
+    "id": "LogicWireBridge",
+    "size": {
+      "x": 3,
+      "y": 1
+    }
+  },
+  {
+    "id": "LogicWire",
+    "size": {
+      "x": 1,
+      "y": 1
+    }
+  },
+  {
+    "id": "LuxuryBed",
+    "size": {
+      "x": 4,
+      "y": 2
+    }
+  },
+  {
+    "id": "MachineShop",
+    "size": {
+      "x": 4,
+      "y": 2
+    }
+  },
+  {
+    "id": "ManualGenerator",
+    "imageId": "generatormanual_0",
+    "size": {
+      "x": 2,
+      "y": 2
+    },
+    "utilityConnections": [
+      {
+        "connectionType": 0,
+        "connectionOffset": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "ManualPressureDoor",
+    "imageId": "door_manual_0",
+    "size": {
+      "x": 1,
+      "y": 2
+    }
+  },
+  {
+    "id": "MassageTable",
+    "size": {
+      "x": 2,
+      "y": 2
+    },
+    "utilityConnections": [
+      {
+        "connectionType": 1,
+        "connectionOffset": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "MassiveHeatSink",
+    "size": {
+      "x": 4,
+      "y": 4
+    }
+  },
+  {
+    "id": "MedicalBed",
+    "size": {
+      "x": 2,
+      "y": 3
+    },
+    "utilityConnections": [
+      {
+        "connectionType": 1,
+        "connectionOffset": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "MedicalCot",
+    "size": {
+      "x": 3,
+      "y": 2
+    }
+  },
+  {
+    "id": "MeshTile",
+    "imageId": "tiles_mesh_place",
+    "spriteInfoId": "tiles",
+    "isTile": true,
+    "size": {
+      "x": 1,
+      "y": 1
+    }
+  },
+  {
+    "id": "MetalRefinery",
+    "size": {
+      "x": 3,
+      "y": 4
+    },
+    "utilityConnections": [
+      {
+        "connectionType": 1,
+        "connectionOffset": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "connectionType": 2,
+        "connectionOffset": {
+          "x": 1,
+          "y": 0
+        }
+      },
+      {
+        "connectionType": 4,
+        "connectionOffset": {
+          "x": -1,
+          "y": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "MetalTile",
+    "imageId": "tiles_metal_place",
+    "spriteInfoId": "tiles",
+    "isTile": true,
+    "size": {
+      "x": 1,
+      "y": 1
+    }
+  },
+  {
+    "id": "MethaneGenerator",
+    "size": {
+      "x": 4,
+      "y": 3
+    },
+    "utilityConnections": [
+      {
+        "connectionType": 0,
+        "connectionOffset": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "connectionType": 8,
+        "connectionOffset": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "connectionType": 6,
+        "connectionOffset": {
+          "x": 2,
+          "y": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": "MicrobeMusher",
+    "size": {
+      "x": 2,
+      "y": 3
+    },
+    "utilityConnections": [
+      {
+        "connectionType": 1,
+        "connectionOffset": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "MineralDeoxidizer",
+    "size": {
+      "x": 1,
+      "y": 2
+    },
+    "utilityConnections": [
+      {
+        "connectionType": 1,
+        "connectionOffset": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "OilRefinery",
+    "size": {
+      "x": 4,
+      "y": 4
+    },
+    "utilityConnections": [
+      {
+        "connectionType": 1,
+        "connectionOffset": {
+          "x": 1,
+          "y": 0
+        }
+      },
+      {
+        "connectionType": 2,
+        "connectionOffset": {
+          "x": 1,
+          "y": 1
+        }
+      },
+      {
+        "connectionType": 4,
+        "connectionOffset": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "OilWellCap",
+    "size": {
+      "x": 4,
+      "y": 4
+    },
+    "utilityConnections": [
+      {
+        "connectionType": 1,
+        "connectionOffset": {
+          "x": 1,
+          "y": 1
+        }
+      },
+      {
+        "connectionType": 4,
+        "connectionOffset": {
+          "x": 0,
+          "y": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "OreScrubber",
+    "size": {
+      "x": 3,
+      "y": 3
+    },
+    "utilityConnections": [
+      {
+        "connectionType": 8,
+        "connectionOffset": {
+          "x": 1,
+          "y": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "Outhouse",
+    "size": {
+      "x": 2,
+      "y": 3
+    }
+  },
+  {
+    "id": "PetroleumGenerator",
+    "size": {
+      "x": 3,
+      "y": 4
+    },
+    "utilityConnections": [
+      {
+        "connectionType": 0,
+        "connectionOffset": {
+          "x": 1,
+          "y": 0
+        }
+      },
+      {
+        "connectionType": 4,
+        "connectionOffset": {
+          "x": -1,
+          "y": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "PlanterBox",
+    "size": {
+      "x": 1,
+      "y": 1
+    }
+  },
+  {
+    "id": "PlasticTile",
+    "imageId": "tiles_plastic_place",
+    "spriteInfoId": "tiles",
+    "isTile": true,
+    "size": {
+      "x": 1,
+      "y": 1
+    }
+  },
+  {
+    "id": "Polymerizer",
+    "size": {
+      "x": 3,
+      "y": 3
+    },
+    "utilityConnections": [
+      {
+        "connectionType": 1,
+        "connectionOffset": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "connectionType": 4,
+        "connectionOffset": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "connectionType": 6,
+        "connectionOffset": {
+          "x": 0,
+          "y": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "PowerControlStation",
+    "size": {
+      "x": 2,
+      "y": 4
+    }
+  },
+  {
+    "id": "PowerTransformer",
+    "imageId": "transformer_0",
+    "size": {
+      "x": 3,
+      "y": 2
+    },
+    "utilityConnections": [
+      {
+        "connectionType": 1,
+        "connectionOffset": {
+          "x": 1,
+          "y": 0
+        }
+      },
+      {
+        "connectionType": 1,
+        "connectionOffset": {
+          "x": -1,
+          "y": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "PressureDoor",
+    "imageId":"door_external_0",
+    "size": {
+      "x": 1,
+      "y": 2
+    },
+    "utilityConnections": [
+      {
+        "connectionType": 1,
+        "connectionOffset": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "PressureSwitchGas",
+    "size": {
+      "x": 1,
+      "y": 1
+    }
+  },
+  {
+    "id": "PressureSwitchLiquid",
+    "size": {
+      "x": 1,
+      "y": 1
+    }
+  },
+  {
+    "id": "RanchStation",
+    "size": {
+      "x": 2,
+      "y": 3
+    }
+  },
+  {
+    "id": "RationBox",
+    "size": {
+      "x": 2,
+      "y": 2
+    }
+  },
+  {
+    "id": "Refrigerator",
+    "size": {
+      "x": 1,
+      "y": 2
+    },
+    "utilityConnections": [
+      {
+        "connectionType": 1,
+        "connectionOffset": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "ResearchCenter",
+    "size": {
+      "x": 2,
+      "y": 2
+    },
+    "utilityConnections": [
+      {
+        "connectionType": 1,
+        "connectionOffset": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "RockCrusher",
+    "size": {
+      "x": 4,
+      "y": 4
+    },
+    "utilityConnections": [
+      {
+        "connectionType": 1,
+        "connectionOffset": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "RoleStation",
+    "size": {
+      "x": 2,
+      "y": 2
+    }
+  },
+  {
+    "id": "SeedSplicer",
+    "size": {
+      "x": 2,
+      "y": 3
+    }
+  },
+  {
+    "id": "ShearingStation",
+    "size": {
+      "x": 3,
+      "y": 3
+    },
+    "utilityConnections": [
+      {
+        "connectionType": 1,
+        "connectionOffset": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "Shower",
+    "size": {
+      "x": 2,
+      "y": 4
+    },
+    "utilityConnections": [
+      {
+        "connectionType": 2,
+        "connectionOffset": {
+          "x": 1,
+          "y": 1
+        }
+      },
+      {
+        "connectionType": 4,
+        "connectionOffset": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "SolarPanel",
+    "size": {
+      "x": 7,
+      "y": 3
+    },
+    "utilityConnections": [
+      {
+        "connectionType": 0,
+        "connectionOffset": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "SolidConduitBridge",
+    "size": {
+      "x": 3,
+      "y": 1
+    }
+  },
+  {
+    "id": "SolidConduit",
+    "size": {
+      "x": 1,
+      "y": 1
+    }
+  },
+  {
+    "id": "SolidConduitInbox",
+    "size": {
+      "x": 1,
+      "y": 2
+    },
+    "utilityConnections": [
+      {
+        "connectionType": 1,
+        "connectionOffset": {
+          "x": 0,
+          "y": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "SolidConduitOutbox",
+    "size": {
+      "x": 1,
+      "y": 2
+    }
+  },
+  {
+    "id": "SolidTransferArm",
+    "size": {
+      "x": 3,
+      "y": 1
+    },
+    "utilityConnections": [
+      {
+        "connectionType": 1,
+        "connectionOffset": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "SpaceHeater",
+    "size": {
+      "x": 2,
+      "y": 2
+    },
+    "utilityConnections": [
+      {
+        "connectionType": 1,
+        "connectionOffset": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "SteamTurbine",
+    "imageId":"steamturbine_0",
+    "size": {
+      "x": 5,
+      "y": 4
+    },
+    "utilityConnections": [
+      {
+        "connectionType": 0,
+        "connectionOffset": {
+          "x": 1,
+          "y": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "StorageLocker",
+    "size": {
+      "x": 1,
+      "y": 2
+    }
+  },
+  {
+    "id": "StorageLockerSmart",
+    "size": {
+      "x": 1,
+      "y": 2
+    },
+    "utilityConnections": [
+      {
+        "connectionType": 1,
+        "connectionOffset": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "SuitFabricator",
+    "size": {
+      "x": 4,
+      "y": 3
+    },
+    "utilityConnections": [
+      {
+        "connectionType": 1,
+        "connectionOffset": {
+          "x": 1,
+          "y": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "SuitLocker",
+    "size": {
+      "x": 1,
+      "y": 3
+    },
+    "utilityConnections": [
+      {
+        "connectionType": 1,
+        "connectionOffset": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "connectionType": 8,
+        "connectionOffset": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "SuitMarker",
+    "size": {
+      "x": 1,
+      "y": 3
+    }
+  },
+  {
+    "id": "Switch",
+    "size": {
+      "x": 1,
+      "y": 1
+    }
+  },
+  {
+    "id": "TemperatureControlledSwitch",
+    "size": {
+      "x": 1,
+      "y": 1
+    }
+  },
+  {
+    "id": "ThermalBlock",
+    "size": {
+      "x": 1,
+      "y": 1
+    }
+  },
+  {
+    "id": "TravelTube",
+    "size": {
+      "x": 1,
+      "y": 1
+    }
+  },
+  {
+    "id": "TravelTubeEntrance",
+    "size": {
+      "x": 3,
+      "y": 2
+    },
+    "utilityConnections": [
+      {
+        "connectionType": 1,
+        "connectionOffset": {
+          "x": 1,
+          "y": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "TravelTubeWallBridge",
+    "size": {
+      "x": 1,
+      "y": 1
+    },
+    "todo": "check size"
+  },
+  {
+    "id": "WashBasin",
+    "size": {
+      "x": 2,
+      "y": 3
+    }
+  },
+  {
+    "id": "WashSink",
+    "size": {
+      "x": 2,
+      "y": 3
+    },
+    "utilityConnections": [
+      {
+        "connectionType": 2,
+        "connectionOffset": {
+          "x": 1,
+          "y": 1
+        }
+      },
+      {
+        "connectionType": 4,
+        "connectionOffset": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "WaterPurifier",
+    "size": {
+      "x": 4,
+      "y": 3
+    },
+    "utilityConnections": [
+      {
+        "connectionType": 1,
+        "connectionOffset": {
+          "x": 2,
+          "y": 0
+        }
+      },
+      {
+        "connectionType": 2,
+        "connectionOffset": {
+          "x": 2,
+          "y": 2
+        }
+      },
+      {
+        "connectionType": 4,
+        "connectionOffset": {
+          "x": -1,
+          "y": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": "WireBridge",
+    "defaultOverlay":1,
+    "size": {
+      "x": 3,
+      "y": 1
+    },
+    "utilityConnections": [
+      {
+        "connectionType": 1,
+        "connectionOffset": {
+          "x": 1,
+          "y": 0
+        }
+      },
+      {
+        "connectionType": 1,
+        "connectionOffset": {
+          "x": -1,
+          "y": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "WireBridgeHighWattage",
+    "defaultOverlay":1,
+    "size": {
+      "x": 1,
+      "y": 1
+    }
+  },
+  {
+    "id": "WireRefined",
+    "defaultOverlay":1,
+    "isWire": true,
+    "size": {
+      "x": 1,
+      "y": 1
+    }
+  },
+  {
+    "id": "WireRefinedHighWattage",
+    "defaultOverlay":1,
+    "isWire": true,
+    "size": {
+      "x": 1,
+      "y": 1
+    }
+  },
+  {
+    "id": "WireRefinedBridgeHighWattage",
+    "defaultOverlay":1,
+    "size": {
+      "x": 3,
+      "y": 1
+    },
+    "utilityConnections": [
+      {
+        "connectionType": 1,
+        "connectionOffset": {
+          "x": -1,
+          "y": 0
+        }
+      },
+      {
+        "connectionType": 1,
+        "connectionOffset": {
+          "x": 1,
+          "y": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "JetSuitMarker",
+    "size": {
+      "x": 2,
+      "y": 4
+    }
+  },
+  {
+    "id": "LiquidReservoir",
+    "size": {
+      "x": 2,
+      "y": 3
+    },
+    "utilityConnections": [
+      {
+        "connectionType": 2,
+        "connectionOffset": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "connectionType": 4,
+        "connectionOffset": {
+          "x": 1,
+          "y": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": "GasReservoir",
+    "size": {
+      "x": 5,
+      "y": 3
+    },
+    "utilityConnections": [
+      {
+        "connectionType": 8,
+        "connectionOffset": {
+          "x": 1,
+          "y": 2
+        }
+      },
+      {
+        "connectionType": 6,
+        "connectionOffset": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "WireRefinedBridge",
+    "size": {
+      "x": 3,
+      "y": 1
+    },
+    "utilityConnections": [
+      {
+        "connectionType": 1,
+        "connectionOffset": {
+          "x": 1,
+          "y": 0
+        }
+      },
+      {
+        "connectionType": 1,
+        "connectionOffset": {
+          "x": -1,
+          "y": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "PowerTransformerSmall",
+    "imageId": "transformer_small_0",
+    "size": {
+      "x": 2,
+      "y": 2
+    },
+    "utilityConnections": [
+      {
+        "connectionType": 1,
+        "connectionOffset": {
+          "x": 1,
+          "y": 0
+        }
+      },
+      {
+        "connectionType": 1,
+        "connectionOffset": {
+          "x": 0,
+          "y": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "CreatureDeliveryPoint"
+  },
+  {
+    "id": "FishDeliveryPoint"
+  },
+  {
+    "id": "CreatureTrap"
+  },
+  {
+    "id": "FishTrap"
+  },
+  {
+    "id": "AirborneCreatureLure"
+  },
+  {
+    "id": "LiquidConduitElementSensor"
+  },
+  {
+    "id": "LiquidConduitDiseaseSensor"
+  },
+  {
+    "id": "LiquidConduitTemperatureSensor"
+  },
+  {
+    "id": "GasBottler",
+    "utilityConnections": [
+      {
+        "connectionType": 8,
+        "connectionOffset": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "BottleEmptierGas",
+    "size": {
+      "x": 1,
+      "y": 3
+    }
+  },
+  {
+    "id": "GasConduitElementSensor"
+  },
+  {
+    "id": "GasConduitDiseaseSensor"
+  },
+  {
+    "id": "GasConduitTemperatureSensor"
+  },
+  {
+    "id": "OxyliteRefinery",
+    "size": {
+      "x": 3,
+      "y": 4
+    },
+    "utilityConnections": [
+      {
+        "connectionType": 1,
+        "connectionOffset": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "connectionType": 8,
+        "connectionOffset": {
+          "x": 1,
+          "y": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "SupermaterialRefinery",
+    "size": {
+      "x": 4,
+      "y": 5
+    },
+    "utilityConnections": [
+      {
+        "connectionType": 1,
+        "connectionOffset": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "LogicGateAND",
+    "imageId": "logic_and_0",
+    "size": {
+      "x": 2,
+      "y": 2
+    }
+  },
+  {
+    "id": "LogicGateOR",
+    "size": {
+      "x": 2,
+      "y": 2
+    }
+  },
+  {
+    "id": "LogicGateXOR",
+    "size": {
+      "x": 2,
+      "y": 2
+    }
+  },
+  {
+    "id": "LogicGateNOT",
+    "imageId":"logic_not_0",
+    "size": {
+      "x": 2,
+      "y": 1
+    }
+  },
+  {
+    "id": "LogicGateBUFFER",
+    "imageId":"logic_buffer_0",
+    "size": {
+      "x": 2,
+      "y": 1
+    }
+  },
+  {
+    "id": "LogicGateFILTER",
+    "size": {
+      "x": 2,
+      "y": 1
+    }
+  },
+  {
+    "id": "WaterCooler",
+    "size": {
+      "x": 2,
+      "y": 2
+    }
+  },
+  {
+    "id": "Phonobox",
+    "size": {
+      "x": 5,
+      "y": 3
+    },
+    "utilityConnections": [
+      {
+        "connectionType": 1,
+        "connectionOffset": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "ArcadeMachine",
+    "size": {
+      "x": 3,
+      "y": 3
+    },
+    "utilityConnections": [
+      {
+        "connectionType": 1,
+        "connectionOffset": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "EspressoMachine",
+    "size": {
+      "x": 3,
+      "y": 3
+    },
+    "utilityConnections": [
+      {
+        "connectionType": 1,
+        "connectionOffset": {
+          "x": 1,
+          "y": 2
+        }
+      },
+      {
+        "connectionType": 4,
+        "connectionOffset": {
+          "x": 1,
+          "y": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": "Canvas"
+  },
+  {
+    "id": "Sculpture"
+  },
+  {
+    "id": "CosmicResearchCenter",
+    "size": {
+      "x": 4,
+      "y": 4
+    },
+    "utilityConnections": [
+      {
+        "connectionType": 1,
+        "connectionOffset": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "Telescope",
+    "size": {
+      "x": 4,
+      "y": 6
+    },
+    "utilityConnections": [
+      {
+        "connectionType": 1,
+        "connectionOffset": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "connectionType": 8,
+        "connectionOffset": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "JetSuitLocker",
+    "size": {
+      "x": 2,
+      "y": 4
+    },
+    "utilityConnections": [
+      {
+        "connectionType": 1,
+        "connectionOffset": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "connectionType": 5,
+        "connectionOffset": {
+          "x": 0,
+          "y": 1
+        }
+      },
+      {
+        "connectionType": 8,
+        "connectionOffset": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "AstronautTrainingCenter",
+    "size": {
+      "x": 5,
+      "y": 5
+    },
+    "utilityConnections": [
+      {
+        "connectionType": 1,
+        "connectionOffset": {
+          "x": -2,
+          "y": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "AutoMiner",
+    "imageId": "auto_miner_0",
+    "spriteInfoId": "auto_miner_0",
+    "size": {
+      "x": 2,
+      "y": 2
+    },
+    "utilityConnections": [
+      {
+        "connectionType": 1,
+        "connectionOffset": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "SteamEngine",
+    "imageId": "rocket_steam_engine_0",
+    "size": {
+      "x": 7,
+      "y": 5
+    },
+    "utilityConnections": [
+      {
+        "connectionType": 8,
+        "connectionOffset": {
+          "x": 2,
+          "y": 3
+        }
+      }
+    ]
+  },
+  {
+    "id": "KeroseneEngine",
+    "imageId": "rocket_petroleum_engine_0",
+    "size": {
+      "x": 7,
+      "y": 5
+    }
+  },
+  {
+    "id": "SolidBooster",
+    "imageId": "rocket_solid_booster_0",
+    "size": {
+      "x": 7,
+      "y": 5
+    }
+  },
+  {
+    "id": "LiquidFuelTank",
+    "size": {
+      "x": 5,
+      "y": 5
+    },
+    "utilityConnections": [
+      {
+        "connectionType": 4,
+        "connectionOffset": {
+          "x": 2,
+          "y": 3
+        }
+      }
+    ]
+  },
+  {
+    "id": "OxidizerTank",
+    "size": {
+      "x": 5,
+      "y": 5
+    },
+    "utilityConnections": [
+      {
+        "connectionType": 4,
+        "connectionOffset": {
+          "x": 2,
+          "y": 3
+        }
+      }
+    ]
+  },
+  {
+    "id": "CargoBay",
+    "size": {
+      "x": 5,
+      "y": 5
+    }
+  },
+  {
+    "id": "GasCargoBay",
+    "size": {
+      "x": 5,
+      "y": 5
+    },
+    "utilityConnections": [
+      {
+        "connectionType": 6,
+        "connectionOffset": {
+          "x": 0,
+          "y": 3
+        }
+      }
+    ]
+  },
+  {
+    "id": "LiquidCargoBay",
+    "size": {
+      "x": 5,
+      "y": 5
+    },
+    "utilityConnections": [
+      {
+        "connectionType": 2,
+        "connectionOffset": {
+          "x": 0,
+          "y": 3
+        }
+      }
+    ]
+  },
+  {
+    "id": "CommandModule",
+    "size": {
+      "x": 5,
+      "y": 5
+    }
+  },
+  {
+    "id": "ResearchModule",
+    "size": {
+      "x": 5,
+      "y": 5
+    }
+  },
+  {
+    "id": "SpecialCargoBay",
+    "size": {
+      "x": 5,
+      "y": 5
+    }
+  },
+  {
+    "id": "HydrogenEngine",
+    "size": {
+      "x": 7,
+      "y": 5
+    }
+  },
+  {
+    "id": "Gantry",
+    "size": {
+      "x": 6,
+      "y": 2
+    },
+    "utilityConnections": [
+      {
+        "connectionType": 1,
+        "connectionOffset": {
+          "x": -2,
+          "y": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "SandStone"
+  },
+  {
+    "id": "ChlorineGas"
+  },
+  {
+    "id": "CarbonDioxide"
+  },
+  {
+    "id": "ContaminatedOxygen"
+  },
+  {
+    "id": "Oxygen"
+  },
+  {
+    "id": "Copper"
+  },
+  {
+    "id": "Hydrogen"
+  },
+  {
+    "id": "Vacuum"
+  },
+  {
+    "id": "Steel"
+  },
+  {
+    "id": "Dirt"
+  },
+  {
+    "id": "Cuprite"
+  },
+  {
+    "id": "Polypropylene"
+  },
+  {
+    "id": "Diamond"
+  }
+]
