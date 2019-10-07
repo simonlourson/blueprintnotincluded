@@ -27,6 +27,15 @@ buildings:
   rottable: {}
   amounts: []
   other_values: []
+- id: Gantry
+  location_x: -10
+  location_y: 1
+  element: Cuprite
+  temperature: 293.149994
+  storage: []
+  rottable: {}
+  amounts: []
+  other_values: []
 pickupables: []
 elementalOres: []
 otherEntities: []

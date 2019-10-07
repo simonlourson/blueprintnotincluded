@@ -97,11 +97,11 @@ export class DrawPixi implements DrawAbstraction
       (topLeft.y - bottomRight.y + 1) * camera.currentZoom - 2*delta*camera.currentZoom
     );
 
-    this.graphics.beginFill(0xFF0000);
+    this.graphics.beginFill(0xFF0000, 0.5);
     this.graphics.drawRect(rectanglePosition.x, rectanglePosition.y, rectangleSize.x, rectangleSize.y);
     this.graphics.endFill();
 
-    this.graphics.lineStyle(2, 0x00000, 1);
+    this.graphics.lineStyle(2, 0x00000, 0.5);
     this.graphics.moveTo(rectanglePosition.x, rectanglePosition.y);
     this.graphics.lineTo(rectanglePosition.x + rectangleSize.x, rectanglePosition.y);
     this.graphics.lineTo(rectanglePosition.x + rectangleSize.x, rectanglePosition.y + rectangleSize.y);

@@ -433,12 +433,11 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
 
         if (texture != null) 
         {
-          console.log(texture.frame);
+          // TODO sprite should change if modifier changes
+          // TODO Invert pivoTY in export
           this.sprite = PIXI.Sprite.from(texture);
-          //this.sprite.anchor.set(0.5, 0.05);
-          this.sprite.anchor.set(this.realSpriteInfo.pivot.x, this.realSpriteInfo.pivot.y);
+          this.sprite.anchor.set(this.realSpriteInfo.pivot.x, 1-this.realSpriteInfo.pivot.y);
           pixiApp.stage.addChild(this.sprite);
-          console.log('sprite created');
         }
       }
 
@@ -449,8 +448,9 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
         let realSize = new Vector2(this.oniItem.size.x * 1, this.oniItem.size.y * 1);
 
         let positionCorrected = new Vector2(
-          (position.x + tileOffset.x + camera.cameraOffset.x) * camera.currentZoom,
-          (-position.y + tileOffset.y + camera.cameraOffset.y - realSize.y + 1) * camera.currentZoom
+          (position.x + tileOffset.x + camera.cameraOffset.x + (this.oniItem.size.x % 2 == 0 ? 1 : 0.5)) * camera.currentZoom,
+          //(position.x + tileOffset.x + camera.cameraOffset.x + 0) * camera.currentZoom,
+          (-position.y + tileOffset.y + camera.cameraOffset.y + 1) * camera.currentZoom
         );
             
         let sizeCorrected = new Vector2(
@@ -458,8 +458,8 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
           realSize.y * camera.currentZoom * this.realSpriteInfo.sourceSize.y / this.realSpriteInfo.realSize.y
         );
 
-        this.sprite.x = positionCorrected.x + this.realSpriteModifier.getLastPart().translation.x * 0.5 * camera.currentZoom / 100;
-        this.sprite.y = positionCorrected.y + this.realSpriteModifier.getLastPart().translation.y * 0.5 * camera.currentZoom / 100;
+        this.sprite.x = positionCorrected.x + this.realSpriteModifier.getLastPart().translation.x * camera.currentZoom / 100;
+        this.sprite.y = positionCorrected.y - this.realSpriteModifier.getLastPart().translation.y * camera.currentZoom / 100;
         
 
 
