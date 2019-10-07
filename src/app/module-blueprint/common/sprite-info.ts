@@ -4,8 +4,8 @@ import { BBuilding } from "./bexport/b-building";
 import { BFrameElement } from "./bexport/b-frame-element";
 import { BSourceUv } from "./bexport/b-source-uv";
 import { BMatrix2x3 } from "./bexport/b-matrix";
-//declare var PIXI: any;
-import { Texture, BaseTexture, Rectangle } from "pixi.js";
+import { ImageSource } from './image-source';
+declare var PIXI: any;
 
 export class SpriteInfo 
 {
@@ -154,19 +154,30 @@ export class SpriteInfo
 
 
     // Pixi stuf
-    texture: Texture;
-    public getTexture(url: string): Texture
+    texture: PIXI.Texture;
+    public getTexture(imageId: string): PIXI.Texture
     {
       if (this.texture == null)
       {
-        let baseTex = new BaseTexture(url);
-        let rectangle = new Rectangle(
+        let baseTex = ImageSource.getBaseTexture(imageId);
+        if (baseTex == null) return null;
+
+        
+        let rectangle = new PIXI.Rectangle(
           this.uvMin.x / 1,//this.textureSize.x,
           this.uvMin.y / 1,//this.textureSize.y,
           this.sourceSize.x / 1,//this.textureSize.x,
           this.sourceSize.y / 1,//this.textureSize.y
         );
-        this.texture = new Texture(baseTex, rectangle);
+        
+       /*
+        let rectangle = new PIXI.Rectangle(
+          0,
+          0,
+          1,
+          1
+        )*/
+        this.texture = new PIXI.Texture(baseTex, rectangle);
       }
 
       return this.texture;

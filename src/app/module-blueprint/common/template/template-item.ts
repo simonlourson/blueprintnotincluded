@@ -429,13 +429,17 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
       if (this.sprite == null)
       {
         
-        let texture = this.realSpriteInfo.getTexture(ImageSource.getImageUrl(this.oniItem.imageId));
-        console.log(texture.frame);
+        let texture = this.realSpriteInfo.getTexture(this.oniItem.imageId);
 
-        this.sprite = PIXI.Sprite.from(texture);
-        this.sprite.anchor.set(this.realSpriteInfo.pivot.x, 1-this.realSpriteInfo.pivot.y);
-        pixiApp.stage.addChild(this.sprite);
-        console.log('sprite created');
+        if (texture != null) 
+        {
+          console.log(texture.frame);
+          this.sprite = PIXI.Sprite.from(texture);
+          //this.sprite.anchor.set(0.5, 0.05);
+          this.sprite.anchor.set(this.realSpriteInfo.pivot.x, this.realSpriteInfo.pivot.y);
+          pixiApp.stage.addChild(this.sprite);
+          console.log('sprite created');
+        }
       }
 
       if (this.sprite != null)
@@ -454,18 +458,14 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
           realSize.y * camera.currentZoom * this.realSpriteInfo.sourceSize.y / this.realSpriteInfo.realSize.y
         );
 
-        this.sprite.x = positionCorrected.x;
-        this.sprite.y = positionCorrected.y;
-        this.sprite.x += 0.5 * camera.currentZoom;
-        this.sprite.x += this.realSpriteModifier.getLastPart().translation.x * 0.5 * camera.currentZoom * realSize.x / this.realSpriteInfo.realSize.x
-        this.sprite.y += this.realSpriteModifier.getLastPart().translation.y * 0.5 * camera.currentZoom * realSize.y / this.realSpriteInfo.realSize.y
+        this.sprite.x = positionCorrected.x + this.realSpriteModifier.getLastPart().translation.x * 0.5 * camera.currentZoom / 100;
+        this.sprite.y = positionCorrected.y + this.realSpriteModifier.getLastPart().translation.y * 0.5 * camera.currentZoom / 100;
+        
 
 
-        this.sprite.rotation = -this.realSpriteModifier.getLastPart().rotation*Math.PI/180;
         this.sprite.scale.x = this.realSpriteModifier.getLastPart().scale.x;
         this.sprite.scale.y = this.realSpriteModifier.getLastPart().scale.y;
-        this.sprite.width = 100;//sizeCorrected.x;
-        this.sprite.height = 100;//sizeCorrected.y;
+        this.sprite.rotation = -this.realSpriteModifier.getLastPart().rotation*Math.PI/180;
         this.sprite.width = sizeCorrected.x;
         this.sprite.height = sizeCorrected.y;
 

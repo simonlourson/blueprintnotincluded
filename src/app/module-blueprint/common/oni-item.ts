@@ -48,6 +48,7 @@ export class OniItem
     let imageId: string = original.textureName;
     let imageUrl: string = 'assets/images/'+imageId+'.png';
     ImageSource.AddImage(imageId, imageUrl);
+    ImageSource.AddImagePixi(imageId, imageUrl);
     this.imageId = imageId;
   }
 
