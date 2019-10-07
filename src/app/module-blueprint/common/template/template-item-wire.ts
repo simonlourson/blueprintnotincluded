@@ -93,7 +93,7 @@ export class TemplateItemWire extends TemplateItem implements TemplateItemClonea
     return returnValue;
   }
 
-  
+  /*
   public getDebug4(): string
   {
     let debug:any = {};
@@ -101,7 +101,7 @@ export class TemplateItemWire extends TemplateItem implements TemplateItemClonea
     return JSON.stringify(debug);
   }
 
-  /*
+  
   public getDebug3(): string
   {
     let debug:any = {};

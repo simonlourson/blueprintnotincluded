@@ -77,8 +77,8 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
   {
     //return '';
     let debug:any = {};
-    if (this.realSpriteModifier != null && this.realSpriteModifier.getLastPart() != null)
-      debug.rotation = this.realSpriteModifier.getLastPart().rotation;
+    if (this.realSpriteInfo != null)
+      debug.pivot = this.realSpriteInfo.pivot;
       //debug.framebboxMin = this.realSpriteModifier.framebboxMin;
     return JSON.stringify(debug);
   }
@@ -97,17 +97,23 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
   {
     //return '';
     let debug:any = {};
-    if (this.realSpriteInfo != null)
-      debug.pivotX = ((0.5 - this.realSpriteInfo.pivot.x) * this.realSpriteInfo.sourceSize.x);
+    if (this.realSpriteModifier != null)
+      debug.framebboxMin = this.realSpriteModifier.framebboxMin;
+      //debug.framebboxMax = this.realSpriteModifier.framebboxMax;
     return JSON.stringify(debug);
   }
 
   getDebug5(): string
   {
+    let pivotFromFrame: Vector2 = new Vector2(
+    
+    )
+
     //return '';
     let debug:any = {};
-    if (this.realSpriteInfo != null)
-      debug.pivotY = ((0.5 - this.realSpriteInfo.pivot.y) * this.realSpriteInfo.sourceSize.y);
+    if (this.realSpriteModifier != null)
+      debug.framebboxMax = this.realSpriteModifier.framebboxMax;
+      //debug.framebboxMax = this.realSpriteModifier.framebboxMax;
     return JSON.stringify(debug);
   }
 
