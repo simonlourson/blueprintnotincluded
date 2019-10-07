@@ -1,0 +1,8 @@
+#blueprintCanvas {
+  background-color: black;
+  z-index: -1;
+}
+
+#loadedImages {
+  display: none
+}

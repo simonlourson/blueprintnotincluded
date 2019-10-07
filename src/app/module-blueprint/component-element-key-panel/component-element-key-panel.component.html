@@ -1,0 +1,27 @@
+<p-dialog #elementKeyDialog 
+header="Element color key"
+[modal]="false" 
+[responsive]="false" 
+[width]="350"
+[minHeight]=20
+[contentStyle]="{'max-height':'500px'}"
+[closable]="false" 
+[focusOnShow]="false" 
+[maximizable]="false" 
+[draggable]="true" 
+[baseZIndex]="90" 
+[autoZIndex]="false" 
+[resizable]="false"
+[positionTop]="150" 
+[positionLeft]="400" 
+[visible]="visible"
+>
+
+<table>
+  <tr *ngFor="let element of distinctElements">
+      <td class="colorBoxContainer"><div class="colorBox" [ngStyle]="{'background-color': element.color}"></div></td>
+      <td>{{element.elementId}}</td>
+  </tr>
+</table>
+        
+</p-dialog>

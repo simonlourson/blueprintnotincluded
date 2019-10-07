@@ -1,0 +1,68 @@
+
+
+
+
+
+
+<div *ngIf="templateItem.id != 'Vacuum'">
+<table>
+    <tr *ngIf="!templateItem.oniItem.isElement">
+        <td><h4>Element</h4></td>
+        <td class="rightHandCells"><p-dropdown [options]=elements [style]="{'width':'100%'}" [(ngModel)]="templateItem.element" optionLabel="elementId" appendTo="body"></p-dropdown></td>
+    </tr>
+    <tr>
+        <td><h4>Temperature</h4></td>
+        <td class="rightHandCells">
+            <input type="number" pInputText [(ngModel)]="templateItem.temperature" style="width:100%"/>
+            <p-slider [(ngModel)]="templateItem.temperature" [min]="0" [max]="1000"></p-slider>
+        </td>
+    </tr>
+    <tr *ngIf="templateItem.oniItem.isElement">
+        <td><h4>Mass</h4></td>
+        <td class="rightHandCells">
+            <input type="number" pInputText [(ngModel)]="templateItem.mass" style="width:100%"/>
+            <p-slider [(ngModel)]="templateItem.mass" [min]="0" [max]="1000"></p-slider>
+        </td>
+    </tr>
+    <tr *ngIf="showColor">
+        <td><h4>Color</h4></td>
+        <td class="rightHandCells">
+            <p-colorPicker [(ngModel)]="templateItem.backColor" appendTo="body"></p-colorPicker>
+        </td>
+    </tr>
+    <tr *ngIf="showOrientation">
+      <td><h4>Orientation</h4></td>
+      <td class="rightHandCells"><p-dropdown [options]=authorizedOrientations [style]="{'width':'100%'}" (onChange)=changeOrientation($event) [(ngModel)]="this.templateItem.orientation" appendTo="body"></p-dropdown></td>
+    </tr>
+    
+
+</table>
+
+
+
+<div><button style="margin-top:5px; width:100%" pButton type="button" label="Build copy" class="ui-button" (click)="buildCopy($event)"></button></div>
+<div><button style="margin-top:5px; width:100%" pButton type="button" label="Deconstruct" class="ui-button ui-button-danger"></button></div>
+</div>
+
+<div *ngIf="templateItem.id == 'Vacuum'">Your ad here</div>
+
+
+
+
+<!--
+
+
+<div>{{templateItem.oniItem.orientations.length}}</div>
+-->
+    <span>{{templateItem.getDebug1()}}</span>
+    <br>
+    <span>{{templateItem.getDebug2()}}</span>
+    <br>
+    <span>{{templateItem.getDebug3()}}</span>
+    <br>
+    <span>{{templateItem.getDebug4()}}</span>
+    <br>
+    <span>{{templateItem.getDebug5()}}</span>
+
+
+

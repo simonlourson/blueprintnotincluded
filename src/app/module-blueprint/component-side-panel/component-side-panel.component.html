@@ -1,0 +1,26 @@
+<p-dialog #buildingsDialog 
+header='{{header}}' 
+[modal]="false" 
+[responsive]="false" 
+[width]="450"
+[minHeight]=20
+[closable]="false" 
+[focusOnShow]="false" 
+[maximizable]="false" 
+[draggable]="true" 
+[baseZIndex]="90" 
+[autoZIndex]="false" 
+[resizable]="false"
+[positionTop]="150" 
+[positionLeft]="30" 
+[visible]="true"
+[transitionOptions]="'0ms'"
+>
+  <app-component-side-selection-tool #selectionTool 
+    [hidden]="currentTool!=0"
+    (onAskChangeTool)="askChangeTool($event)"></app-component-side-selection-tool>
+  <app-component-side-build-tool #buildTool 
+    [hidden]="currentTool!=1"
+    (onAskChangeTool)="askChangeTool($event)"></app-component-side-build-tool>
+        
+</p-dialog>

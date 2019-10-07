@@ -1,0 +1,18 @@
+.leftHandCells {
+  width: 120px
+}
+
+.rightHandCells {
+  padding-left: 10px;
+}
+
+.rightInput {
+  width:100%
+}
+
+.errorRed {
+  color: darkred;
+  font-weight: bold;
+  text-align: justify;
+  text-justify: inter-word;
+}

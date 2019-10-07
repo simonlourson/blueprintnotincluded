@@ -1,0 +1,6 @@
+<p-accordion #buildingsAccordion [(activeIndex)]="activeIndex" >
+  <p-accordionTab *ngFor="let templateItem of templateItemsToShow" header="{{templateItem.id}}">
+    <app-component-tile-info 
+      [templateItem]=templateItem
+      (onAskChangeTool)="askChangeTool($event)"></app-component-tile-info></p-accordionTab>
+</p-accordion>

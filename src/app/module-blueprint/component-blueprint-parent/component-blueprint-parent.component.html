@@ -1,0 +1,21 @@
+
+<p-toast [style]="{marginTop: '60px'}"></p-toast>
+<app-component-menu 
+  #menu
+  (onMessage)="toast($event)" 
+  (onTemplateUpload)="templateUpload($event)"
+  (onDownloadAsJson)="downloadAsJson()"
+  (onDownloadDistinctIdAsJson)="downloadDistinctIdAsJson()"
+  (onMisc)=misc()
+  (onSaveToCloud)=saveToCloud()
+  (onChangeOverlay)=changeOverlay($event)
+  (onChangeTool)=changeTool($event)
+  (onBuild)=build($event)></app-component-menu>
+<app-component-side-panel #sidePanel 
+  (onAskChangeTool)=askChangeTool($event)></app-component-side-panel>
+<app-component-element-key-panel #elementKeyPanel ></app-component-element-key-panel>
+<app-component-save-dialog #saveDialog (onSaveToCloud)=sendSaveToCloud($event)></app-component-save-dialog>
+<app-component-canvas 
+  #canvas 
+  (onTileInfoChange)="onTileInfoChange($event)"
+  (onAskChangeTool)=askChangeTool($event)></app-component-canvas>

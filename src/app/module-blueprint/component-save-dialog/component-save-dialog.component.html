@@ -1,0 +1,45 @@
+<p-dialog #buildingsDialog 
+header='Save blueprint to the cloud' 
+[(visible)]="visible"
+[modal]="true" 
+[dismissableMask]="true"
+[width]="600"
+[minHeight]=20
+[closable]="true" 
+[focusOnShow]="false" 
+[maximizable]="false" 
+[draggable]="false" 
+[resizable]="false" 
+>
+
+  <table style="width:100%">
+    <tr>
+      <td class="leftHandCells"><h4>Username</h4></td>
+      <td class="rightHandCells">
+        <input class="rightInput" pInputText [(ngModel)]="username" #usernameModel="ngModel" appStringSanitation minlength="4" maxlength="50" required/>
+        <p class="errorRed" *ngIf="usernameModel.invalid && (usernameModel.dirty || usernameModel.touched) && (usernameModel.errors?.minlength || usernameModel.errors?.maxlength)">Username must be between 4 and 50 characters</p>
+        <p class="errorRed" *ngIf="usernameModel.invalid && (usernameModel.dirty || usernameModel.touched) && (usernameModel.errors?.invalidChars)">Username can only contains letters, numbers, dashes (-), or underscores (_)</p>
+        <p class="errorRed" *ngIf="usernameModel.invalid && (usernameModel.dirty || usernameModel.touched) && (usernameModel.errors?.required)">Username is required</p>
+      </td>
+    </tr>
+    <tr>
+      <td class="leftHandCells"><h4>Blueprint name</h4></td>
+      <td class="rightHandCells">
+        <input class="rightInput" pInputText [(ngModel)]="blueprintName" #blueprintNameModel="ngModel" appStringSanitation minlength="4" maxlength="50" required/>
+        <p class="errorRed" *ngIf="blueprintNameModel.invalid && (blueprintNameModel.dirty || blueprintNameModel.touched) && (blueprintNameModel.errors?.minlength || blueprintNameModel.errors?.maxlength)">Username must be between 4 and 50 characters</p>
+        <p class="errorRed" *ngIf="blueprintNameModel.invalid && (blueprintNameModel.dirty || blueprintNameModel.touched) && (blueprintNameModel.errors?.invalidChars)">Username can only contains letters, numbers, dashes (-), or underscores (_)</p>
+        <p class="errorRed" *ngIf="blueprintNameModel.invalid && (blueprintNameModel.dirty || blueprintNameModel.touched) && (blueprintNameModel.errors?.required)">Username is required</p>
+      </td>
+    </tr>
+    <tr>
+      <td class="leftHandCells"><h4>Password</h4></td>
+      <td class="rightHandCells"><input class="rightInput" type="password" [feedback]="false" [(ngModel)]="password" pPassword/></td>
+    </tr>
+  </table>
+
+<p-footer>
+  <button type="button" [disabled]="blueprintNameModel.invalid || usernameModel.invalid" pButton icon="pi pi-check" (click)="save($event)" label="Save"></button>
+  <button type="button" pButton icon="pi pi-times" (click)="cancel($event)" label="Cancel" class="ui-button-secondary"></button>
+</p-footer>
+
+</p-dialog>
