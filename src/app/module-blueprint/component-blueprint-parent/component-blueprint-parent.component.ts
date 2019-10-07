@@ -82,6 +82,7 @@ export class ComponentBlueprintParentComponent implements OnInit {
 
     // TODO cleanup this
     ImageSource.Init(this.cd);
+    ImageSource.InitPixi();
     //.catch((error) => {
     //  this.messageService.add({severity:'error', summary:'Error loading sprite sources' , detail:error, sticky:true});   
     //});

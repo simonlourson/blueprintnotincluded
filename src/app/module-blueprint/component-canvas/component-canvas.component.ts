@@ -244,8 +244,7 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
     let mod = 0;
     for (let col = colOrig; col < this.width + realLineSpacing * 4; col += realLineSpacing)
     {
-      let realAlpha = (mod % 5) == 0 ? alphaOrig : alpha;
-      //if (realAlpha > 0) this.drawBlueprintLine(ctx, col, 0, col, this.height, 1, realAlpha);
+      let realAlpha = (mod % 5) == 0 ? alphaOrig + 0.3 : alpha;
       let color = 'rgba(255,255,255, '+realAlpha+')';
       if (realAlpha > 0) this.drawAbstraction.drawBlueprintLine(color, realAlpha, new Vector2(col, 0), new Vector2(col, this.height), 1);
       mod++;
@@ -255,9 +254,8 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
     mod = 0;
     for (let line = lineOrig; line < this.height + realLineSpacing * 4; line += realLineSpacing)
     {
-      let realAlpha = (mod % 5) == 0 ? alphaOrig : alpha;
+      let realAlpha = (mod % 5) == 0 ? alphaOrig + 0.3 : alpha;
       let color = 'rgba(255,255,255, '+realAlpha+')';
-      //if (realAlpha > 0) this.drawBlueprintLine(ctx, 0, line, this.width, line, 1, realAlpha);
       if (realAlpha > 0) this.drawAbstraction.drawBlueprintLine(color, realAlpha, new Vector2(0, line), new Vector2(this.width, line), 1);
       mod++;
     }

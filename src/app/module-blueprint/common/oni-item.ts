@@ -163,7 +163,7 @@ export class OniItem
 
         for (let oniItemTemp of oniItemsTemp)
         {
-            
+
             let oniItem = new OniItem(oniItemTemp.prefabId);
             oniItem.copyFromC(oniItemTemp);
             oniItem.cleanUp();

@@ -20,7 +20,6 @@ export class DrawPixi implements DrawAbstraction
 
     DrawPixi.instance = this;
 
-    console.log('Init');
     this.parent = parent;
 
     
