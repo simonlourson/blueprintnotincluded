@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { TemplateItem } from '../common/template/template-item';
 import { ComposingElement } from '../common/composing-element';
 import { TemplateItemWire } from '../common/template/template-item-wire';
@@ -12,7 +12,8 @@ import { ToolType } from '../common/tools/tool';
   templateUrl: './component-tile-info.component.html',
   styleUrls: ['./component-tile-info.component.css']
 })
-export class ComponentTileInfoComponent implements OnInit {
+export class ComponentTileInfoComponent implements OnInit, OnDestroy {
+
 
   @Input() templateItem: TemplateItem;
   @Output() onAskChangeTool = new EventEmitter<ToolRequest>();
@@ -31,10 +32,16 @@ export class ComponentTileInfoComponent implements OnInit {
     return returnValue;
   }
 
-  constructor() { }
+
+  constructor(private cdRef: ChangeDetectorRef) { }
 
   ngOnInit() {
 
+  }
+
+  ngOnDestroy(): void {
+    console.log('ComponentTileInfoComponent.ngOnDestroy');
+    this.cdRef.detach();
   }
 
   changeOrientation(event: any)
