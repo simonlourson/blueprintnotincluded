@@ -98,6 +98,8 @@ export class SpriteInfo
         let spriteInfo = new SpriteInfo(sOriginal.name);
         spriteInfo.uvMin = Vector2.clone(sOriginal.uvMin);
         spriteInfo.uvMax = Vector2.clone(sOriginal.uvMax);
+
+        // TODO probably don't need bbox anymore
         spriteInfo.bboxMin = Vector2.clone(sOriginal.bboxMin);
         spriteInfo.bboxMax = Vector2.clone(sOriginal.bboxMax);
         spriteInfo.textureSize = Vector2.clone(sOriginal.textureSize);
@@ -110,23 +112,7 @@ export class SpriteInfo
         spriteInfo.sourceSize = Vector2.clone(sOriginal.size);
         spriteInfo.pivot = Vector2.clone(sOriginal.pivot);
 
-        SpriteInfo.spriteInfosMap.set(spriteInfo.spriteInfoId, spriteInfo);
-
-        /*
-                // TODO in sprite modifier
-                // TODO (probably not correct?)
-                spriteInfo.drawOffset = new Vector2(
-                  (spriteInfo.bboxMin.x + frameElement.transform.m02) / 2 + spriteInfo.realSize.x / 2,
-                  (spriteInfo.bboxMin.y + frameElement.transform.m12) / 2 + spriteInfo.realSize.y
-                );
-
-                // TODO should the transform be here?
-                spriteInfo.transform = new BMatrix2x3(frameElement.transform);
-                spriteInfo.frameBboxMin = Vector2.clone(animation.firstFrame.bboxMin);
-                spriteInfo.frameBboxMax = Vector2.clone(animation.firstFrame.bboxMax);
-                
-*/
-                
+        SpriteInfo.spriteInfosMap.set(spriteInfo.spriteInfoId, spriteInfo); 
       }
 
     }

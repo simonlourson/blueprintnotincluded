@@ -27,21 +27,6 @@ export class Camera
 
     updateZoom()
     {
-
-
-        // TODO smooth this
-        /*
-        if (Math.abs(this.cameraOffset.x - this.targetCameraOffset.x) < 0.1) 
-            this.cameraOffset.x = this.targetCameraOffset.x;
-        else 
-            this.cameraOffset.x += (this.targetCameraOffset.x - this.cameraOffset.x) / 10;
-
-        if (Math.abs(this.cameraOffset.y - this.targetCameraOffset.y) < 0.1) 
-            this.cameraOffset.y = this.targetCameraOffset.y;
-        else 
-            this.cameraOffset.y += (this.targetCameraOffset.y - this.cameraOffset.y) / 10;
-        */
-
         // Snap if close enough
         if (this.currentZoom == this.targetZoom)
             return;
@@ -49,7 +34,6 @@ export class Camera
             this.changeZoom(this.targetZoom - this.currentZoom, this.lastZoomCenter);
         else
             this.changeZoom((this.targetZoom - this.currentZoom) / 10, this.lastZoomCenter);
-
     }
 
     resetZoom(canvasSize: Vector2)

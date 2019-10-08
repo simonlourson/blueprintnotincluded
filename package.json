@@ -23,7 +23,7 @@
     "@types/pixi.js": "^4.8.9",
     "pixi.js": "^5.1.5",
     "primeicons": "^2.0.0",
-    "primeng": "^8.0.3",
+    "primeng": "^8.0.4",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"

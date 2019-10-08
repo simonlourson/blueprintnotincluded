@@ -124,37 +124,9 @@ export class TemplateItemWire extends TemplateItem implements TemplateItemClonea
 
     public prepareSpriteInfoModifier(blueprint: Template)
     {
-        //super.prepareSpriteInfoModifier(blueprint);
-
-        // TODO fixme
         this.realSpriteModifierId = this.oniItem.spriteModifierId + TemplateItemWire.connectionString[this.connections];
-
         this.realSpriteModifier = SpriteModifier.getSpriteModifer(this.realSpriteModifierId);
-        /*
-        if (this.realSpriteModifier.spriteInfoSuffix != null) this.realSpriteInfoId = this.realSpriteInfoId + this.realSpriteModifier.spriteInfoSuffix;
-        else this.realSpriteInfoId = this.realSpriteInfoId + '_' + this.connections;
-  
-        this.realSpriteInfoIdSolid = this.realSpriteInfoId + '_solid';
-        this.realSpriteInfoSolid = SpriteInfo.getSpriteInfo(this.realSpriteInfoIdSolid);
-        */
-    }
 
-    public draw(ctx: CanvasRenderingContext2D, camera: Camera)
-    {
-      // TODO drawn solid overlay
-        /*
-        let image = ImageSource.getImage(this.oniItem.imageId);
-        let realSize = this.oniItem.size;
-        if (Vector2.Zero.equals(realSize)) realSize = Vector2.One;
-
-        // Draw the solid before the rest, if we are in the correct overlay
-        if (this.correctOverlay && image != null && image.width != 0 && this.realSpriteInfoSolid != null)
-        {
-            DrawHelpers.drawTileComplex(ctx, camera, this.realSpriteInfoSolid, this.realSpriteModifier, this.oniItem.imageId, 
-                this.position, this.oniItem.tileOffset, realSize, this.scale, this.rotation, this.alpha, this.backColor);
-            }
-            */
-
-        super.draw(ctx, camera);
+        // TODO add solid
     }
 }

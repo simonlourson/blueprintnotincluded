@@ -40,8 +40,7 @@ export class ComponentTileInfoComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    console.log('ComponentTileInfoComponent.ngOnDestroy');
-    this.cdRef.detach();
+    
   }
 
   changeOrientation(event: any)
