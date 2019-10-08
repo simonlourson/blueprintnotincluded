@@ -77,8 +77,9 @@ export class DrawPixi implements DrawAbstraction
         //throw new Error("Method not implemented.");
 
       this.drawDebugRectangle(camera, templateItem.topLeft, templateItem.bottomRight, templateItem.oniItem.debugColor);
-      templateItem.drawPixi(camera, this.pixiApp);
-    
+      templateItem.drawPixi(camera, this);
+
+
     }
     drawTool(tool: import("../common/tools/tool").Tool, camera: import("../common/camera").Camera) {
         //throw new Error("Method not implemented.");

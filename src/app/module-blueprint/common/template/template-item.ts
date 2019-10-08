@@ -14,6 +14,8 @@ import { TemplateItemWire } from "./template-item-wire";
 import { TemplateItemTile } from "./template-item-tile";
 import { TemplateItemCloneable } from "./template-item-cloneable";
 import { OniCell } from "../../oni-import/oni-cell";
+import { Container } from 'pixi.js';
+import { DrawPixi } from '../../drawing/draw-pixi';
 declare var PIXI: any;
 //import { Texture, BaseTexture, Rectangle } from "pixi.js";
 
@@ -427,14 +429,16 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
 
     // Pixi stuff
     sprite: PIXI.Sprite;
-    public drawPixi(camera: Camera, pixiApp: PIXI.Application)
+    container: PIXI.Container;
+    public drawPixi(camera: Camera, drawPixi: DrawPixi)
     {
       this.realSpriteModifier = SpriteModifier.getSpriteModifer(this.realSpriteModifierId);
       this.realSpriteInfo = SpriteInfo.getSpriteInfo(this.realSpriteModifier.getLastPart().spriteInfoName);
       
       if (this.sprite == null)
       {
-        
+        this.container = new Container();
+        drawPixi.pixiApp.stage.addChild(this.container);
         let texture = this.realSpriteInfo.getTexture(this.oniItem.imageId);
 
         if (texture != null) 
@@ -443,35 +447,52 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
           // TODO Invert pivoTY in export
           this.sprite = PIXI.Sprite.from(texture);
           this.sprite.anchor.set(this.realSpriteInfo.pivot.x, 1-this.realSpriteInfo.pivot.y);
-          pixiApp.stage.addChild(this.sprite);
+          this.container.addChild(this.sprite);
         }
       }
 
       if (this.sprite != null)
       {
         let position = this.position;
-        let tileOffset = Vector2.Zero;
         let realSize = new Vector2(this.oniItem.size.x * 1, this.oniItem.size.y * 1);
 
         let positionCorrected = new Vector2(
-          (position.x + tileOffset.x + camera.cameraOffset.x + (this.oniItem.size.x % 2 == 0 ? 1 : 0.5)) * camera.currentZoom,
-          //(position.x + tileOffset.x + camera.cameraOffset.x + 0) * camera.currentZoom,
-          (-position.y + tileOffset.y + camera.cameraOffset.y + 1) * camera.currentZoom
+          ( position.x + camera.cameraOffset.x + 0.5) * camera.currentZoom,
+          (-position.y + camera.cameraOffset.y + 0.5) * camera.currentZoom
         );
+
+        drawPixi.graphics.lineStyle(2, 0x000000, 1);
+        drawPixi.graphics.moveTo(positionCorrected.x - 5, positionCorrected.y);
+        drawPixi.graphics.lineTo(positionCorrected.x + 5, positionCorrected.y);
+        drawPixi.graphics.moveTo(positionCorrected.x, positionCorrected.y - 5);
+        drawPixi.graphics.lineTo(positionCorrected.x, positionCorrected.y + 5);
             
         let sizeCorrected = new Vector2(
           realSize.x * camera.currentZoom * this.realSpriteInfo.sourceSize.x / this.realSpriteInfo.realSize.x,
           realSize.y * camera.currentZoom * this.realSpriteInfo.sourceSize.y / this.realSpriteInfo.realSize.y
         );
 
-        this.sprite.x = positionCorrected.x + this.realSpriteModifier.getLastPart().translation.x * camera.currentZoom / 100;
-        this.sprite.y = positionCorrected.y - this.realSpriteModifier.getLastPart().translation.y * camera.currentZoom / 100;
+        this.container.x = positionCorrected.x;
+        this.container.y = positionCorrected.y;
+        
+        this.container.scale.x = this.scale.x;
+        this.container.scale.y = this.scale.y;
+        this.container.angle = this.rotation;
+        
+
+        let tileOffset: Vector2 = new Vector2(
+          this.oniItem.size.x % 2 == 0 ? 50 : 0,
+          -50
+        );
+        this.sprite.x = 0 + (this.realSpriteModifier.getLastPart().translation.x + tileOffset.x) * camera.currentZoom / 100;
+        this.sprite.y = 0 - (this.realSpriteModifier.getLastPart().translation.y + tileOffset.y) * camera.currentZoom / 100;
         
 
 
         this.sprite.scale.x = this.realSpriteModifier.getLastPart().scale.x;
         this.sprite.scale.y = this.realSpriteModifier.getLastPart().scale.y;
-        this.sprite.rotation = -this.realSpriteModifier.getLastPart().rotation*Math.PI/180;
+        // TODO invert rotation in export
+        this.sprite.angle = -this.realSpriteModifier.getLastPart().rotation;
         this.sprite.width = sizeCorrected.x;
         this.sprite.height = sizeCorrected.y;
 
