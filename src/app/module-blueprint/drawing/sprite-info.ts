@@ -1,15 +1,16 @@
 import { Vector2 } from "src/app/module-blueprint/common/vector2";
-import { BlueprintParams } from "./params";
-import { BBuilding } from "./bexport/b-building";
-import { BFrameElement } from "./bexport/b-frame-element";
-import { BSourceUv } from "./bexport/b-source-uv";
-import { BMatrix2x3 } from "./bexport/b-matrix";
+import { BlueprintParams } from "../common/params";
+import { BBuilding } from "../common/bexport/b-building";
+import { BFrameElement } from "../common/bexport/b-frame-element";
+import { BSourceUv } from "../common/bexport/b-source-uv";
+import { BMatrix2x3 } from "../common/bexport/b-matrix";
 import { ImageSource } from './image-source';
 declare var PIXI: any;
 
 export class SpriteInfo 
 {
     public spriteInfoId: string;
+    public imageId: string;
     public sourcePos: Vector2;
     public sourceSize: Vector2;
     public realSize: Vector2;
@@ -31,21 +32,6 @@ export class SpriteInfo
         this.cleanUp();
     }
 
-    public copyFrom(original: SpriteInfo)
-    {
-        this.sourcePos = new Vector2();
-        this.sourcePos.copyFrom(original.sourcePos);
-
-        this.sourceSize = new Vector2();
-        this.sourceSize.copyFrom(original.sourceSize);
-
-        this.realSize = new Vector2();
-        this.realSize.copyFrom(original.realSize);
-
-        this.drawOffset = new Vector2();
-        this.drawOffset.copyFrom(original.drawOffset);
-    }
-
     public cleanUp()
     {
         if (this.sourcePos == null) this.sourcePos = new Vector2();
@@ -54,41 +40,10 @@ export class SpriteInfo
         if (this.drawOffset == null) this.drawOffset = new Vector2();
     }
 
-    private static loadedDatabase = false;
     private static spriteInfosMap: Map<string, SpriteInfo>;
     public static Init()
     {
       SpriteInfo.spriteInfosMap = new Map<string, SpriteInfo>();
-
-      /*
-        let promise = new Promise((resolve, reject) => {
-            SpriteInfo.spriteInfosMap = new Map<string, SpriteInfo>();
-
-            fetch(BlueprintParams.apiUrl+'spriteInfos')
-            .then(response => { return response.json() })
-            .then(json => {
-                let spriteInfosTemp: SpriteInfo[] = json;
-                
-                for (let spriteInfoTemp of spriteInfosTemp)
-                {
-                    let spriteInfo = new SpriteInfo(spriteInfoTemp.spriteInfoId);
-                    spriteInfo.copyFrom(spriteInfoTemp);
-                    spriteInfo.cleanUp();
-
-                    SpriteInfo.spriteInfosMap.set(spriteInfo.spriteInfoId, spriteInfo);
-                }
-
-                SpriteInfo.loadedDatabase = true;
-                resolve(0);
-            })
-            .catch(error => {
-                SpriteInfo.loadedDatabase = true;
-                reject(error);
-            })
-        });
-
-        return promise;
-        */
     }
 
     public static AddSpriteInfo(bBuilding: BBuilding)
@@ -96,6 +51,8 @@ export class SpriteInfo
       for (let sOriginal of bBuilding.spriteInfos)
       {
         let spriteInfo = new SpriteInfo(sOriginal.name);
+        // TODO rename to imageId in export to be consistent
+        spriteInfo.imageId = bBuilding.textureName;
         spriteInfo.uvMin = Vector2.clone(sOriginal.uvMin);
         spriteInfo.uvMax = Vector2.clone(sOriginal.uvMax);
 
@@ -117,24 +74,9 @@ export class SpriteInfo
 
     }
 
-    public static FinishAddSpriteInfo()
-    {
-      //console.log(this.spriteInfosMap);
-      SpriteInfo.loadedDatabase = true;
-    }
-
     public static getSpriteInfo(spriteInfoId: string): SpriteInfo
     {
         let returnValue = SpriteInfo.spriteInfosMap.get(spriteInfoId);
-        if (returnValue == null) 
-        {
-            returnValue = new SpriteInfo(spriteInfoId);
-            returnValue.cleanUp();
-
-            // If the database is already loaded, but we still didn't find the item, we can add it to the map
-            if (SpriteInfo.loadedDatabase) SpriteInfo.spriteInfosMap.set(spriteInfoId, returnValue);
-        }
-
         return returnValue;
     }
 
@@ -148,21 +90,13 @@ export class SpriteInfo
         let baseTex = ImageSource.getBaseTexture(imageId);
         if (baseTex == null) return null;
 
-        
         let rectangle = new PIXI.Rectangle(
-          this.uvMin.x / 1,//this.textureSize.x,
-          this.uvMin.y / 1,//this.textureSize.y,
-          this.sourceSize.x / 1,//this.textureSize.x,
-          this.sourceSize.y / 1,//this.textureSize.y
+          this.uvMin.x,
+          this.uvMin.y,
+          this.sourceSize.x,
+          this.sourceSize.y
         );
-        
-       /*
-        let rectangle = new PIXI.Rectangle(
-          0,
-          0,
-          1,
-          1
-        )*/
+
         this.texture = new PIXI.Texture(baseTex, rectangle);
       }
 

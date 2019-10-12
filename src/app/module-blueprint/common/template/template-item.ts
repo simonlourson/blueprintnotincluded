@@ -1,8 +1,8 @@
 import { Vector2 } from "../vector2";
 import { OniItem, AuthorizedOrientations } from "../oni-item";
 import { OniBuilding } from "../../oni-import/oni-building";
-import { ImageSource } from "../image-source";
-import { SpriteInfo } from "../sprite-info";
+import { ImageSource } from "../../drawing/image-source";
+import { SpriteInfo } from "../../drawing/sprite-info";
 import { SpriteModifier } from "../sprite-modifier";
 import { Camera } from "../camera";
 import { ConnectionType, ConnectionHelper } from "../utility-connection";
@@ -352,48 +352,7 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
       }
     }
 
-    public draw(ctx: CanvasRenderingContext2D, camera: Camera)
-    {
-      this.realSpriteModifier = SpriteModifier.getSpriteModifer(this.realSpriteModifierId);
-      let lastPart = this.realSpriteModifier.getLastPart();
-
-      if (lastPart == null)
-      {
-        this.drawDebug(ctx, camera);
-        //console.log('Cannot draw :');
-        //console.log(this);
-        return;
-      }
-
-      this.realSpriteInfo = SpriteInfo.getSpriteInfo(this.realSpriteModifier.getLastPart().spriteInfoName);
-      
-      let image = ImageSource.getImage(this.oniItem.imageId);
-      let realSize = this.oniItem.size;
-      if (Vector2.Zero.equals(realSize)) realSize = Vector2.One;
-
-      if (image != null && image.width != 0)
-      {
-          if (Vector2.Zero.equals(this.realSpriteInfo.realSize)) this.realSpriteInfo.realSize = new Vector2(image.width, image.height);
-          if (Vector2.Zero.equals(this.realSpriteInfo.sourceSize)) this.realSpriteInfo.sourceSize = new Vector2(image.width, image.height);
-
-          DrawHelpers.drawTileComplex(ctx, camera, this.realSpriteInfo, this.realSpriteModifier, this.oniItem.imageId, 
-              this.position, this.oniItem.tileOffset, realSize, this.scale, this.rotation, this.alpha, this.frontColor);
-          
-              if (this.oniItem.size.y > 1) DrawHelpers.drawDebugRectangle(ctx, camera, this.topLeft, this.bottomRight, this.oniItem.debugColor);
-            }
-      else
-      {
-        this.drawDebug(ctx, camera);
-      }
-
-    }
-
-    public drawDebug(ctx: CanvasRenderingContext2D, camera: Camera)
-    {
-      if (this.oniItem.size.y > 1) 
-        DrawHelpers.drawDebugRectangle(ctx, camera, this.topLeft, this.bottomRight, this.oniItem.debugColor);
-    }
-
+    // TODO PIXI migration
     public drawUtility(ctx: CanvasRenderingContext2D, camera: Camera)
     {
         for (let connection of this.oniItem.utilityConnections)
@@ -416,7 +375,7 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
                 spriteInfo.sourceSize.y / spriteInfo.realSize.y * camera.currentZoom
             );
 
-            let image = ImageSource.getImage('input_output');
+            let image = null;// ImageSource.getImage('input_output');
             if (image == null) return;
             ctx.drawImage(image, 
                 spriteInfo.sourcePos.x, spriteInfo.sourcePos.y,
@@ -453,19 +412,24 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
 
       if (this.sprite != null)
       {
+        // TODO simplify math here
         let position = this.position;
-        let realSize = new Vector2(this.oniItem.size.x * 1, this.oniItem.size.y * 1);
 
         let positionCorrected = new Vector2(
           ( position.x + camera.cameraOffset.x + 0.5) * camera.currentZoom,
           (-position.y + camera.cameraOffset.y + 0.5) * camera.currentZoom
         );
 
-        drawPixi.graphics.lineStyle(2, 0x000000, 1);
-        drawPixi.graphics.moveTo(positionCorrected.x - 5, positionCorrected.y);
-        drawPixi.graphics.lineTo(positionCorrected.x + 5, positionCorrected.y);
-        drawPixi.graphics.moveTo(positionCorrected.x, positionCorrected.y - 5);
-        drawPixi.graphics.lineTo(positionCorrected.x, positionCorrected.y + 5);
+        // If the texture has not loaded, draw a debug rectangle
+        if (!this.sprite.texture.baseTexture.valid) this.drawPixiDebug(camera, drawPixi, positionCorrected);
+
+        // TODO the sprite info should know its texture
+        this.sprite.texture = this.realSpriteInfo.getTexture(this.oniItem.imageId);
+        this.sprite.anchor.set(this.realSpriteInfo.pivot.x, 1-this.realSpriteInfo.pivot.y);
+
+        let realSize = new Vector2(this.oniItem.size.x * 1, this.oniItem.size.y * 1);
+
+        
             
         let sizeCorrected = new Vector2(
           realSize.x * camera.currentZoom * this.realSpriteInfo.sourceSize.x / this.realSpriteInfo.realSize.x,
@@ -497,6 +461,23 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
         this.sprite.height = sizeCorrected.y;
 
       }
+    }
+
+    private drawPixiDebug(camera: Camera, drawPixi: DrawPixi, positionCorrected: Vector2)
+    {
+      // TODO maybe draw the debug rectangle on the build tool also?
+      drawPixi.drawDebugRectangle(camera, this.topLeft, this.bottomRight, this.oniItem.debugColor);
+      
+      drawPixi.graphics.lineStyle(2, 0x000000, 1);
+      drawPixi.graphics.moveTo(positionCorrected.x - 5, positionCorrected.y);
+      drawPixi.graphics.lineTo(positionCorrected.x + 5, positionCorrected.y);
+      drawPixi.graphics.moveTo(positionCorrected.x, positionCorrected.y - 5);
+      drawPixi.graphics.lineTo(positionCorrected.x, positionCorrected.y + 5);
+    }
+
+    public destroy()
+    {
+      if (this.sprite != null) this.sprite.destroy();
     }
 
 }

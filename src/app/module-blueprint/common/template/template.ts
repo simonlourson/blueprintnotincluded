@@ -158,4 +158,10 @@ export class Template
 
     return returnValue;
   }
+
+  public destroy()
+  {
+    if (this.templateItems != null)
+      for (let t of this.templateItems) t.destroy();
+  }
 }

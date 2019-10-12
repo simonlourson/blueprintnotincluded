@@ -12,6 +12,8 @@ import { Camera } from '../common/camera';
 import { Vector2 } from '../common/vector2';
 import { DrawHelpers } from '../drawing/draw-helpers';
 import { ToolRequest } from '../common/tool-request';
+import { DrawPixi } from '../drawing/draw-pixi';
+import { DrawAbstraction } from '../drawing/draw-abstraction';
 
 
 
@@ -227,10 +229,20 @@ export class ComponentSideBuildToolComponent implements OnInit, Tool {
     this.templateItemToBuild.prepareBoundingBox();
   }
 
-  draw(ctx: CanvasRenderingContext2D, camera: Camera)
+  drawPixi(drawPixi: DrawPixi, camera: Camera)
   {
-    this.templateItemToBuild.draw(ctx, camera);
-    this.templateItemToBuild.drawUtility(ctx, camera);
+    this.templateItemToBuild.drawPixi(camera, drawPixi);
+
+    // Utility
+    this.templateItemToBuild.drawPixi(camera, drawPixi);
+  }
+
+  draw(drawAbstraction: DrawAbstraction, camera: Camera) {
+    drawAbstraction.drawBuild(this.templateItemToBuild, camera);
+  }
+
+  destroyTool() {
+    if (this.templateItemToBuild != null) this.templateItemToBuild.destroy();
   }
 }
 

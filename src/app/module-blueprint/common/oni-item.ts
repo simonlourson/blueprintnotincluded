@@ -5,8 +5,8 @@ import { BlueprintParams } from "./params";
 import { BuildCategories } from "./build-categories"
 import { DrawHelpers } from "../drawing/draw-helpers";
 import { BBuilding } from "./bexport/b-building";
-import { ImageSource } from "./image-source";
-import { SpriteInfo } from "./sprite-info";
+import { ImageSource } from "../drawing/image-source";
+import { SpriteInfo } from "../drawing/sprite-info";
 import { SpriteModifier } from "./sprite-modifier";
 
 export class OniItem
@@ -47,7 +47,6 @@ export class OniItem
 
     let imageId: string = original.textureName;
     let imageUrl: string = 'assets/images/'+imageId+'.png';
-    ImageSource.AddImage(imageId, imageUrl);
     ImageSource.AddImagePixi(imageId, imageUrl);
     this.imageId = imageId;
   }
@@ -176,16 +175,12 @@ export class OniItem
             OniItem.oniItemsMap.set(oniItem.id, oniItem);
         }
         
-        ImageSource.FinishAddImage();
-        SpriteInfo.FinishAddSpriteInfo();
         OniItem.loadedDatabase = true;  
         resolve(0);
 
       })
       .catch((error) => {
 
-        ImageSource.FinishAddImage();
-        SpriteInfo.FinishAddSpriteInfo();
         OniItem.loadedDatabase = true; 
         reject(error);
       })

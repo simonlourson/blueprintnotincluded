@@ -8,7 +8,6 @@ declare var PIXI: any;
 
 export class DrawPixi implements DrawAbstraction
 {
-
   static instance: DrawPixi;
 
   pixiApp: PIXI.Application;
@@ -74,16 +73,14 @@ export class DrawPixi implements DrawAbstraction
 
     }
     drawTemplateItem(templateItem: TemplateItem, camera: Camera) {
-        //throw new Error("Method not implemented.");
-
-      this.drawDebugRectangle(camera, templateItem.topLeft, templateItem.bottomRight, templateItem.oniItem.debugColor);
+      
       templateItem.drawPixi(camera, this);
 
+    }
 
-    }
-    drawTool(tool: import("../common/tools/tool").Tool, camera: import("../common/camera").Camera) {
-        //throw new Error("Method not implemented.");
-    }
+  drawBuild(toBuild: TemplateItem, camera: Camera) {
+    toBuild.drawPixi(camera, this);
+  }
 
   public drawDebugRectangle(camera: Camera, topLeft: Vector2, bottomRight: Vector2, color: string)
   {

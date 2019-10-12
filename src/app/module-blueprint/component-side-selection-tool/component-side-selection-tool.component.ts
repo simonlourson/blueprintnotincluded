@@ -6,6 +6,7 @@ import { Tool, ToolType } from '../common/tools/tool';
 import { Template } from '../common/template/template';
 import { Vector2 } from '../common/vector2';
 import { Camera } from '../common/camera';
+import { DrawAbstraction } from '../drawing/draw-abstraction';
 
 @Component({
   selector: 'app-component-side-selection-tool',
@@ -112,9 +113,12 @@ export class ComponentSideSelectionToolComponent implements OnInit, Tool {
 
   prepareSpriteInfoModifier(blueprint: Template) {}
 
-  draw(ctx: CanvasRenderingContext2D, camera: Camera) 
-  {
-    // TODO draw yellow
+  draw(drawAbstraction: DrawAbstraction, camera: Camera) {
+    // Select tool does not draw anything
+  }
+
+  destroyTool() {
+    // Select tool does not have anything to destroy
   }
 
 }

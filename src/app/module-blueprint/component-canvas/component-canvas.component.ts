@@ -7,8 +7,8 @@ import { ComponentSidepanelComponent } from 'src/app/module-blueprint/component-
 // Engine imports
 import { Camera } from 'src/app/module-blueprint/common/camera';
 import { Vector2 } from 'src/app/module-blueprint/common/vector2';
-import { SpriteInfo } from 'src/app/module-blueprint/common/sprite-info';
-import { ImageSource } from 'src/app/module-blueprint/common/image-source';
+import { SpriteInfo } from 'src/app/module-blueprint/drawing/sprite-info';
+import { ImageSource } from 'src/app/module-blueprint/drawing/image-source';
 import { OniTemplate } from 'src/app/module-blueprint/oni-import/oni-template';
 import { OniItem } from 'src/app/module-blueprint/common/oni-item';
 import { OniBuilding } from 'src/app/module-blueprint/oni-import/oni-building';
@@ -23,7 +23,6 @@ import { Tool, ToolType } from '../common/tools/tool';
 import { ToolRequest } from '../common/tool-request';
 import { ComponentSideSelectionToolComponent } from '../component-side-selection-tool/component-side-selection-tool.component';
 import { DrawAbstraction } from '../drawing/draw-abstraction';
-import { DrawCanvas } from '../drawing/draw-canvas';
 import { DrawPixi } from '../drawing/draw-pixi';
 import { ɵangular_packages_router_router_n } from '@angular/router';
 
@@ -61,9 +60,6 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
     this.drawAbstraction = new DrawPixi();
   }
 
-  get imageSources() { return ImageSource.imageSources; }
-  get canvasSources() { return ImageSource.canvasSources; }
-
   private running: boolean;
   ngOnInit() {
     // Start the rendering loop
@@ -77,16 +73,12 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
     this.running = false;
   }
 
-  // This lets us know when an image has loaded
-  imageLoaded(event: any)
-  {
-    ImageSource.imageLoaded(event);
-  }
-
-
   public blueprint: Template;
   public loadNewBlueprint(blueprint: Template)
   {
+    // First destroy the old blueprint
+    if (this.blueprint != null) this.blueprint.destroy();
+
     this.blueprint = blueprint;
     this.changeOverlay(OverlayType.buildings);
 
@@ -191,6 +183,9 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
 
   changeTool(newToolComponent: Tool)
   {
+    // First deactivate the old tool
+    if (this.currentTool != null) this.currentTool.destroyTool();
+
     this.currentTool = newToolComponent;
   }
 
@@ -273,7 +268,7 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
       //for (var templateItem of this.blueprint.templateItems) templateItem.drawUtility(ctx, this.camera);
 
       this.currentTool.prepareSpriteInfoModifier(this.blueprint);
-      this.drawAbstraction.drawTool(this.currentTool, this.camera);
+      this.currentTool.draw(this.drawAbstraction, this.camera);
     }
 
     // Schedule next

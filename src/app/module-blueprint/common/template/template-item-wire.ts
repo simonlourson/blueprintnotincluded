@@ -5,8 +5,8 @@ import { Template } from "./template";
 import { TemplateItem } from "./template-item";
 import { SpriteModifier } from "../sprite-modifier";
 import { Camera } from "../camera";
-import { SpriteInfo } from "../sprite-info";
-import { ImageSource } from "../image-source";
+import { SpriteInfo } from "../../drawing/sprite-info";
+import { ImageSource } from "../../drawing/image-source";
 import { DrawHelpers } from "../../drawing/draw-helpers";
 import { TemplateItemCloneable } from "./template-item-cloneable";
 

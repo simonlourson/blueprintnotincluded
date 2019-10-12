@@ -9,9 +9,9 @@ import { OniTemplate } from '../oni-import/oni-template';
 import { TileInfo } from '../common/tile-info';
 import { ComponentSidepanelComponent } from '../component-side-panel/component-side-panel.component';
 import { OniItem, AuthorizedOrientations } from '../common/oni-item';
-import { ImageSource } from '../common/image-source';
+import { ImageSource } from '../drawing/image-source';
 import { Vector2 } from '../common/vector2';
-import { SpriteInfo } from '../common/sprite-info';
+import { SpriteInfo } from '../drawing/sprite-info';
 import { Template } from '../common/template/template';
 import { SpriteModifier } from '../common/sprite-modifier';
 import { ConnectionType } from '../common/utility-connection';
@@ -80,13 +80,9 @@ export class ComponentBlueprintParentComponent implements OnInit {
       
     })
 
-    // TODO cleanup this
-    ImageSource.Init(this.cd);
     ImageSource.InitPixi();
-    //.catch((error) => {
-    //  this.messageService.add({severity:'error', summary:'Error loading sprite sources' , detail:error, sticky:true});   
-    //});
-    
+
+    // TODO cleanup this$    
     SpriteInfo.Init();
     //.catch((error) => {
     //  this.messageService.add({severity:'error', summary:'Error loading sprite infos' , detail:error, sticky:true});   
