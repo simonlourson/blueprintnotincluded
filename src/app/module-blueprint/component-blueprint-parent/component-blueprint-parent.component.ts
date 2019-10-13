@@ -26,6 +26,7 @@ import { ToolType } from '../common/tools/tool';
 import { TemplateItem } from '../common/template/template-item';
 import { ToolRequest } from '../common/tool-request';
 import { ComponentElementKeyPanelComponent } from '../component-element-key-panel/component-element-key-panel.component';
+import { TemplateItemTile } from '../common/template/template-item-tile';
 
 @Component({
   selector: 'app-component-blueprint-parent',
@@ -79,6 +80,8 @@ export class ComponentBlueprintParentComponent implements OnInit {
       }
       
     })
+
+    TemplateItemTile.generateTileSpriteInfo();
 
     ImageSource.InitPixi();
 

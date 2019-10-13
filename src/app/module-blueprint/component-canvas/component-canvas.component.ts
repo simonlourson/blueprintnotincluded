@@ -206,7 +206,7 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
     // TODO ugly
     //if (this.canvasRef == null) return;
 
-    this.canvasRef.nativeElement.width = window.innerWidth;
+    this.canvasRef.nativeElement.width = window.innerWidth - 300;
     this.canvasRef.nativeElement.height = window.innerHeight;
 
     

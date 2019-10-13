@@ -9,19 +9,19 @@
 <table>
     <tr *ngIf="!templateItem.oniItem.isElement">
         <td><h4>Element</h4></td>
-        <td class="rightHandCells"><p-dropdown [options]=elements [style]="{'width':'100%'}" [(ngModel)]="templateItem.element" optionLabel="elementId" appendTo="body"></p-dropdown></td>
+        <td class="rightHandCells"><p-dropdown [options]=elements [(ngModel)]="templateItem.element" optionLabel="elementId" appendTo="body"></p-dropdown></td>
     </tr>
     <tr>
         <td><h4>Temperature</h4></td>
         <td class="rightHandCells">
-            <input type="number" pInputText [(ngModel)]="templateItem.temperature" style="width:100%"/>
+            <input type="number" pInputText [(ngModel)]="templateItem.temperature" />
             <p-slider [(ngModel)]="templateItem.temperature" [min]="0" [max]="1000"></p-slider>
         </td>
     </tr>
     <tr *ngIf="templateItem.oniItem.isElement">
         <td><h4>Mass</h4></td>
         <td class="rightHandCells">
-            <input type="number" pInputText [(ngModel)]="templateItem.mass" style="width:100%"/>
+            <input type="number" pInputText [(ngModel)]="templateItem.mass" />
             <p-slider [(ngModel)]="templateItem.mass" [min]="0" [max]="1000"></p-slider>
         </td>
     </tr>
@@ -54,7 +54,7 @@
 
 
 <div>{{templateItem.oniItem.orientations.length}}</div>
--->
+
     <span>{{templateItem.getDebug1()}}</span>
     <br>
     <span>{{templateItem.getDebug2()}}</span>
@@ -63,7 +63,7 @@
     <br>
     <span>{{templateItem.getDebug4()}}</span>
     <br>
-    <span>{{templateItem.getDebug5()}}</span>
+    <span>{{templateItem.getDebug5()}}</span>-->
 
 
 

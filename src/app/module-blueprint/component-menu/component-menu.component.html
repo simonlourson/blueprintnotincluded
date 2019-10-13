@@ -1,6 +1,8 @@
 
-<!--<p-menubar [model]="menuItems" [baseZIndex]="2" [autoZIndex]="false" >-->
-<button type="button" pButton icon="pi pi-bars" label="Menu" (click)="menu.toggle($event)"></button>
-<p-slideMenu #menu [model]="menuItems" [popup]="true" [viewportHeight]="230" [menuWidth]="150" [style]="{width: '150px'}" >
-</p-slideMenu>
+<!--<p-menubar [model]="menuItems" [baseZIndex]="2" [autoZIndex]="false" >
+<button type="button" pButton icon="pi pi-bars" label="Menu" (click)="menu.toggle($event)"></button>-->
+<p-menubar 
+    #menu 
+    [model]="menuItems">
+</p-menubar>
 <input type="file" id="fileChooser" accept=".yaml" style="display: none" (change)="templateUpload($event)">

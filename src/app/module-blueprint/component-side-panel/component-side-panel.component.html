@@ -1,3 +1,4 @@
+<!--
 <p-dialog #buildingsDialog 
 header='{{header}}' 
 [style]="{width: '450px', minHeight: '20px'}"
@@ -14,12 +15,15 @@ header='{{header}}'
 [positionLeft]="30" 
 [visible]="true"
 [transitionOptions]="'0ms'"
->
-  <app-component-side-selection-tool #selectionTool 
-    [hidden]="currentTool!=0"
-    (onAskChangeTool)="askChangeTool($event)"></app-component-side-selection-tool>
-  <app-component-side-build-tool #buildTool 
-    [hidden]="currentTool!=1"
-    (onAskChangeTool)="askChangeTool($event)"></app-component-side-build-tool>
+>-->
+<app-component-side-selection-tool 
+  #selectionTool 
+  [hidden]="currentTool!=0"
+  (onAskChangeTool)="askChangeTool($event)">
+</app-component-side-selection-tool>
+<app-component-side-build-tool 
+  #buildTool 
+  [hidden]="currentTool!=1"
+  (onAskChangeTool)="askChangeTool($event)">
+</app-component-side-build-tool>
         
-</p-dialog>

@@ -1,35 +1,20 @@
 
-<!--
-
-<div>{{debug | json}}</div>
-
-
-<p *ngFor="let canvasSource of canvasSources">{{canvasSource.imageId}}</p>
-
-
-
-<img id="test" src="assets/images/utilities_liquid_0.png">
--->
-
-<div id="loadedImages">
-  <canvas *ngFor="let canvasSource of canvasSources" id="{{canvasSource.imageId}}"></canvas>
-  <img *ngFor="let imageSource of imageSources" id="{{imageSource.imageId}}" src="{{imageSource.imageUrl}}" (load)="imageLoaded($event)"> 
-</div>
-
-<canvas #blueprintCanvas id="blueprintCanvas"  
+<canvas 
+  #blueprintCanvas 
+  id="blueprintCanvas"  
   tabindex="1"
 
   dragAndDrop 
-  (myMouseDrag)="mouseDrag($event)" 
-  (myMouseMove)="mouseMove($event)" 
-  (myMouseClick)="mouseClick($event)"
-  (myMouseUp)="mouseUp($event)"
-  (myMouseDown)="mouseDown($event)"
-
-  mouseWheel (mouseWheel)="mouseWheel($event)"
-  
-  keyEvents (keyPress)="keyPress($event)"
-  >
+    (myMouseDrag)="mouseDrag($event)" 
+    (myMouseMove)="mouseMove($event)" 
+    (myMouseClick)="mouseClick($event)"
+    (myMouseUp)="mouseUp($event)"
+    (myMouseDown)="mouseDown($event)"
+  mouseWheel 
+    (mouseWheel)="mouseWheel($event)"
+  keyEvents 
+    (keyPress)="keyPress($event)">
+    
   Your browser does not support canvas. 
 
 </canvas>

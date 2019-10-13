@@ -73,6 +73,7 @@ export class ComponentSideSelectionToolComponent implements OnInit, Tool {
       //this.cellsToShow.push(new OniCell());
     }
 
+    // TODO clicking through all should close all at some point
     // TODO we should take into account user clicking of the accordeon
     //this.activeIndex = tileInfo.indexSelected;
 

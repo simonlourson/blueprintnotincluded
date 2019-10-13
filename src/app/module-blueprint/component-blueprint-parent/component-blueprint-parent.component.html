@@ -1,37 +1,39 @@
 
-<p-toast [style]="{marginTop: '60px'}"></p-toast>
-<div class="p-grid sample-layout">
-    <div class="p-col-12 p-md-2">
-        <app-component-menu 
-        #menu
-        (onMessage)="toast($event)" 
-        (onTemplateUpload)="templateUpload($event)"
-        (onDownloadAsJson)="downloadAsJson()"
-        (onDownloadIcons)="downloadIcons()"
-        (onDownloadDistinctIdAsJson)="downloadDistinctIdAsJson()"
-        (onMisc)=misc()
-        (onSaveToCloud)=saveToCloud()
-        (onChangeOverlay)=changeOverlay($event)
-        (onChangeTool)=changeTool($event)
-        (onBuild)=build($event)></app-component-menu>
+<p-toast position="bottom-left"></p-toast>
+<div class="p-grid p-nogutter">
+  <div class="p-col-12">
+    <app-component-menu 
+      #menu
+      (onMessage)="toast($event)" 
+      (onTemplateUpload)="templateUpload($event)"
+      (onDownloadAsJson)="downloadAsJson()"
+      (onDownloadIcons)="downloadIcons()"
+      (onDownloadDistinctIdAsJson)="downloadDistinctIdAsJson()"
+      (onMisc)=misc()
+      (onSaveToCloud)=saveToCloud()
+      (onChangeOverlay)=changeOverlay($event)
+      (onChangeTool)=changeTool($event)
+      (onBuild)=build($event)>
+    </app-component-menu>
+  </div>
+  <div class="p-col-12">
+    <div class="p-grid p-nogutter">
+      <div class="p-col-fixed" style="width:300px">
+        <app-component-side-panel 
+          #sidePanel 
+          (onAskChangeTool)=askChangeTool($event)>
+        </app-component-side-panel>
+      </div>
+      <div class="p-col">
+        <app-component-canvas 
+          #canvas 
+          (onTileInfoChange)="onTileInfoChange($event)"
+          (onAskChangeTool)=askChangeTool($event)>
+        </app-component-canvas>
+      </div>
     </div>
-    <div class="p-col-12 p-md-10  p-col-nogutter">
-        <div class="p-col-12">
-            <app-component-canvas 
-            #canvas 
-            (onTileInfoChange)="onTileInfoChange($event)"
-            (onAskChangeTool)=askChangeTool($event)></app-component-canvas>
-        </div>
-    </div>
+  </div>
 </div>
 
-
-  <br><br><br><br><br><br><br><br> 
-<app-component-side-panel #sidePanel 
-  (onAskChangeTool)=askChangeTool($event)></app-component-side-panel>
 <app-component-element-key-panel #elementKeyPanel ></app-component-element-key-panel>
 <app-component-save-dialog #saveDialog (onSaveToCloud)=sendSaveToCloud($event)></app-component-save-dialog>
-<app-component-canvas 
-  #canvas 
-  (onTileInfoChange)="onTileInfoChange($event)"
-  (onAskChangeTool)=askChangeTool($event)></app-component-canvas>
