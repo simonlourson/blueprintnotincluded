@@ -5,12 +5,14 @@
   (onMessage)="toast($event)" 
   (onTemplateUpload)="templateUpload($event)"
   (onDownloadAsJson)="downloadAsJson()"
+  (onDownloadIcons)="downloadIcons()"
   (onDownloadDistinctIdAsJson)="downloadDistinctIdAsJson()"
   (onMisc)=misc()
   (onSaveToCloud)=saveToCloud()
   (onChangeOverlay)=changeOverlay($event)
   (onChangeTool)=changeTool($event)
   (onBuild)=build($event)></app-component-menu>
+  <br><br><br><br><br><br><br><br> 
 <app-component-side-panel #sidePanel 
   (onAskChangeTool)=askChangeTool($event)></app-component-side-panel>
 <app-component-element-key-panel #elementKeyPanel ></app-component-element-key-panel>

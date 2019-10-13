@@ -129,7 +129,7 @@ export class ComponentBlueprintParentComponent implements OnInit {
   loadTemplateIntoCanvas(template: Template)
   {
     this.canvas.loadNewBlueprint(template);
-    this.menu.clickOverlay({item:{id:OverlayType.buildings.toString()}});
+    this.menu.clickOverlay({item:{id:OverlayType.Building.toString()}});
 
     let summary: string = "Loaded template : " + template.name;
     let detail: string = template.templateItems.length + " items loaded";
@@ -186,7 +186,7 @@ export class ComponentBlueprintParentComponent implements OnInit {
   {
     this.canvas.changeOverlay(newOverlay);
 
-    if (newOverlay == OverlayType.gas) 
+    if (newOverlay == OverlayType.Gas) 
     {
       this.canvas.blueprint.prepareDistinctElements();
       this.elementKeyPanel.distinctElements = this.canvas.blueprint.distinctElements;
@@ -238,6 +238,11 @@ export class ComponentBlueprintParentComponent implements OnInit {
 
     this.downloadTextAsFile(JSON.stringify(ids, null, 2), 'unique_ids.json');
     */
+  }
+
+  downloadIcons()
+  {
+    console.log('this.downloadIcons');
   }
 
   oniItems: any[];

@@ -8,6 +8,7 @@ import { BBuilding } from "./bexport/b-building";
 import { ImageSource } from "../drawing/image-source";
 import { SpriteInfo } from "../drawing/sprite-info";
 import { SpriteModifier } from "./sprite-modifier";
+import { BSourceUv } from './bexport/b-source-uv';
 
 export class OniItem
 {
@@ -44,11 +45,24 @@ export class OniItem
     this.isWire = original.isUtility;
 
     this.spriteModifierId = original.kanimPrefix;
+    this.defaultOverlay = original.sceneLayer;
 
     let imageId: string = original.textureName;
+
+    // TODO refactor
     let imageUrl: string = 'assets/images/'+imageId+'.png';
     ImageSource.AddImagePixi(imageId, imageUrl);
     this.imageId = imageId;
+
+    this.utilityConnections = [];
+    if (original.utilities != null)
+        for (let connection of original.utilities)
+            this.utilityConnections.push({
+              type:connection.type, 
+              offset:new Vector2(connection.offset.x, connection.offset.y),
+              isSecondary:connection.isSecondary
+            });
+
   }
 
     public copyFrom(original: OniItem)
@@ -66,13 +80,6 @@ export class OniItem
 
         if (original.size != null && original.size.x != null) this.size = new Vector2(original.size.x, original.size.y);
 
-        this.utilityConnections = [];
-        if (original.utilityConnections != null && original.utilityConnections.length != 0)
-            for (let connection of original.utilityConnections)
-                this.utilityConnections.push({
-                    connectionType:connection.connectionType, 
-                    connectionOffset:new Vector2(connection.connectionOffset.x, connection.connectionOffset.y)});
-
         
         this.orientations = [AuthorizedOrientations.None];
         if (original.orientations != null && original.orientations.length != 0)
@@ -89,7 +96,7 @@ export class OniItem
         if (this.debugColor == null ) this.debugColor = 'rgba(' + Math.floor(Math.random() * 256) + ',' + Math.floor(Math.random() * 256) + ',' + Math.floor(Math.random() * 50) + ',0.5)';
         if (this.size == null) this.size = new Vector2();
         if (this.utilityConnections == null) this.utilityConnections = [];
-        if (this.defaultOverlay == null) this.defaultOverlay = OverlayType.buildings;
+        if (this.defaultOverlay == null) this.defaultOverlay = OverlayType.Building;
         if (this.category == null) this.category = BuildCategories.Other;
         if (this.orientations == null) this.orientations = [AuthorizedOrientations.None];
         
@@ -127,39 +134,10 @@ export class OniItem
 
       OniItem.oniItemsMap = new Map<string, OniItem>();
 
-
-      /*
-      fetch(BlueprintParams.apiUrl+'oniItems')
-      //fetch("/assets/database/oniItems.json")
-      .then(response => { return response.json(); })
-      .then(json => {
-        //console.log(json);
-        let oniItemsTemp: OniItem[] = json;
-        
-        for (let oniItemTemp of oniItemsTemp)
-        {
-            
-            let oniItem = new OniItem(oniItemTemp.id);
-            oniItem.copyFrom(oniItemTemp);
-            oniItem.cleanUp();
-            
-            OniItem.oniItemsMap.set(oniItem.id, oniItem);
-        }
-
-        OniItem.loadedDatabase = true;  
-        resolve(0);
-      })
-      .catch((error) => {
-        OniItem.loadedDatabase = true; 
-        reject(error);
-      })
-
-      */
-
       fetch("/assets/database/exportC.json")
       .then(response => { return response.json(); })
       .then(json => {
-        let oniItemsTemp: BBuilding[] = json;
+        let oniItemsTemp: BBuilding[] = json.buildings;
 
         for (let oniItemTemp of oniItemsTemp)
         {
@@ -173,6 +151,19 @@ export class OniItem
             SpriteModifier.AddSpriteModifier(oniItemTemp);
             
             OniItem.oniItemsMap.set(oniItem.id, oniItem);
+        }
+
+        let uiSprites: BSourceUv[] = json.uiSprites;
+        for (let uiSprite of uiSprites)
+        {
+          let newUiSpriteInfo = new SpriteInfo(uiSprite.name);
+          newUiSpriteInfo.copyFromSourceUv(uiSprite);
+
+          // TODO refactor
+          let imageUrl: string = 'assets/images/'+newUiSpriteInfo.imageId+'.png';
+          ImageSource.AddImagePixi(newUiSpriteInfo.imageId, imageUrl)
+          
+          SpriteInfo.addSpriteInfo(newUiSpriteInfo);
         }
         
         OniItem.loadedDatabase = true;  

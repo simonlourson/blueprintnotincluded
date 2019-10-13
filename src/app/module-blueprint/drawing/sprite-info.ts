@@ -71,7 +71,21 @@ export class SpriteInfo
 
         SpriteInfo.spriteInfosMap.set(spriteInfo.spriteInfoId, spriteInfo); 
       }
+    }
 
+    // TODO: above should use this
+    public static addSpriteInfo(spriteInfo: SpriteInfo)
+    {
+      SpriteInfo.spriteInfosMap.set(spriteInfo.spriteInfoId, spriteInfo); 
+    }
+
+    public copyFromSourceUv(sourceUv: BSourceUv)
+    {
+      this.imageId = sourceUv.textureName;
+      this.uvMin = Vector2.clone(sourceUv.uvMin);
+      this.uvMax = Vector2.clone(sourceUv.uvMax);
+      this.sourceSize = Vector2.clone(sourceUv.size);
+      this.pivot = Vector2.clone(sourceUv.pivot);
     }
 
     public static getSpriteInfo(spriteInfoId: string): SpriteInfo
@@ -83,11 +97,11 @@ export class SpriteInfo
 
     // Pixi stuf
     texture: PIXI.Texture;
-    public getTexture(imageId: string): PIXI.Texture
+    public getTexture(): PIXI.Texture
     {
       if (this.texture == null)
       {
-        let baseTex = ImageSource.getBaseTexture(imageId);
+        let baseTex = ImageSource.getBaseTexture(this.imageId);
         if (baseTex == null) return null;
 
         let rectangle = new PIXI.Rectangle(

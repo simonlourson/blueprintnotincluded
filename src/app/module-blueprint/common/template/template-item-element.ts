@@ -76,7 +76,7 @@ export class TemplateItemElement extends TemplateItem implements TemplateItemClo
 
   public prepareOverlayInfo(currentOverlay: OverlayType)
   {
-    if (currentOverlay == OverlayType.gas) 
+    if (currentOverlay == OverlayType.Gas) 
     {
       this.correctOverlay = true;
       this.depth = 5;

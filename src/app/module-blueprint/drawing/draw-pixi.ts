@@ -4,6 +4,8 @@ import { ComponentCanvasComponent } from "../component-canvas/component-canvas.c
 import { TemplateItem } from "../common/template/template-item";
 import { Camera } from "../common/camera";
 import { Vector2 } from "../common/vector2";
+import { SpriteInfo } from './sprite-info';
+import { ComponentMenuComponent } from '../component-menu/component-menu.component';
 declare var PIXI: any;
 
 export class DrawPixi implements DrawAbstraction
@@ -35,11 +37,12 @@ export class DrawPixi implements DrawAbstraction
     this.graphics = new PIXI.Graphics();
     this.pixiApp.stage.addChild(this.graphics);
     this.pixiApp.ticker.add(() => {this.drawAll();});
-    //this.pixiApp.ticker.start();
   }    
 
   drawAll()
   {
+    ComponentMenuComponent.debugFps = this.pixiApp.ticker.FPS;
+
     //console.log('drawAll');
     if (this.pixiApp != null) 
     {
@@ -52,34 +55,42 @@ export class DrawPixi implements DrawAbstraction
 
     this.parent.drawAll();
   }
-    
-  FillRect(color: string, x: number, y: number, w: number, h: number) 
+
+  clearGraphics()
   {
-    //console.log('FillRect');
-    //if (this.graphics == null) return;
-    
     this.graphics.clear();
-    this.graphics.beginFill(0x007AD9);
+  }
+    
+  FillRect(color: number, x: number, y: number, w: number, h: number) 
+  {
+    
+    this.graphics.beginFill(color);
     this.graphics.drawRect(x, y, w, h);
     this.graphics.endFill();
     
   }
 
-    drawBlueprintLine(color: string, alpha: number, start: Vector2, end: Vector2, lineWidth: number) {
-        
-      this.graphics.lineStyle(1, 0xFFFFFF, alpha);
-      this.graphics.moveTo(start.x, start.y);
-      this.graphics.lineTo(end.x, end.y);
-
-    }
-    drawTemplateItem(templateItem: TemplateItem, camera: Camera) {
+  // TODO abstract drawline
+  drawBlueprintLine(color: string, alpha: number, start: Vector2, end: Vector2, lineWidth: number) {
       
-      templateItem.drawPixi(camera, this);
+    this.graphics.lineStyle(1, 0xFFFFFF, alpha);
+    this.graphics.moveTo(start.x, start.y);
+    this.graphics.lineTo(end.x, end.y);
 
-    }
+  }
+  drawTemplateItem(templateItem: TemplateItem, camera: Camera) {
+    
+    templateItem.drawPixi(camera, this);
+
+  }
 
   drawBuild(toBuild: TemplateItem, camera: Camera) {
     toBuild.drawPixi(camera, this);
+  }
+
+  public drawSprite(sprite: SpriteInfo, position: Vector2, size: Vector2)
+  {
+
   }
 
   public drawDebugRectangle(camera: Camera, topLeft: Vector2, bottomRight: Vector2, color: string)

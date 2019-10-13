@@ -15,7 +15,7 @@ export class ImageSource
     private static imageSourcesMapPixi: Map<string, ImageSource>;
     private baseTexture: PIXI.BaseTexture ;
     public static InitPixi()
-    {
+    { 
       if (ImageSource.imageSourcesMapPixi == null)
         ImageSource.imageSourcesMapPixi = new Map<string, ImageSource>();
     }

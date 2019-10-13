@@ -18,6 +18,7 @@ export class ComponentMenuComponent implements OnInit {
   @Output() onMessage = new EventEmitter<Message>();
   @Output() onTemplateUpload = new EventEmitter<FileList>();
   @Output() onDownloadAsJson = new EventEmitter();
+  @Output() onDownloadIcons = new EventEmitter();
   @Output() onDownloadDistinctIdAsJson = new EventEmitter();
   @Output() onMisc = new EventEmitter();
   @Output() onSaveToCloud = new EventEmitter();
@@ -29,6 +30,9 @@ export class ComponentMenuComponent implements OnInit {
   overlayMenuItems: MenuItem[];
   toolMenuItems: MenuItem[];
 
+  static debugFps: number = 0
+  public getFps() { return ComponentMenuComponent.debugFps; }
+
   constructor() {
 
   }
@@ -36,14 +40,14 @@ export class ComponentMenuComponent implements OnInit {
   ngOnInit() {
     
     this.overlayMenuItems = [
-      {label: 'Buildings',    id:OverlayType.buildings.toString(),    command: (event) => { this.clickOverlay(event); }},
-      {label: 'Power',        id:OverlayType.power.toString(),        command: (event) => { this.clickOverlay(event); }},
-      {label: 'Plumbing',     id:OverlayType.plumbing.toString(),     command: (event) => { this.clickOverlay(event); }},
-      {label: 'Ventilation',  id:OverlayType.ventilation.toString(),  command: (event) => { this.clickOverlay(event); }},
-      {label: 'Automation',   id:OverlayType.automation.toString(),   command: (event) => { this.clickOverlay(event); }},
-      {label: 'Shipment',     id:OverlayType.shipment.toString(),     command: (event) => { this.clickOverlay(event); }},
-      {label: 'Background',   id:OverlayType.background.toString(),   command: (event) => { this.clickOverlay(event); }},
-      {label: 'Gas',          id:OverlayType.gas.toString(),          command: (event) => { this.clickOverlay(event); }}
+      {label: 'Buildings',    id:OverlayType.Building.toString(),       command: (event) => { this.clickOverlay(event); }},
+      {label: 'Power',        id:OverlayType.Wires.toString(),          command: (event) => { this.clickOverlay(event); }},
+      {label: 'Plumbing',     id:OverlayType.LiquidConduits.toString(), command: (event) => { this.clickOverlay(event); }},
+      {label: 'Ventilation',  id:OverlayType.GasConduits.toString(),    command: (event) => { this.clickOverlay(event); }},
+      {label: 'Automation',   id:OverlayType.LogicWires.toString(),     command: (event) => { this.clickOverlay(event); }},
+      {label: 'Shipment',     id:OverlayType.SolidConduits.toString(),  command: (event) => { this.clickOverlay(event); }},
+      {label: 'Background',   id:OverlayType.Backwall.toString(),       command: (event) => { this.clickOverlay(event); }},
+      {label: 'Gas',          id:OverlayType.Gas.toString(),            command: (event) => { this.clickOverlay(event); }}
     ];
 
     this.toolMenuItems = [
@@ -77,11 +81,17 @@ export class ComponentMenuComponent implements OnInit {
       {
         label: 'Overlay',
         items: this.overlayMenuItems
+      },
+      {
+        label: 'Technical',
+        items: [
+          {label: 'Download icons', icon:'pi pi-download', command: (event) => { this.downloadIcons(); } },
+        ]
       }
     ];
    
     
-    this.clickOverlay({item:{id:OverlayType.buildings}});
+    this.clickOverlay({item:{id:OverlayType.Building}});
 
     this.askChangeTool({toolType:ToolType.select, templateItem:null});
     this.clickTool({item:{id:ToolType.select}});
@@ -130,7 +140,11 @@ export class ComponentMenuComponent implements OnInit {
   {
     let fileElem = document.getElementById("fileChooser") as HTMLInputElement;
     this.onTemplateUpload.emit(fileElem.files);
+  }
 
+  downloadIcons()
+  {
+    this.onDownloadIcons.emit();
   }
 
 }

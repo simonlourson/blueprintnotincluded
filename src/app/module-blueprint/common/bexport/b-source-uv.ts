@@ -3,6 +3,7 @@ import { Vector2 } from "../vector2";
 export class BSourceUv
 {
   name: string;
+  textureName: string;
 
   uvMin: Vector2;
   uvMax: Vector2;

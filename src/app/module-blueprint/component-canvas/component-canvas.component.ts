@@ -56,7 +56,6 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
   constructor(private ngZone: NgZone, private http: HttpClient) {
     
     this.camera = new Camera();
-    //this.drawAbstraction = new DrawCanvas();
     this.drawAbstraction = new DrawPixi();
   }
 
@@ -80,7 +79,7 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
     if (this.blueprint != null) this.blueprint.destroy();
 
     this.blueprint = blueprint;
-    this.changeOverlay(OverlayType.buildings);
+    this.changeOverlay(OverlayType.Building);
 
     let rect = this.canvasRef.nativeElement.getBoundingClientRect();
     this.camera.resetZoom(new Vector2(
@@ -218,7 +217,8 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
 
     //let ctx: CanvasRenderingContext2D = this.canvasRef.nativeElement.getContext('2d');
 
-    this.drawAbstraction.FillRect('rgba(0,122,217)', 0, 0, this.width, this.height);
+    this.drawAbstraction.clearGraphics();
+    this.drawAbstraction.FillRect(0x007AD9, 0, 0, this.width, this.height);
     
     let alphaOrig: number = 0.4;
     let alpha: number = alphaOrig;

@@ -69,9 +69,7 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
   {
     //return '';
     let debug:any = {};
-    if (this.realSpriteModifier != null && this.realSpriteModifier.getLastPart() != null)
-      debug.translation = this.realSpriteModifier.getLastPart().translation;
-      //debug.transform = this.realSpriteModifier.getLastPart().transform;
+    debug.utilityConnections = this.oniItem.utilityConnections;
     return JSON.stringify(debug);
   }
 
@@ -79,15 +77,14 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
   {
     //return '';
     let debug:any = {};
-    if (this.realSpriteInfo != null)
-      debug.pivot = this.realSpriteInfo.pivot;
+    debug.defaultOverlay = this.oniItem.defaultOverlay.toString();
       //debug.framebboxMin = this.realSpriteModifier.framebboxMin;
     return JSON.stringify(debug);
   }
 
   getDebug3(): string
   {
-    //return '';
+    return '';
     let debug:any = {};
     if (this.realSpriteModifier != null && this.realSpriteModifier.getLastPart() != null)
       debug.scale = this.realSpriteModifier.getLastPart().scale;
@@ -97,7 +94,7 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
 
   getDebug4(): string
   {
-    //return '';
+    return '';
     let debug:any = {};
     if (this.realSpriteModifier != null)
       debug.framebboxMin = this.realSpriteModifier.framebboxMin;
@@ -107,11 +104,8 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
 
   getDebug5(): string
   {
-    let pivotFromFrame: Vector2 = new Vector2(
-    
-    )
 
-    //return '';
+    return '';
     let debug:any = {};
     if (this.realSpriteModifier != null)
       debug.framebboxMax = this.realSpriteModifier.framebboxMax;
@@ -336,7 +330,7 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
     {
       // Special case : we show the buildings in element mode
       // TODO general case for elements
-      if (currentOverlay == OverlayType.gas) currentOverlay = OverlayType.buildings;
+      if (currentOverlay == OverlayType.Gas) currentOverlay = OverlayType.Building;
 
       if (currentOverlay == this.oniItem.defaultOverlay)
       {
@@ -352,45 +346,14 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
       }
     }
 
-    // TODO PIXI migration
-    public drawUtility(ctx: CanvasRenderingContext2D, camera: Camera)
-    {
-        for (let connection of this.oniItem.utilityConnections)
-        {
-            // Pass to the next connection if this one should not be displayed on this overlay
-            if (camera.overlay != ConnectionHelper.getConnectionOverlay(connection.connectionType)) continue;
-
-            let connectionPosition = DrawHelpers.rotateVector2(connection.connectionOffset, Vector2.Zero, this.rotation);
-            connectionPosition = DrawHelpers.scaleVector2(connectionPosition, Vector2.Zero, this.scale);
-
-            let spriteInfoId = ConnectionHelper.getConnectionSpriteInfoId(connection.connectionType)
-            let spriteInfo = SpriteInfo.getSpriteInfo(spriteInfoId);
-
-            let drawPos = new Vector2(
-                (this.position.x + connectionPosition.x + camera.cameraOffset.x + spriteInfo.drawOffset.x / spriteInfo.realSize.x) * camera.currentZoom,
-                (-this.position.y - connectionPosition.y + camera.cameraOffset.y + spriteInfo.drawOffset.y / spriteInfo.realSize.y) * camera.currentZoom
-            );
-            let drawSize = new Vector2(
-                spriteInfo.sourceSize.x / spriteInfo.realSize.x * camera.currentZoom,
-                spriteInfo.sourceSize.y / spriteInfo.realSize.y * camera.currentZoom
-            );
-
-            let image = null;// ImageSource.getImage('input_output');
-            if (image == null) return;
-            ctx.drawImage(image, 
-                spriteInfo.sourcePos.x, spriteInfo.sourcePos.y,
-                spriteInfo.sourceSize.x, spriteInfo.sourceSize.y,
-                drawPos.x, drawPos.y, drawSize.x, drawSize.y);
-            
-        }
-    }
-
-
     // Pixi stuff
     sprite: PIXI.Sprite;
+    utilitySprites: PIXI.Sprite[];
     container: PIXI.Container;
     public drawPixi(camera: Camera, drawPixi: DrawPixi)
     {
+      this.drawPixiUtility(camera, drawPixi);
+
       this.realSpriteModifier = SpriteModifier.getSpriteModifer(this.realSpriteModifierId);
       this.realSpriteInfo = SpriteInfo.getSpriteInfo(this.realSpriteModifier.getLastPart().spriteInfoName);
       
@@ -398,7 +361,7 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
       {
         this.container = new Container();
         drawPixi.pixiApp.stage.addChild(this.container);
-        let texture = this.realSpriteInfo.getTexture(this.oniItem.imageId);
+        let texture = this.realSpriteInfo.getTexture();
 
         if (texture != null) 
         {
@@ -424,7 +387,7 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
         if (!this.sprite.texture.baseTexture.valid) this.drawPixiDebug(camera, drawPixi, positionCorrected);
 
         // TODO the sprite info should know its texture
-        this.sprite.texture = this.realSpriteInfo.getTexture(this.oniItem.imageId);
+        this.sprite.texture = this.realSpriteInfo.getTexture();
         this.sprite.anchor.set(this.realSpriteInfo.pivot.x, 1-this.realSpriteInfo.pivot.y);
 
         let realSize = new Vector2(this.oniItem.size.x * 1, this.oniItem.size.y * 1);
@@ -461,6 +424,73 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
         this.sprite.height = sizeCorrected.y;
 
       }
+
+      
+    }
+
+    private drawPixiUtility(camera: Camera, drawPixi: DrawPixi)
+    {
+      if (this.utilitySprites == null) this.utilitySprites = [];
+      
+
+      for (let connexionIndex=0; connexionIndex < this.oniItem.utilityConnections.length; connexionIndex++)
+      {
+        let connection = this.oniItem.utilityConnections[connexionIndex];
+
+        // Pass to the next connection if this one should not be displayed on this overlay
+        if (camera.overlay != ConnectionHelper.getConnectionOverlay(connection.type)) 
+        {
+          // First we disable the sprites if they are created, then we move on the the next connection
+          if (this.utilitySprites[connexionIndex] != null) this.utilitySprites[connexionIndex].visible = false;
+          continue;
+        }
+        else if (this.utilitySprites[connexionIndex] != null) this.utilitySprites[connexionIndex].visible = true;
+
+        let connectionPosition = DrawHelpers.rotateVector2(connection.offset, Vector2.Zero, this.rotation);
+        connectionPosition = DrawHelpers.scaleVector2(connectionPosition, Vector2.Zero, this.scale);
+
+
+        let drawPos = new Vector2(
+            (this.position.x + connectionPosition.x + camera.cameraOffset.x + 0.25) * camera.currentZoom,
+            (-this.position.y - connectionPosition.y + camera.cameraOffset.y + 0.25) * camera.currentZoom
+        );
+        let drawSize = new Vector2(
+            0.5 * camera.currentZoom,
+            0.5 * camera.currentZoom
+        );
+
+        if (this.utilitySprites[connexionIndex] == null) 
+        {
+          let connectionSprite = ConnectionHelper.getConnectionSprite(connection);
+          let connectionSpriteInfo = SpriteInfo.getSpriteInfo(connectionSprite.spriteInfoId);
+          if (connectionSpriteInfo != null)
+          {
+            let connectionTexture = connectionSpriteInfo.getTexture();
+            if (connectionTexture != null)
+            {
+              this.utilitySprites[connexionIndex] = PIXI.Sprite.from(connectionTexture);
+              this.utilitySprites[connexionIndex].tint = connectionSprite.color;
+              drawPixi.pixiApp.stage.addChild(this.utilitySprites[connexionIndex]);
+            }
+          }
+        }
+
+        // TODO correct sizes pour incons
+        // TODO debug Rectangle in front
+        // TODO debug rectangle only when not loaded
+        // TODO debug rectanlge correct color
+        if (this.utilitySprites[connexionIndex] != null)
+        {
+          this.utilitySprites[connexionIndex].x = drawPos.x;
+          this.utilitySprites[connexionIndex].y = drawPos.y;
+          this.utilitySprites[connexionIndex].width = drawSize.x;
+          this.utilitySprites[connexionIndex].height = drawSize.y;
+        }
+
+
+        //drawPixi.FillRect(0xFFFF00, drawPos.x, drawPos.y, drawSize.x, drawSize.y)
+
+      }
     }
 
     private drawPixiDebug(camera: Camera, drawPixi: DrawPixi, positionCorrected: Vector2)
@@ -477,7 +507,13 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
 
     public destroy()
     {
-      if (this.sprite != null) this.sprite.destroy();
+      // Destroy the main sprite
+      if (this.container != null) this.container.destroy({baseTexture: false, texture: false, children: true});
+      
+      // And the utility sprites
+      if (this.utilitySprites != null)
+        for (let s of this.utilitySprites)
+          s.destroy();
     }
 
 }

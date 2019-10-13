@@ -8,7 +8,8 @@ import { ComponentCanvasComponent } from "../component-canvas/component-canvas.c
 export interface DrawAbstraction
 {
   Init(canvas: ElementRef, parent: ComponentCanvasComponent);
-  FillRect(color: string, x: number, y: number, w: number, h: number);
+  clearGraphics();
+  FillRect(color: number, x: number, y: number, w: number, h: number);
   drawBlueprintLine(color: string, alpha: number, start: Vector2, end: Vector2, lineWidth: number);
   drawTemplateItem(templateItem: TemplateItem, camera: Camera);
   drawBuild(toBuild: TemplateItem, camera: Camera);

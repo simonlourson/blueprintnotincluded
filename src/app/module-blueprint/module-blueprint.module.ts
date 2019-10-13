@@ -18,6 +18,7 @@ import {CardModule} from 'primeng/card';
 import {ScrollPanelModule} from 'primeng/scrollpanel';
 import {OverlayPanelModule} from 'primeng/overlaypanel';
 import {MenubarModule} from 'primeng/menubar';
+import {TabMenuModule} from 'primeng/tabmenu';
 import {DialogModule} from 'primeng/dialog';
 import {DropdownModule} from 'primeng/dropdown';
 import {AccordionModule} from 'primeng/accordion';
@@ -45,7 +46,7 @@ const routes: Routes = [
     CommonModule, 
     HttpClientModule,
     FormsModule,
-    PasswordModule, ColorPickerModule, InputTextModule, SliderModule, ButtonModule, CardModule, ScrollPanelModule, OverlayPanelModule, MenubarModule, DialogModule, DropdownModule, AccordionModule, ToastModule,
+    PasswordModule, ColorPickerModule, InputTextModule, SliderModule, ButtonModule, CardModule, ScrollPanelModule, OverlayPanelModule, MenubarModule, TabMenuModule, DialogModule, DropdownModule, AccordionModule, ToastModule,
     BrowserAnimationsModule,
     RouterModule.forChild(routes)
   ],
