@@ -64,7 +64,7 @@ export class ComponentMenuComponent implements OnInit {
         label: 'Template',
         items: [
           {label: 'Save to cloud', icon:'pi pi-download', command: (event) => { this.saveToCloud(); } },
-          {label: 'Upload', icon: 'custom-icon', command: (event) => { this.uploadYamlTemplate(); } },
+          {label: 'Upload', command: (event) => { this.uploadYamlTemplate(); } },
           {
             label: 'Download', items: [
               {label: 'as Json', command: () => { this.onDownloadAsJson.emit(); }},

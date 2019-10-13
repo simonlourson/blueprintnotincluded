@@ -22,6 +22,7 @@
     "@angular/router": "~8.2.9",
     "@types/pixi.js": "^4.8.9",
     "pixi.js": "^5.1.5",
+    "primeflex": "^1.0.0-rc.1",
     "primeicons": "^2.0.0",
     "primeng": "^8.0.4",
     "rxjs": "~6.4.0",

@@ -1,12 +1,6 @@
 
 <!--<p-menubar [model]="menuItems" [baseZIndex]="2" [autoZIndex]="false" >-->
-<p-tabMenu [model]="menuItems" >
-    <ng-template let-item>
-        <div style="padding: .5em 1em">
-            <img style="vertical-align: middle; margin-right: .5em" src="assets/images/prioritizeIcon_max_strict.png" height="20px"/>
-            <span>{{item.name}}</span>
-        </div>
-    </ng-template>
-    {{getFps()}}
-</p-tabMenu>
+<button type="button" pButton icon="pi pi-bars" label="Menu" (click)="menu.toggle($event)"></button>
+<p-slideMenu #menu [model]="menuItems" [popup]="true" [viewportHeight]="230" [menuWidth]="150" [style]="{width: '150px'}" >
+</p-slideMenu>
 <input type="file" id="fileChooser" accept=".yaml" style="display: none" (change)="templateUpload($event)">
