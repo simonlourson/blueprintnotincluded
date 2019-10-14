@@ -25,6 +25,7 @@ import { ComponentSideSelectionToolComponent } from '../component-side-selection
 import { DrawAbstraction } from '../drawing/draw-abstraction';
 import { DrawPixi } from '../drawing/draw-pixi';
 import { ɵangular_packages_router_router_n } from '@angular/router';
+import * as JSZip from 'jszip';
 
 
 @Component({
@@ -198,28 +199,43 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
     for (let k of ImageSource.keys) ImageSource.getBaseTexture(k);
   }
 
-  private static blobs: Blob[];
+  private static nbBlob: number;
+  private static zip: JSZip;
   downloadIcons()
   {
-    ComponentCanvasComponent.blobs = [];
-
+    ComponentCanvasComponent.nbBlob = 0;
+    ComponentCanvasComponent.zip = new JSZip();
+    
     for (let k of SpriteInfo.keys.filter(s => s.includes('kanim_ui')))
     {
       let uiSpriteInfo = SpriteInfo.getSpriteInfo(k);
       let texture = uiSpriteInfo.getTexture();
       let uiSPrite = PIXI.Sprite.from(texture);
 
-      this.drawAbstraction.pixiApp.renderer.extract.canvas(uiSPrite).toBlob(this.addBlob, 'image/png');
+      this.drawAbstraction.pixiApp.renderer.extract.canvas(uiSPrite).toBlob((b) => 
+      {
+        this.addBlob(b, k + '.png');
+      }, 'image/png');
     }
+    
   }
 
-  addBlob(blob: Blob)
+  addBlob(blob: Blob, filename: string)
   {
-    ComponentCanvasComponent.blobs.push(blob);
+    ComponentCanvasComponent.nbBlob++;
+    ComponentCanvasComponent.zip.file(filename, blob);
 
-    if (ComponentCanvasComponent.blobs.length == SpriteInfo.keys.filter(s => s.includes('kanim_ui')).length)
+    if (ComponentCanvasComponent.nbBlob == SpriteInfo.keys.filter(s => s.includes('kanim_ui')).length)
     {
       console.log('last blob arrived!');
+      ComponentCanvasComponent.zip.generateAsync({type:"blob"}).then(function (blob) { 
+        let a = document.createElement('a');
+        document.body.append(a);
+        a.download = 'icons.zip';
+        a.href = URL.createObjectURL(blob);
+        a.click();
+        a.remove();                     
+      }); 
     }
   }
 
