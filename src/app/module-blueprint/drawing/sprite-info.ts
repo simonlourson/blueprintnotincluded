@@ -41,8 +41,10 @@ export class SpriteInfo
     }
 
     private static spriteInfosMap: Map<string, SpriteInfo>;
+    public static keys: string[];
     public static Init()
     {
+      SpriteInfo.keys = [];
       SpriteInfo.spriteInfosMap = new Map<string, SpriteInfo>();
     }
 
@@ -69,13 +71,13 @@ export class SpriteInfo
         spriteInfo.sourceSize = Vector2.clone(sOriginal.size);
         spriteInfo.pivot = Vector2.clone(sOriginal.pivot);
 
-        SpriteInfo.spriteInfosMap.set(spriteInfo.spriteInfoId, spriteInfo); 
+        SpriteInfo.addSpriteInfo(spriteInfo);
       }
     }
 
-    // TODO: above should use this
     public static addSpriteInfo(spriteInfo: SpriteInfo)
     {
+      SpriteInfo.keys.push(spriteInfo.spriteInfoId);
       SpriteInfo.spriteInfosMap.set(spriteInfo.spriteInfoId, spriteInfo); 
     }
 

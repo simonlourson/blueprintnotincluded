@@ -19,6 +19,7 @@ export class ComponentMenuComponent implements OnInit {
   @Output() onTemplateUpload = new EventEmitter<FileList>();
   @Output() onDownloadAsJson = new EventEmitter();
   @Output() onDownloadIcons = new EventEmitter();
+  @Output() onFetchIcons = new EventEmitter();
   @Output() onDownloadDistinctIdAsJson = new EventEmitter();
   @Output() onMisc = new EventEmitter();
   @Output() onSaveToCloud = new EventEmitter();
@@ -85,6 +86,7 @@ export class ComponentMenuComponent implements OnInit {
       {
         label: 'Technical',
         items: [
+          {label: 'Fetch icons',    icon:'pi pi-download', command: (event) => { this.fetchIcons(); } },
           {label: 'Download icons', icon:'pi pi-download', command: (event) => { this.downloadIcons(); } },
         ]
       }
@@ -145,6 +147,11 @@ export class ComponentMenuComponent implements OnInit {
   downloadIcons()
   {
     this.onDownloadIcons.emit();
+  }
+
+  fetchIcons()
+  {
+    this.onFetchIcons.emit();
   }
 
 }

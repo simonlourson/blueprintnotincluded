@@ -51,7 +51,7 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
   // Tools
   currentTool: Tool;
 
-  drawAbstraction: DrawAbstraction;
+  drawAbstraction: DrawPixi;
 
   constructor(private ngZone: NgZone, private http: HttpClient) {
     
@@ -186,6 +186,41 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
     if (this.currentTool != null) this.currentTool.destroyTool();
 
     this.currentTool = newToolComponent;
+  }
+
+  /*
+   * 
+   * Sprite repackaging 
+   *
+  */
+  fetchIcons()
+  {
+    for (let k of ImageSource.keys) ImageSource.getBaseTexture(k);
+  }
+
+  private static blobs: Blob[];
+  downloadIcons()
+  {
+    ComponentCanvasComponent.blobs = [];
+
+    for (let k of SpriteInfo.keys.filter(s => s.includes('kanim_ui')))
+    {
+      let uiSpriteInfo = SpriteInfo.getSpriteInfo(k);
+      let texture = uiSpriteInfo.getTexture();
+      let uiSPrite = PIXI.Sprite.from(texture);
+
+      this.drawAbstraction.pixiApp.renderer.extract.canvas(uiSPrite).toBlob(this.addBlob, 'image/png');
+    }
+  }
+
+  addBlob(blob: Blob)
+  {
+    ComponentCanvasComponent.blobs.push(blob);
+
+    if (ComponentCanvasComponent.blobs.length == SpriteInfo.keys.filter(s => s.includes('kanim_ui')).length)
+    {
+      console.log('last blob arrived!');
+    }
   }
 
   drawAll()

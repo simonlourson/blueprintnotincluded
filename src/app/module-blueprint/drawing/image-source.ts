@@ -13,15 +13,17 @@ export class ImageSource
 
     // PIXI stuff
     private static imageSourcesMapPixi: Map<string, ImageSource>;
+    public static keys: string[];
     private baseTexture: PIXI.BaseTexture ;
     public static InitPixi()
     { 
-      if (ImageSource.imageSourcesMapPixi == null)
-        ImageSource.imageSourcesMapPixi = new Map<string, ImageSource>();
+      ImageSource.keys = [];
+      ImageSource.imageSourcesMapPixi = new Map<string, ImageSource>();
     }
 
     public static AddImagePixi(imageId: string, imageUrl: string)
     {
+      ImageSource.keys.push(imageId);
       let newImageSource = new ImageSource(imageId, imageUrl);
       ImageSource.imageSourcesMapPixi.set(newImageSource.imageId, newImageSource);
     }

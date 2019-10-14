@@ -245,7 +245,12 @@ export class ComponentBlueprintParentComponent implements OnInit {
 
   downloadIcons()
   {
-    console.log('this.downloadIcons');
+    this.canvas.downloadIcons();
+  }
+
+  fetchIcons()
+  {
+    this.canvas.fetchIcons(); 
   }
 
   oniItems: any[];

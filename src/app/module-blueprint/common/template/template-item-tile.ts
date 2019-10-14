@@ -97,13 +97,36 @@ export class TemplateItemTile extends TemplateItem implements TemplateItemClonea
     let u = false;
     let d = false;
     let currentUv: Vector2 = new Vector2(0, 0);
+    let uvSize: Vector2 = new Vector2(0.25, 0.25);
     let dP = 0.25;
     let dUv = 1 / 32;
     for (let i = 0; i <= 15; i++)
     {
 
-      console.log(l+';'+r+';'+u+';'+d);
-      console.log(currentUv);
+      //console.log(l+';'+r+';'+u+';'+d);
+
+      let uv: Vector2 = Vector2.clone(currentUv);
+      let size: Vector2 = Vector2.clone(uvSize);
+      if (l) 
+      {
+        uv.x += 1/32;
+        size.x -= 1/32; 
+      }
+      if (u)
+      {
+        uv.y += 1/32;
+        size.y -= 1/32;
+      }
+      if (r) size.x -= 1/32;
+      if (d) size.y -= 1/32;
+
+      uv.x = uv.x * 819;
+      uv.y = uv.y * 819;
+      size.x = size.x * 819;
+      size.y = size.y * 819;
+
+      //console.log(uv);
+      //console.log(size);
 
       l = !l;
 
@@ -116,11 +139,11 @@ export class TemplateItemTile extends TemplateItem implements TemplateItemClonea
       dIndex = (dIndex + 1) % 4;
       if (dIndex == 0) d = !d;
 
-      currentUv.y += 0.2;
-      if (currentUv.y == 0.8)
+      currentUv.y += 0.25;
+      if (currentUv.y == 1)
       {
         currentUv.y = 0;
-        currentUv.x += 0.2;
+        currentUv.x += 0.25;
       }
     }
   }
