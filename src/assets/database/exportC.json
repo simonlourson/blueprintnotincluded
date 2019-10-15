@@ -56062,6 +56062,27 @@
       }
     },
     {
+      "name": "icon_category_decor",
+      "textureName": "icon_category_automation",
+      "isIcon": true,
+      "uvMin": {
+        "x": 460.051331,
+        "y": 1251.02673
+      },
+      "uvSize": {
+        "x": 210.872559,
+        "y": 278.897125
+      },
+      "realSize": {
+        "x": 210.872559,
+        "y": 278.897125
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
       "name": "icon_category_electrical",
       "textureName": "electrical_disconnected",
       "isIcon": true,
@@ -56076,6 +56097,27 @@
       "realSize": {
         "x": 164.847748,
         "y": 255.948685
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "name": "icon_category_equipment",
+      "textureName": "icon_category_automation",
+      "isIcon": true,
+      "uvMin": {
+        "x": 1728.07617,
+        "y": 1774.05127
+      },
+      "uvSize": {
+        "x": 205.865677,
+        "y": 273.905762
+      },
+      "realSize": {
+        "x": 205.865677,
+        "y": 273.905762
       },
       "pivot": {
         "x": 0.5,
@@ -56125,6 +56167,27 @@
       }
     },
     {
+      "name": "icon_category_lights",
+      "textureName": "icon_category_lights",
+      "isIcon": true,
+      "uvMin": {
+        "x": 1848.07617,
+        "y": 747.0268
+      },
+      "uvSize": {
+        "x": 196.847748,
+        "y": 244.9345
+      },
+      "realSize": {
+        "x": 196.847748,
+        "y": 244.9345
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
       "name": "icon_category_medical",
       "textureName": "electrical_disconnected",
       "isIcon": true,
@@ -56160,6 +56223,27 @@
       "realSize": {
         "x": 178.847748,
         "y": 256.0
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "name": "icon_category_morale",
+      "textureName": "icon_category_furniture",
+      "isIcon": true,
+      "uvMin": {
+        "x": 772.0761,
+        "y": 780.0761
+      },
+      "uvSize": {
+        "x": 243.921936,
+        "y": 290.847778
+      },
+      "realSize": {
+        "x": 243.921936,
+        "y": 290.847778
       },
       "pivot": {
         "x": 0.5,
@@ -56251,6 +56335,27 @@
       }
     },
     {
+      "name": "icon_category_shipping",
+      "textureName": "electrical_disconnected",
+      "isIcon": true,
+      "uvMin": {
+        "x": 227.076126,
+        "y": 1640.043
+      },
+      "uvSize": {
+        "x": 230.887589,
+        "y": 199.930344
+      },
+      "realSize": {
+        "x": 230.887589,
+        "y": 199.930344
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
       "name": "icon_category_utilities",
       "textureName": "icon_category_utilities",
       "isIcon": true,
@@ -56315,7 +56420,7 @@
     },
     {
       "name": "logicInput",
-      "textureName": "logicInput",
+      "textureName": "icon_category_lights",
       "isIcon": true,
       "uvMin": {
         "x": 1056.0,
@@ -56377,1567 +56482,1026 @@
       }
     }
   ],
-  "buildMenu": [
+  "buildMenuCategories": [
     {
-      "firstCategory": "base",
-      "iconFirstCategory": "icon_category_base",
-      "secondCategory": "tiles",
-      "iconSecondCategory": "icon_category_base",
-      "buildingId": "Tile"
+      "category": -2955855,
+      "categoryName": "Base",
+      "categoryIcon": "icon_category_base"
     },
     {
-      "firstCategory": "base",
-      "iconFirstCategory": "icon_category_base",
-      "secondCategory": "tiles",
-      "iconSecondCategory": "icon_category_base",
-      "buildingId": "GasPermeableMembrane"
+      "category": -1528777920,
+      "categoryName": "Oxygen",
+      "categoryIcon": "icon_category_oxygen"
     },
     {
-      "firstCategory": "base",
-      "iconFirstCategory": "icon_category_base",
-      "secondCategory": "tiles",
-      "iconSecondCategory": "icon_category_base",
-      "buildingId": "MeshTile"
+      "category": 517759365,
+      "categoryName": "Power",
+      "categoryIcon": "icon_category_electrical"
     },
     {
-      "firstCategory": "base",
-      "iconFirstCategory": "icon_category_base",
-      "secondCategory": "tiles",
-      "iconSecondCategory": "icon_category_base",
-      "buildingId": "InsulationTile"
+      "category": -1060175682,
+      "categoryName": "Food",
+      "categoryIcon": "icon_category_food"
     },
     {
-      "firstCategory": "base",
-      "iconFirstCategory": "icon_category_base",
-      "secondCategory": "tiles",
-      "iconSecondCategory": "icon_category_base",
-      "buildingId": "PlasticTile"
+      "category": -1014650956,
+      "categoryName": "Plumbing",
+      "categoryIcon": "icon_category_plumbing"
     },
     {
-      "firstCategory": "base",
-      "iconFirstCategory": "icon_category_base",
-      "secondCategory": "tiles",
-      "iconSecondCategory": "icon_category_base",
-      "buildingId": "MetalTile"
+      "category": 557910864,
+      "categoryName": "HVAC",
+      "categoryIcon": "icon_category_ventilation"
     },
     {
-      "firstCategory": "base",
-      "iconFirstCategory": "icon_category_base",
-      "secondCategory": "tiles",
-      "iconSecondCategory": "icon_category_base",
-      "buildingId": "GlassTile"
+      "category": 8593386,
+      "categoryName": "Refining",
+      "categoryIcon": "icon_category_refinery"
     },
     {
-      "firstCategory": "base",
-      "iconFirstCategory": "icon_category_base",
-      "secondCategory": "tiles",
-      "iconSecondCategory": "icon_category_base",
-      "buildingId": "BunkerTile"
+      "category": -1098138447,
+      "categoryName": "Medical",
+      "categoryIcon": "icon_category_medical"
     },
     {
-      "firstCategory": "base",
-      "iconFirstCategory": "icon_category_base",
-      "secondCategory": "tiles",
-      "iconSecondCategory": "icon_category_base",
-      "buildingId": "CarpetTile"
+      "category": -1264537710,
+      "categoryName": "Furniture",
+      "categoryIcon": "icon_category_furniture"
     },
     {
-      "firstCategory": "base",
-      "iconFirstCategory": "icon_category_base",
-      "secondCategory": "ladders",
-      "iconSecondCategory": "icon_category_base",
+      "category": -154862930,
+      "categoryName": "Equipment",
+      "categoryIcon": "icon_category_misc"
+    },
+    {
+      "category": -1237303894,
+      "categoryName": "Utilities",
+      "categoryIcon": "icon_category_utilities"
+    },
+    {
+      "category": -470492617,
+      "categoryName": "Automation",
+      "categoryIcon": "icon_category_automation"
+    },
+    {
+      "category": -1745293257,
+      "categoryName": "Conveyance",
+      "categoryIcon": "icon_category_shipping"
+    },
+    {
+      "category": 104161307,
+      "categoryName": "Rocketry",
+      "categoryIcon": "icon_category_rocketry"
+    }
+  ],
+  "buildMenuItems": [
+    {
+      "category": -2955855,
       "buildingId": "Ladder"
     },
     {
-      "firstCategory": "base",
-      "iconFirstCategory": "icon_category_base",
-      "secondCategory": "ladders",
-      "iconSecondCategory": "icon_category_base",
-      "buildingId": "LadderFast"
-    },
-    {
-      "firstCategory": "base",
-      "iconFirstCategory": "icon_category_base",
-      "secondCategory": "ladders",
-      "iconSecondCategory": "icon_category_base",
+      "category": -2955855,
       "buildingId": "FirePole"
     },
     {
-      "firstCategory": "base",
-      "iconFirstCategory": "icon_category_base",
-      "secondCategory": "doors",
-      "iconSecondCategory": "icon_category_base",
+      "category": -2955855,
+      "buildingId": "LadderFast"
+    },
+    {
+      "category": -2955855,
+      "buildingId": "Tile"
+    },
+    {
+      "category": -2955855,
+      "buildingId": "GasPermeableMembrane"
+    },
+    {
+      "category": -2955855,
+      "buildingId": "MeshTile"
+    },
+    {
+      "category": -2955855,
+      "buildingId": "InsulationTile"
+    },
+    {
+      "category": -2955855,
+      "buildingId": "PlasticTile"
+    },
+    {
+      "category": -2955855,
+      "buildingId": "MetalTile"
+    },
+    {
+      "category": -2955855,
+      "buildingId": "GlassTile"
+    },
+    {
+      "category": -2955855,
+      "buildingId": "BunkerTile"
+    },
+    {
+      "category": -2955855,
+      "buildingId": "CarpetTile"
+    },
+    {
+      "category": -2955855,
       "buildingId": "Door"
     },
     {
-      "firstCategory": "base",
-      "iconFirstCategory": "icon_category_base",
-      "secondCategory": "doors",
-      "iconSecondCategory": "icon_category_base",
+      "category": -2955855,
       "buildingId": "ManualPressureDoor"
     },
     {
-      "firstCategory": "base",
-      "iconFirstCategory": "icon_category_base",
-      "secondCategory": "doors",
-      "iconSecondCategory": "icon_category_base",
+      "category": -2955855,
       "buildingId": "PressureDoor"
     },
     {
-      "firstCategory": "base",
-      "iconFirstCategory": "icon_category_base",
-      "secondCategory": "doors",
-      "iconSecondCategory": "icon_category_base",
+      "category": -2955855,
       "buildingId": "BunkerDoor"
     },
     {
-      "firstCategory": "base",
-      "iconFirstCategory": "icon_category_base",
-      "secondCategory": "storage",
-      "iconSecondCategory": "icon_category_base",
+      "category": -2955855,
       "buildingId": "StorageLocker"
     },
     {
-      "firstCategory": "base",
-      "iconFirstCategory": "icon_category_base",
-      "secondCategory": "storage",
-      "iconSecondCategory": "icon_category_base",
-      "buildingId": "RationBox"
-    },
-    {
-      "firstCategory": "base",
-      "iconFirstCategory": "icon_category_base",
-      "secondCategory": "storage",
-      "iconSecondCategory": "icon_category_base",
-      "buildingId": "Refrigerator"
-    },
-    {
-      "firstCategory": "base",
-      "iconFirstCategory": "icon_category_base",
-      "secondCategory": "storage",
-      "iconSecondCategory": "icon_category_base",
+      "category": -2955855,
       "buildingId": "StorageLockerSmart"
     },
     {
-      "firstCategory": "base",
-      "iconFirstCategory": "icon_category_base",
-      "secondCategory": "storage",
-      "iconSecondCategory": "icon_category_base",
+      "category": -2955855,
       "buildingId": "LiquidReservoir"
     },
     {
-      "firstCategory": "base",
-      "iconFirstCategory": "icon_category_base",
-      "secondCategory": "storage",
-      "iconSecondCategory": "icon_category_base",
+      "category": -2955855,
       "buildingId": "GasReservoir"
     },
     {
-      "firstCategory": "base",
-      "iconFirstCategory": "icon_category_base",
-      "secondCategory": "storage",
-      "iconSecondCategory": "icon_category_base",
+      "category": -2955855,
       "buildingId": "ObjectDispenser"
     },
     {
-      "firstCategory": "base",
-      "iconFirstCategory": "icon_category_base",
-      "secondCategory": "research",
-      "iconSecondCategory": "icon_category_misc",
-      "buildingId": "ResearchCenter"
-    },
-    {
-      "firstCategory": "base",
-      "iconFirstCategory": "icon_category_base",
-      "secondCategory": "research",
-      "iconSecondCategory": "icon_category_misc",
-      "buildingId": "AdvancedResearchCenter"
-    },
-    {
-      "firstCategory": "base",
-      "iconFirstCategory": "icon_category_base",
-      "secondCategory": "research",
-      "iconSecondCategory": "icon_category_misc",
-      "buildingId": "CosmicResearchCenter"
-    },
-    {
-      "firstCategory": "base",
-      "iconFirstCategory": "icon_category_base",
-      "secondCategory": "research",
-      "iconSecondCategory": "icon_category_misc",
-      "buildingId": "Telescope"
-    },
-    {
-      "firstCategory": "food and agriculture",
-      "iconFirstCategory": "icon_category_food",
-      "secondCategory": "farming",
-      "iconSecondCategory": "icon_category_food",
-      "buildingId": "PlanterBox"
-    },
-    {
-      "firstCategory": "food and agriculture",
-      "iconFirstCategory": "icon_category_food",
-      "secondCategory": "farming",
-      "iconSecondCategory": "icon_category_food",
-      "buildingId": "FarmTile"
-    },
-    {
-      "firstCategory": "food and agriculture",
-      "iconFirstCategory": "icon_category_food",
-      "secondCategory": "farming",
-      "iconSecondCategory": "icon_category_food",
-      "buildingId": "HydroponicFarm"
-    },
-    {
-      "firstCategory": "food and agriculture",
-      "iconFirstCategory": "icon_category_food",
-      "secondCategory": "farming",
-      "iconSecondCategory": "icon_category_food",
-      "buildingId": "Compost"
-    },
-    {
-      "firstCategory": "food and agriculture",
-      "iconFirstCategory": "icon_category_food",
-      "secondCategory": "farming",
-      "iconSecondCategory": "icon_category_food",
-      "buildingId": "FertilizerMaker"
-    },
-    {
-      "firstCategory": "food and agriculture",
-      "iconFirstCategory": "icon_category_food",
-      "secondCategory": "cooking",
-      "iconSecondCategory": "icon_category_food",
-      "buildingId": "MicrobeMusher"
-    },
-    {
-      "firstCategory": "food and agriculture",
-      "iconFirstCategory": "icon_category_food",
-      "secondCategory": "cooking",
-      "iconSecondCategory": "icon_category_food",
-      "buildingId": "CookingStation"
-    },
-    {
-      "firstCategory": "food and agriculture",
-      "iconFirstCategory": "icon_category_food",
-      "secondCategory": "cooking",
-      "iconSecondCategory": "icon_category_food",
-      "buildingId": "GourmetCookingStation"
-    },
-    {
-      "firstCategory": "food and agriculture",
-      "iconFirstCategory": "icon_category_food",
-      "secondCategory": "cooking",
-      "iconSecondCategory": "icon_category_food",
-      "buildingId": "EggCracker"
-    },
-    {
-      "firstCategory": "food and agriculture",
-      "iconFirstCategory": "icon_category_food",
-      "secondCategory": "ranching",
-      "iconSecondCategory": "icon_category_food",
-      "buildingId": "CreatureDeliveryPoint"
-    },
-    {
-      "firstCategory": "food and agriculture",
-      "iconFirstCategory": "icon_category_food",
-      "secondCategory": "ranching",
-      "iconSecondCategory": "icon_category_food",
-      "buildingId": "FishDeliveryPoint"
-    },
-    {
-      "firstCategory": "food and agriculture",
-      "iconFirstCategory": "icon_category_food",
-      "secondCategory": "ranching",
-      "iconSecondCategory": "icon_category_food",
-      "buildingId": "CreatureFeeder"
-    },
-    {
-      "firstCategory": "food and agriculture",
-      "iconFirstCategory": "icon_category_food",
-      "secondCategory": "ranching",
-      "iconSecondCategory": "icon_category_food",
-      "buildingId": "FishFeeder"
-    },
-    {
-      "firstCategory": "food and agriculture",
-      "iconFirstCategory": "icon_category_food",
-      "secondCategory": "ranching",
-      "iconSecondCategory": "icon_category_food",
-      "buildingId": "RanchStation"
-    },
-    {
-      "firstCategory": "food and agriculture",
-      "iconFirstCategory": "icon_category_food",
-      "secondCategory": "ranching",
-      "iconSecondCategory": "icon_category_food",
-      "buildingId": "ShearingStation"
-    },
-    {
-      "firstCategory": "food and agriculture",
-      "iconFirstCategory": "icon_category_food",
-      "secondCategory": "ranching",
-      "iconSecondCategory": "icon_category_food",
-      "buildingId": "EggIncubator"
-    },
-    {
-      "firstCategory": "food and agriculture",
-      "iconFirstCategory": "icon_category_food",
-      "secondCategory": "ranching",
-      "iconSecondCategory": "icon_category_food",
-      "buildingId": "CreatureTrap"
-    },
-    {
-      "firstCategory": "food and agriculture",
-      "iconFirstCategory": "icon_category_food",
-      "secondCategory": "ranching",
-      "iconSecondCategory": "icon_category_food",
-      "buildingId": "FishTrap"
-    },
-    {
-      "firstCategory": "food and agriculture",
-      "iconFirstCategory": "icon_category_food",
-      "secondCategory": "ranching",
-      "iconSecondCategory": "icon_category_food",
-      "buildingId": "AirborneCreatureLure"
-    },
-    {
-      "firstCategory": "food and agriculture",
-      "iconFirstCategory": "icon_category_food",
-      "secondCategory": "ranching",
-      "iconSecondCategory": "icon_category_food",
-      "buildingId": "FlyingCreatureBait"
-    },
-    {
-      "firstCategory": "health and happiness",
-      "iconFirstCategory": "icon_category_medical",
-      "secondCategory": "medical",
-      "iconSecondCategory": "icon_category_medical",
-      "buildingId": "Apothecary"
-    },
-    {
-      "firstCategory": "health and happiness",
-      "iconFirstCategory": "icon_category_medical",
-      "secondCategory": "medical",
-      "iconSecondCategory": "icon_category_medical",
-      "buildingId": "DoctorStation"
-    },
-    {
-      "firstCategory": "health and happiness",
-      "iconFirstCategory": "icon_category_medical",
-      "secondCategory": "medical",
-      "iconSecondCategory": "icon_category_medical",
-      "buildingId": "AdvancedDoctorStation"
-    },
-    {
-      "firstCategory": "health and happiness",
-      "iconFirstCategory": "icon_category_medical",
-      "secondCategory": "medical",
-      "iconSecondCategory": "icon_category_medical",
-      "buildingId": "MedicalCot"
-    },
-    {
-      "firstCategory": "health and happiness",
-      "iconFirstCategory": "icon_category_medical",
-      "secondCategory": "medical",
-      "iconSecondCategory": "icon_category_medical",
-      "buildingId": "MassageTable"
-    },
-    {
-      "firstCategory": "health and happiness",
-      "iconFirstCategory": "icon_category_medical",
-      "secondCategory": "medical",
-      "iconSecondCategory": "icon_category_medical",
-      "buildingId": "Grave"
-    },
-    {
-      "firstCategory": "health and happiness",
-      "iconFirstCategory": "icon_category_medical",
-      "secondCategory": "hygiene",
-      "iconSecondCategory": "icon_category_medical",
-      "buildingId": "Outhouse"
-    },
-    {
-      "firstCategory": "health and happiness",
-      "iconFirstCategory": "icon_category_medical",
-      "secondCategory": "hygiene",
-      "iconSecondCategory": "icon_category_medical",
-      "buildingId": "FlushToilet"
-    },
-    {
-      "firstCategory": "health and happiness",
-      "iconFirstCategory": "icon_category_medical",
-      "secondCategory": "hygiene",
-      "iconSecondCategory": "icon_category_medical",
-      "buildingId": "Shower"
-    },
-    {
-      "firstCategory": "health and happiness",
-      "iconFirstCategory": "icon_category_medical",
-      "secondCategory": "hygiene",
-      "iconSecondCategory": "icon_category_medical",
-      "buildingId": "WashBasin"
-    },
-    {
-      "firstCategory": "health and happiness",
-      "iconFirstCategory": "icon_category_medical",
-      "secondCategory": "hygiene",
-      "iconSecondCategory": "icon_category_medical",
-      "buildingId": "WashSink"
-    },
-    {
-      "firstCategory": "health and happiness",
-      "iconFirstCategory": "icon_category_medical",
-      "secondCategory": "hygiene",
-      "iconSecondCategory": "icon_category_medical",
-      "buildingId": "HandSanitizer"
-    },
-    {
-      "firstCategory": "health and happiness",
-      "iconFirstCategory": "icon_category_medical",
-      "secondCategory": "furniture",
-      "iconSecondCategory": "icon_category_furniture",
-      "buildingId": "Bed"
-    },
-    {
-      "firstCategory": "health and happiness",
-      "iconFirstCategory": "icon_category_medical",
-      "secondCategory": "furniture",
-      "iconSecondCategory": "icon_category_furniture",
-      "buildingId": "LuxuryBed"
-    },
-    {
-      "firstCategory": "health and happiness",
-      "iconFirstCategory": "icon_category_medical",
-      "secondCategory": "furniture",
-      "iconSecondCategory": "icon_category_furniture",
-      "buildingId": "DiningTable"
-    },
-    {
-      "firstCategory": "health and happiness",
-      "iconFirstCategory": "icon_category_medical",
-      "secondCategory": "furniture",
-      "iconSecondCategory": "icon_category_furniture",
-      "buildingId": "FloorLamp"
-    },
-    {
-      "firstCategory": "health and happiness",
-      "iconFirstCategory": "icon_category_medical",
-      "secondCategory": "furniture",
-      "iconSecondCategory": "icon_category_furniture",
-      "buildingId": "CeilingLight"
-    },
-    {
-      "firstCategory": "health and happiness",
-      "iconFirstCategory": "icon_category_medical",
-      "secondCategory": "decor",
-      "iconSecondCategory": "icon_category_furniture",
-      "buildingId": "FlowerVase"
-    },
-    {
-      "firstCategory": "health and happiness",
-      "iconFirstCategory": "icon_category_medical",
-      "secondCategory": "decor",
-      "iconSecondCategory": "icon_category_furniture",
-      "buildingId": "Canvas"
-    },
-    {
-      "firstCategory": "health and happiness",
-      "iconFirstCategory": "icon_category_medical",
-      "secondCategory": "decor",
-      "iconSecondCategory": "icon_category_furniture",
-      "buildingId": "CanvasWide"
-    },
-    {
-      "firstCategory": "health and happiness",
-      "iconFirstCategory": "icon_category_medical",
-      "secondCategory": "decor",
-      "iconSecondCategory": "icon_category_furniture",
-      "buildingId": "CanvasTall"
-    },
-    {
-      "firstCategory": "health and happiness",
-      "iconFirstCategory": "icon_category_medical",
-      "secondCategory": "decor",
-      "iconSecondCategory": "icon_category_furniture",
-      "buildingId": "Sculpture"
-    },
-    {
-      "firstCategory": "health and happiness",
-      "iconFirstCategory": "icon_category_medical",
-      "secondCategory": "decor",
-      "iconSecondCategory": "icon_category_furniture",
-      "buildingId": "IceSculpture"
-    },
-    {
-      "firstCategory": "health and happiness",
-      "iconFirstCategory": "icon_category_medical",
-      "secondCategory": "decor",
-      "iconSecondCategory": "icon_category_furniture",
-      "buildingId": "ItemPedestal"
-    },
-    {
-      "firstCategory": "health and happiness",
-      "iconFirstCategory": "icon_category_medical",
-      "secondCategory": "decor",
-      "iconSecondCategory": "icon_category_furniture",
-      "buildingId": "CrownMoulding"
-    },
-    {
-      "firstCategory": "health and happiness",
-      "iconFirstCategory": "icon_category_medical",
-      "secondCategory": "decor",
-      "iconSecondCategory": "icon_category_furniture",
-      "buildingId": "CornerMoulding"
-    },
-    {
-      "firstCategory": "health and happiness",
-      "iconFirstCategory": "icon_category_medical",
-      "secondCategory": "recreation",
-      "iconSecondCategory": "icon_category_medical",
-      "buildingId": "WaterCooler"
-    },
-    {
-      "firstCategory": "health and happiness",
-      "iconFirstCategory": "icon_category_medical",
-      "secondCategory": "recreation",
-      "iconSecondCategory": "icon_category_medical",
-      "buildingId": "ArcadeMachine"
-    },
-    {
-      "firstCategory": "health and happiness",
-      "iconFirstCategory": "icon_category_medical",
-      "secondCategory": "recreation",
-      "iconSecondCategory": "icon_category_medical",
-      "buildingId": "Phonobox"
-    },
-    {
-      "firstCategory": "health and happiness",
-      "iconFirstCategory": "icon_category_medical",
-      "secondCategory": "recreation",
-      "iconSecondCategory": "icon_category_medical",
-      "buildingId": "EspressoMachine"
-    },
-    {
-      "firstCategory": "health and happiness",
-      "iconFirstCategory": "icon_category_medical",
-      "secondCategory": "recreation",
-      "iconSecondCategory": "icon_category_medical",
-      "buildingId": "ParkSign"
-    },
-    {
-      "firstCategory": "infrastructure",
-      "iconFirstCategory": "icon_category_utilities",
-      "secondCategory": "wires",
-      "iconSecondCategory": "icon_category_electrical",
-      "buildingId": "Wire"
-    },
-    {
-      "firstCategory": "infrastructure",
-      "iconFirstCategory": "icon_category_utilities",
-      "secondCategory": "wires",
-      "iconSecondCategory": "icon_category_electrical",
-      "buildingId": "WireBridge"
-    },
-    {
-      "firstCategory": "infrastructure",
-      "iconFirstCategory": "icon_category_utilities",
-      "secondCategory": "wires",
-      "iconSecondCategory": "icon_category_electrical",
-      "buildingId": "HighWattageWire"
-    },
-    {
-      "firstCategory": "infrastructure",
-      "iconFirstCategory": "icon_category_utilities",
-      "secondCategory": "wires",
-      "iconSecondCategory": "icon_category_electrical",
-      "buildingId": "WireBridgeHighWattage"
-    },
-    {
-      "firstCategory": "infrastructure",
-      "iconFirstCategory": "icon_category_utilities",
-      "secondCategory": "wires",
-      "iconSecondCategory": "icon_category_electrical",
-      "buildingId": "WireRefined"
-    },
-    {
-      "firstCategory": "infrastructure",
-      "iconFirstCategory": "icon_category_utilities",
-      "secondCategory": "wires",
-      "iconSecondCategory": "icon_category_electrical",
-      "buildingId": "WireRefinedBridge"
-    },
-    {
-      "firstCategory": "infrastructure",
-      "iconFirstCategory": "icon_category_utilities",
-      "secondCategory": "wires",
-      "iconSecondCategory": "icon_category_electrical",
-      "buildingId": "WireRefinedHighWattage"
-    },
-    {
-      "firstCategory": "infrastructure",
-      "iconFirstCategory": "icon_category_utilities",
-      "secondCategory": "wires",
-      "iconSecondCategory": "icon_category_electrical",
-      "buildingId": "WireRefinedBridgeHighWattage"
-    },
-    {
-      "firstCategory": "infrastructure",
-      "iconFirstCategory": "icon_category_utilities",
-      "secondCategory": "generators",
-      "iconSecondCategory": "icon_category_electrical",
-      "buildingId": "ManualGenerator"
-    },
-    {
-      "firstCategory": "infrastructure",
-      "iconFirstCategory": "icon_category_utilities",
-      "secondCategory": "generators",
-      "iconSecondCategory": "icon_category_electrical",
-      "buildingId": "Generator"
-    },
-    {
-      "firstCategory": "infrastructure",
-      "iconFirstCategory": "icon_category_utilities",
-      "secondCategory": "generators",
-      "iconSecondCategory": "icon_category_electrical",
-      "buildingId": "WoodGasGenerator"
-    },
-    {
-      "firstCategory": "infrastructure",
-      "iconFirstCategory": "icon_category_utilities",
-      "secondCategory": "generators",
-      "iconSecondCategory": "icon_category_electrical",
-      "buildingId": "HydrogenGenerator"
-    },
-    {
-      "firstCategory": "infrastructure",
-      "iconFirstCategory": "icon_category_utilities",
-      "secondCategory": "generators",
-      "iconSecondCategory": "icon_category_electrical",
-      "buildingId": "MethaneGenerator"
-    },
-    {
-      "firstCategory": "infrastructure",
-      "iconFirstCategory": "icon_category_utilities",
-      "secondCategory": "generators",
-      "iconSecondCategory": "icon_category_electrical",
-      "buildingId": "PetroleumGenerator"
-    },
-    {
-      "firstCategory": "infrastructure",
-      "iconFirstCategory": "icon_category_utilities",
-      "secondCategory": "generators",
-      "iconSecondCategory": "icon_category_electrical",
-      "buildingId": "SteamTurbine"
-    },
-    {
-      "firstCategory": "infrastructure",
-      "iconFirstCategory": "icon_category_utilities",
-      "secondCategory": "generators",
-      "iconSecondCategory": "icon_category_electrical",
-      "buildingId": "SteamTurbine2"
-    },
-    {
-      "firstCategory": "infrastructure",
-      "iconFirstCategory": "icon_category_utilities",
-      "secondCategory": "generators",
-      "iconSecondCategory": "icon_category_electrical",
-      "buildingId": "SolarPanel"
-    },
-    {
-      "firstCategory": "infrastructure",
-      "iconFirstCategory": "icon_category_utilities",
-      "secondCategory": "powercontrol",
-      "iconSecondCategory": "icon_category_electrical",
-      "buildingId": "Battery"
-    },
-    {
-      "firstCategory": "infrastructure",
-      "iconFirstCategory": "icon_category_utilities",
-      "secondCategory": "powercontrol",
-      "iconSecondCategory": "icon_category_electrical",
-      "buildingId": "BatteryMedium"
-    },
-    {
-      "firstCategory": "infrastructure",
-      "iconFirstCategory": "icon_category_utilities",
-      "secondCategory": "powercontrol",
-      "iconSecondCategory": "icon_category_electrical",
-      "buildingId": "BatterySmart"
-    },
-    {
-      "firstCategory": "infrastructure",
-      "iconFirstCategory": "icon_category_utilities",
-      "secondCategory": "powercontrol",
-      "iconSecondCategory": "icon_category_electrical",
-      "buildingId": "PowerTransformerSmall"
-    },
-    {
-      "firstCategory": "infrastructure",
-      "iconFirstCategory": "icon_category_utilities",
-      "secondCategory": "powercontrol",
-      "iconSecondCategory": "icon_category_electrical",
-      "buildingId": "PowerTransformer"
-    },
-    {
-      "firstCategory": "infrastructure",
-      "iconFirstCategory": "icon_category_utilities",
-      "secondCategory": "powercontrol",
-      "iconSecondCategory": "icon_category_electrical",
-      "buildingId": "Switch"
-    },
-    {
-      "firstCategory": "infrastructure",
-      "iconFirstCategory": "icon_category_utilities",
-      "secondCategory": "powercontrol",
-      "iconSecondCategory": "icon_category_electrical",
-      "buildingId": "TemperatureControlledSwitch"
-    },
-    {
-      "firstCategory": "infrastructure",
-      "iconFirstCategory": "icon_category_utilities",
-      "secondCategory": "powercontrol",
-      "iconSecondCategory": "icon_category_electrical",
-      "buildingId": "PressureSwitchLiquid"
-    },
-    {
-      "firstCategory": "infrastructure",
-      "iconFirstCategory": "icon_category_utilities",
-      "secondCategory": "powercontrol",
-      "iconSecondCategory": "icon_category_electrical",
-      "buildingId": "PressureSwitchGas"
-    },
-    {
-      "firstCategory": "infrastructure",
-      "iconFirstCategory": "icon_category_utilities",
-      "secondCategory": "powercontrol",
-      "iconSecondCategory": "icon_category_electrical",
-      "buildingId": "LogicPowerRelay"
-    },
-    {
-      "firstCategory": "infrastructure",
-      "iconFirstCategory": "icon_category_utilities",
-      "secondCategory": "pipes",
-      "iconSecondCategory": "icon_category_plumbing",
-      "buildingId": "LiquidConduit"
-    },
-    {
-      "firstCategory": "infrastructure",
-      "iconFirstCategory": "icon_category_utilities",
-      "secondCategory": "pipes",
-      "iconSecondCategory": "icon_category_plumbing",
-      "buildingId": "LiquidConduitBridge"
-    },
-    {
-      "firstCategory": "infrastructure",
-      "iconFirstCategory": "icon_category_utilities",
-      "secondCategory": "pipes",
-      "iconSecondCategory": "icon_category_plumbing",
-      "buildingId": "InsulatedLiquidConduit"
-    },
-    {
-      "firstCategory": "infrastructure",
-      "iconFirstCategory": "icon_category_utilities",
-      "secondCategory": "pipes",
-      "iconSecondCategory": "icon_category_plumbing",
-      "buildingId": "LiquidConduitRadiant"
-    },
-    {
-      "firstCategory": "infrastructure",
-      "iconFirstCategory": "icon_category_utilities",
-      "secondCategory": "pipes",
-      "iconSecondCategory": "icon_category_plumbing",
-      "buildingId": "GasConduit"
-    },
-    {
-      "firstCategory": "infrastructure",
-      "iconFirstCategory": "icon_category_utilities",
-      "secondCategory": "pipes",
-      "iconSecondCategory": "icon_category_plumbing",
-      "buildingId": "GasConduitBridge"
-    },
-    {
-      "firstCategory": "infrastructure",
-      "iconFirstCategory": "icon_category_utilities",
-      "secondCategory": "pipes",
-      "iconSecondCategory": "icon_category_plumbing",
-      "buildingId": "InsulatedGasConduit"
-    },
-    {
-      "firstCategory": "infrastructure",
-      "iconFirstCategory": "icon_category_utilities",
-      "secondCategory": "pipes",
-      "iconSecondCategory": "icon_category_plumbing",
-      "buildingId": "GasConduitRadiant"
-    },
-    {
-      "firstCategory": "infrastructure",
-      "iconFirstCategory": "icon_category_utilities",
-      "secondCategory": "plumbing structures",
-      "iconSecondCategory": "icon_category_plumbing",
-      "buildingId": "LiquidPumpingStation"
-    },
-    {
-      "firstCategory": "infrastructure",
-      "iconFirstCategory": "icon_category_utilities",
-      "secondCategory": "plumbing structures",
-      "iconSecondCategory": "icon_category_plumbing",
-      "buildingId": "BottleEmptier"
-    },
-    {
-      "firstCategory": "infrastructure",
-      "iconFirstCategory": "icon_category_utilities",
-      "secondCategory": "plumbing structures",
-      "iconSecondCategory": "icon_category_plumbing",
-      "buildingId": "LiquidPump"
-    },
-    {
-      "firstCategory": "infrastructure",
-      "iconFirstCategory": "icon_category_utilities",
-      "secondCategory": "plumbing structures",
-      "iconSecondCategory": "icon_category_plumbing",
-      "buildingId": "LiquidMiniPump"
-    },
-    {
-      "firstCategory": "infrastructure",
-      "iconFirstCategory": "icon_category_utilities",
-      "secondCategory": "plumbing structures",
-      "iconSecondCategory": "icon_category_plumbing",
-      "buildingId": "LiquidValve"
-    },
-    {
-      "firstCategory": "infrastructure",
-      "iconFirstCategory": "icon_category_utilities",
-      "secondCategory": "plumbing structures",
-      "iconSecondCategory": "icon_category_plumbing",
-      "buildingId": "LiquidLogicValve"
-    },
-    {
-      "firstCategory": "infrastructure",
-      "iconFirstCategory": "icon_category_utilities",
-      "secondCategory": "plumbing structures",
-      "iconSecondCategory": "icon_category_plumbing",
-      "buildingId": "LiquidVent"
-    },
-    {
-      "firstCategory": "infrastructure",
-      "iconFirstCategory": "icon_category_utilities",
-      "secondCategory": "plumbing structures",
-      "iconSecondCategory": "icon_category_plumbing",
-      "buildingId": "LiquidFilter"
-    },
-    {
-      "firstCategory": "infrastructure",
-      "iconFirstCategory": "icon_category_utilities",
-      "secondCategory": "plumbing structures",
-      "iconSecondCategory": "icon_category_plumbing",
-      "buildingId": "LiquidConduitPreferentialFlow"
-    },
-    {
-      "firstCategory": "infrastructure",
-      "iconFirstCategory": "icon_category_utilities",
-      "secondCategory": "plumbing structures",
-      "iconSecondCategory": "icon_category_plumbing",
-      "buildingId": "LiquidConduitOverflow"
-    },
-    {
-      "firstCategory": "infrastructure",
-      "iconFirstCategory": "icon_category_utilities",
-      "secondCategory": "ventilation structures",
-      "iconSecondCategory": "icon_category_ventilation",
-      "buildingId": "GasPump"
-    },
-    {
-      "firstCategory": "infrastructure",
-      "iconFirstCategory": "icon_category_utilities",
-      "secondCategory": "ventilation structures",
-      "iconSecondCategory": "icon_category_ventilation",
-      "buildingId": "GasMiniPump"
-    },
-    {
-      "firstCategory": "infrastructure",
-      "iconFirstCategory": "icon_category_utilities",
-      "secondCategory": "ventilation structures",
-      "iconSecondCategory": "icon_category_ventilation",
-      "buildingId": "GasValve"
-    },
-    {
-      "firstCategory": "infrastructure",
-      "iconFirstCategory": "icon_category_utilities",
-      "secondCategory": "ventilation structures",
-      "iconSecondCategory": "icon_category_ventilation",
-      "buildingId": "GasLogicValve"
-    },
-    {
-      "firstCategory": "infrastructure",
-      "iconFirstCategory": "icon_category_utilities",
-      "secondCategory": "ventilation structures",
-      "iconSecondCategory": "icon_category_ventilation",
-      "buildingId": "GasVent"
-    },
-    {
-      "firstCategory": "infrastructure",
-      "iconFirstCategory": "icon_category_utilities",
-      "secondCategory": "ventilation structures",
-      "iconSecondCategory": "icon_category_ventilation",
-      "buildingId": "GasVentHighPressure"
-    },
-    {
-      "firstCategory": "infrastructure",
-      "iconFirstCategory": "icon_category_utilities",
-      "secondCategory": "ventilation structures",
-      "iconSecondCategory": "icon_category_ventilation",
-      "buildingId": "GasFilter"
-    },
-    {
-      "firstCategory": "infrastructure",
-      "iconFirstCategory": "icon_category_utilities",
-      "secondCategory": "ventilation structures",
-      "iconSecondCategory": "icon_category_ventilation",
-      "buildingId": "GasBottler"
-    },
-    {
-      "firstCategory": "infrastructure",
-      "iconFirstCategory": "icon_category_utilities",
-      "secondCategory": "ventilation structures",
-      "iconSecondCategory": "icon_category_ventilation",
-      "buildingId": "BottleEmptierGas"
-    },
-    {
-      "firstCategory": "infrastructure",
-      "iconFirstCategory": "icon_category_utilities",
-      "secondCategory": "ventilation structures",
-      "iconSecondCategory": "icon_category_ventilation",
-      "buildingId": "GasConduitPreferentialFlow"
-    },
-    {
-      "firstCategory": "infrastructure",
-      "iconFirstCategory": "icon_category_utilities",
-      "secondCategory": "ventilation structures",
-      "iconSecondCategory": "icon_category_ventilation",
-      "buildingId": "GasConduitOverflow"
-    },
-    {
-      "firstCategory": "industrial",
-      "iconFirstCategory": "icon_category_refinery",
-      "secondCategory": "oxygen",
-      "iconSecondCategory": "icon_category_oxygen",
-      "buildingId": "MineralDeoxidizer"
-    },
-    {
-      "firstCategory": "industrial",
-      "iconFirstCategory": "icon_category_refinery",
-      "secondCategory": "oxygen",
-      "iconSecondCategory": "icon_category_oxygen",
-      "buildingId": "AlgaeHabitat"
-    },
-    {
-      "firstCategory": "industrial",
-      "iconFirstCategory": "icon_category_refinery",
-      "secondCategory": "oxygen",
-      "iconSecondCategory": "icon_category_oxygen",
-      "buildingId": "AirFilter"
-    },
-    {
-      "firstCategory": "industrial",
-      "iconFirstCategory": "icon_category_refinery",
-      "secondCategory": "oxygen",
-      "iconSecondCategory": "icon_category_oxygen",
-      "buildingId": "CO2Scrubber"
-    },
-    {
-      "firstCategory": "industrial",
-      "iconFirstCategory": "icon_category_refinery",
-      "secondCategory": "oxygen",
-      "iconSecondCategory": "icon_category_oxygen",
-      "buildingId": "Electrolyzer"
-    },
-    {
-      "firstCategory": "industrial",
-      "iconFirstCategory": "icon_category_refinery",
-      "secondCategory": "oxygen",
-      "iconSecondCategory": "icon_category_oxygen",
-      "buildingId": "RustDeoxidizer"
-    },
-    {
-      "firstCategory": "industrial",
-      "iconFirstCategory": "icon_category_refinery",
-      "secondCategory": "utilities",
-      "iconSecondCategory": "icon_category_utilities",
-      "buildingId": "SpaceHeater"
-    },
-    {
-      "firstCategory": "industrial",
-      "iconFirstCategory": "icon_category_refinery",
-      "secondCategory": "utilities",
-      "iconSecondCategory": "icon_category_utilities",
-      "buildingId": "LiquidHeater"
-    },
-    {
-      "firstCategory": "industrial",
-      "iconFirstCategory": "icon_category_refinery",
-      "secondCategory": "utilities",
-      "iconSecondCategory": "icon_category_utilities",
-      "buildingId": "IceCooledFan"
-    },
-    {
-      "firstCategory": "industrial",
-      "iconFirstCategory": "icon_category_refinery",
-      "secondCategory": "utilities",
-      "iconSecondCategory": "icon_category_utilities",
-      "buildingId": "IceMachine"
-    },
-    {
-      "firstCategory": "industrial",
-      "iconFirstCategory": "icon_category_refinery",
-      "secondCategory": "utilities",
-      "iconSecondCategory": "icon_category_utilities",
-      "buildingId": "AirConditioner"
-    },
-    {
-      "firstCategory": "industrial",
-      "iconFirstCategory": "icon_category_refinery",
-      "secondCategory": "utilities",
-      "iconSecondCategory": "icon_category_utilities",
-      "buildingId": "LiquidConditioner"
-    },
-    {
-      "firstCategory": "industrial",
-      "iconFirstCategory": "icon_category_refinery",
-      "secondCategory": "utilities",
-      "iconSecondCategory": "icon_category_utilities",
-      "buildingId": "OreScrubber"
-    },
-    {
-      "firstCategory": "industrial",
-      "iconFirstCategory": "icon_category_refinery",
-      "secondCategory": "utilities",
-      "iconSecondCategory": "icon_category_utilities",
-      "buildingId": "ThermalBlock"
-    },
-    {
-      "firstCategory": "industrial",
-      "iconFirstCategory": "icon_category_refinery",
-      "secondCategory": "utilities",
-      "iconSecondCategory": "icon_category_utilities",
-      "buildingId": "ExteriorWall"
-    },
-    {
-      "firstCategory": "industrial",
-      "iconFirstCategory": "icon_category_refinery",
-      "secondCategory": "refining",
-      "iconSecondCategory": "icon_category_refinery",
-      "buildingId": "WaterPurifier"
-    },
-    {
-      "firstCategory": "industrial",
-      "iconFirstCategory": "icon_category_refinery",
-      "secondCategory": "refining",
-      "iconSecondCategory": "icon_category_refinery",
-      "buildingId": "AlgaeDistillery"
-    },
-    {
-      "firstCategory": "industrial",
-      "iconFirstCategory": "icon_category_refinery",
-      "secondCategory": "refining",
-      "iconSecondCategory": "icon_category_refinery",
-      "buildingId": "EthanolDistillery"
-    },
-    {
-      "firstCategory": "industrial",
-      "iconFirstCategory": "icon_category_refinery",
-      "secondCategory": "refining",
-      "iconSecondCategory": "icon_category_refinery",
-      "buildingId": "RockCrusher"
-    },
-    {
-      "firstCategory": "industrial",
-      "iconFirstCategory": "icon_category_refinery",
-      "secondCategory": "refining",
-      "iconSecondCategory": "icon_category_refinery",
-      "buildingId": "Kiln"
-    },
-    {
-      "firstCategory": "industrial",
-      "iconFirstCategory": "icon_category_refinery",
-      "secondCategory": "refining",
-      "iconSecondCategory": "icon_category_refinery",
-      "buildingId": "OilWellCap"
-    },
-    {
-      "firstCategory": "industrial",
-      "iconFirstCategory": "icon_category_refinery",
-      "secondCategory": "refining",
-      "iconSecondCategory": "icon_category_refinery",
-      "buildingId": "OilRefinery"
-    },
-    {
-      "firstCategory": "industrial",
-      "iconFirstCategory": "icon_category_refinery",
-      "secondCategory": "refining",
-      "iconSecondCategory": "icon_category_refinery",
-      "buildingId": "Polymerizer"
-    },
-    {
-      "firstCategory": "industrial",
-      "iconFirstCategory": "icon_category_refinery",
-      "secondCategory": "refining",
-      "iconSecondCategory": "icon_category_refinery",
-      "buildingId": "MetalRefinery"
-    },
-    {
-      "firstCategory": "industrial",
-      "iconFirstCategory": "icon_category_refinery",
-      "secondCategory": "refining",
-      "iconSecondCategory": "icon_category_refinery",
-      "buildingId": "GlassForge"
-    },
-    {
-      "firstCategory": "industrial",
-      "iconFirstCategory": "icon_category_refinery",
-      "secondCategory": "refining",
-      "iconSecondCategory": "icon_category_refinery",
-      "buildingId": "OxyliteRefinery"
-    },
-    {
-      "firstCategory": "industrial",
-      "iconFirstCategory": "icon_category_refinery",
-      "secondCategory": "refining",
-      "iconSecondCategory": "icon_category_refinery",
-      "buildingId": "SupermaterialRefinery"
-    },
-    {
-      "firstCategory": "industrial",
-      "iconFirstCategory": "icon_category_refinery",
-      "secondCategory": "equipment",
-      "iconSecondCategory": "icon_category_misc",
-      "buildingId": "RoleStation"
-    },
-    {
-      "firstCategory": "industrial",
-      "iconFirstCategory": "icon_category_refinery",
-      "secondCategory": "equipment",
-      "iconSecondCategory": "icon_category_misc",
-      "buildingId": "FarmStation"
-    },
-    {
-      "firstCategory": "industrial",
-      "iconFirstCategory": "icon_category_refinery",
-      "secondCategory": "equipment",
-      "iconSecondCategory": "icon_category_misc",
-      "buildingId": "PowerControlStation"
-    },
-    {
-      "firstCategory": "industrial",
-      "iconFirstCategory": "icon_category_refinery",
-      "secondCategory": "equipment",
-      "iconSecondCategory": "icon_category_misc",
-      "buildingId": "AstronautTrainingCenter"
-    },
-    {
-      "firstCategory": "industrial",
-      "iconFirstCategory": "icon_category_refinery",
-      "secondCategory": "equipment",
-      "iconSecondCategory": "icon_category_misc",
-      "buildingId": "ResetSkillsStation"
-    },
-    {
-      "firstCategory": "industrial",
-      "iconFirstCategory": "icon_category_refinery",
-      "secondCategory": "equipment",
-      "iconSecondCategory": "icon_category_misc",
-      "buildingId": "ClothingFabricator"
-    },
-    {
-      "firstCategory": "industrial",
-      "iconFirstCategory": "icon_category_refinery",
-      "secondCategory": "equipment",
-      "iconSecondCategory": "icon_category_misc",
-      "buildingId": "SuitFabricator"
-    },
-    {
-      "firstCategory": "industrial",
-      "iconFirstCategory": "icon_category_refinery",
-      "secondCategory": "equipment",
-      "iconSecondCategory": "icon_category_misc",
-      "buildingId": "SuitMarker"
-    },
-    {
-      "firstCategory": "industrial",
-      "iconFirstCategory": "icon_category_refinery",
-      "secondCategory": "equipment",
-      "iconSecondCategory": "icon_category_misc",
-      "buildingId": "SuitLocker"
-    },
-    {
-      "firstCategory": "industrial",
-      "iconFirstCategory": "icon_category_refinery",
-      "secondCategory": "equipment",
-      "iconSecondCategory": "icon_category_misc",
-      "buildingId": "JetSuitMarker"
-    },
-    {
-      "firstCategory": "industrial",
-      "iconFirstCategory": "icon_category_refinery",
-      "secondCategory": "equipment",
-      "iconSecondCategory": "icon_category_misc",
-      "buildingId": "JetSuitLocker"
-    },
-    {
-      "firstCategory": "industrial",
-      "iconFirstCategory": "icon_category_refinery",
-      "secondCategory": "rocketry",
-      "iconSecondCategory": "icon_category_rocketry",
-      "buildingId": "Gantry"
-    },
-    {
-      "firstCategory": "industrial",
-      "iconFirstCategory": "icon_category_refinery",
-      "secondCategory": "rocketry",
-      "iconSecondCategory": "icon_category_rocketry",
-      "buildingId": "KeroseneEngine"
-    },
-    {
-      "firstCategory": "industrial",
-      "iconFirstCategory": "icon_category_refinery",
-      "secondCategory": "rocketry",
-      "iconSecondCategory": "icon_category_rocketry",
-      "buildingId": "SolidBooster"
-    },
-    {
-      "firstCategory": "industrial",
-      "iconFirstCategory": "icon_category_refinery",
-      "secondCategory": "rocketry",
-      "iconSecondCategory": "icon_category_rocketry",
-      "buildingId": "SteamEngine"
-    },
-    {
-      "firstCategory": "industrial",
-      "iconFirstCategory": "icon_category_refinery",
-      "secondCategory": "rocketry",
-      "iconSecondCategory": "icon_category_rocketry",
-      "buildingId": "LiquidFuelTank"
-    },
-    {
-      "firstCategory": "industrial",
-      "iconFirstCategory": "icon_category_refinery",
-      "secondCategory": "rocketry",
-      "iconSecondCategory": "icon_category_rocketry",
-      "buildingId": "CargoBay"
-    },
-    {
-      "firstCategory": "industrial",
-      "iconFirstCategory": "icon_category_refinery",
-      "secondCategory": "rocketry",
-      "iconSecondCategory": "icon_category_rocketry",
-      "buildingId": "GasCargoBay"
-    },
-    {
-      "firstCategory": "industrial",
-      "iconFirstCategory": "icon_category_refinery",
-      "secondCategory": "rocketry",
-      "iconSecondCategory": "icon_category_rocketry",
-      "buildingId": "LiquidCargoBay"
-    },
-    {
-      "firstCategory": "industrial",
-      "iconFirstCategory": "icon_category_refinery",
-      "secondCategory": "rocketry",
-      "iconSecondCategory": "icon_category_rocketry",
-      "buildingId": "SpecialCargoBay"
-    },
-    {
-      "firstCategory": "industrial",
-      "iconFirstCategory": "icon_category_refinery",
-      "secondCategory": "rocketry",
-      "iconSecondCategory": "icon_category_rocketry",
-      "buildingId": "CommandModule"
-    },
-    {
-      "firstCategory": "industrial",
-      "iconFirstCategory": "icon_category_refinery",
-      "secondCategory": "rocketry",
-      "iconSecondCategory": "icon_category_rocketry",
-      "buildingId": "TouristModule"
-    },
-    {
-      "firstCategory": "industrial",
-      "iconFirstCategory": "icon_category_refinery",
-      "secondCategory": "rocketry",
-      "iconSecondCategory": "icon_category_rocketry",
-      "buildingId": "ResearchModule"
-    },
-    {
-      "firstCategory": "industrial",
-      "iconFirstCategory": "icon_category_refinery",
-      "secondCategory": "rocketry",
-      "iconSecondCategory": "icon_category_rocketry",
-      "buildingId": "HydrogenEngine"
-    },
-    {
-      "firstCategory": "logistics",
-      "iconFirstCategory": "icon_category_ventilation",
-      "secondCategory": "traveltubes",
-      "iconSecondCategory": "icon_category_ventilation",
+      "category": -2955855,
       "buildingId": "TravelTube"
     },
     {
-      "firstCategory": "logistics",
-      "iconFirstCategory": "icon_category_ventilation",
-      "secondCategory": "traveltubes",
-      "iconSecondCategory": "icon_category_ventilation",
+      "category": -2955855,
       "buildingId": "TravelTubeEntrance"
     },
     {
-      "firstCategory": "logistics",
-      "iconFirstCategory": "icon_category_ventilation",
-      "secondCategory": "traveltubes",
-      "iconSecondCategory": "icon_category_ventilation",
+      "category": -2955855,
       "buildingId": "TravelTubeWallBridge"
     },
     {
-      "firstCategory": "logistics",
-      "iconFirstCategory": "icon_category_ventilation",
-      "secondCategory": "conveyance",
-      "iconSecondCategory": "icon_category_ventilation",
-      "buildingId": "SolidTransferArm"
+      "category": -1528777920,
+      "buildingId": "MineralDeoxidizer"
     },
     {
-      "firstCategory": "logistics",
-      "iconFirstCategory": "icon_category_ventilation",
-      "secondCategory": "conveyance",
-      "iconSecondCategory": "icon_category_ventilation",
-      "buildingId": "SolidConduit"
+      "category": -1528777920,
+      "buildingId": "AlgaeHabitat"
     },
     {
-      "firstCategory": "logistics",
-      "iconFirstCategory": "icon_category_ventilation",
-      "secondCategory": "conveyance",
-      "iconSecondCategory": "icon_category_ventilation",
-      "buildingId": "SolidConduitInbox"
+      "category": -1528777920,
+      "buildingId": "AirFilter"
     },
     {
-      "firstCategory": "logistics",
-      "iconFirstCategory": "icon_category_ventilation",
-      "secondCategory": "conveyance",
-      "iconSecondCategory": "icon_category_ventilation",
-      "buildingId": "SolidConduitOutbox"
+      "category": -1528777920,
+      "buildingId": "CO2Scrubber"
     },
     {
-      "firstCategory": "logistics",
-      "iconFirstCategory": "icon_category_ventilation",
-      "secondCategory": "conveyance",
-      "iconSecondCategory": "icon_category_ventilation",
-      "buildingId": "SolidVent"
+      "category": -1528777920,
+      "buildingId": "Electrolyzer"
     },
     {
-      "firstCategory": "logistics",
-      "iconFirstCategory": "icon_category_ventilation",
-      "secondCategory": "conveyance",
-      "iconSecondCategory": "icon_category_ventilation",
-      "buildingId": "SolidLogicValve"
+      "category": -1528777920,
+      "buildingId": "RustDeoxidizer"
     },
     {
-      "firstCategory": "logistics",
-      "iconFirstCategory": "icon_category_ventilation",
-      "secondCategory": "conveyance",
-      "iconSecondCategory": "icon_category_ventilation",
-      "buildingId": "SolidConduitBridge"
+      "category": 517759365,
+      "buildingId": "ManualGenerator"
     },
     {
-      "firstCategory": "logistics",
-      "iconFirstCategory": "icon_category_ventilation",
-      "secondCategory": "conveyance",
-      "iconSecondCategory": "icon_category_ventilation",
-      "buildingId": "AutoMiner"
+      "category": 517759365,
+      "buildingId": "Generator"
     },
     {
-      "firstCategory": "logistics",
-      "iconFirstCategory": "icon_category_ventilation",
-      "secondCategory": "logicwiring",
-      "iconSecondCategory": "icon_category_automation",
-      "buildingId": "LogicWire"
+      "category": 517759365,
+      "buildingId": "WoodGasGenerator"
     },
     {
-      "firstCategory": "logistics",
-      "iconFirstCategory": "icon_category_ventilation",
-      "secondCategory": "logicwiring",
-      "iconSecondCategory": "icon_category_automation",
-      "buildingId": "LogicWireBridge"
+      "category": 517759365,
+      "buildingId": "HydrogenGenerator"
     },
     {
-      "firstCategory": "logistics",
-      "iconFirstCategory": "icon_category_ventilation",
-      "secondCategory": "logicgates",
-      "iconSecondCategory": "icon_category_automation",
-      "buildingId": "LogicGateAND"
+      "category": 517759365,
+      "buildingId": "MethaneGenerator"
     },
     {
-      "firstCategory": "logistics",
-      "iconFirstCategory": "icon_category_ventilation",
-      "secondCategory": "logicgates",
-      "iconSecondCategory": "icon_category_automation",
-      "buildingId": "LogicGateOR"
+      "category": 517759365,
+      "buildingId": "PetroleumGenerator"
     },
     {
-      "firstCategory": "logistics",
-      "iconFirstCategory": "icon_category_ventilation",
-      "secondCategory": "logicgates",
-      "iconSecondCategory": "icon_category_automation",
-      "buildingId": "LogicGateXOR"
+      "category": 517759365,
+      "buildingId": "SteamTurbine"
     },
     {
-      "firstCategory": "logistics",
-      "iconFirstCategory": "icon_category_ventilation",
-      "secondCategory": "logicgates",
-      "iconSecondCategory": "icon_category_automation",
-      "buildingId": "LogicGateNOT"
+      "category": 517759365,
+      "buildingId": "SteamTurbine2"
     },
     {
-      "firstCategory": "logistics",
-      "iconFirstCategory": "icon_category_ventilation",
-      "secondCategory": "logicgates",
-      "iconSecondCategory": "icon_category_automation",
-      "buildingId": "LogicGateBUFFER"
+      "category": 517759365,
+      "buildingId": "SolarPanel"
     },
     {
-      "firstCategory": "logistics",
-      "iconFirstCategory": "icon_category_ventilation",
-      "secondCategory": "logicgates",
-      "iconSecondCategory": "icon_category_automation",
-      "buildingId": "LogicGateFILTER"
+      "category": 517759365,
+      "buildingId": "Wire"
     },
     {
-      "firstCategory": "logistics",
-      "iconFirstCategory": "icon_category_ventilation",
-      "secondCategory": "logicgates",
-      "iconSecondCategory": "icon_category_automation",
-      "buildingId": "LogicMemory"
+      "category": 517759365,
+      "buildingId": "WireBridge"
     },
     {
-      "firstCategory": "logistics",
-      "iconFirstCategory": "icon_category_ventilation",
-      "secondCategory": "logicswitches",
-      "iconSecondCategory": "icon_category_automation",
-      "buildingId": "LogicSwitch"
+      "category": 517759365,
+      "buildingId": "HighWattageWire"
     },
     {
-      "firstCategory": "logistics",
-      "iconFirstCategory": "icon_category_ventilation",
-      "secondCategory": "logicswitches",
-      "iconSecondCategory": "icon_category_automation",
-      "buildingId": "LogicPressureSensorGas"
+      "category": 517759365,
+      "buildingId": "WireBridgeHighWattage"
     },
     {
-      "firstCategory": "logistics",
-      "iconFirstCategory": "icon_category_ventilation",
-      "secondCategory": "logicswitches",
-      "iconSecondCategory": "icon_category_automation",
-      "buildingId": "LogicPressureSensorLiquid"
+      "category": 517759365,
+      "buildingId": "WireRefined"
     },
     {
-      "firstCategory": "logistics",
-      "iconFirstCategory": "icon_category_ventilation",
-      "secondCategory": "logicswitches",
-      "iconSecondCategory": "icon_category_automation",
-      "buildingId": "LogicTemperatureSensor"
+      "category": 517759365,
+      "buildingId": "WireRefinedBridge"
     },
     {
-      "firstCategory": "logistics",
-      "iconFirstCategory": "icon_category_ventilation",
-      "secondCategory": "logicswitches",
-      "iconSecondCategory": "icon_category_automation",
-      "buildingId": "LogicTimeOfDaySensor"
+      "category": 517759365,
+      "buildingId": "WireRefinedHighWattage"
     },
     {
-      "firstCategory": "logistics",
-      "iconFirstCategory": "icon_category_ventilation",
-      "secondCategory": "logicswitches",
-      "iconSecondCategory": "icon_category_automation",
-      "buildingId": "LogicCritterCountSensor"
+      "category": 517759365,
+      "buildingId": "WireRefinedBridgeHighWattage"
     },
     {
-      "firstCategory": "logistics",
-      "iconFirstCategory": "icon_category_ventilation",
-      "secondCategory": "logicswitches",
-      "iconSecondCategory": "icon_category_automation",
-      "buildingId": "LogicDiseaseSensor"
+      "category": 517759365,
+      "buildingId": "Battery"
     },
     {
-      "firstCategory": "logistics",
-      "iconFirstCategory": "icon_category_ventilation",
-      "secondCategory": "logicswitches",
-      "iconSecondCategory": "icon_category_automation",
-      "buildingId": "LogicElementSensorGas"
+      "category": 517759365,
+      "buildingId": "BatteryMedium"
     },
     {
-      "firstCategory": "logistics",
-      "iconFirstCategory": "icon_category_ventilation",
-      "secondCategory": "logicswitches",
-      "iconSecondCategory": "icon_category_automation",
-      "buildingId": "FloorSwitch"
+      "category": 517759365,
+      "buildingId": "BatterySmart"
     },
     {
-      "firstCategory": "logistics",
-      "iconFirstCategory": "icon_category_ventilation",
-      "secondCategory": "logicswitches",
-      "iconSecondCategory": "icon_category_automation",
-      "buildingId": "Checkpoint"
+      "category": 517759365,
+      "buildingId": "PowerTransformerSmall"
     },
     {
-      "firstCategory": "logistics",
-      "iconFirstCategory": "icon_category_ventilation",
-      "secondCategory": "logicswitches",
-      "iconSecondCategory": "icon_category_automation",
-      "buildingId": "CometDetector"
+      "category": 517759365,
+      "buildingId": "PowerTransformer"
     },
     {
-      "firstCategory": "logistics",
-      "iconFirstCategory": "icon_category_ventilation",
-      "secondCategory": "logicswitches",
-      "iconSecondCategory": "icon_category_automation",
-      "buildingId": "LogicDuplicantSensor"
+      "category": 517759365,
+      "buildingId": "Switch"
     },
     {
-      "firstCategory": "logistics",
-      "iconFirstCategory": "icon_category_ventilation",
-      "secondCategory": "conduitsensors",
-      "iconSecondCategory": "icon_category_automation",
-      "buildingId": "LiquidConduitTemperatureSensor"
+      "category": 517759365,
+      "buildingId": "LogicPowerRelay"
     },
     {
-      "firstCategory": "logistics",
-      "iconFirstCategory": "icon_category_ventilation",
-      "secondCategory": "conduitsensors",
-      "iconSecondCategory": "icon_category_automation",
-      "buildingId": "LiquidConduitDiseaseSensor"
+      "category": 517759365,
+      "buildingId": "TemperatureControlledSwitch"
     },
     {
-      "firstCategory": "logistics",
-      "iconFirstCategory": "icon_category_ventilation",
-      "secondCategory": "conduitsensors",
-      "iconSecondCategory": "icon_category_automation",
+      "category": 517759365,
+      "buildingId": "PressureSwitchLiquid"
+    },
+    {
+      "category": 517759365,
+      "buildingId": "PressureSwitchGas"
+    },
+    {
+      "category": -1060175682,
+      "buildingId": "MicrobeMusher"
+    },
+    {
+      "category": -1060175682,
+      "buildingId": "CookingStation"
+    },
+    {
+      "category": -1060175682,
+      "buildingId": "GourmetCookingStation"
+    },
+    {
+      "category": -1060175682,
+      "buildingId": "PlanterBox"
+    },
+    {
+      "category": -1060175682,
+      "buildingId": "FarmTile"
+    },
+    {
+      "category": -1060175682,
+      "buildingId": "HydroponicFarm"
+    },
+    {
+      "category": -1060175682,
+      "buildingId": "RationBox"
+    },
+    {
+      "category": -1060175682,
+      "buildingId": "Refrigerator"
+    },
+    {
+      "category": -1060175682,
+      "buildingId": "CreatureDeliveryPoint"
+    },
+    {
+      "category": -1060175682,
+      "buildingId": "FishDeliveryPoint"
+    },
+    {
+      "category": -1060175682,
+      "buildingId": "CreatureFeeder"
+    },
+    {
+      "category": -1060175682,
+      "buildingId": "FishFeeder"
+    },
+    {
+      "category": -1060175682,
+      "buildingId": "EggIncubator"
+    },
+    {
+      "category": -1060175682,
+      "buildingId": "EggCracker"
+    },
+    {
+      "category": -1060175682,
+      "buildingId": "CreatureTrap"
+    },
+    {
+      "category": -1060175682,
+      "buildingId": "FishTrap"
+    },
+    {
+      "category": -1060175682,
+      "buildingId": "AirborneCreatureLure"
+    },
+    {
+      "category": -1060175682,
+      "buildingId": "FlyingCreatureBait"
+    },
+    {
+      "category": -1014650956,
+      "buildingId": "Outhouse"
+    },
+    {
+      "category": -1014650956,
+      "buildingId": "FlushToilet"
+    },
+    {
+      "category": -1014650956,
+      "buildingId": "Shower"
+    },
+    {
+      "category": -1014650956,
+      "buildingId": "LiquidPumpingStation"
+    },
+    {
+      "category": -1014650956,
+      "buildingId": "BottleEmptier"
+    },
+    {
+      "category": -1014650956,
+      "buildingId": "LiquidConduit"
+    },
+    {
+      "category": -1014650956,
+      "buildingId": "InsulatedLiquidConduit"
+    },
+    {
+      "category": -1014650956,
+      "buildingId": "LiquidConduitRadiant"
+    },
+    {
+      "category": -1014650956,
+      "buildingId": "LiquidConduitBridge"
+    },
+    {
+      "category": -1014650956,
+      "buildingId": "LiquidConduitPreferentialFlow"
+    },
+    {
+      "category": -1014650956,
+      "buildingId": "LiquidConduitOverflow"
+    },
+    {
+      "category": -1014650956,
+      "buildingId": "LiquidPump"
+    },
+    {
+      "category": -1014650956,
+      "buildingId": "LiquidMiniPump"
+    },
+    {
+      "category": -1014650956,
+      "buildingId": "LiquidVent"
+    },
+    {
+      "category": -1014650956,
+      "buildingId": "LiquidFilter"
+    },
+    {
+      "category": -1014650956,
+      "buildingId": "LiquidValve"
+    },
+    {
+      "category": -1014650956,
+      "buildingId": "LiquidLogicValve"
+    },
+    {
+      "category": -1014650956,
       "buildingId": "LiquidConduitElementSensor"
     },
     {
-      "firstCategory": "logistics",
-      "iconFirstCategory": "icon_category_ventilation",
-      "secondCategory": "conduitsensors",
-      "iconSecondCategory": "icon_category_automation",
-      "buildingId": "GasConduitTemperatureSensor"
+      "category": -1014650956,
+      "buildingId": "LiquidConduitDiseaseSensor"
     },
     {
-      "firstCategory": "logistics",
-      "iconFirstCategory": "icon_category_ventilation",
-      "secondCategory": "conduitsensors",
-      "iconSecondCategory": "icon_category_automation",
+      "category": -1014650956,
+      "buildingId": "LiquidConduitTemperatureSensor"
+    },
+    {
+      "category": 557910864,
+      "buildingId": "GasConduit"
+    },
+    {
+      "category": 557910864,
+      "buildingId": "InsulatedGasConduit"
+    },
+    {
+      "category": 557910864,
+      "buildingId": "GasConduitRadiant"
+    },
+    {
+      "category": 557910864,
+      "buildingId": "GasConduitBridge"
+    },
+    {
+      "category": 557910864,
+      "buildingId": "GasConduitPreferentialFlow"
+    },
+    {
+      "category": 557910864,
+      "buildingId": "GasConduitOverflow"
+    },
+    {
+      "category": 557910864,
+      "buildingId": "GasPump"
+    },
+    {
+      "category": 557910864,
+      "buildingId": "GasMiniPump"
+    },
+    {
+      "category": 557910864,
+      "buildingId": "GasVent"
+    },
+    {
+      "category": 557910864,
+      "buildingId": "GasVentHighPressure"
+    },
+    {
+      "category": 557910864,
+      "buildingId": "GasFilter"
+    },
+    {
+      "category": 557910864,
+      "buildingId": "GasValve"
+    },
+    {
+      "category": 557910864,
+      "buildingId": "GasLogicValve"
+    },
+    {
+      "category": 557910864,
+      "buildingId": "GasBottler"
+    },
+    {
+      "category": 557910864,
+      "buildingId": "BottleEmptierGas"
+    },
+    {
+      "category": 557910864,
+      "buildingId": "GasConduitElementSensor"
+    },
+    {
+      "category": 557910864,
       "buildingId": "GasConduitDiseaseSensor"
     },
     {
-      "firstCategory": "logistics",
-      "iconFirstCategory": "icon_category_ventilation",
-      "secondCategory": "conduitsensors",
-      "iconSecondCategory": "icon_category_automation",
-      "buildingId": "GasConduitElementSensor"
+      "category": 557910864,
+      "buildingId": "GasConduitTemperatureSensor"
+    },
+    {
+      "category": 8593386,
+      "buildingId": "Compost"
+    },
+    {
+      "category": 8593386,
+      "buildingId": "WaterPurifier"
+    },
+    {
+      "category": 8593386,
+      "buildingId": "Desalinator"
+    },
+    {
+      "category": 8593386,
+      "buildingId": "FertilizerMaker"
+    },
+    {
+      "category": 8593386,
+      "buildingId": "AlgaeDistillery"
+    },
+    {
+      "category": 8593386,
+      "buildingId": "EthanolDistillery"
+    },
+    {
+      "category": 8593386,
+      "buildingId": "RockCrusher"
+    },
+    {
+      "category": 8593386,
+      "buildingId": "Kiln"
+    },
+    {
+      "category": 8593386,
+      "buildingId": "MetalRefinery"
+    },
+    {
+      "category": 8593386,
+      "buildingId": "GlassForge"
+    },
+    {
+      "category": 8593386,
+      "buildingId": "OilRefinery"
+    },
+    {
+      "category": 8593386,
+      "buildingId": "Polymerizer"
+    },
+    {
+      "category": 8593386,
+      "buildingId": "OxyliteRefinery"
+    },
+    {
+      "category": 8593386,
+      "buildingId": "SupermaterialRefinery"
+    },
+    {
+      "category": -1098138447,
+      "buildingId": "WashBasin"
+    },
+    {
+      "category": -1098138447,
+      "buildingId": "WashSink"
+    },
+    {
+      "category": -1098138447,
+      "buildingId": "HandSanitizer"
+    },
+    {
+      "category": -1098138447,
+      "buildingId": "Apothecary"
+    },
+    {
+      "category": -1098138447,
+      "buildingId": "DoctorStation"
+    },
+    {
+      "category": -1098138447,
+      "buildingId": "AdvancedDoctorStation"
+    },
+    {
+      "category": -1098138447,
+      "buildingId": "MedicalCot"
+    },
+    {
+      "category": -1098138447,
+      "buildingId": "MassageTable"
+    },
+    {
+      "category": -1098138447,
+      "buildingId": "Grave"
+    },
+    {
+      "category": -1264537710,
+      "buildingId": "Bed"
+    },
+    {
+      "category": -1264537710,
+      "buildingId": "LuxuryBed"
+    },
+    {
+      "category": -1264537710,
+      "buildingId": "FloorLamp"
+    },
+    {
+      "category": -1264537710,
+      "buildingId": "CeilingLight"
+    },
+    {
+      "category": -1264537710,
+      "buildingId": "DiningTable"
+    },
+    {
+      "category": -1264537710,
+      "buildingId": "WaterCooler"
+    },
+    {
+      "category": -1264537710,
+      "buildingId": "Phonobox"
+    },
+    {
+      "category": -1264537710,
+      "buildingId": "ArcadeMachine"
+    },
+    {
+      "category": -1264537710,
+      "buildingId": "EspressoMachine"
+    },
+    {
+      "category": -1264537710,
+      "buildingId": "FlowerVase"
+    },
+    {
+      "category": -1264537710,
+      "buildingId": "FlowerVaseWall"
+    },
+    {
+      "category": -1264537710,
+      "buildingId": "FlowerVaseHanging"
+    },
+    {
+      "category": -1264537710,
+      "buildingId": "FlowerVaseHangingFancy"
+    },
+    {
+      "category": -1264537710,
+      "buildingId": "SmallSculpture"
+    },
+    {
+      "category": -1264537710,
+      "buildingId": "Sculpture"
+    },
+    {
+      "category": -1264537710,
+      "buildingId": "IceSculpture"
+    },
+    {
+      "category": -1264537710,
+      "buildingId": "MarbleSculpture"
+    },
+    {
+      "category": -1264537710,
+      "buildingId": "MetalSculpture"
+    },
+    {
+      "category": -1264537710,
+      "buildingId": "CrownMoulding"
+    },
+    {
+      "category": -1264537710,
+      "buildingId": "CornerMoulding"
+    },
+    {
+      "category": -1264537710,
+      "buildingId": "Canvas"
+    },
+    {
+      "category": -1264537710,
+      "buildingId": "CanvasWide"
+    },
+    {
+      "category": -1264537710,
+      "buildingId": "CanvasTall"
+    },
+    {
+      "category": -1264537710,
+      "buildingId": "ItemPedestal"
+    },
+    {
+      "category": -1264537710,
+      "buildingId": "MonumentBottom"
+    },
+    {
+      "category": -1264537710,
+      "buildingId": "MonumentMiddle"
+    },
+    {
+      "category": -1264537710,
+      "buildingId": "MonumentTop"
+    },
+    {
+      "category": -1264537710,
+      "buildingId": "ParkSign"
+    },
+    {
+      "category": -154862930,
+      "buildingId": "ResearchCenter"
+    },
+    {
+      "category": -154862930,
+      "buildingId": "AdvancedResearchCenter"
+    },
+    {
+      "category": -154862930,
+      "buildingId": "CosmicResearchCenter"
+    },
+    {
+      "category": -154862930,
+      "buildingId": "Telescope"
+    },
+    {
+      "category": -154862930,
+      "buildingId": "PowerControlStation"
+    },
+    {
+      "category": -154862930,
+      "buildingId": "FarmStation"
+    },
+    {
+      "category": -154862930,
+      "buildingId": "RanchStation"
+    },
+    {
+      "category": -154862930,
+      "buildingId": "ShearingStation"
+    },
+    {
+      "category": -154862930,
+      "buildingId": "RoleStation"
+    },
+    {
+      "category": -154862930,
+      "buildingId": "ResetSkillsStation"
+    },
+    {
+      "category": -154862930,
+      "buildingId": "ClothingFabricator"
+    },
+    {
+      "category": -154862930,
+      "buildingId": "SuitFabricator"
+    },
+    {
+      "category": -154862930,
+      "buildingId": "SuitMarker"
+    },
+    {
+      "category": -154862930,
+      "buildingId": "SuitLocker"
+    },
+    {
+      "category": -154862930,
+      "buildingId": "JetSuitMarker"
+    },
+    {
+      "category": -154862930,
+      "buildingId": "JetSuitLocker"
+    },
+    {
+      "category": -154862930,
+      "buildingId": "AstronautTrainingCenter"
+    },
+    {
+      "category": -1237303894,
+      "buildingId": "SpaceHeater"
+    },
+    {
+      "category": -1237303894,
+      "buildingId": "LiquidHeater"
+    },
+    {
+      "category": -1237303894,
+      "buildingId": "LiquidCooledFan"
+    },
+    {
+      "category": -1237303894,
+      "buildingId": "IceCooledFan"
+    },
+    {
+      "category": -1237303894,
+      "buildingId": "IceMachine"
+    },
+    {
+      "category": -1237303894,
+      "buildingId": "AirConditioner"
+    },
+    {
+      "category": -1237303894,
+      "buildingId": "LiquidConditioner"
+    },
+    {
+      "category": -1237303894,
+      "buildingId": "OreScrubber"
+    },
+    {
+      "category": -1237303894,
+      "buildingId": "OilWellCap"
+    },
+    {
+      "category": -1237303894,
+      "buildingId": "ThermalBlock"
+    },
+    {
+      "category": -1237303894,
+      "buildingId": "ExteriorWall"
+    },
+    {
+      "category": -470492617,
+      "buildingId": "LogicWire"
+    },
+    {
+      "category": -470492617,
+      "buildingId": "LogicWireBridge"
+    },
+    {
+      "category": -470492617,
+      "buildingId": "LogicSwitch"
+    },
+    {
+      "category": -470492617,
+      "buildingId": "LogicDuplicantSensor"
+    },
+    {
+      "category": -470492617,
+      "buildingId": "LogicPressureSensorGas"
+    },
+    {
+      "category": -470492617,
+      "buildingId": "LogicPressureSensorLiquid"
+    },
+    {
+      "category": -470492617,
+      "buildingId": "LogicTemperatureSensor"
+    },
+    {
+      "category": -470492617,
+      "buildingId": "LogicTimeOfDaySensor"
+    },
+    {
+      "category": -470492617,
+      "buildingId": "LogicDiseaseSensor"
+    },
+    {
+      "category": -470492617,
+      "buildingId": "LogicElementSensorGas"
+    },
+    {
+      "category": -470492617,
+      "buildingId": "LogicElementSensorLiquid"
+    },
+    {
+      "category": -470492617,
+      "buildingId": "LogicCritterCountSensor"
+    },
+    {
+      "category": -470492617,
+      "buildingId": "FloorSwitch"
+    },
+    {
+      "category": -470492617,
+      "buildingId": "Checkpoint"
+    },
+    {
+      "category": -470492617,
+      "buildingId": "CometDetector"
+    },
+    {
+      "category": -470492617,
+      "buildingId": "LogicGateNOT"
+    },
+    {
+      "category": -470492617,
+      "buildingId": "LogicGateAND"
+    },
+    {
+      "category": -470492617,
+      "buildingId": "LogicGateOR"
+    },
+    {
+      "category": -470492617,
+      "buildingId": "LogicGateBUFFER"
+    },
+    {
+      "category": -470492617,
+      "buildingId": "LogicGateFILTER"
+    },
+    {
+      "category": -470492617,
+      "buildingId": "LogicGateXOR"
+    },
+    {
+      "category": -470492617,
+      "buildingId": "LogicMemory"
+    },
+    {
+      "category": -1745293257,
+      "buildingId": "SolidTransferArm"
+    },
+    {
+      "category": -1745293257,
+      "buildingId": "SolidConduit"
+    },
+    {
+      "category": -1745293257,
+      "buildingId": "SolidConduitInbox"
+    },
+    {
+      "category": -1745293257,
+      "buildingId": "SolidConduitOutbox"
+    },
+    {
+      "category": -1745293257,
+      "buildingId": "SolidVent"
+    },
+    {
+      "category": -1745293257,
+      "buildingId": "SolidLogicValve"
+    },
+    {
+      "category": -1745293257,
+      "buildingId": "SolidConduitBridge"
+    },
+    {
+      "category": -1745293257,
+      "buildingId": "AutoMiner"
+    },
+    {
+      "category": 104161307,
+      "buildingId": "Gantry"
+    },
+    {
+      "category": 104161307,
+      "buildingId": "SteamEngine"
+    },
+    {
+      "category": 104161307,
+      "buildingId": "KeroseneEngine"
+    },
+    {
+      "category": 104161307,
+      "buildingId": "SolidBooster"
+    },
+    {
+      "category": 104161307,
+      "buildingId": "LiquidFuelTank"
+    },
+    {
+      "category": 104161307,
+      "buildingId": "OxidizerTank"
+    },
+    {
+      "category": 104161307,
+      "buildingId": "OxidizerTankLiquid"
+    },
+    {
+      "category": 104161307,
+      "buildingId": "CargoBay"
+    },
+    {
+      "category": 104161307,
+      "buildingId": "GasCargoBay"
+    },
+    {
+      "category": 104161307,
+      "buildingId": "LiquidCargoBay"
+    },
+    {
+      "category": 104161307,
+      "buildingId": "CommandModule"
+    },
+    {
+      "category": 104161307,
+      "buildingId": "TouristModule"
+    },
+    {
+      "category": 104161307,
+      "buildingId": "ResearchModule"
+    },
+    {
+      "category": 104161307,
+      "buildingId": "SpecialCargoBay"
+    },
+    {
+      "category": 104161307,
+      "buildingId": "HydrogenEngine"
     }
   ]
 }
