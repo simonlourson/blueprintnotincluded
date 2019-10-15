@@ -33,6 +33,8 @@ export class DrawPixi implements DrawAbstraction
     options.width = canvas.nativeElement.width;
     options.height = canvas.nativeElement.height;
     options.autoResize = true;
+    
+    PIXI.utils.skipHello();
     this.pixiApp = new PIXI.Application(options);
     this.graphics = new PIXI.Graphics();
     this.pixiApp.stage.addChild(this.graphics);
