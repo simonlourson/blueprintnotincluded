@@ -199,6 +199,7 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
     for (let k of ImageSource.keys) ImageSource.getBaseTexture(k);
   }
 
+  private static nbBlobTotal: number;
   private static nbBlob: number;
   private static zip: JSZip;
   downloadIcons()
@@ -218,6 +219,8 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
       }, 'image/png');
     }
     
+    //for (let k of  )
+
   }
 
   addBlob(blob: Blob, filename: string)
