@@ -395,8 +395,8 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
         
             
         let sizeCorrected = new Vector2(
-          realSize.x * camera.currentZoom * this.realSpriteInfo.sourceSize.x / this.realSpriteInfo.realSize.x,
-          realSize.y * camera.currentZoom * this.realSpriteInfo.sourceSize.y / this.realSpriteInfo.realSize.y
+          camera.currentZoom / 100 * this.realSpriteInfo.realSize.x,
+          camera.currentZoom / 100 * this.realSpriteInfo.realSize.y
         );
 
         this.container.x = positionCorrected.x;

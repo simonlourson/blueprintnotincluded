@@ -4,14 +4,11 @@ export class BSourceUv
 {
   name: string;
   textureName: string;
+  isIcon: boolean;
 
   uvMin: Vector2;
-  uvMax: Vector2;
-  textureSize: Vector2;
+  uvSize: Vector2;
+  realSize: Vector2;
 
-  bboxMin: Vector2;
-  bboxMax: Vector2;
-  
   pivot: Vector2;
-  size: Vector2;
 }

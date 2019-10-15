@@ -199,7 +199,6 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
     for (let k of ImageSource.keys) ImageSource.getBaseTexture(k);
   }
 
-  private static nbBlobTotal: number;
   private static nbBlob: number;
   private static zip: JSZip;
   downloadIcons()
@@ -207,7 +206,7 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
     ComponentCanvasComponent.nbBlob = 0;
     ComponentCanvasComponent.zip = new JSZip();
     
-    for (let k of SpriteInfo.keys.filter(s => s.includes('kanim_ui')))
+    for (let k of SpriteInfo.keys.filter(s => SpriteInfo.getSpriteInfo(s).isIcon))
     {
       let uiSpriteInfo = SpriteInfo.getSpriteInfo(k);
       let texture = uiSpriteInfo.getTexture();
@@ -228,7 +227,7 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
     ComponentCanvasComponent.nbBlob++;
     ComponentCanvasComponent.zip.file(filename, blob);
 
-    if (ComponentCanvasComponent.nbBlob == SpriteInfo.keys.filter(s => s.includes('kanim_ui')).length)
+    if (ComponentCanvasComponent.nbBlob == SpriteInfo.keys.filter(s => SpriteInfo.getSpriteInfo(s).isIcon).length)
     {
       console.log('last blob arrived!');
       ComponentCanvasComponent.zip.generateAsync({type:"blob"}).then(function (blob) { 

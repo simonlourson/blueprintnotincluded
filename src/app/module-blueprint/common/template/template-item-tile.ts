@@ -47,9 +47,9 @@ export class TemplateItemTile extends TemplateItem implements TemplateItemClonea
   {
     super.prepareSpriteInfoModifier(blueprint);
 
-    this.updateTileConnections(blueprint);
+    //this.updateTileConnections(blueprint);
 
-    this.realSpriteInfoId = this.realSpriteInfoId + "_" + this.tileConnections;
+    //this.realSpriteInfoId = this.realSpriteInfoId + "_" + this.tileConnections;
   }
 
   public updateTileConnections(blueprint: Template)

@@ -1,16 +1,12 @@
 
-<table>
-  <tr>
-      <td><h4>Category</h4></td>
-      <td class="rightHandCells" ><p-dropdown (onChange)="changeCategory()" [options]=categories [style]="{'width':'100%'}" [(ngModel)]="currentCategory" appendTo="body"></p-dropdown></td>
-  </tr>
-  <tr>
-      <td><h4>Item</h4></td>
-      <td class="rightHandCells"><p-dropdown (onChange)="changeItem()" [options]=items [style]="{'width':'100%'}" [(ngModel)]="currentItem" appendTo="body" optionLabel="id"></p-dropdown></td>
-  </tr>
-</table>
-<p-accordion #buildingsAccordion [(activeIndex)]="activeIndex" >
-  <p-accordionTab header="{{templateItemToBuild.id}}">
-    <app-component-tile-info [templateItem]=templateItemToBuild></app-component-tile-info>
-  </p-accordionTab>
-</p-accordion>
+<p-card header="Build Tool">
+  <p-dropdown (onChange)="changeCategory()" [options]=categories [style]="{'width':'100%'}" [(ngModel)]="currentCategory" appendTo="body"></p-dropdown>
+  <p-dropdown (onChange)="changeItem()" [options]=items [style]="{'width':'100%'}" [(ngModel)]="currentItem" appendTo="body" optionLabel="id"></p-dropdown>
+
+  <p-accordion #buildingsAccordion [(activeIndex)]="activeIndex" >
+    <p-accordionTab header="{{templateItemToBuild.id}}">
+      <app-component-tile-info [templateItem]=templateItemToBuild></app-component-tile-info>
+    </p-accordionTab>
+  </p-accordion>
+</p-card>
+

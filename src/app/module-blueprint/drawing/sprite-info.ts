@@ -11,20 +11,13 @@ export class SpriteInfo
 {
     public spriteInfoId: string;
     public imageId: string;
-    public sourcePos: Vector2;
-    public sourceSize: Vector2;
-    public realSize: Vector2;
-    public drawOffset: Vector2;
-    public textureSize: Vector2;
 
     // New stuff
     public uvMin: Vector2;
-    public uvMax: Vector2;
-    
-    bboxMin: Vector2;
-    bboxMax: Vector2;
-
-    pivot: Vector2;
+    public uvSize: Vector2;
+    public realSize: Vector2;
+    public pivot: Vector2;
+    public isIcon: boolean;
 
     constructor(spriteInfoId: string)
     {
@@ -34,10 +27,6 @@ export class SpriteInfo
 
     public cleanUp()
     {
-        if (this.sourcePos == null) this.sourcePos = new Vector2();
-        if (this.sourceSize == null) this.sourceSize = new Vector2();
-        if (this.realSize == null) this.realSize = new Vector2();
-        if (this.drawOffset == null) this.drawOffset = new Vector2();
     }
 
     private static spriteInfosMap: Map<string, SpriteInfo>;
@@ -53,24 +42,9 @@ export class SpriteInfo
       for (let sOriginal of bBuilding.spriteInfos)
       {
         let spriteInfo = new SpriteInfo(sOriginal.name);
+        spriteInfo.copyFromSourceUv(sOriginal);
         // TODO rename to imageId in export to be consistent
-        spriteInfo.imageId = bBuilding.textureName;
-        spriteInfo.uvMin = Vector2.clone(sOriginal.uvMin);
-        spriteInfo.uvMax = Vector2.clone(sOriginal.uvMax);
-
-        // TODO probably don't need bbox anymore
-        spriteInfo.bboxMin = Vector2.clone(sOriginal.bboxMin);
-        spriteInfo.bboxMax = Vector2.clone(sOriginal.bboxMax);
-        spriteInfo.textureSize = Vector2.clone(sOriginal.textureSize);
         
-        spriteInfo.realSize = new Vector2(
-          bBuilding.sizeInCells.x * 100,
-          bBuilding.sizeInCells.y * 100
-        );
-
-        spriteInfo.sourceSize = Vector2.clone(sOriginal.size);
-        spriteInfo.pivot = Vector2.clone(sOriginal.pivot);
-
         SpriteInfo.addSpriteInfo(spriteInfo);
       }
     }
@@ -83,11 +57,15 @@ export class SpriteInfo
 
     public copyFromSourceUv(sourceUv: BSourceUv)
     {
+      // TODO refactor
+      let imageUrl: string = 'assets/images/'+sourceUv.textureName+'.png';
+      ImageSource.AddImagePixi(sourceUv.textureName, imageUrl);
       this.imageId = sourceUv.textureName;
       this.uvMin = Vector2.clone(sourceUv.uvMin);
-      this.uvMax = Vector2.clone(sourceUv.uvMax);
-      this.sourceSize = Vector2.clone(sourceUv.size);
+      this.uvSize = Vector2.clone(sourceUv.uvSize);
+      this.realSize = Vector2.clone(sourceUv.realSize);
       this.pivot = Vector2.clone(sourceUv.pivot);
+      this.isIcon = sourceUv.isIcon;
     }
 
     public static getSpriteInfo(spriteInfoId: string): SpriteInfo
@@ -109,8 +87,8 @@ export class SpriteInfo
         let rectangle = new PIXI.Rectangle(
           this.uvMin.x,
           this.uvMin.y,
-          this.sourceSize.x,
-          this.sourceSize.y
+          this.uvSize.x,
+          this.uvSize.y
         );
 
         this.texture = new PIXI.Texture(baseTex, rectangle);
