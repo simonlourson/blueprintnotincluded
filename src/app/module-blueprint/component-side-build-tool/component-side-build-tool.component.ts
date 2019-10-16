@@ -13,7 +13,7 @@ import { DrawHelpers } from '../drawing/draw-helpers';
 import { ToolRequest } from '../common/tool-request';
 import { DrawPixi } from '../drawing/draw-pixi';
 import { DrawAbstraction } from '../drawing/draw-abstraction';
-import { BuildMenuCategory } from '../common/bexport/b-build_order';
+import { BuildMenuCategory, BuildMenuItem } from '../common/bexport/b-build-order';
 
 
 
@@ -25,7 +25,7 @@ import { BuildMenuCategory } from '../common/bexport/b-build_order';
 export class ComponentSideBuildToolComponent implements OnInit, Tool {
 
   categories: SelectItem[];
-  items: OniItem[];
+  items: SelectItem[];
 
   // This is used by the accordeon
   activeIndex=0;
@@ -46,9 +46,9 @@ export class ComponentSideBuildToolComponent implements OnInit, Tool {
   }
 
   ngOnInit() {
-    let allCategories = {label:BuildMenuCategory.buildMenuCategories[0].categoryName, value:BuildMenuCategory.buildMenuCategories[0]}
+    let allCategories = {label:BuildMenuCategory.allCategories.categoryName, value:BuildMenuCategory.allCategories}
     this.categories.push(allCategories);
-    this.currentCategory = BuildMenuCategory.buildMenuCategories[0];
+    this.currentCategory = BuildMenuCategory.allCategories;
   }
 
   oniItemsLoaded()
@@ -61,20 +61,29 @@ export class ComponentSideBuildToolComponent implements OnInit, Tool {
       this.categories.push({label:buildCategory.categoryName, value:buildCategory});
     }
 
-    this.currentCategory = BuildMenuCategory.buildMenuCategories[0];
+    this.currentCategory = BuildMenuCategory.allCategories;
     this.currentItem = OniItem.getOniItem('Tile');
     this.changeCategory();
   }
 
   updateItemList()
   {
-    this.items = OniItem.oniItems.filter(i => this.currentCategory.category==-1 || i.category == this.currentCategory.category);
+    this.items = [];
+
+    for (let buildMenuItem of BuildMenuItem.buildMenuItems)
+    {
+      if (this.currentCategory == BuildMenuCategory.allCategories || this.currentCategory.category == buildMenuItem.category)
+      {
+        let oniItem = OniItem.getOniItem(buildMenuItem.buildingId);
+        this.items.push({label:oniItem.id, value:oniItem});
+      }
+    }
   }
 
   changeCategory()
   {
     this.updateItemList();
-    if (this.items.length >= 1) this.currentItem = this.items[0]
+    if (this.items.length >= 1) this.currentItem = this.items[0].value;
     this.changeItem();
   }
 

@@ -323,6 +323,9 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
     {
         // If there is no spriteInfoId, we use the item id to prevent collision between image sizes
         //this.realSpriteInfoId =  this.oniItem.spriteInfoId == null ? this.oniItem.id : this.oniItem.spriteInfoId;
+        // TODO The export should tell us :
+        // * the main place id, and left / right / up / down
+        // * the id for the ui icon
         this.realSpriteModifierId = this.oniItem.spriteModifierId + 'place';
     }
 
@@ -514,7 +517,8 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
       // And the utility sprites
       if (this.utilitySprites != null)
         for (let s of this.utilitySprites)
-          s.destroy();
+          if (s != null)
+            s.destroy();
     }
 
 }

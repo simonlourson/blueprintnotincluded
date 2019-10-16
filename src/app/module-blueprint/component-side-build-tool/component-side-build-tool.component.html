@@ -16,7 +16,23 @@
       </div>
     </ng-template>
   </p-dropdown>
-  <p-dropdown (onChange)="changeItem()" [options]=items [style]="{'width':'100%'}" [(ngModel)]="currentItem" appendTo="body" optionLabel="id"></p-dropdown>
+  <p-dropdown 
+    (onChange)="changeItem()" 
+    [options]=items 
+    [style]="{'width':'100%'}" 
+    [(ngModel)]="currentItem"
+    filter="true">
+    <ng-template let-item pTemplate="selectedItem">
+        <img src="{{item.value.iconUrl}}" style="width:16px;vertical-align:middle" />
+        <span style="vertical-align:middle; margin-left: .5em">{{item.value.id}}</span>
+    </ng-template>
+    <ng-template let-item pTemplate="item">
+      <div class="ui-helper-clearfix" style="position: relative;height: 30px;">
+          <img src="{{item.value.iconUrl}}" style="height:30px;position:absolute;left:5px"/>
+          <div style="font-size:14px;float:right;margin-top:4px">{{item.value.id}}</div>
+      </div>
+    </ng-template>
+  </p-dropdown>
 
   <p-accordion #buildingsAccordion [(activeIndex)]="activeIndex" >
     <!--

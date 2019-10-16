@@ -8,7 +8,7 @@ import { ImageSource } from "../drawing/image-source";
 import { SpriteInfo } from "../drawing/sprite-info";
 import { SpriteModifier } from "./sprite-modifier";
 import { BSourceUv } from './bexport/b-source-uv';
-import { BuildMenuCategory } from './bexport/b-build_order';
+import { BuildMenuCategory } from './bexport/b-build-order';
 
 export class OniItem
 {
@@ -17,9 +17,9 @@ export class OniItem
 
   id: string;
   imageId: string;
+  iconUrl: string;
   spriteInfoId: string;
   spriteModifierId: string;
-  category: number;
   isWire: boolean;
   isTile: boolean;
   isElement: boolean;
@@ -45,12 +45,13 @@ export class OniItem
     this.isWire = original.isUtility;
 
     this.spriteModifierId = original.kanimPrefix;
+    this.iconUrl = DrawHelpers.createUrl(original.kanimPrefix + 'ui_0', true);
     this.defaultOverlay = original.sceneLayer;
 
     let imageId: string = original.textureName;
 
     // TODO refactor
-    let imageUrl: string = 'assets/images/'+imageId+'.png';
+    let imageUrl: string = DrawHelpers.createUrl(imageId, false);
     ImageSource.AddImagePixi(imageId, imageUrl);
     this.imageId = imageId;
 
@@ -141,6 +142,7 @@ export class OniItem
       oniItem.cleanUp();
 
       // TODO spriteInfoId is not used anymore
+      // TODO cleanup copyFrom and copyFromC
       SpriteInfo.AddSpriteInfo(oniItemTemp);
       SpriteModifier.AddSpriteModifier(oniItemTemp);
       

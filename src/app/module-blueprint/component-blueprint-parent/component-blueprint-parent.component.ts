@@ -27,7 +27,7 @@ import { TemplateItem } from '../common/template/template-item';
 import { ToolRequest } from '../common/tool-request';
 import { ComponentElementKeyPanelComponent } from '../component-element-key-panel/component-element-key-panel.component';
 import { TemplateItemTile } from '../common/template/template-item-tile';
-import { BuildMenuCategory } from '../common/bexport/b-build_order';
+import { BuildMenuCategory, BuildMenuItem } from '../common/bexport/b-build-order';
 import { BBuilding } from '../common/bexport/b-building';
 import { BSourceUv } from '../common/bexport/b-source-uv';
 
@@ -91,6 +91,7 @@ export class ComponentBlueprintParentComponent implements OnInit {
     SpriteInfo.init();
     ComposingElement.init();
     BuildMenuCategory.init();
+    BuildMenuItem.init();
 
     TemplateItemTile.generateTileSpriteInfo();
 
@@ -124,20 +125,15 @@ export class ComponentBlueprintParentComponent implements OnInit {
         let buildings: BBuilding[] = json.buildings;
         OniItem.load(buildings);
 
-        // TODO fix export
-        let buildItems: any[] = json.buildMenuItems;
-        for (let buildItem of buildItems)
-        {
-          OniItem.getOniItem(buildItem.buildingId).category = buildItem.category;
-        }
-
         let buildMenuCategories: BuildMenuCategory[] = json.buildMenuCategories;
         BuildMenuCategory.load(buildMenuCategories);
+
+        let buildMenuItems: BuildMenuItem[] = json.buildMenuItems;
+        BuildMenuItem.load(buildMenuItems);
 
         let uiSprites: BSourceUv[] = json.uiSprites;
         SpriteInfo.load(uiSprites)
 
-        
         OniItem.loadedDatabase = true;  
         resolve(0);
 
