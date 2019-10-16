@@ -60,42 +60,9 @@ export class SpriteModifier
     }
 
     private static spriteModifiersMap: Map<string, SpriteModifier>;
-    public static Init()
+    public static init()
     {
-        let promise = new Promise((resolve, reject) => {
-            SpriteModifier.spriteModifiersMap = new Map<string, SpriteModifier>();
-
-            /*
-            //fetch("/assets/database/spriteModifiers.json")
-            fetch(BlueprintParams.apiUrl+'spriteModifiers')
-            .then(response => { return response.json() })
-            .then(json => {
-                let spriteModifiersTemp: SpriteModifier[] = json;
-                
-                for (let spriteModifierTemp of spriteModifiersTemp)
-                {
-
-                    let spriteModifier = new SpriteModifier(spriteModifierTemp.spriteModifierId);
-                    spriteModifier.spriteInfoSuffix = spriteModifierTemp.spriteInfoSuffix;
-                    spriteModifier.rotation = spriteModifierTemp.rotation;
-                    spriteModifier.scale = Vector2.clone(spriteModifierTemp.scale);
-
-                    spriteModifier.cleanUp();
-                    SpriteModifier.spriteModifiersMap.set(spriteModifier.spriteModifierId, spriteModifier);
-
-                    
-                    resolve(0);
-                }
-
-            })
-            .catch((error) => {
-                reject(error);
-            })
-
-            */
-        });
-
-        return promise;
+      SpriteModifier.spriteModifiersMap = new Map<string, SpriteModifier>();
     }
 
     public static getSpriteModifer(spriteModifierId: string): SpriteModifier

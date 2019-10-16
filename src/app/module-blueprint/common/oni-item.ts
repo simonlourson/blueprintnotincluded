@@ -123,76 +123,29 @@ export class OniItem
     this.defaultColor = DrawHelpers.getRandomColor();
   }
 
+  // TODO loaded database should be elsewhere
   public static loadedDatabase = false;
   public static oniItemsMap: Map<string, OniItem>;
   public static get oniItems() { return Array.from(OniItem.oniItemsMap.values()); }
-  public static Init()
+  public static init()
   {
-    let promise = new Promise((resolve, reject) => {
+    OniItem.oniItemsMap = new Map<string, OniItem>();
+  }
 
-      OniItem.oniItemsMap = new Map<string, OniItem>();
+  public static load(buildings: BBuilding[])
+  {
+    for (let oniItemTemp of buildings)
+    {
+      let oniItem = new OniItem(oniItemTemp.prefabId);
+      oniItem.copyFromC(oniItemTemp);
+      oniItem.cleanUp();
 
-      fetch("/assets/database/exportC.json")
-      .then(response => { return response.json(); })
-      .then(json => {
-        let oniItemsTemp: BBuilding[] = json.buildings;
-
-        for (let oniItemTemp of oniItemsTemp)
-        {
-
-            let oniItem = new OniItem(oniItemTemp.prefabId);
-            oniItem.copyFromC(oniItemTemp);
-            oniItem.cleanUp();
-
-            // TODO spriteInfoId is not used anymore
-            SpriteInfo.AddSpriteInfo(oniItemTemp);
-            SpriteModifier.AddSpriteModifier(oniItemTemp);
-            
-            OniItem.oniItemsMap.set(oniItem.id, oniItem);
-        }
-
-        // TODO fix export
-        let buildItems: any[] = json.buildMenuItems;
-        for (let buildItem of buildItems)
-        {
-          OniItem.getOniItem(buildItem.buildingId).category = buildItem.category;
-        }
-
-        let buildMenuCategories: BuildMenuCategory[] = json.buildMenuCategories;
-        for (let original of buildMenuCategories)
-        {
-          let newBuildMenuCategory = new BuildMenuCategory();
-          newBuildMenuCategory.importFrom(original);
-
-          BuildMenuCategory.buildMenuCategories.push(newBuildMenuCategory);
-        }
-
-        let uiSprites: BSourceUv[] = json.uiSprites;
-        for (let uiSprite of uiSprites)
-        {
-          let newUiSpriteInfo = new SpriteInfo(uiSprite.name);
-          newUiSpriteInfo.copyFromSourceUv(uiSprite);
-
-          // TODO refactor
-          let imageUrl: string = 'assets/images/'+newUiSpriteInfo.imageId+'.png';
-          ImageSource.AddImagePixi(newUiSpriteInfo.imageId, imageUrl)
-          
-          SpriteInfo.addSpriteInfo(newUiSpriteInfo);
-        }
-        
-        OniItem.loadedDatabase = true;  
-        resolve(0);
-
-      })
-      .catch((error) => {
-
-        OniItem.loadedDatabase = true; 
-        reject(error);
-      })
-
-    });
-
-    return promise;
+      // TODO spriteInfoId is not used anymore
+      SpriteInfo.AddSpriteInfo(oniItemTemp);
+      SpriteModifier.AddSpriteModifier(oniItemTemp);
+      
+      OniItem.oniItemsMap.set(oniItem.id, oniItem);
+    }
   }
 
   public static getOniItem(id: string): OniItem

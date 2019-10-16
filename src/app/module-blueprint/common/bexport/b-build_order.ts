@@ -29,4 +29,15 @@ export class BuildMenuCategory
 
     BuildMenuCategory.buildMenuCategories.push(allItems);
   }
+
+  public static load(buildMenuCategories: BuildMenuCategory[])
+  {
+    for (let original of buildMenuCategories)
+    {
+      let newBuildMenuCategory = new BuildMenuCategory();
+      newBuildMenuCategory.importFrom(original);
+
+      BuildMenuCategory.buildMenuCategories.push(newBuildMenuCategory);
+    }
+  }
 }

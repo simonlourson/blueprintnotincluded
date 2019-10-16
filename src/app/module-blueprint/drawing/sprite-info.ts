@@ -5,6 +5,7 @@ import { BFrameElement } from "../common/bexport/b-frame-element";
 import { BSourceUv } from "../common/bexport/b-source-uv";
 import { BMatrix2x3 } from "../common/bexport/b-matrix";
 import { ImageSource } from './image-source';
+import { DrawHelpers } from './draw-helpers';
 declare var PIXI: any;
 
 export class SpriteInfo 
@@ -29,12 +30,27 @@ export class SpriteInfo
     {
     }
 
+    // TODO not sure if keys is absolutely necessary here
     private static spriteInfosMap: Map<string, SpriteInfo>;
     public static keys: string[];
-    public static Init()
+    public static init()
     {
       SpriteInfo.keys = [];
       SpriteInfo.spriteInfosMap = new Map<string, SpriteInfo>();
+    }
+
+    public static load(uiSprites: BSourceUv[])
+    {
+      for (let uiSprite of uiSprites)
+      {
+        let newUiSpriteInfo = new SpriteInfo(uiSprite.name);
+        newUiSpriteInfo.copyFromSourceUv(uiSprite);
+
+        let imageUrl: string = DrawHelpers.createUrl(newUiSpriteInfo.imageId, false);
+        ImageSource.AddImagePixi(newUiSpriteInfo.imageId, imageUrl)
+        
+        SpriteInfo.addSpriteInfo(newUiSpriteInfo);
+      }
     }
 
     public static AddSpriteInfo(bBuilding: BBuilding)

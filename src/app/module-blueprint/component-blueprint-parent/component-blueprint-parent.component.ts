@@ -28,6 +28,8 @@ import { ToolRequest } from '../common/tool-request';
 import { ComponentElementKeyPanelComponent } from '../component-element-key-panel/component-element-key-panel.component';
 import { TemplateItemTile } from '../common/template/template-item-tile';
 import { BuildMenuCategory } from '../common/bexport/b-build_order';
+import { BBuilding } from '../common/bexport/b-building';
+import { BSourceUv } from '../common/bexport/b-source-uv';
 
 @Component({
   selector: 'app-component-blueprint-parent',
@@ -70,6 +72,7 @@ export class ComponentBlueprintParentComponent implements OnInit {
               // If the oni database is loaded, we can create the template from the json received 
               if (OniItem.loadedDatabase) 
               {
+                // TODO refactor, this is used below
                 let newBlueprint = new Template();
                 newBlueprint.importFromCloud(json.blueprint);
                 this.loadTemplateIntoCanvas(newBlueprint);
@@ -80,29 +83,18 @@ export class ComponentBlueprintParentComponent implements OnInit {
           });
       }
       
-    })
+    });
+
+    OniItem.init();
+    ImageSource.init();
+    SpriteModifier.init();
+    SpriteInfo.init();
+    ComposingElement.init();
+    BuildMenuCategory.init();
 
     TemplateItemTile.generateTileSpriteInfo();
 
-    ImageSource.InitPixi();
-
-    // TODO cleanup this$    
-    SpriteInfo.Init();
-    //.catch((error) => {
-    //  this.messageService.add({severity:'error', summary:'Error loading sprite infos' , detail:error, sticky:true});   
-    //});
-
-    SpriteModifier.Init().catch((error) => {
-      this.messageService.add({severity:'error', summary:'Error loading sprite modifiers' , detail:error, sticky:true});   
-    });
-
-    ComposingElement.Init().catch((error) => {
-      this.messageService.add({severity:'error', summary:'Error loading elements' , detail:error, sticky:true});   
-    });
-
-    BuildMenuCategory.init();
-
-    OniItem.Init().then(() => {
+    this.fetchDatabase().then(() => {
       
       this.sidePanel.oniItemsLoaded();
 
@@ -116,20 +108,49 @@ export class ComponentBlueprintParentComponent implements OnInit {
 
     })
     .catch((error) => {
-      this.messageService.add({severity:'error', summary:'Error loading item database' , detail:error, sticky:true});   
+      this.messageService.add({severity:'error', summary:'Error loading database' , detail:error, sticky:true});   
     });
 
-    
+  }
 
-    /*
-    fetch("/assets/database/elements.json")
-    .then(response => { return response.json() })
-    .then(json => {
-      this.elements = json;
+  fetchDatabase(): Promise<any>
+  {
+    let promise = new Promise((resolve, reject) => {
+
+      fetch("/assets/database/exportC.json")
+      .then(response => { return response.json(); })
+      .then(json => {
+
+        let buildings: BBuilding[] = json.buildings;
+        OniItem.load(buildings);
+
+        // TODO fix export
+        let buildItems: any[] = json.buildMenuItems;
+        for (let buildItem of buildItems)
+        {
+          OniItem.getOniItem(buildItem.buildingId).category = buildItem.category;
+        }
+
+        let buildMenuCategories: BuildMenuCategory[] = json.buildMenuCategories;
+        BuildMenuCategory.load(buildMenuCategories);
+
+        let uiSprites: BSourceUv[] = json.uiSprites;
+        SpriteInfo.load(uiSprites)
+
+        
+        OniItem.loadedDatabase = true;  
+        resolve(0);
+
+      })
+      .catch((error) => {
+
+        OniItem.loadedDatabase = true; 
+        reject(error);
+      })
+
     });
-    */
 
-
+    return promise;
   }
 
   loadTemplateIntoCanvas(template: Template)
