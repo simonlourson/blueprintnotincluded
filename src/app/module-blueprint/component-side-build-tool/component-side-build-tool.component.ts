@@ -41,14 +41,13 @@ export class ComponentSideBuildToolComponent implements OnInit, Tool {
   {
 
     this.categories = []
-    
-
     this.items = [];
 
   }
 
   ngOnInit() {
-    
+    let allCategories = {label:BuildMenuCategory.buildMenuCategories[0].categoryName, value:BuildMenuCategory.buildMenuCategories[0]}
+    this.categories.push(allCategories);
     this.currentCategory = BuildMenuCategory.buildMenuCategories[0];
   }
 
@@ -56,6 +55,9 @@ export class ComponentSideBuildToolComponent implements OnInit, Tool {
   {
     for (let buildCategory of BuildMenuCategory.buildMenuCategories)
     {
+      // Skip the first one
+      if (buildCategory.category == -1) continue;
+
       this.categories.push({label:buildCategory.categoryName, value:buildCategory});
     }
 
