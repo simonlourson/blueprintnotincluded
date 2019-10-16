@@ -9,6 +9,11 @@ export class DrawHelpers
 {
   public static whiteColor = '#ffffff';
 
+  public static createUrl(ressource: string, ui: boolean): string
+  {
+    return 'assets/images/'+(ui?'ui/':'')+ressource+'.png';
+  }
+
   public static rotateVector2(v: Vector2, center: Vector2, rotation: number): Vector2
   {
     if (rotation == 0) return v;

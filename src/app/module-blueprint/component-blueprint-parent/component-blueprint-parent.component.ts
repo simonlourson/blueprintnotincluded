@@ -27,6 +27,7 @@ import { TemplateItem } from '../common/template/template-item';
 import { ToolRequest } from '../common/tool-request';
 import { ComponentElementKeyPanelComponent } from '../component-element-key-panel/component-element-key-panel.component';
 import { TemplateItemTile } from '../common/template/template-item-tile';
+import { BuildMenuCategory } from '../common/bexport/b-build_order';
 
 @Component({
   selector: 'app-component-blueprint-parent',
@@ -98,6 +99,8 @@ export class ComponentBlueprintParentComponent implements OnInit {
     ComposingElement.Init().catch((error) => {
       this.messageService.add({severity:'error', summary:'Error loading elements' , detail:error, sticky:true});   
     });
+
+    BuildMenuCategory.init();
 
     OniItem.Init().then(() => {
       

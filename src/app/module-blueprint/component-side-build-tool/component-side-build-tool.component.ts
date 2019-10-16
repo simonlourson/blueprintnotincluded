@@ -3,7 +3,6 @@ import { OniItem } from '../common/oni-item';
 import {SelectItem} from 'primeng/api';
 import { TemplateItem } from '../common/template/template-item';
 import { ComposingElement } from '../common/composing-element';
-import { BuildCategories } from '../common/build-categories';
 import { Template } from '../common/template/template';
 import { Tool, ToolType } from '../common/tools/tool';
 import { TileInfo } from '../common/tile-info';
@@ -14,6 +13,7 @@ import { DrawHelpers } from '../drawing/draw-helpers';
 import { ToolRequest } from '../common/tool-request';
 import { DrawPixi } from '../drawing/draw-pixi';
 import { DrawAbstraction } from '../drawing/draw-abstraction';
+import { BuildMenuCategory } from '../common/bexport/b-build_order';
 
 
 
@@ -30,7 +30,7 @@ export class ComponentSideBuildToolComponent implements OnInit, Tool {
   // This is used by the accordeon
   activeIndex=0;
 
-  currentCategory: BuildCategories;
+  currentCategory: BuildMenuCategory;
   currentItem: OniItem;
 
   templateItemToBuild: TemplateItem;
@@ -41,11 +41,7 @@ export class ComponentSideBuildToolComponent implements OnInit, Tool {
   {
 
     this.categories = []
-    for (let i = 0; i <= 14; i++)
-    {
-      let newCategory: BuildCategories = i;
-      this.categories.push({label:BuildCategories[newCategory], value:newCategory});
-    }
+    
 
     this.items = [];
 
@@ -53,20 +49,24 @@ export class ComponentSideBuildToolComponent implements OnInit, Tool {
 
   ngOnInit() {
     
-    this.currentCategory = BuildCategories.Base;
-    this.currentItem = OniItem.getOniItem('Tile');
-    this.changeCategory();
-    
+    this.currentCategory = BuildMenuCategory.buildMenuCategories[0];
   }
 
   oniItemsLoaded()
   {
+    for (let buildCategory of BuildMenuCategory.buildMenuCategories)
+    {
+      this.categories.push({label:buildCategory.categoryName, value:buildCategory});
+    }
+
+    this.currentCategory = BuildMenuCategory.buildMenuCategories[0];
+    this.currentItem = OniItem.getOniItem('Tile');
     this.changeCategory();
   }
 
   updateItemList()
   {
-    this.items = OniItem.oniItems.filter(i => i.category == this.currentCategory);
+    this.items = OniItem.oniItems.filter(i => this.currentCategory.category==-1 || i.category == this.currentCategory.category);
   }
 
   changeCategory()
@@ -78,6 +78,7 @@ export class ComponentSideBuildToolComponent implements OnInit, Tool {
 
   changeItem()
   {
+    if (this.templateItemToBuild != null) this.templateItemToBuild.destroy();
 
     // Create the templateItem which will be shared by this component and the canvas tool
     this.templateItemToBuild = Template.createInstance(this.currentItem.id);
@@ -92,7 +93,7 @@ export class ComponentSideBuildToolComponent implements OnInit, Tool {
   setOriginal(templateItem: TemplateItem)
   {
     // TODO in setTemplateItem
-    this.currentCategory = templateItem.oniItem.category;
+    //this.currentCategory = templateItem.oniItem.category;
     this.currentItem = templateItem.oniItem;
 
     
@@ -102,6 +103,8 @@ export class ComponentSideBuildToolComponent implements OnInit, Tool {
 
   changeItem_(item: TemplateItem)
   {
+    
+
     this.templateItemToBuild = item;
     // TODO should the position go into cleanup
     this.templateItemToBuild.position = Vector2.Zero;

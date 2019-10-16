@@ -507,6 +507,7 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
 
     public destroy()
     {
+
       // Destroy the main sprite
       if (this.container != null) this.container.destroy({baseTexture: false, texture: false, children: true});
       

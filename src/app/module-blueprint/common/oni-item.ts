@@ -2,13 +2,13 @@ import { Vector2 } from "./vector2";
 import { UtilityConnection, ConnectionType } from "./utility-connection";
 import { OverlayType } from "./overlay-type";
 import { BlueprintParams } from "./params";
-import { BuildCategories } from "./build-categories"
 import { DrawHelpers } from "../drawing/draw-helpers";
 import { BBuilding } from "./bexport/b-building";
 import { ImageSource } from "../drawing/image-source";
 import { SpriteInfo } from "../drawing/sprite-info";
 import { SpriteModifier } from "./sprite-modifier";
 import { BSourceUv } from './bexport/b-source-uv';
+import { BuildMenuCategory } from './bexport/b-build_order';
 
 export class OniItem
 {
@@ -19,6 +19,7 @@ export class OniItem
   imageId: string;
   spriteInfoId: string;
   spriteModifierId: string;
+  category: number;
   isWire: boolean;
   isTile: boolean;
   isElement: boolean;
@@ -28,7 +29,6 @@ export class OniItem
   utilityConnections: UtilityConnection[];
   defaultOverlay: OverlayType;
   defaultColor: string;
-  category: BuildCategories;
   orientations: AuthorizedOrientations[];
 
 
@@ -76,7 +76,6 @@ export class OniItem
         this.debugColor = original.debugColor;
         this.defaultOverlay = original.defaultOverlay;
         this.defaultColor = original.defaultColor;
-        this.category = original.category;
 
         if (original.size != null && original.size.x != null) this.size = new Vector2(original.size.x, original.size.y);
 
@@ -97,7 +96,6 @@ export class OniItem
         if (this.size == null) this.size = new Vector2();
         if (this.utilityConnections == null) this.utilityConnections = [];
         if (this.defaultOverlay == null) this.defaultOverlay = OverlayType.Building;
-        if (this.category == null) this.category = BuildCategories.Other;
         if (this.orientations == null) this.orientations = [AuthorizedOrientations.None];
         
         // TODO not every item needs a color
@@ -151,6 +149,22 @@ export class OniItem
             SpriteModifier.AddSpriteModifier(oniItemTemp);
             
             OniItem.oniItemsMap.set(oniItem.id, oniItem);
+        }
+
+        // TODO fix export
+        let buildItems: any[] = json.buildMenuItems;
+        for (let buildItem of buildItems)
+        {
+          OniItem.getOniItem(buildItem.buildingId).category = buildItem.category;
+        }
+
+        let buildMenuCategories: BuildMenuCategory[] = json.buildMenuCategories;
+        for (let original of buildMenuCategories)
+        {
+          let newBuildMenuCategory = new BuildMenuCategory();
+          newBuildMenuCategory.importFrom(original);
+
+          BuildMenuCategory.buildMenuCategories.push(newBuildMenuCategory);
         }
 
         let uiSprites: BSourceUv[] = json.uiSprites;
