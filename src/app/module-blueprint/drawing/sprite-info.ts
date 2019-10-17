@@ -63,6 +63,11 @@ export class SpriteInfo
         
         SpriteInfo.addSpriteInfo(spriteInfo);
       }
+
+      if (bBuilding.isTile)
+      {
+        
+      }
     }
 
     public static addSpriteInfo(spriteInfo: SpriteInfo)
@@ -74,7 +79,7 @@ export class SpriteInfo
     public copyFromSourceUv(sourceUv: BSourceUv)
     {
       // TODO refactor
-      let imageUrl: string = 'assets/images/'+sourceUv.textureName+'.png';
+      let imageUrl: string = DrawHelpers.createUrl(sourceUv.textureName, false);
       ImageSource.AddImagePixi(sourceUv.textureName, imageUrl);
       this.imageId = sourceUv.textureName;
       this.uvMin = Vector2.clone(sourceUv.uvMin);

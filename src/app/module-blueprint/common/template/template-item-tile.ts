@@ -2,6 +2,7 @@ import { Vector2 } from "../vector2";
 import { Template } from "./template";
 import { TemplateItem } from "./template-item";
 import { TemplateItemCloneable } from "./template-item-cloneable";
+import { BSourceUv } from '../bexport/b-source-uv';
 
 export class TemplateItemTile extends TemplateItem implements TemplateItemCloneable<TemplateItemTile>
 {
@@ -62,32 +63,9 @@ export class TemplateItemTile extends TemplateItem implements TemplateItemClonea
     if (blueprint.getTemplateItemsAt(new Vector2(this.position.x, this.position.y + 1)).filter(b => b.id == this.id).length > 0) this.tileConnections += 8;
   }
 
-  public static generateTileSpriteInfo()
+  public static generateTileSpriteInfo(kanimPrefix: string, textureName: string): BSourceUv[]
   {
-
-/*
-        uv_trim_size = 1/32
-        Vector2 vector2_1 = new Vector2((float) x, (float) y);
-        Vector2 vector2_2 = vector2_1 + new Vector2(1f, 1f);
-        Vector2 vector2_3 = new Vector2(atlas_info.uvBox.x, atlas_info.uvBox.w);
-        Vector2 vector2_4 = new Vector2(atlas_info.uvBox.z, atlas_info.uvBox.y);
-        if ((connection_bits & BlockTileRenderer.Bits.Left) == (BlockTileRenderer.Bits) 0)
-          vector2_1.x -= 0.25f;
-        else
-          vector2_3.x += uv_trim_size.x;
-        if ((connection_bits & BlockTileRenderer.Bits.Right) == (BlockTileRenderer.Bits) 0)
-          vector2_2.x += 0.25f;
-        else
-          vector2_4.x -= uv_trim_size.x;
-        if ((connection_bits & BlockTileRenderer.Bits.Up) == (BlockTileRenderer.Bits) 0)
-          vector2_2.y += 0.25f;
-        else
-          vector2_4.y -= uv_trim_size.y;
-        if ((connection_bits & BlockTileRenderer.Bits.Down) == (BlockTileRenderer.Bits) 0)
-          vector2_1.y -= 0.25f;
-        else
-          vector2_3.y += uv_trim_size.y;
-*/
+    let returnValue: BSourceUv[] = []
 
     let rIndex = 0;
     let uIndex = 0;
@@ -96,37 +74,67 @@ export class TemplateItemTile extends TemplateItem implements TemplateItemClonea
     let r = false;
     let u = false;
     let d = false;
-    let currentUv: Vector2 = new Vector2(0, 0);
-    let uvSize: Vector2 = new Vector2(0.25, 0.25);
-    let dP = 0.25;
-    let dUv = 1 / 32;
+
+    let motifStart: number = 40;
+    let currentUv: Vector2 = new Vector2(motifStart, motifStart);
+
+    let size: number = 128;
+    let uvSize: Vector2 = new Vector2(size, size);
+    
+    let margin: number = 30;
+    let motifRepeatedEvery: number = 208;
+    let deltaPivot = margin / (2 * size + 2 * margin); // Do the math lol
+
     for (let i = 0; i <= 15; i++)
     {
+      let newSourceUv = new BSourceUv();
+      returnValue.push(newSourceUv);
+      newSourceUv.name = kanimPrefix + 'place_';
+      newSourceUv.textureName = textureName;
 
       //console.log(l+';'+r+';'+u+';'+d);
 
+      let pivot = new Vector2(0.5, 0.5);
       let uv: Vector2 = Vector2.clone(currentUv);
       let size: Vector2 = Vector2.clone(uvSize);
-      if (l) 
-      {
-        uv.x += 1/32;
-        size.x -= 1/32; 
-      }
-      if (u)
-      {
-        uv.y += 1/32;
-        size.y -= 1/32;
-      }
-      if (r) size.x -= 1/32;
-      if (d) size.y -= 1/32;
+      
+      if (!l && !r && !u && !d) newSourceUv.name = newSourceUv.name + 'None';
 
-      uv.x = uv.x * 819;
-      uv.y = uv.y * 819;
-      size.x = size.x * 819;
-      size.y = size.y * 819;
+      if (l) newSourceUv.name = newSourceUv.name + 'L';
+      else {
+        uv.x -= margin;
+        size.x += margin;
+        pivot.x += deltaPivot;
+      }
+      if (r) newSourceUv.name = newSourceUv.name + 'R';
+      else {
+        size.x += margin;
+        pivot.x -= deltaPivot;
+      }
+      if (u) newSourceUv.name = newSourceUv.name + 'U';
+      else {
+        uv.y -= margin;
+        size.y += margin;
+        pivot.y += deltaPivot;
+      }
+      if (d) newSourceUv.name = newSourceUv.name + 'D';
+      else {
+        size.y += margin;
+        pivot.y -= deltaPivot;
+      }
+      
+      newSourceUv.uvMin = Vector2.clone(uv);
+      newSourceUv.uvSize = Vector2.clone(size);
+      newSourceUv.realSize = new Vector2(size.x / 1.28, size.y / 1.28);
+      newSourceUv.pivot = Vector2.clone(pivot);
 
-      //console.log(uv);
-      //console.log(size);
+      console.log(newSourceUv);
+
+      /*
+      console.log(uv);
+      console.log(size);
+      console.log(pivot);
+      */
 
       l = !l;
 
@@ -139,12 +147,14 @@ export class TemplateItemTile extends TemplateItem implements TemplateItemClonea
       dIndex = (dIndex + 1) % 4;
       if (dIndex == 0) d = !d;
 
-      currentUv.y += 0.25;
-      if (currentUv.y == 1)
+      currentUv.y += motifRepeatedEvery;
+      if (currentUv.y == motifStart + 4 * motifRepeatedEvery)
       {
-        currentUv.y = 0;
-        currentUv.x += 0.25;
+        currentUv.y = motifStart;
+        currentUv.x += motifRepeatedEvery;
       }
     }
+
+    return returnValue;
   }
 }

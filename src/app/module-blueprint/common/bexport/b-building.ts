@@ -8,10 +8,8 @@ import { OverlayType } from '../overlay-type';
 export class BBuilding
 {
   name: string;
-  prefabId: string;;
-  isTilePiece: boolean;
-  isSolidTile: boolean;
-  isKAnimTile: boolean;
+  prefabId: string;
+  isTile: boolean;
   isUtility: boolean;
   sizeInCells: Vector2;
   sceneLayer: OverlayType;

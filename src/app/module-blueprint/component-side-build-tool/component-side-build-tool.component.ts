@@ -54,12 +54,7 @@ export class ComponentSideBuildToolComponent implements OnInit, Tool {
   oniItemsLoaded()
   {
     for (let buildCategory of BuildMenuCategory.buildMenuCategories)
-    {
-      // Skip the first one
-      if (buildCategory.category == -1) continue;
-
-      this.categories.push({label:buildCategory.categoryName, value:buildCategory});
-    }
+    this.categories.push({label:buildCategory.categoryName, value:buildCategory});
 
     this.currentCategory = BuildMenuCategory.allCategories;
     this.currentItem = OniItem.getOniItem('Tile');
@@ -147,7 +142,6 @@ export class ComponentSideBuildToolComponent implements OnInit, Tool {
 
   private connectAToB(a: TemplateItemWire, b: TemplateItemWire)
   {
-    console.log('connectAToB');
     let bitMask = 0;
     if (a.position.x == b.position.x + 1 && a.position.y == b.position.y) bitMask = 1;
     else if (a.position.x == b.position.x - 1 && a.position.y == b.position.y) bitMask = 2;
