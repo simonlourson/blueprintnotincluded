@@ -9,15 +9,16 @@ import { SpriteInfo } from "../../drawing/sprite-info";
 import { ImageSource } from "../../drawing/image-source";
 import { DrawHelpers } from "../../drawing/draw-helpers";
 import { TemplateItemCloneable } from "./template-item-cloneable";
+import { DrawPixi } from '../../drawing/draw-pixi';
 
 export class TemplateItemWire extends TemplateItem implements TemplateItemCloneable<TemplateItemWire>
 {
   static defaultConnections = 0;
   connections: number;
 
-  
-  private realSpriteInfoIdSolid: string;
-  private realSpriteInfoSolid: SpriteInfo;
+  solidSpriteModifierId: string;
+  solidSpriteInfo: SpriteInfo;
+  solidSpriteModifier: SpriteModifier;
 
   constructor(id: string)
   {
@@ -110,5 +111,62 @@ export class TemplateItemWire extends TemplateItem implements TemplateItemClonea
         this.realSpriteModifier = SpriteModifier.getSpriteModifer(this.realSpriteModifierId);
 
         // TODO add solid
+        this.solidSpriteModifierId = this.oniItem.spriteModifierId + DrawHelpers.connectionStringSolid[this.connections];
+        this.solidSpriteModifier = SpriteModifier.getSpriteModifer(this.solidSpriteModifierId);
+    }
+
+    solidSprite: PIXI.Sprite;
+    public drawPixi(camera: Camera, drawPixi: DrawPixi)
+    {
+      super.drawPixi(camera, drawPixi);
+
+      this.solidSpriteInfo = SpriteInfo.getSpriteInfo(this.solidSpriteModifier.getLastPart().spriteInfoName);
+      
+      if (this.solidSprite == null)
+      {
+        let texture = this.solidSpriteInfo.getTexture();
+
+        if (texture != null) 
+        {
+          // TODO sprite should change if modifier changes
+          // TODO Invert pivoTY in export
+          this.solidSprite = PIXI.Sprite.from(texture);
+          this.solidSprite.anchor.set(this.solidSpriteInfo.pivot.x, 1-this.solidSpriteInfo.pivot.y);
+          this.container.addChild(this.solidSprite);
+        }
+      }
+
+      if (this.solidSprite != null)
+      {
+        this.solidSprite.alpha = 0.5;
+
+        // TODO refactor some of this with parent
+        this.solidSprite.texture = this.solidSpriteInfo.getTexture();
+        this.solidSprite.anchor.set(this.solidSpriteInfo.pivot.x, 1-this.solidSpriteInfo.pivot.y);
+
+        let tileOffset: Vector2 = new Vector2(
+          this.oniItem.size.x % 2 == 0 ? 50 : 0,
+          -50
+        );
+
+        this.solidSprite.x = 0 + (this.solidSpriteModifier.getLastPart().translation.x + tileOffset.x) * camera.currentZoom / 100;
+        this.solidSprite.y = 0 - (this.solidSpriteModifier.getLastPart().translation.y + tileOffset.y) * camera.currentZoom / 100;
+        
+        let sizeCorrected = new Vector2(
+          camera.currentZoom / 100 * this.solidSpriteInfo.realSize.x,
+          camera.currentZoom / 100 * this.solidSpriteInfo.realSize.y
+        );
+
+        this.solidSprite.scale.x = this.solidSpriteModifier.getLastPart().scale.x;
+        this.solidSprite.scale.y = this.solidSpriteModifier.getLastPart().scale.y;
+
+        // TODO invert rotation in export
+        this.solidSprite.angle = -this.solidSpriteModifier.getLastPart().rotation;
+        this.solidSprite.width = sizeCorrected.x;
+        this.solidSprite.height = sizeCorrected.y;
+      }
+
+      
+      
     }
 }

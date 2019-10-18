@@ -41,7 +41,6 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
   bottomRight: Vector2;
 
   // Drawing stuff
-  public realSpriteInfoId: string;
   public realSpriteModifierId: string;
   realSpriteInfo: SpriteInfo;
   realSpriteModifier: SpriteModifier;

@@ -186,5 +186,24 @@ export class DrawHelpers
     'LUD_place',
     'RUD_place',
     'LRUD_place'
-];
+  ];
+
+  static connectionStringSolid: string[] = [
+    'None',
+    'L',
+    'R',
+    'LR',
+    'U',
+    'LU',
+    'RU',
+    'LRU',
+    'D',
+    'LD',
+    'RD',
+    'LRD',
+    'UD',
+    'LUD',
+    'RUD',
+    'LRUD'
+  ];
 }
