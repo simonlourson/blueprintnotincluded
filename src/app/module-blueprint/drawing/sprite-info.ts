@@ -6,6 +6,7 @@ import { BSourceUv } from "../common/bexport/b-source-uv";
 import { BMatrix2x3 } from "../common/bexport/b-matrix";
 import { ImageSource } from './image-source';
 import { DrawHelpers } from './draw-helpers';
+import { TemplateItemTile } from '../common/template/template-item-tile';
 declare var PIXI: any;
 
 export class SpriteInfo 
@@ -55,18 +56,23 @@ export class SpriteInfo
 
     public static AddSpriteInfo(bBuilding: BBuilding)
     {
-      for (let sOriginal of bBuilding.spriteInfos)
-      {
-        let spriteInfo = new SpriteInfo(sOriginal.name);
-        spriteInfo.copyFromSourceUv(sOriginal);
-        // TODO rename to imageId in export to be consistent
-        
-        SpriteInfo.addSpriteInfo(spriteInfo);
-      }
+      SpriteInfo.AddSpriteInfoArray(bBuilding.spriteInfos);
 
       if (bBuilding.isTile)
       {
-        
+        let generatedSprites: BSourceUv[] = DrawHelpers.generateTileSpriteInfo(bBuilding.kanimPrefix, bBuilding.textureName);
+        SpriteInfo.AddSpriteInfoArray(generatedSprites);
+      }
+    }
+
+    // TODO should this be here?
+    private static AddSpriteInfoArray(sourceArray: BSourceUv[])
+    {
+      for (let sOriginal of sourceArray)
+      {
+        let spriteInfo = new SpriteInfo(sOriginal.name);
+        spriteInfo.copyFromSourceUv(sOriginal);
+        SpriteInfo.addSpriteInfo(spriteInfo);
       }
     }
 

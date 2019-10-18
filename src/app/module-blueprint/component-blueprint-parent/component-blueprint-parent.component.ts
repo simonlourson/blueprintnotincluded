@@ -93,8 +93,6 @@ export class ComponentBlueprintParentComponent implements OnInit {
     BuildMenuCategory.init();
     BuildMenuItem.init();
 
-    TemplateItemTile.generateTileSpriteInfo();
-
     this.fetchDatabase().then(() => {
       
       this.sidePanel.oniItemsLoaded();
@@ -271,6 +269,11 @@ export class ComponentBlueprintParentComponent implements OnInit {
   fetchIcons()
   {
     this.canvas.fetchIcons(); 
+  }
+
+  downloadUtility()
+  {
+    this.canvas.downloadUtility();
   }
 
   oniItems: any[];

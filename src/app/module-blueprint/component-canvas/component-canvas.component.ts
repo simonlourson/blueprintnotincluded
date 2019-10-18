@@ -199,12 +199,62 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
     for (let k of ImageSource.keys) ImageSource.getBaseTexture(k);
   }
 
-  private static nbBlob: number;
-  private static zip: JSZip;
+  downloadUtility()
+  {
+    let allWhiteFilter = new PIXI.filters.ColorMatrixFilter();
+    // 1 1 1 0 1
+    // 1 1 1 0 1
+    // 1 1 1 0 1
+    // 1 1 1 1 1
+    allWhiteFilter.matrix[0] = 1;
+    allWhiteFilter.matrix[1] = 1;
+    allWhiteFilter.matrix[2] = 1;
+    allWhiteFilter.matrix[4] = 1;
+    allWhiteFilter.matrix[5] = 1;
+    allWhiteFilter.matrix[6] = 1;
+    allWhiteFilter.matrix[7] = 1;
+    allWhiteFilter.matrix[9] = 1;
+    allWhiteFilter.matrix[10] = 1;
+    allWhiteFilter.matrix[11] = 1;
+    allWhiteFilter.matrix[12] = 1;
+    allWhiteFilter.matrix[14] = 1;
+
+    ComponentCanvasComponent.zip = new JSZip();
+    ComponentCanvasComponent.nbBlob = 0;
+    ComponentCanvasComponent.downloadFile = 'solidUtility.zip';
+    ComponentCanvasComponent.nbBlobMax = OniItem.oniItems.filter(o => o.isWire).length;
+    
+    for (let oniItem of OniItem.oniItems)
+    {
+      if (!oniItem.isWire) continue;
+
+      let baseTexture = ImageSource.getBaseTexture(oniItem.imageId);
+      
+      let texture = new PIXI.Texture(baseTexture);
+      
+      let brt = new PIXI.BaseRenderTexture({width: texture.width, height: texture.height});
+      let rt = new PIXI.RenderTexture(brt);
+
+      let sprite = PIXI.Sprite.from(texture);
+      sprite.filters = [allWhiteFilter];
+
+      this.drawAbstraction.pixiApp.renderer.render(sprite, rt);
+
+      this.drawAbstraction.pixiApp.renderer.extract.canvas(rt).toBlob((b) => 
+      {
+        this.addBlob(b, oniItem.imageId + '_solid.png');
+      }, 'image/png');
+    }
+  }
+
+  
   downloadIcons()
   {
-    ComponentCanvasComponent.nbBlob = 0;
+    
     ComponentCanvasComponent.zip = new JSZip();
+    ComponentCanvasComponent.nbBlob = 0;
+    ComponentCanvasComponent.downloadFile = 'icons.zip';
+    ComponentCanvasComponent.nbBlobMax = SpriteInfo.keys.filter(s => SpriteInfo.getSpriteInfo(s).isIcon).length;
     
     for (let k of SpriteInfo.keys.filter(s => SpriteInfo.getSpriteInfo(s).isIcon))
     {
@@ -222,18 +272,23 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
 
   }
 
+  private static downloadFile: string;
+  private static nbBlobMax: number;
+  private static nbBlob: number;
+  private static zip: JSZip;
   addBlob(blob: Blob, filename: string)
   {
+
     ComponentCanvasComponent.nbBlob++;
     ComponentCanvasComponent.zip.file(filename, blob);
 
-    if (ComponentCanvasComponent.nbBlob == SpriteInfo.keys.filter(s => SpriteInfo.getSpriteInfo(s).isIcon).length)
+    if (ComponentCanvasComponent.nbBlob == ComponentCanvasComponent.nbBlobMax)
     {
       console.log('last blob arrived!');
       ComponentCanvasComponent.zip.generateAsync({type:"blob"}).then(function (blob) { 
         let a = document.createElement('a');
         document.body.append(a);
-        a.download = 'icons.zip';
+        a.download = ComponentCanvasComponent.downloadFile;
         a.href = URL.createObjectURL(blob);
         a.click();
         a.remove();                     

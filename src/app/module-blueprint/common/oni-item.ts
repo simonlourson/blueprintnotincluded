@@ -18,6 +18,7 @@ export class OniItem
   id: string;
   imageId: string;
   iconUrl: string;
+  // TODO spriteInfoId is probably not used, the spritemodifierPart has it
   spriteInfoId: string;
   spriteModifierId: string;
   isWire: boolean;
@@ -43,6 +44,7 @@ export class OniItem
     this.id = original.prefabId;
     this.size = original.sizeInCells;
     this.isWire = original.isUtility;
+    this.isTile = original.isTile;
 
     this.spriteModifierId = original.kanimPrefix;
     this.iconUrl = DrawHelpers.createUrl(original.kanimPrefix + 'ui_0', true);
@@ -127,6 +129,7 @@ export class OniItem
   // TODO loaded database should be elsewhere
   public static loadedDatabase = false;
   public static oniItemsMap: Map<string, OniItem>;
+  // TODO this instead of keys in sprite info, texture?
   public static get oniItems() { return Array.from(OniItem.oniItemsMap.values()); }
   public static init()
   {

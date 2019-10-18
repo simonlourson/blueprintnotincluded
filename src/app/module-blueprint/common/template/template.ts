@@ -74,7 +74,8 @@ export class Template
 
     for (let originalTemplateItem of original.templateItems)
     {
-      let oniItem = OniItem.getOniItem(originalTemplateItem.id);
+      // TODO was this useful?
+      //let oniItem = OniItem.getOniItem(originalTemplateItem.id);
 
       let newTemplateItem = Template.createInstance(originalTemplateItem.id);
 

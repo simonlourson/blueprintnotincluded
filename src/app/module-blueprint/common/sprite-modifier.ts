@@ -3,6 +3,7 @@ import { BlueprintParams } from "./params";
 import { BBuilding } from "./bexport/b-building";
 import { SpriteModifierPart } from "./sprite-modifier-part";
 import { BSpriteModifier } from "./bexport/b-sprite-modifier";
+import { DrawHelpers } from '../drawing/draw-helpers';
 
 export class SpriteModifier
 {
@@ -46,6 +47,22 @@ export class SpriteModifier
 
         SpriteModifier.spriteModifiersMap.set(spriteModifier.spriteModifierId, spriteModifier);
       }
+
+      if (bBuilding.isTile)
+      {
+        for (let indexConnection = 0; indexConnection <= 15; indexConnection++)
+        {
+          let connectionModifier: SpriteModifier = new SpriteModifier(bBuilding.kanimPrefix + DrawHelpers.connectionString[indexConnection]);
+          let connectionModifierPart: SpriteModifierPart = new SpriteModifierPart();
+
+          connectionModifier.parts.push(connectionModifierPart);
+          connectionModifierPart.cleanUp();
+          connectionModifierPart.translation.y = 50;
+          connectionModifierPart.spriteInfoName = bBuilding.kanimPrefix + DrawHelpers.connectionString[indexConnection];
+
+          SpriteModifier.spriteModifiersMap.set(connectionModifier.spriteModifierId, connectionModifier);
+        }
+      }
     }
 
     public getLastPart(): SpriteModifierPart
@@ -68,12 +85,15 @@ export class SpriteModifier
     public static getSpriteModifer(spriteModifierId: string): SpriteModifier
     {
         let returnValue = SpriteModifier.spriteModifiersMap.get(spriteModifierId);
+        
+        /* TODO everything should have a modifier
         if (returnValue == null) 
         {
             returnValue = new SpriteModifier(spriteModifierId);
             returnValue.cleanUp();
             SpriteModifier.spriteModifiersMap.set(spriteModifierId, returnValue);
         }
+        */
 
         return returnValue;
     }

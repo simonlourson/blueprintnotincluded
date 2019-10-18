@@ -13,24 +13,6 @@ import { TemplateItemCloneable } from "./template-item-cloneable";
 export class TemplateItemWire extends TemplateItem implements TemplateItemCloneable<TemplateItemWire>
 {
   static defaultConnections = 0;
-  static connectionString: string[] = [
-      'None_place',
-      'L_place',
-      'R_place',
-      'LR_place',
-      'U_place',
-      'LU_place',
-      'RU_place',
-      'LRU_place',
-      'D_place',
-      'LD_place',
-      'RD_place',
-      'LRD_place',
-      'UD_place',
-      'LUD_place',
-      'RUD_place',
-      'LRUD_place'
-  ];
   connections: number;
 
   
@@ -124,7 +106,7 @@ export class TemplateItemWire extends TemplateItem implements TemplateItemClonea
 
     public prepareSpriteInfoModifier(blueprint: Template)
     {
-        this.realSpriteModifierId = this.oniItem.spriteModifierId + TemplateItemWire.connectionString[this.connections];
+        this.realSpriteModifierId = this.oniItem.spriteModifierId + DrawHelpers.connectionString[this.connections];
         this.realSpriteModifier = SpriteModifier.getSpriteModifer(this.realSpriteModifierId);
 
         // TODO add solid

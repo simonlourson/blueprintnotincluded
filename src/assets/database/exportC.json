@@ -48802,7 +48802,7 @@
     {
       "name": "TilePOI",
       "prefabId": "TilePOI",
-      "kanimPrefix": "floor_mesh_kanim_",
+      "kanimPrefix": "",
       "textureName": "tiles_POI",
       "isTile": true,
       "isUtility": false,

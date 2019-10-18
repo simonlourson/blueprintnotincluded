@@ -69,7 +69,7 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
   {
     //return '';
     let debug:any = {};
-    debug.utilityConnections = this.oniItem.utilityConnections;
+    debug.imageId = this.oniItem.imageId;
     return JSON.stringify(debug);
   }
 
@@ -389,7 +389,6 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
         // If the texture has not loaded, draw a debug rectangle
         if (!this.sprite.texture.baseTexture.valid) this.drawPixiDebug(camera, drawPixi, positionCorrected);
 
-        // TODO the sprite info should know its texture
         this.sprite.texture = this.realSpriteInfo.getTexture();
         this.sprite.anchor.set(this.realSpriteInfo.pivot.x, 1-this.realSpriteInfo.pivot.y);
 
