@@ -146,9 +146,12 @@ export class OniItem
       // TODO spriteInfoId is not used anymore
       // TODO cleanup copyFrom and copyFromC
       
-      // If the building is a tile, we need to generate its spriteInfos
+      // If the building is a tile, we need to generate its spriteInfos and sprite modifiers
       if (oniItem.isTile)
+      {
         SpriteInfo.addSpriteInfoArray(DrawHelpers.generateTileSpriteInfo(building.kanimPrefix, building.textureName));
+        SpriteModifier.addTileSpriteModifier(building.kanimPrefix);
+      }
       
 
       SpriteModifier.AddSpriteModifier(building);

@@ -36,28 +36,22 @@ export class SpriteModifier
 
     public static AddSpriteModifier(bBuilding: BBuilding)
     {
-      for (let sOriginal of bBuilding.spriteModifiers)
+
+    }
+
+    public static addTileSpriteModifier(kanimPrefix: string)
+    {
+      for (let indexConnection = 0; indexConnection <= 15; indexConnection++)
       {
-        let spriteModifier = new SpriteModifier(sOriginal.name);
-        spriteModifier.importFromC(sOriginal);
+        let connectionModifier: SpriteModifier = new SpriteModifier(kanimPrefix + DrawHelpers.connectionString[indexConnection]);
+        let connectionModifierPart: SpriteModifierPart = new SpriteModifierPart();
 
-        SpriteModifier.spriteModifiersMap.set(spriteModifier.spriteModifierId, spriteModifier);
-      }
+        connectionModifier.parts.push(connectionModifierPart);
+        connectionModifierPart.cleanUp();
+        connectionModifierPart.translation.y = 50;
+        connectionModifierPart.spriteInfoName = kanimPrefix + DrawHelpers.connectionString[indexConnection];
 
-      if (bBuilding.isTile)
-      {
-        for (let indexConnection = 0; indexConnection <= 15; indexConnection++)
-        {
-          let connectionModifier: SpriteModifier = new SpriteModifier(bBuilding.kanimPrefix + DrawHelpers.connectionString[indexConnection]);
-          let connectionModifierPart: SpriteModifierPart = new SpriteModifierPart();
-
-          connectionModifier.parts.push(connectionModifierPart);
-          connectionModifierPart.cleanUp();
-          connectionModifierPart.translation.y = 50;
-          connectionModifierPart.spriteInfoName = bBuilding.kanimPrefix + DrawHelpers.connectionString[indexConnection];
-
-          SpriteModifier.spriteModifiersMap.set(connectionModifier.spriteModifierId, connectionModifier);
-        }
+        SpriteModifier.spriteModifiersMap.set(connectionModifier.spriteModifierId, connectionModifier);
       }
     }
 
@@ -76,6 +70,17 @@ export class SpriteModifier
     public static init()
     {
       SpriteModifier.spriteModifiersMap = new Map<string, SpriteModifier>();
+    }
+
+    public static load(spriteModifiers: BSpriteModifier[])
+    {
+      for (let original of spriteModifiers)
+      {
+        let spriteModifier = new SpriteModifier(original.name);
+        spriteModifier.importFromC(original);
+
+        SpriteModifier.spriteModifiersMap.set(spriteModifier.spriteModifierId, spriteModifier);
+      }
     }
 
     public static getSpriteModifer(spriteModifierId: string): SpriteModifier

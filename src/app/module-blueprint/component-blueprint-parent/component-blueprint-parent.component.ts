@@ -30,6 +30,7 @@ import { TemplateItemTile } from '../common/template/template-item-tile';
 import { BuildMenuCategory, BuildMenuItem } from '../common/bexport/b-build-order';
 import { BBuilding } from '../common/bexport/b-building';
 import { BSpriteInfo } from '../common/bexport/b-sprite-info';
+import { BSpriteModifier } from '../common/bexport/b-sprite-modifier';
 
 @Component({
   selector: 'app-component-blueprint-parent',
@@ -131,6 +132,9 @@ export class ComponentBlueprintParentComponent implements OnInit {
 
         let uiSprites: BSpriteInfo[] = json.uiSprites;
         SpriteInfo.load(uiSprites)
+
+        let spriteModifiers: BSpriteModifier[] = json.spriteModifiers;
+        SpriteModifier.load(spriteModifiers);
 
         OniItem.loadedDatabase = true;
         resolve(0);
