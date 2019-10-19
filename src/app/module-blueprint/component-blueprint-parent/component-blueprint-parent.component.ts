@@ -137,7 +137,6 @@ export class ComponentBlueprintParentComponent implements OnInit {
 
       })
       .catch((error) => {
-
         OniItem.loadedDatabase = true; 
         reject(error);
       })

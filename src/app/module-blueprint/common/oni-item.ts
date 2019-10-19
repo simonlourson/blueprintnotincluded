@@ -7,6 +7,7 @@ import { BBuilding } from "./bexport/b-building";
 import { ImageSource } from "../drawing/image-source";
 import { SpriteInfo } from "../drawing/sprite-info";
 import { SpriteModifier } from "./sprite-modifier";
+import { BSpriteInfo } from './bexport/b-sprite-info';
 
 export class OniItem
 {
@@ -136,16 +137,21 @@ export class OniItem
 
   public static load(buildings: BBuilding[])
   {
-    for (let oniItemTemp of buildings)
+    for (let building of buildings)
     {
-      let oniItem = new OniItem(oniItemTemp.prefabId);
-      oniItem.copyFromC(oniItemTemp);
+      let oniItem = new OniItem(building.prefabId);
+      oniItem.copyFromC(building);
       oniItem.cleanUp();
 
       // TODO spriteInfoId is not used anymore
       // TODO cleanup copyFrom and copyFromC
-      SpriteInfo.AddSpriteInfo(oniItemTemp);
-      SpriteModifier.AddSpriteModifier(oniItemTemp);
+      
+      // If the building is a tile, we need to generate its spriteInfos
+      if (oniItem.isTile)
+        SpriteInfo.addSpriteInfoArray(DrawHelpers.generateTileSpriteInfo(building.kanimPrefix, building.textureName));
+      
+
+      SpriteModifier.AddSpriteModifier(building);
       
       OniItem.oniItemsMap.set(oniItem.id, oniItem);
     }

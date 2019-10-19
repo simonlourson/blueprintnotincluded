@@ -43,7 +43,7 @@ export class SpriteInfo
       for (let uiSprite of uiSprites)
       {
         let newUiSpriteInfo = new SpriteInfo(uiSprite.name);
-        newUiSpriteInfo.copyFromSourceUv(uiSprite);
+        newUiSpriteInfo.copyFrom(uiSprite);
 
         let imageUrl: string = DrawHelpers.createUrl(newUiSpriteInfo.imageId, false);
         ImageSource.AddImagePixi(newUiSpriteInfo.imageId, imageUrl)
@@ -52,24 +52,13 @@ export class SpriteInfo
       }
     }
 
-    public static AddSpriteInfo(bBuilding: BBuilding)
-    {
-      SpriteInfo.AddSpriteInfoArray(bBuilding.spriteInfos);
-
-      if (bBuilding.isTile)
-      {
-        let generatedSprites: BSpriteInfo[] = DrawHelpers.generateTileSpriteInfo(bBuilding.kanimPrefix, bBuilding.textureName);
-        SpriteInfo.AddSpriteInfoArray(generatedSprites);
-      }
-    }
-
     // TODO should this be here?
-    private static AddSpriteInfoArray(sourceArray: BSpriteInfo[])
+    public static addSpriteInfoArray(sourceArray: BSpriteInfo[])
     {
       for (let sOriginal of sourceArray)
       {
         let spriteInfo = new SpriteInfo(sOriginal.name);
-        spriteInfo.copyFromSourceUv(sOriginal);
+        spriteInfo.copyFrom(sOriginal);
         SpriteInfo.addSpriteInfo(spriteInfo);
       }
     }
@@ -80,17 +69,17 @@ export class SpriteInfo
       SpriteInfo.spriteInfosMap.set(spriteInfo.spriteInfoId, spriteInfo); 
     }
 
-    public copyFromSourceUv(sourceUv: BSpriteInfo)
+    public copyFrom(original: BSpriteInfo)
     {
       // TODO refactor
-      let imageUrl: string = DrawHelpers.createUrl(sourceUv.textureName, false);
-      ImageSource.AddImagePixi(sourceUv.textureName, imageUrl);
-      this.imageId = sourceUv.textureName;
-      this.uvMin = Vector2.clone(sourceUv.uvMin);
-      this.uvSize = Vector2.clone(sourceUv.uvSize);
-      this.realSize = Vector2.clone(sourceUv.realSize);
-      this.pivot = Vector2.clone(sourceUv.pivot);
-      this.isIcon = sourceUv.isIcon;
+      let imageUrl: string = DrawHelpers.createUrl(original.textureName, false);
+      ImageSource.AddImagePixi(original.textureName, imageUrl);
+      this.imageId = original.textureName;
+      this.uvMin = Vector2.clone(original.uvMin);
+      this.uvSize = Vector2.clone(original.uvSize);
+      this.realSize = Vector2.clone(original.realSize);
+      this.pivot = Vector2.clone(original.pivot);
+      this.isIcon = original.isIcon;
     }
 
     public static getSpriteInfo(spriteInfoId: string): SpriteInfo

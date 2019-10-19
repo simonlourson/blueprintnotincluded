@@ -23,6 +23,8 @@ export class ImageSource
 
     public static AddImagePixi(imageId: string, imageUrl: string)
     {
+      // TODO Important check for already existing
+
       ImageSource.keys.push(imageId);
       let newImageSource = new ImageSource(imageId, imageUrl);
       ImageSource.imageSourcesMapPixi.set(newImageSource.imageId, newImageSource);

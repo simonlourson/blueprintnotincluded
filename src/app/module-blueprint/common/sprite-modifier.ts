@@ -8,8 +8,6 @@ import { DrawHelpers } from '../drawing/draw-helpers';
 export class SpriteModifier
 {
     spriteModifierId: string;
-    framebboxMin: Vector2;
-    framebboxMax: Vector2;
 
     parts: SpriteModifierPart[];
 
@@ -27,9 +25,7 @@ export class SpriteModifier
     public importFromC(bSPriteModifier: BSpriteModifier)
     {
       this.parts = [];
-      this.framebboxMin = new Vector2(bSPriteModifier.framebboxMin.x, bSPriteModifier.framebboxMin.y);
-      this.framebboxMax = new Vector2(bSPriteModifier.framebboxMax.x, bSPriteModifier.framebboxMax.y);
-
+      
       for (let part of bSPriteModifier.parts)
       {
         let newPart = new SpriteModifierPart();
