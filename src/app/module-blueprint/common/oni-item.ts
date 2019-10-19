@@ -7,8 +7,6 @@ import { BBuilding } from "./bexport/b-building";
 import { ImageSource } from "../drawing/image-source";
 import { SpriteInfo } from "../drawing/sprite-info";
 import { SpriteModifier } from "./sprite-modifier";
-import { BSourceUv } from './bexport/b-source-uv';
-import { BuildMenuCategory } from './bexport/b-build-order';
 
 export class OniItem
 {

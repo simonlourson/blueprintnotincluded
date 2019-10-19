@@ -1,9 +1,7 @@
 import { Vector2 } from "src/app/module-blueprint/common/vector2";
 import { BlueprintParams } from "../common/params";
 import { BBuilding } from "../common/bexport/b-building";
-import { BFrameElement } from "../common/bexport/b-frame-element";
-import { BSourceUv } from "../common/bexport/b-source-uv";
-import { BMatrix2x3 } from "../common/bexport/b-matrix";
+import { BSpriteInfo } from "../common/bexport/b-sprite-info";
 import { ImageSource } from './image-source';
 import { DrawHelpers } from './draw-helpers';
 import { TemplateItemTile } from '../common/template/template-item-tile';
@@ -40,7 +38,7 @@ export class SpriteInfo
       SpriteInfo.spriteInfosMap = new Map<string, SpriteInfo>();
     }
 
-    public static load(uiSprites: BSourceUv[])
+    public static load(uiSprites: BSpriteInfo[])
     {
       for (let uiSprite of uiSprites)
       {
@@ -60,13 +58,13 @@ export class SpriteInfo
 
       if (bBuilding.isTile)
       {
-        let generatedSprites: BSourceUv[] = DrawHelpers.generateTileSpriteInfo(bBuilding.kanimPrefix, bBuilding.textureName);
+        let generatedSprites: BSpriteInfo[] = DrawHelpers.generateTileSpriteInfo(bBuilding.kanimPrefix, bBuilding.textureName);
         SpriteInfo.AddSpriteInfoArray(generatedSprites);
       }
     }
 
     // TODO should this be here?
-    private static AddSpriteInfoArray(sourceArray: BSourceUv[])
+    private static AddSpriteInfoArray(sourceArray: BSpriteInfo[])
     {
       for (let sOriginal of sourceArray)
       {
@@ -82,7 +80,7 @@ export class SpriteInfo
       SpriteInfo.spriteInfosMap.set(spriteInfo.spriteInfoId, spriteInfo); 
     }
 
-    public copyFromSourceUv(sourceUv: BSourceUv)
+    public copyFromSourceUv(sourceUv: BSpriteInfo)
     {
       // TODO refactor
       let imageUrl: string = DrawHelpers.createUrl(sourceUv.textureName, false);

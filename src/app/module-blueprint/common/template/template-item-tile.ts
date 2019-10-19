@@ -2,7 +2,6 @@ import { Vector2 } from "../vector2";
 import { Template } from "./template";
 import { TemplateItem } from "./template-item";
 import { TemplateItemCloneable } from "./template-item-cloneable";
-import { BSourceUv } from '../bexport/b-source-uv';
 import { DrawHelpers } from '../../drawing/draw-helpers';
 
 export class TemplateItemTile extends TemplateItem implements TemplateItemCloneable<TemplateItemTile>

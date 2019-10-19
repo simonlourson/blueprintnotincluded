@@ -4,7 +4,7 @@ import { SpriteInfo } from "./sprite-info";
 import { SpriteModifier } from "../common/sprite-modifier";
 import { ImageSource } from "./image-source";
 import { SpriteModifierPart } from "../common/sprite-modifier-part";
-import { BSourceUv } from '../common/bexport/b-source-uv';
+import { BSpriteInfo } from '../common/bexport/b-sprite-info';
 
 export class DrawHelpers
 {
@@ -71,9 +71,9 @@ export class DrawHelpers
       .map(x => parseInt(x, 16));
   }
   
-  public static generateTileSpriteInfo(kanimPrefix: string, textureName: string): BSourceUv[]
+  public static generateTileSpriteInfo(kanimPrefix: string, textureName: string): BSpriteInfo[]
   {
-    let returnValue: BSourceUv[] = []
+    let returnValue: BSpriteInfo[] = []
 
     let rIndex = 0;
     let uIndex = 0;
@@ -95,7 +95,7 @@ export class DrawHelpers
 
     for (let i = 0; i <= 15; i++)
     {
-      let newSourceUv = new BSourceUv();
+      let newSourceUv = new BSpriteInfo();
       returnValue.push(newSourceUv);
       newSourceUv.name = kanimPrefix;
       newSourceUv.textureName = textureName;

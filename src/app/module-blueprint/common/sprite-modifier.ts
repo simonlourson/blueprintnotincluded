@@ -33,7 +33,7 @@ export class SpriteModifier
       for (let part of bSPriteModifier.parts)
       {
         let newPart = new SpriteModifierPart();
-        newPart.importFromC(part);
+        newPart.importFrom(part);
         this.parts.push(newPart);
       }
     }

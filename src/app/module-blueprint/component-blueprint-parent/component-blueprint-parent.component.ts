@@ -29,7 +29,7 @@ import { ComponentElementKeyPanelComponent } from '../component-element-key-pane
 import { TemplateItemTile } from '../common/template/template-item-tile';
 import { BuildMenuCategory, BuildMenuItem } from '../common/bexport/b-build-order';
 import { BBuilding } from '../common/bexport/b-building';
-import { BSourceUv } from '../common/bexport/b-source-uv';
+import { BSpriteInfo } from '../common/bexport/b-sprite-info';
 
 @Component({
   selector: 'app-component-blueprint-parent',
@@ -129,10 +129,10 @@ export class ComponentBlueprintParentComponent implements OnInit {
         let buildMenuItems: BuildMenuItem[] = json.buildMenuItems;
         BuildMenuItem.load(buildMenuItems);
 
-        let uiSprites: BSourceUv[] = json.uiSprites;
+        let uiSprites: BSpriteInfo[] = json.uiSprites;
         SpriteInfo.load(uiSprites)
 
-        OniItem.loadedDatabase = true;  
+        OniItem.loadedDatabase = true;
         resolve(0);
 
       })

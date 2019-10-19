@@ -1,6 +1,5 @@
 import { Vector2 } from "../vector2";
-import { BAnimationParent } from "./b-animation-parent";
-import { BSourceUv } from "./b-source-uv";
+import { BSpriteInfo } from "./b-sprite-info";
 import { BSpriteModifier } from "./b-sprite-modifier";
 import { UtilityConnection } from '../utility-connection';
 import { OverlayType } from '../overlay-type';
@@ -17,7 +16,7 @@ export class BBuilding
   kanimPrefix: string;
   textureName: string;
 
-  spriteInfos: BSourceUv[];
+  spriteInfos: BSpriteInfo[];
   spriteModifiers : BSpriteModifier[];
   utilities: UtilityConnection[];
 }

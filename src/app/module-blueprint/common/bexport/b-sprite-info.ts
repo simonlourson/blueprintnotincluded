@@ -1,6 +1,6 @@
 import { Vector2 } from "../vector2";
 
-export class BSourceUv
+export class BSpriteInfo
 {
   name: string;
   textureName: string;
