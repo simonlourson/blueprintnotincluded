@@ -75,8 +75,6 @@ export class SpriteModifier
 
         SpriteModifier.spriteModifiersMap.set(spriteModifier.spriteModifierId, spriteModifier);
       }
-
-      console.log(SpriteModifier.spriteModifiersMap);
     }
 
     public static getSpriteModifer(spriteModifierId: string): SpriteModifier

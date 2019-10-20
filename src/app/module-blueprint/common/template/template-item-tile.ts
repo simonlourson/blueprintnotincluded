@@ -3,6 +3,7 @@ import { Template } from "./template";
 import { TemplateItem } from "./template-item";
 import { TemplateItemCloneable } from "./template-item-cloneable";
 import { DrawHelpers } from '../../drawing/draw-helpers';
+import { DrawPart } from '../../drawing/draw-part';
 
 export class TemplateItemTile extends TemplateItem implements TemplateItemCloneable<TemplateItemTile>
 {
@@ -46,11 +47,13 @@ export class TemplateItemTile extends TemplateItem implements TemplateItemClonea
 
   public prepareSpriteInfoModifier(blueprint: Template)
   {
-    super.prepareSpriteInfoModifier(blueprint);
-
+    if (this.drawPart == null)
+      this.drawPart = new DrawPart();
+    
     this.updateTileConnections(blueprint);
 
-    this.realSpriteModifierId = this.oniItem.spriteModifierId + DrawHelpers.connectionString[this.tileConnections];;
+    this.drawPart.prepareSpriteInfoModifier(this.oniItem.spriteModifierId + DrawHelpers.connectionString[this.tileConnections]);
+
   }
 
   public updateTileConnections(blueprint: Template)

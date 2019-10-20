@@ -10,6 +10,7 @@ import { ImageSource } from "../../drawing/image-source";
 import { DrawHelpers } from "../../drawing/draw-helpers";
 import { TemplateItemCloneable } from "./template-item-cloneable";
 import { DrawPixi } from '../../drawing/draw-pixi';
+import { DrawPart } from '../../drawing/draw-part';
 
 export class TemplateItemWire extends TemplateItem implements TemplateItemCloneable<TemplateItemWire>
 {
@@ -107,12 +108,14 @@ export class TemplateItemWire extends TemplateItem implements TemplateItemClonea
 
     public prepareSpriteInfoModifier(blueprint: Template)
     {
-        this.realSpriteModifierId = this.oniItem.spriteModifierId + DrawHelpers.connectionString[this.connections];
-        this.realSpriteModifier = SpriteModifier.getSpriteModifer(this.realSpriteModifierId);
+      if (this.drawPart == null)
+        this.drawPart = new DrawPart();
 
-        // TODO add solid
-        this.solidSpriteModifierId = this.oniItem.spriteModifierId + DrawHelpers.connectionStringSolid[this.connections];
-        this.solidSpriteModifier = SpriteModifier.getSpriteModifer(this.solidSpriteModifierId);
+      this.drawPart.prepareSpriteInfoModifier(this.oniItem.spriteModifierId + DrawHelpers.connectionString[this.connections]);
+      
+      // TODO add solid
+      this.solidSpriteModifierId = this.oniItem.spriteModifierId + DrawHelpers.connectionStringSolid[this.connections];
+      this.solidSpriteModifier = SpriteModifier.getSpriteModifer(this.solidSpriteModifierId);
     }
 
     solidSprite: PIXI.Sprite;

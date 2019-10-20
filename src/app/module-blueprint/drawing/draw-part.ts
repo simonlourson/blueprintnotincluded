@@ -8,20 +8,24 @@ import { Vector2 } from '../common/vector2';
 export class DrawPart
 {
   public drawPartType: DrawPartType; 
+  public addedToContainer;
 
-  public spriteModifierId: string;
+  spriteModifierId: string;
   spriteModifier: SpriteModifier;
   spriteInfo: SpriteInfo;
   sprite: PIXI.Sprite;
 
+  public DrawPart()
+  {
+    this.addedToContainer = false;
+  }
+
   prepareSpriteInfoModifier(spriteModifierId: string)
   {
     this.spriteModifierId = spriteModifierId;
-
-
   }
 
-  public drawPixi(camera: Camera, drawPixi: DrawPixi, oniItem: OniItem)
+  public getPreparedSprite(camera: Camera, drawPixi: DrawPixi, oniItem: OniItem): PIXI.Sprite
   {
     this.spriteModifier = SpriteModifier.getSpriteModifer(this.spriteModifierId);
     this.spriteInfo = SpriteInfo.getSpriteInfo(this.spriteModifier.spriteInfoName);
@@ -32,7 +36,6 @@ export class DrawPart
 
       if (texture != null) 
       {
-        // TODO sprite should change if modifier changes
         // TODO Invert pivoTY in export
         this.sprite = PIXI.Sprite.from(texture);
         this.sprite.anchor.set(this.spriteInfo.pivot.x, 1-this.spriteInfo.pivot.y);
@@ -55,6 +58,7 @@ export class DrawPart
         -50
       );
 
+      // TODO invert translation in export
       this.sprite.x = 0 + (this.spriteModifier.translation.x + tileOffset.x) * camera.currentZoom / 100;
       this.sprite.y = 0 - (this.spriteModifier.translation.y + tileOffset.y) * camera.currentZoom / 100;
       
@@ -68,6 +72,8 @@ export class DrawPart
       this.sprite.height = sizeCorrected.y;
 
     }
+
+    return this.sprite;
   }
 
 }

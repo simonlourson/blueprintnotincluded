@@ -14,6 +14,7 @@ import { TemplateItemCloneable } from "./template-item-cloneable";
 import { OniCell } from "../../oni-import/oni-cell";
 import { Container } from 'pixi.js';
 import { DrawPixi } from '../../drawing/draw-pixi';
+import { DrawPart } from '../../drawing/draw-part';
 declare var PIXI: any;
 //import { Texture, BaseTexture, Rectangle } from "pixi.js";
 
@@ -38,10 +39,7 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
   topLeft: Vector2;
   bottomRight: Vector2;
 
-  // Drawing stuff
-  public realSpriteModifierId: string;
-  realSpriteInfo: SpriteInfo;
-  realSpriteModifier: SpriteModifier;
+  drawPart: DrawPart;
 
   depth: number;
   alpha: number;
@@ -93,7 +91,7 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
   {
     return '';
     let debug:any = {};
-    if (this.realSpriteModifier != null)
+    //if (this.realSpriteModifier != null)
       //debug.framebboxMin = this.realSpriteModifier.framebboxMin;
       //debug.framebboxMax = this.realSpriteModifier.framebboxMax;
     return JSON.stringify(debug);
@@ -104,7 +102,7 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
 
     return '';
     let debug:any = {};
-    if (this.realSpriteModifier != null)
+    //if (this.realSpriteModifier != null)
       //debug.framebboxMax = this.realSpriteModifier.framebboxMax;
       //debug.framebboxMax = this.realSpriteModifier.framebboxMax;
     return JSON.stringify(debug);
@@ -318,12 +316,15 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
 
     public prepareSpriteInfoModifier(blueprint: Template)
     {
-        // If there is no spriteInfoId, we use the item id to prevent collision between image sizes
-        //this.realSpriteInfoId =  this.oniItem.spriteInfoId == null ? this.oniItem.id : this.oniItem.spriteInfoId;
-        // TODO The export should tell us :
-        // * the main place id, and left / right / up / down
-        // * the id for the ui icon
-        this.realSpriteModifierId = this.oniItem.spriteModifierId + 'place';
+      if (this.drawPart == null)
+        this.drawPart = new DrawPart();
+
+      // If there is no spriteInfoId, we use the item id to prevent collision between image sizes
+      //this.realSpriteInfoId =  this.oniItem.spriteInfoId == null ? this.oniItem.id : this.oniItem.spriteInfoId;
+      // TODO The export should tell us :
+      // * the main place id, and left / right / up / down
+      // * the id for the ui icon
+      this.drawPart.prepareSpriteInfoModifier(this.oniItem.spriteModifierId + 'place');
     }
 
     public prepareOverlayInfo(currentOverlay: OverlayType)
@@ -347,56 +348,35 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
     }
 
     // Pixi stuff
-    sprite: PIXI.Sprite;
     utilitySprites: PIXI.Sprite[];
     container: PIXI.Container;
     public drawPixi(camera: Camera, drawPixi: DrawPixi)
     {
       this.drawPixiUtility(camera, drawPixi);
 
-      this.realSpriteModifier = SpriteModifier.getSpriteModifer(this.realSpriteModifierId);
-      this.realSpriteInfo = SpriteInfo.getSpriteInfo(this.realSpriteModifier.spriteInfoName);
-      
-      if (this.sprite == null)
+      if (this.container == null) 
       {
         this.container = new Container();
         drawPixi.pixiApp.stage.addChild(this.container);
-        let texture = this.realSpriteInfo.getTexture();
-
-        if (texture != null) 
-        {
-          // TODO sprite should change if modifier changes
-          // TODO Invert pivoTY in export
-          this.sprite = PIXI.Sprite.from(texture);
-          this.sprite.anchor.set(this.realSpriteInfo.pivot.x, 1-this.realSpriteInfo.pivot.y);
-          this.container.addChild(this.sprite);
-        }
       }
 
-      if (this.sprite != null)
+      let sprite = this.drawPart.getPreparedSprite(camera, drawPixi, this.oniItem);
+
+      if (sprite != null)
       {
-        // TODO simplify math here
-        let position = this.position;
+        if (!this.drawPart.addedToContainer)
+        {
+          this.container.addChild(sprite);
+          this.drawPart.addedToContainer = true;
+        }
 
         let positionCorrected = new Vector2(
-          ( position.x + camera.cameraOffset.x + 0.5) * camera.currentZoom,
-          (-position.y + camera.cameraOffset.y + 0.5) * camera.currentZoom
+          ( this.position.x + camera.cameraOffset.x + 0.5) * camera.currentZoom,
+          (-this.position.y + camera.cameraOffset.y + 0.5) * camera.currentZoom
         );
 
         // If the texture has not loaded, draw a debug rectangle
-        if (!this.sprite.texture.baseTexture.valid) this.drawPixiDebug(camera, drawPixi, positionCorrected);
-
-        this.sprite.texture = this.realSpriteInfo.getTexture();
-        this.sprite.anchor.set(this.realSpriteInfo.pivot.x, 1-this.realSpriteInfo.pivot.y);
-
-        let realSize = new Vector2(this.oniItem.size.x * 1, this.oniItem.size.y * 1);
-
-        
-            
-        let sizeCorrected = new Vector2(
-          camera.currentZoom / 100 * this.realSpriteInfo.realSize.x,
-          camera.currentZoom / 100 * this.realSpriteInfo.realSize.y
-        );
+        if (!sprite.texture.baseTexture.valid) this.drawPixiDebug(camera, drawPixi, positionCorrected);
 
         this.container.x = positionCorrected.x;
         this.container.y = positionCorrected.y;
@@ -404,27 +384,7 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
         this.container.scale.x = this.scale.x;
         this.container.scale.y = this.scale.y;
         this.container.angle = this.rotation;
-        
-
-        let tileOffset: Vector2 = new Vector2(
-          this.oniItem.size.x % 2 == 0 ? 50 : 0,
-          -50
-        );
-        this.sprite.x = 0 + (this.realSpriteModifier.translation.x + tileOffset.x) * camera.currentZoom / 100;
-        this.sprite.y = 0 - (this.realSpriteModifier.translation.y + tileOffset.y) * camera.currentZoom / 100;
-        
-
-
-        this.sprite.scale.x = this.realSpriteModifier.scale.x;
-        this.sprite.scale.y = this.realSpriteModifier.scale.y;
-        // TODO invert rotation in export
-        this.sprite.angle = -this.realSpriteModifier.rotation;
-        this.sprite.width = sizeCorrected.x;
-        this.sprite.height = sizeCorrected.y;
-
       }
-
-      
     }
 
     private drawPixiUtility(camera: Camera, drawPixi: DrawPixi)
