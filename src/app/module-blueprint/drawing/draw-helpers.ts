@@ -1,9 +1,8 @@
 import { Vector2 } from "../common/vector2";
 import { Camera } from "../common/camera";
 import { SpriteInfo } from "./sprite-info";
-import { SpriteModifier } from "../common/sprite-modifier";
+import { SpriteModifier } from "./sprite-modifier";
 import { ImageSource } from "./image-source";
-import { SpriteModifierPart } from "../common/sprite-modifier-part";
 import { BSpriteInfo } from '../common/bexport/b-sprite-info';
 
 export class DrawHelpers

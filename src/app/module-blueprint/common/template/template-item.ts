@@ -3,15 +3,13 @@ import { OniItem, AuthorizedOrientations } from "../oni-item";
 import { OniBuilding } from "../../oni-import/oni-building";
 import { ImageSource } from "../../drawing/image-source";
 import { SpriteInfo } from "../../drawing/sprite-info";
-import { SpriteModifier } from "../sprite-modifier";
+import { SpriteModifier } from "../../drawing/sprite-modifier";
 import { Camera } from "../camera";
 import { ConnectionType, ConnectionHelper } from "../utility-connection";
 import { OverlayType } from "../overlay-type";
 import { DrawHelpers } from "../../drawing/draw-helpers";
 import { ComposingElement } from "../composing-element";
 import { Template } from "./template";
-import { TemplateItemWire } from "./template-item-wire";
-import { TemplateItemTile } from "./template-item-tile";
 import { TemplateItemCloneable } from "./template-item-cloneable";
 import { OniCell } from "../../oni-import/oni-cell";
 import { Container } from 'pixi.js';
@@ -85,8 +83,8 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
   {
     return '';
     let debug:any = {};
-    if (this.realSpriteModifier != null && this.realSpriteModifier.getLastPart() != null)
-      debug.scale = this.realSpriteModifier.getLastPart().scale;
+    //if (this.realSpriteModifier != null && this.realSpriteModifier.getLastPart() != null)
+    //  debug.scale = this.realSpriteModifier.getLastPart().scale;
       //debug.framebboxMax = this.realSpriteModifier.framebboxMax;
     return JSON.stringify(debug);
   }
@@ -96,7 +94,7 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
     return '';
     let debug:any = {};
     if (this.realSpriteModifier != null)
-      debug.framebboxMin = this.realSpriteModifier.framebboxMin;
+      //debug.framebboxMin = this.realSpriteModifier.framebboxMin;
       //debug.framebboxMax = this.realSpriteModifier.framebboxMax;
     return JSON.stringify(debug);
   }
@@ -107,7 +105,7 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
     return '';
     let debug:any = {};
     if (this.realSpriteModifier != null)
-      debug.framebboxMax = this.realSpriteModifier.framebboxMax;
+      //debug.framebboxMax = this.realSpriteModifier.framebboxMax;
       //debug.framebboxMax = this.realSpriteModifier.framebboxMax;
     return JSON.stringify(debug);
   }
@@ -357,7 +355,7 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
       this.drawPixiUtility(camera, drawPixi);
 
       this.realSpriteModifier = SpriteModifier.getSpriteModifer(this.realSpriteModifierId);
-      this.realSpriteInfo = SpriteInfo.getSpriteInfo(this.realSpriteModifier.getLastPart().spriteInfoName);
+      this.realSpriteInfo = SpriteInfo.getSpriteInfo(this.realSpriteModifier.spriteInfoName);
       
       if (this.sprite == null)
       {
@@ -412,15 +410,15 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
           this.oniItem.size.x % 2 == 0 ? 50 : 0,
           -50
         );
-        this.sprite.x = 0 + (this.realSpriteModifier.getLastPart().translation.x + tileOffset.x) * camera.currentZoom / 100;
-        this.sprite.y = 0 - (this.realSpriteModifier.getLastPart().translation.y + tileOffset.y) * camera.currentZoom / 100;
+        this.sprite.x = 0 + (this.realSpriteModifier.translation.x + tileOffset.x) * camera.currentZoom / 100;
+        this.sprite.y = 0 - (this.realSpriteModifier.translation.y + tileOffset.y) * camera.currentZoom / 100;
         
 
 
-        this.sprite.scale.x = this.realSpriteModifier.getLastPart().scale.x;
-        this.sprite.scale.y = this.realSpriteModifier.getLastPart().scale.y;
+        this.sprite.scale.x = this.realSpriteModifier.scale.x;
+        this.sprite.scale.y = this.realSpriteModifier.scale.y;
         // TODO invert rotation in export
-        this.sprite.angle = -this.realSpriteModifier.getLastPart().rotation;
+        this.sprite.angle = -this.realSpriteModifier.rotation;
         this.sprite.width = sizeCorrected.x;
         this.sprite.height = sizeCorrected.y;
 

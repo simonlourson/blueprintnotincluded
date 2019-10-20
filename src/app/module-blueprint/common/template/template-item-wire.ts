@@ -3,7 +3,7 @@ import { OniItem } from "../oni-item";
 import { OniBuilding } from "../../oni-import/oni-building";
 import { Template } from "./template";
 import { TemplateItem } from "./template-item";
-import { SpriteModifier } from "../sprite-modifier";
+import { SpriteModifier } from "../../drawing/sprite-modifier";
 import { Camera } from "../camera";
 import { SpriteInfo } from "../../drawing/sprite-info";
 import { ImageSource } from "../../drawing/image-source";
@@ -120,7 +120,7 @@ export class TemplateItemWire extends TemplateItem implements TemplateItemClonea
     {
       super.drawPixi(camera, drawPixi);
 
-      this.solidSpriteInfo = SpriteInfo.getSpriteInfo(this.solidSpriteModifier.getLastPart().spriteInfoName);
+      this.solidSpriteInfo = SpriteInfo.getSpriteInfo(this.solidSpriteModifier.spriteInfoName);
       
       if (this.solidSprite == null)
       {
@@ -149,19 +149,19 @@ export class TemplateItemWire extends TemplateItem implements TemplateItemClonea
           -50
         );
 
-        this.solidSprite.x = 0 + (this.solidSpriteModifier.getLastPart().translation.x + tileOffset.x) * camera.currentZoom / 100;
-        this.solidSprite.y = 0 - (this.solidSpriteModifier.getLastPart().translation.y + tileOffset.y) * camera.currentZoom / 100;
+        this.solidSprite.x = 0 + (this.solidSpriteModifier.translation.x + tileOffset.x) * camera.currentZoom / 100;
+        this.solidSprite.y = 0 - (this.solidSpriteModifier.translation.y + tileOffset.y) * camera.currentZoom / 100;
         
         let sizeCorrected = new Vector2(
           camera.currentZoom / 100 * this.solidSpriteInfo.realSize.x,
           camera.currentZoom / 100 * this.solidSpriteInfo.realSize.y
         );
 
-        this.solidSprite.scale.x = this.solidSpriteModifier.getLastPart().scale.x;
-        this.solidSprite.scale.y = this.solidSpriteModifier.getLastPart().scale.y;
+        this.solidSprite.scale.x = this.solidSpriteModifier.scale.x;
+        this.solidSprite.scale.y = this.solidSpriteModifier.scale.y;
 
         // TODO invert rotation in export
-        this.solidSprite.angle = -this.solidSpriteModifier.getLastPart().rotation;
+        this.solidSprite.angle = -this.solidSpriteModifier.rotation;
         this.solidSprite.width = sizeCorrected.x;
         this.solidSprite.height = sizeCorrected.y;
       }

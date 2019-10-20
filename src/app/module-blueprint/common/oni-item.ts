@@ -6,7 +6,7 @@ import { DrawHelpers } from "../drawing/draw-helpers";
 import { BBuilding } from "./bexport/b-building";
 import { ImageSource } from "../drawing/image-source";
 import { SpriteInfo } from "../drawing/sprite-info";
-import { SpriteModifier } from "./sprite-modifier";
+import { SpriteModifier } from "../drawing/sprite-modifier";
 import { BSpriteInfo } from './bexport/b-sprite-info';
 
 export class OniItem

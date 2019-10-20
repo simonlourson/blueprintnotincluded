@@ -12,7 +12,7 @@ import { ImageSource } from 'src/app/module-blueprint/drawing/image-source';
 import { OniTemplate } from 'src/app/module-blueprint/oni-import/oni-template';
 import { OniItem } from 'src/app/module-blueprint/common/oni-item';
 import { OniBuilding } from 'src/app/module-blueprint/oni-import/oni-building';
-import { SpriteModifier } from 'src/app/module-blueprint/common/sprite-modifier';
+import { SpriteModifier } from 'src/app/module-blueprint/drawing/sprite-modifier';
 
 
 // PrimeNg imports

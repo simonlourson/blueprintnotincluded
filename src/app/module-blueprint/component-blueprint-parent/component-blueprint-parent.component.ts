@@ -13,7 +13,7 @@ import { ImageSource } from '../drawing/image-source';
 import { Vector2 } from '../common/vector2';
 import { SpriteInfo } from '../drawing/sprite-info';
 import { Template } from '../common/template/template';
-import { SpriteModifier } from '../common/sprite-modifier';
+import { SpriteModifier } from '../drawing/sprite-modifier';
 import { ConnectionType } from '../common/utility-connection';
 import { OverlayType } from '../common/overlay-type';
 import { ComposingElement } from '../common/composing-element';

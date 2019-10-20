@@ -1,15 +1,17 @@
-import { Vector2 } from "./vector2";
-import { BlueprintParams } from "./params";
-import { BBuilding } from "./bexport/b-building";
-import { SpriteModifierPart } from "./sprite-modifier-part";
-import { BSpriteModifier } from "./bexport/b-sprite-modifier";
-import { DrawHelpers } from '../drawing/draw-helpers';
+import { Vector2 } from "../common/vector2";
+import { BlueprintParams } from "../common/params";
+import { BBuilding } from "../common/bexport/b-building";
+import { BSpriteModifier } from "../common/bexport/b-sprite-modifier";
+import { DrawHelpers } from './draw-helpers';
 
 export class SpriteModifier
 {
     spriteModifierId: string;
+    spriteInfoName: string;
 
-    parts: SpriteModifierPart[];
+    rotation: number;
+    scale: Vector2;
+    translation: Vector2;
 
     
 
@@ -22,16 +24,13 @@ export class SpriteModifier
         this.cleanUp();
     }
 
-    public importFromC(bSPriteModifier: BSpriteModifier)
+    public importFrom(original: BSpriteModifier)
     {
-      this.parts = [];
-      
-      for (let part of bSPriteModifier.parts)
-      {
-        let newPart = new SpriteModifierPart();
-        newPart.importFrom(part);
-        this.parts.push(newPart);
-      }
+      this.spriteInfoName = original.spriteInfoName;
+
+      this.translation = original.translation;
+      this.scale = original.scale;
+      this.rotation = original.rotation;
     }
 
     public static AddSpriteModifier(bBuilding: BBuilding)
@@ -44,26 +43,20 @@ export class SpriteModifier
       for (let indexConnection = 0; indexConnection <= 15; indexConnection++)
       {
         let connectionModifier: SpriteModifier = new SpriteModifier(kanimPrefix + DrawHelpers.connectionString[indexConnection]);
-        let connectionModifierPart: SpriteModifierPart = new SpriteModifierPart();
-
-        connectionModifier.parts.push(connectionModifierPart);
-        connectionModifierPart.cleanUp();
-        connectionModifierPart.translation.y = 50;
-        connectionModifierPart.spriteInfoName = kanimPrefix + DrawHelpers.connectionString[indexConnection];
+        
+        connectionModifier.cleanUp();
+        connectionModifier.translation.y = 50;
+        connectionModifier.spriteInfoName = kanimPrefix + DrawHelpers.connectionString[indexConnection];
 
         SpriteModifier.spriteModifiersMap.set(connectionModifier.spriteModifierId, connectionModifier);
       }
     }
 
-    public getLastPart(): SpriteModifierPart
-    {
-      if (this.parts.length > 0) return this.parts[this.parts.length - 1];
-      else return null;
-    }
-
     public cleanUp()
     {
-      this.parts = [];
+      if (this.rotation == null) this.rotation = 0;
+      if (this.scale == null) this.scale = Vector2.clone(Vector2.One);
+      if (this.translation == null) this.translation = Vector2.clone(Vector2.Zero);
     }
 
     private static spriteModifiersMap: Map<string, SpriteModifier>;
@@ -77,10 +70,13 @@ export class SpriteModifier
       for (let original of spriteModifiers)
       {
         let spriteModifier = new SpriteModifier(original.name);
-        spriteModifier.importFromC(original);
+        spriteModifier.cleanUp();
+        spriteModifier.importFrom(original);
 
         SpriteModifier.spriteModifiersMap.set(spriteModifier.spriteModifierId, spriteModifier);
       }
+
+      console.log(SpriteModifier.spriteModifiersMap);
     }
 
     public static getSpriteModifer(spriteModifierId: string): SpriteModifier
