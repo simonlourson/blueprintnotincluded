@@ -16,10 +16,7 @@ export class TemplateItemWire extends TemplateItem implements TemplateItemClonea
 {
   static defaultConnections = 0;
   connections: number;
-
-  solidSpriteModifierId: string;
-  solidSpriteInfo: SpriteInfo;
-  solidSpriteModifier: SpriteModifier;
+  drawPartSolid: DrawPart;
 
   constructor(id: string)
   {
@@ -100,76 +97,39 @@ export class TemplateItemWire extends TemplateItem implements TemplateItemClonea
     super.copyFromForExport(original);
   }
 
-    public deleteDefaultForExport()
+  public deleteDefaultForExport()
+  {
+    if (TemplateItemWire.defaultConnections == this.connections) this.connections = undefined;
+    super.deleteDefaultForExport();
+  }
+
+  public prepareSpriteInfoModifier(blueprint: Template)
+  {
+    if (this.drawPart == null)
+      this.drawPart = new DrawPart();
+
+    if (this.drawPartSolid == null)
+      this.drawPartSolid = new DrawPart();
+
+    this.drawPart.prepareSpriteInfoModifier(this.oniItem.spriteModifierId + DrawHelpers.connectionString[this.connections]);
+    this.drawPartSolid.prepareSpriteInfoModifier(this.oniItem.spriteModifierId + DrawHelpers.connectionStringSolid[this.connections]);
+  }
+
+  public drawPixi(camera: Camera, drawPixi: DrawPixi)
+  {
+    super.drawPixi(camera, drawPixi);
+
+    let solidSprite = this.drawPartSolid.getPreparedSprite(camera, drawPixi, this.oniItem);
+
+    if (solidSprite != null)
     {
-      if (TemplateItemWire.defaultConnections == this.connections) this.connections = undefined;
-      super.deleteDefaultForExport();
-    }
-
-    public prepareSpriteInfoModifier(blueprint: Template)
-    {
-      if (this.drawPart == null)
-        this.drawPart = new DrawPart();
-
-      this.drawPart.prepareSpriteInfoModifier(this.oniItem.spriteModifierId + DrawHelpers.connectionString[this.connections]);
-      
-      // TODO add solid
-      this.solidSpriteModifierId = this.oniItem.spriteModifierId + DrawHelpers.connectionStringSolid[this.connections];
-      this.solidSpriteModifier = SpriteModifier.getSpriteModifer(this.solidSpriteModifierId);
-    }
-
-    solidSprite: PIXI.Sprite;
-    public drawPixi(camera: Camera, drawPixi: DrawPixi)
-    {
-      super.drawPixi(camera, drawPixi);
-
-      this.solidSpriteInfo = SpriteInfo.getSpriteInfo(this.solidSpriteModifier.spriteInfoName);
-      
-      if (this.solidSprite == null)
+      if (!this.drawPartSolid.addedToContainer)
       {
-        let texture = this.solidSpriteInfo.getTexture();
-
-        if (texture != null) 
-        {
-          // TODO sprite should change if modifier changes
-          // TODO Invert pivoTY in export
-          this.solidSprite = PIXI.Sprite.from(texture);
-          this.solidSprite.anchor.set(this.solidSpriteInfo.pivot.x, 1-this.solidSpriteInfo.pivot.y);
-          this.container.addChild(this.solidSprite);
-        }
+        this.container.addChild(solidSprite);
+        this.drawPartSolid.addedToContainer = true;
       }
 
-      if (this.solidSprite != null)
-      {
-        this.solidSprite.alpha = 0.5;
-
-        // TODO refactor some of this with parent
-        this.solidSprite.texture = this.solidSpriteInfo.getTexture();
-        this.solidSprite.anchor.set(this.solidSpriteInfo.pivot.x, 1-this.solidSpriteInfo.pivot.y);
-
-        let tileOffset: Vector2 = new Vector2(
-          this.oniItem.size.x % 2 == 0 ? 50 : 0,
-          -50
-        );
-
-        this.solidSprite.x = 0 + (this.solidSpriteModifier.translation.x + tileOffset.x) * camera.currentZoom / 100;
-        this.solidSprite.y = 0 - (this.solidSpriteModifier.translation.y + tileOffset.y) * camera.currentZoom / 100;
-        
-        let sizeCorrected = new Vector2(
-          camera.currentZoom / 100 * this.solidSpriteInfo.realSize.x,
-          camera.currentZoom / 100 * this.solidSpriteInfo.realSize.y
-        );
-
-        this.solidSprite.scale.x = this.solidSpriteModifier.scale.x;
-        this.solidSprite.scale.y = this.solidSpriteModifier.scale.y;
-
-        // TODO invert rotation in export
-        this.solidSprite.angle = -this.solidSpriteModifier.rotation;
-        this.solidSprite.width = sizeCorrected.x;
-        this.solidSprite.height = sizeCorrected.y;
-      }
-
-      
-      
+      solidSprite.alpha = 0.5;
     }
+  }
 }
