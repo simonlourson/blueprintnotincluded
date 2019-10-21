@@ -47,9 +47,6 @@ export class TemplateItemTile extends TemplateItem implements TemplateItemClonea
 
   public prepareSpriteInfoModifier(blueprint: Template)
   {
-    if (this.drawPart == null)
-      this.drawPart = new DrawPart();
-    
     this.updateTileConnections(blueprint);
 
     this.drawPart.prepareSpriteInfoModifier(this.oniItem.spriteModifierId + DrawHelpers.connectionString[this.tileConnections]);

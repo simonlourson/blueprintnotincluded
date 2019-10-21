@@ -28,6 +28,7 @@ import {ToastModule} from 'primeng/toast';
 import {InputTextModule} from 'primeng/inputtext';
 import {ColorPickerModule} from 'primeng/colorpicker';
 import {PasswordModule} from 'primeng/password';
+import {TooltipModule} from 'primeng/tooltip';
 import {MessageService} from 'primeng/api';
 import { ComponentTileInfoComponent } from './component-tile-info/component-tile-info.component';
 import { ComponentSaveDialogComponent } from './component-save-dialog/component-save-dialog.component'
@@ -47,7 +48,7 @@ const routes: Routes = [
     CommonModule, 
     HttpClientModule,
     FormsModule,
-    PasswordModule, ColorPickerModule, InputTextModule, SliderModule, ButtonModule, CardModule, ScrollPanelModule, OverlayPanelModule, MenubarModule, TabMenuModule, SlideMenuModule, DialogModule, DropdownModule, AccordionModule, ToastModule,
+    PasswordModule, ColorPickerModule, InputTextModule, SliderModule, ButtonModule, CardModule, ScrollPanelModule, OverlayPanelModule, MenubarModule, TabMenuModule, SlideMenuModule, DialogModule, DropdownModule, AccordionModule, ToastModule, TooltipModule,
     BrowserAnimationsModule,
     RouterModule.forChild(routes)
   ],

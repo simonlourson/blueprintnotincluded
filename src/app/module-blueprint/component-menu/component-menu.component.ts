@@ -87,7 +87,7 @@ export class ComponentMenuComponent implements OnInit {
       {
         label: 'Technical',
         items: [
-          {label: 'Fetch icons',          icon:'pi pi-download', command: (event) => { this.fetchIcons(); } },
+          {label: 'Fetch icons',          icon:'pi pi-clone', command: (event) => { this.fetchIcons(); } },
           {label: 'Download icons',       icon:'pi pi-download', command: (event) => { this.downloadIcons(); } },
           {label: 'Download utility',     icon:'pi pi-download', command: (event) => { this.downloadUtility(); } }
         ]

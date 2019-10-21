@@ -13,11 +13,6 @@ export class SpriteModifier
     scale: Vector2;
     translation: Vector2;
 
-    
-
-    public static defaultModifier: SpriteModifier = new SpriteModifier('default');
-
-
     constructor(spriteModifierId: string)
     {
         this.spriteModifierId = spriteModifierId;

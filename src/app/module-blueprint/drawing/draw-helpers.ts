@@ -7,7 +7,7 @@ import { BSpriteInfo } from '../common/bexport/b-sprite-info';
 
 export class DrawHelpers
 {
-  public static whiteColor = '#ffffff';
+  public static whiteColor: number = 0xFFFFFF;
 
   public static createUrl(ressource: string, ui: boolean): string
   {

@@ -27,8 +27,6 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
   public id: string;
   public element: ComposingElement;
   public temperature: number;
-  public backColor: string;
-  public frontColor: string;
 
   position: Vector2;
   orientation: AuthorizedOrientations;
@@ -53,6 +51,7 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
   constructor(id: string = 'Vacuum')
   {
       this.id = id;
+      this.drawPart = new DrawPart();
   }
 
   getName(): string
@@ -138,7 +137,6 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
 
       this.element = ComposingElement.getElement(building.element);
       this.temperature = Math.floor(building.temperature);
-      this.backColor = this.oniItem.defaultColor;
 
       this.cleanUp();
       this.prepareBoundingBox();
@@ -201,7 +199,6 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
       
       // TODO default temperature
       this.temperature = original.temperature;
-      this.backColor = original.backColor;
       this.changeOrientation(original.orientation);
 
       this.cleanUp();
@@ -219,9 +216,6 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
     {
       if (this.rotation == null) this.rotation = TemplateItem.defaultRotation;
       if (this.scale == null) this.scale = TemplateItem.defaultScale;
-      if (this.backColor == null) this.backColor = this.oniItem.defaultColor;
-      if (this.backColor == null) this.backColor = OniItem.defaultColor;
-      if (this.frontColor == null) this.frontColor = DrawHelpers.whiteColor;
       if (this.element == null) this.element = ComposingElement.unknownElement;
 
       if (this.orientation == null) this.changeOrientation(AuthorizedOrientations.None);
@@ -263,7 +257,6 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
   {
     this.element = original.element;
     this.temperature = original.temperature;
-    this.backColor = original.backColor;
     this.position = original.position;
     this.changeOrientation(original.orientation);
   }
@@ -273,7 +266,6 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
     let defaultColor = this.oniItem.defaultColor;
     if (defaultColor == null) defaultColor = OniItem.defaultColor;
 
-    if (defaultColor == this.backColor) this.backColor = undefined;
     if (AuthorizedOrientations.None == this.orientation) this.orientation = undefined;
 
     // We already export the orientation
@@ -315,9 +307,6 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
 
     public prepareSpriteInfoModifier(blueprint: Template)
     {
-      if (this.drawPart == null)
-        this.drawPart = new DrawPart();
-
       // If there is no spriteInfoId, we use the item id to prevent collision between image sizes
       //this.realSpriteInfoId =  this.oniItem.spriteInfoId == null ? this.oniItem.id : this.oniItem.spriteInfoId;
       // TODO The export should tell us :
@@ -335,8 +324,8 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
       let isPrimary = currentOverlay == ConnectionHelper.getOverlayFromLayer(this.oniItem.zIndex);
       let isSecondary = currentOverlay == this.oniItem.overlay;
 
-      if (isPrimary || isSecondary) this.alpha = 1;
-      else this.alpha = 0.3;
+      if (isPrimary || isSecondary) this.drawPart.alpha = 1;
+      else this.drawPart.alpha = 0.3;
 
       if (isPrimary)
       {
@@ -392,7 +381,6 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
 
         // Overlay stuff
         this.container.zIndex = this.depth;
-        this.drawPart.sprite.alpha = this.alpha;
       }
     }
 

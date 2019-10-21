@@ -40,8 +40,10 @@
 
 
 
-<div><button style="margin-top:5px; width:100%" pButton type="button" label="Build copy" class="ui-button" (click)="buildCopy($event)"></button></div>
-<div><button style="margin-top:5px; width:100%" pButton type="button" label="Deconstruct" class="ui-button ui-button-danger"></button></div>
+<button pButton type="button" class="ui-button" icon="pi pi-clone" (click)="buildCopy($event)" pTooltip="Clone this building"></button>
+<button pButton type="button" class="ui-button buttonspace" icon="pi pi-trash" (click)="buildCopy($event)" pTooltip="Destroy this building"></button>
+<button pButton type="button" class="ui-button buttonspace" icon="pi pi-palette" (click)="pcp.onInputClick()" pTooltip="Change color"></button>
+<p-colorPicker #pcp class="invisible" [(ngModel)]="templateItem.backColor" appendTo="body"></p-colorPicker>
 </div>
 
 <div *ngIf="templateItem.id == 'Vacuum'">Your ad here</div>

@@ -11,6 +11,7 @@ import { DrawHelpers } from "../../drawing/draw-helpers";
 import { TemplateItemCloneable } from "./template-item-cloneable";
 import { DrawPixi } from '../../drawing/draw-pixi';
 import { DrawPart } from '../../drawing/draw-part';
+import { Overlay } from '../overlay-type';
 
 export class TemplateItemWire extends TemplateItem implements TemplateItemCloneable<TemplateItemWire>
 {
@@ -21,6 +22,7 @@ export class TemplateItemWire extends TemplateItem implements TemplateItemClonea
   constructor(id: string)
   {
     super(id);
+    this.drawPartSolid = new DrawPart();
   }
 
   public importOniBuilding(building: OniBuilding)
@@ -105,14 +107,26 @@ export class TemplateItemWire extends TemplateItem implements TemplateItemClonea
 
   public prepareSpriteInfoModifier(blueprint: Template)
   {
-    if (this.drawPart == null)
-      this.drawPart = new DrawPart();
-
-    if (this.drawPartSolid == null)
-      this.drawPartSolid = new DrawPart();
-
     this.drawPart.prepareSpriteInfoModifier(this.oniItem.spriteModifierId + DrawHelpers.connectionString[this.connections]);
     this.drawPartSolid.prepareSpriteInfoModifier(this.oniItem.spriteModifierId + DrawHelpers.connectionStringSolid[this.connections]);
+  }
+
+  public prepareOverlayInfo(currentOverlay: Overlay)
+  {
+    super.prepareOverlayInfo(currentOverlay);
+    this.drawPartSolid.tint = this.oniItem.backColor;
+
+    if (this.correctOverlay)
+    {
+      this.drawPart.tint = 0xAAAAAA;
+      
+      this.drawPartSolid.alpha = 1;
+    }
+    else
+    {
+      this.drawPart.tint = 0xFFFFFF;
+      this.drawPartSolid.alpha = 0;
+    }
   }
 
   public drawPixi(camera: Camera, drawPixi: DrawPixi)
@@ -129,7 +143,6 @@ export class TemplateItemWire extends TemplateItem implements TemplateItemClonea
         this.drawPartSolid.addedToContainer = true;
       }
 
-      solidSprite.tint = this.oniItem.backColor;
       solidSprite.zIndex = -1;
       if (this.correctOverlay) solidSprite.alpha = 1;
       else solidSprite.alpha = 0;

@@ -15,9 +15,14 @@ export class DrawPart
   spriteInfo: SpriteInfo;
   sprite: PIXI.Sprite;
 
-  public DrawPart()
+  alpha: number;
+  tint: number;
+
+  public constructor()
   {
     this.addedToContainer = false;
+    this.alpha = 1;
+    this.tint = 0xFFFFFF;
   }
 
   prepareSpriteInfoModifier(spriteModifierId: string)
@@ -63,7 +68,8 @@ export class DrawPart
       this.sprite.y = 0 - (this.spriteModifier.translation.y + tileOffset.y) * camera.currentZoom / 100;
       
 
-
+      this.sprite.alpha = this.alpha;
+      this.sprite.tint = this.tint;
       this.sprite.scale.x = this.spriteModifier.scale.x;
       this.sprite.scale.y = this.spriteModifier.scale.y;
       // TODO invert rotation in export

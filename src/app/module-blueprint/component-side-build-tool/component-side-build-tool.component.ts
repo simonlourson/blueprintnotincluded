@@ -204,8 +204,8 @@ export class ComponentSideBuildToolComponent implements OnInit, Tool {
   {
     this.templateItemToBuild.position = currentTile;
 
-    if (this.canBuild(blueprint, currentTile)) this.templateItemToBuild.frontColor = DrawHelpers.whiteColor;
-    else this.templateItemToBuild.frontColor = '#D40000';
+    if (this.canBuild(blueprint, currentTile)) this.templateItemToBuild.drawPart.tint = DrawHelpers.whiteColor;
+    else this.templateItemToBuild.drawPart.tint = 0xD40000;
   }
 
   changeTileDrag(blueprint: Template, previousTileDrag: Vector2, currentTileDrag: Vector2)

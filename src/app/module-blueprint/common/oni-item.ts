@@ -29,6 +29,7 @@ export class OniItem
   utilityConnections: UtilityConnection[];
   defaultColor: string;
   backColor: number;
+  frontColor: number = 0xFFFFFF; // TODO initialize properly
   orientations: AuthorizedOrientations[];
 
   // Overlay
