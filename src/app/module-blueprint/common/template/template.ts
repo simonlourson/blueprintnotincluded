@@ -3,7 +3,7 @@ import {OniCell} from '../../oni-import/oni-cell'
 import { OniTemplate } from '../../oni-import/oni-template';
 import { OniItem } from '../oni-item';
 import { Vector2 } from '../vector2';
-import { OverlayType } from '../overlay-type';
+import { ZIndex, Overlay } from '../overlay-type';
 import { TemplateItem } from './template-item';
 import { TemplateItemWire } from "./template-item-wire";
 import { TemplateItemTile } from "./template-item-tile";
@@ -96,8 +96,8 @@ export class Template
     return newTemplateItem;
   }
 
-  private currentOverlay: OverlayType
-  public prepareOverlayInfo(currentOverlay: OverlayType)
+  private currentOverlay: Overlay
+  public prepareOverlayInfo(currentOverlay: Overlay)
   {
     this.currentOverlay = currentOverlay;
 
@@ -108,7 +108,8 @@ export class Template
   {
     for (let templateItem of this.templateItems) templateItem.prepareOverlayInfo(this.currentOverlay);
 
-    this.templateItems.sort(function(a, b) { return a.depth - b.depth; })
+    // TODO pixi handles that now
+    //this.templateItems.sort(function(a, b) { return a.depth - b.depth; })
   }
 
   distinctElements: ComposingElement[];

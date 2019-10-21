@@ -5,7 +5,7 @@ import { TemplateItemCloneable } from "./template-item-cloneable";
 import { Camera } from "../camera";
 import { OniCell } from "../../oni-import/oni-cell";
 import { OniBuilding } from "../../oni-import/oni-building";
-import { OverlayType } from "../overlay-type";
+import { ZIndex, Overlay } from "../overlay-type";
 import { DrawHelpers } from "../../drawing/draw-helpers";
 
 export class TemplateItemElement extends TemplateItem implements TemplateItemCloneable<TemplateItemElement>
@@ -74,14 +74,16 @@ export class TemplateItemElement extends TemplateItem implements TemplateItemClo
       this.mass = Math.floor(cell.mass);
   }
 
-  public prepareOverlayInfo(currentOverlay: OverlayType)
+  public prepareOverlayInfo(currentOverlay: Overlay)
   {
-    if (currentOverlay == OverlayType.Gas) 
+    /*
+    if (currentOverlay == ZIndex.Gas) 
     {
       this.correctOverlay = true;
       this.depth = 5;
     }
     else this.correctOverlay = false;
+    */
   }
 
   public draw(ctx: CanvasRenderingContext2D, camera: Camera)

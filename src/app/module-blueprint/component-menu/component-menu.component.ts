@@ -2,7 +2,7 @@ import { Component, OnInit, Output, EventEmitter, Testability } from '@angular/c
 
 import {MenuItem, Message} from 'primeng/api';
 import { setDefaultService } from 'selenium-webdriver/opera';
-import { OverlayType } from '../common/overlay-type';
+import { ZIndex, Overlay } from '../common/overlay-type';
 import { OniItem } from '../common/oni-item';
 import { ToolType } from '../common/tools/tool';
 import { ToolRequest } from '../common/tool-request';
@@ -24,7 +24,7 @@ export class ComponentMenuComponent implements OnInit {
   @Output() onDownloadDistinctIdAsJson = new EventEmitter();
   @Output() onMisc = new EventEmitter();
   @Output() onSaveToCloud = new EventEmitter();
-  @Output() onChangeOverlay = new EventEmitter<OverlayType>();
+  @Output() onChangeOverlay = new EventEmitter<ZIndex>();
   @Output() onChangeTool = new EventEmitter<ToolRequest>();
   @Output() onBuild = new EventEmitter<string>();
 
@@ -42,14 +42,14 @@ export class ComponentMenuComponent implements OnInit {
   ngOnInit() {
     
     this.overlayMenuItems = [
-      {label: 'Buildings',    id:OverlayType.Building.toString(),       command: (event) => { this.clickOverlay(event); }},
-      {label: 'Power',        id:OverlayType.Wires.toString(),          command: (event) => { this.clickOverlay(event); }},
-      {label: 'Plumbing',     id:OverlayType.LiquidConduits.toString(), command: (event) => { this.clickOverlay(event); }},
-      {label: 'Ventilation',  id:OverlayType.GasConduits.toString(),    command: (event) => { this.clickOverlay(event); }},
-      {label: 'Automation',   id:OverlayType.LogicWires.toString(),     command: (event) => { this.clickOverlay(event); }},
-      {label: 'Shipment',     id:OverlayType.SolidConduits.toString(),  command: (event) => { this.clickOverlay(event); }},
-      {label: 'Background',   id:OverlayType.Backwall.toString(),       command: (event) => { this.clickOverlay(event); }},
-      {label: 'Gas',          id:OverlayType.Gas.toString(),            command: (event) => { this.clickOverlay(event); }}
+      {label: 'Buildings',    id:Overlay.Base.toString(),       command: (event) => { this.clickOverlay(event); }},
+      {label: 'Power',        id:Overlay.Power.toString(),          command: (event) => { this.clickOverlay(event); }},
+      {label: 'Plumbing',     id:Overlay.Liquid.toString(), command: (event) => { this.clickOverlay(event); }},
+      {label: 'Ventilation',  id:Overlay.Gas.toString(),    command: (event) => { this.clickOverlay(event); }},
+      {label: 'Automation',   id:Overlay.Automation.toString(),     command: (event) => { this.clickOverlay(event); }},
+      {label: 'Shipment',     id:Overlay.Conveyor.toString(),  command: (event) => { this.clickOverlay(event); }},
+      {label: 'Background',   id:Overlay.Unknown.toString(),       command: (event) => { this.clickOverlay(event); }},
+      {label: 'Gas',          id:Overlay.Unknown.toString(),            command: (event) => { this.clickOverlay(event); }}
     ];
 
     this.toolMenuItems = [
@@ -95,7 +95,7 @@ export class ComponentMenuComponent implements OnInit {
     ];
    
     
-    this.clickOverlay({item:{id:OverlayType.Building}});
+    this.clickOverlay({item:{id:Overlay.Base}});
 
     this.askChangeTool({toolType:ToolType.select, templateItem:null});
     this.clickTool({item:{id:ToolType.select}});

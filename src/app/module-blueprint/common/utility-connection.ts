@@ -1,5 +1,5 @@
 import { Vector2 } from "./vector2";
-import { OverlayType } from "./overlay-type";
+import { ZIndex, Overlay } from "./overlay-type";
 
 export interface UtilityConnection
 {
@@ -31,22 +31,22 @@ export class ConnectionSprite
 
 export class ConnectionHelper
 {
-  public static getConnectionOverlay(connectionType: ConnectionType): OverlayType
+  public static getConnectionOverlay(connectionType: ConnectionType): Overlay
   {
-      switch (connectionType)
-      {
-          case ConnectionType.POWER_OUTPUT:
-          case ConnectionType.POWER_INPUT: return OverlayType.Wires;
-          case ConnectionType.GAS_INPUT:
-          case ConnectionType.GAS_OUTPUT: return OverlayType.GasConduits;
-          case ConnectionType.LIQUID_INPUT: 
-          case ConnectionType.LIQUID_OUTPUT: return OverlayType.LiquidConduits;
-          case ConnectionType.LOGIC_INPUT: 
-          case ConnectionType.LOGIC_OUTPUT: return OverlayType.LogicWires;
-          case ConnectionType.SOLID_INPUT: 
-          case ConnectionType.SOLID_OUTPUT: return OverlayType.SolidConduits;
-          default: return OverlayType.Gas;
-      }
+    switch (connectionType)
+    {
+      case ConnectionType.POWER_OUTPUT:
+      case ConnectionType.POWER_INPUT: return Overlay.Power;
+      case ConnectionType.GAS_INPUT:
+      case ConnectionType.GAS_OUTPUT: return Overlay.Gas;
+      case ConnectionType.LIQUID_INPUT: 
+      case ConnectionType.LIQUID_OUTPUT: return Overlay.Liquid;
+      case ConnectionType.LOGIC_INPUT: 
+      case ConnectionType.LOGIC_OUTPUT: return Overlay.Automation;
+      case ConnectionType.SOLID_INPUT: 
+      case ConnectionType.SOLID_OUTPUT: return Overlay.Conveyor;
+      default: return Overlay.Unknown;
+    }
   }
 
   public static getConnectionSprite(connectionType: UtilityConnection): ConnectionSprite
@@ -74,27 +74,32 @@ export class ConnectionHelper
     return connectionSprite;
   }
 
-  public static getLayerFromOverlay(sceneLayer: OverlayType): OverlayType
+  // TODO should not be here
+  public static getOverlayFromLayer(sceneLayer: ZIndex): Overlay
   {
     switch (sceneLayer)
     {
-      case OverlayType.Background:
-      case OverlayType.Backwall: return OverlayType.Backwall;
-      case OverlayType.Gas: return OverlayType.Gas;
-      case OverlayType.GasConduits:
-      case OverlayType.GasConduitBridges: return OverlayType.GasConduits;
-      case OverlayType.LiquidConduits:
-      case OverlayType.LiquidConduitBridges: return OverlayType.LiquidConduits;
-      case OverlayType.SolidConduits:
-      case OverlayType.SolidConduitBridges: return OverlayType.SolidConduits;
-      case OverlayType.Wires:
-      case OverlayType.WireBridges: return OverlayType.Wires;
-      case OverlayType.LogicWires:
-      case OverlayType.LogicGates: return OverlayType.LogicWires;
-      case OverlayType.GasConduits:
-      case OverlayType.GasConduitBridges: return OverlayType.GasConduits;
-      default: return OverlayType.Gas;
+      case ZIndex.NoLayer:
+      case ZIndex.Background:
+      case ZIndex.Backwall: return Overlay.Unknown;
+      case ZIndex.Gas: return Overlay.Gas;
+      case ZIndex.GasConduits:
+      case ZIndex.GasConduitBridges: return Overlay.Gas;
+      case ZIndex.LiquidConduits:
+      case ZIndex.LiquidConduitBridges: return Overlay.Liquid;
+      case ZIndex.SolidConduits:
+      case ZIndex.SolidConduitContents:
+      case ZIndex.SolidConduitBridges: return Overlay.Conveyor;
+      case ZIndex.Wires:
+      case ZIndex.WireBridges:
+      case ZIndex.WireBridgesFront: return Overlay.Power;
+      case ZIndex.LogicWires:
+      case ZIndex.LogicGates:
+      case ZIndex.LogicGatesFront: return Overlay.Automation;
+      default: return Overlay.Base;
     }
+
+    // TODO finish
   }
 }
     

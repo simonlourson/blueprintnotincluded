@@ -15,7 +15,7 @@ import { SpriteInfo } from '../drawing/sprite-info';
 import { Template } from '../common/template/template';
 import { SpriteModifier } from '../drawing/sprite-modifier';
 import { ConnectionType } from '../common/utility-connection';
-import { OverlayType } from '../common/overlay-type';
+import { ZIndex, Overlay } from '../common/overlay-type';
 import { ComposingElement } from '../common/composing-element';
 import { ComponentSaveDialogComponent } from '../component-save-dialog/component-save-dialog.component';
 import { SaveInfo } from '../common/save-info';
@@ -153,7 +153,7 @@ export class ComponentBlueprintParentComponent implements OnInit {
   loadTemplateIntoCanvas(template: Template)
   {
     this.canvas.loadNewBlueprint(template);
-    this.menu.clickOverlay({item:{id:OverlayType.Building.toString()}});
+    this.menu.clickOverlay({item:{id:Overlay.Base}});
 
     let summary: string = "Loaded template : " + template.name;
     let detail: string = template.templateItems.length + " items loaded";
@@ -206,17 +206,20 @@ export class ComponentBlueprintParentComponent implements OnInit {
     
   }
 
-  changeOverlay(newOverlay: OverlayType)
+  changeOverlay(newOverlay: Overlay)
   {
     this.canvas.changeOverlay(newOverlay);
 
-    if (newOverlay == OverlayType.Gas) 
+    /* TODO
+    if (newOverlay == ZIndex.Gas) 
     {
       this.canvas.blueprint.prepareDistinctElements();
       this.elementKeyPanel.distinctElements = this.canvas.blueprint.distinctElements;
       this.elementKeyPanel.showDialog();
     }
-    else this.elementKeyPanel.hideDialog();
+    else 
+    */
+    this.elementKeyPanel.hideDialog();
   }
 
   changeTool(newTool: ToolRequest)

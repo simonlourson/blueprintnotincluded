@@ -1,6 +1,6 @@
 import { Vector2 } from "./vector2";
 import { UtilityConnection, ConnectionType } from "./utility-connection";
-import { OverlayType } from "./overlay-type";
+import { ZIndex, Overlay } from "./overlay-type";
 import { BlueprintParams } from "./params";
 import { DrawHelpers } from "../drawing/draw-helpers";
 import { BBuilding } from "./bexport/b-building";
@@ -27,10 +27,13 @@ export class OniItem
   size: Vector2;
   tileOffset: Vector2;
   utilityConnections: UtilityConnection[];
-  defaultOverlay: OverlayType;
   defaultColor: string;
+  backColor: number;
   orientations: AuthorizedOrientations[];
 
+  // Overlay
+  zIndex: ZIndex;
+  overlay: Overlay
 
   constructor(id: string)
   {
@@ -38,7 +41,7 @@ export class OniItem
     this.cleanUp();
   }
 
-  public copyFromC(original: BBuilding)
+  public copyFrom(original: BBuilding)
   {
     this.id = original.prefabId;
     this.size = original.sizeInCells;
@@ -47,7 +50,9 @@ export class OniItem
 
     this.spriteModifierId = original.kanimPrefix;
     this.iconUrl = DrawHelpers.createUrl(original.kanimPrefix + 'ui_0', true);
-    this.defaultOverlay = original.sceneLayer;
+    this.zIndex = original.sceneLayer;
+    this.overlay = this.getRealOverlay(original.viewMode);
+    this.backColor = original.color;
 
     let imageId: string = original.textureName;
 
@@ -67,6 +72,24 @@ export class OniItem
 
   }
 
+  public getRealOverlay(overlay: Overlay)
+  {
+    let returnValue: Overlay = overlay;
+
+    switch (overlay)
+    {
+      case Overlay.Decor:
+      case Overlay.Light:
+      case Overlay.Oxygen: 
+      case Overlay.Room: 
+      case Overlay.Temperature: 
+      case Overlay.Unknown: returnValue = Overlay.Base;
+    }
+
+    return returnValue;
+  }
+
+  /*
     public copyFrom(original: OniItem)
     {
         this.imageId = original.imageId;
@@ -76,7 +99,7 @@ export class OniItem
         this.isTile = original.isTile;
         this.isElement = original.isElement;
         this.debugColor = original.debugColor;
-        this.defaultOverlay = original.defaultOverlay;
+        this.zIndex = original.zIndex;
         this.defaultColor = original.defaultColor;
 
         if (original.size != null && original.size.x != null) this.size = new Vector2(original.size.x, original.size.y);
@@ -88,6 +111,7 @@ export class OniItem
             this.orientations.push(authorizedOrientation);
         this.orientations.sort();
     }
+    */
 
     public cleanUp()
     {
@@ -97,8 +121,9 @@ export class OniItem
         if (this.debugColor == null ) this.debugColor = 'rgba(' + Math.floor(Math.random() * 256) + ',' + Math.floor(Math.random() * 256) + ',' + Math.floor(Math.random() * 50) + ',0.5)';
         if (this.size == null) this.size = new Vector2();
         if (this.utilityConnections == null) this.utilityConnections = [];
-        if (this.defaultOverlay == null) this.defaultOverlay = OverlayType.Building;
+        if (this.zIndex == null) this.zIndex = ZIndex.Building;
         if (this.orientations == null) this.orientations = [AuthorizedOrientations.None];
+        if (this.backColor == null) this.backColor = 0xFFFFFF
         
         // TODO not every item needs a color
         if (this.defaultColor == null) 
@@ -140,7 +165,7 @@ export class OniItem
     for (let building of buildings)
     {
       let oniItem = new OniItem(building.prefabId);
-      oniItem.copyFromC(building);
+      oniItem.copyFrom(building);
       oniItem.cleanUp();
 
       // TODO spriteInfoId is not used anymore

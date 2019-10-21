@@ -18,7 +18,7 @@ import { SpriteModifier } from 'src/app/module-blueprint/drawing/sprite-modifier
 // PrimeNg imports
 import { TileInfo } from '../common/tile-info';
 import { Template } from '../common/template/template';
-import { OverlayType } from '../common/overlay-type';
+import { ZIndex, Overlay } from '../common/overlay-type';
 import { Tool, ToolType } from '../common/tools/tool';
 import { ToolRequest } from '../common/tool-request';
 import { ComponentSideSelectionToolComponent } from '../component-side-selection-tool/component-side-selection-tool.component';
@@ -80,7 +80,7 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
     if (this.blueprint != null) this.blueprint.destroy();
 
     this.blueprint = blueprint;
-    this.changeOverlay(OverlayType.Building);
+    this.changeOverlay(Overlay.Base);
 
     let rect = this.canvasRef.nativeElement.getBoundingClientRect();
     this.camera.resetZoom(new Vector2(
@@ -170,7 +170,7 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
     console.log(event);
   }
 
-  changeOverlay(newOverlay: OverlayType)
+  changeOverlay(newOverlay: Overlay)
   {
     this.camera.overlay = newOverlay;
     this.prepareOverlayInfo();

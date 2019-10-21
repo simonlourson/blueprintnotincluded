@@ -2,7 +2,7 @@ import { Vector2 } from "../vector2";
 import { BSpriteInfo } from "./b-sprite-info";
 import { BSpriteModifier } from "./b-sprite-modifier";
 import { UtilityConnection } from '../utility-connection';
-import { OverlayType } from '../overlay-type';
+import { ZIndex, Overlay } from '../overlay-type';
 
 export class BBuilding
 {
@@ -11,7 +11,9 @@ export class BBuilding
   isTile: boolean;
   isUtility: boolean;
   sizeInCells: Vector2;
-  sceneLayer: OverlayType;
+  sceneLayer: ZIndex;
+  viewMode: Overlay;
+  color: number;
 
   kanimPrefix: string;
   textureName: string;

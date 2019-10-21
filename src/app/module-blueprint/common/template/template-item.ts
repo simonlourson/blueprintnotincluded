@@ -6,7 +6,7 @@ import { SpriteInfo } from "../../drawing/sprite-info";
 import { SpriteModifier } from "../../drawing/sprite-modifier";
 import { Camera } from "../camera";
 import { ConnectionType, ConnectionHelper } from "../utility-connection";
-import { OverlayType } from "../overlay-type";
+import { ZIndex, Overlay } from "../overlay-type";
 import { DrawHelpers } from "../../drawing/draw-helpers";
 import { ComposingElement } from "../composing-element";
 import { Template } from "./template";
@@ -64,7 +64,7 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
   {
     //return '';
     let debug:any = {};
-    debug.imageId = this.oniItem.imageId;
+    debug.overlay = this.oniItem.overlay;
     return JSON.stringify(debug);
   }
 
@@ -72,8 +72,7 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
   {
     //return '';
     let debug:any = {};
-    debug.defaultOverlay = this.oniItem.defaultOverlay.toString();
-      //debug.framebboxMin = this.realSpriteModifier.framebboxMin;
+    debug.zIndex = this.oniItem.zIndex;
     return JSON.stringify(debug);
   }
 
@@ -327,22 +326,26 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
       this.drawPart.prepareSpriteInfoModifier(this.oniItem.spriteModifierId + 'place');
     }
 
-    public prepareOverlayInfo(currentOverlay: OverlayType)
+    public prepareOverlayInfo(currentOverlay: Overlay)
     {
       // Special case : we show the buildings in element mode
       // TODO general case for elements
-      if (currentOverlay == OverlayType.Gas) currentOverlay = OverlayType.Building;
+      if (currentOverlay == Overlay.Unknown) Overlay.Base;
 
-      if (currentOverlay == this.oniItem.defaultOverlay)
+      let isPrimary = currentOverlay == ConnectionHelper.getOverlayFromLayer(this.oniItem.zIndex);
+      let isSecondary = currentOverlay == this.oniItem.overlay;
+
+      if (isPrimary || isSecondary) this.alpha = 1;
+      else this.alpha = 0.3;
+
+      if (isPrimary)
       {
-          this.alpha = 1;
-          this.depth = 10;
+          this.depth = this.oniItem.zIndex + 50;
           this.correctOverlay = true;
       }
       else
       {
-          this.alpha = 0.3;
-          this.depth = 0;
+          this.depth = this.oniItem.zIndex;
           this.correctOverlay = false;
       }
     }
@@ -357,6 +360,7 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
       if (this.container == null) 
       {
         this.container = new Container();
+        this.container.sortableChildren = true;
         drawPixi.pixiApp.stage.addChild(this.container);
       }
 
@@ -377,6 +381,7 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
 
         // If the texture has not loaded, draw a debug rectangle
         if (!sprite.texture.baseTexture.valid) this.drawPixiDebug(camera, drawPixi, positionCorrected);
+        sprite.zIndex = 0;
 
         this.container.x = positionCorrected.x;
         this.container.y = positionCorrected.y;
@@ -384,6 +389,10 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
         this.container.scale.x = this.scale.x;
         this.container.scale.y = this.scale.y;
         this.container.angle = this.rotation;
+
+        // Overlay stuff
+        this.container.zIndex = this.depth;
+        this.drawPart.sprite.alpha = this.alpha;
       }
     }
 

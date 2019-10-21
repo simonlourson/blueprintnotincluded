@@ -1,5 +1,5 @@
 import { Vector2 } from "src/app/module-blueprint/common/vector2";
-import { OverlayType } from "./overlay-type";
+import { ZIndex, Overlay } from "./overlay-type";
 
 export class Camera
 {
@@ -12,7 +12,7 @@ export class Camera
     // Zoom is the number of pixels between cells
     currentZoom: number;
 
-    overlay: OverlayType;
+    overlay: Overlay;
     
     private targetZoom: number;
     private lastZoomCenter: Vector2;

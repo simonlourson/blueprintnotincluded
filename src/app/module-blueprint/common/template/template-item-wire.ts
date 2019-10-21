@@ -129,7 +129,10 @@ export class TemplateItemWire extends TemplateItem implements TemplateItemClonea
         this.drawPartSolid.addedToContainer = true;
       }
 
-      solidSprite.alpha = 0.5;
+      solidSprite.tint = this.oniItem.backColor;
+      solidSprite.zIndex = -1;
+      if (this.correctOverlay) solidSprite.alpha = 1;
+      else solidSprite.alpha = 0;
     }
   }
 }

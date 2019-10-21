@@ -1,4 +1,4 @@
-export enum OverlayType
+export enum ZIndex
 {
     NoLayer = -2,
     Background = -1,
@@ -36,4 +36,20 @@ export enum OverlayType
     FXFront = 32,
     FXFront2 = 33,
     SceneMAX = 34
+}
+
+export enum Overlay
+{
+    Base,
+    Power,
+    Liquid,
+    Gas,
+    Automation,
+    Oxygen,
+    Conveyor,
+    Decor,
+    Light,
+    Temperature,
+    Room,
+    Unknown
 }
