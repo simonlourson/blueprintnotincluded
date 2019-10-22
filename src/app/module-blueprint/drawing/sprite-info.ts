@@ -72,6 +72,7 @@ export class SpriteInfo
     public copyFrom(original: BSpriteInfo)
     {
       // TODO refactor
+      // DO NOT FORGET : if you add something here, you must add it to the texture repacker also
       let imageUrl: string = DrawHelpers.createUrl(original.textureName, false);
       ImageSource.AddImagePixi(original.textureName, imageUrl);
       this.imageId = original.textureName;
