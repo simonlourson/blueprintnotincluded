@@ -426,6 +426,7 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
             {
               this.utilitySprites[connexionIndex] = PIXI.Sprite.from(connectionTexture);
               this.utilitySprites[connexionIndex].tint = connectionSprite.color;
+              this.utilitySprites[connexionIndex].zIndex = 100;
               drawPixi.pixiApp.stage.addChild(this.utilitySprites[connexionIndex]);
             }
           }

@@ -21,6 +21,7 @@ export class ComponentMenuComponent implements OnInit {
   @Output() onDownloadIcons = new EventEmitter();
   @Output() onFetchIcons = new EventEmitter();
   @Output() onDownloadUtility = new EventEmitter();
+  @Output() onRepackTextures = new EventEmitter();
   @Output() onDownloadDistinctIdAsJson = new EventEmitter();
   @Output() onMisc = new EventEmitter();
   @Output() onSaveToCloud = new EventEmitter();
@@ -89,7 +90,8 @@ export class ComponentMenuComponent implements OnInit {
         items: [
           {label: 'Fetch icons',          icon:'pi pi-clone', command: (event) => { this.fetchIcons(); } },
           {label: 'Download icons',       icon:'pi pi-download', command: (event) => { this.downloadIcons(); } },
-          {label: 'Download utility',     icon:'pi pi-download', command: (event) => { this.downloadUtility(); } }
+          {label: 'Download utility',     icon:'pi pi-download', command: (event) => { this.downloadUtility(); } },
+          {label: 'Repack textures',      icon:'pi pi-download', command: (event) => { this.repackTextures(); } }
         ]
       }
     ];
@@ -159,6 +161,11 @@ export class ComponentMenuComponent implements OnInit {
   downloadUtility()
   {
     this.onDownloadUtility.emit();
+  }
+
+  repackTextures()
+  {
+    this.onRepackTextures.emit();
   }
 
 }

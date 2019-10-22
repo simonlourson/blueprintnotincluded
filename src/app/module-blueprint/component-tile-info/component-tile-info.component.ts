@@ -59,4 +59,9 @@ export class ComponentTileInfoComponent implements OnInit, OnDestroy {
     this.onAskChangeTool.emit(toolRequest);
   }
 
+  buildDestroy()
+  {
+    this.templateItem.destroy();
+  }
+
 }

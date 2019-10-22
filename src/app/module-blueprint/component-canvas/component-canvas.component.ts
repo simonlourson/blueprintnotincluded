@@ -26,6 +26,7 @@ import { DrawAbstraction } from '../drawing/draw-abstraction';
 import { DrawPixi } from '../drawing/draw-pixi';
 import { ɵangular_packages_router_router_n } from '@angular/router';
 import * as JSZip from 'jszip';
+import { BSpriteInfo } from '../common/bexport/b-sprite-info';
 
 
 @Component({
@@ -197,6 +198,7 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
   fetchIcons()
   {
     for (let k of ImageSource.keys) ImageSource.getBaseTexture(k);
+    for (let k of SpriteInfo.keys) SpriteInfo.getSpriteInfo(k).getTexture();
   }
 
   downloadUtility()
@@ -247,6 +249,123 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
     }
   }
 
+  repackTextures(database: any)
+  {
+    let uiSprites: BSpriteInfo[] = database.uiSprites;
+    let newSpriteInfos: BSpriteInfo[] = [];
+
+
+    let packSize = new Vector2(1024, 1024);
+    let repackIndex = 0;
+    let currentUv = Vector2.clone(Vector2.Zero);
+    let currentLineHeight = 0;
+    let baseString = 'repack_';
+    let currentTextureName = baseString + repackIndex;
+    let renderTextures: PIXI.RenderTexture[] = [];
+    for (let spriteInfo of uiSprites)
+    {
+      let newSpriteInfo = BSpriteInfo.clone(spriteInfo);
+
+      // If the sprite does not enter at all in our pack, log it and move on
+      if (newSpriteInfo.uvSize.x > packSize.x || newSpriteInfo.uvSize.y > packSize.y)
+      {
+        console.log(newSpriteInfo.name + ' does not fit');
+        console.log(newSpriteInfo);
+
+        continue;
+      }
+
+      
+      newSpriteInfos.push(newSpriteInfo);
+
+      let fitHeight = (currentUv.y + newSpriteInfo.uvSize.y) <= packSize.y;
+      let fitWidth = (currentUv.x + newSpriteInfo.uvSize.x) <= packSize.x;
+
+      // If there is no vertical space, we start a new texture
+      if (!fitHeight)
+      {
+        currentUv = Vector2.zero();
+        repackIndex++;
+        currentTextureName = baseString + repackIndex;
+      }
+
+      // If there is no horizontal space, we start a new line
+      if (!fitWidth)
+      {
+        // Add one pixel vertically to account for mipmapping
+        currentUv.x = 0;
+        currentUv.y += Math.ceil(currentLineHeight) + 1;
+        currentLineHeight = 0;
+
+        // And now we have to check for height again
+        fitHeight = (currentUv.y + newSpriteInfo.uvSize.y) <= packSize.y;
+        if (!fitHeight)
+        {
+          currentUv = Vector2.zero();
+          repackIndex++;
+          currentTextureName = 'repack_' + repackIndex;
+        }
+      }
+
+      // Create new renderTarget if currentUv = 0
+      // Save the previous renderTarget
+      if (currentUv.equals(Vector2.Zero))
+      {
+        let brt = new PIXI.BaseRenderTexture({width: packSize.x, height: packSize.y});
+        renderTextures.push(new PIXI.RenderTexture(brt));
+      }
+
+      // Change the textureName to the repacked texture
+      newSpriteInfo.textureName = currentTextureName;
+
+      // Change the uvMin in the newSpriteInfo
+      newSpriteInfo.uvMin = Vector2.clone(currentUv);
+
+      // Add the sprite width +1 to account for mipmaps
+      currentUv.x += Math.ceil(newSpriteInfo.uvSize.x) + 1;
+      
+      // Update the current line height, if it is taller than the other sprites in this line
+      if (newSpriteInfo.uvSize.y > currentLineHeight) currentLineHeight = newSpriteInfo.uvSize.y;
+
+      // Draw the sprite to the renderTarget
+      let sprite = PIXI.Sprite.from(SpriteInfo.getSpriteInfo(newSpriteInfo.name).getTexture());
+      sprite.x = newSpriteInfo.uvMin.x;
+      sprite.y = newSpriteInfo.uvMin.y;
+      this.drawAbstraction.pixiApp.renderer.render(sprite, renderTextures[repackIndex], false);
+    }
+    console.log(renderTextures);
+
+    database.uiSprites = newSpriteInfos;
+
+    ComponentCanvasComponent.zip = new JSZip();
+    ComponentCanvasComponent.nbBlob = 0;
+    ComponentCanvasComponent.downloadFile = 'repackedTextureAndDatabase.zip';
+    ComponentCanvasComponent.nbBlobMax = renderTextures.length;
+
+    for (let indexRt = 0; indexRt < renderTextures.length; indexRt++)
+    {
+      console.log(indexRt);
+      let rt = renderTextures[indexRt];
+
+      this.drawAbstraction.pixiApp.renderer.extract.canvas(rt).toBlob((b) => 
+      {
+        this.addBlob(b, baseString + indexRt + '.png');
+      }, 'image/png');
+    }
+
+    let data = JSON.stringify(database, null, 2)
+
+    let file = new Blob([data], { type : 'text/plain' });
+    let fileURL = window.URL.createObjectURL(file);
+    let a = document.createElement('a');
+    document.body.appendChild(a);
+    a.setAttribute('style', 'display: none');
+    a.href = fileURL;
+    a.download = 'repack.json';
+    a.click();
+    window.URL.revokeObjectURL(fileURL);
+    a.remove();
+  }
   
   downloadIcons()
   {

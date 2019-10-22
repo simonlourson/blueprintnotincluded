@@ -38,6 +38,7 @@ export class DrawPixi implements DrawAbstraction
     this.pixiApp = new PIXI.Application(options);
     this.graphics = new PIXI.Graphics();
     this.pixiApp.stage.addChild(this.graphics);
+    this.pixiApp.stage.sortableChildren = true;
     this.pixiApp.ticker.add(() => {this.drawAll();});
   }    
 

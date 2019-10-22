@@ -40,6 +40,8 @@ export class Vector2
       return returnValue;
     }
 
+    public static zero() { return Vector2.clone(Vector2.Zero); }
+
     public static Zero = new Vector2();
     public static One = new Vector2(1, 1);
 }

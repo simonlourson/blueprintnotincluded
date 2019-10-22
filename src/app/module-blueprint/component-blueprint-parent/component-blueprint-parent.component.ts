@@ -113,6 +113,7 @@ export class ComponentBlueprintParentComponent implements OnInit {
 
   }
 
+  database: any;
   fetchDatabase(): Promise<any>
   {
     let promise = new Promise((resolve, reject) => {
@@ -121,6 +122,7 @@ export class ComponentBlueprintParentComponent implements OnInit {
       .then(response => { return response.json(); })
       .then(json => {
 
+        this.database = json;
         let buildings: BBuilding[] = json.buildings;
         OniItem.load(buildings);
 
@@ -280,6 +282,11 @@ export class ComponentBlueprintParentComponent implements OnInit {
   downloadUtility()
   {
     this.canvas.downloadUtility();
+  }
+
+  repackTextures()
+  {
+    this.canvas.repackTextures(this.database);
   }
 
   oniItems: any[];
