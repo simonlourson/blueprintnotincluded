@@ -237,6 +237,11 @@ export class ComponentBlueprintParentComponent implements OnInit {
     this.menu.askChangeTool(toolRequest);
   }
 
+  destroyTemplateItem(templateItem: TemplateItem)
+  {
+    this.canvas.destroyTemplateItem(templateItem);
+  }
+
   //changeItem(item: TemplateItem)
   //{
   //  this.canvas.buildTool.changeItem(this.canvas.blueprint, item);

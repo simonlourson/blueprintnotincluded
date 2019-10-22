@@ -37,6 +37,12 @@ export class ComponentSideSelectionToolComponent implements OnInit, Tool {
     this.onAskChangeTool.emit(toolRequest);
   }
 
+  @Output() onDestroyTemplateItem = new EventEmitter<ToolRequest>();
+  destroyTemplateItem(templateItem: TemplateItem)
+  {
+
+  }
+
   // This is used a bunch of times by the tool interface to refresh the display
   public updateSelectionTool()
   {

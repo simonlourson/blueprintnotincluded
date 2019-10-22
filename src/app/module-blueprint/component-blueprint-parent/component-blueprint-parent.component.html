@@ -24,7 +24,8 @@
       <div class="p-col-fixed" style="width:300px">
         <app-component-side-panel 
           #sidePanel 
-          (onAskChangeTool)=askChangeTool($event)>
+          (onAskChangeTool)=askChangeTool($event)
+          (onDestroyTemplateItem)=destroyTemplateItem($event)>
         </app-component-side-panel>
       </div>
       <div class="p-col">

@@ -5,6 +5,9 @@
     <p-accordionTab *ngFor="let templateItem of templateItemsToShow" header="{{templateItem.id}}" [transitionOptions]="'0ms'">
       <app-component-tile-info 
         [templateItem]=templateItem
-        (onAskChangeTool)="askChangeTool($event)"></app-component-tile-info></p-accordionTab>
+        (onAskChangeTool)="askChangeTool($event)"
+        (onDestroyTemplateItem)="destroyTemplateItem($event)">
+      </app-component-tile-info>
+    </p-accordionTab>
   </p-accordion>
 </p-card>

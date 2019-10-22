@@ -17,6 +17,7 @@ export class ComponentTileInfoComponent implements OnInit, OnDestroy {
 
   @Input() templateItem: TemplateItem;
   @Output() onAskChangeTool = new EventEmitter<ToolRequest>();
+  @Output() onDestroyTemplateItem = new EventEmitter<TemplateItem>();
 
   get elements() { return ComposingElement.elements; }
   get showColor() { return this.templateItem instanceof TemplateItemWire }
@@ -61,7 +62,7 @@ export class ComponentTileInfoComponent implements OnInit, OnDestroy {
 
   buildDestroy()
   {
-    this.templateItem.destroy();
+    this.onDestroyTemplateItem.emit(this.templateItem);
   }
 
 }

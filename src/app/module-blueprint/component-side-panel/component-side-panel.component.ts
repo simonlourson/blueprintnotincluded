@@ -32,6 +32,7 @@ export class ComponentSidepanelComponent implements OnInit {
   buildTool: ComponentSideBuildToolComponent
 
   @Output() onAskChangeTool = new EventEmitter<ToolRequest>();
+  @Output() onDestroyTemplateItem = new EventEmitter<TemplateItem>();
 
   constructor() { 
     
@@ -68,6 +69,11 @@ export class ComponentSidepanelComponent implements OnInit {
   askChangeTool(toolRequest: ToolRequest)
   {
     this.onAskChangeTool.emit(toolRequest);
+  }
+
+  destroyTemplateItem(templateItem: TemplateItem)
+  {
+    this.onDestroyTemplateItem.emit(templateItem);
   }
 
   // TODO common to all tools
