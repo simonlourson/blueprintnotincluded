@@ -3873,7 +3873,7 @@ buildings:
   rottable: {}
   amounts: []
   other_values: []
-- id: LogicWire
+- id: LogicAWire
   location_x: 3
   location_y: 2
   element: Lead

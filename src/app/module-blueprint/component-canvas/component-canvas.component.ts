@@ -27,6 +27,7 @@ import { DrawPixi } from '../drawing/draw-pixi';
 import { ɵangular_packages_router_router_n } from '@angular/router';
 import * as JSZip from 'jszip';
 import { BSpriteInfo } from '../common/bexport/b-sprite-info';
+import { TemplateItem } from '../common/template/template-item';
 
 
 @Component({
@@ -175,6 +176,12 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
   {
     this.camera.overlay = newOverlay;
     this.prepareOverlayInfo();
+  }
+
+  destroyTemplateItem(templateItem: TemplateItem)
+  {
+    console.log(templateItem);
+    if (this.blueprint != null) this.blueprint.destroyTemplateItem(templateItem);
   }
 
   prepareOverlayInfo()

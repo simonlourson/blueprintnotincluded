@@ -33,11 +33,16 @@ export class DrawPart
   public getPreparedSprite(camera: Camera, drawPixi: DrawPixi, oniItem: OniItem): PIXI.Sprite
   {
     this.spriteModifier = SpriteModifier.getSpriteModifer(this.spriteModifierId);
-    this.spriteInfo = SpriteInfo.getSpriteInfo(this.spriteModifier.spriteInfoName);
+
+    if (this.spriteModifier != null)
+      this.spriteInfo = SpriteInfo.getSpriteInfo(this.spriteModifier.spriteInfoName);
 
     if (this.sprite == null)
     {
-      let texture = this.spriteInfo.getTexture();
+      let texture: PIXI.Texture;
+
+      if (this.spriteInfo != null)
+        texture = this.spriteInfo.getTexture();
 
       if (texture != null) 
       {

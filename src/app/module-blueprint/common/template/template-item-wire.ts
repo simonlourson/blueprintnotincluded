@@ -12,6 +12,7 @@ import { TemplateItemCloneable } from "./template-item-cloneable";
 import { DrawPixi } from '../../drawing/draw-pixi';
 import { DrawPart } from '../../drawing/draw-part';
 import { Overlay } from '../overlay-type';
+import { BniBuilding } from '../blueprint-import/bni-building';
 
 export class TemplateItemWire extends TemplateItem implements TemplateItemCloneable<TemplateItemWire>
 {
@@ -30,6 +31,13 @@ export class TemplateItemWire extends TemplateItem implements TemplateItemClonea
       super.importOniBuilding(building);
       
       this.connections = building.connections == null ? TemplateItemWire.defaultConnections : building.connections
+  }
+
+  public importBniBuilding(building: BniBuilding)
+  {
+      super.importBniBuilding(building);
+      
+      this.connections = building.flags == null ? TemplateItemWire.defaultConnections : building.flags
   }
 
   public importFromCloud(original: TemplateItem)

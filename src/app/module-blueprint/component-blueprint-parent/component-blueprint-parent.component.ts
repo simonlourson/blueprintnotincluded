@@ -31,6 +31,7 @@ import { BuildMenuCategory, BuildMenuItem } from '../common/bexport/b-build-orde
 import { BBuilding } from '../common/bexport/b-building';
 import { BSpriteInfo } from '../common/bexport/b-sprite-info';
 import { BSpriteModifier } from '../common/bexport/b-sprite-modifier';
+import { BniBlueprint } from '../common/blueprint-import/bni-blueprint';
 
 @Component({
   selector: 'app-component-blueprint-parent',
@@ -113,6 +114,16 @@ export class ComponentBlueprintParentComponent implements OnInit {
 
   }
 
+  toast(event: any)
+  {
+    this.messageService.add({severity:'error', summary:'Toast' , detail:event, sticky:true});
+  }
+
+  build(event: any)
+  {
+    this.messageService.add({severity:'error', summary:'Toast' , detail:event, sticky:true});
+  }
+
   database: any;
   fetchDatabase(): Promise<any>
   {
@@ -176,6 +187,18 @@ export class ComponentBlueprintParentComponent implements OnInit {
       let reader = new FileReader();
 
       reader.onloadend = () => { this.loadTemplate(reader.result as string); };
+      reader.readAsText(fileList[0]);
+
+    }
+  }
+
+  templateUploadJson(fileList: FileList)
+  {
+    if (fileList.length > 0)
+    {
+      let reader = new FileReader();
+
+      reader.onloadend = () => { this.loadTemplateJson(reader.result as string); };
       reader.readAsText(fileList[0]);
 
     }
@@ -557,10 +580,16 @@ export class ComponentBlueprintParentComponent implements OnInit {
     newBlueprint.importOniTemplate(templateYaml);
     
     this.loadTemplateIntoCanvas(newBlueprint);
+  }
 
+  loadTemplateJson(template: string)
+  {
+    let templateJson: BniBlueprint = JSON.parse(template);
 
-
+    let newBlueprint = new Template();
+    newBlueprint.importBniBlueprint(templateJson);
     
+    this.loadTemplateIntoCanvas(newBlueprint);
   }
 
 

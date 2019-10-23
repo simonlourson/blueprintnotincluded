@@ -5,45 +5,10 @@
 
 
 <div *ngIf="templateItem.id != 'Vacuum'">
-<table>
-    <tr *ngIf="!templateItem.oniItem.isElement">
-        <td><h4>Element</h4></td>
-        <td class="rightHandCells"><p-dropdown [options]=elements [(ngModel)]="templateItem.element" optionLabel="elementId" appendTo="body"></p-dropdown></td>
-    </tr>
-    <tr>
-        <td><h4>Temperature</h4></td>
-        <td class="rightHandCells">
-            <input type="number" pInputText [(ngModel)]="templateItem.temperature" />
-            <p-slider [(ngModel)]="templateItem.temperature" [min]="0" [max]="1000"></p-slider>
-        </td>
-    </tr>
-    <tr *ngIf="templateItem.oniItem.isElement">
-        <td><h4>Mass</h4></td>
-        <td class="rightHandCells">
-            <input type="number" pInputText [(ngModel)]="templateItem.mass" />
-            <p-slider [(ngModel)]="templateItem.mass" [min]="0" [max]="1000"></p-slider>
-        </td>
-    </tr>
-    <tr *ngIf="showColor">
-        <td><h4>Color</h4></td>
-        <td class="rightHandCells">
-            <p-colorPicker [(ngModel)]="templateItem.backColor" appendTo="body"></p-colorPicker>
-        </td>
-    </tr>
-    <tr *ngIf="showOrientation">
-      <td><h4>Orientation</h4></td>
-      <td class="rightHandCells"><p-dropdown [options]=authorizedOrientations [style]="{'width':'100%'}" (onChange)=changeOrientation($event) [(ngModel)]="this.templateItem.orientation" appendTo="body"></p-dropdown></td>
-    </tr>
-    
-
-</table>
-
-
-
 <button pButton type="button" class="ui-button" icon="pi pi-clone" (click)="buildCopy($event)" pTooltip="Clone this building"></button>
 <button pButton type="button" class="ui-button buttonspace" icon="pi pi-trash" (click)="buildDestroy($event)" pTooltip="Destroy this building"></button>
 <button pButton type="button" class="ui-button buttonspace" icon="pi pi-palette" (click)="pcp.onInputClick()" pTooltip="Change color"></button>
-<p-colorPicker #pcp class="invisible" [(ngModel)]="templateItem.backColor" appendTo="body"></p-colorPicker>
+<p-colorPicker #pcp appendTo="body"></p-colorPicker>
 </div>
 
 <div *ngIf="templateItem.id == 'Vacuum'">Your ad here</div>
@@ -52,20 +17,6 @@
 
 <span>{{templateItem.getDebug1()}}</span><br>
 <span>{{templateItem.getDebug2()}}</span><br>
-<!--
-
-
-<div>{{templateItem.oniItem.orientations.length}}</div>
-
-    
-    <br>
-    <span>{{templateItem.getDebug2()}}</span>
-    <br>
-    <span>{{templateItem.getDebug3()}}</span>
-    <br>
-    <span>{{templateItem.getDebug4()}}</span>
-    <br>
-    <span>{{templateItem.getDebug5()}}</span>-->
 
 
 

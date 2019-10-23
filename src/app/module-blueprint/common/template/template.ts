@@ -9,6 +9,7 @@ import { TemplateItemWire } from "./template-item-wire";
 import { TemplateItemTile } from "./template-item-tile";
 import { TemplateItemElement } from './template-item-element';
 import { ComposingElement } from '../composing-element';
+import { BniBlueprint } from '../blueprint-import/bni-blueprint';
 
 export class Template
 {
@@ -65,6 +66,22 @@ export class Template
 
     // Keep a copy of the yaml object in memory
     this.innerYaml = oniTemplate;
+  }
+
+  public importBniBlueprint(bniBlueprint: BniBlueprint)
+  {
+    this.name = bniBlueprint.friendlyname;
+
+    this.templateItems = [];
+
+    for (let building of bniBlueprint.buildings)
+    {
+      let newTemplateItem = Template.createInstance(building.buildingdef);
+
+      newTemplateItem.importBniBuilding(building);
+      
+      this.addTemplateItem(newTemplateItem);
+    }
   }
 
   public importFromCloud(original: Template)
@@ -145,6 +162,22 @@ export class Template
 
     return returnValue;
   }
+
+  public destroyTemplateItemsAt(position: Vector2): TemplateItem[]
+  {
+    if (this.templateTiles == null) this.templateTiles = [];
+
+    let arrayIndex = (position.x + 500) + 1001 * (position.y + 500);
+
+    let returnValue = this.templateTiles[arrayIndex];
+    if (returnValue == null)
+    {
+      returnValue = [];
+      this.templateTiles[arrayIndex] = returnValue;
+    }
+
+    return returnValue;
+  }
     
   public cloneForExport(): Template
   {
@@ -159,6 +192,16 @@ export class Template
     returnValue.innerYaml = undefined;
 
     return returnValue;
+  }
+
+  public destroyTemplateItem(templateItem: TemplateItem)
+  {
+    const index = this.templateItems.indexOf(templateItem, 0);
+    if (index > -1)
+    {
+      this.templateItems[index].destroy();
+      this.templateItems.splice(index, 1);
+    }
   }
 
   public destroy()

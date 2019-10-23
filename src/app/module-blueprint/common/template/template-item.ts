@@ -1,5 +1,5 @@
 import { Vector2 } from "../vector2";
-import { OniItem, AuthorizedOrientations } from "../oni-item";
+import { OniItem, AuthorizedOrientations, Orientation } from "../oni-item";
 import { OniBuilding } from "../../oni-import/oni-building";
 import { ImageSource } from "../../drawing/image-source";
 import { SpriteInfo } from "../../drawing/sprite-info";
@@ -15,6 +15,7 @@ import { OniCell } from "../../oni-import/oni-cell";
 import { Container } from 'pixi.js';
 import { DrawPixi } from '../../drawing/draw-pixi';
 import { DrawPart } from '../../drawing/draw-part';
+import { BniBuilding } from '../blueprint-import/bni-building';
 declare var PIXI: any;
 //import { Texture, BaseTexture, Rectangle } from "pixi.js";
 
@@ -142,6 +143,36 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
       this.prepareBoundingBox();
 
       this.innerYaml = building;
+  }
+
+  public importBniBuilding(building: BniBuilding)
+  {
+    this.position = new Vector2(
+      building.offset.x == null ? 0 : building.offset.x,
+      building.offset.y == null ? 0 : building.offset.y
+    );
+
+    switch (building.orientation)
+    {
+      case Orientation.R90:
+        this.changeOrientation(AuthorizedOrientations.R90);
+        break;
+      case Orientation.R180:
+        this.changeOrientation(AuthorizedOrientations.R180);
+        break;
+      case Orientation.R270:
+        this.changeOrientation(AuthorizedOrientations.R270);
+        break;
+      case Orientation.FlipH:
+        this.changeOrientation(AuthorizedOrientations.FlipH);
+        break;
+      case Orientation.FlipV:
+        this.changeOrientation(AuthorizedOrientations.FlipV);
+        break;
+    }
+
+    this.cleanUp();
+    this.prepareBoundingBox();
   }
 
   public importOniCell(cell: OniCell)

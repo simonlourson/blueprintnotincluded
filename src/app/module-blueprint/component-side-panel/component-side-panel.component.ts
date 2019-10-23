@@ -43,7 +43,7 @@ export class ComponentSidepanelComponent implements OnInit {
 
   }
 
-  private currentTool: ToolType
+  public currentTool: ToolType
   public changeTool(newTool: ToolRequest) : Tool
   {
     this.currentTool = newTool.toolType;
