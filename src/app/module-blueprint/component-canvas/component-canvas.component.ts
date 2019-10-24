@@ -28,6 +28,7 @@ import { ɵangular_packages_router_router_n } from '@angular/router';
 import * as JSZip from 'jszip';
 import { BSpriteInfo } from '../common/bexport/b-sprite-info';
 import { TemplateItem } from '../common/template/template-item';
+import { TechnicalRepack } from '../common/technical-repack';
 
 
 @Component({
@@ -55,11 +56,13 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
   currentTool: Tool;
 
   drawAbstraction: DrawPixi;
+  technicalRepack: TechnicalRepack;
 
   constructor(private ngZone: NgZone, private http: HttpClient) {
     
     this.camera = new Camera();
     this.drawAbstraction = new DrawPixi();
+    this.technicalRepack = new TechnicalRepack();
   }
 
   private running: boolean;
@@ -117,7 +120,7 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
   {
     if (event.button == 0) 
     {
-      this.previousTileUnderMouseDrag = null;
+      this.previousTileFloat = null;
       this.currentTool.leftMouseUp(this.blueprint, this.getCurrentTile(event));
     }
   }
@@ -133,10 +136,10 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
     if (event.button == 2) this.currentTool.rightClick(this.blueprint, this.getCurrentTile(event));
   }
 
-  previousTileUnderMouseDrag: Vector2;
+  previousTileFloat: Vector2;
   mouseDrag(event: any)
   {
-    let currentTileUnderMouseDrag = this.getCurrentTile(event);
+    let currentTileFloat = this.camera.getTileCoords(this.getCursorPosition(event));
 
     if (event.dragButton[2])
     {
@@ -146,12 +149,25 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
     }
     else if (event.dragButton[0])
     {
-      // TODO capture mouse up events to stop the drag
-      if (this.previousTileUnderMouseDrag != null && !this.previousTileUnderMouseDrag.equals(currentTileUnderMouseDrag))
-        this.currentTool.changeTileDrag(this.blueprint, this.previousTileUnderMouseDrag, currentTileUnderMouseDrag);
+      let previousTile = new Vector2(Math.floor(this.previousTileFloat.x), Math.ceil(this.previousTileFloat.y));
+      let currentTile = new Vector2(Math.floor(currentTileFloat.x), Math.ceil(currentTileFloat.y));
+
+      if (this.previousTileFloat != null && !previousTile.equals(currentTile))
+      {
+        console.log("********************************");
+        console.log("Start drag from " + JSON.stringify(this.previousTileFloat) + ' to ' + JSON.stringify(currentTileFloat));
+
+        let nextBoundary: Vector2 = new Vector2
+      }
+        //this.currentTool.changeTileDrag(this.blueprint, this.previousTileUnderMouseDrag, currentTileUnderMouseDrag);
     }
 
-    this.previousTileUnderMouseDrag = currentTileUnderMouseDrag;
+    this.previousTileFloat = Vector2.clone(currentTileFloat);
+  }
+
+  mouseStopDrag(event: any)
+  {
+    this.previousTileFloat = null;
   }
 
   previousTileUnderMouse: Vector2;

@@ -7,6 +7,7 @@ export class DragAndDropDirective {
   @Output() myMouseUp = new EventEmitter();
   @Output() myMouseDown = new EventEmitter();
   @Output() myMouseDrag = new EventEmitter();
+  @Output() myMouseStopDrag = new EventEmitter();
   @Output() myMouseMove = new EventEmitter();
   @Output() myMouseClick = new EventEmitter();
 
@@ -53,7 +54,7 @@ export class DragAndDropDirective {
 
     this.myMouseUp.emit(event);
 
-    this.stopDrag(dragButton);
+    this.stopDrag(event, dragButton);
   }
 
   @HostListener('contextmenu', ['$event']) onContextMenu(event: any) {
@@ -61,7 +62,7 @@ export class DragAndDropDirective {
   }
 
   @HostListener('mouseout', ['$event']) onMouseLeave(event: any) {
-    for (let i = 0; i <= 2; i++) this.stopDrag(i);
+    for (let i = 0; i <= 2; i++) this.stopDrag(event, i);
   }
 
   @HostListener('mousemove', ['$event']) onMouseMove(event: any) {
@@ -89,11 +90,12 @@ export class DragAndDropDirective {
     }
   }
 
-  stopDrag(i: number)
+  stopDrag(event: any, i: number)
   {
     this.isMouseDown[i] = false;
     this.startDragPosition[i] = null;
     this.lastDragPosition[i] = null;
-    
+
+    this.myMouseStopDrag.emit(event);
   }
 }

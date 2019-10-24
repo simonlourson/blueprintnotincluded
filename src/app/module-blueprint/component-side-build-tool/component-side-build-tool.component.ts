@@ -210,6 +210,36 @@ export class ComponentSideBuildToolComponent implements OnInit, Tool {
 
   changeTileDrag(blueprint: Template, previousTileDrag: Vector2, currentTileDrag: Vector2)
   {
+    console.log("********************************");
+    console.log("Start drag from " + JSON.stringify(previousTileDrag) + ' to ' + JSON.stringify(currentTileDrag));
+    let diffDrag = new Vector2(currentTileDrag.x - previousTileDrag.x, currentTileDrag.y - previousTileDrag.y);
+    let diffDragLength = Math.sqrt(diffDrag.x * diffDrag.x + diffDrag.y * diffDrag.y);
+    let diffDragUnit = new Vector2(diffDrag.x / diffDragLength, diffDrag.y / diffDragLength);
+
+    let tileDragFloat = Vector2.clone(previousTileDrag);
+    let dragOld: Vector2;
+    let dragNew: Vector2;
+    do
+    {
+      let tileDragFloatOld = Vector2.clone(tileDragFloat);
+      dragOld = new Vector2(Math.floor(tileDragFloat.x), Math.floor(tileDragFloat.y))
+      tileDragFloat.x += diffDragUnit.x;
+      tileDragFloat.y += diffDragUnit.y;
+      dragNew = new Vector2(Math.floor(tileDragFloat.x), Math.floor(tileDragFloat.y))
+
+      this.unitChangeTileDrag(blueprint, dragOld, dragNew);
+      console.log(JSON.stringify(tileDragFloatOld) + ' to ' + JSON.stringify(tileDragFloat))
+    }
+    while (!dragNew.equals(currentTileDrag))
+
+    console.log("Stop drag");
+    console.log("********************************");
+
+    //this.unitChangeTileDrag(blueprint, previousTileDrag, currentTileDrag);
+  }
+
+  unitChangeTileDrag(blueprint: Template, previousTileDrag: Vector2, currentTileDrag: Vector2)
+  {
     this.templateItemToBuild.position = currentTileDrag;
     this.build(blueprint);
 
