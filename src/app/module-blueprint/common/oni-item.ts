@@ -29,7 +29,7 @@ export class OniItem
   utilityConnections: UtilityConnection[];
   defaultColor: string;
   backColor: number;
-  frontColor: number = 0xFFFFFF; // TODO initialize properly
+  frontColor: number;
   orientations: AuthorizedOrientations[];
 
   // Overlay
@@ -53,7 +53,8 @@ export class OniItem
     this.iconUrl = DrawHelpers.createUrl(original.kanimPrefix + 'ui_0', true);
     this.zIndex = original.sceneLayer;
     this.overlay = this.getRealOverlay(original.viewMode);
-    this.backColor = original.color;
+    this.backColor = original.backColor;
+    this.frontColor = original.frontColor;
 
     let imageId: string = original.textureName;
 
@@ -124,7 +125,8 @@ export class OniItem
         if (this.utilityConnections == null) this.utilityConnections = [];
         if (this.zIndex == null) this.zIndex = ZIndex.Building;
         if (this.orientations == null) this.orientations = [AuthorizedOrientations.None];
-        if (this.backColor == null) this.backColor = 0xFFFFFF
+        if (this.backColor == null) this.backColor = 0x000000;
+        if (this.frontColor == null) this.frontColor = 0xFFFFFF;
         
         // TODO not every item needs a color
         if (this.defaultColor == null) 

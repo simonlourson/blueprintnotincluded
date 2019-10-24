@@ -122,11 +122,12 @@ export class TemplateItemWire extends TemplateItem implements TemplateItemClonea
   public prepareOverlayInfo(currentOverlay: Overlay)
   {
     super.prepareOverlayInfo(currentOverlay);
-    this.drawPartSolid.tint = this.oniItem.backColor;
+    
 
     if (this.correctOverlay)
     {
-      this.drawPart.tint = 0xAAAAAA;
+      this.drawPart.tint = this.oniItem.frontColor;
+      this.drawPartSolid.tint = this.oniItem.backColor;
       
       this.drawPartSolid.alpha = 1;
     }

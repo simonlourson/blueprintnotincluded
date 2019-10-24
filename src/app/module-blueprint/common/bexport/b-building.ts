@@ -13,7 +13,8 @@ export class BBuilding
   sizeInCells: Vector2;
   sceneLayer: ZIndex;
   viewMode: Overlay;
-  color: number;
+  backColor: number;
+  frontColor: number;
 
   kanimPrefix: string;
   textureName: string;

@@ -129,7 +129,7 @@ export class ComponentBlueprintParentComponent implements OnInit {
   {
     let promise = new Promise((resolve, reject) => {
 
-      fetch("/assets/database/exportC.json")
+      fetch("/assets/database/database.json")
       .then(response => { return response.json(); })
       .then(json => {
 

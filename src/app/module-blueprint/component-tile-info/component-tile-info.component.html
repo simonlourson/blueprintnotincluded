@@ -7,16 +7,19 @@
 <div *ngIf="templateItem.id != 'Vacuum'">
 <button pButton type="button" class="ui-button" icon="pi pi-clone" (click)="buildCopy($event)" pTooltip="Clone this building"></button>
 <button pButton type="button" class="ui-button buttonspace" icon="pi pi-trash" (click)="buildDestroy($event)" pTooltip="Destroy this building"></button>
+<!--
 <button pButton type="button" class="ui-button buttonspace" icon="pi pi-palette" (click)="pcp.onInputClick()" pTooltip="Change color"></button>
 <p-colorPicker #pcp appendTo="body"></p-colorPicker>
+-->
 </div>
 
 <div *ngIf="templateItem.id == 'Vacuum'">Your ad here</div>
 
 
-
+<!--
 <span>{{templateItem.getDebug1()}}</span><br>
 <span>{{templateItem.getDebug2()}}</span><br>
+-->
 
 
 

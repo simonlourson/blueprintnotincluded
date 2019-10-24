@@ -88,7 +88,8 @@ export class ComponentMenuComponent implements OnInit {
       {
         label: 'Overlay',
         items: this.overlayMenuItems
-      },
+      }
+      /*,
       {
         label: 'Technical',
         items: [
@@ -97,7 +98,7 @@ export class ComponentMenuComponent implements OnInit {
           {label: 'Download utility',     icon:'pi pi-download', command: (event) => { this.downloadUtility(); } },
           {label: 'Repack textures',      icon:'pi pi-download', command: (event) => { this.repackTextures(); } }
         ]
-      }
+      }*/
     ];
    
     
@@ -162,7 +163,6 @@ export class ComponentMenuComponent implements OnInit {
   {
     let fileElem = document.getElementById("fileChooserJson") as HTMLInputElement;
     this.onTemplateUploadJson.emit(fileElem.files);
-    console.log(fileElem.files);
   }
 
   downloadIcons()
