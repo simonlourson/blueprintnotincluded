@@ -120,7 +120,7 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
   {
     if (event.button == 0) 
     {
-      this.previousTileFloat = null;
+      this.storePreviousTileFloat = null;
       this.currentTool.leftMouseUp(this.blueprint, this.getCurrentTile(event));
     }
   }
@@ -136,9 +136,10 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
     if (event.button == 2) this.currentTool.rightClick(this.blueprint, this.getCurrentTile(event));
   }
 
-  previousTileFloat: Vector2;
+  storePreviousTileFloat: Vector2;
   mouseDrag(event: any)
   {
+    let previousTileFloat = Vector2.clone(this.storePreviousTileFloat);
     let currentTileFloat = this.camera.getTileCoords(this.getCursorPosition(event));
 
     if (event.dragButton[2])
@@ -149,25 +150,44 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
     }
     else if (event.dragButton[0])
     {
-      let previousTile = new Vector2(Math.floor(this.previousTileFloat.x), Math.ceil(this.previousTileFloat.y));
+      let previousTile = previousTileFloat == null ? null : new Vector2(Math.floor(previousTileFloat.x), Math.ceil(previousTileFloat.y));
       let currentTile = new Vector2(Math.floor(currentTileFloat.x), Math.ceil(currentTileFloat.y));
 
-      if (this.previousTileFloat != null && !previousTile.equals(currentTile))
+      if (previousTileFloat != null && !previousTile.equals(currentTile))
       {
         console.log("********************************");
-        console.log("Start drag from " + JSON.stringify(this.previousTileFloat) + ' to ' + JSON.stringify(currentTileFloat));
+        console.log("Start drag from " + JSON.stringify(previousTileFloat) + ' to ' + JSON.stringify(currentTileFloat));
 
-        let nextBoundary: Vector2 = new Vector2
+        do
+        {
+          
+          let distanceToCurrent: Vector2 = new Vector2(currentTileFloat.x - previousTileFloat.x, currentTileFloat.y - previousTileFloat.y);
+          
+          
+          let nextGrid: Vector2;
+          nextGrid.x = currentTileFloat.x > previousTileFloat.x ? previousTile.x + 1 : previousTile.x - 1;
+          nextGrid.y = currentTileFloat.y > previousTileFloat.y ? previousTile.y + 1 : previousTile.y - 1;
+
+          let distanceToNextGrid = new Vector2(nextGrid.x - previousTileFloat.x, nextGrid.y - previousTileFloat.y);
+
+          if (distanceToCurrent.x < distanceToNextGrid.x)
+          {
+            previousTileFloat
+          }
+
+          nextGrid.x = previousTileFloat.x == previousTile.x ? previousTile.x
+        }
+        while (!currentTileFloat.equals(previousTileFloat))
       }
         //this.currentTool.changeTileDrag(this.blueprint, this.previousTileUnderMouseDrag, currentTileUnderMouseDrag);
     }
 
-    this.previousTileFloat = Vector2.clone(currentTileFloat);
+    this.storePreviousTileFloat = Vector2.clone(currentTileFloat);
   }
 
   mouseStopDrag(event: any)
   {
-    this.previousTileFloat = null;
+    this.storePreviousTileFloat = null;
   }
 
   previousTileUnderMouse: Vector2;
