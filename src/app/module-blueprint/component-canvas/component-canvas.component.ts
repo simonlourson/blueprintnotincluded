@@ -175,7 +175,7 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
             previousTileFloat
           }
 
-          nextGrid.x = previousTileFloat.x == previousTile.x ? previousTile.x
+          //nextGrid.x = previousTileFloat.x == previousTile.x ? previousTile.x
         }
         while (!currentTileFloat.equals(previousTileFloat))
       }

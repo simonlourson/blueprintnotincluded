@@ -23,6 +23,7 @@ export class ComponentMenuComponent implements OnInit {
   @Output() onFetchIcons = new EventEmitter();
   @Output() onDownloadUtility = new EventEmitter();
   @Output() onRepackTextures = new EventEmitter();
+  @Output() onLoginDialog = new EventEmitter();
   @Output() onDownloadDistinctIdAsJson = new EventEmitter();
   @Output() onMisc = new EventEmitter();
   @Output() onSaveToCloud = new EventEmitter();
@@ -183,6 +184,11 @@ export class ComponentMenuComponent implements OnInit {
   repackTextures()
   {
     this.onRepackTextures.emit();
+  }
+
+  login(event: any)
+  {
+    this.onLoginDialog.emit();
   }
 
 }

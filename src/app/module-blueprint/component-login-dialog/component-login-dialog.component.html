@@ -1,0 +1,40 @@
+<p-dialog #buildingsDialog 
+header='Login' 
+[(visible)]="visible"
+[modal]="true" 
+[dismissableMask]="true"
+[closable]="true" 
+[focusOnShow]="false" 
+[maximizable]="false" 
+[draggable]="false" 
+[resizable]="false" 
+>
+
+<br>
+  <span class="ui-float-label">
+    <input id="float-input" type="text" size="30" [(ngModel)]="loginInfo.username" pInputText> 
+    <label for="float-input">Username</label>
+  </span>
+
+  <br>
+  <span class="ui-float-label">
+    <input pPassword type="password" size="30" [(ngModel)]="loginInfo.password" />
+    <label for="float-input">Password</label>
+  </span>
+
+  <br>
+  <a href="/#">Forgotten password</a>
+  <br>
+  <a href="/#">First registration</a>
+
+  
+
+  <p-footer>
+    <!--
+    <button type="button" [disabled]="blueprintNameModel.invalid || usernameModel.invalid" pButton icon="pi pi-check" (click)="save($event)" label="Save"></button>
+    -->
+    
+    <button type="button" pButton (click)="login()" label="Login"></button>
+  </p-footer>
+
+</p-dialog>

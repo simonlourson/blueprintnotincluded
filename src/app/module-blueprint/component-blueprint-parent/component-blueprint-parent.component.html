@@ -17,7 +17,8 @@
       (onSaveToCloud)=saveToCloud()
       (onChangeOverlay)=changeOverlay($event)
       (onChangeTool)=changeTool($event)
-      (onBuild)=build($event)>
+      (onBuild)=build($event)
+      (onLoginDialog)=openLoginDialog()>
     </app-component-menu>
   </div>
   <div class="p-col-12">
@@ -42,3 +43,7 @@
 
 <app-component-element-key-panel #elementKeyPanel ></app-component-element-key-panel>
 <app-component-save-dialog #saveDialog (onSaveToCloud)=sendSaveToCloud($event)></app-component-save-dialog>
+<app-component-login-dialog 
+  #loginDialog
+  (onLogin)=login($event)>
+</app-component-login-dialog>

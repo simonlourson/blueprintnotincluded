@@ -2,8 +2,9 @@
 <!--<p-menubar [model]="menuItems" [baseZIndex]="2" [autoZIndex]="false" >
 <button type="button" pButton icon="pi pi-bars" label="Menu" (click)="menu.toggle($event)"></button>-->
 <p-menubar 
-    #menu 
-    [model]="menuItems">
+  #menu 
+  [model]="menuItems">
+  <button pButton label="Login" (click)="login($event)"></button>
 </p-menubar>
 <input type="file" id="fileChooser" accept=".yaml" style="display: none" (change)="templateUpload($event)">
 <input type="file" id="fileChooserJson" accept=".json" style="display: none" (change)="templateUploadJson($event)">

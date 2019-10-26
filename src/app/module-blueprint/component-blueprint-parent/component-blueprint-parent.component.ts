@@ -32,6 +32,8 @@ import { BBuilding } from '../common/bexport/b-building';
 import { BSpriteInfo } from '../common/bexport/b-sprite-info';
 import { BSpriteModifier } from '../common/bexport/b-sprite-modifier';
 import { BniBlueprint } from '../common/blueprint-import/bni-blueprint';
+import { ComponentLoginDialogComponent } from '../component-login-dialog/component-login-dialog.component';
+import { LoginInfo } from '../common/api/login-info';
 
 @Component({
   selector: 'app-component-blueprint-parent',
@@ -52,6 +54,9 @@ export class ComponentBlueprintParentComponent implements OnInit {
   
   @ViewChild('saveDialog', {static: true})
   saveDialog: ComponentSaveDialogComponent
+
+  @ViewChild('loginDialog', {static: true})
+  loginDialog: ComponentLoginDialogComponent;
   
   @ViewChild('menu', {static: true})
   menu: ComponentMenuComponent
@@ -315,6 +320,17 @@ export class ComponentBlueprintParentComponent implements OnInit {
   repackTextures()
   {
     this.canvas.repackTextures(this.database);
+  }
+
+  openLoginDialog()
+  {
+    this.loginDialog.showDialog();
+  }
+
+  login(loginInfo: LoginInfo)
+  {
+    console.log(loginInfo);
+    this.http.post('/api/login', loginInfo).subscribe();
   }
 
   oniItems: any[];

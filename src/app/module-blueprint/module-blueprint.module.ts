@@ -37,6 +37,7 @@ import { ComponentSideBuildToolComponent } from './component-side-build-tool/com
 import { ComponentSideSelectionToolComponent } from './component-side-selection-tool/component-side-selection-tool.component';
 import { KeyboardDirective } from './directives/keyboard.directive';
 import { ComponentElementKeyPanelComponent } from './component-element-key-panel/component-element-key-panel.component';
+import { ComponentLoginDialogComponent } from './component-login-dialog/component-login-dialog.component';
 
 const routes: Routes = [
   { path: '', component: ComponentBlueprintParentComponent },
@@ -52,7 +53,7 @@ const routes: Routes = [
     BrowserAnimationsModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [StringSanitationDirective, ComponentCanvasComponent, MouseWheelDirective, DragAndDropDirective, KeyboardDirective, ComponentMenuComponent, ComponentSidepanelComponent, ComponentBlueprintParentComponent, ComponentTileInfoComponent, ComponentSaveDialogComponent, ComponentSideBuildToolComponent, ComponentSideSelectionToolComponent, ComponentElementKeyPanelComponent],
+  declarations: [StringSanitationDirective, ComponentCanvasComponent, MouseWheelDirective, DragAndDropDirective, KeyboardDirective, ComponentMenuComponent, ComponentSidepanelComponent, ComponentBlueprintParentComponent, ComponentTileInfoComponent, ComponentSaveDialogComponent, ComponentSideBuildToolComponent, ComponentSideSelectionToolComponent, ComponentElementKeyPanelComponent, ComponentLoginDialogComponent],
   exports: [ComponentBlueprintParentComponent]
 })
 export class ModuleBlueprintModule { }

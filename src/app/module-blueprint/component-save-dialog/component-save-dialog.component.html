@@ -36,9 +36,9 @@ header='Save blueprint to the cloud'
     </tr>
   </table>
 
-<p-footer>
-  <button type="button" [disabled]="blueprintNameModel.invalid || usernameModel.invalid" pButton icon="pi pi-check" (click)="save($event)" label="Save"></button>
-  <button type="button" pButton icon="pi pi-times" (click)="cancel($event)" label="Cancel" class="ui-button-secondary"></button>
-</p-footer>
+  <p-footer>
+    <button type="button" [disabled]="blueprintNameModel.invalid || usernameModel.invalid" pButton icon="pi pi-check" (click)="save($event)" label="Save"></button>
+    <button type="button" pButton icon="pi pi-times" (click)="cancel($event)" label="Cancel" class="ui-button-secondary"></button>
+  </p-footer>
 
 </p-dialog>
