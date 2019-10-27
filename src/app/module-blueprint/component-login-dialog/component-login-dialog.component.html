@@ -1,4 +1,4 @@
-<p-dialog #buildingsDialog 
+<p-dialog #loginDialog 
 header='Login' 
 [(visible)]="visible"
 [modal]="true" 
@@ -7,10 +7,16 @@ header='Login'
 [focusOnShow]="false" 
 [maximizable]="false" 
 [draggable]="false" 
-[resizable]="false" 
+[resizable]="true" 
 >
 
-<br>
+  <br *ngIf="registration">
+  <span *ngIf="registration" class="ui-float-label">
+    <input id="float-input" type="text" size="30" [(ngModel)]="loginInfo.email" pInputText> 
+    <label for="float-input">E-Mail</label>
+  </span>
+
+  <br>
   <span class="ui-float-label">
     <input id="float-input" type="text" size="30" [(ngModel)]="loginInfo.username" pInputText> 
     <label for="float-input">Username</label>
@@ -18,14 +24,20 @@ header='Login'
 
   <br>
   <span class="ui-float-label">
-    <input pPassword type="password" size="30" [(ngModel)]="loginInfo.password" />
+    <input pPassword type="password" size="30" [(ngModel)]="loginInfo.password" [feedback]="false"/>
     <label for="float-input">Password</label>
   </span>
 
-  <br>
-  <a href="/#">Forgotten password</a>
-  <br>
-  <a href="/#">First registration</a>
+  <br *ngIf="registration">
+  <span *ngIf="registration" class="ui-float-label">
+    <input pPassword type="password" size="30" [(ngModel)]="loginInfo.password" [feedback]="false" />
+    <label for="float-input">Confirm Password</label>
+  </span>
+
+  <br *ngIf="!registration">
+  <a *ngIf="!registration">Forgotten password</a>
+  <br *ngIf="!registration">
+  <a *ngIf="!registration" [routerLink]="" (click)="transformRegister()">First registration</a>
 
   
 
@@ -34,7 +46,7 @@ header='Login'
     <button type="button" [disabled]="blueprintNameModel.invalid || usernameModel.invalid" pButton icon="pi pi-check" (click)="save($event)" label="Save"></button>
     -->
     
-    <button type="button" pButton (click)="login()" label="Login"></button>
+    <button type="button" pButton (click)="login()" label="{{registration?'Register':'Login'}}"></button>
   </p-footer>
 
 </p-dialog>

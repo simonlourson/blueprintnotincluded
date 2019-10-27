@@ -1,5 +1,6 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ViewChild } from '@angular/core';
 import { LoginInfo } from '../common/api/login-info';
+import { Dialog } from 'primeng/dialog';
 
 @Component({
   selector: 'app-component-login-dialog',
@@ -9,12 +10,16 @@ import { LoginInfo } from '../common/api/login-info';
 export class ComponentLoginDialogComponent implements OnInit {
 
   visible: boolean = false;
-
+  
+  registration: boolean
   loginInfo: LoginInfo;
+
+  @ViewChild('loginDialog', {static: true}) loginDialog: Dialog
 
   @Output() onLogin = new EventEmitter<LoginInfo>();
 
   constructor() { 
+    this.registration = false;
     this.loginInfo = new LoginInfo();
   }
 
@@ -29,6 +34,8 @@ export class ComponentLoginDialogComponent implements OnInit {
   showDialog()
   {
     this.visible = true;
+    this.registration = false;
+    this.recenter();
   }
 
   hideDialog()
@@ -39,6 +46,18 @@ export class ComponentLoginDialogComponent implements OnInit {
   login()
   {
     this.onLogin.emit(this.loginInfo);
+  }
+
+  transformRegister()
+  {
+    this.registration = true;
+
+    this.recenter();
+  }
+
+  recenter()
+  {
+    setTimeout(() => {this.loginDialog.positionOverlay();}, 0)
   }
 
 }

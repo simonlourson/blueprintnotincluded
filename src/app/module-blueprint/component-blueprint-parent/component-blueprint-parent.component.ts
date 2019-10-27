@@ -330,7 +330,7 @@ export class ComponentBlueprintParentComponent implements OnInit {
   login(loginInfo: LoginInfo)
   {
     console.log(loginInfo);
-    this.http.post('/api/login', loginInfo).subscribe();
+    this.http.post('/api/login', loginInfo).toPromise().then(() => {console.log('return ok')});
   }
 
   oniItems: any[];
