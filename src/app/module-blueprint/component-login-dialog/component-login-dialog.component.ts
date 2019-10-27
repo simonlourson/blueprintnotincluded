@@ -11,15 +11,14 @@ export class ComponentLoginDialogComponent implements OnInit {
 
   visible: boolean = false;
   
-  registration: boolean
   loginInfo: LoginInfo;
+  get registration(): boolean { return this.loginInfo.registration }
 
   @ViewChild('loginDialog', {static: true}) loginDialog: Dialog
 
   @Output() onLogin = new EventEmitter<LoginInfo>();
 
   constructor() { 
-    this.registration = false;
     this.loginInfo = new LoginInfo();
   }
 
@@ -33,8 +32,8 @@ export class ComponentLoginDialogComponent implements OnInit {
 
   showDialog()
   {
+    this.loginInfo = new LoginInfo();
     this.visible = true;
-    this.registration = false;
     this.recenter();
   }
 
@@ -50,7 +49,7 @@ export class ComponentLoginDialogComponent implements OnInit {
 
   transformRegister()
   {
-    this.registration = true;
+    this.loginInfo.registration = true;
 
     this.recenter();
   }
