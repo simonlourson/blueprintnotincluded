@@ -2,7 +2,7 @@
 import { Component, OnInit, OnDestroy, ViewChild, ElementRef, NgZone, Output, EventEmitter, HostListener } from '@angular/core';
 //import { Http, Response } from "@angular/http"
 import { HttpClientModule, HttpClient } from '@angular/common/http';
-import { ComponentSidepanelComponent } from 'src/app/module-blueprint/component-side-panel/component-side-panel.component';
+import { ComponentSidepanelComponent } from 'src/app/module-blueprint/components/component-side-panel/component-side-panel.component';
 
 // Engine imports
 import { Camera } from 'src/app/module-blueprint/common/camera';
@@ -16,19 +16,19 @@ import { SpriteModifier } from 'src/app/module-blueprint/drawing/sprite-modifier
 
 
 // PrimeNg imports
-import { TileInfo } from '../common/tile-info';
-import { Template } from '../common/template/template';
-import { ZIndex, Overlay } from '../common/overlay-type';
-import { Tool, ToolType } from '../common/tools/tool';
-import { ToolRequest } from '../common/tool-request';
+import { TileInfo } from '../../common/tile-info';
+import { Template } from '../../common/template/template';
+import { ZIndex, Overlay } from '../../common/overlay-type';
+import { Tool, ToolType } from '../../common/tools/tool';
+import { ToolRequest } from '../../common/tool-request';
 import { ComponentSideSelectionToolComponent } from '../component-side-selection-tool/component-side-selection-tool.component';
-import { DrawAbstraction } from '../drawing/draw-abstraction';
-import { DrawPixi } from '../drawing/draw-pixi';
+import { DrawAbstraction } from '../../drawing/draw-abstraction';
+import { DrawPixi } from '../../drawing/draw-pixi';
 import { ɵangular_packages_router_router_n } from '@angular/router';
 import * as JSZip from 'jszip';
-import { BSpriteInfo } from '../common/bexport/b-sprite-info';
-import { TemplateItem } from '../common/template/template-item';
-import { TechnicalRepack } from '../common/technical-repack';
+import { BSpriteInfo } from '../../common/bexport/b-sprite-info';
+import { TemplateItem } from '../../common/template/template-item';
+import { TechnicalRepack } from '../../common/technical-repack';
 
 
 @Component({

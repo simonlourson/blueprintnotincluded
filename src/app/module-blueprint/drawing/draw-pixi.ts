@@ -1,11 +1,11 @@
 import { DrawAbstraction } from "./draw-abstraction";
 import { ElementRef } from "@angular/core";
-import { ComponentCanvasComponent } from "../component-canvas/component-canvas.component";
+import { ComponentCanvasComponent } from "../components/component-canvas/component-canvas.component";
 import { TemplateItem } from "../common/template/template-item";
 import { Camera } from "../common/camera";
 import { Vector2 } from "../common/vector2";
 import { SpriteInfo } from './sprite-info';
-import { ComponentMenuComponent } from '../component-menu/component-menu.component';
+import { ComponentMenuComponent } from '../components/component-menu/component-menu.component';
 declare var PIXI: any;
 
 export class DrawPixi implements DrawAbstraction

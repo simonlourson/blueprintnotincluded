@@ -1,0 +1,23 @@
+<p-dialog #loginDialog 
+header='Login' 
+[(visible)]="visible"
+[modal]="true" 
+[dismissableMask]="true"
+[closable]="true" 
+[focusOnShow]="false" 
+[maximizable]="false" 
+[draggable]="false" 
+[resizable]="true" 
+>
+
+  <app-register-form></app-register-form>
+
+  <p-footer>
+    <!--
+    <button type="button" [disabled]="blueprintNameModel.invalid || usernameModel.invalid" pButton icon="pi pi-check" (click)="save($event)" label="Save"></button>
+    -->
+    
+    
+  </p-footer>
+
+</p-dialog>

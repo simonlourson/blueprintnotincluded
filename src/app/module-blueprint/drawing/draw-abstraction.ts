@@ -3,7 +3,7 @@ import { Vector2 } from "../common/vector2";
 import { TemplateItem } from "../common/template/template-item";
 import { Camera } from "../common/camera";
 import { Tool } from "../common/tools/tool";
-import { ComponentCanvasComponent } from "../component-canvas/component-canvas.component";
+import { ComponentCanvasComponent } from "../components/component-canvas/component-canvas.component";
 
 export interface DrawAbstraction
 {

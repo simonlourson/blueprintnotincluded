@@ -1,12 +1,12 @@
 import { Component, OnInit, ChangeDetectorRef, Output, EventEmitter } from '@angular/core';
-import { TileInfo } from '../common/tile-info';
-import { TemplateItem } from '../common/template/template-item';
-import { ToolRequest } from '../common/tool-request';
-import { Tool, ToolType } from '../common/tools/tool';
-import { Template } from '../common/template/template';
-import { Vector2 } from '../common/vector2';
-import { Camera } from '../common/camera';
-import { DrawAbstraction } from '../drawing/draw-abstraction';
+import { TileInfo } from '../../common/tile-info';
+import { TemplateItem } from '../../common/template/template-item';
+import { ToolRequest } from '../../common/tool-request';
+import { Tool, ToolType } from '../../common/tools/tool';
+import { Template } from '../../common/template/template';
+import { Vector2 } from '../../common/vector2';
+import { Camera } from '../../common/camera';
+import { DrawAbstraction } from '../../drawing/draw-abstraction';
 
 @Component({
   selector: 'app-component-side-selection-tool',

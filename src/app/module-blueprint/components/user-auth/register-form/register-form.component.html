@@ -1,0 +1,44 @@
+<script src="https://www.google.com/recaptcha/api.js?render=explicit&onload=initRecaptcha" async defer></script>
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+  <br>
+  <span class="ui-float-label">
+  <input class="float-input" type="text" size="30" formControlName="email" pInputText> 
+  <label for="float-input">E-Mail</label>
+  </span>
+
+  <br>
+  <span class="ui-float-label">
+  <input class="float-input" type="text" size="30" formControlName="username" pInputText> 
+  <label for="float-input">Username</label>
+  </span>
+
+  <br>
+  <span class="ui-float-label">
+  <input pPassword type="password" size="30" formControlName="password" [feedback]="false"/>
+  <label for="float-input">Password</label>
+  </span>
+
+  <br>
+  <span class="ui-float-label">
+  <input pPassword type="password" size="30" formControlName="confirmPassword" [feedback]="false" />
+  <label for="float-input">Confirm Password</label>
+  </span>
+
+  <p>username: {{ registerForm.value.username }}</p>
+
+  <button type="submit" pButton label="Register" [disabled]="!registerForm.valid"></button>
+</form>
+
+<p-captcha siteKey="6Leq0r8UAAAAAGSLfpevubxkDjVlOWVkvDAGIDxB" (onResponse)="showResponse($event)"></p-captcha>
+ 
+
+
+<!--
+<br *ngIf="!registration">
+<a *ngIf="!registration">Forgotten password</a>
+<br *ngIf="!registration">
+<a *ngIf="!registration" [routerLink]="" (click)="transformRegister()">First registration</a>
+
+-->
+

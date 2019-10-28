@@ -1,19 +1,19 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { OniItem } from '../common/oni-item';
+import { OniItem } from '../../common/oni-item';
 import {SelectItem} from 'primeng/api';
-import { TemplateItem } from '../common/template/template-item';
-import { ComposingElement } from '../common/composing-element';
-import { Template } from '../common/template/template';
-import { Tool, ToolType } from '../common/tools/tool';
-import { TileInfo } from '../common/tile-info';
-import { TemplateItemWire } from '../common/template/template-item-wire';
-import { Camera } from '../common/camera';
-import { Vector2 } from '../common/vector2';
-import { DrawHelpers } from '../drawing/draw-helpers';
-import { ToolRequest } from '../common/tool-request';
-import { DrawPixi } from '../drawing/draw-pixi';
-import { DrawAbstraction } from '../drawing/draw-abstraction';
-import { BuildMenuCategory, BuildMenuItem } from '../common/bexport/b-build-order';
+import { TemplateItem } from '../../common/template/template-item';
+import { ComposingElement } from '../../common/composing-element';
+import { Template } from '../../common/template/template';
+import { Tool, ToolType } from '../../common/tools/tool';
+import { TileInfo } from '../../common/tile-info';
+import { TemplateItemWire } from '../../common/template/template-item-wire';
+import { Camera } from '../../common/camera';
+import { Vector2 } from '../../common/vector2';
+import { DrawHelpers } from '../../drawing/draw-helpers';
+import { ToolRequest } from '../../common/tool-request';
+import { DrawPixi } from '../../drawing/draw-pixi';
+import { DrawAbstraction } from '../../drawing/draw-abstraction';
+import { BuildMenuCategory, BuildMenuItem } from '../../common/bexport/b-build-order';
 
 
 

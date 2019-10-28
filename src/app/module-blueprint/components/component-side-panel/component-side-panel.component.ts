@@ -1,15 +1,15 @@
 import { Component, OnInit, ViewChild, AfterViewInit, ChangeDetectorRef, Output, EventEmitter } from '@angular/core';
-import { OniBuilding } from '../oni-import/oni-building';
+import { OniBuilding } from '../../oni-import/oni-building';
 import { Dialog } from 'primeng/dialog';
 import { Accordion, AccordionTab } from 'primeng/accordion';
-import { TileInfo } from '../common/tile-info';
-import { OniCell } from '../oni-import/oni-cell';
-import { TemplateItem } from '../common/template/template-item';
+import { TileInfo } from '../../common/tile-info';
+import { OniCell } from '../../oni-import/oni-cell';
+import { TemplateItem } from '../../common/template/template-item';
 import { ComponentSideSelectionToolComponent } from '../component-side-selection-tool/component-side-selection-tool.component';
-import { ToolType, Tool } from '../common/tools/tool';
+import { ToolType, Tool } from '../../common/tools/tool';
 import { ComponentSideBuildToolComponent } from '../component-side-build-tool/component-side-build-tool.component';
-import { OniItem } from '../common/oni-item';
-import { ToolRequest } from '../common/tool-request';
+import { OniItem } from '../../common/oni-item';
+import { ToolRequest } from '../../common/tool-request';
 
 interface Element {
   name: string,

@@ -1,11 +1,11 @@
 import { Component, OnInit, Input, Output, EventEmitter, OnDestroy, ChangeDetectorRef } from '@angular/core';
-import { TemplateItem } from '../common/template/template-item';
-import { ComposingElement } from '../common/composing-element';
-import { TemplateItemWire } from '../common/template/template-item-wire';
-import { AuthorizedOrientations } from '../common/oni-item';
+import { TemplateItem } from '../../common/template/template-item';
+import { ComposingElement } from '../../common/composing-element';
+import { TemplateItemWire } from '../../common/template/template-item-wire';
+import { AuthorizedOrientations } from '../../common/oni-item';
 import { SelectItem } from 'primeng/api';
-import { ToolRequest } from '../common/tool-request';
-import { ToolType } from '../common/tools/tool';
+import { ToolRequest } from '../../common/tool-request';
+import { ToolType } from '../../common/tools/tool';
 
 @Component({
   selector: 'app-component-tile-info',

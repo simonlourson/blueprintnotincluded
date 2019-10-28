@@ -2,11 +2,11 @@ import { Component, OnInit, Output, EventEmitter, Testability } from '@angular/c
 
 import {MenuItem, Message} from 'primeng/api';
 import { setDefaultService } from 'selenium-webdriver/opera';
-import { ZIndex, Overlay } from '../common/overlay-type';
-import { OniItem } from '../common/oni-item';
-import { ToolType } from '../common/tools/tool';
-import { ToolRequest } from '../common/tool-request';
-import { TemplateItem } from '../common/template/template-item';
+import { ZIndex, Overlay } from '../../common/overlay-type';
+import { OniItem } from '../../common/oni-item';
+import { ToolType } from '../../common/tools/tool';
+import { ToolRequest } from '../../common/tool-request';
+import { TemplateItem } from '../../common/template/template-item';
 
 @Component({
   selector: 'app-component-menu',

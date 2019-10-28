@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { Routes, RouterModule } from '@angular/router';
-import { ComponentCanvasComponent } from 'src/app/module-blueprint/component-canvas/component-canvas.component';
-import { ComponentMenuComponent } from 'src/app/module-blueprint/component-menu/component-menu.component';
-import { ComponentSidepanelComponent } from 'src/app/module-blueprint/component-side-panel/component-side-panel.component';
-import { ComponentBlueprintParentComponent } from 'src/app/module-blueprint/component-blueprint-parent/component-blueprint-parent.component';
+import { ComponentCanvasComponent } from 'src/app/module-blueprint/components/component-canvas/component-canvas.component';
+import { ComponentMenuComponent } from 'src/app/module-blueprint/components/component-menu/component-menu.component';
+import { ComponentSidepanelComponent } from 'src/app/module-blueprint/components/component-side-panel/component-side-panel.component';
+import { ComponentBlueprintParentComponent } from 'src/app/module-blueprint/components/component-blueprint-parent/component-blueprint-parent.component';
 
 import { MouseWheelDirective } from 'src/app/module-blueprint/directives/mousewheel.directive';
 import { DragAndDropDirective } from 'src/app/module-blueprint/directives/draganddrop.directive';
@@ -30,14 +30,16 @@ import {ColorPickerModule} from 'primeng/colorpicker';
 import {PasswordModule} from 'primeng/password';
 import {TooltipModule} from 'primeng/tooltip';
 import {MessageService} from 'primeng/api';
-import { ComponentTileInfoComponent } from './component-tile-info/component-tile-info.component';
-import { ComponentSaveDialogComponent } from './component-save-dialog/component-save-dialog.component'
+import {CaptchaModule} from 'primeng/captcha';
+import { ComponentTileInfoComponent } from './components/component-tile-info/component-tile-info.component';
+import { ComponentSaveDialogComponent } from './components/component-save-dialog/component-save-dialog.component'
 import { StringSanitationDirective } from './directives/string-sanitation.directive';
-import { ComponentSideBuildToolComponent } from './component-side-build-tool/component-side-build-tool.component';
-import { ComponentSideSelectionToolComponent } from './component-side-selection-tool/component-side-selection-tool.component';
+import { ComponentSideBuildToolComponent } from './components/component-side-build-tool/component-side-build-tool.component';
+import { ComponentSideSelectionToolComponent } from './components/component-side-selection-tool/component-side-selection-tool.component';
 import { KeyboardDirective } from './directives/keyboard.directive';
-import { ComponentElementKeyPanelComponent } from './component-element-key-panel/component-element-key-panel.component';
-import { ComponentLoginDialogComponent } from './component-login-dialog/component-login-dialog.component';
+import { ComponentElementKeyPanelComponent } from './components/component-element-key-panel/component-element-key-panel.component';
+import { ComponentLoginDialogComponent } from './components/user-auth/login-dialog/login-dialog.component';
+import { RegisterFormComponent } from './components/user-auth/register-form/register-form.component';
 
 const routes: Routes = [
   { path: '', component: ComponentBlueprintParentComponent },
@@ -48,12 +50,12 @@ const routes: Routes = [
   imports: [
     CommonModule, 
     HttpClientModule,
-    FormsModule,
-    PasswordModule, ColorPickerModule, InputTextModule, SliderModule, ButtonModule, CardModule, ScrollPanelModule, OverlayPanelModule, MenubarModule, TabMenuModule, SlideMenuModule, DialogModule, DropdownModule, AccordionModule, ToastModule, TooltipModule,
+    FormsModule, ReactiveFormsModule,
+    PasswordModule, ColorPickerModule, InputTextModule, SliderModule, ButtonModule, CardModule, ScrollPanelModule, OverlayPanelModule, MenubarModule, TabMenuModule, SlideMenuModule, DialogModule, DropdownModule, AccordionModule, ToastModule, TooltipModule, CaptchaModule,
     BrowserAnimationsModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [StringSanitationDirective, ComponentCanvasComponent, MouseWheelDirective, DragAndDropDirective, KeyboardDirective, ComponentMenuComponent, ComponentSidepanelComponent, ComponentBlueprintParentComponent, ComponentTileInfoComponent, ComponentSaveDialogComponent, ComponentSideBuildToolComponent, ComponentSideSelectionToolComponent, ComponentElementKeyPanelComponent, ComponentLoginDialogComponent],
+  declarations: [StringSanitationDirective, ComponentCanvasComponent, MouseWheelDirective, DragAndDropDirective, KeyboardDirective, ComponentMenuComponent, ComponentSidepanelComponent, ComponentBlueprintParentComponent, ComponentTileInfoComponent, ComponentSaveDialogComponent, ComponentSideBuildToolComponent, ComponentSideSelectionToolComponent, ComponentElementKeyPanelComponent, ComponentLoginDialogComponent, RegisterFormComponent],
   exports: [ComponentBlueprintParentComponent]
 })
 export class ModuleBlueprintModule { }

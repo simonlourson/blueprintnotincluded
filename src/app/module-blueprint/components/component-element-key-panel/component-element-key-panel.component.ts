@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { OniItem } from '../common/oni-item';
-import { ComposingElement } from '../common/composing-element';
+import { OniItem } from '../../common/oni-item';
+import { ComposingElement } from '../../common/composing-element';
 
 @Component({
   selector: 'app-component-element-key-panel',

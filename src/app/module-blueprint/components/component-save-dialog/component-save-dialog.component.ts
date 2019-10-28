@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { SaveInfo } from '../common/save-info';
+import { SaveInfo } from '../../common/save-info';
 
 @Component({
   selector: 'app-component-save-dialog',
