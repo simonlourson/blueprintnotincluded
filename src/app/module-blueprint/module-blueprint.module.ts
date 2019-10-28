@@ -40,6 +40,7 @@ import { KeyboardDirective } from './directives/keyboard.directive';
 import { ComponentElementKeyPanelComponent } from './components/component-element-key-panel/component-element-key-panel.component';
 import { ComponentLoginDialogComponent } from './components/user-auth/login-dialog/login-dialog.component';
 import { RegisterFormComponent } from './components/user-auth/register-form/register-form.component';
+import { CheckDuplicateService } from './components/user-auth/check-duplicate-service';
 
 const routes: Routes = [
   { path: '', component: ComponentBlueprintParentComponent },
@@ -56,6 +57,7 @@ const routes: Routes = [
     RouterModule.forChild(routes)
   ],
   declarations: [StringSanitationDirective, ComponentCanvasComponent, MouseWheelDirective, DragAndDropDirective, KeyboardDirective, ComponentMenuComponent, ComponentSidepanelComponent, ComponentBlueprintParentComponent, ComponentTileInfoComponent, ComponentSaveDialogComponent, ComponentSideBuildToolComponent, ComponentSideSelectionToolComponent, ComponentElementKeyPanelComponent, ComponentLoginDialogComponent, RegisterFormComponent],
+  providers: [CheckDuplicateService],
   exports: [ComponentBlueprintParentComponent]
 })
 export class ModuleBlueprintModule { }
