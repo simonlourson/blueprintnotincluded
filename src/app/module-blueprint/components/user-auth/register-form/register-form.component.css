@@ -1,5 +1,14 @@
 .error-red {
 	color: darkred;
-	text-align: justify;
-	text-justify: inter-word;
+  margin-left: 0.5em;
+}
+
+.pending-blue {
+  color: darkblue;
+  margin-left: 0.5em;
+}
+
+.valid-green {
+  color: darkgreen;
+  margin-left: 0.5em;
 }

@@ -41,6 +41,7 @@ import { ComponentElementKeyPanelComponent } from './components/component-elemen
 import { ComponentLoginDialogComponent } from './components/user-auth/login-dialog/login-dialog.component';
 import { RegisterFormComponent } from './components/user-auth/register-form/register-form.component';
 import { CheckDuplicateService } from './components/user-auth/check-duplicate-service';
+import { LoginFormComponent } from './components/user-auth/login-form/login-form.component';
 
 const routes: Routes = [
   { path: '', component: ComponentBlueprintParentComponent },
@@ -56,7 +57,7 @@ const routes: Routes = [
     BrowserAnimationsModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [StringSanitationDirective, ComponentCanvasComponent, MouseWheelDirective, DragAndDropDirective, KeyboardDirective, ComponentMenuComponent, ComponentSidepanelComponent, ComponentBlueprintParentComponent, ComponentTileInfoComponent, ComponentSaveDialogComponent, ComponentSideBuildToolComponent, ComponentSideSelectionToolComponent, ComponentElementKeyPanelComponent, ComponentLoginDialogComponent, RegisterFormComponent],
+  declarations: [StringSanitationDirective, ComponentCanvasComponent, MouseWheelDirective, DragAndDropDirective, KeyboardDirective, ComponentMenuComponent, ComponentSidepanelComponent, ComponentBlueprintParentComponent, ComponentTileInfoComponent, ComponentSaveDialogComponent, ComponentSideBuildToolComponent, ComponentSideSelectionToolComponent, ComponentElementKeyPanelComponent, ComponentLoginDialogComponent, RegisterFormComponent, LoginFormComponent],
   providers: [CheckDuplicateService],
   exports: [ComponentBlueprintParentComponent]
 })

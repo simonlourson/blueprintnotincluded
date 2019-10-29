@@ -6,16 +6,9 @@
     <label for="float-input">E-Mail</label>
   </span>
   <div *ngIf="f.email.invalid && (f.email.dirty || f.email.touched)" class="error-red" >
-    <div *ngIf="f.email.errors.required">
-      E-Mail is required.
-    </div>
-    <div *ngIf="f.email.errors.email">
-      E-Mail is not valid.
-    </div>
+    <div *ngIf="f.email.errors.required">E-Mail is required.</div>
+    <div *ngIf="f.email.errors.email">E-Mail is not valid.</div>
   </div>
-  <p 
-    style="color: red"
-    *ngIf="f.email.errors?.emailExists">Not available</p>
 
   <br>
   <span class="ui-float-label">
@@ -23,10 +16,11 @@
     <label for="float-input">Username</label>
   </span>
   <div *ngIf="f.username.invalid && (f.username.dirty || f.username.touched)" class="error-red" >
-    <div *ngIf="f.username.errors.required">
-      Username is required.
-    </div>
+    <div *ngIf="f.username.errors.required">Username is required.</div>
+    <div *ngIf="f.username.errors?.usernameExists">Username is unavailable.</div>
   </div>
+  <div *ngIf="f.username.pending" class="pending-blue" >Checking username availability...</div>
+  <div *ngIf="f.username.valid" class="valid-green" >Username is available</div>
 
   <br>
   <span class="ui-float-label">
@@ -34,9 +28,7 @@
     <label for="float-input">Password</label>
   </span>
   <div *ngIf="f.password.invalid && (f.password.dirty || f.password.touched)" class="error-red" >
-    <div *ngIf="f.password.errors.required">
-      Password is required.
-    </div>
+    <div *ngIf="f.password.errors.required">Password is required.</div>
   </div>
 
   <br>
@@ -44,9 +36,7 @@
     <input pPassword type="password" size="30" formControlName="confirmPassword" [feedback]="false" />
     <label for="float-input">Confirm Password</label>
   </span>
-  <div *ngIf="registerForm.errors?.invalid" class="error-red" >
-    Passwords must match.
-  </div>
+  <div *ngIf="registerForm.errors?.invalid" class="error-red" >Passwords must match.</div>
 
   <br>
   <button type="submit" pButton label="Register" [disabled]="!registerForm.valid || registerForm.pending" ></button>

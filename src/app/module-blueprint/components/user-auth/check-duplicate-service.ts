@@ -9,32 +9,31 @@ export class CheckDuplicateService
 {
   constructor(private http: HttpClient) {}
 
-  public checkEmail(email: string) {
-    console.log('checkEmail :'+email);
+  public checkUsername(username: string) {
+    console.log('checkUsername :'+username);
     
     return timer(1000)
       .pipe(
         switchMap(() => {
           // Check if username is available
-          return this.http.get<any>('/api/checkemail?email='+email);
+          return this.http.get<any>('/api/checkusername?username='+username);
         })
       );
   }
 
-  emailValidator(): AsyncValidatorFn {
+  usernameValidator(): AsyncValidatorFn {
     return (control: AbstractControl): Observable<{ [key: string]: any } | null> => {
-      return this.checkEmail(control.value)
+      return this.checkUsername(control.value)
         .pipe(
           map(res => {
             console.log(res)
             // if username is already taken
-            if (res.emailPresent) {
+            if (res.usernameExists) {
               // return error
-              return { 'emailExists': true};
+              return { 'usernameExists': true};
             }
           })
         );
     };
-
   }
 }
