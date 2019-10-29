@@ -18,6 +18,7 @@ export class ComponentMenuComponent implements OnInit {
   @Output() onMessage = new EventEmitter<Message>();
   @Output() onTemplateUpload = new EventEmitter<FileList>();
   @Output() onTemplateUploadJson = new EventEmitter<FileList>();
+  @Output() onTemplateUploadBson = new EventEmitter<FileList>();
   @Output() onDownloadAsJson = new EventEmitter();
   @Output() onDownloadIcons = new EventEmitter();
   @Output() onFetchIcons = new EventEmitter();
@@ -69,8 +70,9 @@ export class ComponentMenuComponent implements OnInit {
         label: 'Template',
         items: [
           //{label: 'Save to cloud', icon:'pi pi-download', command: (event) => { this.saveToCloud(); } },
-          {label: 'Upload Yaml', command: (event) => { this.uploadYamlTemplate(); } },
-          {label: 'Upload Json', command: (event) => { this.uploadJsonTemplate(); } },
+          {label: 'Game Yaml', command: (event) => { this.uploadYamlTemplate(); } },
+          {label: 'Json Blueprint', command: (event) => { this.uploadJsonTemplate(); } },
+          {label: 'Binary Blueprint', command: (event) => { this.uploadBsonTemplate(); } }
           /*
           {
             label: 'Download', items: [
@@ -149,6 +151,12 @@ export class ComponentMenuComponent implements OnInit {
     fileElem.click();
   }
 
+  uploadBsonTemplate()
+  {
+    let fileElem = document.getElementById("fileChooserBson") as HTMLInputElement;
+    fileElem.click();
+  }
+
   saveToCloud()
   {
     this.onSaveToCloud.emit();
@@ -164,6 +172,12 @@ export class ComponentMenuComponent implements OnInit {
   {
     let fileElem = document.getElementById("fileChooserJson") as HTMLInputElement;
     this.onTemplateUploadJson.emit(fileElem.files);
+  }
+
+  templateUploadBson(event: any)
+  {
+    let fileElem = document.getElementById("fileChooserBson") as HTMLInputElement;
+    this.onTemplateUploadBson.emit(fileElem.files);
   }
 
   downloadIcons()

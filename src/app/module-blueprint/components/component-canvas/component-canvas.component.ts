@@ -153,6 +153,7 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
       let previousTile = previousTileFloat == null ? null : new Vector2(Math.floor(previousTileFloat.x), Math.ceil(previousTileFloat.y));
       let currentTile = new Vector2(Math.floor(currentTileFloat.x), Math.ceil(currentTileFloat.y));
 
+      /*
       if (previousTileFloat != null && !previousTile.equals(currentTile))
       {
         console.log("********************************");
@@ -178,8 +179,12 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
           //nextGrid.x = previousTileFloat.x == previousTile.x ? previousTile.x
         }
         while (!currentTileFloat.equals(previousTileFloat))
+
       }
-        //this.currentTool.changeTileDrag(this.blueprint, this.previousTileUnderMouseDrag, currentTileUnderMouseDrag);
+      */
+
+     this.currentTool.changeTileDrag(this.blueprint, previousTile, currentTile);
+      
     }
 
     this.storePreviousTileFloat = Vector2.clone(currentTileFloat);

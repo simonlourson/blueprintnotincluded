@@ -147,10 +147,12 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
 
   public importBniBuilding(building: BniBuilding)
   {
-    this.position = new Vector2(
-      building.offset.x == null ? 0 : building.offset.x,
-      building.offset.y == null ? 0 : building.offset.y
-    );
+    if (building.offset != null)
+      this.position = new Vector2(
+        building.offset.x == null ? 0 : building.offset.x,
+        building.offset.y == null ? 0 : building.offset.y
+      );
+    else this.position = Vector2.zero();
 
     switch (building.orientation)
     {

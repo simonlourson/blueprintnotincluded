@@ -10,6 +10,8 @@ import { TemplateItemTile } from "./template-item-tile";
 import { TemplateItemElement } from './template-item-element';
 import { ComposingElement } from '../composing-element';
 import { BniBlueprint } from '../blueprint-import/bni-blueprint';
+import { BinaryReader, Encoding } from 'csharp-binary-stream';
+import { BniBuilding } from '../blueprint-import/bni-building';
 
 export class Template
 {
@@ -86,6 +88,7 @@ export class Template
 
   public importFromCloud(original: Template)
   {
+    // TODO trycatch this
     this.name = original.name;
     this.templateItems = [];
 
@@ -99,6 +102,46 @@ export class Template
       newTemplateItem.importFromCloud(originalTemplateItem);
       this.addTemplateItem(newTemplateItem);
     }
+  }
+
+  public importFromBinary(template: ArrayBuffer)
+  {
+    const reader = new BinaryReader(template);
+
+    let bniBlueprint = new BniBlueprint();
+    bniBlueprint.friendlyname = reader.readString(Encoding.Utf8);
+    bniBlueprint.buildings = [];
+
+    let buildingCount = reader.readInt();
+
+    for (let buildingIndex = 0; buildingIndex < buildingCount; buildingIndex++) 
+    {
+      let bniBuilding = new BniBuilding();
+
+      let offsetX = reader.readInt();
+      let offsetY = reader.readInt();
+      bniBuilding.offset = new Vector2(offsetX, offsetY);
+
+      let buildingDef = reader.readString(Encoding.Utf8);
+      bniBuilding.buildingdef = buildingDef;
+
+      let selectedElementCount = reader.readInt();
+      for (let elementIndex = 0; elementIndex < selectedElementCount; elementIndex++)
+      {
+        let tag = reader.readInt();
+      }
+
+      let orientation = reader.readInt();
+      bniBuilding.orientation = orientation;
+
+      let flags = reader.readInt();
+      bniBuilding.flags = flags;
+
+      bniBlueprint.buildings.push(bniBuilding);
+    }
+
+    this.importBniBlueprint(bniBlueprint);
+
   }
 
   static createInstance(id: string): TemplateItem

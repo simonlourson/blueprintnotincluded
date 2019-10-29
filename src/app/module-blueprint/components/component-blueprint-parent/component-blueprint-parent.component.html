@@ -1,5 +1,5 @@
 
-<p-toast position="bottom-left"></p-toast>
+<p-toast position="top-right" [style]="{marginTop: '40px'}"></p-toast>
 <div class="p-grid p-nogutter">
   <div class="p-col-12">
     <app-component-menu 
@@ -7,6 +7,7 @@
       (onMessage)="toast($event)" 
       (onTemplateUpload)="templateUpload($event)"
       (onTemplateUploadJson)="templateUploadJson($event)"
+      (onTemplateUploadBson)="templateUploadBson($event)"
       (onDownloadAsJson)="downloadAsJson()"
       (onDownloadIcons)="downloadIcons()"
       (onRepackTextures)="repackTextures()"

@@ -7,4 +7,5 @@
   <button pButton label="Login" (click)="login($event)"></button>
 </p-menubar>
 <input type="file" id="fileChooser" accept=".yaml" style="display: none" (change)="templateUpload($event)">
-<input type="file" id="fileChooserJson" accept=".json" style="display: none" (change)="templateUploadJson($event)">
+<input type="file" id="fileChooserJson" accept=".json,.blueprint" style="display: none" (change)="templateUploadJson($event)">
+<input type="file" id="fileChooserBson" accept=".blueprint" style="display: none" (change)="templateUploadBson($event)">

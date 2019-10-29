@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
 import {MessageService, Message} from 'primeng/api';
 import { ComponentCanvasComponent } from '../component-canvas/component-canvas.component';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
+import {BinaryReader, Encoding} from 'csharp-binary-stream';
 
 // Library imports
 import * as yaml from 'node_modules/js-yaml/lib/js-yaml';
@@ -205,6 +206,18 @@ export class ComponentBlueprintParentComponent implements OnInit {
 
       reader.onloadend = () => { this.loadTemplateJson(reader.result as string); };
       reader.readAsText(fileList[0]);
+
+    }
+  }
+
+  templateUploadBson(fileList: FileList)
+  {
+    if (fileList.length > 0)
+    {
+      let reader = new FileReader();
+
+      reader.onloadend = () => { this.loadTemplateBson(reader.result as ArrayBuffer); };
+      reader.readAsArrayBuffer(fileList[0]);
 
     }
   }
@@ -605,6 +618,14 @@ export class ComponentBlueprintParentComponent implements OnInit {
 
     let newBlueprint = new Template();
     newBlueprint.importBniBlueprint(templateJson);
+    
+    this.loadTemplateIntoCanvas(newBlueprint);
+  }
+
+  loadTemplateBson(template: ArrayBuffer)
+  {
+    let newBlueprint = new Template();
+    newBlueprint.importFromBinary(template);
     
     this.loadTemplateIntoCanvas(newBlueprint);
   }
