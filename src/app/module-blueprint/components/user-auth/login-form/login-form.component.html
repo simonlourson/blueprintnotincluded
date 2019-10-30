@@ -17,7 +17,12 @@
   <div *ngIf="f.password.invalid && (f.password.dirty || f.password.touched)" class="error-red" >
     <div *ngIf="f.password.errors.required">Password is required.</div>
   </div>
+  <div *ngIf="authError" class="error-red" >Authentification error</div>
 
   <br>
-  <button type="submit" pButton label="Login" [disabled]="!loginForm.valid || loginForm.pending" ></button>
+  <a [routerLink]="" (click)="registration()">First registration ?</a>
+
+  <br>
+  <br>
+  <p-button type="submit" [icon]="icon" label="Login" [disabled]="!loginForm.valid || loginForm.pending || working" ></p-button>
 </form>

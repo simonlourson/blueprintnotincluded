@@ -1,12 +1,13 @@
 import { Component, OnInit, Output, EventEmitter, Testability } from '@angular/core';
 
-import {MenuItem, Message} from 'primeng/api';
+import {MenuItem, Message, MessageService} from 'primeng/api';
 import { setDefaultService } from 'selenium-webdriver/opera';
 import { ZIndex, Overlay } from '../../common/overlay-type';
 import { OniItem } from '../../common/oni-item';
 import { ToolType } from '../../common/tools/tool';
 import { ToolRequest } from '../../common/tool-request';
 import { TemplateItem } from '../../common/template/template-item';
+import { AuthenticationService } from '../user-auth/authentification-service';
 
 @Component({
   selector: 'app-component-menu',
@@ -39,7 +40,7 @@ export class ComponentMenuComponent implements OnInit {
   static debugFps: number = 0
   public getFps() { return ComponentMenuComponent.debugFps; }
 
-  constructor() {
+  constructor(private authService: AuthenticationService, private messageService: MessageService) {
 
   }
 
@@ -203,6 +204,15 @@ export class ComponentMenuComponent implements OnInit {
   login(event: any)
   {
     this.onLoginDialog.emit();
+  }
+
+  logout()
+  {
+    this.authService.logout();
+
+    let summary: string = 'Logout Successful';
+
+    this.messageService.add({severity:'success', summary:summary, detail:null});
   }
 
 }

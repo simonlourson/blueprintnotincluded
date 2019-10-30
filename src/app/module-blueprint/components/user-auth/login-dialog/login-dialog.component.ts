@@ -1,6 +1,8 @@
-import { Component, OnInit, Output, EventEmitter, ViewChild } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { LoginInfo } from '../../../common/api/login-info';
 import { Dialog } from 'primeng/dialog';
+import { LoginFormComponent } from '../login-form/login-form.component';
+import { RegisterFormComponent } from '../register-form/register-form.component';
 
 @Component({
   selector: 'app-login-dialog',
@@ -10,12 +12,13 @@ import { Dialog } from 'primeng/dialog';
 export class ComponentLoginDialogComponent implements OnInit {
 
   visible: boolean = false;
+  loginType: LoginType = LoginType.Login;
   
   @ViewChild('loginDialog', {static: true}) loginDialog: Dialog
+  @ViewChild('loginForm', {static: false}) loginForm: LoginFormComponent
+  @ViewChild('registerForm', {static: false}) registerForm: RegisterFormComponent
 
-  @Output() onLogin = new EventEmitter<LoginInfo>();
-
-  constructor() { 
+  constructor(private cdRef: ChangeDetectorRef) { 
     
   }
 
@@ -29,6 +32,10 @@ export class ComponentLoginDialogComponent implements OnInit {
 
   showDialog()
   {
+    this.loginType = LoginType.Login;
+    this.cdRef.detectChanges();
+
+    this.loginForm.reset();
     this.visible = true;
     this.recenter();
   }
@@ -38,15 +45,15 @@ export class ComponentLoginDialogComponent implements OnInit {
     this.visible = false;
   }
 
-  login()
-  {
-    //this.onLogin.emit(this.loginInfo);
-  }
+  get isLogin(): boolean { return this.loginType == LoginType.Login; }
+  get isRegistration(): boolean { return this.loginType == LoginType.Registration; }
 
-  transformRegister()
+  registration()
   {
-    //this.loginInfo.registration = true;
+    this.loginType = LoginType.Registration;
+    this.cdRef.detectChanges();
 
+    this.registerForm.reset();
     this.recenter();
   }
 
@@ -55,4 +62,11 @@ export class ComponentLoginDialogComponent implements OnInit {
     setTimeout(() => {this.loginDialog.positionOverlay();}, 0)
   }
 
+}
+
+enum LoginType
+{
+  Login,
+  Registration,
+  ForgotPassword
 }

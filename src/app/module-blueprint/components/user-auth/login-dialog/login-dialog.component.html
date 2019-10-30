@@ -9,6 +9,14 @@ header='Login'
 [draggable]="false" 
 [resizable]="true" 
 >
-  <app-login-form></app-login-form>
-  <!--<app-register-form></app-register-form>-->
+
+  <app-login-form #loginForm *ngIf="isLogin"
+    (onRegistration)="registration()"
+    (onLoginOk)="hideDialog()">
+  </app-login-form>
+  
+  <app-register-form #registerForm *ngIf="isRegistration"
+    (onRegistrationOk)="hideDialog()">
+  </app-register-form>
 </p-dialog>
+

@@ -37,9 +37,11 @@
     <label for="float-input">Confirm Password</label>
   </span>
   <div *ngIf="registerForm.errors?.invalid" class="error-red" >Passwords must match.</div>
+  <div *ngIf="authError" class="error-red" >Authentification error</div>
+  <div *ngIf="duplicateError" class="error-red" >Username or e-mail is already registered</div>
 
   <br>
-  <button type="submit" pButton label="Register" [disabled]="!registerForm.valid || registerForm.pending" ></button>
+  <p-button type="submit" [icon]="icon" label="Register" [disabled]="!registerForm.valid || registerForm.pending || working" ></p-button>
 </form>
 
 
