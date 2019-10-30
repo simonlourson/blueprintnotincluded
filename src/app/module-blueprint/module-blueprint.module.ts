@@ -43,6 +43,7 @@ import { RegisterFormComponent } from './components/user-auth/register-form/regi
 import { CheckDuplicateService } from './components/user-auth/check-duplicate-service';
 import { LoginFormComponent } from './components/user-auth/login-form/login-form.component';
 import { AuthenticationService } from './components/user-auth/authentification-service';
+import { Template } from './common/template/template';
 
 const routes: Routes = [
   { path: '', component: ComponentBlueprintParentComponent },
@@ -59,7 +60,7 @@ const routes: Routes = [
     RouterModule.forChild(routes)
   ],
   declarations: [StringSanitationDirective, ComponentCanvasComponent, MouseWheelDirective, DragAndDropDirective, KeyboardDirective, ComponentMenuComponent, ComponentSidepanelComponent, ComponentBlueprintParentComponent, ComponentTileInfoComponent, ComponentSaveDialogComponent, ComponentSideBuildToolComponent, ComponentSideSelectionToolComponent, ComponentElementKeyPanelComponent, ComponentLoginDialogComponent, RegisterFormComponent, LoginFormComponent],
-  providers: [CheckDuplicateService, AuthenticationService],
+  providers: [CheckDuplicateService, AuthenticationService, Template],
   exports: [ComponentBlueprintParentComponent]
 })
 export class ModuleBlueprintModule { }

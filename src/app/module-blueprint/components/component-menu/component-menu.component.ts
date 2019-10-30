@@ -8,6 +8,7 @@ import { ToolType } from '../../common/tools/tool';
 import { ToolRequest } from '../../common/tool-request';
 import { TemplateItem } from '../../common/template/template-item';
 import { AuthenticationService } from '../user-auth/authentification-service';
+import { Template } from '../../common/template/template';
 
 @Component({
   selector: 'app-component-menu',
@@ -16,22 +17,15 @@ import { AuthenticationService } from '../user-auth/authentification-service';
 })
 export class ComponentMenuComponent implements OnInit {
 
-  @Output() onMessage = new EventEmitter<Message>();
+  @Output() onMenuCommand = new EventEmitter<MenuCommand>();
+
   @Output() onTemplateUpload = new EventEmitter<FileList>();
   @Output() onTemplateUploadJson = new EventEmitter<FileList>();
   @Output() onTemplateUploadBson = new EventEmitter<FileList>();
   @Output() onDownloadAsJson = new EventEmitter();
-  @Output() onDownloadIcons = new EventEmitter();
-  @Output() onFetchIcons = new EventEmitter();
-  @Output() onDownloadUtility = new EventEmitter();
-  @Output() onRepackTextures = new EventEmitter();
-  @Output() onLoginDialog = new EventEmitter();
-  @Output() onDownloadDistinctIdAsJson = new EventEmitter();
-  @Output() onMisc = new EventEmitter();
   @Output() onSaveToCloud = new EventEmitter();
   @Output() onChangeOverlay = new EventEmitter<ZIndex>();
   @Output() onChangeTool = new EventEmitter<ToolRequest>();
-  @Output() onBuild = new EventEmitter<string>();
 
   menuItems: MenuItem[];
   overlayMenuItems: MenuItem[];
@@ -40,7 +34,9 @@ export class ComponentMenuComponent implements OnInit {
   static debugFps: number = 0
   public getFps() { return ComponentMenuComponent.debugFps; }
 
-  constructor(private authService: AuthenticationService, private messageService: MessageService) {
+  constructor(
+    private authService: AuthenticationService, 
+    private messageService: MessageService) {
 
   }
 
@@ -68,21 +64,13 @@ export class ComponentMenuComponent implements OnInit {
 
     this.menuItems = [
       {
-        label: 'Template',
+        label: 'Blueprint',
         items: [
-          //{label: 'Save to cloud', icon:'pi pi-download', command: (event) => { this.saveToCloud(); } },
+          {label: 'New', icon:'pi pi-plus', command: (event) => { this.onMenuCommand.emit({type: MenuCommandType.newBlueprint, data: null}); } },
+          {label: 'Save to cloud', icon:'pi pi-cloud-upload', command: (event) => { this.saveToCloud(); } },
           {label: 'Game Yaml', command: (event) => { this.uploadYamlTemplate(); } },
           {label: 'Json Blueprint', command: (event) => { this.uploadJsonTemplate(); } },
           {label: 'Binary Blueprint', command: (event) => { this.uploadBsonTemplate(); } }
-          /*
-          {
-            label: 'Download', items: [
-              {label: 'as Json', command: () => { this.onDownloadAsJson.emit(); }},
-              {label: 'distinct id as Json', command: () => { this.onDownloadDistinctIdAsJson.emit(); }},
-              {label: 'misc', command: () => { this.onMisc.emit(); }}
-            ]
-          }
-          */
         ]
       },
       {
@@ -93,7 +81,7 @@ export class ComponentMenuComponent implements OnInit {
         label: 'Overlay',
         items: this.overlayMenuItems
       }
-      /*,
+      /*, TODO use menuCommand
       {
         label: 'Technical',
         items: [
@@ -113,6 +101,10 @@ export class ComponentMenuComponent implements OnInit {
 
   }
 
+  newBlueprint()
+  {
+    //this.blueprint.destroy(); 
+  }
 
   clickTool(event: any, templateItem: TemplateItem = null)
   {
@@ -121,7 +113,7 @@ export class ComponentMenuComponent implements OnInit {
       if (menuItem.id == event.item.id) {menuItem.icon = 'pi pi-fw pi-check';}
       else menuItem.icon = 'pi pi-fw pi-none';
     }
-    this.onChangeTool.emit({toolType:parseInt(event.item.id), templateItem:templateItem});
+    this.onMenuCommand.emit({type: MenuCommandType.changeTool, data:{toolType:parseInt(event.item.id), templateItem:templateItem}});
   }
 
   public askChangeTool(toolRequest: ToolRequest)
@@ -137,7 +129,7 @@ export class ComponentMenuComponent implements OnInit {
       else menuItem.icon = 'pi pi-fw pi-none';
     }
 
-    this.onChangeOverlay.emit(event.item.id)
+    this.onMenuCommand.emit({type: MenuCommandType.changeOverlay, data: event.item.id});
   }
 
   uploadYamlTemplate()
@@ -181,38 +173,38 @@ export class ComponentMenuComponent implements OnInit {
     this.onTemplateUploadBson.emit(fileElem.files);
   }
 
-  downloadIcons()
+  login()
   {
-    this.onDownloadIcons.emit();
-  }
-
-  fetchIcons()
-  {
-    this.onFetchIcons.emit();
-  }
-
-  downloadUtility()
-  {
-    this.onDownloadUtility.emit();
-  }
-
-  repackTextures()
-  {
-    this.onRepackTextures.emit();
-  }
-
-  login(event: any)
-  {
-    this.onLoginDialog.emit();
+    this.onMenuCommand.emit({type: MenuCommandType.showLoginDialog, data: null});
   }
 
   logout()
   {
     this.authService.logout();
-
-    let summary: string = 'Logout Successful';
-
-    this.messageService.add({severity:'success', summary:summary, detail:null});
+    this.messageService.add({severity:'success', summary:'Logout Successful', detail:null});
   }
 
+}
+
+export enum MenuCommandType
+{
+  newBlueprint,
+  uploadBlueprint,
+  uploadYaml,
+  changeTool,
+  changeOverlay,
+
+  fetchIcons,
+  downloadIcons,
+  downloadUtility,
+  repackTextures,
+
+
+  showLoginDialog
+}
+
+export class MenuCommand 
+{
+  type: MenuCommandType;
+  data: any;
 }

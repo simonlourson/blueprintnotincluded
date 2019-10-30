@@ -22,7 +22,7 @@ import { ComponentSaveDialogComponent } from '../component-save-dialog/component
 import { SaveInfo } from '../../common/save-info';
 import { ActivatedRoute, Params } from '@angular/router';
 import { BlueprintParams } from '../../common/params';
-import { ComponentMenuComponent } from '../component-menu/component-menu.component';
+import { ComponentMenuComponent, MenuCommand, MenuCommandType } from '../component-menu/component-menu.component';
 import { ToolType } from '../../common/tools/tool';
 import { TemplateItem } from '../../common/template/template-item';
 import { ToolRequest } from '../../common/tool-request';
@@ -169,6 +169,18 @@ export class ComponentBlueprintParentComponent implements OnInit {
     return promise;
   }
 
+  menuCommand(menuCommand: MenuCommand)
+  {
+    if (menuCommand.type == MenuCommandType.newBlueprint)
+    {
+      console.log('newBlueprint');
+    }
+    else if (menuCommand.type == MenuCommandType.changeTool) this.changeTool(menuCommand.data as ToolRequest);
+    else if (menuCommand.type == MenuCommandType.changeOverlay) this.changeOverlay(menuCommand.data as Overlay);
+    else if (menuCommand.type == MenuCommandType.showLoginDialog) this.openLoginDialog();
+    
+  }
+
   loadTemplateIntoCanvas(template: Template)
   {
     this.canvas.loadNewBlueprint(template);
@@ -252,17 +264,6 @@ export class ComponentBlueprintParentComponent implements OnInit {
   changeOverlay(newOverlay: Overlay)
   {
     this.canvas.changeOverlay(newOverlay);
-
-    /* TODO
-    if (newOverlay == ZIndex.Gas) 
-    {
-      this.canvas.blueprint.prepareDistinctElements();
-      this.elementKeyPanel.distinctElements = this.canvas.blueprint.distinctElements;
-      this.elementKeyPanel.showDialog();
-    }
-    else 
-    */
-    this.elementKeyPanel.hideDialog();
   }
 
   changeTool(newTool: ToolRequest)
@@ -283,46 +284,14 @@ export class ComponentBlueprintParentComponent implements OnInit {
     this.canvas.destroyTemplateItem(templateItem);
   }
 
-  //changeItem(item: TemplateItem)
-  //{
-  //  this.canvas.buildTool.changeItem(this.canvas.blueprint, item);
-  //}
-
-  downloadDistinctIdAsJson()
+  fetchIcons()
   {
-    /*
-    console.log('downloadDistinctAsJson');
-
-    let ids: any[] = [];
-    for (let b of this.canvas.blueprint.buildings)
-    {
-      if (ids.filter(i => i.id == b.id).length == 0)
-      {
-        let id = {id:b.id}
-        ids.push(id);
-      }
-    }
-
-    for (let c of this.canvas.blueprint.cells)
-      if (ids.filter(i => i.id == c.element).length == 0)
-      {
-
-        let id = {id:c.element}
-        ids.push(id);
-      }
-
-    this.downloadTextAsFile(JSON.stringify(ids, null, 2), 'unique_ids.json');
-    */
+    this.canvas.fetchIcons(); 
   }
 
   downloadIcons()
   {
     this.canvas.downloadIcons();
-  }
-
-  fetchIcons()
-  {
-    this.canvas.fetchIcons(); 
   }
 
   downloadUtility()
@@ -340,13 +309,6 @@ export class ComponentBlueprintParentComponent implements OnInit {
     this.loginDialog.showDialog();
   }
 
-  login(loginInfo: LoginInfo)
-  {
-    console.log(loginInfo);
-    if (loginInfo.registration) this.http.post('/api/register', loginInfo).toPromise().then(() => {console.log('return ok')});
-    else this.http.post('/api/login', loginInfo).toPromise().then(() => {console.log('return ok')});
-  }
-
   oniItems: any[];
   jsonWidth: any[];
   spriteInfos: any[];
@@ -355,146 +317,6 @@ export class ComponentBlueprintParentComponent implements OnInit {
   elements: any[];
   misc()
   {
-    /*
-    console.log('misc');
-    fetch("/assets/database/out.json")
-      .then(response => { return response.json() })
-      .then(json => { 
-        //console.log(json);
-        let oniItems: OniItem[] = [];
-        let old : any[] = json;
-        console.log(old)
-        for (let o of old)
-        {
-          let newO: any = {}
-          newO.id = o.id;
-          if (o.imageId != null) newO.imageId = o.imageId;
-          if (o.spriteInfoId != null) newO.spriteInfoId = o.spriteInfoId;
-          if (o.spriteModifierId != null) newO.spriteModifierId = o.spriteModifierId;
-          if (o.buildingType == "tile") newO.isTile = true;
-          if (o.buildingType == "wire") newO.isWire = true;
-          if (o.width != null) newO.size = new Vector2(o.width, o.height);
-
-          oniItems.push(newO)
-        }
-
-        this.downloadTextAsFile(JSON.stringify(oniItems, null, 2), 'oni_items.json');
-       });
-       */
-      /*
-      let newItems: OniItem[] = [];
-      let items = Array.from(OniItem.oniItemsMap.values());
-      for (let item of items)
-      {
-        switch (item.size.x)
-        {
-          case 3:
-          case 4:
-            item.tileOffset = new Vector2(-1, 0);
-            break;
-            case 5:
-            case 6:
-              item.tileOffset = new Vector2(-2, 0);
-              break;
-            case 7:
-            case 8:
-              item.tileOffset = new Vector2(-3, 0);
-              break;
-        }
-      }
-
-      let newItemsString = JSON.stringify(items, null, 2);
-      this.downloadTextAsFile(newItemsString, 'newItems.json');
-      */
-
-      /*
-     for (let item of this.oniItems)
-    {
-      if (item.utilityConnections != null)
-        for (let connection of item.utilityConnections)
-        {
-          connection.connectionType = ConnectionType[connection.connectionType];
-        }
-      
-    }
-    */
-    
-    /*
-     this.addUtilityConnection('WireRefined', ConnectionType.power_output);
-     this.addUtilityConnection('Wire', ConnectionType.power_input);
-     this.addUtilityConnection('InsulatedLiquidConduit', ConnectionType.liquid_output)
-     this.addUtilityConnection('LiquidConduit', ConnectionType.liquid_input);
-     this.addUtilityConnection('LiquidConduitRadiant', ConnectionType.liquid_output_secondary);
-     this.addUtilityConnection('GasConduit', ConnectionType.gas_input);
-     this.addUtilityConnection('GasConduitRadiant', ConnectionType.gas_output_secondary);
-     this.addUtilityConnection('InsulatedGasConduit', ConnectionType.gas_output);
-
-
-    let itemCategories: any[] = []
-    for (let templateItem of this.canvas.blueprint.templateItems)
-    {
-      let category = null
-      switch (templateItem.position.y)
-      {
-        case 28: 
-          category = 'Base';
-          break;
-        case 25: 
-          category = 'Oxygen';
-          break;
-        case 20: 
-          category = 'Power';
-          break;
-        case 15: 
-          category = 'Food';
-          break;
-          case 10: 
-          category = 'Plumbing';
-          break;
-        case 6: 
-          category = 'Ventilation';
-          break;
-        case 0: 
-          category = 'Refinement';
-          break;
-        case -4: 
-          category = 'Medecine';
-          break;
-        case -8: 
-          category = 'Furniture';
-          break;
-        case -15: 
-          category = 'Stations';
-          break;
-        case -20: 
-          category = 'Utilities';
-          break;
-        case -25: 
-          category = 'Automation';
-          break;
-        case -29: 
-          category = 'Shipping';
-          break;
-      }
-
-      if (category != null && 
-        templateItem.id != 'WireRefined' &&
-        templateItem.id != 'Wire' &&
-        templateItem.id != 'InsulatedLiquidConduit' &&
-        templateItem.id != 'LiquidConduit' &&
-        templateItem.id != 'LiquidConduitRadiant' &&
-        templateItem.id != 'GasConduit' &&
-        templateItem.id != 'GasConduitRadiant' &&
-        templateItem.id != 'InsulatedGasConduit' &&
-        templateItem.id != 'LogicWire')
-      {
-        let itemCategory = {id:templateItem.id, category:category}
-        itemCategories.push(itemCategory);
-      }
-    }
-    this.http.post('http://localhost:3000/misc', itemCategories).subscribe();
-
-    */
 
     let orientations: any[] = []
     for (let templateItem of this.canvas.blueprint.templateItems)
@@ -541,44 +363,6 @@ export class ComponentBlueprintParentComponent implements OnInit {
       }
     }
     this.http.post('http://localhost:3000/misc', orientations).subscribe();
-
-
-     //this.downloadTextAsFile(JSON.stringify(this.oniItems, null, 2), 'newItems.json');
-    //this.downloadTextAsFile(JSON.stringify(this.oniItems, null, 2), 'newItems.json');
-
-    //this.http.post('http://localhost:3000/oniItems', this.oniItems).subscribe((response) => {console.log(response)});
-    //this.http.post('http://localhost:3000/spriteInfos', this.spriteInfos).subscribe((response) => {console.log(response)});
-    //this.http.post('http://localhost:3000/spriteModifiers', this.spriteModifiers).subscribe((response) => {console.log(response)});
-    //this.http.post('http://localhost:3000/imageSources', this.imageSources).subscribe((response) => {console.log(response)});
-    //this.http.post('http://localhost:3000/composingElements', this.elements).subscribe((response) => {console.log(response)});
-  }
-
-  private addUtilityConnection(filter: string, connectionType: ConnectionType)
-  {
-    for (let templateItem of this.canvas.blueprint.templateItems.filter(i => i.id == filter))
-    {
-      for (let building of this.canvas.blueprint.getTemplateItemsAt(templateItem.position).filter(b => 
-        b.id != 'LiquidConduit' && 
-        b.id != 'Wire' && 
-        b.id != 'WireRefined' && 
-        b.id != 'LogicWire' && 
-        b.id != 'GasConduit' &&
-        b.id != 'LiquidConduitRadiant' &&
-        b.id != 'InsulatedLiquidConduit' &&
-        b.id != 'GasConduitRadiant' &&
-        b.id != 'InsulatedGasConduit'))
-      {
-        console.log(building.id)
-        for (let item of this.oniItems)
-          if (item.id == building.id)
-          {
-            if (item.utilityConnections == null) item.utilityConnections = [];
-            item.utilityConnections.push({
-              connectionType:ConnectionType[connectionType], 
-              connectionOffset:new Vector2(templateItem.position.x - building.position.x, templateItem.position.y - building.position.y)})
-          }
-      }
-    }
   }
 
   downloadTextAsFile(data: string, filename: string)
@@ -597,8 +381,6 @@ export class ComponentBlueprintParentComponent implements OnInit {
 
   onTileInfoChange(tileInfo: TileInfo)
   {
-    //Promise.resolve(null).then(() => this.sidePanel.update(tileInfo));
-
     this.sidePanel.updateSelectionTool(tileInfo);
   }
 

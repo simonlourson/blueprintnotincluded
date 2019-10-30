@@ -58,7 +58,8 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
   drawAbstraction: DrawPixi;
   technicalRepack: TechnicalRepack;
 
-  constructor(private ngZone: NgZone, private http: HttpClient) {
+  public blueprint: Template
+  constructor(private ngZone: NgZone) {
     
     this.camera = new Camera();
     this.drawAbstraction = new DrawPixi();
@@ -78,7 +79,6 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
     this.running = false;
   }
 
-  public blueprint: Template;
   public loadNewBlueprint(blueprint: Template)
   {
     // First destroy the old blueprint

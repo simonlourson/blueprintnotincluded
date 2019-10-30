@@ -4,10 +4,10 @@
 <p-menubar 
   #menu 
   [model]="menuItems">
-  <button *ngIf="!authService.isLoggedIn()" pButton icon="pi pi-sign-in"  label="Login" (click)="login($event)"></button>
+  <button *ngIf="!authService.isLoggedIn()" pButton icon="pi pi-sign-in"  label="Login" (click)="login()"></button>
   <div *ngIf="authService.isLoggedIn()">
     <!--TODO Show username-->
-    <button pButton class="ui-button-warning" icon="pi pi-sign-out" label="Logout" (click)="logout($event)"></button>
+    <button pButton class="ui-button-warning" icon="pi pi-sign-out" label="Logout" (click)="logout()"></button>
   </div>
 </p-menubar>
 <input type="file" id="fileChooser" accept=".yaml" style="display: none" (change)="templateUpload($event)">

@@ -4,22 +4,10 @@
   <div class="p-col-12">
     <app-component-menu 
       #menu
-      (onMessage)="toast($event)" 
+      (onMenuCommand)="menuCommand($event)"
       (onTemplateUpload)="templateUpload($event)"
       (onTemplateUploadJson)="templateUploadJson($event)"
-      (onTemplateUploadBson)="templateUploadBson($event)"
-      (onDownloadAsJson)="downloadAsJson()"
-      (onDownloadIcons)="downloadIcons()"
-      (onRepackTextures)="repackTextures()"
-      (onFetchIcons)="fetchIcons()"
-      (onDownloadUtility)="downloadUtility()"
-      (onDownloadDistinctIdAsJson)="downloadDistinctIdAsJson()"
-      (onMisc)=misc()
-      (onSaveToCloud)=saveToCloud()
-      (onChangeOverlay)=changeOverlay($event)
-      (onChangeTool)=changeTool($event)
-      (onBuild)=build($event)
-      (onLoginDialog)=openLoginDialog()>
+      (onTemplateUploadBson)="templateUploadBson($event)">
     </app-component-menu>
   </div>
   <div class="p-col-12">
@@ -42,7 +30,6 @@
   </div>
 </div>
 
-<app-component-element-key-panel #elementKeyPanel ></app-component-element-key-panel>
 <app-component-save-dialog #saveDialog (onSaveToCloud)=sendSaveToCloud($event)></app-component-save-dialog>
 <app-login-dialog #loginDialog>
 </app-login-dialog>
