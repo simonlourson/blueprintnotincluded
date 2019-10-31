@@ -1,44 +1,32 @@
-<p-dialog #buildingsDialog 
-header='Save blueprint to the cloud' 
-[(visible)]="visible"
-[modal]="true" 
-[dismissableMask]="true"
-[style]="{width: '600px', minHeight: '20px'}"
-[closable]="true" 
-[focusOnShow]="false" 
-[maximizable]="false" 
-[draggable]="false" 
-[resizable]="false" 
->
+<form [formGroup]="saveBlueprintForm" (ngSubmit)="onSubmit()">
+  <p-dialog #saveDialog 
+  header='Save blueprint to the cloud' 
+  [(visible)]="visible"
+  [modal]="true" 
+  [dismissableMask]="true"
+  [closable]="true" 
+  [focusOnShow]="false" 
+  [maximizable]="false" 
+  [draggable]="false" 
+  [resizable]="false" 
+  >
 
-  <table style="width:100%">
-    <tr>
-      <td class="leftHandCells"><h4>Username</h4></td>
-      <td class="rightHandCells">
-        <input class="rightInput" pInputText [(ngModel)]="username" #usernameModel="ngModel" appStringSanitation minlength="4" maxlength="50" required/>
-        <p class="errorRed" *ngIf="usernameModel.invalid && (usernameModel.dirty || usernameModel.touched) && (usernameModel.errors?.minlength || usernameModel.errors?.maxlength)">Username must be between 4 and 50 characters</p>
-        <p class="errorRed" *ngIf="usernameModel.invalid && (usernameModel.dirty || usernameModel.touched) && (usernameModel.errors?.invalidChars)">Username can only contains letters, numbers, dashes (-), or underscores (_)</p>
-        <p class="errorRed" *ngIf="usernameModel.invalid && (usernameModel.dirty || usernameModel.touched) && (usernameModel.errors?.required)">Username is required</p>
-      </td>
-    </tr>
-    <tr>
-      <td class="leftHandCells"><h4>Blueprint name</h4></td>
-      <td class="rightHandCells">
-        <input class="rightInput" pInputText [(ngModel)]="blueprintName" #blueprintNameModel="ngModel" appStringSanitation minlength="4" maxlength="50" required/>
-        <p class="errorRed" *ngIf="blueprintNameModel.invalid && (blueprintNameModel.dirty || blueprintNameModel.touched) && (blueprintNameModel.errors?.minlength || blueprintNameModel.errors?.maxlength)">Username must be between 4 and 50 characters</p>
-        <p class="errorRed" *ngIf="blueprintNameModel.invalid && (blueprintNameModel.dirty || blueprintNameModel.touched) && (blueprintNameModel.errors?.invalidChars)">Username can only contains letters, numbers, dashes (-), or underscores (_)</p>
-        <p class="errorRed" *ngIf="blueprintNameModel.invalid && (blueprintNameModel.dirty || blueprintNameModel.touched) && (blueprintNameModel.errors?.required)">Username is required</p>
-      </td>
-    </tr>
-    <tr>
-      <td class="leftHandCells"><h4>Password</h4></td>
-      <td class="rightHandCells"><input class="rightInput" type="password" [feedback]="false" [(ngModel)]="password" pPassword/></td>
-    </tr>
-  </table>
+    <br>
+    <span class="ui-float-label">
+      <input class="float-input" type="text" size="60" formControlName="name" pInputText> 
+      <label for="float-input">Blueprint name</label>
+    </span>
+    <div *ngIf="f.name.invalid && (f.name.dirty || f.name.touched)" class="error-red" >
+      <div *ngIf="f.name.errors.required">Blueprint name is required.</div>
+    </div>
+    <div *ngIf="overwrite" class="error-red">You already have a blueprint with this name. Overwrite?</div>
 
-  <p-footer>
-    <button type="button" [disabled]="blueprintNameModel.invalid || usernameModel.invalid" pButton icon="pi pi-check" (click)="save($event)" label="Save"></button>
-    <button type="button" pButton icon="pi pi-times" (click)="cancel($event)" label="Cancel" class="ui-button-secondary"></button>
-  </p-footer>
+    <p-footer>
+      
+      <p-button *ngIf="!overwrite" type="submit" label="Save" [icon]="icon" [disabled]="!saveBlueprintForm.valid || saveBlueprintForm.pending || working" ></p-button>
+      <button *ngIf="overwrite" type="button" pButton icon="pi pi-times" (click)="doNotOverwrite()" label="No" class="ui-button-danger"></button>
+      <button *ngIf="overwrite" type="button" pButton icon="pi pi-check" (click)="doOverwrite()" label="Yes"></button>
+    </p-footer>
 
-</p-dialog>
+  </p-dialog>
+</form>

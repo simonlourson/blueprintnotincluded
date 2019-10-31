@@ -3,6 +3,7 @@ import { LoginInfo } from '../../../common/api/login-info';
 import { Dialog } from 'primeng/dialog';
 import { LoginFormComponent } from '../login-form/login-form.component';
 import { RegisterFormComponent } from '../register-form/register-form.component';
+import { disableDebugTools } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-login-dialog',
@@ -18,11 +19,26 @@ export class ComponentLoginDialogComponent implements OnInit {
   @ViewChild('loginForm', {static: false}) loginForm: LoginFormComponent
   @ViewChild('registerForm', {static: false}) registerForm: RegisterFormComponent
 
+
+  get label() { return this.isLogin ? 'Login' : 'Register' } //!loginForm.valid || loginForm.pending || working
+  get icon() { 
+    if (this.isLogin && this.loginForm != null) return this.loginForm.working ? 'pi pi-spin pi-spinner' : '';
+    else if (this.isRegistration && this.registerForm != null) return this.registerForm.working ? 'pi pi-spin pi-spinner' : '';
+    else return '';
+  }
+  get disabled() { 
+    if (this.isLogin && this.loginForm != null) return !this.loginForm.loginForm.valid || this.loginForm.loginForm.pending || this.loginForm.working ;
+    else if (this.isRegistration && this.registerForm != null) return !this.registerForm.registerForm.valid || this.registerForm.registerForm.pending || this.registerForm.working ;
+    else return false;
+  }
+
   constructor(private cdRef: ChangeDetectorRef) { 
-    
   }
 
   ngOnInit() {
+
+    // This is here because we have getters with static=false ViewChild
+    this.cdRef.detectChanges();
   }
 
   cancel(event: any)
@@ -38,6 +54,12 @@ export class ComponentLoginDialogComponent implements OnInit {
     this.loginForm.reset();
     this.visible = true;
     this.recenter();
+  }
+
+  submit()
+  {
+    if (this.isLogin) this.loginForm.onSubmit();
+    else if (this.isRegistration) this.registerForm.onSubmit();
   }
 
   hideDialog()

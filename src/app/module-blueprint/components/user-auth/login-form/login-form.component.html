@@ -22,7 +22,6 @@
   <br>
   <a [routerLink]="" (click)="registration()">First registration ?</a>
 
-  <br>
-  <br>
-  <p-button type="submit" [icon]="icon" label="Login" [disabled]="!loginForm.valid || loginForm.pending || working" ></p-button>
+  <!--This is just here so that enter submits the form-->
+  <button type="submit" style='visibility:hidden'></button>
 </form>

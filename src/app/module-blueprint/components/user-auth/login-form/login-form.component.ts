@@ -46,21 +46,27 @@ export class LoginFormComponent implements OnInit {
     }
 
     this.working = true;
-    this.authService.login(tokenPayload).subscribe(
-      () => {  
-        this.onLoginOk.emit();
+    this.authService.login(tokenPayload).subscribe({
+      next: this.handleSaveNext.bind(this),
+      error: this.handleSaveError.bind(this)
+    });
+  }
 
-        let summary: string = 'Login Successful';
-        let detail: string = 'Welcome ' + this.authService.getUserDetails().username;
+  handleSaveNext(response: any)
+  {
+    this.onLoginOk.emit();
 
-        this.messageService.add({severity:'success', summary:summary , detail:detail});
-        this.working = false;
-      },
-      (err) => { 
-        this.authError = true;
-        this.working = false;
-      }
-    );
+    let summary: string = 'Login Successful';
+    let detail: string = 'Welcome ' + this.authService.getUserDetails().username;
+
+    this.messageService.add({severity:'success', summary:summary , detail:detail});
+    this.working = false;
+  }
+
+  handleSaveError()
+  {
+    this.authError = true;
+    this.working = false;
   }
 
   registration()

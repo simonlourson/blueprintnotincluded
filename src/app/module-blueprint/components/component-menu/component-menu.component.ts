@@ -9,6 +9,7 @@ import { ToolRequest } from '../../common/tool-request';
 import { TemplateItem } from '../../common/template/template-item';
 import { AuthenticationService } from '../user-auth/authentification-service';
 import { Template } from '../../common/template/template';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-component-menu',
@@ -40,6 +41,12 @@ export class ComponentMenuComponent implements OnInit {
 
   }
 
+  get dynamicMenuItems() { 
+    let blueprintMenuItems = this.menuItems.find((i) => i.id == 'blueprint').items as MenuItem[];
+    blueprintMenuItems.find((i) => i.id == 'save').disabled = !this.authService.isLoggedIn();
+    return this.menuItems; 
+  }
+
   ngOnInit() {
     
     this.overlayMenuItems = [
@@ -62,12 +69,15 @@ export class ComponentMenuComponent implements OnInit {
 
     */
 
+
     this.menuItems = [
       {
+        id: 'blueprint',
         label: 'Blueprint',
+        command: (event) => { console.log('blueprintmenu') },
         items: [
           {label: 'New', icon:'pi pi-plus', command: (event) => { this.onMenuCommand.emit({type: MenuCommandType.newBlueprint, data: null}); } },
-          {label: 'Save to cloud', icon:'pi pi-cloud-upload', command: (event) => { this.saveToCloud(); } },
+          {id: 'save', label: 'Save', icon:'pi pi-save', command: (event) => { this.onMenuCommand.emit({type: MenuCommandType.saveBlueprint, data: null}); } },
           {label: 'Game Yaml', command: (event) => { this.uploadYamlTemplate(); } },
           {label: 'Json Blueprint', command: (event) => { this.uploadJsonTemplate(); } },
           {label: 'Binary Blueprint', command: (event) => { this.uploadBsonTemplate(); } }
@@ -193,6 +203,8 @@ export enum MenuCommandType
   uploadYaml,
   changeTool,
   changeOverlay,
+
+  saveBlueprint,
 
   fetchIcons,
   downloadIcons,

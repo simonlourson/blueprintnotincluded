@@ -40,16 +40,6 @@
   <div *ngIf="authError" class="error-red" >Authentification error</div>
   <div *ngIf="duplicateError" class="error-red" >Username or e-mail is already registered</div>
 
-  <br>
-  <p-button type="submit" [icon]="icon" label="Register" [disabled]="!registerForm.valid || registerForm.pending || working" ></p-button>
+  <!--This is just here so that enter submits the form-->
+  <button type="submit" style='visibility:hidden'></button>
 </form>
-
-
-<!--
-<br *ngIf="!registration">
-<a *ngIf="!registration">Forgotten password</a>
-<br *ngIf="!registration">
-<a *ngIf="!registration" [routerLink]="" (click)="transformRegister()">First registration</a>
-
--->
-

@@ -178,6 +178,7 @@ export class ComponentBlueprintParentComponent implements OnInit {
     else if (menuCommand.type == MenuCommandType.changeTool) this.changeTool(menuCommand.data as ToolRequest);
     else if (menuCommand.type == MenuCommandType.changeOverlay) this.changeOverlay(menuCommand.data as Overlay);
     else if (menuCommand.type == MenuCommandType.showLoginDialog) this.openLoginDialog();
+    else if (menuCommand.type == MenuCommandType.saveBlueprint) this.saveToCloud();
     
   }
 

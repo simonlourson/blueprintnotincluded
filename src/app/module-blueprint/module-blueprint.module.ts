@@ -44,6 +44,7 @@ import { CheckDuplicateService } from './components/user-auth/check-duplicate-se
 import { LoginFormComponent } from './components/user-auth/login-form/login-form.component';
 import { AuthenticationService } from './components/user-auth/authentification-service';
 import { Template } from './common/template/template';
+import { BlueprintService } from './common/blueprint-service';
 
 const routes: Routes = [
   { path: '', component: ComponentBlueprintParentComponent },
@@ -60,7 +61,7 @@ const routes: Routes = [
     RouterModule.forChild(routes)
   ],
   declarations: [StringSanitationDirective, ComponentCanvasComponent, MouseWheelDirective, DragAndDropDirective, KeyboardDirective, ComponentMenuComponent, ComponentSidepanelComponent, ComponentBlueprintParentComponent, ComponentTileInfoComponent, ComponentSaveDialogComponent, ComponentSideBuildToolComponent, ComponentSideSelectionToolComponent, ComponentElementKeyPanelComponent, ComponentLoginDialogComponent, RegisterFormComponent, LoginFormComponent],
-  providers: [CheckDuplicateService, AuthenticationService, Template],
+  providers: [CheckDuplicateService, AuthenticationService, BlueprintService],
   exports: [ComponentBlueprintParentComponent]
 })
 export class ModuleBlueprintModule { }

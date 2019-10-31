@@ -30,6 +30,7 @@
   </div>
 </div>
 
-<app-component-save-dialog #saveDialog (onSaveToCloud)=sendSaveToCloud($event)></app-component-save-dialog>
-<app-login-dialog #loginDialog>
-</app-login-dialog>
+<app-component-save-dialog #saveDialog 
+  [blueprint]="this.canvas.blueprint"
+  ></app-component-save-dialog>
+<app-login-dialog #loginDialog></app-login-dialog>
