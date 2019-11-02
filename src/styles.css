@@ -6,11 +6,6 @@ body {
     overflow: hidden;
 }
 
-.custom-icon {
-  background: url('/assets/images/ui/compost_0.png') no-repeat !important;
-  display: block !important;
-  float: left;
-	width: 30px !important;
-	height: 30px !important;
-	margin-right: 100px !important;
+.grecaptcha-badge{
+	visibility: collapse !important;  
 }

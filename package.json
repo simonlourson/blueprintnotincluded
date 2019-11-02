@@ -24,6 +24,7 @@
     "@types/pixi.js": "^4.8.9",
     "csharp-binary-stream": "^1.0.1",
     "jszip": "^3.2.2",
+    "ng-recaptcha": "^5.0.0",
     "pixi.js": "^5.1.5",
     "primeflex": "^1.0.0-rc.1",
     "primeicons": "^2.0.0",

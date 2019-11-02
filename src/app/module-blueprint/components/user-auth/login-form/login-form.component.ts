@@ -3,6 +3,9 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { AuthenticationService } from '../authentification-service';
 import { MessageService } from 'primeng/api';
+import { ReCaptchaV3Service } from 'ng-recaptcha';  
+import { Observable, Subscription } from 'rxjs';
+import { ToolRequest } from 'src/app/module-blueprint/common/tool-request';
 
 @Component({
   selector: 'app-login-form',
@@ -19,7 +22,10 @@ export class LoginFormComponent implements OnInit {
   @Output() onRegistration = new EventEmitter();
   @Output() onLoginOk = new EventEmitter();
 
-  constructor(private authService: AuthenticationService, private messageService: MessageService) { }
+  constructor(
+    private authService: AuthenticationService, 
+    private recaptchaV3Service: ReCaptchaV3Service,
+    private messageService: MessageService) { }
 
   get f() { return this.loginForm.controls; }
   get icon() { return this.working ? 'pi pi-spin pi-spinner' : ''; }
@@ -37,18 +43,26 @@ export class LoginFormComponent implements OnInit {
     this.loginForm.reset();
   }
 
+  subscription: Subscription;
   onSubmit()
   {
-    let tokenPayload = {
-      email: '',  
-      username: this.loginForm.value.username as string,
-      password: this.loginForm.value.password as string  
-    }
-
     this.working = true;
-    this.authService.login(tokenPayload).subscribe({
-      next: this.handleSaveNext.bind(this),
-      error: this.handleSaveError.bind(this)
+    this.subscription = this.recaptchaV3Service.execute('login').subscribe((token) => {
+
+      let tokenPayload = {
+        'g-recaptcha-response': token,
+        email: '',  
+        username: this.loginForm.value.username as string,
+        password: this.loginForm.value.password as string  
+      }
+      
+      this.authService.login(tokenPayload).subscribe({
+        next: this.handleSaveNext.bind(this),
+        error: this.handleSaveError.bind(this)
+      });
+      
+      this.subscription.unsubscribe();
+
     });
   }
 

@@ -5,6 +5,8 @@ import { HttpClient } from '@angular/common/http';
 import { CheckDuplicateService } from '../check-duplicate-service';
 import { AuthenticationService } from '../authentification-service';
 import { MessageService } from 'primeng/api';
+import { Subscription } from 'rxjs';
+import { ReCaptchaV3Service } from 'ng-recaptcha';
 
 
 @Component({
@@ -23,7 +25,10 @@ export class RegisterFormComponent implements OnInit {
 
   @Output() onRegistrationOk = new EventEmitter();
 
-  constructor(private authService: AuthenticationService, private checkDuplicateService: CheckDuplicateService, private messageService: MessageService) { 
+  constructor(private authService: AuthenticationService, 
+    private checkDuplicateService: CheckDuplicateService, 
+    private messageService: MessageService,
+    private recaptchaV3Service: ReCaptchaV3Service) { 
   }
 
   get f() { return this.registerForm.controls; }
@@ -46,35 +51,46 @@ export class RegisterFormComponent implements OnInit {
     if (c.get('password').value !== c.get('confirmPassword').value) return {invalid: true};
   }
 
+  subscription: Subscription;
   onSubmit()
   {
-    let tokenPayload = {
-      email: this.registerForm.value.email as string,
-      username: this.registerForm.value.username as string,
-      password: this.registerForm.value.password as string  
+    this.working = true;
+
+    this.subscription = this.recaptchaV3Service.execute('register').subscribe((token) => {
+      let tokenPayload = {
+        'g-recaptcha-response': token,
+        email: this.registerForm.value.email as string,
+        username: this.registerForm.value.username as string,
+        password: this.registerForm.value.password as string  
+      }
+
+      this.authService.register(tokenPayload).subscribe({
+        next: this.handleSaveNext.bind(this),
+        error: this.handleSaveError.bind(this)
+      });
+    });
+
+  }
+
+  handleSaveNext(data: any)
+  {
+    if (data.duplicateError) this.duplicateError = true;
+    else if (data.token)
+    {
+      this.onRegistrationOk.emit();
+      let summary: string = 'Registration Successful';
+      let detail: string = 'Welcome ' + this.authService.getUserDetails().username;
+
+      this.messageService.add({severity:'success', summary:summary , detail:detail});
     }
 
-    this.working = true;
-    this.authService.register(tokenPayload).subscribe(
-      (data) => {
-        if (data.duplicateError) this.duplicateError = true;
-        else if (data.token)
-        {
-          this.onRegistrationOk.emit();
-          let summary: string = 'Registration Successful';
-          let detail: string = 'Welcome ' + this.authService.getUserDetails().username;
-  
-          this.messageService.add({severity:'success', summary:summary , detail:detail});
-        }
+    this.working = false;
+  }
 
-        this.working = false;
-      },
-      (err) => { 
-        this.authError = true;
-        this.working = false;
-      }
-    );
-
+  handleSaveError()
+  {
+    this.authError = true;
+    this.working = false;
   }
 
   ngOnInit() {

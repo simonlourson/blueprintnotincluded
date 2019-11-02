@@ -25,7 +25,7 @@
       
       <p-button *ngIf="!overwrite" type="submit" label="Save" [icon]="icon" [disabled]="!saveBlueprintForm.valid || saveBlueprintForm.pending || working" ></p-button>
       <button *ngIf="overwrite" type="button" pButton icon="pi pi-times" (click)="doNotOverwrite()" label="No" class="ui-button-danger"></button>
-      <button *ngIf="overwrite" type="button" pButton icon="pi pi-check" (click)="doOverwrite()" label="Yes"></button>
+      <button *ngIf="overwrite" type="button" pButton [icon]="working ? 'pi pi-spin pi-spinner' : 'pi pi-check'" (click)="doOverwrite()" label="Yes" [disabled]="working"></button>
     </p-footer>
 
   </p-dialog>

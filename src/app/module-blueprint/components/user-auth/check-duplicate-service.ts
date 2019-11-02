@@ -10,8 +10,6 @@ export class CheckDuplicateService
   constructor(private http: HttpClient) {}
 
   public checkUsername(username: string) {
-    console.log('checkUsername :'+username);
-    
     return timer(1000)
       .pipe(
         switchMap(() => {
@@ -26,7 +24,6 @@ export class CheckDuplicateService
       return this.checkUsername(control.value)
         .pipe(
           map(res => {
-            console.log(res)
             // if username is already taken
             if (res.usernameExists) {
               // return error

@@ -45,6 +45,7 @@ import { LoginFormComponent } from './components/user-auth/login-form/login-form
 import { AuthenticationService } from './components/user-auth/authentification-service';
 import { Template } from './common/template/template';
 import { BlueprintService } from './common/blueprint-service';
+import { RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module } from 'ng-recaptcha';
 
 const routes: Routes = [
   { path: '', component: ComponentBlueprintParentComponent },
@@ -57,11 +58,14 @@ const routes: Routes = [
     HttpClientModule,
     FormsModule, ReactiveFormsModule,
     PasswordModule, ColorPickerModule, InputTextModule, SliderModule, ButtonModule, CardModule, ScrollPanelModule, OverlayPanelModule, MenubarModule, TabMenuModule, SlideMenuModule, DialogModule, DropdownModule, AccordionModule, ToastModule, TooltipModule, CaptchaModule,
+    RecaptchaV3Module,
     BrowserAnimationsModule,
     RouterModule.forChild(routes)
   ],
   declarations: [StringSanitationDirective, ComponentCanvasComponent, MouseWheelDirective, DragAndDropDirective, KeyboardDirective, ComponentMenuComponent, ComponentSidepanelComponent, ComponentBlueprintParentComponent, ComponentTileInfoComponent, ComponentSaveDialogComponent, ComponentSideBuildToolComponent, ComponentSideSelectionToolComponent, ComponentElementKeyPanelComponent, ComponentLoginDialogComponent, RegisterFormComponent, LoginFormComponent],
-  providers: [CheckDuplicateService, AuthenticationService, BlueprintService],
+  providers: [CheckDuplicateService, AuthenticationService, BlueprintService,
+    { provide: RECAPTCHA_V3_SITE_KEY, useValue: '6LdS0b8UAAAAAGb8P_L33ypsdiS41Nu8q3CwRg_M' }  
+  ],
   exports: [ComponentBlueprintParentComponent]
 })
 export class ModuleBlueprintModule { }
