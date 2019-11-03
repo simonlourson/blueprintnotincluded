@@ -1,0 +1,19 @@
+<p-dialog #saveDialog 
+  header='Get shareable url' 
+  [(visible)]="visible"
+  [modal]="true" 
+  [dismissableMask]="true"
+  [closable]="true" 
+  [focusOnShow]="false" 
+  [maximizable]="false" 
+  [draggable]="false" 
+  [resizable]="false" 
+  >
+  
+  <div>Use the following url to share this blueprint : </div>
+  <input #urlInput class="float-input" type="text" size="60" [ngModel]="url" pInputText [disabled]="blueprintService.blueprint.id == null"> 
+  <button pButton type="button" class="ui-button copy-button" icon="pi pi-clone" (click)="copyToClipboard(urlInput)" pTooltip="Copy url to clipboard" [disabled]="blueprintService.blueprint.id == null"></button>
+
+  <div *ngIf="blueprintService.blueprint.id == null" class="error-red">You must first save the blueprint to get a shareable url</div>
+
+</p-dialog>

@@ -29,6 +29,7 @@ import * as JSZip from 'jszip';
 import { BSpriteInfo } from '../../common/bexport/b-sprite-info';
 import { TemplateItem } from '../../common/template/template-item';
 import { TechnicalRepack } from '../../common/technical-repack';
+import { BlueprintService } from '../../common/blueprint-service';
 
 
 @Component({
@@ -58,8 +59,11 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
   drawAbstraction: DrawPixi;
   technicalRepack: TechnicalRepack;
 
-  public blueprint: Template
-  constructor(private ngZone: NgZone) {
+  public get blueprint() { return this.blueprintService.blueprint; }
+  public set blueprint(value: Template) { this.blueprintService.blueprint = value; }
+  constructor(
+    private ngZone: NgZone,
+    private blueprintService: BlueprintService) {
     
     this.camera = new Camera();
     this.drawAbstraction = new DrawPixi();
@@ -182,8 +186,8 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
 
       }
       */
-
-     this.currentTool.changeTileDrag(this.blueprint, previousTile, currentTile);
+      if (previousTile != null)
+        this.currentTool.changeTileDrag(this.blueprint, previousTile, currentTile);
       
     }
 

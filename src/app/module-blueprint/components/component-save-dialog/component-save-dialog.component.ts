@@ -48,9 +48,11 @@ export class ComponentSaveDialogComponent implements OnInit {
     });
   }
 
+  // TODO this is ugly, use pipe map instead
+  public id: string;
   handleSaveNext(response: any)
   {
-    console.log(response);
+    
     if (response.overwrite) 
     {
       this.overwrite = true;

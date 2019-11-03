@@ -15,6 +15,7 @@ import { BniBuilding } from '../blueprint-import/bni-building';
 
 export class Template
 {
+  id: string;
   name: string;
   templateItems: TemplateItem[];
   templateTiles: TemplateItem[][];
@@ -88,7 +89,6 @@ export class Template
 
   public importFromCloud(original: Template)
   {
-    // TODO trycatch this
     this.name = original.name;
     this.templateItems = [];
 
@@ -226,6 +226,7 @@ export class Template
   {
     let returnValue = new Template();
     returnValue.name = this.name;
+    returnValue.id = undefined;
     returnValue.templateItems = [];
 
     for (let originalTemplateItem of this.templateItems) 

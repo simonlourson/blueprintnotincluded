@@ -210,6 +210,7 @@ export class ComponentSideBuildToolComponent implements OnInit, Tool {
 
   changeTileDrag(blueprint: Template, previousTileDrag: Vector2, currentTileDrag: Vector2)
   {
+    //console.log("Start drag from " + JSON.stringify(previousTileDrag) + ' to ' + JSON.stringify(currentTileDrag));
     /*
     console.log("********************************");
     console.log("Start drag from " + JSON.stringify(previousTileDrag) + ' to ' + JSON.stringify(currentTileDrag));
@@ -236,6 +237,7 @@ export class ComponentSideBuildToolComponent implements OnInit, Tool {
     console.log("Stop drag");
     console.log("********************************");
 */
+
 
     this.unitChangeTileDrag(blueprint, previousTileDrag, currentTileDrag);
   }

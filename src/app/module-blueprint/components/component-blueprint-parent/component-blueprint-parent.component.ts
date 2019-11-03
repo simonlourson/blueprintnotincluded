@@ -36,6 +36,7 @@ import { BniBlueprint } from '../../common/blueprint-import/bni-blueprint';
 import { ComponentLoginDialogComponent } from '../user-auth/login-dialog/login-dialog.component';
 import { LoginInfo } from '../../common/api/login-info';
 import { BlueprintService } from '../../common/blueprint-service';
+import { DialogShareUrlComponent } from '../dialog-share-url/dialog-share-url.component';
 
 @Component({
   selector: 'app-component-blueprint-parent',
@@ -59,6 +60,9 @@ export class ComponentBlueprintParentComponent implements OnInit {
 
   @ViewChild('loginDialog', {static: true})
   loginDialog: ComponentLoginDialogComponent;
+
+  @ViewChild('shareUrlDialog', {static: true})
+  shareUrlDialog: DialogShareUrlComponent;
   
   @ViewChild('menu', {static: true})
   menu: ComponentMenuComponent
@@ -170,10 +174,7 @@ export class ComponentBlueprintParentComponent implements OnInit {
 
   menuCommand(menuCommand: MenuCommand)
   {
-    if (menuCommand.type == MenuCommandType.newBlueprint)
-    {
-      console.log('newBlueprint');
-    }
+    if (menuCommand.type == MenuCommandType.newBlueprint) this.loadTemplateIntoCanvas(new Template());
     else if (menuCommand.type == MenuCommandType.changeTool) this.changeTool(menuCommand.data as ToolRequest);
     else if (menuCommand.type == MenuCommandType.changeOverlay) this.changeOverlay(menuCommand.data as Overlay);
     else if (menuCommand.type == MenuCommandType.showLoginDialog) this.openLoginDialog();
@@ -187,7 +188,7 @@ export class ComponentBlueprintParentComponent implements OnInit {
     this.canvas.loadNewBlueprint(template);
     this.menu.clickOverlay({item:{id:Overlay.Base}});
 
-    let summary: string = "Loaded template : " + template.name;
+    let summary: string = "Loaded blueprint : " + template.name;
     let detail: string = template.templateItems.length + " items loaded";
 
     // TODO error handling
@@ -208,7 +209,7 @@ export class ComponentBlueprintParentComponent implements OnInit {
 
   getShareableUrl()
   {
-    window.prompt('Use this url to share this blueprint :', 'caca')
+    this.shareUrlDialog.showDialog();
   }
 
   templateUploadJson(fileList: FileList)

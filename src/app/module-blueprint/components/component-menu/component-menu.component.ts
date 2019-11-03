@@ -77,14 +77,13 @@ export class ComponentMenuComponent implements OnInit {
       {
         id: 'blueprint',
         label: 'Blueprint',
-        command: (event) => { console.log('blueprintmenu') },
         items: [
           {label: 'New', icon:'pi pi-plus', command: (event) => { this.onMenuCommand.emit({type: MenuCommandType.newBlueprint, data: null}); } },
           {id: 'save', label: 'Save', icon:'pi pi-save', command: (event) => { this.onMenuCommand.emit({type: MenuCommandType.saveBlueprint, data: null}); } },
           {label: 'Upload', icon:'pi pi-upload', items:[
-            {label: 'Game (Yaml)', command: (event) => { this.uploadYamlTemplate(); } },
-            {label: 'Blueprint (Json)', command: (event) => { this.uploadJsonTemplate(); } },
-            {label: 'Blueprint (Binary)', command: (event) => { this.uploadBsonTemplate(); } }
+            {label: 'Game (yaml)', command: (event) => { this.uploadYamlTemplate(); } },
+            {label: 'Blueprint (json)', command: (event) => { this.uploadJsonTemplate(); } },
+            {label: 'Blueprint (binary)', command: (event) => { this.uploadBsonTemplate(); } }
           ]},
           {label: 'Get shareable Url', icon:'pi pi-external-link', command: (event) => { this.onMenuCommand.emit({type: MenuCommandType.getShareableUrl, data: null}); } },
         ]

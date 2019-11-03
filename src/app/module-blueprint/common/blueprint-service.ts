@@ -4,10 +4,17 @@ import { Template } from './template/template';
 import { AuthenticationService } from '../components/user-auth/authentification-service';
 import { map } from 'rxjs/operators';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class BlueprintService
 {
-  constructor(private http: HttpClient, private authService: AuthenticationService) {}
+  static baseUrl: string = 'blueprintnotincluded.com/';
+
+  // TODO observable when modified, to be subscribed by the canvas
+  blueprint: Template;
+
+  constructor(private http: HttpClient, private authService: AuthenticationService) {
+    this.blueprint = new Template();
+  }
 
   getBlueprint(id: string)
   {
@@ -15,6 +22,8 @@ export class BlueprintService
       map((response: any) => {
         if (response.data) {
           let blueprint = new Template();
+
+          blueprint.id = response._id;
           blueprint.importFromCloud(response.data);
           return blueprint;
         }
@@ -33,7 +42,14 @@ export class BlueprintService
     body.name = saveBlueprint.name;
     body.blueprint = saveBlueprint;
 
-    return this.http.post('/api/uploadblueprint', body, { headers: { Authorization: `Bearer ${this.authService.getToken()}` }});
+    const request = this.http.post('/api/uploadblueprint', body, { headers: { Authorization: `Bearer ${this.authService.getToken()}` }}).pipe(
+      map((response: any) => {
+        if (response.id) { this.blueprint.id = response.id; }
+        return response;
+      })
+    );
+
+    return request;
   }
 }
 

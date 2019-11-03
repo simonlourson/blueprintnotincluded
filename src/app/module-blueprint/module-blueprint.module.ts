@@ -46,11 +46,12 @@ import { AuthenticationService } from './components/user-auth/authentification-s
 import { Template } from './common/template/template';
 import { BlueprintService } from './common/blueprint-service';
 import { RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module } from 'ng-recaptcha';
+import { DialogShareUrlComponent } from './components/dialog-share-url/dialog-share-url.component';
 
 const routes: Routes = [
   { path: '', component: ComponentBlueprintParentComponent },
   { path: 'openBlueprint/:username/:blueprintName', component: ComponentBlueprintParentComponent }
-]
+];
 
 @NgModule({
   imports: [
@@ -62,9 +63,9 @@ const routes: Routes = [
     BrowserAnimationsModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [StringSanitationDirective, ComponentCanvasComponent, MouseWheelDirective, DragAndDropDirective, KeyboardDirective, ComponentMenuComponent, ComponentSidepanelComponent, ComponentBlueprintParentComponent, ComponentTileInfoComponent, ComponentSaveDialogComponent, ComponentSideBuildToolComponent, ComponentSideSelectionToolComponent, ComponentElementKeyPanelComponent, ComponentLoginDialogComponent, RegisterFormComponent, LoginFormComponent],
+  declarations: [StringSanitationDirective, ComponentCanvasComponent, MouseWheelDirective, DragAndDropDirective, KeyboardDirective, ComponentMenuComponent, ComponentSidepanelComponent, ComponentBlueprintParentComponent, ComponentTileInfoComponent, ComponentSaveDialogComponent, ComponentSideBuildToolComponent, ComponentSideSelectionToolComponent, ComponentElementKeyPanelComponent, ComponentLoginDialogComponent, RegisterFormComponent, LoginFormComponent, DialogShareUrlComponent],
   providers: [CheckDuplicateService, AuthenticationService, BlueprintService,
-    { provide: RECAPTCHA_V3_SITE_KEY, useValue: '6LdS0b8UAAAAAGb8P_L33ypsdiS41Nu8q3CwRg_M' }  
+    { provide: RECAPTCHA_V3_SITE_KEY, useValue: '6LdS0b8UAAAAAGb8P_L33ypsdiS41Nu8q3CwRg_M' }
   ],
   exports: [ComponentBlueprintParentComponent]
 })
