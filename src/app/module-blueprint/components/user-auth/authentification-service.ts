@@ -100,6 +100,5 @@ export class AuthenticationService {
   public logout(): void {
     this.token = '';
     window.localStorage.removeItem(AuthenticationService.localStorage);
-    this.router.navigateByUrl('/');
   }
 }

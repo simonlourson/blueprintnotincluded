@@ -20,10 +20,11 @@
       <div *ngIf="f.name.errors.required">Blueprint name is required.</div>
     </div>
     <div *ngIf="overwrite" class="error-red">You already have a blueprint with this name. Overwrite?</div>
+    <div *ngIf="!authService.isLoggedIn()" class="error-red">You must be logged in to save a blueprint</div>
 
     <p-footer>
       
-      <p-button *ngIf="!overwrite" type="submit" label="Save" [icon]="icon" [disabled]="!saveBlueprintForm.valid || saveBlueprintForm.pending || working" ></p-button>
+      <p-button *ngIf="!overwrite" type="submit" label="Save" [icon]="icon" [disabled]="!saveBlueprintForm.valid || saveBlueprintForm.pending || working || !authService.isLoggedIn()" ></p-button>
       <button *ngIf="overwrite" type="button" pButton icon="pi pi-times" (click)="doNotOverwrite()" label="No" class="ui-button-danger"></button>
       <button *ngIf="overwrite" type="button" pButton [icon]="working ? 'pi pi-spin pi-spinner' : 'pi pi-check'" (click)="doOverwrite()" label="Yes" [disabled]="working"></button>
     </p-footer>

@@ -35,6 +35,7 @@ import { BSpriteModifier } from '../../common/bexport/b-sprite-modifier';
 import { BniBlueprint } from '../../common/blueprint-import/bni-blueprint';
 import { ComponentLoginDialogComponent } from '../user-auth/login-dialog/login-dialog.component';
 import { LoginInfo } from '../../common/api/login-info';
+import { BlueprintService } from '../../common/blueprint-service';
 
 @Component({
   selector: 'app-component-blueprint-parent',
@@ -62,36 +63,16 @@ export class ComponentBlueprintParentComponent implements OnInit {
   @ViewChild('menu', {static: true})
   menu: ComponentMenuComponent
 
-  constructor(private http: HttpClient, private messageService: MessageService, private cd: ChangeDetectorRef, private route: ActivatedRoute) { }
+  constructor(
+    private http: HttpClient, 
+    private messageService: MessageService, 
+    private cd: ChangeDetectorRef, 
+    private route: ActivatedRoute,
+    private blueprintService: BlueprintService) { }
 
-  private routeLoadedBlueprint: Template
   ngOnInit() {
     
     this.canvas.blueprint = new Template();
-
-    this.route.params.subscribe((params: Params): void => {
-      if (params.username != null && params.blueprintName != null)
-      {
-        fetch(BlueprintParams.apiUrl + 'blueprint/' + params.username + '/' + params.blueprintName)
-          .then(response => { return response.json() })
-          .then(json => { 
-            if (json != null) 
-            {
-              // If the oni database is loaded, we can create the template from the json received 
-              if (OniItem.loadedDatabase) 
-              {
-                // TODO refactor, this is used below
-                let newBlueprint = new Template();
-                newBlueprint.importFromCloud(json.blueprint);
-                this.loadTemplateIntoCanvas(newBlueprint);
-              }
-              // If the oni database is not loaded, we set the routeLoadedBlueprint, and it will be loaded when the oni database is finished loading
-              else this.routeLoadedBlueprint = json.blueprint;
-            }
-          });
-      }
-      
-    });
 
     OniItem.init();
     ImageSource.init();
@@ -105,19 +86,37 @@ export class ComponentBlueprintParentComponent implements OnInit {
       
       this.sidePanel.oniItemsLoaded();
 
-      // if routeLoadedBlueprint is not null, it means the route loaded a template, but was waiting on oniItems to import it, so we do it now
-      if (this.routeLoadedBlueprint != null)
-      {
-        let newBlueprint = new Template();
-        newBlueprint.importFromCloud(this.routeLoadedBlueprint);
-        this.loadTemplateIntoCanvas(newBlueprint);
-      }
-
+      this.route.params.subscribe((params: Params): void => {
+        if (params.id != null)
+        {
+          this.blueprintService.getBlueprint(params.id).subscribe({
+            next: this.handleGetBlueprint.bind(this),
+            error: this.handleGetBlueprintError.bind(this)
+          });
+        }
+      });
     })
     .catch((error) => {
       this.messageService.add({severity:'error', summary:'Error loading database' , detail:error, sticky:true});   
     });
 
+  }
+
+  handleGetBlueprint(response: Template)
+  {
+    this.loadTemplateIntoCanvas(response);
+    /*
+    if (response.data != null)
+    {
+      this.loadTemplateIntoCanvas
+    }
+    */
+  }
+
+  handleGetBlueprintError(error: any)
+  {
+    // TODO toast here
+    console.log(error)
   }
 
   toast(event: any)
@@ -179,6 +178,7 @@ export class ComponentBlueprintParentComponent implements OnInit {
     else if (menuCommand.type == MenuCommandType.changeOverlay) this.changeOverlay(menuCommand.data as Overlay);
     else if (menuCommand.type == MenuCommandType.showLoginDialog) this.openLoginDialog();
     else if (menuCommand.type == MenuCommandType.saveBlueprint) this.saveToCloud();
+    else if (menuCommand.type == MenuCommandType.getShareableUrl) this.getShareableUrl();
     
   }
 
@@ -190,13 +190,8 @@ export class ComponentBlueprintParentComponent implements OnInit {
     let summary: string = "Loaded template : " + template.name;
     let detail: string = template.templateItems.length + " items loaded";
 
+    // TODO error handling
     this.messageService.add({severity:'success', summary:summary , detail:detail});
-  }
-
-  initDefaultTemplate() {
-    fetch("/assets/rosetta_multiselect.yaml")
-      .then(response => { return response.text() })
-      .then(template => { this.loadTemplate(template) });
   }
   
   templateUpload(fileList: FileList)
@@ -209,6 +204,11 @@ export class ComponentBlueprintParentComponent implements OnInit {
       reader.readAsText(fileList[0]);
 
     }
+  }
+
+  getShareableUrl()
+  {
+    window.prompt('Use this url to share this blueprint :', 'caca')
   }
 
   templateUploadJson(fileList: FileList)
@@ -238,20 +238,6 @@ export class ComponentBlueprintParentComponent implements OnInit {
   saveToCloud()
   {
     this.saveDialog.showDialog();
-  }
-
-  sendSaveToCloud(saveInfo: SaveInfo)
-  {
-    saveInfo.blueprint = this.canvas.blueprint.cloneForExport();
-    saveInfo.blueprint.distinctElements = undefined;
-
-    this.http.post(BlueprintParams.apiUrl+'blueprint', saveInfo).toPromise()
-    .then(
-      // TODO Ask for password here
-    )
-    .catch((error) => {
-      this.messageService.add({severity:'error', summary:'Error uploading blueprint to the cloud' , detail:error, sticky:true});   
-    });
   }
 
   downloadAsJson()

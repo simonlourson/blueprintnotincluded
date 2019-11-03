@@ -18,12 +18,16 @@ export class TemplateItemWire extends TemplateItem implements TemplateItemClonea
 {
   static defaultConnections = 0;
   connections: number;
-  drawPartSolid: DrawPart;
+
+  drawPartSolid_: DrawPart;
+  get drawPartSolid() {
+    if (this.drawPartSolid_ == null) this.drawPartSolid_ = new DrawPart();
+    return this.drawPartSolid_;
+  }
 
   constructor(id: string)
   {
     super(id);
-    this.drawPartSolid = new DrawPart();
   }
 
   public importOniBuilding(building: OniBuilding)

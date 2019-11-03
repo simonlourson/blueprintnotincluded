@@ -36,11 +36,14 @@ export class ComponentMenuComponent implements OnInit {
   public getFps() { return ComponentMenuComponent.debugFps; }
 
   constructor(
-    private authService: AuthenticationService, 
+    //TODO should not be public
+    public authService: AuthenticationService, 
     private messageService: MessageService) {
 
   }
 
+
+  // TODO this causes errors
   get dynamicMenuItems() { 
     let blueprintMenuItems = this.menuItems.find((i) => i.id == 'blueprint').items as MenuItem[];
     blueprintMenuItems.find((i) => i.id == 'save').disabled = !this.authService.isLoggedIn();
@@ -78,9 +81,12 @@ export class ComponentMenuComponent implements OnInit {
         items: [
           {label: 'New', icon:'pi pi-plus', command: (event) => { this.onMenuCommand.emit({type: MenuCommandType.newBlueprint, data: null}); } },
           {id: 'save', label: 'Save', icon:'pi pi-save', command: (event) => { this.onMenuCommand.emit({type: MenuCommandType.saveBlueprint, data: null}); } },
-          {label: 'Game Yaml', command: (event) => { this.uploadYamlTemplate(); } },
-          {label: 'Json Blueprint', command: (event) => { this.uploadJsonTemplate(); } },
-          {label: 'Binary Blueprint', command: (event) => { this.uploadBsonTemplate(); } }
+          {label: 'Upload', icon:'pi pi-upload', items:[
+            {label: 'Game (Yaml)', command: (event) => { this.uploadYamlTemplate(); } },
+            {label: 'Blueprint (Json)', command: (event) => { this.uploadJsonTemplate(); } },
+            {label: 'Blueprint (Binary)', command: (event) => { this.uploadBsonTemplate(); } }
+          ]},
+          {label: 'Get shareable Url', icon:'pi pi-external-link', command: (event) => { this.onMenuCommand.emit({type: MenuCommandType.getShareableUrl, data: null}); } },
         ]
       },
       {
@@ -205,6 +211,7 @@ export enum MenuCommandType
   changeOverlay,
 
   saveBlueprint,
+  getShareableUrl,
 
   fetchIcons,
   downloadIcons,

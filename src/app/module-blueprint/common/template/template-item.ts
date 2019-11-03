@@ -38,7 +38,11 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
   topLeft: Vector2;
   bottomRight: Vector2;
 
-  drawPart: DrawPart;
+  drawPart_: DrawPart;  
+  get drawPart() {
+    if (this.drawPart_ == null) this.drawPart_ = new DrawPart();
+    return this.drawPart_;
+  }
 
   depth: number;
   alpha: number;
@@ -52,7 +56,6 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
   constructor(id: string = 'Vacuum')
   {
       this.id = id;
-      this.drawPart = new DrawPart();
   }
 
   getName(): string
@@ -303,7 +306,7 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
 
     // We already export the orientation
     this.rotation = undefined;
-    this.scale = undefined
+    this.scale = undefined;
   }
 
     public prepareBoundingBox()

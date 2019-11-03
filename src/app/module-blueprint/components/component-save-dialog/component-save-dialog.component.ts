@@ -4,6 +4,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { BlueprintService } from '../../common/blueprint-service';
 import { Template } from '../../common/template/template';
 import { MessageService } from 'primeng/api';
+import { AuthenticationService } from '../user-auth/authentification-service';
 
 @Component({
   selector: 'app-component-save-dialog',
@@ -27,7 +28,11 @@ export class ComponentSaveDialogComponent implements OnInit {
   working: boolean = false;
   overwrite: boolean = false;
 
-  constructor(private blueprintService: BlueprintService, private messageService: MessageService) { }
+  constructor(
+    private blueprintService: BlueprintService, 
+    private messageService: MessageService,
+    //TODO should not be public
+    public authService: AuthenticationService) { }
 
   ngOnInit() {
   }
@@ -56,8 +61,9 @@ export class ComponentSaveDialogComponent implements OnInit {
     {
       this.hideDialog();
 
+      // TODO move this to the service ?
       let summary: string = this.blueprint.name + ' saved';
-      let detail: string = 'prout';
+      let detail: string = '';
   
       this.messageService.add({severity:'success', summary:summary , detail:detail});
       this.working = false;

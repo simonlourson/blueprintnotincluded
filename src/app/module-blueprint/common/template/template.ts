@@ -228,7 +228,8 @@ export class Template
     returnValue.name = this.name;
     returnValue.templateItems = [];
 
-    for (let originalTemplateItem of this.templateItems) returnValue.templateItems.push(originalTemplateItem.cloneForExport());
+    for (let originalTemplateItem of this.templateItems) 
+      returnValue.templateItems.push(originalTemplateItem.cloneForExport());
     
 
     returnValue.templateTiles = undefined;

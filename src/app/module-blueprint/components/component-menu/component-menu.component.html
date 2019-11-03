@@ -3,7 +3,7 @@
 <button type="button" pButton icon="pi pi-bars" label="Menu" (click)="menu.toggle($event)"></button>-->
 <p-menubar 
   #menu 
-  [model]="dynamicMenuItems">
+  [model]="menuItems">
   <button *ngIf="!authService.isLoggedIn()" pButton icon="pi pi-sign-in"  label="Login" (click)="login()"></button>
   <div *ngIf="authService.isLoggedIn()">
     <!--TODO Show username-->
