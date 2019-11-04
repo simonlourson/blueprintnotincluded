@@ -223,12 +223,6 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
     this.prepareOverlayInfo();
   }
 
-  destroyTemplateItem(templateItem: TemplateItem)
-  {
-    console.log(templateItem);
-    if (this.blueprint != null) this.blueprint.destroyTemplateItem(templateItem);
-  }
-
   prepareOverlayInfo()
   {
     if (this.blueprint != null) this.blueprint.prepareOverlayInfo(this.camera.overlay);
@@ -280,6 +274,7 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
     
     for (let oniItem of OniItem.oniItems)
     {
+      // TODO bridge here also
       if (!oniItem.isWire) continue;
 
       let baseTexture = ImageSource.getBaseTexture(oniItem.imageId);
@@ -543,10 +538,7 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
         this.drawAbstraction.drawTemplateItem(templateItem, this.camera);
         //templateItem.draw(ctx, this.camera);
       }
-
-      // TODO draw utility
-      //for (var templateItem of this.blueprint.templateItems) templateItem.drawUtility(ctx, this.camera);
-
+      
       this.currentTool.prepareSpriteInfoModifier(this.blueprint);
       this.currentTool.draw(this.drawAbstraction, this.camera);
     }

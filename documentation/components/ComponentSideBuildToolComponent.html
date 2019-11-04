@@ -1,0 +1,2501 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>blueprintnotincluded documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">blueprintnotincluded documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li>ComponentSideBuildToolComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/module-blueprint/components/component-side-build-tool/component-side-build-tool.component.ts</code>
+</p>
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+                    <code><a href="../interfaces/Tool.html" target="_self" >Tool</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-component-side-build-tool</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./component-side-build-tool.component.css</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./component-side-build-tool.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#activeIndex">activeIndex</a>
+                            </li>
+                            <li>
+                                <a href="#categories">categories</a>
+                            </li>
+                            <li>
+                                <a href="#currentCategory">currentCategory</a>
+                            </li>
+                            <li>
+                                <a href="#currentItem">currentItem</a>
+                            </li>
+                            <li>
+                                <a href="#items">items</a>
+                            </li>
+                            <li>
+                                <a href="#templateItemToBuild">templateItemToBuild</a>
+                            </li>
+                            <li>
+                                <a href="#toolType">toolType</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#build">build</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#canBuild">canBuild</a>
+                            </li>
+                            <li>
+                                <a href="#changeCategory">changeCategory</a>
+                            </li>
+                            <li>
+                                <a href="#changeItem">changeItem</a>
+                            </li>
+                            <li>
+                                <a href="#changeItem_">changeItem_</a>
+                            </li>
+                            <li>
+                                <a href="#changeTile">changeTile</a>
+                            </li>
+                            <li>
+                                <a href="#changeTileDrag">changeTileDrag</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#connectAToB">connectAToB</a>
+                            </li>
+                            <li>
+                                <a href="#destroyTool">destroyTool</a>
+                            </li>
+                            <li>
+                                <a href="#draw">draw</a>
+                            </li>
+                            <li>
+                                <a href="#drawPixi">drawPixi</a>
+                            </li>
+                            <li>
+                                <a href="#leftClick">leftClick</a>
+                            </li>
+                            <li>
+                                <a href="#leftMouseDown">leftMouseDown</a>
+                            </li>
+                            <li>
+                                <a href="#leftMouseUp">leftMouseUp</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit">ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#oniItemsLoaded">oniItemsLoaded</a>
+                            </li>
+                            <li>
+                                <a href="#prepareSpriteInfoModifier">prepareSpriteInfoModifier</a>
+                            </li>
+                            <li>
+                                <a href="#rightClick">rightClick</a>
+                            </li>
+                            <li>
+                                <a href="#setOriginal">setOriginal</a>
+                            </li>
+                            <li>
+                                <a href="#setTemplateItem">setTemplateItem</a>
+                            </li>
+                            <li>
+                                <a href="#unitChangeTileDrag">unitChangeTileDrag</a>
+                            </li>
+                            <li>
+                                <a href="#updateItemList">updateItemList</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Outputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#onAskChangeTool">onAskChangeTool</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor()</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/module-blueprint/components/component-side-build-tool/component-side-build-tool.component.ts:38</a></div>
+                            </td>
+                        </tr>
+
+            </tbody>
+        </table>
+</section>
+
+
+    <section>
+    <h3 id="outputs">Outputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="onAskChangeTool"></a>
+                        <b>onAskChangeTool</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.io/api/core/EventEmitter" target="_blank" >EventEmitter</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/module-blueprint/components/component-side-build-tool/component-side-build-tool.component.ts:38</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="build"></a>
+                    <span class="name">
+                        <b>
+                            build
+                        </b>
+                        <a href="#build"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>build(blueprint: <a href="../classes/Template.html">Template</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="154"
+                            class="link-to-prism">src/app/module-blueprint/components/component-side-build-tool/component-side-build-tool.component.ts:154</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>blueprint</td>
+                                    <td>
+                                                <code><a href="../classes/Template.html" target="_self" >Template</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="canBuild"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            canBuild
+                        </b>
+                        <a href="#canBuild"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>canBuild(blueprint: <a href="../classes/Template.html">Template</a>, tile: <a href="../classes/Vector2.html">Vector2</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="130"
+                            class="link-to-prism">src/app/module-blueprint/components/component-side-build-tool/component-side-build-tool.component.ts:130</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>blueprint</td>
+                                    <td>
+                                                <code><a href="../classes/Template.html" target="_self" >Template</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>tile</td>
+                                    <td>
+                                                <code><a href="../classes/Vector2.html" target="_self" >Vector2</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="changeCategory"></a>
+                    <span class="name">
+                        <b>
+                            changeCategory
+                        </b>
+                        <a href="#changeCategory"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>changeCategory()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="78"
+                            class="link-to-prism">src/app/module-blueprint/components/component-side-build-tool/component-side-build-tool.component.ts:78</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="changeItem"></a>
+                    <span class="name">
+                        <b>
+                            changeItem
+                        </b>
+                        <a href="#changeItem"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>changeItem()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="85"
+                            class="link-to-prism">src/app/module-blueprint/components/component-side-build-tool/component-side-build-tool.component.ts:85</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="changeItem_"></a>
+                    <span class="name">
+                        <b>
+                            changeItem_
+                        </b>
+                        <a href="#changeItem_"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>changeItem_(item: <a href="../classes/TemplateItem.html">TemplateItem</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="110"
+                            class="link-to-prism">src/app/module-blueprint/components/component-side-build-tool/component-side-build-tool.component.ts:110</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>item</td>
+                                    <td>
+                                                <code><a href="../classes/TemplateItem.html" target="_self" >TemplateItem</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="changeTile"></a>
+                    <span class="name">
+                        <b>
+                            changeTile
+                        </b>
+                        <a href="#changeTile"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>changeTile(blueprint: <a href="../classes/Template.html">Template</a>, previousTile: <a href="../classes/Vector2.html">Vector2</a>, currentTile: <a href="../classes/Vector2.html">Vector2</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="203"
+                            class="link-to-prism">src/app/module-blueprint/components/component-side-build-tool/component-side-build-tool.component.ts:203</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>blueprint</td>
+                                    <td>
+                                                <code><a href="../classes/Template.html" target="_self" >Template</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>previousTile</td>
+                                    <td>
+                                                <code><a href="../classes/Vector2.html" target="_self" >Vector2</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>currentTile</td>
+                                    <td>
+                                                <code><a href="../classes/Vector2.html" target="_self" >Vector2</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="changeTileDrag"></a>
+                    <span class="name">
+                        <b>
+                            changeTileDrag
+                        </b>
+                        <a href="#changeTileDrag"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>changeTileDrag(blueprint: <a href="../classes/Template.html">Template</a>, previousTileDrag: <a href="../classes/Vector2.html">Vector2</a>, currentTileDrag: <a href="../classes/Vector2.html">Vector2</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="211"
+                            class="link-to-prism">src/app/module-blueprint/components/component-side-build-tool/component-side-build-tool.component.ts:211</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>blueprint</td>
+                                    <td>
+                                                <code><a href="../classes/Template.html" target="_self" >Template</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>previousTileDrag</td>
+                                    <td>
+                                                <code><a href="../classes/Vector2.html" target="_self" >Vector2</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>currentTileDrag</td>
+                                    <td>
+                                                <code><a href="../classes/Vector2.html" target="_self" >Vector2</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="connectAToB"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            connectAToB
+                        </b>
+                        <a href="#connectAToB"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>connectAToB(a: <a href="../classes/TemplateItemWire.html">TemplateItemWire</a>, b: <a href="../classes/TemplateItemWire.html">TemplateItemWire</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="143"
+                            class="link-to-prism">src/app/module-blueprint/components/component-side-build-tool/component-side-build-tool.component.ts:143</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>a</td>
+                                    <td>
+                                                <code><a href="../classes/TemplateItemWire.html" target="_self" >TemplateItemWire</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>b</td>
+                                    <td>
+                                                <code><a href="../classes/TemplateItemWire.html" target="_self" >TemplateItemWire</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="destroyTool"></a>
+                    <span class="name">
+                        <b>
+                            destroyTool
+                        </b>
+                        <a href="#destroyTool"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>destroyTool()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="286"
+                            class="link-to-prism">src/app/module-blueprint/components/component-side-build-tool/component-side-build-tool.component.ts:286</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="draw"></a>
+                    <span class="name">
+                        <b>
+                            draw
+                        </b>
+                        <a href="#draw"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>draw(drawAbstraction: <a href="../interfaces/DrawAbstraction.html">DrawAbstraction</a>, camera: <a href="../classes/Camera.html">Camera</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="282"
+                            class="link-to-prism">src/app/module-blueprint/components/component-side-build-tool/component-side-build-tool.component.ts:282</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>drawAbstraction</td>
+                                    <td>
+                                                <code><a href="../interfaces/DrawAbstraction.html" target="_self" >DrawAbstraction</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>camera</td>
+                                    <td>
+                                                <code><a href="../classes/Camera.html" target="_self" >Camera</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="drawPixi"></a>
+                    <span class="name">
+                        <b>
+                            drawPixi
+                        </b>
+                        <a href="#drawPixi"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>drawPixi(drawPixi: <a href="../classes/DrawPixi.html">DrawPixi</a>, camera: <a href="../classes/Camera.html">Camera</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="274"
+                            class="link-to-prism">src/app/module-blueprint/components/component-side-build-tool/component-side-build-tool.component.ts:274</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>drawPixi</td>
+                                    <td>
+                                                <code><a href="../classes/DrawPixi.html" target="_self" >DrawPixi</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>camera</td>
+                                    <td>
+                                                <code><a href="../classes/Camera.html" target="_self" >Camera</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="leftClick"></a>
+                    <span class="name">
+                        <b>
+                            leftClick
+                        </b>
+                        <a href="#leftClick"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>leftClick(blueprint: <a href="../classes/Template.html">Template</a>, tile: <a href="../classes/Vector2.html">Vector2</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="192"
+                            class="link-to-prism">src/app/module-blueprint/components/component-side-build-tool/component-side-build-tool.component.ts:192</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>blueprint</td>
+                                    <td>
+                                                <code><a href="../classes/Template.html" target="_self" >Template</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>tile</td>
+                                    <td>
+                                                <code><a href="../classes/Vector2.html" target="_self" >Vector2</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="leftMouseDown"></a>
+                    <span class="name">
+                        <b>
+                            leftMouseDown
+                        </b>
+                        <a href="#leftMouseDown"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>leftMouseDown(blueprint: <a href="../classes/Template.html">Template</a>, tile: <a href="../classes/Vector2.html">Vector2</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="181"
+                            class="link-to-prism">src/app/module-blueprint/components/component-side-build-tool/component-side-build-tool.component.ts:181</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>blueprint</td>
+                                    <td>
+                                                <code><a href="../classes/Template.html" target="_self" >Template</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>tile</td>
+                                    <td>
+                                                <code><a href="../classes/Vector2.html" target="_self" >Vector2</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="leftMouseUp"></a>
+                    <span class="name">
+                        <b>
+                            leftMouseUp
+                        </b>
+                        <a href="#leftMouseUp"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>leftMouseUp(blueprint: <a href="../classes/Template.html">Template</a>, tile: <a href="../classes/Vector2.html">Vector2</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="187"
+                            class="link-to-prism">src/app/module-blueprint/components/component-side-build-tool/component-side-build-tool.component.ts:187</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>blueprint</td>
+                                    <td>
+                                                <code><a href="../classes/Template.html" target="_self" >Template</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>tile</td>
+                                    <td>
+                                                <code><a href="../classes/Vector2.html" target="_self" >Vector2</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <b>
+                            ngOnInit
+                        </b>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="48"
+                            class="link-to-prism">src/app/module-blueprint/components/component-side-build-tool/component-side-build-tool.component.ts:48</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="oniItemsLoaded"></a>
+                    <span class="name">
+                        <b>
+                            oniItemsLoaded
+                        </b>
+                        <a href="#oniItemsLoaded"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>oniItemsLoaded()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="54"
+                            class="link-to-prism">src/app/module-blueprint/components/component-side-build-tool/component-side-build-tool.component.ts:54</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="prepareSpriteInfoModifier"></a>
+                    <span class="name">
+                        <b>
+                            prepareSpriteInfoModifier
+                        </b>
+                        <a href="#prepareSpriteInfoModifier"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>prepareSpriteInfoModifier(blueprint: <a href="../classes/Template.html">Template</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="268"
+                            class="link-to-prism">src/app/module-blueprint/components/component-side-build-tool/component-side-build-tool.component.ts:268</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>blueprint</td>
+                                    <td>
+                                                <code><a href="../classes/Template.html" target="_self" >Template</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="rightClick"></a>
+                    <span class="name">
+                        <b>
+                            rightClick
+                        </b>
+                        <a href="#rightClick"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>rightClick(blueprint: <a href="../classes/Template.html">Template</a>, tile: <a href="../classes/Vector2.html">Vector2</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="198"
+                            class="link-to-prism">src/app/module-blueprint/components/component-side-build-tool/component-side-build-tool.component.ts:198</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>blueprint</td>
+                                    <td>
+                                                <code><a href="../classes/Template.html" target="_self" >Template</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>tile</td>
+                                    <td>
+                                                <code><a href="../classes/Vector2.html" target="_self" >Vector2</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setOriginal"></a>
+                    <span class="name">
+                        <b>
+                            setOriginal
+                        </b>
+                        <a href="#setOriginal"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>setOriginal(templateItem: <a href="../classes/TemplateItem.html">TemplateItem</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="99"
+                            class="link-to-prism">src/app/module-blueprint/components/component-side-build-tool/component-side-build-tool.component.ts:99</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>templateItem</td>
+                                    <td>
+                                                <code><a href="../classes/TemplateItem.html" target="_self" >TemplateItem</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setTemplateItem"></a>
+                    <span class="name">
+                        <b>
+                            setTemplateItem
+                        </b>
+                        <a href="#setTemplateItem"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>setTemplateItem(templateItem: <a href="../classes/TemplateItem.html">TemplateItem</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="171"
+                            class="link-to-prism">src/app/module-blueprint/components/component-side-build-tool/component-side-build-tool.component.ts:171</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>templateItem</td>
+                                    <td>
+                                                <code><a href="../classes/TemplateItem.html" target="_self" >TemplateItem</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="unitChangeTileDrag"></a>
+                    <span class="name">
+                        <b>
+                            unitChangeTileDrag
+                        </b>
+                        <a href="#unitChangeTileDrag"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>unitChangeTileDrag(blueprint: <a href="../classes/Template.html">Template</a>, previousTileDrag: <a href="../classes/Vector2.html">Vector2</a>, currentTileDrag: <a href="../classes/Vector2.html">Vector2</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="245"
+                            class="link-to-prism">src/app/module-blueprint/components/component-side-build-tool/component-side-build-tool.component.ts:245</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>blueprint</td>
+                                    <td>
+                                                <code><a href="../classes/Template.html" target="_self" >Template</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>previousTileDrag</td>
+                                    <td>
+                                                <code><a href="../classes/Vector2.html" target="_self" >Vector2</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>currentTileDrag</td>
+                                    <td>
+                                                <code><a href="../classes/Vector2.html" target="_self" >Vector2</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateItemList"></a>
+                    <span class="name">
+                        <b>
+                            updateItemList
+                        </b>
+                        <a href="#updateItemList"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>updateItemList()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="64"
+                            class="link-to-prism">src/app/module-blueprint/components/component-side-build-tool/component-side-build-tool.component.ts:64</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="activeIndex"></a>
+                        <span class="name">
+                            <b>
+                            activeIndex</b>
+                            <a href="#activeIndex"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>0</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/module-blueprint/components/component-side-build-tool/component-side-build-tool.component.ts:31</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="categories"></a>
+                        <span class="name">
+                            <b>
+                            categories</b>
+                            <a href="#categories"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>SelectItem[]</code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/module-blueprint/components/component-side-build-tool/component-side-build-tool.component.ts:27</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="currentCategory"></a>
+                        <span class="name">
+                            <b>
+                            currentCategory</b>
+                            <a href="#currentCategory"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../classes/BuildMenuCategory.html" target="_self" >BuildMenuCategory</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/module-blueprint/components/component-side-build-tool/component-side-build-tool.component.ts:33</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="currentItem"></a>
+                        <span class="name">
+                            <b>
+                            currentItem</b>
+                            <a href="#currentItem"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../classes/OniItem.html" target="_self" >OniItem</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/module-blueprint/components/component-side-build-tool/component-side-build-tool.component.ts:34</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="items"></a>
+                        <span class="name">
+                            <b>
+                            items</b>
+                            <a href="#items"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>SelectItem[]</code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/module-blueprint/components/component-side-build-tool/component-side-build-tool.component.ts:28</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="templateItemToBuild"></a>
+                        <span class="name">
+                            <b>
+                            templateItemToBuild</b>
+                            <a href="#templateItemToBuild"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../classes/TemplateItem.html" target="_self" >TemplateItem</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/module-blueprint/components/component-side-build-tool/component-side-build-tool.component.ts:36</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="toolType"></a>
+                        <span class="name">
+                            <b>
+                            toolType</b>
+                            <a href="#toolType"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>ToolType.build</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="169" class="link-to-prism">src/app/module-blueprint/components/component-side-build-tool/component-side-build-tool.component.ts:169</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><hr>
+<ul>
+<li>Tool interface      **</li>
+</ul>
+<hr>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit, Output, EventEmitter } from &#x27;@angular/core&#x27;;
+import { OniItem } from &#x27;../../common/oni-item&#x27;;
+import {SelectItem} from &#x27;primeng/api&#x27;;
+import { TemplateItem } from &#x27;../../common/template/template-item&#x27;;
+import { ComposingElement } from &#x27;../../common/composing-element&#x27;;
+import { Template } from &#x27;../../common/template/template&#x27;;
+import { Tool, ToolType } from &#x27;../../common/tools/tool&#x27;;
+import { TileInfo } from &#x27;../../common/tile-info&#x27;;
+import { TemplateItemWire } from &#x27;../../common/template/template-item-wire&#x27;;
+import { Camera } from &#x27;../../common/camera&#x27;;
+import { Vector2 } from &#x27;../../common/vector2&#x27;;
+import { DrawHelpers } from &#x27;../../drawing/draw-helpers&#x27;;
+import { ToolRequest } from &#x27;../../common/tool-request&#x27;;
+import { DrawPixi } from &#x27;../../drawing/draw-pixi&#x27;;
+import { DrawAbstraction } from &#x27;../../drawing/draw-abstraction&#x27;;
+import { BuildMenuCategory, BuildMenuItem } from &#x27;../../common/bexport/b-build-order&#x27;;
+
+
+
+@Component({
+  selector: &#x27;app-component-side-build-tool&#x27;,
+  templateUrl: &#x27;./component-side-build-tool.component.html&#x27;,
+  styleUrls: [&#x27;./component-side-build-tool.component.css&#x27;]
+})
+export class ComponentSideBuildToolComponent implements OnInit, Tool {
+
+  categories: SelectItem[];
+  items: SelectItem[];
+
+  // This is used by the accordeon
+  activeIndex&#x3D;0;
+
+  currentCategory: BuildMenuCategory;
+  currentItem: OniItem;
+
+  templateItemToBuild: TemplateItem;
+
+  @Output() onAskChangeTool &#x3D; new EventEmitter&lt;ToolRequest&gt;();
+
+  constructor() 
+  {
+
+    this.categories &#x3D; []
+    this.items &#x3D; [];
+
+  }
+
+  ngOnInit() {
+    let allCategories &#x3D; {label:BuildMenuCategory.allCategories.categoryName, value:BuildMenuCategory.allCategories}
+    this.categories.push(allCategories);
+    this.currentCategory &#x3D; BuildMenuCategory.allCategories;
+  }
+
+  oniItemsLoaded()
+  {
+    for (let buildCategory of BuildMenuCategory.buildMenuCategories)
+    this.categories.push({label:buildCategory.categoryName, value:buildCategory});
+
+    this.currentCategory &#x3D; BuildMenuCategory.allCategories;
+    this.currentItem &#x3D; OniItem.getOniItem(&#x27;Tile&#x27;);
+    this.changeCategory();
+  }
+
+  updateItemList()
+  {
+    this.items &#x3D; [];
+
+    for (let buildMenuItem of BuildMenuItem.buildMenuItems)
+    {
+      if (this.currentCategory &#x3D;&#x3D; BuildMenuCategory.allCategories || this.currentCategory.category &#x3D;&#x3D; buildMenuItem.category)
+      {
+        let oniItem &#x3D; OniItem.getOniItem(buildMenuItem.buildingId);
+        this.items.push({label:oniItem.id, value:oniItem});
+      }
+    }
+  }
+
+  changeCategory()
+  {
+    this.updateItemList();
+    if (this.items.length &gt;&#x3D; 1) this.currentItem &#x3D; this.items[0].value;
+    this.changeItem();
+  }
+
+  changeItem()
+  {
+    if (this.templateItemToBuild !&#x3D; null) this.templateItemToBuild.destroy();
+
+    // Create the templateItem which will be shared by this component and the canvas tool
+    this.templateItemToBuild &#x3D; Template.createInstance(this.currentItem.id);
+    this.templateItemToBuild.temperature &#x3D; 300;
+    this.templateItemToBuild.element &#x3D; ComposingElement.getElement(&#x27;Void&#x27;);
+
+    this.changeItem_(this.templateItemToBuild);
+
+    // TODO o to change orientation
+  }
+
+  setOriginal(templateItem: TemplateItem)
+  {
+    // TODO in setTemplateItem
+    //this.currentCategory &#x3D; templateItem.oniItem.category;
+    this.currentItem &#x3D; templateItem.oniItem;
+
+    
+    this.templateItemToBuild &#x3D; templateItem;
+  }
+
+
+  changeItem_(item: TemplateItem)
+  {
+    
+
+    this.templateItemToBuild &#x3D; item;
+    // TODO should the position go into cleanup
+    this.templateItemToBuild.position &#x3D; Vector2.Zero;
+    this.templateItemToBuild.alpha &#x3D; 1;
+    this.templateItemToBuild.cleanUp();
+    // TODO fixme
+    //this.templateItemToBuild.prepareSpriteInfoModifier(blueprint);
+    this.templateItemToBuild.prepareBoundingBox();
+  }
+
+
+
+
+  
+
+
+  private canBuild(blueprint: Template, tile: Vector2): boolean
+  {
+    // TODO we should loop the tiles of the templateItemToBuild according to it&#x27;s bounding box
+    let alreadyPresent &#x3D; false;
+    for (let templateItem of blueprint.getTemplateItemsAt(tile)) 
+      if (templateItem.id &#x3D;&#x3D; this.templateItemToBuild.id) 
+        alreadyPresent &#x3D; true;
+
+    return !alreadyPresent;
+  }
+
+
+
+  private connectAToB(a: TemplateItemWire, b: TemplateItemWire)
+  {
+    let bitMask &#x3D; 0;
+    if (a.position.x &#x3D;&#x3D; b.position.x + 1 &amp;&amp; a.position.y &#x3D;&#x3D; b.position.y) bitMask &#x3D; 1;
+    else if (a.position.x &#x3D;&#x3D; b.position.x - 1 &amp;&amp; a.position.y &#x3D;&#x3D; b.position.y) bitMask &#x3D; 2;
+    else if (a.position.x &#x3D;&#x3D; b.position.x &amp;&amp; a.position.y &#x3D;&#x3D; b.position.y - 1) bitMask &#x3D; 4;
+    else if (a.position.x &#x3D;&#x3D; b.position.x &amp;&amp; a.position.y &#x3D;&#x3D; b.position.y + 1) bitMask &#x3D; 8;
+
+    a.connections &#x3D; a.connections | bitMask;
+  }
+
+  build(blueprint: Template)
+  {
+    // TODO the canbuild should not need the position
+    if (!this.canBuild(blueprint, this.templateItemToBuild.position)) return;
+
+    let newItem &#x3D; this.templateItemToBuild.clone();
+    newItem.prepareBoundingBox();
+    blueprint.addTemplateItem(newItem);
+    blueprint.refreshOverlayInfo()
+  }
+
+
+  /************************
+  ** Tool interface      **
+  ************************/
+  toolType &#x3D; ToolType.build;
+  
+  setTemplateItem(templateItem: TemplateItem) 
+  {
+    // TODO fixme
+    if (templateItem !&#x3D; null) this.changeItem_(templateItem.cloneForBuilding());
+    else
+    {
+      this.changeItem();
+    }
+  }
+
+  leftMouseDown(blueprint: Template, tile: Vector2) 
+  {
+    this.templateItemToBuild.position &#x3D; tile;
+    this.build(blueprint);
+  }
+
+  leftMouseUp(blueprint: Template, tile: Vector2) 
+  {
+    // TODO tentative placement, build on leftMouseUp
+  }
+
+  leftClick(blueprint: Template, tile: Vector2)
+  {
+    this.templateItemToBuild.position &#x3D; tile;
+    this.build(blueprint);
+  }
+
+  rightClick(blueprint: Template, tile: Vector2)
+  {
+    this.onAskChangeTool.emit({toolType:ToolType.select, templateItem:null});
+  }
+
+  changeTile(blueprint: Template, previousTile: Vector2, currentTile: Vector2)
+  {
+    this.templateItemToBuild.position &#x3D; currentTile;
+
+    if (this.canBuild(blueprint, currentTile)) this.templateItemToBuild.drawPart.tint &#x3D; DrawHelpers.whiteColor;
+    else this.templateItemToBuild.drawPart.tint &#x3D; 0xD40000;
+  }
+
+  changeTileDrag(blueprint: Template, previousTileDrag: Vector2, currentTileDrag: Vector2)
+  {
+    //console.log(&quot;Start drag from &quot; + JSON.stringify(previousTileDrag) + &#x27; to &#x27; + JSON.stringify(currentTileDrag));
+    /*
+    console.log(&quot;********************************&quot;);
+    console.log(&quot;Start drag from &quot; + JSON.stringify(previousTileDrag) + &#x27; to &#x27; + JSON.stringify(currentTileDrag));
+    let diffDrag &#x3D; new Vector2(currentTileDrag.x - previousTileDrag.x, currentTileDrag.y - previousTileDrag.y);
+    let diffDragLength &#x3D; Math.sqrt(diffDrag.x * diffDrag.x + diffDrag.y * diffDrag.y);
+    let diffDragUnit &#x3D; new Vector2(diffDrag.x / diffDragLength, diffDrag.y / diffDragLength);
+
+    let tileDragFloat &#x3D; Vector2.clone(previousTileDrag);
+    let dragOld: Vector2;
+    let dragNew: Vector2;
+    do
+    {
+      let tileDragFloatOld &#x3D; Vector2.clone(tileDragFloat);
+      dragOld &#x3D; new Vector2(Math.floor(tileDragFloat.x), Math.floor(tileDragFloat.y))
+      tileDragFloat.x +&#x3D; diffDragUnit.x;
+      tileDragFloat.y +&#x3D; diffDragUnit.y;
+      dragNew &#x3D; new Vector2(Math.floor(tileDragFloat.x), Math.floor(tileDragFloat.y))
+
+      this.unitChangeTileDrag(blueprint, dragOld, dragNew);
+      console.log(JSON.stringify(tileDragFloatOld) + &#x27; to &#x27; + JSON.stringify(tileDragFloat))
+    }
+    while (!dragNew.equals(currentTileDrag))
+
+    console.log(&quot;Stop drag&quot;);
+    console.log(&quot;********************************&quot;);
+*/
+
+
+    this.unitChangeTileDrag(blueprint, previousTileDrag, currentTileDrag);
+  }
+
+  unitChangeTileDrag(blueprint: Template, previousTileDrag: Vector2, currentTileDrag: Vector2)
+  {
+    this.templateItemToBuild.position &#x3D; currentTileDrag;
+    this.build(blueprint);
+
+    if (this.templateItemToBuild.oniItem.isWire)
+    {
+      let itemsPrevious &#x3D; blueprint.getTemplateItemsAt(previousTileDrag).filter(i &#x3D;&gt; i.id &#x3D;&#x3D; this.templateItemToBuild.id);
+      let itemsCurrent &#x3D; blueprint.getTemplateItemsAt(currentTileDrag).filter(i &#x3D;&gt; i.id &#x3D;&#x3D; this.templateItemToBuild.id);
+
+      if (itemsPrevious !&#x3D; null &amp;&amp; itemsPrevious.length &gt; 0 &amp;&amp; itemsCurrent !&#x3D; null &amp;&amp; itemsCurrent.length &gt; 0)
+      {
+        let itemPrevious &#x3D; itemsPrevious[0] as TemplateItemWire;
+        let itemCurrent &#x3D; itemsCurrent[0] as TemplateItemWire;
+
+        this.connectAToB(itemPrevious, itemCurrent);
+        this.connectAToB(itemCurrent, itemPrevious);
+        itemPrevious.prepareSpriteInfoModifier(blueprint);
+        itemCurrent.prepareSpriteInfoModifier(blueprint);
+      }
+    }
+  }
+
+  prepareSpriteInfoModifier(blueprint: Template)
+  {
+    this.templateItemToBuild.prepareSpriteInfoModifier(blueprint);
+    this.templateItemToBuild.prepareBoundingBox();
+  }
+
+  drawPixi(drawPixi: DrawPixi, camera: Camera)
+  {
+    this.templateItemToBuild.drawPixi(camera, drawPixi);
+
+    // Utility
+    this.templateItemToBuild.drawPixi(camera, drawPixi);
+  }
+
+  draw(drawAbstraction: DrawAbstraction, camera: Camera) {
+    drawAbstraction.drawBuild(this.templateItemToBuild, camera);
+  }
+
+  destroyTool() {
+    if (this.templateItemToBuild !&#x3D; null) this.templateItemToBuild.destroy();
+  }
+}
+
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">
+&lt;p-card header&#x3D;&quot;Build Tool&quot;&gt;
+  &lt;p-dropdown 
+    (onChange)&#x3D;&quot;changeCategory()&quot; 
+    [options]&#x3D;categories 
+    [style]&#x3D;&quot;{&#x27;width&#x27;:&#x27;100%&#x27;}&quot; 
+    [(ngModel)]&#x3D;&quot;currentCategory&quot;&gt;
+    &lt;ng-template let-item pTemplate&#x3D;&quot;selectedItem&quot;&gt;
+        &lt;img src&#x3D;&quot;{{item.value.categoryIconUrl}}&quot; style&#x3D;&quot;width:16px;vertical-align:middle&quot; /&gt;
+        &lt;span style&#x3D;&quot;vertical-align:middle; margin-left: .5em&quot;&gt;{{item.value.categoryName}}&lt;/span&gt;
+    &lt;/ng-template&gt;
+    &lt;ng-template let-category pTemplate&#x3D;&quot;item&quot;&gt;
+      &lt;div class&#x3D;&quot;ui-helper-clearfix&quot; style&#x3D;&quot;position: relative;height: 30px;&quot;&gt;
+          &lt;img src&#x3D;&quot;{{category.value.categoryIconUrl}}&quot; style&#x3D;&quot;height:30px;position:absolute;left:5px&quot;/&gt;
+          &lt;div style&#x3D;&quot;font-size:14px;float:right;margin-top:4px&quot;&gt;{{category.value.categoryName}}&lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/ng-template&gt;
+  &lt;/p-dropdown&gt;
+  &lt;p-dropdown 
+    (onChange)&#x3D;&quot;changeItem()&quot; 
+    [options]&#x3D;items 
+    [style]&#x3D;&quot;{&#x27;width&#x27;:&#x27;100%&#x27;}&quot; 
+    [(ngModel)]&#x3D;&quot;currentItem&quot;
+    filter&#x3D;&quot;true&quot;&gt;
+    &lt;ng-template let-item pTemplate&#x3D;&quot;selectedItem&quot;&gt;
+        &lt;img src&#x3D;&quot;{{item.value.iconUrl}}&quot; style&#x3D;&quot;width:16px;vertical-align:middle&quot; /&gt;
+        &lt;span style&#x3D;&quot;vertical-align:middle; margin-left: .5em&quot;&gt;{{item.value.id}}&lt;/span&gt;
+    &lt;/ng-template&gt;
+    &lt;ng-template let-item pTemplate&#x3D;&quot;item&quot;&gt;
+      &lt;div class&#x3D;&quot;ui-helper-clearfix&quot; style&#x3D;&quot;position: relative;height: 30px;&quot;&gt;
+          &lt;img src&#x3D;&quot;{{item.value.iconUrl}}&quot; style&#x3D;&quot;height:30px;position:absolute;left:5px&quot;/&gt;
+          &lt;div style&#x3D;&quot;font-size:14px;float:right;margin-top:4px&quot;&gt;{{item.value.id}}&lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/ng-template&gt;
+  &lt;/p-dropdown&gt;
+
+  &lt;p-accordion #buildingsAccordion [(activeIndex)]&#x3D;&quot;activeIndex&quot; &gt;
+    &lt;!--
+    &lt;p-accordionTab header&#x3D;&quot;{{templateItemToBuild.id}}&quot;&gt;
+      &lt;app-component-tile-info [templateItem]&#x3D;templateItemToBuild&gt;&lt;/app-component-tile-info&gt;
+    &lt;/p-accordionTab&gt;
+  --&gt;
+  &lt;/p-accordion&gt;
+&lt;/p-card&gt;
+
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./component-side-build-tool.component.css</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">.rightHandCells {
+  padding-left: 10px;
+  width: 100%;
+}
+
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><p-card header="Build Tool">  <p-dropdown     (onChange)="changeCategory()"     [options]=categories     [style]="{\'width\':\'100%\'}"     [(ngModel)]="currentCategory">    <ng-template let-item pTemplate="selectedItem">        <img src="{{item.value.categoryIconUrl}}" style="width:16px;vertical-align:middle" />        <span style="vertical-align:middle; margin-left: .5em">{{item.value.categoryName}}</span>    </ng-template>    <ng-template let-category pTemplate="item">      <div class="ui-helper-clearfix" style="position: relative;height: 30px;">          <img src="{{category.value.categoryIconUrl}}" style="height:30px;position:absolute;left:5px"/>          <div style="font-size:14px;float:right;margin-top:4px">{{category.value.categoryName}}</div>      </div>    </ng-template>  </p-dropdown>  <p-dropdown     (onChange)="changeItem()"     [options]=items     [style]="{\'width\':\'100%\'}"     [(ngModel)]="currentItem"    filter="true">    <ng-template let-item pTemplate="selectedItem">        <img src="{{item.value.iconUrl}}" style="width:16px;vertical-align:middle" />        <span style="vertical-align:middle; margin-left: .5em">{{item.value.id}}</span>    </ng-template>    <ng-template let-item pTemplate="item">      <div class="ui-helper-clearfix" style="position: relative;height: 30px;">          <img src="{{item.value.iconUrl}}" style="height:30px;position:absolute;left:5px"/>          <div style="font-size:14px;float:right;margin-top:4px">{{item.value.id}}</div>      </div>    </ng-template>  </p-dropdown>  <p-accordion #buildingsAccordion [(activeIndex)]="activeIndex" >    <!--    <p-accordionTab header="{{templateItemToBuild.id}}">      <app-component-tile-info [templateItem]=templateItemToBuild></app-component-tile-info>    </p-accordionTab>  -->  </p-accordion></p-card></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ComponentBlueprintParentComponent', 'selector': 'app-component-blueprint-parent'},{'name': 'ComponentCanvasComponent', 'selector': 'app-component-canvas'},{'name': 'ComponentElementKeyPanelComponent', 'selector': 'app-component-element-key-panel'},{'name': 'ComponentLoginDialogComponent', 'selector': 'app-login-dialog'},{'name': 'ComponentMenuComponent', 'selector': 'app-component-menu'},{'name': 'ComponentSaveDialogComponent', 'selector': 'app-component-save-dialog'},{'name': 'ComponentSideBuildToolComponent', 'selector': 'app-component-side-build-tool'},{'name': 'ComponentSidepanelComponent', 'selector': 'app-component-side-panel'},{'name': 'ComponentSideSelectionToolComponent', 'selector': 'app-component-side-selection-tool'},{'name': 'ComponentTileInfoComponent', 'selector': 'app-component-tile-info'},{'name': 'DialogShareUrlComponent', 'selector': 'app-dialog-share-url'},{'name': 'LoginFormComponent', 'selector': 'app-login-form'},{'name': 'RegisterFormComponent', 'selector': 'app-register-form'}];
+    var DIRECTIVES = [{'name': 'DragAndDropDirective', 'selector': '[dragAndDrop]'},{'name': 'KeyboardDirective', 'selector': '[keyEvents]'},{'name': 'MouseWheelDirective', 'selector': '[mouseWheel]'},{'name': 'StringSanitationDirective', 'selector': '[appStringSanitation]'}];
+    var ACTUAL_COMPONENT = {'name': 'ComponentSideBuildToolComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+                   
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'ComponentSideBuildToolComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

@@ -15,19 +15,17 @@ export class OniItem
   static defaultColor = '#696969';
 
   id: string;
+
+  // imageId here is used for some stuff (generating white background textures)
   imageId: string;
   iconUrl: string;
-  // TODO spriteInfoId is probably not used, the spritemodifierPart has it
-  spriteInfoId: string;
   spriteModifierId: string;
   isWire: boolean;
   isTile: boolean;
   isElement: boolean;
-  debugColor: string;
   size: Vector2;
   tileOffset: Vector2;
   utilityConnections: UtilityConnection[];
-  defaultColor: string;
   backColor: number;
   frontColor: number;
   orientations: AuthorizedOrientations[];
@@ -57,10 +55,9 @@ export class OniItem
     this.frontColor = original.frontColor;
 
     let imageId: string = original.textureName;
-
-    // TODO refactor
     let imageUrl: string = DrawHelpers.createUrl(imageId, false);
     ImageSource.AddImagePixi(imageId, imageUrl);
+    
     this.imageId = imageId;
 
     this.utilityConnections = [];
@@ -91,72 +88,30 @@ export class OniItem
     return returnValue;
   }
 
-  /*
-    public copyFrom(original: OniItem)
-    {
-        this.imageId = original.imageId;
-        this.spriteInfoId = original.spriteInfoId;
-        this.spriteModifierId = original.spriteModifierId;
-        this.isWire = original.isWire;
-        this.isTile = original.isTile;
-        this.isElement = original.isElement;
-        this.debugColor = original.debugColor;
-        this.zIndex = original.zIndex;
-        this.defaultColor = original.defaultColor;
-
-        if (original.size != null && original.size.x != null) this.size = new Vector2(original.size.x, original.size.y);
-
-        
-        this.orientations = [AuthorizedOrientations.None];
-        if (original.orientations != null && original.orientations.length != 0)
-          for (let authorizedOrientation of original.orientations)
-            this.orientations.push(authorizedOrientation);
-        this.orientations.sort();
-    }
-    */
-
-    public cleanUp()
-    {
-        if (this.isTile == null) this.isTile = false;
-        if (this.isWire == null) this.isWire = false;
-        if (this.isElement == null) this.isElement = false;
-        if (this.debugColor == null ) this.debugColor = 'rgba(' + Math.floor(Math.random() * 256) + ',' + Math.floor(Math.random() * 256) + ',' + Math.floor(Math.random() * 50) + ',0.5)';
-        if (this.size == null) this.size = new Vector2();
-        if (this.utilityConnections == null) this.utilityConnections = [];
-        if (this.zIndex == null) this.zIndex = ZIndex.Building;
-        if (this.orientations == null) this.orientations = [AuthorizedOrientations.None];
-        if (this.backColor == null) this.backColor = 0x000000;
-        if (this.frontColor == null) this.frontColor = 0xFFFFFF;
-        
-        // TODO not every item needs a color
-        if (this.defaultColor == null) 
-        {
-          if (this.isElement) this.setRandomColor();
-          else this.defaultColor = OniItem.defaultColor;
-        }
-
-        if (Vector2.Zero.equals(this.size)) this.tileOffset = Vector2.Zero;
-        else
-        {
-            this.tileOffset = new Vector2(
-                1 - (this.size.x + (this.size.x % 2)) / 2,
-                0
-            );
-        }
-
-        
-        //if (this.tileOffset == null) this.tileOffset = Vector2.Zero;
-    }
-
-  setRandomColor()
+  public cleanUp()
   {
-    this.defaultColor = DrawHelpers.getRandomColor();
+    if (this.isTile == null) this.isTile = false;
+    if (this.isWire == null) this.isWire = false;
+    if (this.isElement == null) this.isElement = false;
+    if (this.size == null) this.size = new Vector2();
+    if (this.utilityConnections == null) this.utilityConnections = [];
+    if (this.zIndex == null) this.zIndex = ZIndex.Building;
+    if (this.orientations == null) this.orientations = [AuthorizedOrientations.None];
+    if (this.backColor == null) this.backColor = 0x000000;
+    if (this.frontColor == null) this.frontColor = 0xFFFFFF;
+    
+    if (Vector2.Zero.equals(this.size)) this.tileOffset = Vector2.Zero;
+    else
+    {
+        this.tileOffset = new Vector2(
+            1 - (this.size.x + (this.size.x % 2)) / 2,
+            0
+        );
+    }
+
   }
 
-  // TODO loaded database should be elsewhere
-  public static loadedDatabase = false;
   public static oniItemsMap: Map<string, OniItem>;
-  // TODO this instead of keys in sprite info, texture?
   public static get oniItems() { return Array.from(OniItem.oniItemsMap.values()); }
   public static init()
   {
@@ -171,9 +126,6 @@ export class OniItem
       oniItem.copyFrom(building);
       oniItem.cleanUp();
 
-      // TODO spriteInfoId is not used anymore
-      // TODO cleanup copyFrom and copyFromC
-      
       // If the building is a tile, we need to generate its spriteInfos and sprite modifiers
       if (oniItem.isTile)
       {
@@ -195,9 +147,6 @@ export class OniItem
     {
       returnValue = new OniItem(id);
       returnValue.cleanUp();
-      
-      // If the database is already loaded, but we still didn't find the item, we can add it to the map
-      if (OniItem.loadedDatabase) OniItem.oniItemsMap.set(id, returnValue);
     }
 
     return returnValue;

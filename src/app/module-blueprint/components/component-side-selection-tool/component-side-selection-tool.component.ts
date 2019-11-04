@@ -7,6 +7,7 @@ import { Template } from '../../common/template/template';
 import { Vector2 } from '../../common/vector2';
 import { Camera } from '../../common/camera';
 import { DrawAbstraction } from '../../drawing/draw-abstraction';
+import { BlueprintService } from '../../common/blueprint-service';
 
 @Component({
   selector: 'app-component-side-selection-tool',
@@ -21,7 +22,7 @@ export class ComponentSideSelectionToolComponent implements OnInit, Tool {
   templateItemsToShow: TemplateItem[];
 
 
-  constructor(private cd: ChangeDetectorRef) 
+  constructor(private cd: ChangeDetectorRef, private blueprintService: BlueprintService) 
   { 
     this.templateItemsToShow = [];
     this.tileInfo = new TileInfo();
@@ -37,10 +38,10 @@ export class ComponentSideSelectionToolComponent implements OnInit, Tool {
     this.onAskChangeTool.emit(toolRequest);
   }
 
-  @Output() onDestroyTemplateItem = new EventEmitter<TemplateItem>();
   destroyTemplateItem(templateItem: TemplateItem)
   {
-    this.onDestroyTemplateItem.emit(templateItem);
+    this.blueprintService.blueprint.destroyTemplateItem(templateItem);
+    //this.onDestroyTemplateItem.emit(templateItem);
   }
 
   // This is used a bunch of times by the tool interface to refresh the display

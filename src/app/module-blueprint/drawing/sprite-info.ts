@@ -29,12 +29,12 @@ export class SpriteInfo
     {
     }
 
-    // TODO not sure if keys is absolutely necessary here
     private static spriteInfosMap: Map<string, SpriteInfo>;
-    public static keys: string[];
+
+    // Keys is used for some repack stuff
+    public static get keys() { return Array.from(SpriteInfo.spriteInfosMap.keys()); }
     public static init()
     {
-      SpriteInfo.keys = [];
       SpriteInfo.spriteInfosMap = new Map<string, SpriteInfo>();
     }
 
@@ -65,7 +65,6 @@ export class SpriteInfo
 
     public static addSpriteInfo(spriteInfo: SpriteInfo)
     {
-      SpriteInfo.keys.push(spriteInfo.spriteInfoId);
       SpriteInfo.spriteInfosMap.set(spriteInfo.spriteInfoId, spriteInfo); 
     }
 

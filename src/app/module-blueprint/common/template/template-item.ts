@@ -29,6 +29,9 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
   public element: ComposingElement;
   public temperature: number;
 
+  // Each template item should remember where it was added, to make removal easier
+  public tileIndexes: number[];
+
   position: Vector2;
   orientation: AuthorizedOrientations;
   rotation: number;
@@ -50,9 +53,6 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
 
   innerYaml: any;
 
-  // TODO remove
-  rotationOrientation: string;
-
   constructor(id: string = 'Vacuum')
   {
       this.id = id;
@@ -67,7 +67,7 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
   {
     //return '';
     let debug:any = {};
-    debug.overlay = this.oniItem.overlay;
+    debug.topLeft = this.topLeft;
     return JSON.stringify(debug);
   }
 
@@ -75,7 +75,7 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
   {
     //return '';
     let debug:any = {};
-    debug.zIndex = this.oniItem.zIndex;
+    debug.bottomRight = this.bottomRight;
     return JSON.stringify(debug);
   }
 
@@ -135,9 +135,6 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
           this.changeOrientation(AuthorizedOrientations.FlipV);
           break;
       }
-
-      // TODO remove
-      this.rotationOrientation = building.rotationOrientation;
 
       this.element = ComposingElement.getElement(building.element);
       this.temperature = Math.floor(building.temperature);
@@ -241,7 +238,6 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
       this.prepareBoundingBox();
     }
 
-    // TODO setter instead
     changeOrientation(newOrientation: AuthorizedOrientations)
     {
       this.orientation = newOrientation;
@@ -299,10 +295,9 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
 
   public deleteDefaultForExport()
   {
-    let defaultColor = this.oniItem.defaultColor;
-    if (defaultColor == null) defaultColor = OniItem.defaultColor;
-
     if (AuthorizedOrientations.None == this.orientation) this.orientation = undefined;
+
+    this.tileIndexes = undefined;
 
     // We already export the orientation
     this.rotation = undefined;
@@ -451,9 +446,10 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
             0.5 * camera.currentZoom
         );
 
+        let connectionSprite = ConnectionHelper.getConnectionSprite(connection);
+        let tint = connectionSprite.color;
         if (this.utilitySprites[connexionIndex] == null) 
         {
-          let connectionSprite = ConnectionHelper.getConnectionSprite(connection);
           let connectionSpriteInfo = SpriteInfo.getSpriteInfo(connectionSprite.spriteInfoId);
           if (connectionSpriteInfo != null)
           {
@@ -461,7 +457,8 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
             if (connectionTexture != null)
             {
               this.utilitySprites[connexionIndex] = PIXI.Sprite.from(connectionTexture);
-              this.utilitySprites[connexionIndex].tint = connectionSprite.color;
+              
+              this.utilitySprites[connexionIndex].tint = tint;
               this.utilitySprites[connexionIndex].zIndex = 100;
               drawPixi.pixiApp.stage.addChild(this.utilitySprites[connexionIndex]);
             }
@@ -469,15 +466,27 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
         }
 
         // TODO correct sizes pour incons
-        // TODO debug Rectangle in front
-        // TODO debug rectangle only when not loaded
-        // TODO debug rectanlge correct color
         if (this.utilitySprites[connexionIndex] != null)
         {
+          
           this.utilitySprites[connexionIndex].x = drawPos.x;
           this.utilitySprites[connexionIndex].y = drawPos.y;
           this.utilitySprites[connexionIndex].width = drawSize.x;
           this.utilitySprites[connexionIndex].height = drawSize.y;
+          
+
+          if (!this.utilitySprites[connexionIndex].texture.baseTexture.hasLoaded)
+          {
+            let delta = 0.25;
+            let rectanglePosition = new Vector2(
+              this.position.x + connectionPosition.x + 0.5,
+              this.position.y + connectionPosition.y - 0.5
+            );
+            drawPixi.drawTileRectangle(camera, 
+              new Vector2(rectanglePosition.x - delta, rectanglePosition.y + delta),
+              new Vector2(rectanglePosition.x + delta, rectanglePosition.y - delta),
+              true, 2, tint, 0, 1, 1);
+          }
         }
 
 
@@ -488,14 +497,25 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
 
     private drawPixiDebug(camera: Camera, drawPixi: DrawPixi, positionCorrected: Vector2)
     {
-      // TODO maybe draw the debug rectangle on the build tool also?
-      drawPixi.drawDebugRectangle(camera, this.topLeft, this.bottomRight, this.oniItem.debugColor);
+      let delta = 0.2;
+      drawPixi.drawTileRectangle(
+        camera,
+        new Vector2(this.topLeft.x + delta, this.topLeft.y + 0 - delta),
+        new Vector2(this.bottomRight.x + 1 - delta, this.bottomRight.y - 1 + delta),
+        true,
+        2,
+        0xFF0000,
+        0x000000,
+        0.5,
+        0.5
+      );
+
       
-      drawPixi.graphics.lineStyle(2, 0x000000, 1);
-      drawPixi.graphics.moveTo(positionCorrected.x - 5, positionCorrected.y);
-      drawPixi.graphics.lineTo(positionCorrected.x + 5, positionCorrected.y);
-      drawPixi.graphics.moveTo(positionCorrected.x, positionCorrected.y - 5);
-      drawPixi.graphics.lineTo(positionCorrected.x, positionCorrected.y + 5);
+      drawPixi.backGraphics.lineStyle(2, 0x000000, 1);
+      drawPixi.backGraphics.moveTo(positionCorrected.x - 5, positionCorrected.y);
+      drawPixi.backGraphics.lineTo(positionCorrected.x + 5, positionCorrected.y);
+      drawPixi.backGraphics.moveTo(positionCorrected.x, positionCorrected.y - 5);
+      drawPixi.backGraphics.lineTo(positionCorrected.x, positionCorrected.y + 5);
     }
 
     public destroy()

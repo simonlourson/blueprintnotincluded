@@ -158,12 +158,10 @@ export class ComponentBlueprintParentComponent implements OnInit {
         let spriteModifiers: BSpriteModifier[] = json.spriteModifiers;
         SpriteModifier.load(spriteModifiers);
 
-        OniItem.loadedDatabase = true;
         resolve(0);
 
       })
       .catch((error) => {
-        OniItem.loadedDatabase = true; 
         reject(error);
       })
 
@@ -267,11 +265,6 @@ export class ComponentBlueprintParentComponent implements OnInit {
     this.menu.askChangeTool(toolRequest);
   }
 
-  destroyTemplateItem(templateItem: TemplateItem)
-  {
-    this.canvas.destroyTemplateItem(templateItem);
-  }
-
   fetchIcons()
   {
     this.canvas.fetchIcons(); 
@@ -303,55 +296,6 @@ export class ComponentBlueprintParentComponent implements OnInit {
   spriteModifiers: any[];
   imageSources: any[];
   elements: any[];
-  misc()
-  {
-
-    let orientations: any[] = []
-    for (let templateItem of this.canvas.blueprint.templateItems)
-    {
-      if (templateItem.rotationOrientation != null)
-      {
-        let rotationOrientationNumber: number
-        switch (templateItem.rotationOrientation)
-        {
-          case 'FlipH':
-            rotationOrientationNumber = 1;
-            break;
-          case 'FlipV':
-            rotationOrientationNumber = 2;
-            break;
-          case 'R90':
-            rotationOrientationNumber = 3;
-            break;
-          case 'R180':
-            rotationOrientationNumber = 4;
-            break;
-          case 'R270':
-            rotationOrientationNumber = 5;
-            break;
-        }
-
-        let found = false;
-        for (let existingOrientation of orientations)
-        {
-          if (existingOrientation.id == templateItem.id)
-          {
-            found = true;
-            existingOrientation.orientations.push(rotationOrientationNumber);
-          }
-        }
-
-        if (!found)
-        {
-          let orientation = {id:templateItem.id, orientations:[rotationOrientationNumber]};
-          orientations.push(orientation);
-        }
-        
-        
-      }
-    }
-    this.http.post('http://localhost:3000/misc', orientations).subscribe();
-  }
 
   downloadTextAsFile(data: string, filename: string)
   {

@@ -48,11 +48,6 @@ import { BlueprintService } from './common/blueprint-service';
 import { RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module } from 'ng-recaptcha';
 import { DialogShareUrlComponent } from './components/dialog-share-url/dialog-share-url.component';
 
-const routes: Routes = [
-  { path: '', component: ComponentBlueprintParentComponent },
-  { path: 'openBlueprint/:username/:blueprintName', component: ComponentBlueprintParentComponent }
-];
-
 @NgModule({
   imports: [
     CommonModule, 
@@ -60,8 +55,7 @@ const routes: Routes = [
     FormsModule, ReactiveFormsModule,
     PasswordModule, ColorPickerModule, InputTextModule, SliderModule, ButtonModule, CardModule, ScrollPanelModule, OverlayPanelModule, MenubarModule, TabMenuModule, SlideMenuModule, DialogModule, DropdownModule, AccordionModule, ToastModule, TooltipModule, CaptchaModule,
     RecaptchaV3Module,
-    BrowserAnimationsModule,
-    RouterModule.forChild(routes)
+    BrowserAnimationsModule
   ],
   declarations: [StringSanitationDirective, ComponentCanvasComponent, MouseWheelDirective, DragAndDropDirective, KeyboardDirective, ComponentMenuComponent, ComponentSidepanelComponent, ComponentBlueprintParentComponent, ComponentTileInfoComponent, ComponentSaveDialogComponent, ComponentSideBuildToolComponent, ComponentSideSelectionToolComponent, ComponentElementKeyPanelComponent, ComponentLoginDialogComponent, RegisterFormComponent, LoginFormComponent, DialogShareUrlComponent],
   providers: [CheckDuplicateService, AuthenticationService, BlueprintService,

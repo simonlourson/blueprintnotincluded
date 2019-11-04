@@ -62,9 +62,6 @@ export class Template
           if (t.element != newTemplateItem.element) throw new Error('Two different elements on the same tile');
         }
       }
-
-      // TODO not all elements
-      //if (!elementAlreadyOnTile) this.addTemplateItem(newTemplateItem);
     }
 
     // Keep a copy of the yaml object in memory
@@ -94,9 +91,6 @@ export class Template
 
     for (let originalTemplateItem of original.templateItems)
     {
-      // TODO was this useful?
-      //let oniItem = OniItem.getOniItem(originalTemplateItem.id);
-
       let newTemplateItem = Template.createInstance(originalTemplateItem.id);
 
       newTemplateItem.importFromCloud(originalTemplateItem);
@@ -167,9 +161,6 @@ export class Template
   public refreshOverlayInfo()
   {
     for (let templateItem of this.templateItems) templateItem.prepareOverlayInfo(this.currentOverlay);
-
-    // TODO pixi handles that now
-    //this.templateItems.sort(function(a, b) { return a.depth - b.depth; })
   }
 
   distinctElements: ComposingElement[];
@@ -183,18 +174,27 @@ export class Template
   public addTemplateItem(templateItem: TemplateItem)
   {
     this.templateItems.push(templateItem);
+    templateItem.tileIndexes = [];
 
     for (let x = templateItem.topLeft.x; x <= templateItem.bottomRight.x; x++)
       for (let y = templateItem.topLeft.y; y >= templateItem.bottomRight.y; y--)
-        this.getTemplateItemsAt(new Vector2(x, y)).push(templateItem);
+      {
+        let tilePosition = new Vector2(x, y);
+        templateItem.tileIndexes.push(this.getTileIndex(tilePosition));
+        this.getTemplateItemsAt(tilePosition).push(templateItem);
+      }
+  }
 
+  public getTileIndex(position: Vector2): number
+  {
+    return (position.x + 500) + 1001 * (position.y + 500);;
   }
 
   public getTemplateItemsAt(position: Vector2): TemplateItem[]
   {
     if (this.templateTiles == null) this.templateTiles = [];
 
-    let arrayIndex = (position.x + 500) + 1001 * (position.y + 500);
+    let arrayIndex = this.getTileIndex(position);
 
     let returnValue = this.templateTiles[arrayIndex];
     if (returnValue == null)
@@ -241,12 +241,20 @@ export class Template
 
   public destroyTemplateItem(templateItem: TemplateItem)
   {
+    // First remove from the tilemap
+    if (templateItem.tileIndexes != null && templateItem.tileIndexes.length > 0)
+      for (let tileIndex of templateItem.tileIndexes)
+      {
+        const indexInTileMap = this.templateTiles[tileIndex].indexOf(templateItem, 0);
+        if (indexInTileMap > -1) this.templateTiles[tileIndex].splice(indexInTileMap, 1);
+      }
+
+    // Then remove from the item list, 
     const index = this.templateItems.indexOf(templateItem, 0);
-    if (index > -1)
-    {
-      this.templateItems[index].destroy();
-      this.templateItems.splice(index, 1);
-    }
+    if (index > -1) this.templateItems.splice(index, 1);
+
+    // Then destroy the sprite
+    templateItem.destroy();
   }
 
   public destroy()

@@ -1,0 +1,3181 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>blueprintnotincluded documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">blueprintnotincluded documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li>ComponentCanvasComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/module-blueprint/components/component-canvas/component-canvas.component.ts</code>
+</p>
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+                    <code><a href="https://angular.io/api/core/OnDestroy" target="_blank" >OnDestroy</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-component-canvas</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./component-canvas.component.css</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./component-canvas.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#camera">camera</a>
+                            </li>
+                            <li>
+                                <a href="#canvasRef">canvasRef</a>
+                            </li>
+                            <li>
+                                <a href="#currentTool">currentTool</a>
+                            </li>
+                            <li>
+                                <a href="#debug">debug</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Static</span>
+                                <a href="#downloadFile">downloadFile</a>
+                            </li>
+                            <li>
+                                <a href="#drawAbstraction">drawAbstraction</a>
+                            </li>
+                            <li>
+                                <a href="#height">height</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Static</span>
+                                <a href="#nbBlob">nbBlob</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Static</span>
+                                <a href="#nbBlobMax">nbBlobMax</a>
+                            </li>
+                            <li>
+                                <a href="#previousTileUnderMouse">previousTileUnderMouse</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#running">running</a>
+                            </li>
+                            <li>
+                                <a href="#storePreviousTileFloat">storePreviousTileFloat</a>
+                            </li>
+                            <li>
+                                <a href="#technicalRepack">technicalRepack</a>
+                            </li>
+                            <li>
+                                <a href="#width">width</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Static</span>
+                                <a href="#zip">zip</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#addBlob">addBlob</a>
+                            </li>
+                            <li>
+                                <a href="#changeOverlay">changeOverlay</a>
+                            </li>
+                            <li>
+                                <a href="#changeTool">changeTool</a>
+                            </li>
+                            <li>
+                                <a href="#destroyTemplateItem">destroyTemplateItem</a>
+                            </li>
+                            <li>
+                                <a href="#downloadIcons">downloadIcons</a>
+                            </li>
+                            <li>
+                                <a href="#downloadUtility">downloadUtility</a>
+                            </li>
+                            <li>
+                                <a href="#drawAll">drawAll</a>
+                            </li>
+                            <li>
+                                <a href="#drawBlueprintLine">drawBlueprintLine</a>
+                            </li>
+                            <li>
+                                <a href="#fetchIcons">fetchIcons</a>
+                            </li>
+                            <li>
+                                <a href="#getCurrentTile">getCurrentTile</a>
+                            </li>
+                            <li>
+                                <a href="#getCursorPosition">getCursorPosition</a>
+                            </li>
+                            <li>
+                                <a href="#keyPress">keyPress</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#loadNewBlueprint">loadNewBlueprint</a>
+                            </li>
+                            <li>
+                                <a href="#mouseClick">mouseClick</a>
+                            </li>
+                            <li>
+                                <a href="#mouseDown">mouseDown</a>
+                            </li>
+                            <li>
+                                <a href="#mouseDrag">mouseDrag</a>
+                            </li>
+                            <li>
+                                <a href="#mouseMove">mouseMove</a>
+                            </li>
+                            <li>
+                                <a href="#mouseStopDrag">mouseStopDrag</a>
+                            </li>
+                            <li>
+                                <a href="#mouseUp">mouseUp</a>
+                            </li>
+                            <li>
+                                <a href="#mouseWheel">mouseWheel</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnDestroy">ngOnDestroy</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit">ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#prepareOverlayInfo">prepareOverlayInfo</a>
+                            </li>
+                            <li>
+                                <a href="#repackTextures">repackTextures</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Outputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#onAskChangeTool">onAskChangeTool</a>
+                            </li>
+                            <li>
+                                <a href="#onTileInfoChange">onTileInfoChange</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Accessors</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#blueprint">blueprint</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(ngZone: <a href="https://angular.io/api/core/NgZone" target="_blank">NgZone</a>, blueprintService: <a href="../injectables/BlueprintService.html">BlueprintService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/app/module-blueprint/components/component-canvas/component-canvas.component.ts:63</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>ngZone</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/core/NgZone" target="_blank" >NgZone</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>blueprintService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/BlueprintService.html" target="_self" >BlueprintService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+    <section>
+    <h3 id="outputs">Outputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="onAskChangeTool"></a>
+                        <b>onAskChangeTool</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.io/api/core/EventEmitter" target="_blank" >EventEmitter</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/module-blueprint/components/component-canvas/component-canvas.component.ts:54</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="onTileInfoChange"></a>
+                        <b>onTileInfoChange</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.io/api/core/EventEmitter" target="_blank" >EventEmitter</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/module-blueprint/components/component-canvas/component-canvas.component.ts:53</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="addBlob"></a>
+                    <span class="name">
+                        <b>
+                            addBlob
+                        </b>
+                        <a href="#addBlob"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>addBlob(blob: Blob, filename: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="452"
+                            class="link-to-prism">src/app/module-blueprint/components/component-canvas/component-canvas.component.ts:452</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>blob</td>
+                                    <td>
+                                            <code>Blob</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>filename</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="changeOverlay"></a>
+                    <span class="name">
+                        <b>
+                            changeOverlay
+                        </b>
+                        <a href="#changeOverlay"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>changeOverlay(newOverlay: <a href="../undefineds/Overlay.html">Overlay</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="220"
+                            class="link-to-prism">src/app/module-blueprint/components/component-canvas/component-canvas.component.ts:220</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>newOverlay</td>
+                                    <td>
+                                                <code><a href="../miscellaneous/enumerations.html#Overlay" target="_self" >Overlay</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="changeTool"></a>
+                    <span class="name">
+                        <b>
+                            changeTool
+                        </b>
+                        <a href="#changeTool"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>changeTool(newToolComponent: <a href="../interfaces/Tool.html">Tool</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="237"
+                            class="link-to-prism">src/app/module-blueprint/components/component-canvas/component-canvas.component.ts:237</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>newToolComponent</td>
+                                    <td>
+                                                <code><a href="../interfaces/Tool.html" target="_self" >Tool</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="destroyTemplateItem"></a>
+                    <span class="name">
+                        <b>
+                            destroyTemplateItem
+                        </b>
+                        <a href="#destroyTemplateItem"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>destroyTemplateItem(templateItem: <a href="../classes/TemplateItem.html">TemplateItem</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="226"
+                            class="link-to-prism">src/app/module-blueprint/components/component-canvas/component-canvas.component.ts:226</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>templateItem</td>
+                                    <td>
+                                                <code><a href="../classes/TemplateItem.html" target="_self" >TemplateItem</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="downloadIcons"></a>
+                    <span class="name">
+                        <b>
+                            downloadIcons
+                        </b>
+                        <a href="#downloadIcons"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>downloadIcons()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="427"
+                            class="link-to-prism">src/app/module-blueprint/components/component-canvas/component-canvas.component.ts:427</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="downloadUtility"></a>
+                    <span class="name">
+                        <b>
+                            downloadUtility
+                        </b>
+                        <a href="#downloadUtility"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>downloadUtility()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="256"
+                            class="link-to-prism">src/app/module-blueprint/components/component-canvas/component-canvas.component.ts:256</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="drawAll"></a>
+                    <span class="name">
+                        <b>
+                            drawAll
+                        </b>
+                        <a href="#drawAll"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>drawAll()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="472"
+                            class="link-to-prism">src/app/module-blueprint/components/component-canvas/component-canvas.component.ts:472</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="drawBlueprintLine"></a>
+                    <span class="name">
+                        <b>
+                            drawBlueprintLine
+                        </b>
+                        <a href="#drawBlueprintLine"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>drawBlueprintLine(ctx: CanvasRenderingContext2D, xStart: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, yStart: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, xEnd: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, yEnd: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, lineWidth: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, alpha: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="556"
+                            class="link-to-prism">src/app/module-blueprint/components/component-canvas/component-canvas.component.ts:556</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>ctx</td>
+                                    <td>
+                                            <code>CanvasRenderingContext2D</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>xStart</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>yStart</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>xEnd</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>yEnd</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>lineWidth</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>alpha</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="fetchIcons"></a>
+                    <span class="name">
+                        <b>
+                            fetchIcons
+                        </b>
+                        <a href="#fetchIcons"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>fetchIcons()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="250"
+                            class="link-to-prism">src/app/module-blueprint/components/component-canvas/component-canvas.component.ts:250</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getCurrentTile"></a>
+                    <span class="name">
+                        <b>
+                            getCurrentTile
+                        </b>
+                        <a href="#getCurrentTile"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getCurrentTile(event)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="108"
+                            class="link-to-prism">src/app/module-blueprint/components/component-canvas/component-canvas.component.ts:108</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>event</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/Vector2.html" target="_self" >Vector2</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getCursorPosition"></a>
+                    <span class="name">
+                        <b>
+                            getCursorPosition
+                        </b>
+                        <a href="#getCursorPosition"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getCursorPosition(event)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="103"
+                            class="link-to-prism">src/app/module-blueprint/components/component-canvas/component-canvas.component.ts:103</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>event</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/Vector2.html" target="_self" >Vector2</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="keyPress"></a>
+                    <span class="name">
+                        <b>
+                            keyPress
+                        </b>
+                        <a href="#keyPress"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>keyPress(event: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="215"
+                            class="link-to-prism">src/app/module-blueprint/components/component-canvas/component-canvas.component.ts:215</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>event</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loadNewBlueprint"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Public</span>
+                            loadNewBlueprint
+                        </b>
+                        <a href="#loadNewBlueprint"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>loadNewBlueprint(blueprint: <a href="../classes/Template.html">Template</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="86"
+                            class="link-to-prism">src/app/module-blueprint/components/component-canvas/component-canvas.component.ts:86</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>blueprint</td>
+                                    <td>
+                                                <code><a href="../classes/Template.html" target="_self" >Template</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="mouseClick"></a>
+                    <span class="name">
+                        <b>
+                            mouseClick
+                        </b>
+                        <a href="#mouseClick"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>mouseClick(event: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="137"
+                            class="link-to-prism">src/app/module-blueprint/components/component-canvas/component-canvas.component.ts:137</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>event</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="mouseDown"></a>
+                    <span class="name">
+                        <b>
+                            mouseDown
+                        </b>
+                        <a href="#mouseDown"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>mouseDown(event: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="132"
+                            class="link-to-prism">src/app/module-blueprint/components/component-canvas/component-canvas.component.ts:132</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>event</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="mouseDrag"></a>
+                    <span class="name">
+                        <b>
+                            mouseDrag
+                        </b>
+                        <a href="#mouseDrag"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>mouseDrag(event: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="144"
+                            class="link-to-prism">src/app/module-blueprint/components/component-canvas/component-canvas.component.ts:144</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>event</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="mouseMove"></a>
+                    <span class="name">
+                        <b>
+                            mouseMove
+                        </b>
+                        <a href="#mouseMove"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>mouseMove(event: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="203"
+                            class="link-to-prism">src/app/module-blueprint/components/component-canvas/component-canvas.component.ts:203</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>event</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="mouseStopDrag"></a>
+                    <span class="name">
+                        <b>
+                            mouseStopDrag
+                        </b>
+                        <a href="#mouseStopDrag"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>mouseStopDrag(event: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="197"
+                            class="link-to-prism">src/app/module-blueprint/components/component-canvas/component-canvas.component.ts:197</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>event</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="mouseUp"></a>
+                    <span class="name">
+                        <b>
+                            mouseUp
+                        </b>
+                        <a href="#mouseUp"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>mouseUp(event: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="123"
+                            class="link-to-prism">src/app/module-blueprint/components/component-canvas/component-canvas.component.ts:123</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>event</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="mouseWheel"></a>
+                    <span class="name">
+                        <b>
+                            mouseWheel
+                        </b>
+                        <a href="#mouseWheel"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>mouseWheel(event: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="118"
+                            class="link-to-prism">src/app/module-blueprint/components/component-canvas/component-canvas.component.ts:118</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>event</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnDestroy"></a>
+                    <span class="name">
+                        <b>
+                            ngOnDestroy
+                        </b>
+                        <a href="#ngOnDestroy"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnDestroy()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="82"
+                            class="link-to-prism">src/app/module-blueprint/components/component-canvas/component-canvas.component.ts:82</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <b>
+                            ngOnInit
+                        </b>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="74"
+                            class="link-to-prism">src/app/module-blueprint/components/component-canvas/component-canvas.component.ts:74</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="prepareOverlayInfo"></a>
+                    <span class="name">
+                        <b>
+                            prepareOverlayInfo
+                        </b>
+                        <a href="#prepareOverlayInfo"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>prepareOverlayInfo()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="232"
+                            class="link-to-prism">src/app/module-blueprint/components/component-canvas/component-canvas.component.ts:232</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="repackTextures"></a>
+                    <span class="name">
+                        <b>
+                            repackTextures
+                        </b>
+                        <a href="#repackTextures"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>repackTextures(database: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="305"
+                            class="link-to-prism">src/app/module-blueprint/components/component-canvas/component-canvas.component.ts:305</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>database</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="camera"></a>
+                        <span class="name">
+                            <b>
+                            camera</b>
+                            <a href="#camera"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../classes/Camera.html" target="_self" >Camera</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/module-blueprint/components/component-canvas/component-canvas.component.ts:42</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="canvasRef"></a>
+                        <span class="name">
+                            <b>
+                            canvasRef</b>
+                            <a href="#canvasRef"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../interfaces/Element.html" target="_self" >ElementRef</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <b>Decorators : </b>
+                            <br />
+                            <code>
+                                @ViewChild(&#x27;blueprintCanvas&#x27;, {static: true})<br />
+                            </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/module-blueprint/components/component-canvas/component-canvas.component.ts:51</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="currentTool"></a>
+                        <span class="name">
+                            <b>
+                            currentTool</b>
+                            <a href="#currentTool"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../interfaces/Tool.html" target="_self" >Tool</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/app/module-blueprint/components/component-canvas/component-canvas.component.ts:57</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="debug"></a>
+                        <span class="name">
+                            <b>
+                            debug</b>
+                            <a href="#debug"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/module-blueprint/components/component-canvas/component-canvas.component.ts:47</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="downloadFile"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Private</span>
+                                <span class="modifier">Static</span>
+                            downloadFile</b>
+                            <a href="#downloadFile"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="448" class="link-to-prism">src/app/module-blueprint/components/component-canvas/component-canvas.component.ts:448</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="drawAbstraction"></a>
+                        <span class="name">
+                            <b>
+                            drawAbstraction</b>
+                            <a href="#drawAbstraction"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../classes/DrawPixi.html" target="_self" >DrawPixi</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/app/module-blueprint/components/component-canvas/component-canvas.component.ts:59</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="height"></a>
+                        <span class="name">
+                            <b>
+                            height</b>
+                            <a href="#height"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/module-blueprint/components/component-canvas/component-canvas.component.ts:45</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="nbBlob"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Private</span>
+                                <span class="modifier">Static</span>
+                            nbBlob</b>
+                            <a href="#nbBlob"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="450" class="link-to-prism">src/app/module-blueprint/components/component-canvas/component-canvas.component.ts:450</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="nbBlobMax"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Private</span>
+                                <span class="modifier">Static</span>
+                            nbBlobMax</b>
+                            <a href="#nbBlobMax"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="449" class="link-to-prism">src/app/module-blueprint/components/component-canvas/component-canvas.component.ts:449</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="previousTileUnderMouse"></a>
+                        <span class="name">
+                            <b>
+                            previousTileUnderMouse</b>
+                            <a href="#previousTileUnderMouse"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../classes/Vector2.html" target="_self" >Vector2</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="202" class="link-to-prism">src/app/module-blueprint/components/component-canvas/component-canvas.component.ts:202</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="running"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Private</span>
+                            running</b>
+                            <a href="#running"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/app/module-blueprint/components/component-canvas/component-canvas.component.ts:73</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="storePreviousTileFloat"></a>
+                        <span class="name">
+                            <b>
+                            storePreviousTileFloat</b>
+                            <a href="#storePreviousTileFloat"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../classes/Vector2.html" target="_self" >Vector2</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="143" class="link-to-prism">src/app/module-blueprint/components/component-canvas/component-canvas.component.ts:143</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="technicalRepack"></a>
+                        <span class="name">
+                            <b>
+                            technicalRepack</b>
+                            <a href="#technicalRepack"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../classes/TechnicalRepack.html" target="_self" >TechnicalRepack</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/app/module-blueprint/components/component-canvas/component-canvas.component.ts:60</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="width"></a>
+                        <span class="name">
+                            <b>
+                            width</b>
+                            <a href="#width"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/module-blueprint/components/component-canvas/component-canvas.component.ts:44</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="zip"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Private</span>
+                                <span class="modifier">Static</span>
+                            zip</b>
+                            <a href="#zip"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>JSZip</code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="451" class="link-to-prism">src/app/module-blueprint/components/component-canvas/component-canvas.component.ts:451</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+</section>
+
+    <section>
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="blueprint"></a>
+                        <span class="name"><b>blueprint</b><a href="#blueprint"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>blueprint()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/app/module-blueprint/components/component-canvas/component-canvas.component.ts:62</a></div>
+                                </td>
+                            </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>set</b><code>blueprint(value)</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/app/module-blueprint/components/component-canvas/component-canvas.component.ts:63</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+
+                                <div class="io-description">
+                                        <b>Parameters :</b>
+                                        <table class="params">
+                                            <thead>
+                                                <tr>
+                                                    <td>Name</td>
+                                                    <td>Optional</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                    <tr>
+                                                            <td>value</td>
+                                                    
+                                                    
+                                                        <td>
+                                                                No
+                                                        </td>
+                                                        
+                                                    </tr>
+                                            </tbody>
+                                        </table>
+                                </div>
+                                <div>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+</section>
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit, OnDestroy, ViewChild, ElementRef, NgZone, Output, EventEmitter, HostListener } from &#x27;@angular/core&#x27;;
+//import { Http, Response } from &quot;@angular/http&quot;
+import { HttpClientModule, HttpClient } from &#x27;@angular/common/http&#x27;;
+import { ComponentSidepanelComponent } from &#x27;src/app/module-blueprint/components/component-side-panel/component-side-panel.component&#x27;;
+
+// Engine imports
+import { Camera } from &#x27;src/app/module-blueprint/common/camera&#x27;;
+import { Vector2 } from &#x27;src/app/module-blueprint/common/vector2&#x27;;
+import { SpriteInfo } from &#x27;src/app/module-blueprint/drawing/sprite-info&#x27;;
+import { ImageSource } from &#x27;src/app/module-blueprint/drawing/image-source&#x27;;
+import { OniTemplate } from &#x27;src/app/module-blueprint/oni-import/oni-template&#x27;;
+import { OniItem } from &#x27;src/app/module-blueprint/common/oni-item&#x27;;
+import { OniBuilding } from &#x27;src/app/module-blueprint/oni-import/oni-building&#x27;;
+import { SpriteModifier } from &#x27;src/app/module-blueprint/drawing/sprite-modifier&#x27;;
+
+
+// PrimeNg imports
+import { TileInfo } from &#x27;../../common/tile-info&#x27;;
+import { Template } from &#x27;../../common/template/template&#x27;;
+import { ZIndex, Overlay } from &#x27;../../common/overlay-type&#x27;;
+import { Tool, ToolType } from &#x27;../../common/tools/tool&#x27;;
+import { ToolRequest } from &#x27;../../common/tool-request&#x27;;
+import { ComponentSideSelectionToolComponent } from &#x27;../component-side-selection-tool/component-side-selection-tool.component&#x27;;
+import { DrawAbstraction } from &#x27;../../drawing/draw-abstraction&#x27;;
+import { DrawPixi } from &#x27;../../drawing/draw-pixi&#x27;;
+import { ɵangular_packages_router_router_n } from &#x27;@angular/router&#x27;;
+import * as JSZip from &#x27;jszip&#x27;;
+import { BSpriteInfo } from &#x27;../../common/bexport/b-sprite-info&#x27;;
+import { TemplateItem } from &#x27;../../common/template/template-item&#x27;;
+import { TechnicalRepack } from &#x27;../../common/technical-repack&#x27;;
+import { BlueprintService } from &#x27;../../common/blueprint-service&#x27;;
+
+
+@Component({
+  selector: &#x27;app-component-canvas&#x27;,
+  templateUrl: &#x27;./component-canvas.component.html&#x27;,
+  styleUrls: [&#x27;./component-canvas.component.css&#x27;]
+})
+export class ComponentCanvasComponent implements OnInit, OnDestroy  {
+
+  camera: Camera
+
+  width: number;
+  height: number;
+
+  debug: any;
+
+
+  @ViewChild(&#x27;blueprintCanvas&#x27;, {static: true}) 
+  canvasRef: ElementRef;
+
+  @Output() onTileInfoChange &#x3D; new EventEmitter&lt;TileInfo&gt;();
+  @Output() onAskChangeTool &#x3D; new EventEmitter&lt;ToolRequest&gt;();
+
+  // Tools
+  currentTool: Tool;
+
+  drawAbstraction: DrawPixi;
+  technicalRepack: TechnicalRepack;
+
+  public get blueprint() { return this.blueprintService.blueprint; }
+  public set blueprint(value: Template) { this.blueprintService.blueprint &#x3D; value; }
+  constructor(
+    private ngZone: NgZone,
+    private blueprintService: BlueprintService) {
+    
+    this.camera &#x3D; new Camera();
+    this.drawAbstraction &#x3D; new DrawPixi();
+    this.technicalRepack &#x3D; new TechnicalRepack();
+  }
+
+  private running: boolean;
+  ngOnInit() {
+    // Start the rendering loop
+    this.running &#x3D; true;
+    this.ngZone.runOutsideAngular(() &#x3D;&gt; this.drawAbstraction.Init(this.canvasRef, this));
+
+    //this.drawAbstraction.Init(this.canvasRef, this)
+  }
+
+  ngOnDestroy() {
+    this.running &#x3D; false;
+  }
+
+  public loadNewBlueprint(blueprint: Template)
+  {
+    // First destroy the old blueprint
+    if (this.blueprint !&#x3D; null) this.blueprint.destroy();
+
+    this.blueprint &#x3D; blueprint;
+    this.changeOverlay(Overlay.Base);
+
+    let rect &#x3D; this.canvasRef.nativeElement.getBoundingClientRect();
+    this.camera.resetZoom(new Vector2(
+      rect.width - rect.left,
+      rect.height - rect.top
+    ));
+  }
+
+
+
+  getCursorPosition(event): Vector2 {
+    let rect &#x3D; this.canvasRef.nativeElement.getBoundingClientRect();
+    return new Vector2(event.clientX - rect.left, event.clientY - rect.top);
+  }
+
+  getCurrentTile(event): Vector2
+  {
+    let returnValue &#x3D; this.camera.getTileCoords(this.getCursorPosition(event));
+    
+    returnValue.x &#x3D; Math.floor(returnValue.x);
+    returnValue.y &#x3D; Math.ceil(returnValue.y);
+
+    return returnValue;
+  }
+
+  mouseWheel(event: any)
+  {
+    this.camera.zoom(event.delta, this.getCursorPosition(event));
+  }
+
+  mouseUp(event: any)
+  {
+    if (event.button &#x3D;&#x3D; 0) 
+    {
+      this.storePreviousTileFloat &#x3D; null;
+      this.currentTool.leftMouseUp(this.blueprint, this.getCurrentTile(event));
+    }
+  }
+
+  mouseDown(event: any)
+  {
+    if (event.button &#x3D;&#x3D; 0) this.currentTool.leftMouseDown(this.blueprint, this.getCurrentTile(event));
+  }
+
+  mouseClick(event: any)
+  {
+    if (event.button &#x3D;&#x3D; 0) this.currentTool.leftClick(this.blueprint, this.getCurrentTile(event));
+    if (event.button &#x3D;&#x3D; 2) this.currentTool.rightClick(this.blueprint, this.getCurrentTile(event));
+  }
+
+  storePreviousTileFloat: Vector2;
+  mouseDrag(event: any)
+  {
+    let previousTileFloat &#x3D; Vector2.clone(this.storePreviousTileFloat);
+    let currentTileFloat &#x3D; this.camera.getTileCoords(this.getCursorPosition(event));
+
+    if (event.dragButton[2])
+    {
+      //console.log(&#x27;camera drag&#x27;);
+      this.camera.cameraOffset.x +&#x3D; event.dragX / this.camera.currentZoom;
+      this.camera.cameraOffset.y +&#x3D; event.dragY / this.camera.currentZoom;
+    }
+    else if (event.dragButton[0])
+    {
+      let previousTile &#x3D; previousTileFloat &#x3D;&#x3D; null ? null : new Vector2(Math.floor(previousTileFloat.x), Math.ceil(previousTileFloat.y));
+      let currentTile &#x3D; new Vector2(Math.floor(currentTileFloat.x), Math.ceil(currentTileFloat.y));
+
+      /*
+      if (previousTileFloat !&#x3D; null &amp;&amp; !previousTile.equals(currentTile))
+      {
+        console.log(&quot;********************************&quot;);
+        console.log(&quot;Start drag from &quot; + JSON.stringify(previousTileFloat) + &#x27; to &#x27; + JSON.stringify(currentTileFloat));
+
+        do
+        {
+          
+          let distanceToCurrent: Vector2 &#x3D; new Vector2(currentTileFloat.x - previousTileFloat.x, currentTileFloat.y - previousTileFloat.y);
+          
+          
+          let nextGrid: Vector2;
+          nextGrid.x &#x3D; currentTileFloat.x &gt; previousTileFloat.x ? previousTile.x + 1 : previousTile.x - 1;
+          nextGrid.y &#x3D; currentTileFloat.y &gt; previousTileFloat.y ? previousTile.y + 1 : previousTile.y - 1;
+
+          let distanceToNextGrid &#x3D; new Vector2(nextGrid.x - previousTileFloat.x, nextGrid.y - previousTileFloat.y);
+
+          if (distanceToCurrent.x &lt; distanceToNextGrid.x)
+          {
+            previousTileFloat
+          }
+
+          //nextGrid.x &#x3D; previousTileFloat.x &#x3D;&#x3D; previousTile.x ? previousTile.x
+        }
+        while (!currentTileFloat.equals(previousTileFloat))
+
+      }
+      */
+      if (previousTile !&#x3D; null)
+        this.currentTool.changeTileDrag(this.blueprint, previousTile, currentTile);
+      
+    }
+
+    this.storePreviousTileFloat &#x3D; Vector2.clone(currentTileFloat);
+  }
+
+  mouseStopDrag(event: any)
+  {
+    this.storePreviousTileFloat &#x3D; null;
+  }
+
+  previousTileUnderMouse: Vector2;
+  mouseMove(event: any)
+  {
+    
+    let currentTileUnderMouse &#x3D; this.getCurrentTile(event);
+
+    if (this.previousTileUnderMouse &#x3D;&#x3D; null || !this.previousTileUnderMouse.equals(currentTileUnderMouse))
+      this.currentTool.changeTile(this.blueprint, this.previousTileUnderMouse, currentTileUnderMouse);
+
+    this.previousTileUnderMouse &#x3D; currentTileUnderMouse;
+  }
+
+
+  keyPress(event: any)
+  {
+    console.log(event);
+  }
+
+  changeOverlay(newOverlay: Overlay)
+  {
+    this.camera.overlay &#x3D; newOverlay;
+    this.prepareOverlayInfo();
+  }
+
+  destroyTemplateItem(templateItem: TemplateItem)
+  {
+    console.log(templateItem);
+    if (this.blueprint !&#x3D; null) this.blueprint.destroyTemplateItem(templateItem);
+  }
+
+  prepareOverlayInfo()
+  {
+    if (this.blueprint !&#x3D; null) this.blueprint.prepareOverlayInfo(this.camera.overlay);
+  }
+
+  changeTool(newToolComponent: Tool)
+  {
+    // First deactivate the old tool
+    if (this.currentTool !&#x3D; null) this.currentTool.destroyTool();
+
+    this.currentTool &#x3D; newToolComponent;
+  }
+
+  /*
+   * 
+   * Sprite repackaging 
+   *
+  */
+  fetchIcons()
+  {
+    for (let k of ImageSource.keys) ImageSource.getBaseTexture(k);
+    for (let k of SpriteInfo.keys) SpriteInfo.getSpriteInfo(k).getTexture();
+  }
+
+  downloadUtility()
+  {
+    let allWhiteFilter &#x3D; new PIXI.filters.ColorMatrixFilter();
+    // 1 1 1 0 1
+    // 1 1 1 0 1
+    // 1 1 1 0 1
+    // 1 1 1 1 1
+    allWhiteFilter.matrix[0] &#x3D; 1;
+    allWhiteFilter.matrix[1] &#x3D; 1;
+    allWhiteFilter.matrix[2] &#x3D; 1;
+    allWhiteFilter.matrix[4] &#x3D; 1;
+    allWhiteFilter.matrix[5] &#x3D; 1;
+    allWhiteFilter.matrix[6] &#x3D; 1;
+    allWhiteFilter.matrix[7] &#x3D; 1;
+    allWhiteFilter.matrix[9] &#x3D; 1;
+    allWhiteFilter.matrix[10] &#x3D; 1;
+    allWhiteFilter.matrix[11] &#x3D; 1;
+    allWhiteFilter.matrix[12] &#x3D; 1;
+    allWhiteFilter.matrix[14] &#x3D; 1;
+
+    ComponentCanvasComponent.zip &#x3D; new JSZip();
+    ComponentCanvasComponent.nbBlob &#x3D; 0;
+    ComponentCanvasComponent.downloadFile &#x3D; &#x27;solidUtility.zip&#x27;;
+    ComponentCanvasComponent.nbBlobMax &#x3D; OniItem.oniItems.filter(o &#x3D;&gt; o.isWire).length;
+    
+    for (let oniItem of OniItem.oniItems)
+    {
+      // TODO bridge here also
+      if (!oniItem.isWire) continue;
+
+      let baseTexture &#x3D; ImageSource.getBaseTexture(oniItem.imageId);
+      
+      let texture &#x3D; new PIXI.Texture(baseTexture);
+      
+      let brt &#x3D; new PIXI.BaseRenderTexture({width: texture.width, height: texture.height});
+      let rt &#x3D; new PIXI.RenderTexture(brt);
+
+      let sprite &#x3D; PIXI.Sprite.from(texture);
+      sprite.filters &#x3D; [allWhiteFilter];
+
+      this.drawAbstraction.pixiApp.renderer.render(sprite, rt);
+
+      this.drawAbstraction.pixiApp.renderer.extract.canvas(rt).toBlob((b) &#x3D;&gt; 
+      {
+        this.addBlob(b, oniItem.imageId + &#x27;_solid.png&#x27;);
+      }, &#x27;image/png&#x27;);
+    }
+  }
+
+  repackTextures(database: any)
+  {
+    let uiSprites: BSpriteInfo[] &#x3D; database.uiSprites;
+    let newSpriteInfos: BSpriteInfo[] &#x3D; [];
+
+
+    let packSize &#x3D; new Vector2(1024, 1024);
+    let bleedSize: number &#x3D; 10;
+    let repackIndex &#x3D; -1;
+    let currentUv &#x3D; Vector2.clone(Vector2.Zero);
+    let currentLineHeight &#x3D; 0;
+    let baseString &#x3D; &#x27;repack_&#x27;;
+    let currentTextureName &#x3D; baseString + repackIndex;
+    let renderTextures: PIXI.RenderTexture[] &#x3D; [];
+    let newRenderTarget: boolean &#x3D; true;
+    for (let k of SpriteInfo.keys)
+    {
+      let spriteInfo &#x3D; SpriteInfo.getSpriteInfo(k);
+      
+      // First copy the sprite info into the BSpriteInfo.
+      // We need to start from the start info because some of them are generated (tiles)
+      let newSpriteInfo &#x3D; new BSpriteInfo();
+      newSpriteInfo.name &#x3D; spriteInfo.spriteInfoId;
+      newSpriteInfo.uvMin &#x3D; Vector2.clone(spriteInfo.uvMin);
+      newSpriteInfo.uvSize &#x3D; Vector2.clone(spriteInfo.uvSize);
+      newSpriteInfo.realSize &#x3D; Vector2.clone(spriteInfo.realSize);
+      newSpriteInfo.pivot &#x3D; Vector2.clone(spriteInfo.pivot);
+      newSpriteInfo.isIcon &#x3D; spriteInfo.isIcon;
+
+      // If the sprite does not enter at all in our pack, log it and move on
+      if (newSpriteInfo.uvSize.x &gt; packSize.x || newSpriteInfo.uvSize.y &gt; packSize.y)
+      {
+        console.log(newSpriteInfo.name + &#x27; does not fit&#x27;);
+        console.log(newSpriteInfo);
+
+        continue;
+      }
+
+      
+      newSpriteInfos.push(newSpriteInfo);
+
+      let fitHeight &#x3D; (currentUv.y + newSpriteInfo.uvSize.y) &lt;&#x3D; packSize.y;
+      let fitWidth &#x3D; (currentUv.x + newSpriteInfo.uvSize.x) &lt;&#x3D; packSize.x;
+
+      
+      // If there is no vertical space, we start a new texture
+      if (!fitHeight) newRenderTarget &#x3D; true;
+
+      // If there is no horizontal space, we start a new line
+      if (!fitWidth)
+      {
+        // Add one pixel vertically to account for mipmapping
+        currentUv.x &#x3D; 0;
+        currentUv.y +&#x3D; Math.ceil(currentLineHeight) + bleedSize;
+        currentLineHeight &#x3D; 0;
+
+        // And now we have to check for height again
+        fitHeight &#x3D; (currentUv.y + newSpriteInfo.uvSize.y) &lt;&#x3D; packSize.y;
+        if (!fitHeight) newRenderTarget &#x3D; true;
+      }
+
+      if (newRenderTarget)
+      {
+        newRenderTarget &#x3D; false;
+        currentUv &#x3D; Vector2.zero();
+        repackIndex++;
+        currentTextureName &#x3D; baseString + repackIndex;
+
+        // Create new renderTarget if currentUv &#x3D; 0
+        // Save the previous renderTarget
+        let brt &#x3D; new PIXI.BaseRenderTexture({width: packSize.x, height: packSize.y});
+        let rt &#x3D; new PIXI.RenderTexture(brt);
+        //console.log(rt);
+        renderTextures.push(rt);
+        //console.log(renderTextures);
+        //console.log(&#x27;creating render target &#x27; + currentTextureName)
+        //console.log(renderTextures.length)
+      }
+      
+
+      // Change the textureName to the repacked texture
+      newSpriteInfo.textureName &#x3D; currentTextureName;
+
+      // Change the uvMin in the newSpriteInfo
+      newSpriteInfo.uvMin &#x3D; Vector2.clone(currentUv);
+
+      // Add the sprite width +1 to account for mipmaps
+      currentUv.x +&#x3D; Math.ceil(newSpriteInfo.uvSize.x) + bleedSize;
+      
+      // Update the current line height, if it is taller than the other sprites in this line
+      if (newSpriteInfo.uvSize.y &gt; currentLineHeight) currentLineHeight &#x3D; newSpriteInfo.uvSize.y;
+
+      // Draw the sprite to the renderTarget
+      let sprite &#x3D; PIXI.Sprite.from(SpriteInfo.getSpriteInfo(newSpriteInfo.name).getTexture());
+
+      sprite.x &#x3D; newSpriteInfo.uvMin.x;
+      sprite.y &#x3D; newSpriteInfo.uvMin.y;
+      //console.log(&#x27;drawing &#x27; + newSpriteInfo.name + &#x27; on render target &#x27; + repackIndex);
+      //console.log(newSpriteInfo.uvMin);
+      this.drawAbstraction.pixiApp.renderer.render(sprite, renderTextures[repackIndex], false);
+    }
+
+    database.uiSprites &#x3D; newSpriteInfos;
+
+    ComponentCanvasComponent.zip &#x3D; new JSZip();
+    ComponentCanvasComponent.nbBlob &#x3D; 0;
+    ComponentCanvasComponent.downloadFile &#x3D; &#x27;repackedTextureAndDatabase.zip&#x27;;
+    ComponentCanvasComponent.nbBlobMax &#x3D; renderTextures.length;
+
+    ComponentCanvasComponent.zip.file(&#x27;database_repacked.json&#x27;, JSON.stringify(database, null, 2));
+
+    for (let indexRt &#x3D; 0; indexRt &lt; renderTextures.length; indexRt++)
+    {
+      let rt &#x3D; renderTextures[indexRt];
+
+      this.drawAbstraction.pixiApp.renderer.extract.canvas(rt).toBlob((b) &#x3D;&gt; 
+      {
+        this.addBlob(b, baseString + indexRt + &#x27;.png&#x27;);
+      }, &#x27;image/png&#x27;);
+    }
+  }
+  
+  downloadIcons()
+  {
+    
+    ComponentCanvasComponent.zip &#x3D; new JSZip();
+    ComponentCanvasComponent.nbBlob &#x3D; 0;
+    ComponentCanvasComponent.downloadFile &#x3D; &#x27;icons.zip&#x27;;
+    ComponentCanvasComponent.nbBlobMax &#x3D; SpriteInfo.keys.filter(s &#x3D;&gt; SpriteInfo.getSpriteInfo(s).isIcon).length;
+    
+    for (let k of SpriteInfo.keys.filter(s &#x3D;&gt; SpriteInfo.getSpriteInfo(s).isIcon))
+    {
+      let uiSpriteInfo &#x3D; SpriteInfo.getSpriteInfo(k);
+      let texture &#x3D; uiSpriteInfo.getTexture();
+      let uiSPrite &#x3D; PIXI.Sprite.from(texture);
+
+      this.drawAbstraction.pixiApp.renderer.extract.canvas(uiSPrite).toBlob((b) &#x3D;&gt; 
+      {
+        this.addBlob(b, k + &#x27;.png&#x27;);
+      }, &#x27;image/png&#x27;);
+    }
+  }
+
+  private static downloadFile: string;
+  private static nbBlobMax: number;
+  private static nbBlob: number;
+  private static zip: JSZip;
+  addBlob(blob: Blob, filename: string)
+  {
+
+    ComponentCanvasComponent.nbBlob++;
+    ComponentCanvasComponent.zip.file(filename, blob);
+
+    if (ComponentCanvasComponent.nbBlob &#x3D;&#x3D; ComponentCanvasComponent.nbBlobMax)
+    {
+      console.log(&#x27;last blob arrived!&#x27;);
+      ComponentCanvasComponent.zip.generateAsync({type:&quot;blob&quot;}).then(function (blob) { 
+        let a &#x3D; document.createElement(&#x27;a&#x27;);
+        document.body.append(a);
+        a.download &#x3D; ComponentCanvasComponent.downloadFile;
+        a.href &#x3D; URL.createObjectURL(blob);
+        a.click();
+        a.remove();                     
+      }); 
+    }
+  }
+
+  drawAll()
+  {
+    //console.log(this.running);
+    //console.log(&#x27;tick&#x27;);
+    // Check that we&#x27;re still running.
+    if (!this.running) {
+      return;
+    }
+
+
+    // Whole page dimensions
+    this.width &#x3D; window.innerWidth;
+    this.height &#x3D; window.innerHeight;
+    
+    //console.log(&#x27;tick&#x27;);
+    // TODO ugly
+    //if (this.canvasRef &#x3D;&#x3D; null) return;
+
+    this.canvasRef.nativeElement.width &#x3D; window.innerWidth - 301;
+    this.canvasRef.nativeElement.height &#x3D; window.innerHeight;
+
+    
+    this.camera.updateZoom();
+
+    //console.log(&#x27;tick&#x27;);
+    //this.drawAbstraction.Init(this.canvasRef, this);
+
+    //let ctx: CanvasRenderingContext2D &#x3D; this.canvasRef.nativeElement.getContext(&#x27;2d&#x27;);
+
+    this.drawAbstraction.clearGraphics();
+    this.drawAbstraction.FillRect(0x007AD9, 0, 0, this.width, this.height);
+    
+    let alphaOrig: number &#x3D; 0.4;
+    let alpha: number &#x3D; alphaOrig;
+    let realLineSpacing: number &#x3D; this.camera.currentZoom;
+
+    let zoomFadeMax: number &#x3D; 35;
+    let zoomFadeMin: number &#x3D; 25;
+    if (this.camera.currentZoom &lt; zoomFadeMax)
+      alpha *&#x3D; (this.camera.currentZoom - zoomFadeMin) / (zoomFadeMax - zoomFadeMin);
+    if (this.camera.currentZoom &lt; zoomFadeMin)
+      alpha &#x3D; 0;
+
+
+    //while (realLineSpacing &lt; 30)
+    //  realLineSpacing *&#x3D; 5;
+
+    let colOrig: number &#x3D; this.camera.cameraOffset.x * this.camera.currentZoom % (realLineSpacing * 5) - realLineSpacing * 4;
+    let mod &#x3D; 0;
+    for (let col &#x3D; colOrig; col &lt; this.width + realLineSpacing * 4; col +&#x3D; realLineSpacing)
+    {
+      let realAlpha &#x3D; (mod % 5) &#x3D;&#x3D; 0 ? alphaOrig + 0.3 : alpha;
+      let color &#x3D; &#x27;rgba(255,255,255, &#x27;+realAlpha+&#x27;)&#x27;;
+      if (realAlpha &gt; 0) this.drawAbstraction.drawBlueprintLine(color, realAlpha, new Vector2(col, 0), new Vector2(col, this.height), 1);
+      mod++;
+    }
+
+    let lineOrig &#x3D; this.camera.cameraOffset.y * this.camera.currentZoom % (realLineSpacing * 5) - realLineSpacing * 4
+    mod &#x3D; 0;
+    for (let line &#x3D; lineOrig; line &lt; this.height + realLineSpacing * 4; line +&#x3D; realLineSpacing)
+    {
+      let realAlpha &#x3D; (mod % 5) &#x3D;&#x3D; 0 ? alphaOrig + 0.3 : alpha;
+      let color &#x3D; &#x27;rgba(255,255,255, &#x27;+realAlpha+&#x27;)&#x27;;
+      if (realAlpha &gt; 0) this.drawAbstraction.drawBlueprintLine(color, realAlpha, new Vector2(0, line), new Vector2(this.width, line), 1);
+      mod++;
+    }
+
+    if (this.blueprint !&#x3D; null)
+    {
+      for (var templateItem of this.blueprint.templateItems)
+      {
+        templateItem.prepareSpriteInfoModifier(this.blueprint);
+        this.drawAbstraction.drawTemplateItem(templateItem, this.camera);
+        //templateItem.draw(ctx, this.camera);
+      }
+      
+      this.currentTool.prepareSpriteInfoModifier(this.blueprint);
+      this.currentTool.draw(this.drawAbstraction, this.camera);
+    }
+
+    // Schedule next
+    //requestAnimationFrame(() &#x3D;&gt; this.drawAll());
+  }
+  
+  drawBlueprintLine(ctx: CanvasRenderingContext2D, xStart: number, yStart: number, xEnd: number, yEnd: number, lineWidth: number, alpha: number)
+  {
+    let offset: number &#x3D; (lineWidth % 2) / 2;
+
+    ctx.beginPath();
+    ctx.moveTo(Math.floor(xStart) + offset, Math.floor(yStart) + offset);
+    ctx.strokeStyle &#x3D; &quot;rgba(255,255,255, &quot;+alpha+&quot;)&quot;;
+    ctx.lineWidth &#x3D; lineWidth;
+    ctx.lineTo(Math.floor(xEnd) + offset, Math.floor(yEnd) + offset);
+    ctx.stroke();
+  }
+
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">
+&lt;canvas 
+  #blueprintCanvas 
+  id&#x3D;&quot;blueprintCanvas&quot;  
+  tabindex&#x3D;&quot;1&quot;
+
+  dragAndDrop 
+    (myMouseDrag)&#x3D;&quot;mouseDrag($event)&quot;
+    (myMouseStopDrag)&#x3D;&quot;mouseStopDrag($event)&quot;
+    (myMouseMove)&#x3D;&quot;mouseMove($event)&quot; 
+    (myMouseClick)&#x3D;&quot;mouseClick($event)&quot;
+    (myMouseUp)&#x3D;&quot;mouseUp($event)&quot;
+    (myMouseDown)&#x3D;&quot;mouseDown($event)&quot;
+  mouseWheel 
+    (mouseWheel)&#x3D;&quot;mouseWheel($event)&quot;
+  keyEvents 
+    (keyPress)&#x3D;&quot;keyPress($event)&quot;&gt;
+    
+  Your browser does not support canvas. 
+
+&lt;/canvas&gt;
+
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./component-canvas.component.css</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">#blueprintCanvas {
+  background-color: black;
+  z-index: -1;
+}
+
+#loadedImages {
+  display: none
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><canvas   #blueprintCanvas   id="blueprintCanvas"    tabindex="1"  dragAndDrop     (myMouseDrag)="mouseDrag($event)"    (myMouseStopDrag)="mouseStopDrag($event)"    (myMouseMove)="mouseMove($event)"     (myMouseClick)="mouseClick($event)"    (myMouseUp)="mouseUp($event)"    (myMouseDown)="mouseDown($event)"  mouseWheel     (mouseWheel)="mouseWheel($event)"  keyEvents     (keyPress)="keyPress($event)">      Your browser does not support canvas. </canvas></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ComponentBlueprintParentComponent', 'selector': 'app-component-blueprint-parent'},{'name': 'ComponentCanvasComponent', 'selector': 'app-component-canvas'},{'name': 'ComponentElementKeyPanelComponent', 'selector': 'app-component-element-key-panel'},{'name': 'ComponentLoginDialogComponent', 'selector': 'app-login-dialog'},{'name': 'ComponentMenuComponent', 'selector': 'app-component-menu'},{'name': 'ComponentSaveDialogComponent', 'selector': 'app-component-save-dialog'},{'name': 'ComponentSideBuildToolComponent', 'selector': 'app-component-side-build-tool'},{'name': 'ComponentSidepanelComponent', 'selector': 'app-component-side-panel'},{'name': 'ComponentSideSelectionToolComponent', 'selector': 'app-component-side-selection-tool'},{'name': 'ComponentTileInfoComponent', 'selector': 'app-component-tile-info'},{'name': 'DialogShareUrlComponent', 'selector': 'app-dialog-share-url'},{'name': 'LoginFormComponent', 'selector': 'app-login-form'},{'name': 'RegisterFormComponent', 'selector': 'app-register-form'}];
+    var DIRECTIVES = [{'name': 'DragAndDropDirective', 'selector': '[dragAndDrop]'},{'name': 'KeyboardDirective', 'selector': '[keyEvents]'},{'name': 'MouseWheelDirective', 'selector': '[mouseWheel]'},{'name': 'StringSanitationDirective', 'selector': '[appStringSanitation]'}];
+    var ACTUAL_COMPONENT = {'name': 'ComponentCanvasComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+                   
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'ComponentCanvasComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

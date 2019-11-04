@@ -1,0 +1,855 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>blueprintnotincluded documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">blueprintnotincluded documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content directive">
+                   <div class="content-data">
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li>Directives</li>
+  <li>DragAndDropDirective</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/module-blueprint/directives/draganddrop.directive.ts</code>
+        </p>
+
+
+
+
+        <section>
+            <h3>Metadata</h3>
+            <table class="table table-sm table-hover">
+                <tbody>
+
+                    <tr>
+                        <td class="col-md-3">Selector</td>
+                        <td class="col-md-9"><code>[dragAndDrop]</code></td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </section>
+
+            <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#isMouseDown">isMouseDown</a>
+                            </li>
+                            <li>
+                                <a href="#lastDragPosition">lastDragPosition</a>
+                            </li>
+                            <li>
+                                <a href="#startDragPosition">startDragPosition</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#stopDrag">stopDrag</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Outputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#myMouseClick">myMouseClick</a>
+                            </li>
+                            <li>
+                                <a href="#myMouseDown">myMouseDown</a>
+                            </li>
+                            <li>
+                                <a href="#myMouseDrag">myMouseDrag</a>
+                            </li>
+                            <li>
+                                <a href="#myMouseMove">myMouseMove</a>
+                            </li>
+                            <li>
+                                <a href="#myMouseStopDrag">myMouseStopDrag</a>
+                            </li>
+                            <li>
+                                <a href="#myMouseUp">myMouseUp</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>HostListeners</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#contextmenu">contextmenu</a>
+                            </li>
+                            <li>
+                                <a href="#mousedown">mousedown</a>
+                            </li>
+                            <li>
+                                <a href="#mousemove">mousemove</a>
+                            </li>
+                            <li>
+                                <a href="#mouseout">mouseout</a>
+                            </li>
+                            <li>
+                                <a href="#mouseup">mouseup</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+        </tbody>
+    </table>
+</section>
+
+            <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor()</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/module-blueprint/directives/draganddrop.directive.ts:16</a></div>
+                            </td>
+                        </tr>
+
+            </tbody>
+        </table>
+</section>
+
+
+            <section>
+    <h3 id="outputs">Outputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="myMouseClick"></a>
+                        <b>myMouseClick</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.io/api/core/EventEmitter" target="_blank" >EventEmitter</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/module-blueprint/directives/draganddrop.directive.ts:12</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="myMouseDown"></a>
+                        <b>myMouseDown</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.io/api/core/EventEmitter" target="_blank" >EventEmitter</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/app/module-blueprint/directives/draganddrop.directive.ts:8</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="myMouseDrag"></a>
+                        <b>myMouseDrag</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.io/api/core/EventEmitter" target="_blank" >EventEmitter</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/app/module-blueprint/directives/draganddrop.directive.ts:9</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="myMouseMove"></a>
+                        <b>myMouseMove</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.io/api/core/EventEmitter" target="_blank" >EventEmitter</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/app/module-blueprint/directives/draganddrop.directive.ts:11</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="myMouseStopDrag"></a>
+                        <b>myMouseStopDrag</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.io/api/core/EventEmitter" target="_blank" >EventEmitter</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/app/module-blueprint/directives/draganddrop.directive.ts:10</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="myMouseUp"></a>
+                        <b>myMouseUp</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.io/api/core/EventEmitter" target="_blank" >EventEmitter</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="7" class="link-to-prism">src/app/module-blueprint/directives/draganddrop.directive.ts:7</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+
+            <section>
+    <h3>HostListeners</h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="contextmenu"></a>
+                    <span class="name">
+                        <b>
+                            contextmenu
+                        </b>
+                        <a href="#contextmenu"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <i>Arguments : </i><code>'$event' </code>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>contextmenu(event: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="60"
+                            class="link-to-prism">src/app/module-blueprint/directives/draganddrop.directive.ts:60</a></div>
+                </td>
+            </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="mousedown"></a>
+                    <span class="name">
+                        <b>
+                            mousedown
+                        </b>
+                        <a href="#mousedown"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <i>Arguments : </i><code>'$event' </code>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>mousedown(event: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="30"
+                            class="link-to-prism">src/app/module-blueprint/directives/draganddrop.directive.ts:30</a></div>
+                </td>
+            </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="mousemove"></a>
+                    <span class="name">
+                        <b>
+                            mousemove
+                        </b>
+                        <a href="#mousemove"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <i>Arguments : </i><code>'$event' </code>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>mousemove(event: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="68"
+                            class="link-to-prism">src/app/module-blueprint/directives/draganddrop.directive.ts:68</a></div>
+                </td>
+            </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="mouseout"></a>
+                    <span class="name">
+                        <b>
+                            mouseout
+                        </b>
+                        <a href="#mouseout"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <i>Arguments : </i><code>'$event' </code>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>mouseout(event: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="64"
+                            class="link-to-prism">src/app/module-blueprint/directives/draganddrop.directive.ts:64</a></div>
+                </td>
+            </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="mouseup"></a>
+                    <span class="name">
+                        <b>
+                            mouseup
+                        </b>
+                        <a href="#mouseup"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <i>Arguments : </i><code>'$event' </code>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>mouseup(event: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="47"
+                            class="link-to-prism">src/app/module-blueprint/directives/draganddrop.directive.ts:47</a></div>
+                </td>
+            </tr>
+
+
+        </tbody>
+    </table>
+</section>
+            <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="stopDrag"></a>
+                    <span class="name">
+                        <b>
+                            stopDrag
+                        </b>
+                        <a href="#stopDrag"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>stopDrag(event: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, i: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="93"
+                            class="link-to-prism">src/app/module-blueprint/directives/draganddrop.directive.ts:93</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>event</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>i</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+            <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="isMouseDown"></a>
+                        <span class="name">
+                            <b>
+                            isMouseDown</b>
+                            <a href="#isMouseDown"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>boolean[]</code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/module-blueprint/directives/draganddrop.directive.ts:14</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="lastDragPosition"></a>
+                        <span class="name">
+                            <b>
+                            lastDragPosition</b>
+                            <a href="#lastDragPosition"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../classes/Vector2.html" target="_self" >Vector2[]</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/module-blueprint/directives/draganddrop.directive.ts:15</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="startDragPosition"></a>
+                        <span class="name">
+                            <b>
+                            startDragPosition</b>
+                            <a href="#startDragPosition"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../classes/Vector2.html" target="_self" >Vector2[]</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/module-blueprint/directives/draganddrop.directive.ts:16</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+</section>
+
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Directive, Output, HostListener, EventEmitter, ViewChild, ElementRef } from &#x27;@angular/core&#x27;;
+import { Vector2 } from &#x27;src/app/module-blueprint/common/vector2&#x27;;
+
+@Directive({ selector: &#x27;[dragAndDrop]&#x27; })
+export class DragAndDropDirective {
+
+  @Output() myMouseUp &#x3D; new EventEmitter();
+  @Output() myMouseDown &#x3D; new EventEmitter();
+  @Output() myMouseDrag &#x3D; new EventEmitter();
+  @Output() myMouseStopDrag &#x3D; new EventEmitter();
+  @Output() myMouseMove &#x3D; new EventEmitter();
+  @Output() myMouseClick &#x3D; new EventEmitter();
+
+  isMouseDown: boolean[];
+  lastDragPosition: Vector2[];
+  startDragPosition: Vector2[];
+
+  constructor()
+  {
+    this.isMouseDown &#x3D; [];
+    this.lastDragPosition &#x3D; [];
+    this.startDragPosition &#x3D; [];
+
+    for (let i &#x3D; 0; i &lt;&#x3D; 2; i++)
+    {
+      this.isMouseDown[i] &#x3D; false;
+    }
+  }
+
+  @HostListener(&#x27;mousedown&#x27;, [&#x27;$event&#x27;]) onMouseDown(event: any) {
+    var event &#x3D; window.event || event; // old IE support
+
+    let dragButton: number &#x3D; event.button;
+    if (!this.isMouseDown[dragButton])
+    {
+      this.myMouseDown.emit(event);
+      this.isMouseDown[dragButton] &#x3D; true;
+      this.startDragPosition[dragButton] &#x3D; new Vector2(event.clientX, event.clientY);
+      this.lastDragPosition[dragButton] &#x3D; new Vector2(event.clientX, event.clientY);
+    }
+
+    if(event.preventDefault) {
+        event.preventDefault();
+    }
+  }
+
+  @HostListener(&#x27;mouseup&#x27;, [&#x27;$event&#x27;]) onMouseUp(event: any) {
+    var event &#x3D; window.event || event; // old IE support
+    
+    let dragButton: number &#x3D; event.button;
+
+    // Emit a mouseclick if the mouse hasn&#x27;t moved since mousedown
+    if (new Vector2(event.clientX, event.clientY).equals(this.startDragPosition[dragButton])) this.myMouseClick.emit(event);
+
+    this.myMouseUp.emit(event);
+
+    this.stopDrag(event, dragButton);
+  }
+
+  @HostListener(&#x27;contextmenu&#x27;, [&#x27;$event&#x27;]) onContextMenu(event: any) {
+    return false;
+  }
+
+  @HostListener(&#x27;mouseout&#x27;, [&#x27;$event&#x27;]) onMouseLeave(event: any) {
+    for (let i &#x3D; 0; i &lt;&#x3D; 2; i++) this.stopDrag(event, i);
+  }
+
+  @HostListener(&#x27;mousemove&#x27;, [&#x27;$event&#x27;]) onMouseMove(event: any) {
+    var event &#x3D; window.event || event; // old IE support
+    
+    let isDragging &#x3D; false;
+    for (let i &#x3D; 0; i &lt;&#x3D; 2; i++) if (this.isMouseDown[i]) isDragging &#x3D; true;
+
+    if (isDragging)
+    {
+      for (let i &#x3D; 0; i &lt;&#x3D; 2; i++) if (this.isMouseDown[i])
+      {
+        event.dragX &#x3D; event.clientX - this.lastDragPosition[i].x;
+        event.dragY &#x3D; event.clientY - this.lastDragPosition[i].y;
+        event.dragButton &#x3D; this.isMouseDown;
+
+        this.lastDragPosition[i].x &#x3D; event.clientX;
+        this.lastDragPosition[i].y &#x3D; event.clientY;
+      }
+      this.myMouseDrag.emit(event);
+    }
+    else
+    {
+      this.myMouseMove.emit(event);
+    }
+  }
+
+  stopDrag(event: any, i: number)
+  {
+    this.isMouseDown[i] &#x3D; false;
+    this.startDragPosition[i] &#x3D; null;
+    this.lastDragPosition[i] &#x3D; null;
+
+    this.myMouseStopDrag.emit(event);
+  }
+}</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+                   
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'directive';
+            var COMPODOC_CURRENT_PAGE_URL = 'DragAndDropDirective.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

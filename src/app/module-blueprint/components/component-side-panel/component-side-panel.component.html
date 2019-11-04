@@ -19,8 +19,7 @@ header='{{header}}'
 <app-component-side-selection-tool 
   #selectionTool 
   [hidden]="currentTool!=0"
-  (onAskChangeTool)="askChangeTool($event)"
-  (onDestroyTemplateItem)="destroyTemplateItem($event)">
+  (onAskChangeTool)="askChangeTool($event)">
 </app-component-side-selection-tool>
 <app-component-side-build-tool 
   #buildTool 

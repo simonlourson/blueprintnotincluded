@@ -71,11 +71,6 @@ export class ComponentSidepanelComponent implements OnInit {
     this.onAskChangeTool.emit(toolRequest);
   }
 
-  destroyTemplateItem(templateItem: TemplateItem)
-  {
-    this.onDestroyTemplateItem.emit(templateItem);
-  }
-
   // TODO common to all tools
   public updateSelectionTool(tileInfo: TileInfo)
   {

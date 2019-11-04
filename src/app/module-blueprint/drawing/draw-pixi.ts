@@ -13,7 +13,8 @@ export class DrawPixi implements DrawAbstraction
   static instance: DrawPixi;
 
   pixiApp: PIXI.Application;
-  graphics: PIXI.Graphics;
+  backGraphics: PIXI.Graphics;
+  frontGraphics: PIXI.Graphics;
   parent: ComponentCanvasComponent;
   
   Init(canvas: ElementRef, parent: ComponentCanvasComponent) 
@@ -36,8 +37,12 @@ export class DrawPixi implements DrawAbstraction
     
     PIXI.utils.skipHello();
     this.pixiApp = new PIXI.Application(options);
-    this.graphics = new PIXI.Graphics();
-    this.pixiApp.stage.addChild(this.graphics);
+    this.backGraphics = new PIXI.Graphics();
+    this.backGraphics.zIndex = -100;
+    this.frontGraphics = new PIXI.Graphics();
+    this.frontGraphics.zIndex = 100;
+    this.pixiApp.stage.addChild(this.backGraphics);
+    this.pixiApp.stage.addChild(this.frontGraphics);
     this.pixiApp.stage.sortableChildren = true;
     this.pixiApp.ticker.add(() => {this.drawAll();});
   }    
@@ -61,24 +66,25 @@ export class DrawPixi implements DrawAbstraction
 
   clearGraphics()
   {
-    this.graphics.clear();
+    this.backGraphics.clear();
+    this.frontGraphics.clear();
   }
     
   FillRect(color: number, x: number, y: number, w: number, h: number) 
   {
     
-    this.graphics.beginFill(color);
-    this.graphics.drawRect(x, y, w, h);
-    this.graphics.endFill();
+    this.backGraphics.beginFill(color);
+    this.backGraphics.drawRect(x, y, w, h);
+    this.backGraphics.endFill();
     
   }
 
   // TODO abstract drawline
   drawBlueprintLine(color: string, alpha: number, start: Vector2, end: Vector2, lineWidth: number) {
       
-    this.graphics.lineStyle(1, 0xFFFFFF, alpha);
-    this.graphics.moveTo(start.x, start.y);
-    this.graphics.lineTo(end.x, end.y);
+    this.backGraphics.lineStyle(1, 0xFFFFFF, alpha);
+    this.backGraphics.moveTo(start.x, start.y);
+    this.backGraphics.lineTo(end.x, end.y);
 
   }
   drawTemplateItem(templateItem: TemplateItem, camera: Camera) {
@@ -91,34 +97,32 @@ export class DrawPixi implements DrawAbstraction
     toBuild.drawPixi(camera, this);
   }
 
-  public drawSprite(sprite: SpriteInfo, position: Vector2, size: Vector2)
+  public drawTileRectangle(camera: Camera, topLeft: Vector2, bottomRight: Vector2, frontGraphics: boolean, borderWidth: number, fillColor: number, borderColor: number, fillAlpha: number, borderAlpha: number)
   {
-
-  }
-
-  public drawDebugRectangle(camera: Camera, topLeft: Vector2, bottomRight: Vector2, color: string)
-  {
-    let delta = 0.4;
-
     let rectanglePosition = new Vector2(
-      (topLeft.x + delta + camera.cameraOffset.x) * camera.currentZoom,
-      (-topLeft.y + delta + camera.cameraOffset.y) * camera.currentZoom
+      (topLeft.x + camera.cameraOffset.x) * camera.currentZoom,
+      (-topLeft.y + camera.cameraOffset.y) * camera.currentZoom
     );
     let rectangleSize = new Vector2(
-      (bottomRight.x - topLeft.x + 1) * camera.currentZoom - 2*delta*camera.currentZoom,
-      (topLeft.y - bottomRight.y + 1) * camera.currentZoom - 2*delta*camera.currentZoom
+      (bottomRight.x - topLeft.x) * camera.currentZoom,
+      (topLeft.y - bottomRight.y) * camera.currentZoom
     );
 
-    this.graphics.beginFill(0xFF0000, 0.5);
-    this.graphics.drawRect(rectanglePosition.x, rectanglePosition.y, rectangleSize.x, rectangleSize.y);
-    this.graphics.endFill();
+    let graphics = frontGraphics ? this.frontGraphics : this.backGraphics
 
-    this.graphics.lineStyle(2, 0x00000, 0.5);
-    this.graphics.moveTo(rectanglePosition.x, rectanglePosition.y);
-    this.graphics.lineTo(rectanglePosition.x + rectangleSize.x, rectanglePosition.y);
-    this.graphics.lineTo(rectanglePosition.x + rectangleSize.x, rectanglePosition.y + rectangleSize.y);
-    this.graphics.lineTo(rectanglePosition.x, rectanglePosition.y + rectangleSize.y);
-    this.graphics.lineTo(rectanglePosition.x, rectanglePosition.y);
+    graphics.beginFill(fillColor, fillAlpha);
+    graphics.drawRect(rectanglePosition.x, rectanglePosition.y, rectangleSize.x, rectangleSize.y);
+    graphics.endFill();
+
+    if (borderWidth > 0)
+    {
+      graphics.lineStyle(borderWidth, borderColor, borderAlpha);
+      graphics.moveTo(rectanglePosition.x, rectanglePosition.y);
+      graphics.lineTo(rectanglePosition.x + rectangleSize.x, rectanglePosition.y);
+      graphics.lineTo(rectanglePosition.x + rectangleSize.x, rectanglePosition.y + rectangleSize.y);
+      graphics.lineTo(rectanglePosition.x, rectanglePosition.y + rectangleSize.y);
+      graphics.lineTo(rectanglePosition.x, rectanglePosition.y);
+    }
   }
 
     
