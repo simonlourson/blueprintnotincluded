@@ -475,7 +475,7 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
           this.utilitySprites[connexionIndex].height = drawSize.y;
           
 
-          if (!this.utilitySprites[connexionIndex].texture.baseTexture.hasLoaded)
+          if (!this.utilitySprites[connexionIndex].texture.baseTexture.valid)
           {
             let delta = 0.25;
             let rectanglePosition = new Vector2(

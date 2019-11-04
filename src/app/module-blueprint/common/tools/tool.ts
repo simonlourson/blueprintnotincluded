@@ -17,6 +17,7 @@ export interface Tool
 
   changeTile(blueprint: Template, previousTile: Vector2, currentTile: Vector2);
   changeTileDrag(blueprint: Template, previousTileDrag: Vector2, currentTileDrag: Vector2);
+  
 
   prepareSpriteInfoModifier(blueprint: Template);
   draw(drawAbstraction: DrawAbstraction, camera: Camera);
