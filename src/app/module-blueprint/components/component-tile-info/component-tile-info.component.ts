@@ -6,6 +6,7 @@ import { AuthorizedOrientations } from '../../common/oni-item';
 import { SelectItem } from 'primeng/api';
 import { ToolRequest } from '../../common/tool-request';
 import { ToolType } from '../../common/tools/tool';
+import { BlueprintService } from '../../services/blueprint-service';
 
 @Component({
   selector: 'app-component-tile-info',
@@ -16,8 +17,7 @@ export class ComponentTileInfoComponent implements OnInit, OnDestroy {
 
 
   @Input() templateItem: TemplateItem;
-  @Output() onAskChangeTool = new EventEmitter<ToolRequest>();
-  @Output() onDestroyTemplateItem = new EventEmitter<TemplateItem>();
+  @Output() onDestroyTemplateItem = new EventEmitter();
 
   get elements() { return ComposingElement.elements; }
   get showColor() { return this.templateItem instanceof TemplateItemWire }
@@ -34,7 +34,7 @@ export class ComponentTileInfoComponent implements OnInit, OnDestroy {
   }
 
 
-  constructor(private cdRef: ChangeDetectorRef) { }
+  constructor(private cdRef: ChangeDetectorRef, private blueprintService: BlueprintService) { }
 
   ngOnInit() {
 
@@ -56,13 +56,14 @@ export class ComponentTileInfoComponent implements OnInit, OnDestroy {
     let toolRequest = new ToolRequest();
     toolRequest.toolType = ToolType.build;
     toolRequest.templateItem = this.templateItem;
-
-    this.onAskChangeTool.emit(toolRequest);
   }
 
   buildDestroy(event: any)
   {
-    this.onDestroyTemplateItem.emit(this.templateItem);
+    this.blueprintService.blueprint.destroyTemplateItem(this.templateItem);
+    
+    // We still need to do the detection change one loevel above? weird
+    this.onDestroyTemplateItem.emit();
   }
 
 }

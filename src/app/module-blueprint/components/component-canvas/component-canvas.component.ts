@@ -19,12 +19,10 @@ import { SpriteModifier } from 'src/app/module-blueprint/drawing/sprite-modifier
 import { TileInfo } from '../../common/tile-info';
 import { Template } from '../../common/template/template';
 import { ZIndex, Overlay } from '../../common/overlay-type';
-import { Tool, ToolType } from '../../common/tools/tool';
+import { ToolType } from '../../common/tools/tool';
 import { ToolRequest } from '../../common/tool-request';
 import { ComponentSideSelectionToolComponent } from '../component-side-selection-tool/component-side-selection-tool.component';
-import { DrawAbstraction } from '../../drawing/draw-abstraction';
 import { DrawPixi } from '../../drawing/draw-pixi';
-import { ɵangular_packages_router_router_n } from '@angular/router';
 import * as JSZip from 'jszip';
 import { BSpriteInfo } from '../../common/bexport/b-sprite-info';
 import { TemplateItem } from '../../common/template/template-item';
@@ -54,10 +52,7 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
   @Output() onTileInfoChange = new EventEmitter<TileInfo>();
   @Output() onAskChangeTool = new EventEmitter<ToolRequest>();
 
-  // Tools
-  currentTool: Tool;
-
-  drawAbstraction: DrawPixi;
+  drawPixi: DrawPixi;
   technicalRepack: TechnicalRepack;
 
   public get blueprint() { return this.blueprintService.blueprint; }
@@ -68,7 +63,7 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
     private toolService: ToolService) {
     
     this.camera = new Camera();
-    this.drawAbstraction = new DrawPixi();
+    this.drawPixi = new DrawPixi();
     this.technicalRepack = new TechnicalRepack();
   }
 
@@ -76,7 +71,7 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
   ngOnInit() {
     // Start the rendering loop
     this.running = true;
-    this.ngZone.runOutsideAngular(() => this.drawAbstraction.Init(this.canvasRef, this));
+    this.ngZone.runOutsideAngular(() => this.drawPixi.Init(this.canvasRef, this));
 
     //this.drawAbstraction.Init(this.canvasRef, this)
   }
@@ -127,24 +122,18 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
     if (event.button == 0) 
     {
       this.storePreviousTileFloat = null;
-      this.currentTool.leftMouseUp(this.blueprint, this.getCurrentTile(event));
     }
   }
 
   mouseDown(event: any)
   {
-    if (event.button == 0) this.currentTool.leftMouseDown(this.blueprint, this.getCurrentTile(event));
+  
   }
 
   mouseClick(event: any)
   {
-    //if (event.button == 0) this.currentTool.leftClick(this.blueprint, this.getCurrentTile(event));
-    if (event.button == 2) this.currentTool.rightClick(this.blueprint, this.getCurrentTile(event));
-
-    if (event.button == 0) 
-    {
-      this.toolService.leftClick(this.getCurrentTile(event));
-    }
+    if (event.button == 0) this.toolService.leftClick(this.getCurrentTile(event));
+    
   }
 
   storePreviousTileFloat: Vector2;
@@ -193,8 +182,8 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
 
       }
       */
-      if (previousTile != null)
-        this.currentTool.changeTileDrag(this.blueprint, previousTile, currentTile);
+      //if (previousTile != null)
+      //  this.currentTool.changeTileDrag(this.blueprint, previousTile, currentTile);
       
     }
 
@@ -209,13 +198,14 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
   previousTileUnderMouse: Vector2;
   mouseMove(event: any)
   {
-    
+    /*
     let currentTileUnderMouse = this.getCurrentTile(event);
 
     if (this.previousTileUnderMouse == null || !this.previousTileUnderMouse.equals(currentTileUnderMouse))
       this.currentTool.changeTile(this.blueprint, this.previousTileUnderMouse, currentTileUnderMouse);
 
     this.previousTileUnderMouse = currentTileUnderMouse;
+    */
   }
 
 
@@ -235,13 +225,15 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
     if (this.blueprint != null) this.blueprint.prepareOverlayInfo(this.camera.overlay);
   }
 
+  /*
   changeTool(newToolComponent: Tool)
   {
     // First deactivate the old tool
-    if (this.currentTool != null) this.currentTool.destroyTool();
+    //if (this.currentTool != null) this.currentTool.destroyTool();
 
-    this.currentTool = newToolComponent;
+    //this.currentTool = newToolComponent;
   }
+  */
 
   /*
    * 
@@ -294,9 +286,9 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
       let sprite = PIXI.Sprite.from(texture);
       sprite.filters = [allWhiteFilter];
 
-      this.drawAbstraction.pixiApp.renderer.render(sprite, rt);
+      this.drawPixi.pixiApp.renderer.render(sprite, rt);
 
-      this.drawAbstraction.pixiApp.renderer.extract.canvas(rt).toBlob((b) => 
+      this.drawPixi.pixiApp.renderer.extract.canvas(rt).toBlob((b) => 
       {
         this.addBlob(b, oniItem.imageId + '_solid.png');
       }, 'image/png');
@@ -402,7 +394,7 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
       sprite.y = newSpriteInfo.uvMin.y;
       //console.log('drawing ' + newSpriteInfo.name + ' on render target ' + repackIndex);
       //console.log(newSpriteInfo.uvMin);
-      this.drawAbstraction.pixiApp.renderer.render(sprite, renderTextures[repackIndex], false);
+      this.drawPixi.pixiApp.renderer.render(sprite, renderTextures[repackIndex], false);
     }
 
     database.uiSprites = newSpriteInfos;
@@ -418,7 +410,7 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
     {
       let rt = renderTextures[indexRt];
 
-      this.drawAbstraction.pixiApp.renderer.extract.canvas(rt).toBlob((b) => 
+      this.drawPixi.pixiApp.renderer.extract.canvas(rt).toBlob((b) => 
       {
         this.addBlob(b, baseString + indexRt + '.png');
       }, 'image/png');
@@ -439,7 +431,7 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
       let texture = uiSpriteInfo.getTexture();
       let uiSPrite = PIXI.Sprite.from(texture);
 
-      this.drawAbstraction.pixiApp.renderer.extract.canvas(uiSPrite).toBlob((b) => 
+      this.drawPixi.pixiApp.renderer.extract.canvas(uiSPrite).toBlob((b) => 
       {
         this.addBlob(b, k + '.png');
       }, 'image/png');
@@ -499,8 +491,8 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
 
     //let ctx: CanvasRenderingContext2D = this.canvasRef.nativeElement.getContext('2d');
 
-    this.drawAbstraction.clearGraphics();
-    this.drawAbstraction.FillRect(0x007AD9, 0, 0, this.width, this.height);
+    this.drawPixi.clearGraphics();
+    this.drawPixi.FillRect(0x007AD9, 0, 0, this.width, this.height);
     
     let alphaOrig: number = 0.4;
     let alpha: number = alphaOrig;
@@ -523,7 +515,7 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
     {
       let realAlpha = (mod % 5) == 0 ? alphaOrig + 0.3 : alpha;
       let color = 'rgba(255,255,255, '+realAlpha+')';
-      if (realAlpha > 0) this.drawAbstraction.drawBlueprintLine(color, realAlpha, new Vector2(col, 0), new Vector2(col, this.height), 1);
+      if (realAlpha > 0) this.drawPixi.drawBlueprintLine(color, realAlpha, new Vector2(col, 0), new Vector2(col, this.height), 1);
       mod++;
     }
 
@@ -533,7 +525,7 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
     {
       let realAlpha = (mod % 5) == 0 ? alphaOrig + 0.3 : alpha;
       let color = 'rgba(255,255,255, '+realAlpha+')';
-      if (realAlpha > 0) this.drawAbstraction.drawBlueprintLine(color, realAlpha, new Vector2(0, line), new Vector2(this.width, line), 1);
+      if (realAlpha > 0) this.drawPixi.drawBlueprintLine(color, realAlpha, new Vector2(0, line), new Vector2(this.width, line), 1);
       mod++;
     }
 
@@ -542,12 +534,11 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
       for (var templateItem of this.blueprint.templateItems)
       {
         templateItem.prepareSpriteInfoModifier(this.blueprint);
-        this.drawAbstraction.drawTemplateItem(templateItem, this.camera);
+        this.drawPixi.drawTemplateItem(templateItem, this.camera);
         //templateItem.draw(ctx, this.camera);
       }
       
-      this.currentTool.prepareSpriteInfoModifier(this.blueprint);
-      this.currentTool.draw(this.drawAbstraction, this.camera);
+      this.toolService.draw(this.drawPixi, this.camera);
     }
 
     // Schedule next

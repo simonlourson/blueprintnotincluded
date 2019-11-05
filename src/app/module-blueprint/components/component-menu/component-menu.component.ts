@@ -10,6 +10,7 @@ import { TemplateItem } from '../../common/template/template-item';
 import { AuthenticationService } from '../user-auth/authentification-service';
 import { Template } from '../../common/template/template';
 import { BehaviorSubject } from 'rxjs';
+import { ToolService } from '../../services/tool-service';
 
 @Component({
   selector: 'app-component-menu',
@@ -38,7 +39,8 @@ export class ComponentMenuComponent implements OnInit {
   constructor(
     //TODO should not be public
     public authService: AuthenticationService, 
-    private messageService: MessageService) {
+    private messageService: MessageService,
+    private toolService: ToolService) {
 
   }
 
@@ -67,11 +69,6 @@ export class ComponentMenuComponent implements OnInit {
       {label: 'Select',       id:ToolType.select.toString(),    command: (event) => { this.clickTool(event); }},
       {label: 'Build',        id:ToolType.build.toString(),     command: (event) => { this.clickTool(event); }},
     ];
-
-    /*
-
-    */
-
 
     this.menuItems = [
       {
@@ -128,6 +125,7 @@ export class ComponentMenuComponent implements OnInit {
       if (menuItem.id == event.item.id) {menuItem.icon = 'pi pi-fw pi-check';}
       else menuItem.icon = 'pi pi-fw pi-none';
     }
+    this.toolService.changeTool(event.item.id);
     this.onMenuCommand.emit({type: MenuCommandType.changeTool, data:{toolType:parseInt(event.item.id), templateItem:templateItem}});
   }
 

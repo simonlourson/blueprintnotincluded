@@ -8,15 +8,24 @@ import { Observable } from 'rxjs';
 export class SelectTool
 {
   public itemsChanged: Observable<number>;
+  public headerString;
   public templateItemsToShow: TemplateItem[];
 
   private observers: IObsTemplateItemChanged[];
 
   constructor(private blueprintService: BlueprintService) {
-    this.templateItemsToShow = [];
+    
     this.itemsChanged = new Observable<number>();
-
     this.observers = [];
+
+    // TODO also do this on blueprint loading
+    this.reset();
+  }
+
+  reset()
+  {
+    this.templateItemsToShow = [];
+    this.previousTile = null;
   }
 
   public subscribe(subscriber: IObsTemplateItemChanged)
@@ -29,20 +38,24 @@ export class SelectTool
     this.updateSelectionTool(tile);
   }
 
+  previousTile: Vector2;
   public updateSelectionTool(tile: Vector2)
   {
-    console.log('updateSelectionTool')
-    this.templateItemsToShow = this.blueprintService.blueprint.getTemplateItemsAt(tile);
-    this.pushChanges();
-  }
+    // If the user clicked on the same tile, just advance the accordeon
+    if (tile.equals(this.previousTile)) this.observers.map((observer) => observer.nextSelection() );
+    else
+    {
+      this.headerString = 'Selected at x:' + tile.x+', y:'+tile.y;
+      this.templateItemsToShow = this.blueprintService.blueprint.getTemplateItemsAt(tile);
+      this.observers.map((observer) => observer.newSelection() );
+    }
 
-  pushChanges()
-  {
-    this.observers.map((observer) => observer.itemsChanged())
+    this.previousTile = Vector2.clone(tile);
   }
 }
 
 export interface IObsTemplateItemChanged
 {
-  itemsChanged();
+  newSelection();
+  nextSelection();
 }

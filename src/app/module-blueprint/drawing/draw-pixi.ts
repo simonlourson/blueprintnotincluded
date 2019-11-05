@@ -1,4 +1,3 @@
-import { DrawAbstraction } from "./draw-abstraction";
 import { ElementRef } from "@angular/core";
 import { ComponentCanvasComponent } from "../components/component-canvas/component-canvas.component";
 import { TemplateItem } from "../common/template/template-item";
@@ -8,7 +7,7 @@ import { SpriteInfo } from './sprite-info';
 import { ComponentMenuComponent } from '../components/component-menu/component-menu.component';
 declare var PIXI: any;
 
-export class DrawPixi implements DrawAbstraction
+export class DrawPixi
 {
   static instance: DrawPixi;
 
@@ -23,10 +22,6 @@ export class DrawPixi implements DrawAbstraction
     DrawPixi.instance = this;
 
     this.parent = parent;
-
-    
-
-    
     
     let htmlCanvas: HTMLCanvasElement = canvas.nativeElement;
     let options: any = {};

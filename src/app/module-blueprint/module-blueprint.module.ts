@@ -49,6 +49,7 @@ import { RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module } from 'ng-recaptcha';
 import { DialogShareUrlComponent } from './components/dialog-share-url/dialog-share-url.component';
 import { ToolService } from './services/tool-service';
 import { SelectTool } from './common/tools/select-tool';
+import { BuildTool } from './common/tools/build-tool';
 
 @NgModule({
   imports: [
@@ -60,7 +61,7 @@ import { SelectTool } from './common/tools/select-tool';
     BrowserAnimationsModule
   ],
   declarations: [StringSanitationDirective, ComponentCanvasComponent, MouseWheelDirective, DragAndDropDirective, KeyboardDirective, ComponentMenuComponent, ComponentSidepanelComponent, ComponentBlueprintParentComponent, ComponentTileInfoComponent, ComponentSaveDialogComponent, ComponentSideBuildToolComponent, ComponentSideSelectionToolComponent, ComponentElementKeyPanelComponent, ComponentLoginDialogComponent, RegisterFormComponent, LoginFormComponent, DialogShareUrlComponent],
-  providers: [CheckDuplicateService, AuthenticationService, BlueprintService, ToolService, SelectTool,
+  providers: [CheckDuplicateService, AuthenticationService, BlueprintService, ToolService, SelectTool, BuildTool,
     { provide: RECAPTCHA_V3_SITE_KEY, useValue: '6LdS0b8UAAAAAGb8P_L33ypsdiS41Nu8q3CwRg_M' }
   ],
   exports: [ComponentBlueprintParentComponent]

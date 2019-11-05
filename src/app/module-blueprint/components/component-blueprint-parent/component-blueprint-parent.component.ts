@@ -173,7 +173,6 @@ export class ComponentBlueprintParentComponent implements OnInit {
   menuCommand(menuCommand: MenuCommand)
   {
     if (menuCommand.type == MenuCommandType.newBlueprint) this.loadTemplateIntoCanvas(new Template());
-    else if (menuCommand.type == MenuCommandType.changeTool) this.changeTool(menuCommand.data as ToolRequest);
     else if (menuCommand.type == MenuCommandType.changeOverlay) this.changeOverlay(menuCommand.data as Overlay);
     else if (menuCommand.type == MenuCommandType.showLoginDialog) this.openLoginDialog();
     else if (menuCommand.type == MenuCommandType.saveBlueprint) this.saveToCloud();
@@ -252,19 +251,6 @@ export class ComponentBlueprintParentComponent implements OnInit {
     this.canvas.changeOverlay(newOverlay);
   }
 
-  changeTool(newTool: ToolRequest)
-  {
-    
-    let newToolComponent = this.sidePanel.changeTool(newTool);
-    this.canvas.changeTool(newToolComponent);
-    
-  }
-
-  askChangeTool(toolRequest: ToolRequest)
-  {
-    this.menu.askChangeTool(toolRequest);
-  }
-
   fetchIcons()
   {
     this.canvas.fetchIcons(); 
@@ -309,11 +295,6 @@ export class ComponentBlueprintParentComponent implements OnInit {
     a.click();
     window.URL.revokeObjectURL(fileURL);
     a.remove();
-  }
-
-  onTileInfoChange(tileInfo: TileInfo)
-  {
-    this.sidePanel.updateSelectionTool(tileInfo);
   }
 
   loadTemplate(template: string)

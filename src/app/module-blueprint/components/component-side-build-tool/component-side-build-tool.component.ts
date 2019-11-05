@@ -4,7 +4,7 @@ import {SelectItem} from 'primeng/api';
 import { TemplateItem } from '../../common/template/template-item';
 import { ComposingElement } from '../../common/composing-element';
 import { Template } from '../../common/template/template';
-import { Tool, ToolType } from '../../common/tools/tool';
+import { ToolType } from '../../common/tools/tool';
 import { TileInfo } from '../../common/tile-info';
 import { TemplateItemWire } from '../../common/template/template-item-wire';
 import { Camera } from '../../common/camera';
@@ -12,7 +12,6 @@ import { Vector2 } from '../../common/vector2';
 import { DrawHelpers } from '../../drawing/draw-helpers';
 import { ToolRequest } from '../../common/tool-request';
 import { DrawPixi } from '../../drawing/draw-pixi';
-import { DrawAbstraction } from '../../drawing/draw-abstraction';
 import { BuildMenuCategory, BuildMenuItem } from '../../common/bexport/b-build-order';
 
 
@@ -22,7 +21,7 @@ import { BuildMenuCategory, BuildMenuItem } from '../../common/bexport/b-build-o
   templateUrl: './component-side-build-tool.component.html',
   styleUrls: ['./component-side-build-tool.component.css']
 })
-export class ComponentSideBuildToolComponent implements OnInit, Tool {
+export class ComponentSideBuildToolComponent implements OnInit {
 
   categories: SelectItem[];
   items: SelectItem[];
@@ -277,10 +276,6 @@ export class ComponentSideBuildToolComponent implements OnInit, Tool {
 
     // Utility
     this.templateItemToBuild.drawPixi(camera, drawPixi);
-  }
-
-  draw(drawAbstraction: DrawAbstraction, camera: Camera) {
-    drawAbstraction.drawBuild(this.templateItemToBuild, camera);
   }
 
   destroyTool() {
