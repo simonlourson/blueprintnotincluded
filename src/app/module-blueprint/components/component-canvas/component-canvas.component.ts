@@ -29,7 +29,8 @@ import * as JSZip from 'jszip';
 import { BSpriteInfo } from '../../common/bexport/b-sprite-info';
 import { TemplateItem } from '../../common/template/template-item';
 import { TechnicalRepack } from '../../common/technical-repack';
-import { BlueprintService } from '../../common/blueprint-service';
+import { BlueprintService } from '../../services/blueprint-service';
+import { ToolService } from '../../services/tool-service';
 
 
 @Component({
@@ -63,7 +64,8 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
   public set blueprint(value: Template) { this.blueprintService.blueprint = value; }
   constructor(
     private ngZone: NgZone,
-    private blueprintService: BlueprintService) {
+    private blueprintService: BlueprintService,
+    private toolService: ToolService) {
     
     this.camera = new Camera();
     this.drawAbstraction = new DrawPixi();
@@ -136,8 +138,13 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
 
   mouseClick(event: any)
   {
-    if (event.button == 0) this.currentTool.leftClick(this.blueprint, this.getCurrentTile(event));
+    //if (event.button == 0) this.currentTool.leftClick(this.blueprint, this.getCurrentTile(event));
     if (event.button == 2) this.currentTool.rightClick(this.blueprint, this.getCurrentTile(event));
+
+    if (event.button == 0) 
+    {
+      this.toolService.leftClick(this.getCurrentTile(event));
+    }
   }
 
   storePreviousTileFloat: Vector2;

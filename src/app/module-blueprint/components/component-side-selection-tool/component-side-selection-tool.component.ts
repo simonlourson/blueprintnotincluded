@@ -7,14 +7,16 @@ import { Template } from '../../common/template/template';
 import { Vector2 } from '../../common/vector2';
 import { Camera } from '../../common/camera';
 import { DrawAbstraction } from '../../drawing/draw-abstraction';
-import { BlueprintService } from '../../common/blueprint-service';
+import { BlueprintService } from '../../services/blueprint-service';
+import { ToolService } from '../../services/tool-service';
+import { IObsTemplateItemChanged } from '../../common/tools/select-tool';
 
 @Component({
   selector: 'app-component-side-selection-tool',
   templateUrl: './component-side-selection-tool.component.html',
   styleUrls: ['./component-side-selection-tool.component.css']
 })
-export class ComponentSideSelectionToolComponent implements OnInit, Tool {
+export class ComponentSideSelectionToolComponent implements OnInit, Tool, IObsTemplateItemChanged {
 
   private tileInfo: TileInfo;
 
@@ -22,13 +24,14 @@ export class ComponentSideSelectionToolComponent implements OnInit, Tool {
   templateItemsToShow: TemplateItem[];
 
 
-  constructor(private cd: ChangeDetectorRef, private blueprintService: BlueprintService) 
+  constructor(private cd: ChangeDetectorRef, private blueprintService: BlueprintService, private toolService: ToolService) 
   { 
     this.templateItemsToShow = [];
     this.tileInfo = new TileInfo();
   }
 
   ngOnInit() {
+    this.toolService.selectTool.subscribe(this);
   }
 
   // This is used by the "Build Copy" button
@@ -38,10 +41,14 @@ export class ComponentSideSelectionToolComponent implements OnInit, Tool {
     this.onAskChangeTool.emit(toolRequest);
   }
 
+  itemsChanged()
+  {
+    this.cd.detectChanges();
+  }
+
   destroyTemplateItem(templateItem: TemplateItem)
   {
     this.blueprintService.blueprint.destroyTemplateItem(templateItem);
-    //this.onDestroyTemplateItem.emit(templateItem);
   }
 
   // This is used a bunch of times by the tool interface to refresh the display

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -44,9 +44,11 @@ import { CheckDuplicateService } from './components/user-auth/check-duplicate-se
 import { LoginFormComponent } from './components/user-auth/login-form/login-form.component';
 import { AuthenticationService } from './components/user-auth/authentification-service';
 import { Template } from './common/template/template';
-import { BlueprintService } from './common/blueprint-service';
+import { BlueprintService } from './services/blueprint-service';
 import { RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module } from 'ng-recaptcha';
 import { DialogShareUrlComponent } from './components/dialog-share-url/dialog-share-url.component';
+import { ToolService } from './services/tool-service';
+import { SelectTool } from './common/tools/select-tool';
 
 @NgModule({
   imports: [
@@ -58,7 +60,7 @@ import { DialogShareUrlComponent } from './components/dialog-share-url/dialog-sh
     BrowserAnimationsModule
   ],
   declarations: [StringSanitationDirective, ComponentCanvasComponent, MouseWheelDirective, DragAndDropDirective, KeyboardDirective, ComponentMenuComponent, ComponentSidepanelComponent, ComponentBlueprintParentComponent, ComponentTileInfoComponent, ComponentSaveDialogComponent, ComponentSideBuildToolComponent, ComponentSideSelectionToolComponent, ComponentElementKeyPanelComponent, ComponentLoginDialogComponent, RegisterFormComponent, LoginFormComponent, DialogShareUrlComponent],
-  providers: [CheckDuplicateService, AuthenticationService, BlueprintService,
+  providers: [CheckDuplicateService, AuthenticationService, BlueprintService, ToolService, SelectTool,
     { provide: RECAPTCHA_V3_SITE_KEY, useValue: '6LdS0b8UAAAAAGb8P_L33ypsdiS41Nu8q3CwRg_M' }
   ],
   exports: [ComponentBlueprintParentComponent]

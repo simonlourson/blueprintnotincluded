@@ -35,7 +35,7 @@ import { BSpriteModifier } from '../../common/bexport/b-sprite-modifier';
 import { BniBlueprint } from '../../common/blueprint-import/bni-blueprint';
 import { ComponentLoginDialogComponent } from '../user-auth/login-dialog/login-dialog.component';
 import { LoginInfo } from '../../common/api/login-info';
-import { BlueprintService } from '../../common/blueprint-service';
+import { BlueprintService } from '../../services/blueprint-service';
 import { DialogShareUrlComponent } from '../dialog-share-url/dialog-share-url.component';
 
 @Component({

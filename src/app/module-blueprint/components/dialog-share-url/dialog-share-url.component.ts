@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { BlueprintService } from '../../common/blueprint-service';
+import { BlueprintService } from '../../services/blueprint-service';
 import { MessageService } from 'primeng/api';
 
 @Component({

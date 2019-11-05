@@ -2,7 +2,7 @@
   <p-accordion 
     #buildingsAccordion 
     [(activeIndex)]="activeIndex" >
-    <p-accordionTab *ngFor="let templateItem of templateItemsToShow" header="{{templateItem.id}}" [transitionOptions]="'0ms'">
+    <p-accordionTab *ngFor="let templateItem of toolService.selectTool.templateItemsToShow" header="{{templateItem.id}}" [transitionOptions]="'0ms'">
       <app-component-tile-info 
         [templateItem]=templateItem
         (onAskChangeTool)="askChangeTool($event)"

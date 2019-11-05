@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Template } from './template/template';
+import { Template } from '../common/template/template';
 import { AuthenticationService } from '../components/user-auth/authentification-service';
 import { map } from 'rxjs/operators';
 
