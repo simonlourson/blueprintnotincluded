@@ -61,6 +61,8 @@ export class SelectTool implements ITool
   switchTo() {
     
   }
+
+  mouseOut() {}
   
   leftClick(tile: Vector2) {
     this.updateSelectionTool(tile);

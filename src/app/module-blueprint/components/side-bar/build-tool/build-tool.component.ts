@@ -12,18 +12,18 @@ import { Vector2 } from '../../../common/vector2';
 import { DrawHelpers } from '../../../drawing/draw-helpers';
 import { DrawPixi } from '../../../drawing/draw-pixi';
 import { BuildMenuCategory, BuildMenuItem } from '../../../common/bexport/b-build-order';
-import { ToolService } from 'src/app/module-blueprint/services/tool-service';
+import { ToolService, IObsToolChanged } from 'src/app/module-blueprint/services/tool-service';
 import { IObsTemplateItemChanged } from 'src/app/module-blueprint/common/tools/select-tool';
 import { IObsBuildItemChanged } from 'src/app/module-blueprint/common/tools/build-tool';
 
 
 
 @Component({
-  selector: 'app-component-side-build-tool',
-  templateUrl: './component-side-build-tool.component.html',
-  styleUrls: ['./component-side-build-tool.component.css']
+  selector: 'app-build-tool',
+  templateUrl: './build-tool.component.html',
+  styleUrls: ['./build-tool.component.css']
 })
-export class ComponentSideBuildToolComponent implements OnInit, IObsBuildItemChanged {
+export class ComponentSideBuildToolComponent implements OnInit, IObsBuildItemChanged, IObsToolChanged {
 
   categories: SelectItem[];
   items: SelectItem[];
@@ -40,7 +40,8 @@ export class ComponentSideBuildToolComponent implements OnInit, IObsBuildItemCha
     this.categories = []
     this.items = [];
 
-    this.toolService.buildTool.subscribe(this);
+    this.toolService.buildTool.subscribeBuildItemChanged(this);
+    this.toolService.subscribeToolChanged(this);
   }
 
   ngOnInit() {
@@ -88,9 +89,8 @@ export class ComponentSideBuildToolComponent implements OnInit, IObsBuildItemCha
     this.toolService.buildTool.changeItem(Template.createInstance(this.currentItem.id));
   }
 
+  // IObsBuildItemChanged
   itemChanged(templateItem: TemplateItem) {
-    console.log('itemChanged');
-
     let category = BuildMenuCategory.getCategoryFromItem(templateItem.oniItem);
     if (category != null) {
       this.currentCategory = category;
@@ -98,6 +98,13 @@ export class ComponentSideBuildToolComponent implements OnInit, IObsBuildItemCha
       
       this.currentItem = templateItem.oniItem;
     }
+  }
+
+  // IObsToolChanged
+  toolChanged(toolType: ToolType) {
+    // If the build tool was just selected,
+    // We simulate a click to recreate the build tool template item
+    if (toolType == ToolType.build) this.uiItemChanged();
   }
 
   setOriginal(templateItem: TemplateItem)

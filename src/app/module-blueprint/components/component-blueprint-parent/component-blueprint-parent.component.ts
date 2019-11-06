@@ -8,7 +8,7 @@ import {BinaryReader, Encoding} from 'csharp-binary-stream';
 import * as yaml from 'node_modules/js-yaml/lib/js-yaml';
 import { OniTemplate } from '../../oni-import/oni-template';
 import { TileInfo } from '../../common/tile-info';
-import { ComponentSidepanelComponent } from '../side-bar/component-side-panel/component-side-panel.component';
+import { ComponentSidepanelComponent } from '../side-bar/side-panel/side-panel.component';
 import { OniItem, AuthorizedOrientations } from '../../common/oni-item';
 import { ImageSource } from '../../drawing/image-source';
 import { Vector2 } from '../../common/vector2';

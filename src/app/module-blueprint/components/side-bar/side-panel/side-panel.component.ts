@@ -7,7 +7,7 @@ import { OniCell } from '../../../oni-import/oni-cell';
 import { TemplateItem } from '../../../common/template/template-item';
 import { ComponentSideSelectionToolComponent } from '../selection-tool/selection-tool.component';
 import { ToolType } from '../../../common/tools/tool';
-import { ComponentSideBuildToolComponent } from '../component-side-build-tool/component-side-build-tool.component';
+import { ComponentSideBuildToolComponent } from '../build-tool/build-tool.component';
 import { OniItem } from '../../../common/oni-item';
 import { ToolService } from '../../../services/tool-service';
 
@@ -17,9 +17,9 @@ interface Element {
 }
 
 @Component({
-  selector: 'app-component-side-panel',
-  templateUrl: './component-side-panel.component.html',
-  styleUrls: ['./component-side-panel.component.css']
+  selector: 'app-side-panel',
+  templateUrl: './side-panel.component.html',
+  styleUrls: ['./side-panel.component.css']
 })
 export class ComponentSidepanelComponent implements OnInit {
 

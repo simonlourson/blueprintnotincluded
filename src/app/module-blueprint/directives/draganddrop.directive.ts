@@ -6,6 +6,7 @@ export class DragAndDropDirective {
 
   @Output() myMouseUp = new EventEmitter();
   @Output() myMouseDown = new EventEmitter();
+  @Output() myMouseOut = new EventEmitter();
   @Output() myMouseDrag = new EventEmitter();
   @Output() myMouseStopDrag = new EventEmitter();
   @Output() myMouseMove = new EventEmitter();
@@ -63,6 +64,7 @@ export class DragAndDropDirective {
 
   @HostListener('mouseout', ['$event']) onMouseLeave(event: any) {
     for (let i = 0; i <= 2; i++) this.stopDrag(event, i);
+    this.myMouseOut.emit(event);
   }
 
   @HostListener('mousemove', ['$event']) onMouseMove(event: any) {

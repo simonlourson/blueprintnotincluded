@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Template } from '../common/template/template';
-import { AuthenticationService } from '../components/user-auth/authentification-service';
+import { AuthenticationService } from './authentification-service';
 import { map } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })

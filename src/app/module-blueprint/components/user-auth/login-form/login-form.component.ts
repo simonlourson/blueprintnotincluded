@@ -1,7 +1,7 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { AuthenticationService } from '../authentification-service';
+import { AuthenticationService } from '../../../services/authentification-service';
 import { MessageService } from 'primeng/api';
 import { ReCaptchaV3Service } from 'ng-recaptcha';  
 import { Observable, Subscription } from 'rxjs';

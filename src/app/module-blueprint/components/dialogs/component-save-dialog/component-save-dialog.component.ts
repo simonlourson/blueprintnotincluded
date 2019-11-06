@@ -4,7 +4,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { BlueprintService } from '../../../services/blueprint-service';
 import { Template } from '../../../common/template/template';
 import { MessageService } from 'primeng/api';
-import { AuthenticationService } from '../../user-auth/authentification-service';
+import { AuthenticationService } from '../../../services/authentification-service';
 
 @Component({
   selector: 'app-component-save-dialog',

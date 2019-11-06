@@ -6,7 +6,7 @@ import { ZIndex, Overlay } from '../../common/overlay-type';
 import { OniItem } from '../../common/oni-item';
 import { ToolType } from '../../common/tools/tool';
 import { TemplateItem } from '../../common/template/template-item';
-import { AuthenticationService } from '../user-auth/authentification-service';
+import { AuthenticationService } from '../../services/authentification-service';
 import { Template } from '../../common/template/template';
 import { BehaviorSubject } from 'rxjs';
 import { ToolService, ToolRequest, IObsToolChanged } from '../../services/tool-service';
@@ -40,7 +40,7 @@ export class ComponentMenuComponent implements OnInit, IObsToolChanged {
     private messageService: MessageService,
     private toolService: ToolService) 
   {
-    this.toolService.subscribe(this);
+    this.toolService.subscribeToolChanged(this);
   }
 
 
@@ -127,9 +127,7 @@ export class ComponentMenuComponent implements OnInit, IObsToolChanged {
 
   clickTool(event: any, templateItem: TemplateItem = null)
   {
-    this.updateToolIcon(event.item.id as ToolType);
     this.toolService.changeTool(event.item.id as ToolType);
-    this.onMenuCommand.emit({type: MenuCommandType.changeTool, data:{toolType:parseInt(event.item.id), templateItem:templateItem}});
   }
 
   public askChangeTool(toolRequest: ToolRequest)

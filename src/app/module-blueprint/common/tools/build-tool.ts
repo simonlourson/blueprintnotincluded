@@ -17,17 +17,14 @@ export class BuildTool implements ITool
   templateItemToBuild: TemplateItem;
   private observers: IObsBuildItemChanged[];
 
-  private visible: boolean;
-
   parent: IChangeTool;
 
   constructor(private blueprintService: BlueprintService) 
   {
     this.observers = [];
-    this.visible = false;
   }
 
-  subscribe(observer: IObsBuildItemChanged)
+  subscribeBuildItemChanged(observer: IObsBuildItemChanged)
   {
     this.observers.push(observer);
   }
@@ -76,32 +73,28 @@ export class BuildTool implements ITool
 
   changeItem(item: TemplateItem)
   {
-    console.log('changeItem');
-    console.log(item);
-    let oldItem = this.templateItemToBuild;
+    if (this.templateItemToBuild != null) this.templateItemToBuild.destroy();
 
     this.templateItemToBuild = item;
-    // TODO should the position go into cleanup
-    this.templateItemToBuild.position = Vector2.Zero;
+    this.templateItemToBuild.setInvisible();
     this.templateItemToBuild.alpha = 1;
     this.templateItemToBuild.cleanUp();
-    // TODO fixme
+    
     this.templateItemToBuild.prepareBoundingBox();
     this.templateItemToBuild.prepareSpriteInfoModifier(this.blueprintService.blueprint);
     this.observers.map((observer) => observer.itemChanged(item) );
-
-    
-    // First destroy the existing item as needed
-    if (oldItem != null) oldItem.destroy();
   }
   
   // Tool interface :
   switchFrom() {
-    this.visible = false;
+    this.templateItemToBuild.destroy();
   }
 
   switchTo() {
-    this.visible = true;
+  }
+
+  mouseOut() {
+    if (this.templateItemToBuild != null) this.templateItemToBuild.setInvisible();
   }
 
   leftClick(tile: Vector2)
@@ -115,8 +108,6 @@ export class BuildTool implements ITool
   }
 
   hover(tile: Vector2) {
-    if (!this.visible) return;
-
     this.templateItemToBuild.position = Vector2.clone(tile);
     this.templateItemToBuild.prepareBoundingBox();
     this.templateItemToBuild.prepareSpriteInfoModifier(this.blueprintService.blueprint);
@@ -132,8 +123,6 @@ export class BuildTool implements ITool
   }
 
   draw(drawPixi: DrawPixi, camera: Camera) {
-    if (!this.visible) return;
-
     this.templateItemToBuild.drawPixi(camera, drawPixi);
   }
 }

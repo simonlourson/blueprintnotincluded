@@ -2,7 +2,7 @@
 import { Component, OnInit, OnDestroy, ViewChild, ElementRef, NgZone, Output, EventEmitter, HostListener } from '@angular/core';
 //import { Http, Response } from "@angular/http"
 import { HttpClientModule, HttpClient } from '@angular/common/http';
-import { ComponentSidepanelComponent } from 'src/app/module-blueprint/components/side-bar/component-side-panel/component-side-panel.component';
+import { ComponentSidepanelComponent } from 'src/app/module-blueprint/components/side-bar/side-panel/side-panel.component';
 
 // Engine imports
 import { Camera } from 'src/app/module-blueprint/common/camera';
@@ -126,6 +126,10 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
   mouseDown(event: any)
   {
   
+  }
+
+  mouseOut(event: any) {
+    this.toolService.mouseOut();
   }
 
   mouseClick(event: any)

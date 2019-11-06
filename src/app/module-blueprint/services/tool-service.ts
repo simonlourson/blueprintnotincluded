@@ -28,7 +28,7 @@ export class ToolService implements ITool, IChangeTool
     this.buildTool.parent = this;
   }
 
-  subscribe(observer: IObsToolChanged)
+  subscribeToolChanged(observer: IObsToolChanged)
   {
     this.observers.push(observer);
   }
@@ -47,6 +47,10 @@ export class ToolService implements ITool, IChangeTool
   switchFrom() {}
 
   switchTo() {}
+
+  mouseOut() {
+    this.currentTool.mouseOut();
+  }
 
   leftClick(tile: Vector2) {
     this.currentTool.leftClick(tile);

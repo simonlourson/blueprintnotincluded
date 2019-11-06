@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ComponentSideBuildToolComponent } from './component-side-build-tool.component';
+import { ComponentSideBuildToolComponent } from './build-tool.component';
 
 describe('ComponentSideBuildToolComponent', () => {
   let component: ComponentSideBuildToolComponent;

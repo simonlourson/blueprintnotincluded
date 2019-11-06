@@ -21,11 +21,11 @@ header='{{header}}'
   [hidden]="toolService.currentToolType!=0"
   (onAskChangeTool)="askChangeTool($event)">
 </app-selection-tool>
-<app-component-side-build-tool 
+<app-build-tool 
   #buildTool 
   [hidden]="toolService.currentToolType!=1"
   (onAskChangeTool)="askChangeTool($event)">
-</app-component-side-build-tool>
+</app-build-tool>
 
 
         

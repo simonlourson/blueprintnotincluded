@@ -369,6 +369,10 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
       }
     }
 
+  setInvisible() {
+    this.position = new Vector2(-99999, -99999);
+  }
+
     // Pixi stuff
     utilitySprites: PIXI.Sprite[];
     container: PIXI.Container;
@@ -523,7 +527,6 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
 
     public destroy()
     {
-
       // Destroy the main sprite
       if (this.container != null) this.container.destroy({baseTexture: false, texture: false, children: true});
       
