@@ -17,11 +17,14 @@ export class BuildTool implements ITool
   templateItemToBuild: TemplateItem;
   private observers: IObsBuildItemChanged[];
 
+  private visible: boolean;
+
   parent: IChangeTool;
 
   constructor(private blueprintService: BlueprintService) 
   {
     this.observers = [];
+    this.visible = false;
   }
 
   subscribe(observer: IObsBuildItemChanged)
@@ -94,11 +97,11 @@ export class BuildTool implements ITool
   
   // Tool interface :
   switchFrom() {
-    this.destroy();
+    this.visible = false;
   }
 
   switchTo() {
-    if (this.templateItemToBuild == null) this.templateItemToBuild = Template.createInstance('Tile');
+    this.visible = true;
   }
 
   leftClick(tile: Vector2)
@@ -112,6 +115,8 @@ export class BuildTool implements ITool
   }
 
   hover(tile: Vector2) {
+    if (!this.visible) return;
+
     this.templateItemToBuild.position = Vector2.clone(tile);
     this.templateItemToBuild.prepareBoundingBox();
     this.templateItemToBuild.prepareSpriteInfoModifier(this.blueprintService.blueprint);
@@ -127,6 +132,8 @@ export class BuildTool implements ITool
   }
 
   draw(drawPixi: DrawPixi, camera: Camera) {
+    if (!this.visible) return;
+
     this.templateItemToBuild.drawPixi(camera, drawPixi);
   }
 }

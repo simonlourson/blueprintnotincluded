@@ -49,6 +49,7 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
 
   depth: number;
   alpha: number;
+  visible: boolean;
   correctOverlay: boolean;
 
   innerYaml: any;
