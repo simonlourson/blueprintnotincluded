@@ -251,8 +251,6 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
       if (this.element == null) this.element = ComposingElement.unknownElement;
 
       if (this.orientation == null) this.changeOrientation(AuthorizedOrientations.None);
-      
-
     }
   
   public clone(): TemplateItem
@@ -401,6 +399,10 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
 
         // If the texture has not loaded, draw a debug rectangle
         if (!sprite.texture.baseTexture.valid) this.drawPixiDebug(camera, drawPixi, positionCorrected);
+        
+        // Debug
+        //this.drawPixiDebug(camera, drawPixi, positionCorrected);
+
         sprite.zIndex = 0;
 
         this.container.x = positionCorrected.x;

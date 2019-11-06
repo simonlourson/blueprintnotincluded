@@ -8,7 +8,7 @@ import {BinaryReader, Encoding} from 'csharp-binary-stream';
 import * as yaml from 'node_modules/js-yaml/lib/js-yaml';
 import { OniTemplate } from '../../oni-import/oni-template';
 import { TileInfo } from '../../common/tile-info';
-import { ComponentSidepanelComponent } from '../component-side-panel/component-side-panel.component';
+import { ComponentSidepanelComponent } from '../side-bar/component-side-panel/component-side-panel.component';
 import { OniItem, AuthorizedOrientations } from '../../common/oni-item';
 import { ImageSource } from '../../drawing/image-source';
 import { Vector2 } from '../../common/vector2';
@@ -18,14 +18,12 @@ import { SpriteModifier } from '../../drawing/sprite-modifier';
 import { ConnectionType } from '../../common/utility-connection';
 import { ZIndex, Overlay } from '../../common/overlay-type';
 import { ComposingElement } from '../../common/composing-element';
-import { ComponentSaveDialogComponent } from '../component-save-dialog/component-save-dialog.component';
 import { SaveInfo } from '../../common/save-info';
 import { ActivatedRoute, Params } from '@angular/router';
 import { BlueprintParams } from '../../common/params';
 import { ComponentMenuComponent, MenuCommand, MenuCommandType } from '../component-menu/component-menu.component';
 import { ToolType } from '../../common/tools/tool';
 import { TemplateItem } from '../../common/template/template-item';
-import { ToolRequest } from '../../common/tool-request';
 import { ComponentElementKeyPanelComponent } from '../component-element-key-panel/component-element-key-panel.component';
 import { TemplateItemTile } from '../../common/template/template-item-tile';
 import { BuildMenuCategory, BuildMenuItem } from '../../common/bexport/b-build-order';
@@ -36,7 +34,8 @@ import { BniBlueprint } from '../../common/blueprint-import/bni-blueprint';
 import { ComponentLoginDialogComponent } from '../user-auth/login-dialog/login-dialog.component';
 import { LoginInfo } from '../../common/api/login-info';
 import { BlueprintService } from '../../services/blueprint-service';
-import { DialogShareUrlComponent } from '../dialog-share-url/dialog-share-url.component';
+import { ComponentSaveDialogComponent } from '../dialogs/component-save-dialog/component-save-dialog.component';
+import { DialogShareUrlComponent } from '../dialogs/dialog-share-url/dialog-share-url.component';
 
 @Component({
   selector: 'app-component-blueprint-parent',
@@ -47,16 +46,16 @@ import { DialogShareUrlComponent } from '../dialog-share-url/dialog-share-url.co
 export class ComponentBlueprintParentComponent implements OnInit {
 
   @ViewChild('canvas', {static: true})
-  canvas: ComponentCanvasComponent
+  canvas: ComponentCanvasComponent;
 
   @ViewChild('sidePanel', {static: true})
-  sidePanel: ComponentSidepanelComponent
+  sidePanel: ComponentSidepanelComponent;
 
   @ViewChild('elementKeyPanel', {static: true})
-  elementKeyPanel: ComponentElementKeyPanelComponent
+  elementKeyPanel: ComponentElementKeyPanelComponent;
   
   @ViewChild('saveDialog', {static: true})
-  saveDialog: ComponentSaveDialogComponent
+  saveDialog: ComponentSaveDialogComponent;
 
   @ViewChild('loginDialog', {static: true})
   loginDialog: ComponentLoginDialogComponent;

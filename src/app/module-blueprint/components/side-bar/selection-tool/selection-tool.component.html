@@ -4,10 +4,10 @@
     #buildingsAccordion 
     [(activeIndex)]="activeIndex" >
     <p-accordionTab *ngFor="let templateItem of toolService.selectTool.templateItemsToShow" header="{{templateItem.id}}" [transitionOptions]="'0ms'">
-      <app-component-tile-info 
+      <app-tile-info 
         [templateItem]=templateItem
         (onDestroyTemplateItem)="destroyTemplateItem()">
-      </app-component-tile-info>
+      </app-tile-info>
     </p-accordionTab>
   </p-accordion>
 </p-card>

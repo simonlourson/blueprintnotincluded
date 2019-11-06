@@ -1,19 +1,19 @@
 import { Component, OnInit, Input, Output, EventEmitter, OnDestroy, ChangeDetectorRef } from '@angular/core';
-import { TemplateItem } from '../../common/template/template-item';
-import { ComposingElement } from '../../common/composing-element';
-import { TemplateItemWire } from '../../common/template/template-item-wire';
-import { AuthorizedOrientations } from '../../common/oni-item';
+import { TemplateItem } from '../../../common/template/template-item';
+import { ComposingElement } from '../../../common/composing-element';
+import { TemplateItemWire } from '../../../common/template/template-item-wire';
+import { AuthorizedOrientations } from '../../../common/oni-item';
 import { SelectItem } from 'primeng/api';
-import { ToolRequest } from '../../common/tool-request';
-import { ToolType } from '../../common/tools/tool';
-import { BlueprintService } from '../../services/blueprint-service';
+import { ToolType } from '../../../common/tools/tool';
+import { BlueprintService } from '../../../services/blueprint-service';
+import { ToolService } from 'src/app/module-blueprint/services/tool-service';
 
 @Component({
-  selector: 'app-component-tile-info',
-  templateUrl: './component-tile-info.component.html',
-  styleUrls: ['./component-tile-info.component.css']
+  selector: 'app-tile-info',
+  templateUrl: './tile-info.component.html',
+  styleUrls: ['./tile-info.component.css']
 })
-export class ComponentTileInfoComponent implements OnInit, OnDestroy {
+export class TileInfoComponent implements OnInit, OnDestroy {
 
 
   @Input() templateItem: TemplateItem;
@@ -34,7 +34,7 @@ export class ComponentTileInfoComponent implements OnInit, OnDestroy {
   }
 
 
-  constructor(private cdRef: ChangeDetectorRef, private blueprintService: BlueprintService) { }
+  constructor(private blueprintService: BlueprintService, private toolService: ToolService) { }
 
   ngOnInit() {
 
@@ -53,13 +53,13 @@ export class ComponentTileInfoComponent implements OnInit, OnDestroy {
 
   buildCopy(event: any)
   {
-    let toolRequest = new ToolRequest();
-    toolRequest.toolType = ToolType.build;
-    toolRequest.templateItem = this.templateItem;
+    this.toolService.changeTool(ToolType.build);
+    this.toolService.buildTool.changeItem(this.templateItem.cloneForBuilding());
   }
 
   buildDestroy(event: any)
   {
+    // TODO this should trigger an event that should be listened to by side panel
     this.blueprintService.blueprint.destroyTemplateItem(this.templateItem);
     
     // We still need to do the detection change one loevel above? weird

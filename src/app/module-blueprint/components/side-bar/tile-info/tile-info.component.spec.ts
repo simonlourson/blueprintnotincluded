@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ComponentTileInfoComponent } from './component-tile-info.component';
+import { TileInfoComponent } from './tile-info.component';
 
 describe('ComponentTileInfoComponent', () => {
-  let component: ComponentTileInfoComponent;
-  let fixture: ComponentFixture<ComponentTileInfoComponent>;
+  let component: TileInfoComponent;
+  let fixture: ComponentFixture<TileInfoComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ComponentTileInfoComponent ]
+      declarations: [ TileInfoComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ComponentTileInfoComponent);
+    fixture = TestBed.createComponent(TileInfoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,34 +1,80 @@
 import { Injectable } from '@angular/core';
-import { ToolType } from '../common/tools/tool';
+import { ToolType, ITool, IChangeTool } from '../common/tools/tool';
 import { SelectTool } from '../common/tools/select-tool';
 import { Vector2 } from '../common/vector2';
 import { DrawPixi } from '../drawing/draw-pixi';
 import { Camera } from '../common/camera';
 import { BuildTool } from '../common/tools/build-tool';
+import { TemplateItem } from '../common/template/template-item';
 
 @Injectable({ providedIn: 'root' })
-export class ToolService
+export class ToolService implements ITool, IChangeTool
 {
-  public currentTool: ToolType;
+
+  public currentToolType: ToolType;
+  private get currentTool(): ITool { 
+    if (this.currentToolType == ToolType.select) return this.selectTool;
+    if (this.currentToolType == ToolType.build) return this.buildTool;
+    else return null;
+  }
+  private observers: IObsToolChanged[];
 
   constructor(public selectTool: SelectTool, public buildTool: BuildTool)
   {
-    this.currentTool = ToolType.select;
+    this.currentToolType = ToolType.select;
+    this.observers = [];
+
+    this.selectTool.parent = this;
+    this.buildTool.parent = this;
   }
 
-  leftClick(tile: Vector2)
+  subscribe(observer: IObsToolChanged)
   {
-    this.selectTool.leftClick(tile);
+    this.observers.push(observer);
   }
 
   changeTool(newTool: ToolType)
   {
-    if (this.currentTool == ToolType.build) this.buildTool.destroy();
+    this.currentTool.switchFrom();
+    this.currentToolType = newTool;
+    this.currentTool.switchTo();
+    
 
-    this.currentTool = newTool;
+    this.observers.map((observer) => observer.toolChanged(newTool) );
   }
 
-  draw(drawPixi: DrawPixi, camera: Camera)
-  {
+  // Tool interface
+  switchFrom() {}
+
+  switchTo() {}
+
+  leftClick(tile: Vector2) {
+    this.currentTool.leftClick(tile);
   }
+  rightClick(tile: Vector2) {
+    this.currentTool.rightClick(tile);
+  }
+  hover(tile: Vector2) {
+    this.currentTool.hover(tile);
+  }
+  drag(tileStart: Vector2, tileStop: Vector2) {
+    this.currentTool.drag(tileStart, tileStop);
+  }
+  dragStop() {
+    this.currentTool.dragStop();
+  }
+  draw(drawPixi: DrawPixi, camera: Camera) {
+    this.currentTool.draw(drawPixi, camera);
+  }
+}
+
+export class ToolRequest
+{
+  toolType: ToolType;
+  templateItem: TemplateItem;
+}
+
+export interface IObsToolChanged
+{
+  toolChanged(toolType: ToolType);
 }

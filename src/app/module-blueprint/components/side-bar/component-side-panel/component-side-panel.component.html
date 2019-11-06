@@ -16,14 +16,14 @@ header='{{header}}'
 [visible]="true"
 [transitionOptions]="'0ms'"
 >-->
-<app-component-side-selection-tool 
+<app-selection-tool 
   #selectionTool 
-  [hidden]="toolService.currentTool!=0"
+  [hidden]="toolService.currentToolType!=0"
   (onAskChangeTool)="askChangeTool($event)">
-</app-component-side-selection-tool>
+</app-selection-tool>
 <app-component-side-build-tool 
   #buildTool 
-  [hidden]="toolService.currentTool!=1"
+  [hidden]="toolService.currentToolType!=1"
   (onAskChangeTool)="askChangeTool($event)">
 </app-component-side-build-tool>
 

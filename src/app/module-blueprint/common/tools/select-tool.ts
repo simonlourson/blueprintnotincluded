@@ -3,15 +3,20 @@ import { TemplateItem } from '../template/template-item';
 import { Vector2 } from '../vector2';
 import { Injectable, ChangeDetectorRef } from '@angular/core';
 import { Observable } from 'rxjs';
+import { ITool, IChangeTool } from './tool';
+import { DrawPixi } from '../../drawing/draw-pixi';
+import { Camera } from '../camera';
 
 @Injectable()
-export class SelectTool
+export class SelectTool implements ITool
 {
   public itemsChanged: Observable<number>;
   public headerString;
   public templateItemsToShow: TemplateItem[];
 
   private observers: IObsTemplateItemChanged[];
+
+  parent: IChangeTool;
 
   constructor(private blueprintService: BlueprintService) {
     
@@ -33,11 +38,6 @@ export class SelectTool
     this.observers.push(subscriber);
   }
 
-  leftClick(tile: Vector2)
-  {
-    this.updateSelectionTool(tile);
-  }
-
   previousTile: Vector2;
   public updateSelectionTool(tile: Vector2)
   {
@@ -51,6 +51,35 @@ export class SelectTool
     }
 
     this.previousTile = Vector2.clone(tile);
+  }
+
+  // Tool interface :
+  switchFrom() {
+
+  }
+
+  switchTo() {
+    
+  }
+  
+  leftClick(tile: Vector2) {
+    this.updateSelectionTool(tile);
+  }
+
+  rightClick(tile: Vector2) {
+  }
+
+  hover(tile: Vector2) {
+  }
+
+  drag(tileStart: Vector2, tileStop: Vector2) {
+  }
+
+  dragStop() {
+  }
+
+  draw(drawPixi: DrawPixi, camera: Camera) {
+    
   }
 }
 

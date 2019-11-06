@@ -1,4 +1,5 @@
 import { DrawHelpers } from '../../drawing/draw-helpers';
+import { OniItem } from '../oni-item';
 
 export class BuildMenuCategory
 {
@@ -27,6 +28,26 @@ export class BuildMenuCategory
     BuildMenuCategory.allCategories.categoryName = 'All';
     BuildMenuCategory.allCategories.categoryIcon = 'icon_category_base';
     BuildMenuCategory.allCategories.categoryIconUrl = DrawHelpers.createUrl(BuildMenuCategory.allCategories.categoryIcon, true);
+  }
+
+  public static getCategory(category: number): BuildMenuCategory
+  {
+    if (BuildMenuCategory.buildMenuCategories != null)
+      for (let buildCategory of BuildMenuCategory.buildMenuCategories)
+        if (buildCategory.category == category)
+          return buildCategory;
+
+    return null;
+  }
+
+  public static getCategoryFromItem(oniItem: OniItem): BuildMenuCategory
+  {
+    if (BuildMenuItem.buildMenuItems != null)
+      for (let buildMenuItem of BuildMenuItem.buildMenuItems)
+        if (buildMenuItem.buildingId == oniItem.id)
+          return BuildMenuCategory.getCategory(buildMenuItem.category);
+        
+    return null;
   }
 
   public static load(buildMenuCategories: BuildMenuCategory[])

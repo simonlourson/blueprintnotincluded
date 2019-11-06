@@ -5,19 +5,18 @@ import { setDefaultService } from 'selenium-webdriver/opera';
 import { ZIndex, Overlay } from '../../common/overlay-type';
 import { OniItem } from '../../common/oni-item';
 import { ToolType } from '../../common/tools/tool';
-import { ToolRequest } from '../../common/tool-request';
 import { TemplateItem } from '../../common/template/template-item';
 import { AuthenticationService } from '../user-auth/authentification-service';
 import { Template } from '../../common/template/template';
 import { BehaviorSubject } from 'rxjs';
-import { ToolService } from '../../services/tool-service';
+import { ToolService, ToolRequest, IObsToolChanged } from '../../services/tool-service';
 
 @Component({
   selector: 'app-component-menu',
   templateUrl: './component-menu.component.html',
   styleUrls: ['./component-menu.component.css']
 })
-export class ComponentMenuComponent implements OnInit {
+export class ComponentMenuComponent implements OnInit, IObsToolChanged {
 
   @Output() onMenuCommand = new EventEmitter<MenuCommand>();
 
@@ -27,7 +26,6 @@ export class ComponentMenuComponent implements OnInit {
   @Output() onDownloadAsJson = new EventEmitter();
   @Output() onSaveToCloud = new EventEmitter();
   @Output() onChangeOverlay = new EventEmitter<ZIndex>();
-  @Output() onChangeTool = new EventEmitter<ToolRequest>();
 
   menuItems: MenuItem[];
   overlayMenuItems: MenuItem[];
@@ -40,8 +38,9 @@ export class ComponentMenuComponent implements OnInit {
     //TODO should not be public
     public authService: AuthenticationService, 
     private messageService: MessageService,
-    private toolService: ToolService) {
-
+    private toolService: ToolService) 
+  {
+    this.toolService.subscribe(this);
   }
 
 
@@ -113,19 +112,23 @@ export class ComponentMenuComponent implements OnInit {
 
   }
 
-  newBlueprint()
+  toolChanged(toolType: ToolType) {
+    this.updateToolIcon(toolType);
+  }
+
+  updateToolIcon(toolType: ToolType)
   {
-    //this.blueprint.destroy(); 
+    for (let menuItem of this.toolMenuItems)
+    {
+      if (menuItem.id == toolType.toString()) {menuItem.icon = 'pi pi-fw pi-check';}
+      else menuItem.icon = 'pi pi-fw pi-none';
+    }   
   }
 
   clickTool(event: any, templateItem: TemplateItem = null)
   {
-    for (let menuItem of this.toolMenuItems)
-    {
-      if (menuItem.id == event.item.id) {menuItem.icon = 'pi pi-fw pi-check';}
-      else menuItem.icon = 'pi pi-fw pi-none';
-    }
-    this.toolService.changeTool(event.item.id);
+    this.updateToolIcon(event.item.id as ToolType);
+    this.toolService.changeTool(event.item.id as ToolType);
     this.onMenuCommand.emit({type: MenuCommandType.changeTool, data:{toolType:parseInt(event.item.id), templateItem:templateItem}});
   }
 

@@ -5,7 +5,6 @@ import { AuthenticationService } from '../authentification-service';
 import { MessageService } from 'primeng/api';
 import { ReCaptchaV3Service } from 'ng-recaptcha';  
 import { Observable, Subscription } from 'rxjs';
-import { ToolRequest } from 'src/app/module-blueprint/common/tool-request';
 
 @Component({
   selector: 'app-login-form',

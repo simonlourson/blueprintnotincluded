@@ -2,7 +2,7 @@
 import { Component, OnInit, OnDestroy, ViewChild, ElementRef, NgZone, Output, EventEmitter, HostListener } from '@angular/core';
 //import { Http, Response } from "@angular/http"
 import { HttpClientModule, HttpClient } from '@angular/common/http';
-import { ComponentSidepanelComponent } from 'src/app/module-blueprint/components/component-side-panel/component-side-panel.component';
+import { ComponentSidepanelComponent } from 'src/app/module-blueprint/components/side-bar/component-side-panel/component-side-panel.component';
 
 // Engine imports
 import { Camera } from 'src/app/module-blueprint/common/camera';
@@ -20,8 +20,7 @@ import { TileInfo } from '../../common/tile-info';
 import { Template } from '../../common/template/template';
 import { ZIndex, Overlay } from '../../common/overlay-type';
 import { ToolType } from '../../common/tools/tool';
-import { ToolRequest } from '../../common/tool-request';
-import { ComponentSideSelectionToolComponent } from '../component-side-selection-tool/component-side-selection-tool.component';
+import { ComponentSideSelectionToolComponent } from '../side-bar/selection-tool/selection-tool.component';
 import { DrawPixi } from '../../drawing/draw-pixi';
 import * as JSZip from 'jszip';
 import { BSpriteInfo } from '../../common/bexport/b-sprite-info';
@@ -50,7 +49,6 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
   canvasRef: ElementRef;
 
   @Output() onTileInfoChange = new EventEmitter<TileInfo>();
-  @Output() onAskChangeTool = new EventEmitter<ToolRequest>();
 
   drawPixi: DrawPixi;
   technicalRepack: TechnicalRepack;
@@ -133,7 +131,7 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
   mouseClick(event: any)
   {
     if (event.button == 0) this.toolService.leftClick(this.getCurrentTile(event));
-    
+    else if (event.button == 2) this.toolService.rightClick(this.getCurrentTile(event));
   }
 
   storePreviousTileFloat: Vector2;
@@ -198,14 +196,14 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
   previousTileUnderMouse: Vector2;
   mouseMove(event: any)
   {
-    /*
+    
     let currentTileUnderMouse = this.getCurrentTile(event);
 
     if (this.previousTileUnderMouse == null || !this.previousTileUnderMouse.equals(currentTileUnderMouse))
-      this.currentTool.changeTile(this.blueprint, this.previousTileUnderMouse, currentTileUnderMouse);
+      this.toolService.hover(currentTileUnderMouse);
 
     this.previousTileUnderMouse = currentTileUnderMouse;
-    */
+    
   }
 
 

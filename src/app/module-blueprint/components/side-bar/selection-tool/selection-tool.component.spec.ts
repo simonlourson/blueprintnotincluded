@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ComponentSideSelectionToolComponent } from './component-side-selection-tool.component';
+import { ComponentSideSelectionToolComponent } from './selection-tool.component';
 
 describe('ComponentSideSelectionToolComponent', () => {
   let component: ComponentSideSelectionToolComponent;
