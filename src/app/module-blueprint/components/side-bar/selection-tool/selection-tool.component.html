@@ -1,9 +1,8 @@
 <p-card header="Selection Tool">
   <h3>{{toolService.selectTool.headerString}}</h3>
   <p-accordion 
-    #buildingsAccordion 
-    [(activeIndex)]="activeIndex" >
-    <p-accordionTab *ngFor="let templateItem of toolService.selectTool.templateItemsToShow" header="{{templateItem.id}}" [transitionOptions]="'0ms'">
+    #buildingsAccordion >
+    <p-accordionTab *ngFor="let templateItem of toolService.selectTool.templateItemsToShow" [(selected)]="templateItem.selected" header="{{templateItem.id}}" [transitionOptions]="'0ms'">
       <app-tile-info 
         [templateItem]=templateItem
         (onDestroyTemplateItem)="destroyTemplateItem()">

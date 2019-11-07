@@ -31,6 +31,7 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
 
   // Each template item should remember where it was added, to make removal easier
   public tileIndexes: number[];
+  public selected: boolean;
 
   position: Vector2;
   orientation: AuthorizedOrientations;
@@ -252,6 +253,7 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
       if (this.element == null) this.element = ComposingElement.unknownElement;
 
       if (this.orientation == null) this.changeOrientation(AuthorizedOrientations.None);
+      this.selected = false;
     }
   
   public clone(): TemplateItem
@@ -301,6 +303,8 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
     // We already export the orientation
     this.rotation = undefined;
     this.scale = undefined;
+
+    this.selected = undefined;
   }
 
     public prepareBoundingBox()
@@ -388,6 +392,7 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
       }
 
       let sprite = this.drawPart.getPreparedSprite(camera, drawPixi, this.oniItem);
+      this.drawPart.selected = this.selected;
 
       if (sprite != null)
       {

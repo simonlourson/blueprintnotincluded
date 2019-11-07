@@ -19,6 +19,8 @@ export class DrawPart
   alpha: number;
   tint: number;
 
+  selected: boolean;
+
   public constructor()
   {
     this.addedToContainer = false;
@@ -75,8 +77,12 @@ export class DrawPart
       
 
       this.sprite.alpha = this.alpha;
-      //this.sprite.tint = this.tint;
-      this.sprite.tint = DrawHelpers.blendColor(this.tint, 0xFFAAAA, camera.sinWave);
+
+      if (this.selected)
+        this.sprite.tint = DrawHelpers.blendColor(this.tint, 0xFFAAAA, camera.sinWave);
+      else
+        this.sprite.tint = this.tint;
+
       this.sprite.scale.x = this.spriteModifier.scale.x;
       this.sprite.scale.y = this.spriteModifier.scale.y;
       // TODO invert rotation in export

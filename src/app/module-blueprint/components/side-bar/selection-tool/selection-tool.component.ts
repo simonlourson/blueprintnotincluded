@@ -16,13 +16,8 @@ import { IObsTemplateItemChanged } from '../../../common/tools/select-tool';
 })
 export class ComponentSideSelectionToolComponent implements OnInit, IObsTemplateItemChanged {
 
-  activeIndex : number;
-  templateItemsToShow: TemplateItem[];
-
-
   constructor(private cd: ChangeDetectorRef, private blueprintService: BlueprintService, private toolService: ToolService) 
   { 
-    this.templateItemsToShow = [];
   }
 
   ngOnInit() {
@@ -31,16 +26,26 @@ export class ComponentSideSelectionToolComponent implements OnInit, IObsTemplate
 
   newSelection()
   {
-    this.activeIndex = 0;
     this.cd.detectChanges();
   }
 
   nextSelection()
   {
-    this.activeIndex++;
-    this.activeIndex = this.activeIndex % this.toolService.selectTool.templateItemsToShow.length;
-  }
+    // First find the current real active index
+    let realActiveIndex = -1;
+    for (let currentActiveIndex = 0; currentActiveIndex < this.toolService.selectTool.templateItemsToShow.length; currentActiveIndex++)
+      if (this.toolService.selectTool.templateItemsToShow[currentActiveIndex].selected)
+        realActiveIndex = currentActiveIndex;
 
+    realActiveIndex++;
+    realActiveIndex = realActiveIndex % this.toolService.selectTool.templateItemsToShow.length;
+    
+
+    for (let currentActiveIndex = 0; currentActiveIndex < this.toolService.selectTool.templateItemsToShow.length; currentActiveIndex++)
+      this.toolService.selectTool.templateItemsToShow[currentActiveIndex].selected = (currentActiveIndex == realActiveIndex);
+
+  }
+  
   destroyTemplateItem()
   {
     this.cd.detectChanges();

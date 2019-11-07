@@ -45,17 +45,25 @@ export class SelectTool implements ITool
     if (tile.equals(this.previousTile)) this.observers.map((observer) => observer.nextSelection() );
     else
     {
+      this.deselectAll();
       this.headerString = 'Selected at x:' + tile.x+', y:'+tile.y;
       this.templateItemsToShow = this.blueprintService.blueprint.getTemplateItemsAt(tile);
       this.observers.map((observer) => observer.newSelection() );
+      this.observers.map((observer) => observer.nextSelection() );
     }
 
     this.previousTile = Vector2.clone(tile);
   }
 
+  deselectAll() {
+    if (this.templateItemsToShow != null)
+      for (let templateItem of this.templateItemsToShow)
+        templateItem.selected = false;
+  }
+
   // Tool interface :
   switchFrom() {
-
+    this.deselectAll();
   }
 
   switchTo() {
