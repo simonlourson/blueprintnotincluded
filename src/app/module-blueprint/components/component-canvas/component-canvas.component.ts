@@ -152,6 +152,8 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
     }
     else if (event.dragButton[0])
     {
+      this.toolService.drag(previousTileFloat, currentTileFloat);
+
       let previousTile = previousTileFloat == null ? null : new Vector2(Math.floor(previousTileFloat.x), Math.ceil(previousTileFloat.y));
       let currentTile = new Vector2(Math.floor(currentTileFloat.x), Math.ceil(currentTileFloat.y));
 
@@ -195,6 +197,7 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
   mouseStopDrag(event: any)
   {
     this.storePreviousTileFloat = null;
+    this.toolService.dragStop();
   }
 
   previousTileUnderMouse: Vector2;
@@ -487,6 +490,7 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
 
     
     this.camera.updateZoom();
+    this.camera.updateSinWave(this.drawPixi.pixiApp.ticker.elapsedMS);
 
     //console.log('tick');
     //this.drawAbstraction.Init(this.canvasRef, this);

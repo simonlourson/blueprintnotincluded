@@ -13,6 +13,9 @@ export class Camera
     currentZoom: number;
 
     overlay: Overlay;
+
+    private sinWaveTime: number;
+    sinWave: number;
     
     private targetZoom: number;
     private lastZoomCenter: Vector2;
@@ -23,6 +26,8 @@ export class Camera
         this.targetCameraOffset = new Vector2();
         this.currentZoomIndex = 7;
         this.targetZoom = this.currentZoom = this.zoomLevels[this.currentZoomIndex];
+        this.sinWaveTime = 0;
+        this.sinWave = 0;
     }
 
     updateZoom()
@@ -34,6 +39,13 @@ export class Camera
             this.changeZoom(this.targetZoom - this.currentZoom, this.lastZoomCenter);
         else
             this.changeZoom((this.targetZoom - this.currentZoom) / 10, this.lastZoomCenter);
+    }
+
+    updateSinWave(deltaTime: number) {
+      this.sinWaveTime += deltaTime / 3;
+      if (this.sinWaveTime > 360) this.sinWaveTime -= 360;
+
+      this.sinWave = (Math.sin(this.sinWaveTime * Math.PI / 180) + 1) / 2;
     }
 
     resetZoom(canvasSize: Vector2)

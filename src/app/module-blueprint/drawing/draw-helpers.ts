@@ -69,6 +69,27 @@ export class DrawHelpers
       .substring(1).match(/.{2}/g)
       .map(x => parseInt(x, 16));
   }
+
+  public static blendColor (a: number, b: number, ratio: number) {
+    if (ratio > 1) ratio = 1;
+    else if (ratio < 0) ratio = 0;
+    
+    let iRatio = 1 - ratio;
+
+    let aR = ((a & 0xff0000) >> 16);
+    let aG = ((a & 0xff00) >> 8);
+    let aB = (a & 0xff);
+
+    let bR = ((b & 0xff0000) >> 16);
+    let bG = ((b & 0xff00) >> 8);
+    let bB = (b & 0xff);
+
+    let R = Math.round((aR * iRatio) + (bR * ratio));
+    let G = Math.round((aG * iRatio) + (bG * ratio));
+    let B = Math.round((aB * iRatio) + (bB * ratio));
+
+    return R << 16 | G << 8 | B;
+  }
   
   public static generateTileSpriteInfo(kanimPrefix: string, textureName: string): BSpriteInfo[]
   {

@@ -4,6 +4,7 @@ import { Camera } from '../common/camera';
 import { DrawPixi } from './draw-pixi';
 import { OniItem } from '../common/oni-item';
 import { Vector2 } from '../common/vector2';
+import { DrawHelpers } from './draw-helpers';
 
 export class DrawPart
 {
@@ -74,7 +75,8 @@ export class DrawPart
       
 
       this.sprite.alpha = this.alpha;
-      this.sprite.tint = this.tint;
+      //this.sprite.tint = this.tint;
+      this.sprite.tint = DrawHelpers.blendColor(this.tint, 0xFFAAAA, camera.sinWave);
       this.sprite.scale.x = this.spriteModifier.scale.x;
       this.sprite.scale.y = this.spriteModifier.scale.y;
       // TODO invert rotation in export

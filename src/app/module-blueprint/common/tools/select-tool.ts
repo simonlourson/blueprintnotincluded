@@ -74,14 +74,33 @@ export class SelectTool implements ITool
   hover(tile: Vector2) {
   }
 
+  beginSelection: Vector2 = null;
+  endSelection: Vector2;
   drag(tileStart: Vector2, tileStop: Vector2) {
+    if (this.beginSelection == null) this.beginSelection = Vector2.clone(tileStart);
+    this.endSelection = Vector2.clone(tileStop);
   }
 
   dragStop() {
+    this.beginSelection = null;
   }
 
   draw(drawPixi: DrawPixi, camera: Camera) {
-    
+
+    // Return
+    if (this.beginSelection == null) return;
+
+    let topLeft = new Vector2(
+      Math.min(this.beginSelection.x, this.endSelection.x),
+      Math.max(this.beginSelection.y, this.endSelection.y)
+    );
+
+    let bottomRight = new Vector2(
+      Math.max(this.beginSelection.x, this.endSelection.x),
+      Math.min(this.beginSelection.y, this.endSelection.y)
+    );
+
+    drawPixi.drawTileRectangle(camera, topLeft, bottomRight, true, 2, 0xFFFFFF, 0X000000, 0.5, 0.5);
   }
 }
 
