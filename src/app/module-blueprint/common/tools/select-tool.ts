@@ -47,6 +47,7 @@ export class SelectTool implements ITool
     {
       this.deselectAll();
       this.headerString = 'Selected at x:' + tile.x+', y:'+tile.y;
+      // TODO sort by layer
       this.templateItemsToShow = this.blueprintService.blueprint.getTemplateItemsAt(tile);
       this.observers.map((observer) => observer.newSelection() );
       this.observers.map((observer) => observer.nextSelection() );
