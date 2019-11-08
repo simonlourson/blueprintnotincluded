@@ -66,11 +66,15 @@ export class CameraService
             this.changeZoom((this.targetZoom - this.currentZoom) / 10, this.lastZoomCenter);
     }
 
+    resetSinWave() {
+      this.sinWaveTime = 45;
+    }
+
     updateSinWave(deltaTime: number) {
       this.sinWaveTime += deltaTime / 3;
       if (this.sinWaveTime > 360) this.sinWaveTime -= 360;
 
-      this.sinWave = (Math.sin(this.sinWaveTime * Math.PI / 180) + 1) / 2;
+      this.sinWave = Math.sin(this.sinWaveTime * Math.PI / 180) / 2 + 0.5;
     }
 
     resetZoom(canvasSize: Vector2)

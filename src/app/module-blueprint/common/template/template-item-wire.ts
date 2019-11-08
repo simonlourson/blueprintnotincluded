@@ -146,6 +146,7 @@ export class TemplateItemWire extends TemplateItem implements TemplateItemClonea
   {
     super.drawPixi(camera, drawPixi);
 
+    this.drawPartSolid.selected = this.selected;
     let solidSprite = this.drawPartSolid.getPreparedSprite(camera, drawPixi, this.oniItem);
 
     if (solidSprite != null)

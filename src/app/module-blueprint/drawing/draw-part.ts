@@ -79,7 +79,7 @@ export class DrawPart
       this.sprite.alpha = this.alpha;
 
       if (this.selected)
-        this.sprite.tint = DrawHelpers.blendColor(this.tint, 0xFFAAAA, camera.sinWave);
+        this.sprite.tint = DrawHelpers.blendColor(this.tint, 0xFF8526, camera.sinWave);
       else
         this.sprite.tint = this.tint;
 

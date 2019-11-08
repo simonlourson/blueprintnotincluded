@@ -6,11 +6,11 @@ import { Observable } from 'rxjs';
 import { ITool, IChangeTool } from './tool';
 import { DrawPixi } from '../../drawing/draw-pixi';
 import { CameraService } from '../../services/camera-service';
+import { ConnectionHelper } from '../utility-connection';
 
 @Injectable()
 export class SelectTool implements ITool
 {
-  public itemsChanged: Observable<number>;
   public headerString;
   public templateItemsToShow: TemplateItem[];
 
@@ -18,9 +18,8 @@ export class SelectTool implements ITool
 
   parent: IChangeTool;
 
-  constructor(private blueprintService: BlueprintService) {
+  constructor(private blueprintService: BlueprintService, private cameraService: CameraService) {
     
-    this.itemsChanged = new Observable<number>();
     this.observers = [];
 
     // TODO also do this on blueprint loading
@@ -45,12 +44,36 @@ export class SelectTool implements ITool
     if (tile.equals(this.previousTile)) this.observers.map((observer) => observer.nextSelection() );
     else
     {
+      // First, store the item already selected, if any
+      let oldSelected = null
+      if (this.templateItemsToShow != null && this.templateItemsToShow.filter((item) => {return item.selected;}).length > 0)
+        oldSelected = this.templateItemsToShow.filter((item) => item.selected)[0];
+
       this.deselectAll();
       this.headerString = 'Selected at x:' + tile.x+', y:'+tile.y;
-      // TODO sort by layer
+      
       this.templateItemsToShow = this.blueprintService.blueprint.getTemplateItemsAt(tile);
+
+      let newSelected = null
+      if (oldSelected != null) {
+        
+        // Is there an item in the new selected with the same id as the old selected?
+        if (this.templateItemsToShow.filter((item) => { return item.oniItem.id == oldSelected.oniItem.id; }).length > 0)
+          newSelected = this.templateItemsToShow.filter((item) => { return item.oniItem.id == oldSelected.oniItem.id; })[0];
+
+        // Is there an item in the new selected with the same overlay as the old selected?
+        // TODO this might not work
+        if (newSelected == null && this.templateItemsToShow.filter((item) => { return item.oniItem.overlay == oldSelected.oniItem.overlay || ConnectionHelper.getOverlayFromLayer(item.oniItem.zIndex) == oldSelected.overlay; }).length > 0)
+          newSelected = this.templateItemsToShow.filter((item) => { return item.oniItem.overlay == oldSelected.oniItem.overlay || ConnectionHelper.getOverlayFromLayer(item.oniItem.zIndex) == oldSelected.overlay; })[0];
+      }
+
       this.observers.map((observer) => observer.newSelection() );
-      this.observers.map((observer) => observer.nextSelection() );
+
+      let nbNext = 0;
+      if (newSelected != null) nbNext = this.templateItemsToShow.indexOf(newSelected);
+
+      for (let i = 0; i <= nbNext; i++)
+        this.observers.map((observer) => observer.nextSelection() );
     }
 
     this.previousTile = Vector2.clone(tile);
@@ -74,6 +97,7 @@ export class SelectTool implements ITool
   mouseOut() {}
   
   leftClick(tile: Vector2) {
+    this.cameraService.resetSinWave();
     this.updateSelectionTool(tile);
   }
 
@@ -109,7 +133,7 @@ export class SelectTool implements ITool
       Math.min(this.beginSelection.y, this.endSelection.y)
     );
 
-    drawPixi.drawTileRectangle(camera, topLeft, bottomRight, true, 2, 0xFFFFFF, 0X000000, 0.5, 0.5);
+    drawPixi.drawTileRectangle(camera, topLeft, bottomRight, true, 2, 0xFF8526, 0x4C270B, 0.25, 0.8);
   }
 }
 

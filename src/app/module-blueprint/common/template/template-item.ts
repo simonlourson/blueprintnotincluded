@@ -37,7 +37,10 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
   get selectedSingle() { return this.selected_; }
   set selectedSingle(value: boolean) {
     this.selected_ = value;
-    if (this.selected_) CameraService.cameraService.setOverlayForItem(this.oniItem);
+    if (this.selected_) {
+      CameraService.cameraService.resetSinWave();
+      CameraService.cameraService.setOverlayForItem(this.oniItem);
+    }
   }
 
   position: Vector2;
