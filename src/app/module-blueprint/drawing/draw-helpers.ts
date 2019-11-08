@@ -1,5 +1,5 @@
 import { Vector2 } from "../common/vector2";
-import { Camera } from "../common/camera";
+import { CameraService } from "../services/camera-service";
 import { SpriteInfo } from "./sprite-info";
 import { SpriteModifier } from "./sprite-modifier";
 import { ImageSource } from "./image-source";
@@ -46,7 +46,7 @@ export class DrawHelpers
     return 'rgba(' + Math.floor(Math.random() * 256) + ',' + Math.floor(Math.random() * 256) + ',' + Math.floor(Math.random() * 256) + ',1)';
   }
 
-  public static drawFullRectangle(ctx: CanvasRenderingContext2D, camera: Camera, topLeft: Vector2, bottomRight: Vector2, color: string)
+  public static drawFullRectangle(ctx: CanvasRenderingContext2D, camera: CameraService, topLeft: Vector2, bottomRight: Vector2, color: string)
   {
     let rectanglePosition = new Vector2(
       (topLeft.x + camera.cameraOffset.x + 1) * camera.currentZoom,

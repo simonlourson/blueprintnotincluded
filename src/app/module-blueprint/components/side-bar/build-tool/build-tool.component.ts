@@ -7,7 +7,7 @@ import { Template } from '../../../common/template/template';
 import { ToolType } from '../../../common/tools/tool';
 import { TileInfo } from '../../../common/tile-info';
 import { TemplateItemWire } from '../../../common/template/template-item-wire';
-import { Camera } from '../../../common/camera';
+import { CameraService } from '../../../services/camera-service';
 import { Vector2 } from '../../../common/vector2';
 import { DrawHelpers } from '../../../drawing/draw-helpers';
 import { DrawPixi } from '../../../drawing/draw-pixi';

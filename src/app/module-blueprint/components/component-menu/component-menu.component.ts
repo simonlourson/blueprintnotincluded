@@ -10,13 +10,14 @@ import { AuthenticationService } from '../../services/authentification-service';
 import { Template } from '../../common/template/template';
 import { BehaviorSubject } from 'rxjs';
 import { ToolService, ToolRequest, IObsToolChanged } from '../../services/tool-service';
+import { CameraService, IObsOverlayChanged } from '../../services/camera-service';
 
 @Component({
   selector: 'app-component-menu',
   templateUrl: './component-menu.component.html',
   styleUrls: ['./component-menu.component.css']
 })
-export class ComponentMenuComponent implements OnInit, IObsToolChanged {
+export class ComponentMenuComponent implements OnInit, IObsToolChanged, IObsOverlayChanged {
 
   @Output() onMenuCommand = new EventEmitter<MenuCommand>();
 
@@ -38,9 +39,11 @@ export class ComponentMenuComponent implements OnInit, IObsToolChanged {
     //TODO should not be public
     public authService: AuthenticationService, 
     private messageService: MessageService,
-    private toolService: ToolService) 
+    private toolService: ToolService,
+    private cameraService: CameraService) 
   {
     this.toolService.subscribeToolChanged(this);
+    this.cameraService.subscribeOverlayChange(this);
   }
 
 
@@ -135,15 +138,22 @@ export class ComponentMenuComponent implements OnInit, IObsToolChanged {
     this.clickTool({item:{id:toolRequest.toolType}}, toolRequest.templateItem);
   }
 
-  clickOverlay(event: any)
+  overlayChanged(newOverlay: Overlay) {
+    this.updateOverlayIcon(newOverlay);
+  }
+
+  updateOverlayIcon(overlay: Overlay)
   {
     for (let menuItem of this.overlayMenuItems)
     {
-      if (menuItem.id == event.item.id) {menuItem.icon = 'pi pi-fw pi-check';}
+      if (menuItem.id == overlay.toString()) {menuItem.icon = 'pi pi-fw pi-check';}
       else menuItem.icon = 'pi pi-fw pi-none';
     }
+  }
 
-    this.onMenuCommand.emit({type: MenuCommandType.changeOverlay, data: event.item.id});
+  clickOverlay(event: any)
+  {
+    this.cameraService.overlay = (event.item.id as Overlay);
   }
 
   uploadYamlTemplate()

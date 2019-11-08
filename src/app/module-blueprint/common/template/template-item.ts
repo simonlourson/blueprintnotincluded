@@ -4,7 +4,7 @@ import { OniBuilding } from "../../oni-import/oni-building";
 import { ImageSource } from "../../drawing/image-source";
 import { SpriteInfo } from "../../drawing/sprite-info";
 import { SpriteModifier } from "../../drawing/sprite-modifier";
-import { Camera } from "../camera";
+import { CameraService } from "../../services/camera-service";
 import { ConnectionType, ConnectionHelper } from "../utility-connection";
 import { ZIndex, Overlay } from "../overlay-type";
 import { DrawHelpers } from "../../drawing/draw-helpers";
@@ -16,6 +16,7 @@ import { Container } from 'pixi.js';
 import { DrawPixi } from '../../drawing/draw-pixi';
 import { DrawPart } from '../../drawing/draw-part';
 import { BniBuilding } from '../blueprint-import/bni-building';
+import { Inject } from '@angular/core';
 declare var PIXI: any;
 //import { Texture, BaseTexture, Rectangle } from "pixi.js";
 
@@ -31,7 +32,13 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
 
   // Each template item should remember where it was added, to make removal easier
   public tileIndexes: number[];
-  public selected: boolean;
+  private selected_: boolean;
+  get selected() { return this.selected_; }
+  get selectedSingle() { return this.selected_; }
+  set selectedSingle(value: boolean) {
+    this.selected_ = value;
+    if (this.selected_) CameraService.cameraService.setOverlayForItem(this.oniItem);
+  }
 
   position: Vector2;
   orientation: AuthorizedOrientations;
@@ -253,7 +260,7 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
       if (this.element == null) this.element = ComposingElement.unknownElement;
 
       if (this.orientation == null) this.changeOrientation(AuthorizedOrientations.None);
-      this.selected = false;
+      this.selected_ = false;
     }
   
   public clone(): TemplateItem
@@ -304,7 +311,8 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
     this.rotation = undefined;
     this.scale = undefined;
 
-    this.selected = undefined;
+    this.selected_ = undefined;
+    this.destroyed = undefined;
   }
 
     public prepareBoundingBox()
@@ -380,7 +388,7 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
     // Pixi stuff
     utilitySprites: PIXI.Sprite[];
     container: PIXI.Container;
-    public drawPixi(camera: Camera, drawPixi: DrawPixi)
+    public drawPixi(camera: CameraService, drawPixi: DrawPixi)
     {
       this.drawPixiUtility(camera, drawPixi);
 
@@ -427,7 +435,7 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
       }
     }
 
-    private drawPixiUtility(camera: Camera, drawPixi: DrawPixi)
+    private drawPixiUtility(camera: CameraService, drawPixi: DrawPixi)
     {
       if (this.utilitySprites == null) this.utilitySprites = [];
       
@@ -436,6 +444,7 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
       {
         let connection = this.oniItem.utilityConnections[connexionIndex];
 
+        //console.log(camera.overlay)
         // Pass to the next connection if this one should not be displayed on this overlay
         if (camera.overlay != ConnectionHelper.getConnectionOverlay(connection.type)) 
         {
@@ -507,7 +516,7 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
       }
     }
 
-    private drawPixiDebug(camera: Camera, drawPixi: DrawPixi, positionCorrected: Vector2)
+    private drawPixiDebug(camera: CameraService, drawPixi: DrawPixi, positionCorrected: Vector2)
     {
       let delta = 0.2;
       drawPixi.drawTileRectangle(
@@ -530,8 +539,14 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
       drawPixi.backGraphics.lineTo(positionCorrected.x, positionCorrected.y + 5);
     }
 
+    destroyed: boolean = false;
     public destroy()
     {
+      // Return if this is already destoryed
+      if (this.destroyed) {
+        return;
+      }
+      
       // Destroy the main sprite
       if (this.container != null) this.container.destroy({baseTexture: false, texture: false, children: true});
       
@@ -540,6 +555,8 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
         for (let s of this.utilitySprites)
           if (s != null)
             s.destroy();
+
+      this.destroyed = true;
     }
 
 }

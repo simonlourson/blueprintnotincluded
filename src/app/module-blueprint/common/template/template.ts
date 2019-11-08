@@ -150,11 +150,11 @@ export class Template
     return newTemplateItem;
   }
 
+  // TODO should just use the camera service overlay
   private currentOverlay: Overlay
   public prepareOverlayInfo(currentOverlay: Overlay)
   {
     this.currentOverlay = currentOverlay;
-
     this.refreshOverlayInfo();
   }
 

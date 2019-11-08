@@ -1,7 +1,7 @@
 import { ElementRef } from "@angular/core";
 import { ComponentCanvasComponent } from "../components/component-canvas/component-canvas.component";
 import { TemplateItem } from "../common/template/template-item";
-import { Camera } from "../common/camera";
+import { CameraService } from "../services/camera-service";
 import { Vector2 } from "../common/vector2";
 import { SpriteInfo } from './sprite-info';
 import { ComponentMenuComponent } from '../components/component-menu/component-menu.component';
@@ -82,17 +82,13 @@ export class DrawPixi
     this.backGraphics.lineTo(end.x, end.y);
 
   }
-  drawTemplateItem(templateItem: TemplateItem, camera: Camera) {
+  drawTemplateItem(templateItem: TemplateItem, camera: CameraService) {
     
     templateItem.drawPixi(camera, this);
 
   }
 
-  drawBuild(toBuild: TemplateItem, camera: Camera) {
-    toBuild.drawPixi(camera, this);
-  }
-
-  public drawTileRectangle(camera: Camera, topLeft: Vector2, bottomRight: Vector2, frontGraphics: boolean, borderWidth: number, fillColor: number, borderColor: number, fillAlpha: number, borderAlpha: number)
+  public drawTileRectangle(camera: CameraService, topLeft: Vector2, bottomRight: Vector2, frontGraphics: boolean, borderWidth: number, fillColor: number, borderColor: number, fillAlpha: number, borderAlpha: number)
   {
     let rectanglePosition = new Vector2(
       (topLeft.x + camera.cameraOffset.x) * camera.currentZoom,

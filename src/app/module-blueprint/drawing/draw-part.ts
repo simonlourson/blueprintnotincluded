@@ -1,6 +1,6 @@
 import { SpriteInfo } from './sprite-info';
 import { SpriteModifier } from './sprite-modifier';
-import { Camera } from '../common/camera';
+import { CameraService } from '../services/camera-service';
 import { DrawPixi } from './draw-pixi';
 import { OniItem } from '../common/oni-item';
 import { Vector2 } from '../common/vector2';
@@ -33,7 +33,7 @@ export class DrawPart
     this.spriteModifierId = spriteModifierId;
   }
 
-  public getPreparedSprite(camera: Camera, drawPixi: DrawPixi, oniItem: OniItem): PIXI.Sprite
+  public getPreparedSprite(camera: CameraService, drawPixi: DrawPixi, oniItem: OniItem): PIXI.Sprite
   {
     this.spriteModifier = SpriteModifier.getSpriteModifer(this.spriteModifierId);
 

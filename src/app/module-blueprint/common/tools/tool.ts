@@ -1,6 +1,6 @@
 import { Vector2 } from '../vector2';
 import { DrawPixi } from '../../drawing/draw-pixi';
-import { Camera } from '../camera';
+import { CameraService } from '../../services/camera-service';
 
 export enum ToolType
 {
@@ -20,7 +20,7 @@ export interface ITool
   hover(tile: Vector2);
   drag(tileStart: Vector2, tileStop: Vector2);
   dragStop();
-  draw(drawPixi: DrawPixi, camera: Camera);
+  draw(drawPixi: DrawPixi, camera: CameraService);
 }
 
 export interface IChangeTool

@@ -3,17 +3,25 @@ import { HttpClient } from '@angular/common/http';
 import { Template } from '../common/template/template';
 import { AuthenticationService } from './authentification-service';
 import { map } from 'rxjs/operators';
+import { IObsOverlayChanged, CameraService } from './camera-service';
+import { Overlay } from '../common/overlay-type';
 
 @Injectable({ providedIn: 'root' })
-export class BlueprintService
+export class BlueprintService implements IObsOverlayChanged
 {
   static baseUrl: string = 'blueprintnotincluded.com/';
 
   // TODO observable when modified, to be subscribed by the canvas
   blueprint: Template;
 
-  constructor(private http: HttpClient, private authService: AuthenticationService) {
+  constructor(private http: HttpClient, private authService: AuthenticationService, private cameraService: CameraService) {
     this.blueprint = new Template();
+
+    this.cameraService.subscribeOverlayChange(this);
+  }
+
+  overlayChanged(newOverlay: Overlay) {
+    this.blueprint.prepareOverlayInfo(newOverlay);
   }
 
   getBlueprint(id: string)

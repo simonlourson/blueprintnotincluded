@@ -2,7 +2,7 @@ import { Vector2 } from "../vector2";
 import { Template } from "./template";
 import { TemplateItem } from "./template-item";
 import { TemplateItemCloneable } from "./template-item-cloneable";
-import { Camera } from "../camera";
+import { CameraService } from "../../services/camera-service";
 import { OniCell } from "../../oni-import/oni-cell";
 import { OniBuilding } from "../../oni-import/oni-building";
 import { ZIndex, Overlay } from "../overlay-type";
@@ -86,7 +86,7 @@ export class TemplateItemElement extends TemplateItem implements TemplateItemClo
     */
   }
 
-  public draw(ctx: CanvasRenderingContext2D, camera: Camera)
+  public draw(ctx: CanvasRenderingContext2D, camera: CameraService)
   {
     if (this.correctOverlay && this.element.color != null) DrawHelpers.drawFullRectangle(ctx, camera, this.topLeft, this.bottomRight, this.element.color);
   }

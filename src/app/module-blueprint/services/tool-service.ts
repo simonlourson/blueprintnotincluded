@@ -3,7 +3,7 @@ import { ToolType, ITool, IChangeTool } from '../common/tools/tool';
 import { SelectTool } from '../common/tools/select-tool';
 import { Vector2 } from '../common/vector2';
 import { DrawPixi } from '../drawing/draw-pixi';
-import { Camera } from '../common/camera';
+import { CameraService } from './camera-service';
 import { BuildTool } from '../common/tools/build-tool';
 import { TemplateItem } from '../common/template/template-item';
 
@@ -67,7 +67,7 @@ export class ToolService implements ITool, IChangeTool
   dragStop() {
     this.currentTool.dragStop();
   }
-  draw(drawPixi: DrawPixi, camera: Camera) {
+  draw(drawPixi: DrawPixi, camera: CameraService) {
     this.currentTool.draw(drawPixi, camera);
   }
 }

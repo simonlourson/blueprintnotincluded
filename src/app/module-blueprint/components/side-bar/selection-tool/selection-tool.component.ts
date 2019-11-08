@@ -4,7 +4,7 @@ import { TemplateItem } from '../../../common/template/template-item';
 import { ToolType } from '../../../common/tools/tool';
 import { Template } from '../../../common/template/template';
 import { Vector2 } from '../../../common/vector2';
-import { Camera } from '../../../common/camera';
+import { CameraService } from '../../../services/camera-service';
 import { BlueprintService } from '../../../services/blueprint-service';
 import { ToolService } from '../../../services/tool-service';
 import { IObsTemplateItemChanged } from '../../../common/tools/select-tool';
@@ -42,7 +42,7 @@ export class ComponentSideSelectionToolComponent implements OnInit, IObsTemplate
     
 
     for (let currentActiveIndex = 0; currentActiveIndex < this.toolService.selectTool.templateItemsToShow.length; currentActiveIndex++)
-      this.toolService.selectTool.templateItemsToShow[currentActiveIndex].selected = (currentActiveIndex == realActiveIndex);
+      this.toolService.selectTool.templateItemsToShow[currentActiveIndex].selectedSingle = (currentActiveIndex == realActiveIndex);
 
   }
   

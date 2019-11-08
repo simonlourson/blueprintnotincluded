@@ -36,6 +36,7 @@ import { LoginInfo } from '../../common/api/login-info';
 import { BlueprintService } from '../../services/blueprint-service';
 import { ComponentSaveDialogComponent } from '../dialogs/component-save-dialog/component-save-dialog.component';
 import { DialogShareUrlComponent } from '../dialogs/dialog-share-url/dialog-share-url.component';
+import { CameraService } from '../../services/camera-service';
 
 @Component({
   selector: 'app-component-blueprint-parent',
@@ -71,7 +72,8 @@ export class ComponentBlueprintParentComponent implements OnInit {
     private messageService: MessageService, 
     private cd: ChangeDetectorRef, 
     private route: ActivatedRoute,
-    private blueprintService: BlueprintService) { }
+    private blueprintService: BlueprintService,
+    private cameraService: CameraService) { }
 
   ngOnInit() {
     
@@ -172,7 +174,6 @@ export class ComponentBlueprintParentComponent implements OnInit {
   menuCommand(menuCommand: MenuCommand)
   {
     if (menuCommand.type == MenuCommandType.newBlueprint) this.loadTemplateIntoCanvas(new Template());
-    else if (menuCommand.type == MenuCommandType.changeOverlay) this.changeOverlay(menuCommand.data as Overlay);
     else if (menuCommand.type == MenuCommandType.showLoginDialog) this.openLoginDialog();
     else if (menuCommand.type == MenuCommandType.saveBlueprint) this.saveToCloud();
     else if (menuCommand.type == MenuCommandType.getShareableUrl) this.getShareableUrl();
@@ -243,11 +244,6 @@ export class ComponentBlueprintParentComponent implements OnInit {
 
     let fileContent = JSON.stringify(this.canvas.blueprint, null, 2);
     
-  }
-
-  changeOverlay(newOverlay: Overlay)
-  {
-    this.canvas.changeOverlay(newOverlay);
   }
 
   fetchIcons()

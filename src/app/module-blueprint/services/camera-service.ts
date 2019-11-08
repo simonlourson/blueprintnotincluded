@@ -1,33 +1,58 @@
 import { Vector2 } from "src/app/module-blueprint/common/vector2";
-import { ZIndex, Overlay } from "./overlay-type";
+import { ZIndex, Overlay } from "../common/overlay-type";
+import { Injectable } from '@angular/core';
+import { OniItem } from '../common/oni-item';
+import { DrawHelpers } from '../drawing/draw-helpers';
 
-export class Camera
+@Injectable({ providedIn: 'root' })
+export class CameraService
 {
     
-    targetCameraOffset: Vector2;
+  targetCameraOffset: Vector2;
 
-    // Offset is in tile coordinates
-    cameraOffset: Vector2;
+  // Offset is in tile coordinates
+  cameraOffset: Vector2;
 
-    // Zoom is the number of pixels between cells
-    currentZoom: number;
+  // Zoom is the number of pixels between cells
+  currentZoom: number;
 
-    overlay: Overlay;
+  overlay_: Overlay
+  get overlay() { return this.overlay_; }
+  set overlay(value: Overlay) {
+    this.observersToOverlayChange.map((observer) => {observer.overlayChanged(value); })
+    this.overlay_ = value;
+  }
 
-    private sinWaveTime: number;
-    sinWave: number;
-    
-    private targetZoom: number;
-    private lastZoomCenter: Vector2;
+  private sinWaveTime: number;
+  sinWave: number;
+  
+  private targetZoom: number;
+  private lastZoomCenter: Vector2;
 
-    constructor()
-    {
-        this.cameraOffset = new Vector2();
-        this.targetCameraOffset = new Vector2();
-        this.currentZoomIndex = 7;
-        this.targetZoom = this.currentZoom = this.zoomLevels[this.currentZoomIndex];
-        this.sinWaveTime = 0;
-        this.sinWave = 0;
+  // For classes that want to use the service and are not created by angular
+  static cameraService: CameraService;
+
+  constructor()
+  {
+    this.cameraOffset = new Vector2();
+    this.targetCameraOffset = new Vector2();
+    this.currentZoomIndex = 7;
+    this.targetZoom = this.currentZoom = this.zoomLevels[this.currentZoomIndex];
+    this.sinWaveTime = 0;
+    this.sinWave = 0;
+
+    this.observersToOverlayChange = [];
+
+    CameraService.cameraService = this;
+  }
+
+    observersToOverlayChange: IObsOverlayChanged[];
+    subscribeOverlayChange(observer: IObsOverlayChanged) {
+      this.observersToOverlayChange.push(observer);
+    }
+
+    setOverlayForItem(item: OniItem) {
+      this.overlay = item.overlay;
     }
 
     updateZoom()
@@ -103,4 +128,8 @@ export class Camera
         );
     }
 
+}
+
+export interface IObsOverlayChanged {
+  overlayChanged(newOverlay: Overlay);
 }

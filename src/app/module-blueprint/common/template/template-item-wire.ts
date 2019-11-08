@@ -4,7 +4,7 @@ import { OniBuilding } from "../../oni-import/oni-building";
 import { Template } from "./template";
 import { TemplateItem } from "./template-item";
 import { SpriteModifier } from "../../drawing/sprite-modifier";
-import { Camera } from "../camera";
+import { CameraService } from "../../services/camera-service";
 import { SpriteInfo } from "../../drawing/sprite-info";
 import { ImageSource } from "../../drawing/image-source";
 import { DrawHelpers } from "../../drawing/draw-helpers";
@@ -142,7 +142,7 @@ export class TemplateItemWire extends TemplateItem implements TemplateItemClonea
     }
   }
 
-  public drawPixi(camera: Camera, drawPixi: DrawPixi)
+  public drawPixi(camera: CameraService, drawPixi: DrawPixi)
   {
     super.drawPixi(camera, drawPixi);
 

@@ -5,7 +5,7 @@ import { Injectable, ChangeDetectorRef } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ITool, IChangeTool, ToolType } from './tool';
 import { DrawPixi } from '../../drawing/draw-pixi';
-import { Camera } from '../camera';
+import { CameraService } from '../../services/camera-service';
 import { TemplateItemWire } from '../template/template-item-wire';
 import { Template } from '../template/template';
 import { DrawHelpers } from '../../drawing/draw-helpers';
@@ -19,7 +19,7 @@ export class BuildTool implements ITool
 
   parent: IChangeTool;
 
-  constructor(private blueprintService: BlueprintService) 
+  constructor(private blueprintService: BlueprintService, private cameraService: CameraService) 
   {
     this.observers = [];
   }
@@ -75,6 +75,8 @@ export class BuildTool implements ITool
   {
     if (this.templateItemToBuild != null) this.templateItemToBuild.destroy();
 
+    this.cameraService.setOverlayForItem(item.oniItem);
+
     this.templateItemToBuild = item;
     this.templateItemToBuild.setInvisible();
     this.templateItemToBuild.alpha = 1;
@@ -122,7 +124,7 @@ export class BuildTool implements ITool
   dragStop() {
   }
 
-  draw(drawPixi: DrawPixi, camera: Camera) {
+  draw(drawPixi: DrawPixi, camera: CameraService) {
     this.templateItemToBuild.drawPixi(camera, drawPixi);
   }
 }

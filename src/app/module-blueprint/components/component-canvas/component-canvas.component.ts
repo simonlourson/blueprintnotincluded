@@ -5,7 +5,7 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { ComponentSidepanelComponent } from 'src/app/module-blueprint/components/side-bar/side-panel/side-panel.component';
 
 // Engine imports
-import { Camera } from 'src/app/module-blueprint/common/camera';
+import { CameraService, IObsOverlayChanged } from 'src/app/module-blueprint/services/camera-service';
 import { Vector2 } from 'src/app/module-blueprint/common/vector2';
 import { SpriteInfo } from 'src/app/module-blueprint/drawing/sprite-info';
 import { ImageSource } from 'src/app/module-blueprint/drawing/image-source';
@@ -35,9 +35,7 @@ import { ToolService } from '../../services/tool-service';
   templateUrl: './component-canvas.component.html',
   styleUrls: ['./component-canvas.component.css']
 })
-export class ComponentCanvasComponent implements OnInit, OnDestroy  {
-
-  camera: Camera
+export class ComponentCanvasComponent implements OnInit, OnDestroy, IObsOverlayChanged  {
 
   width: number;
   height: number;
@@ -58,9 +56,9 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
   constructor(
     private ngZone: NgZone,
     private blueprintService: BlueprintService,
+    private cameraService: CameraService,
     private toolService: ToolService) {
     
-    this.camera = new Camera();
     this.drawPixi = new DrawPixi();
     this.technicalRepack = new TechnicalRepack();
   }
@@ -84,10 +82,10 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
     if (this.blueprint != null) this.blueprint.destroy();
 
     this.blueprint = blueprint;
-    this.changeOverlay(Overlay.Base);
+    this.cameraService.overlay = Overlay.Base; 
 
     let rect = this.canvasRef.nativeElement.getBoundingClientRect();
-    this.camera.resetZoom(new Vector2(
+    this.cameraService.resetZoom(new Vector2(
       rect.width - rect.left,
       rect.height - rect.top
     ));
@@ -102,7 +100,7 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
 
   getCurrentTile(event): Vector2
   {
-    let returnValue = this.camera.getTileCoords(this.getCursorPosition(event));
+    let returnValue = this.cameraService.getTileCoords(this.getCursorPosition(event));
     
     returnValue.x = Math.floor(returnValue.x);
     returnValue.y = Math.ceil(returnValue.y);
@@ -112,7 +110,7 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
 
   mouseWheel(event: any)
   {
-    this.camera.zoom(event.delta, this.getCursorPosition(event));
+    this.cameraService.zoom(event.delta, this.getCursorPosition(event));
   }
 
   mouseUp(event: any)
@@ -142,13 +140,13 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
   mouseDrag(event: any)
   {
     let previousTileFloat = Vector2.clone(this.storePreviousTileFloat);
-    let currentTileFloat = this.camera.getTileCoords(this.getCursorPosition(event));
+    let currentTileFloat = this.cameraService.getTileCoords(this.getCursorPosition(event));
 
     if (event.dragButton[2])
     {
       //console.log('camera drag');
-      this.camera.cameraOffset.x += event.dragX / this.camera.currentZoom;
-      this.camera.cameraOffset.y += event.dragY / this.camera.currentZoom;
+      this.cameraService.cameraOffset.x += event.dragX / this.cameraService.currentZoom;
+      this.cameraService.cameraOffset.y += event.dragY / this.cameraService.currentZoom;
     }
     else if (event.dragButton[0])
     {
@@ -219,26 +217,14 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
     console.log(event);
   }
 
-  changeOverlay(newOverlay: Overlay)
-  {
-    this.camera.overlay = newOverlay;
+  overlayChanged(newOverlay: Overlay) {
     this.prepareOverlayInfo();
   }
 
   prepareOverlayInfo()
   {
-    if (this.blueprint != null) this.blueprint.prepareOverlayInfo(this.camera.overlay);
+    if (this.blueprint != null) this.blueprint.prepareOverlayInfo(this.cameraService.overlay);
   }
-
-  /*
-  changeTool(newToolComponent: Tool)
-  {
-    // First deactivate the old tool
-    //if (this.currentTool != null) this.currentTool.destroyTool();
-
-    //this.currentTool = newToolComponent;
-  }
-  */
 
   /*
    * 
@@ -489,8 +475,8 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
     this.canvasRef.nativeElement.height = window.innerHeight;
 
     
-    this.camera.updateZoom();
-    this.camera.updateSinWave(this.drawPixi.pixiApp.ticker.elapsedMS);
+    this.cameraService.updateZoom();
+    this.cameraService.updateSinWave(this.drawPixi.pixiApp.ticker.elapsedMS);
 
     //console.log('tick');
     //this.drawAbstraction.Init(this.canvasRef, this);
@@ -502,20 +488,20 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
     
     let alphaOrig: number = 0.4;
     let alpha: number = alphaOrig;
-    let realLineSpacing: number = this.camera.currentZoom;
+    let realLineSpacing: number = this.cameraService.currentZoom;
 
     let zoomFadeMax: number = 35;
     let zoomFadeMin: number = 25;
-    if (this.camera.currentZoom < zoomFadeMax)
-      alpha *= (this.camera.currentZoom - zoomFadeMin) / (zoomFadeMax - zoomFadeMin);
-    if (this.camera.currentZoom < zoomFadeMin)
+    if (this.cameraService.currentZoom < zoomFadeMax)
+      alpha *= (this.cameraService.currentZoom - zoomFadeMin) / (zoomFadeMax - zoomFadeMin);
+    if (this.cameraService.currentZoom < zoomFadeMin)
       alpha = 0;
 
 
     //while (realLineSpacing < 30)
     //  realLineSpacing *= 5;
 
-    let colOrig: number = this.camera.cameraOffset.x * this.camera.currentZoom % (realLineSpacing * 5) - realLineSpacing * 4;
+    let colOrig: number = this.cameraService.cameraOffset.x * this.cameraService.currentZoom % (realLineSpacing * 5) - realLineSpacing * 4;
     let mod = 0;
     for (let col = colOrig; col < this.width + realLineSpacing * 4; col += realLineSpacing)
     {
@@ -525,7 +511,7 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
       mod++;
     }
 
-    let lineOrig = this.camera.cameraOffset.y * this.camera.currentZoom % (realLineSpacing * 5) - realLineSpacing * 4
+    let lineOrig = this.cameraService.cameraOffset.y * this.cameraService.currentZoom % (realLineSpacing * 5) - realLineSpacing * 4
     mod = 0;
     for (let line = lineOrig; line < this.height + realLineSpacing * 4; line += realLineSpacing)
     {
@@ -540,11 +526,11 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
       for (var templateItem of this.blueprint.templateItems)
       {
         templateItem.prepareSpriteInfoModifier(this.blueprint);
-        this.drawPixi.drawTemplateItem(templateItem, this.camera);
+        this.drawPixi.drawTemplateItem(templateItem, this.cameraService);
         //templateItem.draw(ctx, this.camera);
       }
       
-      this.toolService.draw(this.drawPixi, this.camera);
+      this.toolService.draw(this.drawPixi, this.cameraService);
     }
 
     // Schedule next

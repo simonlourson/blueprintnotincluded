@@ -5,7 +5,7 @@ import { Injectable, ChangeDetectorRef } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ITool, IChangeTool } from './tool';
 import { DrawPixi } from '../../drawing/draw-pixi';
-import { Camera } from '../camera';
+import { CameraService } from '../../services/camera-service';
 
 @Injectable()
 export class SelectTool implements ITool
@@ -59,7 +59,7 @@ export class SelectTool implements ITool
   deselectAll() {
     if (this.templateItemsToShow != null)
       for (let templateItem of this.templateItemsToShow)
-        templateItem.selected = false;
+        templateItem.selectedSingle = false;
   }
 
   // Tool interface :
@@ -94,7 +94,7 @@ export class SelectTool implements ITool
     this.beginSelection = null;
   }
 
-  draw(drawPixi: DrawPixi, camera: Camera) {
+  draw(drawPixi: DrawPixi, camera: CameraService) {
 
     // Return
     if (this.beginSelection == null) return;
