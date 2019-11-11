@@ -15,6 +15,7 @@ export class OniItem
   static defaultColor = '#696969';
 
   id: string;
+  name: string;
 
   // imageId here is used for some stuff (generating white background textures)
   imageId: string;
@@ -43,6 +44,7 @@ export class OniItem
   public copyFrom(original: BBuilding)
   {
     this.id = original.prefabId;
+    this.name = original.name;
     this.size = original.sizeInCells;
     this.isWire = original.isUtility;
     this.isTile = original.isTile;

@@ -52,7 +52,6 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy, IObsOverlayC
   technicalRepack: TechnicalRepack;
 
   public get blueprint() { return this.blueprintService.blueprint; }
-  public set blueprint(value: Template) { this.blueprintService.blueprint = value; }
   constructor(
     private ngZone: NgZone,
     private blueprintService: BlueprintService,
@@ -81,7 +80,8 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy, IObsOverlayC
     // First destroy the old blueprint
     if (this.blueprint != null) this.blueprint.destroy();
 
-    this.blueprint = blueprint;
+    // TODO make sure nothing creates a "real  blueprint" before this
+    this.blueprint.importFromCloud(blueprint);
     this.cameraService.overlay = Overlay.Base; 
 
     let rect = this.canvasRef.nativeElement.getBoundingClientRect();

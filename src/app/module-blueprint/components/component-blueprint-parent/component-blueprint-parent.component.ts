@@ -76,9 +76,7 @@ export class ComponentBlueprintParentComponent implements OnInit {
     private cameraService: CameraService) { }
 
   ngOnInit() {
-    
-    this.canvas.blueprint = new Template();
-
+   
     OniItem.init();
     ImageSource.init();
     SpriteModifier.init();
@@ -177,6 +175,8 @@ export class ComponentBlueprintParentComponent implements OnInit {
     else if (menuCommand.type == MenuCommandType.showLoginDialog) this.openLoginDialog();
     else if (menuCommand.type == MenuCommandType.saveBlueprint) this.saveToCloud();
     else if (menuCommand.type == MenuCommandType.getShareableUrl) this.getShareableUrl();
+    else if (menuCommand.type == MenuCommandType.fetchIcons) this.fetchIcons();
+    else if (menuCommand.type == MenuCommandType.downloadUtility) this.downloadUtility();
     
   }
 

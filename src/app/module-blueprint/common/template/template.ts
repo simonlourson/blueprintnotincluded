@@ -27,6 +27,8 @@ export class Template
     this.name = 'default';
     this.templateItems = [];
     this.distinctElements = [];
+
+    this.obeserversItemDestroyed = [];
   }
 
   public importOniTemplate(oniTemplate: OniTemplate)
@@ -206,6 +208,11 @@ export class Template
     return returnValue;
   }
 
+  obeserversItemDestroyed: IObsItemDestroyed[];
+  public subscribeItemDestroyed(observer: IObsItemDestroyed) {
+    this.obeserversItemDestroyed.push(observer);
+  }
+
   public destroyTemplateItemsAt(position: Vector2): TemplateItem[]
   {
     if (this.templateTiles == null) this.templateTiles = [];
@@ -235,9 +242,11 @@ export class Template
 
     returnValue.templateTiles = undefined;
     returnValue.innerYaml = undefined;
+    returnValue.obeserversItemDestroyed = undefined;
 
     return returnValue;
   }
+
 
   public destroyTemplateItem(templateItem: TemplateItem)
   {
@@ -255,6 +264,9 @@ export class Template
 
     // Then destroy the sprite
     templateItem.destroy();
+
+    // Then fire the event
+    this.obeserversItemDestroyed.map((observer) => {observer.itemDestroyed();})
   }
 
   public destroy()
@@ -262,4 +274,8 @@ export class Template
     if (this.templateItems != null)
       for (let t of this.templateItems) t.destroy();
   }
+}
+
+export interface IObsItemDestroyed {
+  itemDestroyed();
 }

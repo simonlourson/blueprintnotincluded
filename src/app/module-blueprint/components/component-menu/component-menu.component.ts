@@ -95,16 +95,16 @@ export class ComponentMenuComponent implements OnInit, IObsToolChanged, IObsOver
         label: 'Overlay',
         items: this.overlayMenuItems
       }
-      /*, TODO use menuCommand
+      , //TODO use menuCommand
       {
         label: 'Technical',
         items: [
-          {label: 'Fetch icons',          icon:'pi pi-clone', command: (event) => { this.fetchIcons(); } },
-          {label: 'Download icons',       icon:'pi pi-download', command: (event) => { this.downloadIcons(); } },
-          {label: 'Download utility',     icon:'pi pi-download', command: (event) => { this.downloadUtility(); } },
-          {label: 'Repack textures',      icon:'pi pi-download', command: (event) => { this.repackTextures(); } }
+          {label: 'Fetch icons',          icon:'pi pi-download', command: (event) => { this.onMenuCommand.emit({type: MenuCommandType.fetchIcons, data:null}); } },
+          {label: 'Download icons',       icon:'pi pi-download', command: (event) => { this.onMenuCommand.emit({type: MenuCommandType.downloadIcons, data:null}); } },
+          {label: 'Download utility',     icon:'pi pi-download', command: (event) => { this.onMenuCommand.emit({type: MenuCommandType.downloadUtility, data:null}); } },
+          {label: 'Repack textures',      icon:'pi pi-download', command: (event) => { this.onMenuCommand.emit({type: MenuCommandType.repackTextures, data:null}); } }
         ]
-      }*/
+      }
     ];
    
     

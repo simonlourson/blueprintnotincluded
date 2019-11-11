@@ -17,7 +17,6 @@ export class TileInfoComponent implements OnInit, OnDestroy {
 
 
   @Input() templateItem: TemplateItem;
-  @Output() onDestroyTemplateItem = new EventEmitter();
 
   get elements() { return ComposingElement.elements; }
   get showColor() { return this.templateItem instanceof TemplateItemWire }
@@ -61,9 +60,6 @@ export class TileInfoComponent implements OnInit, OnDestroy {
   {
     // TODO this should trigger an event that should be listened to by side panel
     this.blueprintService.blueprint.destroyTemplateItem(this.templateItem);
-    
-    // We still need to do the detection change one loevel above? weird
-    this.onDestroyTemplateItem.emit();
   }
 
 }

@@ -34,6 +34,9 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
   public tileIndexes: number[];
   private selected_: boolean;
   get selected() { return this.selected_; }
+  
+  // For selected single (used when a single tile is selected)
+  // We want each item to be responsible for the overlay switch
   get selectedSingle() { return this.selected_; }
   set selectedSingle(value: boolean) {
     this.selected_ = value;
@@ -42,6 +45,10 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
       CameraService.cameraService.setOverlayForItem(this.oniItem);
     }
   }
+
+  // For selected muliple, the SameItemCollection is responsible for setting the overlay
+  get selectedMultiple() { return this.selected_; }
+  set selectedMultiple(value: boolean) { this.selected_ = value; }
 
   position: Vector2;
   orientation: AuthorizedOrientations;
@@ -526,7 +533,7 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
         camera,
         new Vector2(this.topLeft.x + delta, this.topLeft.y + 0 - delta),
         new Vector2(this.bottomRight.x + 1 - delta, this.bottomRight.y - 1 + delta),
-        true,
+        false,
         2,
         0xFF0000,
         0x000000,

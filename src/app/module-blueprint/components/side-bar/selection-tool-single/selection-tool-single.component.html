@@ -1,0 +1,7 @@
+<p-accordion 
+#buildingsAccordion >
+  <p-accordionTab *ngFor="let templateItem of toolService.selectTool.templateItemsToShow" [(selected)]="templateItem.selectedSingle" header="{{templateItem.oniItem.name}}" [transitionOptions]="'0ms'">
+    <app-tile-info [templateItem]=templateItem>
+    </app-tile-info>
+  </p-accordionTab>
+</p-accordion>

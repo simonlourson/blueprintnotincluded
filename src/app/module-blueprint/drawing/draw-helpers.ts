@@ -91,6 +91,13 @@ export class DrawHelpers
     return R << 16 | G << 8 | B;
   }
   
+  public static getIntegerTile(floatTile: Vector2): Vector2 {
+    return new Vector2(
+      Math.floor(floatTile.x),
+      Math.ceil(floatTile.y)
+    );
+  }
+
   public static generateTileSpriteInfo(kanimPrefix: string, textureName: string): BSpriteInfo[]
   {
     let returnValue: BSpriteInfo[] = []
