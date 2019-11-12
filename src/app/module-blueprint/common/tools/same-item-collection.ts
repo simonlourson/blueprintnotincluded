@@ -1,6 +1,7 @@
 import { TemplateItem } from '../template/template-item';
 import { OniItem } from '../oni-item';
 import { CameraService } from '../../services/camera-service';
+import { BlueprintService } from '../../services/blueprint-service';
 
 export class SameItemCollection
 {
@@ -26,5 +27,10 @@ export class SameItemCollection
     for (let item of this.items) {
       item.selectedMultiple = this.selected_;
     }
+  }
+
+  destroyAll() {
+    for (let item of this.items)
+      BlueprintService.blueprintService.blueprint.destroyTemplateItem(item);
   }
 }

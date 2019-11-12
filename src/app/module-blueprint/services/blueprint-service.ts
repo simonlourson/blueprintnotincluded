@@ -14,10 +14,14 @@ export class BlueprintService implements IObsOverlayChanged
   // TODO observable when modified, to be subscribed by the canvas
   blueprint: Template;
 
+  static blueprintService: BlueprintService;
+
   constructor(private http: HttpClient, private authService: AuthenticationService, private cameraService: CameraService) {
     this.blueprint = new Template();
 
     this.cameraService.subscribeOverlayChange(this);
+
+    BlueprintService.blueprintService = this;
   }
 
   overlayChanged(newOverlay: Overlay) {

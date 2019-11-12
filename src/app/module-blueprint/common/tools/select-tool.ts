@@ -176,18 +176,44 @@ export class SelectTool implements ITool, IObsItemDestroyed
           }
         }
 
+        this.sameItemCollections = this.sameItemCollections.sort((i1, i2) => { return i2.oniItem.zIndex - i1.oniItem.zIndex; });
+
         if (this.sameItemCollections.length > 0) this.sameItemCollections[0].selected = true;
       }
     }
   }
 
   itemGroupeNext() {
+    let currentIndex = -1;
+    for (let indexSelected = 0; indexSelected < this.sameItemCollections.length; indexSelected++)
+      if (this.sameItemCollections[indexSelected].selected)
+        currentIndex = indexSelected;
+
+    currentIndex++;
+    currentIndex = currentIndex % this.sameItemCollections.length;
+    for (let indexSelected = 0; indexSelected < this.sameItemCollections.length; indexSelected++)
+      this.sameItemCollections[indexSelected].selected = (currentIndex == indexSelected);
   }
   
   itemGroupePrevious() {
+    let currentIndex = 1;
+    for (let indexSelected = 0; indexSelected < this.sameItemCollections.length; indexSelected++)
+      if (this.sameItemCollections[indexSelected].selected)
+        currentIndex = indexSelected;
+
+    currentIndex--;
+    if (currentIndex < 0) currentIndex += this.sameItemCollections.length;
+    for (let indexSelected = 0; indexSelected < this.sameItemCollections.length; indexSelected++)
+      this.sameItemCollections[indexSelected].selected = (currentIndex == indexSelected);
   }
 
   destroyAll() {
+    if (this.sameItemCollections != null)
+      for (let itemCollection of this.sameItemCollections)
+        itemCollection.destroyAll();
+
+    this.sameItemCollections = [];
+    // TODO add a special everything group?
   }
 
   // Tool interface :
@@ -239,7 +265,7 @@ export class SelectTool implements ITool, IObsItemDestroyed
       Math.min(this.beginSelection.y, this.endSelection.y)
     );
 
-    drawPixi.drawTileRectangle(camera, topLeft, bottomRight, true, 2, 0xFF8526, 0x4C270B, 0.25, 0.8);
+    drawPixi.drawTileRectangle(camera, topLeft, bottomRight, true, 2, 0x4CFF00, 0x2D9600, 0.25, 0.8);
   }
 }
 

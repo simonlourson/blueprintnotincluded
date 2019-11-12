@@ -43,6 +43,7 @@ export class Template
       let oniItem = OniItem.getOniItem(building.id);
 
       let newTemplateItem = Template.createInstance(building.id);
+      if (newTemplateItem == null) continue;
 
       newTemplateItem.importOniBuilding(building);
       
@@ -53,6 +54,9 @@ export class Template
     for (let cell of oniTemplate.cells)
     {
       let newTemplateItem = Template.createInstance(OniItem.elementId);
+      if (newTemplateItem == null) continue;
+      // TODO add a warning on import
+
       newTemplateItem.importOniCell(cell);
 
       let elementAlreadyOnTile: boolean = false;
@@ -79,6 +83,7 @@ export class Template
     for (let building of bniBlueprint.buildings)
     {
       let newTemplateItem = Template.createInstance(building.buildingdef);
+      if (newTemplateItem == null) continue;
 
       newTemplateItem.importBniBuilding(building);
       
@@ -94,6 +99,7 @@ export class Template
     for (let originalTemplateItem of original.templateItems)
     {
       let newTemplateItem = Template.createInstance(originalTemplateItem.id);
+      if (newTemplateItem == null) continue;
 
       newTemplateItem.importFromCloud(originalTemplateItem);
       this.addTemplateItem(newTemplateItem);
@@ -144,6 +150,9 @@ export class Template
   {
     let newTemplateItem;
     let oniItem = OniItem.getOniItem(id);
+
+    if (oniItem == null) return null;
+
     if (oniItem.isWire) newTemplateItem = new TemplateItemWire(id);
     else if (oniItem.isTile) newTemplateItem = new TemplateItemTile(id);
     else if (oniItem.isElement) newTemplateItem = new TemplateItemElement(id);

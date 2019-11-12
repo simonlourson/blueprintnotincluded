@@ -145,12 +145,13 @@ export class OniItem
   public static getOniItem(id: string): OniItem
   {
     let returnValue = OniItem.oniItemsMap.get(id);
+    /*
     if (returnValue == null) 
     {
       returnValue = new OniItem(id);
       returnValue.cleanUp();
     }
-
+*/
     return returnValue;
   }
 }
