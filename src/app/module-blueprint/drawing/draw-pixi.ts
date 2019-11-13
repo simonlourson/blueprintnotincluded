@@ -1,6 +1,6 @@
 import { ElementRef } from "@angular/core";
 import { ComponentCanvasComponent } from "../components/component-canvas/component-canvas.component";
-import { TemplateItem } from "../common/template/template-item";
+import { BlueprintItem } from "../common/blueprint/blueprint-item";
 import { CameraService } from "../services/camera-service";
 import { Vector2 } from "../common/vector2";
 import { SpriteInfo } from './sprite-info';
@@ -82,7 +82,7 @@ export class DrawPixi
     this.backGraphics.lineTo(end.x, end.y);
 
   }
-  drawTemplateItem(templateItem: TemplateItem, camera: CameraService) {
+  drawTemplateItem(templateItem: BlueprintItem, camera: CameraService) {
     
     templateItem.drawPixi(camera, this);
 

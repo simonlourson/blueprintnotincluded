@@ -1,6 +1,6 @@
 import { Vector2 } from "../vector2";
 import { OniItem, AuthorizedOrientations, Orientation } from "../oni-item";
-import { OniBuilding } from "../../oni-import/oni-building";
+import { OniBuilding } from "./io/oni/oni-building";
 import { ImageSource } from "../../drawing/image-source";
 import { SpriteInfo } from "../../drawing/sprite-info";
 import { SpriteModifier } from "../../drawing/sprite-modifier";
@@ -9,20 +9,20 @@ import { ConnectionType, ConnectionHelper } from "../utility-connection";
 import { ZIndex, Overlay } from "../overlay-type";
 import { DrawHelpers } from "../../drawing/draw-helpers";
 import { ComposingElement } from "../composing-element";
-import { Template } from "./template";
+import { Blueprint } from "./blueprint";
 import { TemplateItemCloneable } from "./template-item-cloneable";
-import { OniCell } from "../../oni-import/oni-cell";
+import { OniCell } from "./io/oni/oni-cell";
 import { Container } from 'pixi.js';
 import { DrawPixi } from '../../drawing/draw-pixi';
 import { DrawPart } from '../../drawing/draw-part';
-import { BniBuilding } from '../blueprint-import/bni-building';
+import { BniBuilding } from './io/bni/bni-building';
 import { Inject } from '@angular/core';
 declare var PIXI: any;
 //import { Texture, BaseTexture, Rectangle } from "pixi.js";
 
-export class TemplateItem implements TemplateItemCloneable<TemplateItem>
+export class BlueprintItem implements TemplateItemCloneable<BlueprintItem>
 {
-  public static vacuumItem = new TemplateItem();
+  public static vacuumItem = new BlueprintItem();
   static defaultRotation = 0;
   static defaultScale = Vector2.One;
 
@@ -242,7 +242,7 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
 
   }
 
-    public importFromCloud(original: TemplateItem)
+    public importFromCloud(original: BlueprintItem)
     {
       this.position = Vector2.clone(original.position);
       this.rotation = original.rotation;
@@ -265,17 +265,17 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
 
     public cleanUp()
     {
-      if (this.rotation == null) this.rotation = TemplateItem.defaultRotation;
-      if (this.scale == null) this.scale = TemplateItem.defaultScale;
+      if (this.rotation == null) this.rotation = BlueprintItem.defaultRotation;
+      if (this.scale == null) this.scale = BlueprintItem.defaultScale;
       if (this.element == null) this.element = ComposingElement.unknownElement;
 
       if (this.orientation == null) this.changeOrientation(AuthorizedOrientations.None);
       this.selected_ = false;
     }
   
-  public clone(): TemplateItem
+  public clone(): BlueprintItem
   {
-    let returnValue = new TemplateItem(this.id);
+    let returnValue = new BlueprintItem(this.id);
 
     returnValue.copyFromForExport(this);
     returnValue.cleanUp();
@@ -283,9 +283,9 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
     return returnValue;
   }
 
-  public cloneForExport(): TemplateItem
+  public cloneForExport(): BlueprintItem
   {
-    let returnValue = new TemplateItem(this.id);
+    let returnValue = new BlueprintItem(this.id);
 
     returnValue.copyFromForExport(this);
     returnValue.deleteDefaultForExport()
@@ -293,9 +293,9 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
     return returnValue;
   }
 
-  public cloneForBuilding(): TemplateItem
+  public cloneForBuilding(): BlueprintItem
   {
-    let returnValue = new TemplateItem(this.id);
+    let returnValue = new BlueprintItem(this.id);
 
     returnValue.copyFromForExport(this);
     returnValue.cleanUp();
@@ -303,7 +303,7 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
     return returnValue;
   }
 
-  public copyFromForExport(original: TemplateItem)
+  public copyFromForExport(original: BlueprintItem)
   {
     this.element = original.element;
     this.temperature = original.temperature;
@@ -323,6 +323,7 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
 
     this.selected_ = undefined;
     this.destroyed = undefined;
+    this.isOpaque = undefined;
   }
 
     public prepareBoundingBox()
@@ -357,7 +358,7 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
       );
     }
 
-    public prepareSpriteInfoModifier(blueprint: Template)
+    public prepareSpriteInfoModifier(blueprint: Blueprint)
     {
       // If there is no spriteInfoId, we use the item id to prevent collision between image sizes
       //this.realSpriteInfoId =  this.oniItem.spriteInfoId == null ? this.oniItem.id : this.oniItem.spriteInfoId;
@@ -367,6 +368,8 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
       this.drawPart.prepareSpriteInfoModifier(this.oniItem.spriteModifierId + 'place');
     }
 
+    // This is used by the selection tool to prioritize opaque buildings during selection
+    isOpaque: boolean;
     public prepareOverlayInfo(currentOverlay: Overlay)
     {
       // Special case : we show the buildings in element mode
@@ -375,6 +378,8 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
 
       let isPrimary = currentOverlay == ConnectionHelper.getOverlayFromLayer(this.oniItem.zIndex);
       let isSecondary = currentOverlay == this.oniItem.overlay;
+
+      this.isOpaque = isPrimary || isSecondary;
 
       if (isPrimary || isSecondary) this.drawPart.alpha = 1;
       else this.drawPart.alpha = 0.3;
@@ -448,7 +453,6 @@ export class TemplateItem implements TemplateItemCloneable<TemplateItem>
     private drawPixiUtility(camera: CameraService, drawPixi: DrawPixi)
     {
       if (this.utilitySprites == null) this.utilitySprites = [];
-      
 
       for (let connexionIndex=0; connexionIndex < this.oniItem.utilityConnections.length; connexionIndex++)
       {

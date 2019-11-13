@@ -4,7 +4,7 @@ import { BBuilding } from "../common/bexport/b-building";
 import { BSpriteInfo } from "../common/bexport/b-sprite-info";
 import { ImageSource } from './image-source';
 import { DrawHelpers } from './draw-helpers';
-import { TemplateItemTile } from '../common/template/template-item-tile';
+import { BlueprintItemTile } from '../common/blueprint/blueprint-item-tile';
 declare var PIXI: any;
 
 export class SpriteInfo 

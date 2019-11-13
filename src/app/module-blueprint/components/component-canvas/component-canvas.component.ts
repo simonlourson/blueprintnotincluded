@@ -9,22 +9,22 @@ import { CameraService, IObsOverlayChanged } from 'src/app/module-blueprint/serv
 import { Vector2 } from 'src/app/module-blueprint/common/vector2';
 import { SpriteInfo } from 'src/app/module-blueprint/drawing/sprite-info';
 import { ImageSource } from 'src/app/module-blueprint/drawing/image-source';
-import { OniTemplate } from 'src/app/module-blueprint/oni-import/oni-template';
+import { OniTemplate } from 'src/app/module-blueprint/common/blueprint/io/oni/oni-template';
 import { OniItem } from 'src/app/module-blueprint/common/oni-item';
-import { OniBuilding } from 'src/app/module-blueprint/oni-import/oni-building';
+import { OniBuilding } from 'src/app/module-blueprint/common/blueprint/io/oni/oni-building';
 import { SpriteModifier } from 'src/app/module-blueprint/drawing/sprite-modifier';
 
 
 // PrimeNg imports
 import { TileInfo } from '../../common/tile-info';
-import { Template } from '../../common/template/template';
+import { Blueprint } from '../../common/blueprint/blueprint';
 import { ZIndex, Overlay } from '../../common/overlay-type';
 import { ToolType } from '../../common/tools/tool';
 import { ComponentSideSelectionToolComponent } from '../side-bar/selection-tool/selection-tool.component';
 import { DrawPixi } from '../../drawing/draw-pixi';
 import * as JSZip from 'jszip';
 import { BSpriteInfo } from '../../common/bexport/b-sprite-info';
-import { TemplateItem } from '../../common/template/template-item';
+import { BlueprintItem } from '../../common/blueprint/blueprint-item';
 import { TechnicalRepack } from '../../common/technical-repack';
 import { BlueprintService } from '../../services/blueprint-service';
 import { ToolService } from '../../services/tool-service';
@@ -75,7 +75,7 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy, IObsOverlayC
     this.running = false;
   }
 
-  public loadNewBlueprint(blueprint: Template)
+  public loadNewBlueprint(blueprint: Blueprint)
   {
     // First destroy the old blueprint
     if (this.blueprint != null) this.blueprint.destroy();

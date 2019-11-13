@@ -1,4 +1,4 @@
-import { TemplateItem } from '../template/template-item';
+import { BlueprintItem } from '../blueprint/blueprint-item';
 import { OniItem } from '../oni-item';
 import { CameraService } from '../../services/camera-service';
 import { BlueprintService } from '../../services/blueprint-service';
@@ -17,7 +17,7 @@ export class SameItemCollection
   }
 
   oniItem: OniItem;
-  items: TemplateItem[];
+  items: BlueprintItem[];
 
   constructor() {
     this.items = [];

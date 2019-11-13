@@ -2,7 +2,7 @@ import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { SaveInfo } from '../../../common/save-info';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { BlueprintService } from '../../../services/blueprint-service';
-import { Template } from '../../../common/template/template';
+import { Blueprint } from '../../../common/blueprint/blueprint';
 import { MessageService } from 'primeng/api';
 import { AuthenticationService } from '../../../services/authentification-service';
 
@@ -15,7 +15,7 @@ export class ComponentSaveDialogComponent implements OnInit {
 
   visible: boolean = false;
 
-  @Input() blueprint: Template;
+  @Input() blueprint: Blueprint;
   @Output() onSave = new EventEmitter();
   
   saveBlueprintForm = new FormGroup({

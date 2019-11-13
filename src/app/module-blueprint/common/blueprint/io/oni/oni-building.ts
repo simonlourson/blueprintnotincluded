@@ -1,5 +1,5 @@
-import { TemplateItem } from 'src/app/module-blueprint/common/template/template-item'
-import { Vector2 } from '../common/vector2';
+import { BlueprintItem } from 'src/app/module-blueprint/common/blueprint/blueprint-item'
+import { Vector2 } from '../../../vector2';
 
 export interface OniBuilding
 {

@@ -1,12 +1,12 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { OniItem } from '../../../common/oni-item';
 import {SelectItem} from 'primeng/api';
-import { TemplateItem } from '../../../common/template/template-item';
+import { BlueprintItem } from '../../../common/blueprint/blueprint-item';
 import { ComposingElement } from '../../../common/composing-element';
-import { Template } from '../../../common/template/template';
+import { Blueprint } from '../../../common/blueprint/blueprint';
 import { ToolType } from '../../../common/tools/tool';
 import { TileInfo } from '../../../common/tile-info';
-import { TemplateItemWire } from '../../../common/template/template-item-wire';
+import { BlueprintItemWire } from '../../../common/blueprint/blueprint-item-wire';
 import { CameraService } from '../../../services/camera-service';
 import { Vector2 } from '../../../common/vector2';
 import { DrawHelpers } from '../../../drawing/draw-helpers';
@@ -86,11 +86,11 @@ export class ComponentSideBuildToolComponent implements OnInit, IObsBuildItemCha
 
   uiItemChanged()
   {
-    this.toolService.buildTool.changeItem(Template.createInstance(this.currentItem.id));
+    this.toolService.buildTool.changeItem(Blueprint.createInstance(this.currentItem.id));
   }
 
   // IObsBuildItemChanged
-  itemChanged(templateItem: TemplateItem) {
+  itemChanged(templateItem: BlueprintItem) {
     let category = BuildMenuCategory.getCategoryFromItem(templateItem.oniItem);
     if (category != null) {
       this.currentCategory = category;
@@ -107,7 +107,7 @@ export class ComponentSideBuildToolComponent implements OnInit, IObsBuildItemCha
     if (toolType == ToolType.build) this.uiItemChanged();
   }
 
-  setOriginal(templateItem: TemplateItem)
+  setOriginal(templateItem: BlueprintItem)
   {
     // TODO in setTemplateItem
     //this.currentCategory = templateItem.oniItem.category;
@@ -139,7 +139,7 @@ export class ComponentSideBuildToolComponent implements OnInit, IObsBuildItemCha
   ************************/
   toolType = ToolType.build;
   
-  setTemplateItem(templateItem: TemplateItem) 
+  setTemplateItem(templateItem: BlueprintItem) 
   {
     /*
     // TODO fixme
@@ -151,17 +151,17 @@ export class ComponentSideBuildToolComponent implements OnInit, IObsBuildItemCha
     */
   }
 
-  leftMouseDown(blueprint: Template, tile: Vector2) 
+  leftMouseDown(blueprint: Blueprint, tile: Vector2) 
   {
     //this.build(blueprint);
   }
 
-  leftMouseUp(blueprint: Template, tile: Vector2) 
+  leftMouseUp(blueprint: Blueprint, tile: Vector2) 
   {
     // TODO tentative placement, build on leftMouseUp
   }
 
-  changeTileDrag(blueprint: Template, previousTileDrag: Vector2, currentTileDrag: Vector2)
+  changeTileDrag(blueprint: Blueprint, previousTileDrag: Vector2, currentTileDrag: Vector2)
   {
     //console.log("Start drag from " + JSON.stringify(previousTileDrag) + ' to ' + JSON.stringify(currentTileDrag));
     /*
@@ -195,7 +195,7 @@ export class ComponentSideBuildToolComponent implements OnInit, IObsBuildItemCha
     this.unitChangeTileDrag(blueprint, previousTileDrag, currentTileDrag);
   }
 
-  unitChangeTileDrag(blueprint: Template, previousTileDrag: Vector2, currentTileDrag: Vector2)
+  unitChangeTileDrag(blueprint: Blueprint, previousTileDrag: Vector2, currentTileDrag: Vector2)
   {
     //this.templateItemToBuild.position = currentTileDrag;
     //this.build(blueprint);

@@ -1,8 +1,8 @@
-import { Template } from "./template/template";
+import { Blueprint } from "./blueprint/blueprint";
 
 export class SaveInfo
 {
   username: string;
   blueprintName: string;
-  blueprint: Template;
+  blueprint: Blueprint;
 }

@@ -1,4 +1,4 @@
-import { OniBuilding } from "../../oni-import/oni-building";
+import { OniBuilding } from "./io/oni/oni-building";
 
 export interface TemplateItemCloneable<T>
 {

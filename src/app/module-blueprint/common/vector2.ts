@@ -31,6 +31,14 @@ export class Vector2
       return returnValue;
     }
 
+    get length(): number {
+      return Math.sqrt(this.lengthSquared);
+    }
+
+    get lengthSquared(): number {
+      return this.x * this.x + this.y * this.y;
+    }
+
     static clone(original: Vector2): Vector2
     {
       if (original == null) return null;

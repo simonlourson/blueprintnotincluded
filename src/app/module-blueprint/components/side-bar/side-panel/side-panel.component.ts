@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild, AfterViewInit, ChangeDetectorRef, Output, EventEmitter } from '@angular/core';
-import { OniBuilding } from '../../../oni-import/oni-building';
+import { OniBuilding } from '../../../common/blueprint/io/oni/oni-building';
 import { Dialog } from 'primeng/dialog';
 import { Accordion, AccordionTab } from 'primeng/accordion';
 import { TileInfo } from '../../../common/tile-info';
-import { OniCell } from '../../../oni-import/oni-cell';
-import { TemplateItem } from '../../../common/template/template-item';
+import { OniCell } from '../../../common/blueprint/io/oni/oni-cell';
+import { BlueprintItem } from '../../../common/blueprint/blueprint-item';
 import { ComponentSideSelectionToolComponent } from '../selection-tool/selection-tool.component';
 import { ToolType } from '../../../common/tools/tool';
 import { ComponentSideBuildToolComponent } from '../build-tool/build-tool.component';
@@ -31,7 +31,7 @@ export class ComponentSidepanelComponent implements OnInit {
   @ViewChild('buildTool', {static: true})
   buildTool: ComponentSideBuildToolComponent
 
-  @Output() onDestroyTemplateItem = new EventEmitter<TemplateItem>();
+  @Output() onDestroyTemplateItem = new EventEmitter<BlueprintItem>();
 
   constructor(private toolService: ToolService) { 
     

@@ -5,9 +5,9 @@ import { setDefaultService } from 'selenium-webdriver/opera';
 import { ZIndex, Overlay } from '../../common/overlay-type';
 import { OniItem } from '../../common/oni-item';
 import { ToolType } from '../../common/tools/tool';
-import { TemplateItem } from '../../common/template/template-item';
+import { BlueprintItem } from '../../common/blueprint/blueprint-item';
 import { AuthenticationService } from '../../services/authentification-service';
-import { Template } from '../../common/template/template';
+import { Blueprint } from '../../common/blueprint/blueprint';
 import { BehaviorSubject } from 'rxjs';
 import { ToolService, ToolRequest, IObsToolChanged } from '../../services/tool-service';
 import { CameraService, IObsOverlayChanged } from '../../services/camera-service';
@@ -128,7 +128,7 @@ export class ComponentMenuComponent implements OnInit, IObsToolChanged, IObsOver
     }   
   }
 
-  clickTool(event: any, templateItem: TemplateItem = null)
+  clickTool(event: any, templateItem: BlueprintItem = null)
   {
     this.toolService.changeTool(event.item.id as ToolType);
   }

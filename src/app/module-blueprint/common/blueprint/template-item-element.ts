@@ -1,14 +1,14 @@
 import { Vector2 } from "../vector2";
-import { Template } from "./template";
-import { TemplateItem } from "./template-item";
+import { Blueprint } from "./blueprint";
+import { BlueprintItem } from "./blueprint-item";
 import { TemplateItemCloneable } from "./template-item-cloneable";
 import { CameraService } from "../../services/camera-service";
-import { OniCell } from "../../oni-import/oni-cell";
-import { OniBuilding } from "../../oni-import/oni-building";
+import { OniCell } from "./io/oni/oni-cell";
+import { OniBuilding } from "./io/oni/oni-building";
 import { ZIndex, Overlay } from "../overlay-type";
 import { DrawHelpers } from "../../drawing/draw-helpers";
 
-export class TemplateItemElement extends TemplateItem implements TemplateItemCloneable<TemplateItemElement>
+export class TemplateItemElement extends BlueprintItem implements TemplateItemCloneable<TemplateItemElement>
 {
 
   mass: number;

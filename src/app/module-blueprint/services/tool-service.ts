@@ -5,7 +5,7 @@ import { Vector2 } from '../common/vector2';
 import { DrawPixi } from '../drawing/draw-pixi';
 import { CameraService } from './camera-service';
 import { BuildTool } from '../common/tools/build-tool';
-import { TemplateItem } from '../common/template/template-item';
+import { BlueprintItem } from '../common/blueprint/blueprint-item';
 
 @Injectable({ providedIn: 'root' })
 export class ToolService implements ITool, IChangeTool
@@ -75,7 +75,7 @@ export class ToolService implements ITool, IChangeTool
 export class ToolRequest
 {
   toolType: ToolType;
-  templateItem: TemplateItem;
+  templateItem: BlueprintItem;
 }
 
 export interface IObsToolChanged

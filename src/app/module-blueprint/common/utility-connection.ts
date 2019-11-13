@@ -96,10 +96,28 @@ export class ConnectionHelper
       case ZIndex.LogicWires:
       case ZIndex.LogicGates:
       case ZIndex.LogicGatesFront: return Overlay.Automation;
+      case ZIndex.InteriorWall:
+      case ZIndex.InteriorWall:
+      case ZIndex.GasFront:
+      case ZIndex.BuildingBack:
+      case ZIndex.Building:
+      case ZIndex.BuildingUse:
+      case ZIndex.BuildingFront:
+      case ZIndex.TransferArm:
+      case ZIndex.Ore:
+      case ZIndex.Creatures:
+      case ZIndex.Move:
+      case ZIndex.Front:
+      case ZIndex.GlassTile:
+      case ZIndex.Liquid:
+      case ZIndex.Ground:
+      case ZIndex.TileMain:
+      case ZIndex.TileFront:
+      case ZIndex.FXFront:
+      case ZIndex.FXFront2:
+      case ZIndex.SceneMAX: return Overlay.Base;
       default: return Overlay.Base;
     }
-
-    // TODO finish
   }
 }
     

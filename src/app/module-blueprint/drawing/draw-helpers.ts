@@ -98,6 +98,13 @@ export class DrawHelpers
     );
   }
 
+  public static getFloorTile(floatTile: Vector2): Vector2 {
+    return new Vector2(
+      Math.floor(floatTile.x),
+      Math.floor(floatTile.y)
+    );
+  }
+
   public static generateTileSpriteInfo(kanimPrefix: string, textureName: string): BSpriteInfo[]
   {
     let returnValue: BSpriteInfo[] = []

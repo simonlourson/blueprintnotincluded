@@ -6,14 +6,14 @@ import {BinaryReader, Encoding} from 'csharp-binary-stream';
 
 // Library imports
 import * as yaml from 'node_modules/js-yaml/lib/js-yaml';
-import { OniTemplate } from '../../oni-import/oni-template';
+import { OniTemplate } from '../../common/blueprint/io/oni/oni-template';
 import { TileInfo } from '../../common/tile-info';
 import { ComponentSidepanelComponent } from '../side-bar/side-panel/side-panel.component';
 import { OniItem, AuthorizedOrientations } from '../../common/oni-item';
 import { ImageSource } from '../../drawing/image-source';
 import { Vector2 } from '../../common/vector2';
 import { SpriteInfo } from '../../drawing/sprite-info';
-import { Template } from '../../common/template/template';
+import { Blueprint } from '../../common/blueprint/blueprint';
 import { SpriteModifier } from '../../drawing/sprite-modifier';
 import { ConnectionType } from '../../common/utility-connection';
 import { ZIndex, Overlay } from '../../common/overlay-type';
@@ -23,14 +23,14 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { BlueprintParams } from '../../common/params';
 import { ComponentMenuComponent, MenuCommand, MenuCommandType } from '../component-menu/component-menu.component';
 import { ToolType } from '../../common/tools/tool';
-import { TemplateItem } from '../../common/template/template-item';
+import { BlueprintItem } from '../../common/blueprint/blueprint-item';
 import { ComponentElementKeyPanelComponent } from '../component-element-key-panel/component-element-key-panel.component';
-import { TemplateItemTile } from '../../common/template/template-item-tile';
+import { BlueprintItemTile } from '../../common/blueprint/blueprint-item-tile';
 import { BuildMenuCategory, BuildMenuItem } from '../../common/bexport/b-build-order';
 import { BBuilding } from '../../common/bexport/b-building';
 import { BSpriteInfo } from '../../common/bexport/b-sprite-info';
 import { BSpriteModifier } from '../../common/bexport/b-sprite-modifier';
-import { BniBlueprint } from '../../common/blueprint-import/bni-blueprint';
+import { BniBlueprint } from '../../common/blueprint/io/bni/bni-blueprint';
 import { ComponentLoginDialogComponent } from '../user-auth/login-dialog/login-dialog.component';
 import { LoginInfo } from '../../common/api/login-info';
 import { BlueprintService } from '../../services/blueprint-service';
@@ -105,7 +105,7 @@ export class ComponentBlueprintParentComponent implements OnInit {
 
   }
 
-  handleGetBlueprint(response: Template)
+  handleGetBlueprint(response: Blueprint)
   {
     this.loadTemplateIntoCanvas(response);
     /*
@@ -171,7 +171,7 @@ export class ComponentBlueprintParentComponent implements OnInit {
 
   menuCommand(menuCommand: MenuCommand)
   {
-    if (menuCommand.type == MenuCommandType.newBlueprint) this.loadTemplateIntoCanvas(new Template());
+    if (menuCommand.type == MenuCommandType.newBlueprint) this.loadTemplateIntoCanvas(new Blueprint());
     else if (menuCommand.type == MenuCommandType.showLoginDialog) this.openLoginDialog();
     else if (menuCommand.type == MenuCommandType.saveBlueprint) this.saveToCloud();
     else if (menuCommand.type == MenuCommandType.getShareableUrl) this.getShareableUrl();
@@ -180,7 +180,7 @@ export class ComponentBlueprintParentComponent implements OnInit {
     
   }
 
-  loadTemplateIntoCanvas(template: Template)
+  loadTemplateIntoCanvas(template: Blueprint)
   {
     this.canvas.loadNewBlueprint(template);
     this.menu.clickOverlay({item:{id:Overlay.Base}});
@@ -296,7 +296,7 @@ export class ComponentBlueprintParentComponent implements OnInit {
   {
     let templateYaml: OniTemplate = yaml.safeLoad(template);
 
-    let newBlueprint = new Template();
+    let newBlueprint = new Blueprint();
     newBlueprint.importOniTemplate(templateYaml);
     
     this.loadTemplateIntoCanvas(newBlueprint);
@@ -306,7 +306,7 @@ export class ComponentBlueprintParentComponent implements OnInit {
   {
     let templateJson: BniBlueprint = JSON.parse(template);
 
-    let newBlueprint = new Template();
+    let newBlueprint = new Blueprint();
     newBlueprint.importBniBlueprint(templateJson);
     
     this.loadTemplateIntoCanvas(newBlueprint);
@@ -314,7 +314,7 @@ export class ComponentBlueprintParentComponent implements OnInit {
 
   loadTemplateBson(template: ArrayBuffer)
   {
-    let newBlueprint = new Template();
+    let newBlueprint = new Blueprint();
     newBlueprint.importFromBinary(template);
     
     this.loadTemplateIntoCanvas(newBlueprint);

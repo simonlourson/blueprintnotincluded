@@ -1,24 +1,24 @@
-import {OniBuilding} from '../../oni-import/oni-building'
-import {OniCell} from '../../oni-import/oni-cell'
-import { OniTemplate } from '../../oni-import/oni-template';
+import {OniBuilding} from './io/oni/oni-building'
+import {OniCell} from './io/oni/oni-cell'
+import { OniTemplate } from './io/oni/oni-template';
 import { OniItem } from '../oni-item';
 import { Vector2 } from '../vector2';
 import { ZIndex, Overlay } from '../overlay-type';
-import { TemplateItem } from './template-item';
-import { TemplateItemWire } from "./template-item-wire";
-import { TemplateItemTile } from "./template-item-tile";
+import { BlueprintItem } from './blueprint-item';
+import { BlueprintItemWire } from "./blueprint-item-wire";
+import { BlueprintItemTile } from "./blueprint-item-tile";
 import { TemplateItemElement } from './template-item-element';
 import { ComposingElement } from '../composing-element';
-import { BniBlueprint } from '../blueprint-import/bni-blueprint';
+import { BniBlueprint } from './io/bni/bni-blueprint';
 import { BinaryReader, Encoding } from 'csharp-binary-stream';
-import { BniBuilding } from '../blueprint-import/bni-building';
+import { BniBuilding } from './io/bni/bni-building';
 
-export class Template
+export class Blueprint
 {
   id: string;
   name: string;
-  templateItems: TemplateItem[];
-  templateTiles: TemplateItem[][];
+  templateItems: BlueprintItem[];
+  templateTiles: BlueprintItem[][];
 
   innerYaml: any;
 
@@ -42,7 +42,7 @@ export class Template
     {
       let oniItem = OniItem.getOniItem(building.id);
 
-      let newTemplateItem = Template.createInstance(building.id);
+      let newTemplateItem = Blueprint.createInstance(building.id);
       if (newTemplateItem == null) continue;
 
       newTemplateItem.importOniBuilding(building);
@@ -53,7 +53,7 @@ export class Template
     // Copy the cells
     for (let cell of oniTemplate.cells)
     {
-      let newTemplateItem = Template.createInstance(OniItem.elementId);
+      let newTemplateItem = Blueprint.createInstance(OniItem.elementId);
       if (newTemplateItem == null) continue;
       // TODO add a warning on import
 
@@ -82,7 +82,7 @@ export class Template
 
     for (let building of bniBlueprint.buildings)
     {
-      let newTemplateItem = Template.createInstance(building.buildingdef);
+      let newTemplateItem = Blueprint.createInstance(building.buildingdef);
       if (newTemplateItem == null) continue;
 
       newTemplateItem.importBniBuilding(building);
@@ -91,14 +91,14 @@ export class Template
     }
   }
 
-  public importFromCloud(original: Template)
+  public importFromCloud(original: Blueprint)
   {
     this.name = original.name;
     this.templateItems = [];
 
     for (let originalTemplateItem of original.templateItems)
     {
-      let newTemplateItem = Template.createInstance(originalTemplateItem.id);
+      let newTemplateItem = Blueprint.createInstance(originalTemplateItem.id);
       if (newTemplateItem == null) continue;
 
       newTemplateItem.importFromCloud(originalTemplateItem);
@@ -146,17 +146,17 @@ export class Template
 
   }
 
-  static createInstance(id: string): TemplateItem
+  static createInstance(id: string): BlueprintItem
   {
     let newTemplateItem;
     let oniItem = OniItem.getOniItem(id);
 
     if (oniItem == null) return null;
 
-    if (oniItem.isWire) newTemplateItem = new TemplateItemWire(id);
-    else if (oniItem.isTile) newTemplateItem = new TemplateItemTile(id);
+    if (oniItem.isWire) newTemplateItem = new BlueprintItemWire(id);
+    else if (oniItem.isTile) newTemplateItem = new BlueprintItemTile(id);
     else if (oniItem.isElement) newTemplateItem = new TemplateItemElement(id);
-    else newTemplateItem = new TemplateItem(id);
+    else newTemplateItem = new BlueprintItem(id);
   
     return newTemplateItem;
   }
@@ -182,7 +182,7 @@ export class Template
         this.distinctElements.push(templateItem.element)
   }
 
-  public addTemplateItem(templateItem: TemplateItem)
+  public addTemplateItem(templateItem: BlueprintItem)
   {
     this.templateItems.push(templateItem);
     templateItem.tileIndexes = [];
@@ -201,7 +201,7 @@ export class Template
     return (position.x + 500) + 1001 * (position.y + 500);;
   }
 
-  public getTemplateItemsAt(position: Vector2): TemplateItem[]
+  public getTemplateItemsAt(position: Vector2): BlueprintItem[]
   {
     if (this.templateTiles == null) this.templateTiles = [];
 
@@ -222,7 +222,7 @@ export class Template
     this.obeserversItemDestroyed.push(observer);
   }
 
-  public destroyTemplateItemsAt(position: Vector2): TemplateItem[]
+  public destroyTemplateItemsAt(position: Vector2): BlueprintItem[]
   {
     if (this.templateTiles == null) this.templateTiles = [];
 
@@ -238,9 +238,9 @@ export class Template
     return returnValue;
   }
     
-  public cloneForExport(): Template
+  public cloneForExport(): Blueprint
   {
-    let returnValue = new Template();
+    let returnValue = new Blueprint();
     returnValue.name = this.name;
     returnValue.id = undefined;
     returnValue.templateItems = [];
@@ -257,7 +257,7 @@ export class Template
   }
 
 
-  public destroyTemplateItem(templateItem: TemplateItem)
+  public destroyTemplateItem(templateItem: BlueprintItem)
   {
     // First remove from the tilemap
     if (templateItem.tileIndexes != null && templateItem.tileIndexes.length > 0)

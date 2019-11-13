@@ -1,11 +1,11 @@
 import { Vector2 } from "../vector2";
-import { Template } from "./template";
-import { TemplateItem } from "./template-item";
+import { Blueprint } from "./blueprint";
+import { BlueprintItem } from "./blueprint-item";
 import { TemplateItemCloneable } from "./template-item-cloneable";
 import { DrawHelpers } from '../../drawing/draw-helpers';
 import { DrawPart } from '../../drawing/draw-part';
 
-export class TemplateItemTile extends TemplateItem implements TemplateItemCloneable<TemplateItemTile>
+export class BlueprintItemTile extends BlueprintItem implements TemplateItemCloneable<BlueprintItemTile>
 {
 
   tileConnections: number;
@@ -15,9 +15,9 @@ export class TemplateItemTile extends TemplateItem implements TemplateItemClonea
     super(id);
   }
 
-  public clone(): TemplateItemTile
+  public clone(): BlueprintItemTile
   {
-    let returnValue = new TemplateItemTile(this.id);
+    let returnValue = new BlueprintItemTile(this.id);
 
     returnValue.copyFromForExport(this);
     returnValue.cleanUp();
@@ -25,9 +25,9 @@ export class TemplateItemTile extends TemplateItem implements TemplateItemClonea
     return returnValue;
   }
 
-  public cloneForExport(): TemplateItemTile
+  public cloneForExport(): BlueprintItemTile
   {
-    let returnValue = new TemplateItemTile(this.id);
+    let returnValue = new BlueprintItemTile(this.id);
 
     returnValue.copyFromForExport(this);
     returnValue.deleteDefaultForExport()
@@ -35,9 +35,9 @@ export class TemplateItemTile extends TemplateItem implements TemplateItemClonea
     return returnValue;
   }
 
-  public cloneForBuilding(): TemplateItemTile
+  public cloneForBuilding(): BlueprintItemTile
   {
-    let returnValue = new TemplateItemTile(this.id);
+    let returnValue = new BlueprintItemTile(this.id);
 
     returnValue.copyFromForExport(this);
     returnValue.cleanUp();
@@ -45,7 +45,7 @@ export class TemplateItemTile extends TemplateItem implements TemplateItemClonea
     return returnValue;
   }
 
-  public prepareSpriteInfoModifier(blueprint: Template)
+  public prepareSpriteInfoModifier(blueprint: Blueprint)
   {
     this.updateTileConnections(blueprint);
 
@@ -53,7 +53,7 @@ export class TemplateItemTile extends TemplateItem implements TemplateItemClonea
 
   }
 
-  public updateTileConnections(blueprint: Template)
+  public updateTileConnections(blueprint: Blueprint)
   {
     this.tileConnections = 0;
 

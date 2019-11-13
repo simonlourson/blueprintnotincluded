@@ -1,8 +1,8 @@
 import { Component, OnInit, ChangeDetectorRef, Output, EventEmitter } from '@angular/core';
 import { TileInfo } from '../../../common/tile-info';
-import { TemplateItem } from '../../../common/template/template-item';
+import { BlueprintItem } from '../../../common/blueprint/blueprint-item';
 import { ToolType } from '../../../common/tools/tool';
-import { Template } from '../../../common/template/template';
+import { Blueprint } from '../../../common/blueprint/blueprint';
 import { Vector2 } from '../../../common/vector2';
 import { CameraService } from '../../../services/camera-service';
 import { BlueprintService } from '../../../services/blueprint-service';

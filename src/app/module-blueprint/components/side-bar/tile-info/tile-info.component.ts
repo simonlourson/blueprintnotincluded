@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter, OnDestroy, ChangeDetectorRef } from '@angular/core';
-import { TemplateItem } from '../../../common/template/template-item';
+import { BlueprintItem } from '../../../common/blueprint/blueprint-item';
 import { ComposingElement } from '../../../common/composing-element';
-import { TemplateItemWire } from '../../../common/template/template-item-wire';
+import { BlueprintItemWire } from '../../../common/blueprint/blueprint-item-wire';
 import { AuthorizedOrientations } from '../../../common/oni-item';
 import { SelectItem } from 'primeng/api';
 import { ToolType } from '../../../common/tools/tool';
@@ -16,10 +16,10 @@ import { ToolService } from 'src/app/module-blueprint/services/tool-service';
 export class TileInfoComponent implements OnInit, OnDestroy {
 
 
-  @Input() templateItem: TemplateItem;
+  @Input() templateItem: BlueprintItem;
 
   get elements() { return ComposingElement.elements; }
-  get showColor() { return this.templateItem instanceof TemplateItemWire }
+  get showColor() { return this.templateItem instanceof BlueprintItemWire }
   get showOrientation() { return this.templateItem.oniItem.orientations.length > 1 }
 
 

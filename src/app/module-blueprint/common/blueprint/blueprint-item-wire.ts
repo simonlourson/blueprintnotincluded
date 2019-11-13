@@ -1,8 +1,8 @@
 import { Vector2 } from "../vector2";
 import { OniItem } from "../oni-item";
-import { OniBuilding } from "../../oni-import/oni-building";
-import { Template } from "./template";
-import { TemplateItem } from "./template-item";
+import { OniBuilding } from "./io/oni/oni-building";
+import { Blueprint } from "./blueprint";
+import { BlueprintItem } from "./blueprint-item";
 import { SpriteModifier } from "../../drawing/sprite-modifier";
 import { CameraService } from "../../services/camera-service";
 import { SpriteInfo } from "../../drawing/sprite-info";
@@ -12,9 +12,9 @@ import { TemplateItemCloneable } from "./template-item-cloneable";
 import { DrawPixi } from '../../drawing/draw-pixi';
 import { DrawPart } from '../../drawing/draw-part';
 import { Overlay } from '../overlay-type';
-import { BniBuilding } from '../blueprint-import/bni-building';
+import { BniBuilding } from './io/bni/bni-building';
 
-export class TemplateItemWire extends TemplateItem implements TemplateItemCloneable<TemplateItemWire>
+export class BlueprintItemWire extends BlueprintItem implements TemplateItemCloneable<BlueprintItemWire>
 {
   static defaultConnections = 0;
   connections: number;
@@ -34,32 +34,32 @@ export class TemplateItemWire extends TemplateItem implements TemplateItemClonea
   {
       super.importOniBuilding(building);
       
-      this.connections = building.connections == null ? TemplateItemWire.defaultConnections : building.connections
+      this.connections = building.connections == null ? BlueprintItemWire.defaultConnections : building.connections
   }
 
   public importBniBuilding(building: BniBuilding)
   {
       super.importBniBuilding(building);
       
-      this.connections = building.flags == null ? TemplateItemWire.defaultConnections : building.flags
+      this.connections = building.flags == null ? BlueprintItemWire.defaultConnections : building.flags
   }
 
-  public importFromCloud(original: TemplateItem)
+  public importFromCloud(original: BlueprintItem)
   {
-    let originalCast = original as TemplateItemWire;
+    let originalCast = original as BlueprintItemWire;
     this.connections = originalCast.connections;
     super.importFromCloud(original);
   }
 
   public cleanUp()
   {
-    if (this.connections == null) this.connections = TemplateItemWire.defaultConnections;
+    if (this.connections == null) this.connections = BlueprintItemWire.defaultConnections;
     super.cleanUp();
   }
 
-  public clone(): TemplateItemWire
+  public clone(): BlueprintItemWire
   {
-    let returnValue = new TemplateItemWire(this.id);
+    let returnValue = new BlueprintItemWire(this.id);
 
     returnValue.copyFromForExport(this);
     returnValue.cleanUp();
@@ -67,9 +67,9 @@ export class TemplateItemWire extends TemplateItem implements TemplateItemClonea
     return returnValue;
   }
 
-  public cloneForExport(): TemplateItemWire
+  public cloneForExport(): BlueprintItemWire
   {
-    let returnValue = new TemplateItemWire(this.id);
+    let returnValue = new BlueprintItemWire(this.id);
 
     returnValue.copyFromForExport(this);
     returnValue.deleteDefaultForExport()
@@ -77,9 +77,9 @@ export class TemplateItemWire extends TemplateItem implements TemplateItemClonea
     return returnValue;
   }
 
-  public cloneForBuilding(): TemplateItemWire
+  public cloneForBuilding(): BlueprintItemWire
   {
-    let returnValue = new TemplateItemWire(this.id);
+    let returnValue = new BlueprintItemWire(this.id);
 
     returnValue.copyFromForExport(this);
     returnValue.connections = 0;
@@ -105,7 +105,7 @@ export class TemplateItemWire extends TemplateItem implements TemplateItemClonea
   }
   */
 
-  public copyFromForExport(original: TemplateItemWire)
+  public copyFromForExport(original: BlueprintItemWire)
   {
     this.connections = original.connections;
     super.copyFromForExport(original);
@@ -113,11 +113,11 @@ export class TemplateItemWire extends TemplateItem implements TemplateItemClonea
 
   public deleteDefaultForExport()
   {
-    if (TemplateItemWire.defaultConnections == this.connections) this.connections = undefined;
+    if (BlueprintItemWire.defaultConnections == this.connections) this.connections = undefined;
     super.deleteDefaultForExport();
   }
 
-  public prepareSpriteInfoModifier(blueprint: Template)
+  public prepareSpriteInfoModifier(blueprint: Blueprint)
   {
     this.drawPart.prepareSpriteInfoModifier(this.oniItem.spriteModifierId + DrawHelpers.connectionString[this.connections]);
     this.drawPartSolid.prepareSpriteInfoModifier(this.oniItem.spriteModifierId + DrawHelpers.connectionStringSolid[this.connections]);

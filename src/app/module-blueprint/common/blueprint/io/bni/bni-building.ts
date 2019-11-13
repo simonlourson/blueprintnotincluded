@@ -1,5 +1,5 @@
-import { Vector2 } from '../vector2';
-import { Orientation } from '../oni-item';
+import { Vector2 } from '../../../vector2';
+import { Orientation } from '../../../oni-item';
 
 export class BniBuilding
 {

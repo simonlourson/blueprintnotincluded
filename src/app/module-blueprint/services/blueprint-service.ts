@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Template } from '../common/template/template';
+import { Blueprint } from '../common/blueprint/blueprint';
 import { AuthenticationService } from './authentification-service';
 import { map } from 'rxjs/operators';
 import { IObsOverlayChanged, CameraService } from './camera-service';
@@ -12,12 +12,12 @@ export class BlueprintService implements IObsOverlayChanged
   static baseUrl: string = 'blueprintnotincluded.com/';
 
   // TODO observable when modified, to be subscribed by the canvas
-  blueprint: Template;
+  blueprint: Blueprint;
 
   static blueprintService: BlueprintService;
 
   constructor(private http: HttpClient, private authService: AuthenticationService, private cameraService: CameraService) {
-    this.blueprint = new Template();
+    this.blueprint = new Blueprint();
 
     this.cameraService.subscribeOverlayChange(this);
 
@@ -33,7 +33,7 @@ export class BlueprintService implements IObsOverlayChanged
     const request = this.http.get(`/api/getblueprint/${id}`).pipe(
       map((response: any) => {
         if (response.data) {
-          let blueprint = new Template();
+          let blueprint = new Blueprint();
 
           blueprint.id = response._id;
           blueprint.importFromCloud(response.data);
@@ -45,7 +45,7 @@ export class BlueprintService implements IObsOverlayChanged
     return request;
   }
 
-  saveBlueprint(blueprint: Template, overwrite: boolean)
+  saveBlueprint(blueprint: Blueprint, overwrite: boolean)
   {
     let saveBlueprint = blueprint.cloneForExport();
 
@@ -70,5 +70,5 @@ export class SaveBlueprintMessage
   overwrite: boolean;
   name: string;
   tags?: string[];
-  blueprint: Template;
+  blueprint: Blueprint;
 }

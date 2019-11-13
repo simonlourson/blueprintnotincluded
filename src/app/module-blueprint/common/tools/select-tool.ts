@@ -1,5 +1,5 @@
 import { BlueprintService } from '../../services/blueprint-service';
-import { TemplateItem } from '../template/template-item';
+import { BlueprintItem } from '../blueprint/blueprint-item';
 import { Vector2 } from '../vector2';
 import { Injectable, ChangeDetectorRef } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -7,9 +7,11 @@ import { ITool, IChangeTool } from './tool';
 import { DrawPixi } from '../../drawing/draw-pixi';
 import { CameraService } from '../../services/camera-service';
 import { ConnectionHelper } from '../utility-connection';
-import { IObsItemDestroyed } from '../template/template';
+import { IObsItemDestroyed } from '../blueprint/blueprint';
 import { DrawHelpers } from '../../drawing/draw-helpers';
 import { SameItemCollection } from './same-item-collection';
+import { OniItem } from '../oni-item';
+import { BuildTool } from './build-tool';
 
 @Injectable()
 export class SelectTool implements ITool, IObsItemDestroyed
@@ -18,7 +20,7 @@ export class SelectTool implements ITool, IObsItemDestroyed
   public selectionType: SelectionType;
   get isSingle() {return this.selectionType == SelectionType.Single;}
   get isMultiple() {return this.selectionType == SelectionType.Multiple;}
-  public templateItemsToShow: TemplateItem[];
+  public templateItemsToShow: BlueprintItem[];
   public sameItemCollections: SameItemCollection[];
 
   private observers: IObsTemplateItemChanged[];
@@ -81,10 +83,9 @@ export class SelectTool implements ITool, IObsItemDestroyed
         if (this.templateItemsToShow.filter((item) => { return item.oniItem.id == oldSelected.oniItem.id; }).length > 0)
           newSelected = this.templateItemsToShow.filter((item) => { return item.oniItem.id == oldSelected.oniItem.id; })[0];
 
-        // Is there an item in the new selected with the same overlay as the old selected?
-        // TODO this might not work
-        if (newSelected == null && this.templateItemsToShow.filter((item) => { return item.oniItem.overlay == oldSelected.oniItem.overlay || ConnectionHelper.getOverlayFromLayer(item.oniItem.zIndex) == oldSelected.overlay; }).length > 0)
-          newSelected = this.templateItemsToShow.filter((item) => { return item.oniItem.overlay == oldSelected.oniItem.overlay || ConnectionHelper.getOverlayFromLayer(item.oniItem.zIndex) == oldSelected.overlay; })[0];
+        // Is there an item in the new selected with the same overlay as the current ?
+        if (newSelected == null && this.templateItemsToShow.filter((item) => { return item.isOpaque; }).length > 0)
+          newSelected = this.templateItemsToShow.filter((item) => { return item.isOpaque; })[0];
       }
 
       let nbNext = 0;
@@ -126,6 +127,14 @@ export class SelectTool implements ITool, IObsItemDestroyed
         itemCollection.selected = false;
   }
 
+  topLeft: Vector2;
+  bottomRight: Vector2;
+  rememberMultipleSelectionIndex: number;
+  rememberExclusions: OniItem[];
+  clampRememberMultipleSelectionIndex() {
+    // Clamping, in case the items deleted were the last in the list
+    if (this.rememberMultipleSelectionIndex >= this.sameItemCollections.length) this.rememberMultipleSelectionIndex = this.sameItemCollections.length - 1;
+  }
   doMultipleSelect()
   {
     // TODO does not work in reverse
@@ -135,20 +144,33 @@ export class SelectTool implements ITool, IObsItemDestroyed
       let beginTile = DrawHelpers.getIntegerTile(this.beginSelection);
       let endTile = DrawHelpers.getIntegerTile(this.endSelection);
 
-      let topLeft = new Vector2(
+      this.topLeft = new Vector2(
         Math.min(beginTile.x, endTile.x),
         Math.max(beginTile.y, endTile.y)
       );
   
-      let bottomRight = new Vector2(
+      this.bottomRight = new Vector2(
         Math.max(beginTile.x, endTile.x),
         Math.min(beginTile.y, endTile.y)
       );
 
+      this.rememberMultipleSelectionIndex = 0;
+      this.rememberExclusions = [];
+
+      this.updateMultipleSelect();
+    }
+  }
+
+  updateMultipleSelect() {
+
+    this.deselectAll();
+    this.sameItemCollections = [];
+
+    if (this.topLeft != null && this.bottomRight != null) {
       let tileSelected: Vector2[] = [];
-      
-      for (let x = topLeft.x; x <= bottomRight.x; x++)
-        for (let y = topLeft.y; y >= bottomRight.y; y--)
+        
+      for (let x = this.topLeft.x; x <= this.bottomRight.x; x++)
+        for (let y = this.topLeft.y; y >= this.bottomRight.y; y--)
           tileSelected.push(new Vector2(x, y));
         
 
@@ -157,13 +179,11 @@ export class SelectTool implements ITool, IObsItemDestroyed
         this.updateSelectionTool(tileSelected[0]);
       }
       else {
-        this.deselectAll();
-        this.sameItemCollections = [];
         this.selectionType = SelectionType.Multiple;
 
         for (let tile of tileSelected) {
           let itemsInTile = this.blueprintService.blueprint.getTemplateItemsAt(tile);
-          for (let item of itemsInTile) {
+          for (let item of itemsInTile.filter((item) => { return this.rememberExclusions.indexOf(item.oniItem) == -1; })) {
             let itemCollectionArray = this.sameItemCollections.filter((sameItem) => { return item.oniItem.id == sameItem.oniItem.id; });
             if (itemCollectionArray.length == 0) {
               let newItemCollection = new SameItemCollection();
@@ -172,39 +192,78 @@ export class SelectTool implements ITool, IObsItemDestroyed
 
               this.sameItemCollections.push(newItemCollection);
             }
-            else itemCollectionArray[0].items.push(item);
+            else if (itemCollectionArray[0].items.indexOf(item) == -1) itemCollectionArray[0].items.push(item);
           }
         }
 
         this.sameItemCollections = this.sameItemCollections.sort((i1, i2) => { return i2.oniItem.zIndex - i1.oniItem.zIndex; });
 
-        if (this.sameItemCollections.length > 0) this.sameItemCollections[0].selected = true;
+        this.currentMultipleSelectionIndex = 0;
       }
     }
   }
 
-  itemGroupeNext() {
-    let currentIndex = -1;
+  removeFromSelection(itemCollection: SameItemCollection) {
+    
+    this.rememberExclusions.push(itemCollection.oniItem);
+
+    this.rememberMultipleSelectionIndex = this.currentMultipleSelectionIndex;
+    this.sameItemCollections[this.rememberMultipleSelectionIndex].selected = false;
+    this.updateMultipleSelect();
+    this.clampRememberMultipleSelectionIndex();
+    this.currentMultipleSelectionIndex = this.rememberMultipleSelectionIndex;
+
+  }
+
+  // TODO do the same thing for single selection
+  buildingsDestroy(itemCollection: SameItemCollection) {
+    this.rememberMultipleSelectionIndex = this.currentMultipleSelectionIndex;
+    
+    for (let item of itemCollection.items)
+      this.blueprintService.blueprint.destroyTemplateItem(item);
+
+    this.updateMultipleSelect();
+    
+    this.clampRememberMultipleSelectionIndex();
+
+    this.currentMultipleSelectionIndex = this.rememberMultipleSelectionIndex;
+  }
+
+  // TODO do the same thing for single selection
+  get currentMultipleSelectionIndex() {
+    let activeIndex = -1;
+
     for (let indexSelected = 0; indexSelected < this.sameItemCollections.length; indexSelected++)
       if (this.sameItemCollections[indexSelected].selected)
-        currentIndex = indexSelected;
+        activeIndex = indexSelected;
+
+    return activeIndex;
+  }
+
+  set currentMultipleSelectionIndex(value: number) {
+    for (let indexSelected = 0; indexSelected < this.sameItemCollections.length; indexSelected++)
+      this.sameItemCollections[indexSelected].selected = (value == indexSelected);
+  }
+
+  itemGroupeNext() {
+    let currentIndex = this.currentMultipleSelectionIndex;
 
     currentIndex++;
     currentIndex = currentIndex % this.sameItemCollections.length;
-    for (let indexSelected = 0; indexSelected < this.sameItemCollections.length; indexSelected++)
-      this.sameItemCollections[indexSelected].selected = (currentIndex == indexSelected);
+    
+    this.currentMultipleSelectionIndex = currentIndex;
   }
   
   itemGroupePrevious() {
-    let currentIndex = 1;
-    for (let indexSelected = 0; indexSelected < this.sameItemCollections.length; indexSelected++)
-      if (this.sameItemCollections[indexSelected].selected)
-        currentIndex = indexSelected;
+    let currentIndex = this.currentMultipleSelectionIndex;
+
+    // Special case : if nothing is currently selected, we want the next selection to be 0;
+    if (currentIndex == -1) currentIndex = 1;
 
     currentIndex--;
     if (currentIndex < 0) currentIndex += this.sameItemCollections.length;
-    for (let indexSelected = 0; indexSelected < this.sameItemCollections.length; indexSelected++)
-      this.sameItemCollections[indexSelected].selected = (currentIndex == indexSelected);
+
+    this.currentMultipleSelectionIndex = currentIndex;
   }
 
   destroyAll() {
@@ -212,8 +271,11 @@ export class SelectTool implements ITool, IObsItemDestroyed
       for (let itemCollection of this.sameItemCollections)
         itemCollection.destroyAll();
 
-    this.sameItemCollections = [];
-    // TODO add a special everything group?
+    this.rememberMultipleSelectionIndex = 0;
+
+    this.topLeft = null;
+    this.bottomRight = null;
+    this.updateMultipleSelect();
   }
 
   // Tool interface :
@@ -230,6 +292,12 @@ export class SelectTool implements ITool, IObsItemDestroyed
   leftClick(tile: Vector2) {
     this.cameraService.resetSinWave();
     this.updateSelectionTool(tile);
+
+    // Test
+    let tileStart = new Vector2(0.5, 0.5);
+    let tileStop = new Vector2(5.5, 3.5);
+
+    BuildTool.logStepByStep(tileStart, tileStop);
   }
 
   rightClick(tile: Vector2) {

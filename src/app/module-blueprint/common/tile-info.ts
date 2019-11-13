@@ -1,13 +1,13 @@
 
 import { Vector2 } from "./vector2";
-import { TemplateItem } from "./template/template-item";
+import { BlueprintItem } from "./blueprint/blueprint-item";
 
 export class TileInfo
 {
     tileCoords: Vector2;
-    templateItems: TemplateItem[];
+    templateItems: BlueprintItem[];
 
-    selected: TemplateItem;
+    selected: BlueprintItem;
 
     public get isCurrentSelectionInList()
     {
@@ -27,7 +27,7 @@ export class TileInfo
         this.indexSelected = 0;
     }
 
-    addTemplateItems(newTemplateItems: TemplateItem[])
+    addTemplateItems(newTemplateItems: BlueprintItem[])
     {
         // First we empty the array
         this.templateItems.length = 0;
@@ -36,7 +36,7 @@ export class TileInfo
         for (let newTemplateItem of newTemplateItems) this.templateItems.push(newTemplateItem);
         
         // If the array is still empty, we add a Vacuum templateItem
-        if (this.templateItems.length == 0) this.templateItems.push(TemplateItem.vacuumItem);
+        if (this.templateItems.length == 0) this.templateItems.push(BlueprintItem.vacuumItem);
         
     }
 
