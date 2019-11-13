@@ -148,12 +148,13 @@ export class BuildTool implements ITool
 
     if (!tileStartInt.equals(tileStopInt)) {
 
+      this.logStepByStep(tileStart, tileStop);
       //this.buildAndConnect(tileStartInt, tileStopInt);
       //BuildTool.logStepByStep(tileStartInt, tileStopInt);
     }
   }
 
-  static logStepByStep(tileStart: Vector2, tileStop: Vector2) {
+  logStepByStep(tileStart: Vector2, tileStop: Vector2) {
     let currentTile = Vector2.clone(tileStart);
 
     let testDelta = new Vector2(
@@ -168,6 +169,9 @@ export class BuildTool implements ITool
 
     let continueAlg = true;
     let i = 0;
+    
+    let startTile = DrawHelpers.getFloorTile(tileStart);
+    console.log(startTile);
 
     while (continueAlg) {
       //console.log(DrawHelpers.getIntegerTile(currentTile));
@@ -208,13 +212,42 @@ export class BuildTool implements ITool
       //console.log('dist')
       //console.log(new Vector2(distX, distY))
 
-      if (distX <= distY && distX < dLengthSquared) {
+      let newTile: Vector2;
+      if (Math.abs(distX - distY) < 0.0000005 && distX < dLengthSquared) {
+        
+        //console.log('equal')
+
+        newTile = new Vector2(startTile.x + testDelta.x, startTile.y);
+        this.buildAndConnect(startTile, newTile);
+        startTile.x += testDelta.x;
+        console.log(startTile);
+
+        newTile = new Vector2(startTile.x, startTile.y + testDelta.y);
+        this.buildAndConnect(startTile, newTile);
+        startTile.y += testDelta.y;
+        console.log(startTile);
+        
+        currentTile.x += dp.x;
+        // TODO dp.y here, shoul be the same
+        currentTile.y += d.y * (dp.x / d.x);
+      }
+      else if (distX <= distY && distX < dLengthSquared) {
         currentTile.x += dp.x;
         currentTile.y += d.y * (dp.x / d.x);
+
+        newTile = new Vector2(startTile.x + testDelta.x, startTile.y);
+        this.buildAndConnect(startTile, newTile);
+        startTile.x += testDelta.x;
+        console.log(startTile);
       }
       else if (distY < distX && distY < dLengthSquared) {
         currentTile.x += d.x * (dp.y / d.y);
         currentTile.y += dp.y;
+
+        newTile = new Vector2(startTile.x, startTile.y + testDelta.y);
+        this.buildAndConnect(startTile, newTile);
+        startTile.y += testDelta.y;
+        console.log(startTile);
       }
       else {
         console.log('stop')
@@ -222,8 +255,8 @@ export class BuildTool implements ITool
       } 
 
       if (continueAlg) {
-        console.log(currentTile);
-        console.log(DrawHelpers.getIntegerTile(currentTile));
+        //console.log(currentTile);
+        //console.log(DrawHelpers.getIntegerTile(currentTile));
       }
       //console.log('currentTile after');
       //console.log(currentTile);

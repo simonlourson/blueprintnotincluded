@@ -295,9 +295,9 @@ export class SelectTool implements ITool, IObsItemDestroyed
 
     // Test
     let tileStart = new Vector2(0.5, 0.5);
-    let tileStop = new Vector2(5.5, 3.5);
+    let tileStop = new Vector2(-5.5, 3.5);
 
-    BuildTool.logStepByStep(tileStart, tileStop);
+    //BuildTool.logStepByStep(tileStart, tileStop);
   }
 
   rightClick(tile: Vector2) {
