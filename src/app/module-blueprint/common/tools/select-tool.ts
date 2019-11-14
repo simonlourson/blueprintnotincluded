@@ -138,7 +138,7 @@ export class SelectTool implements ITool, IObsItemDestroyed
   doMultipleSelect()
   {
     // TODO does not work in reverse
-    // TODO bigger buildings only once
+    // TODO multiple to single by oniItem id
     if (this.beginSelection != null && this.endSelection != null)
     {
       let beginTile = DrawHelpers.getIntegerTile(this.beginSelection);
@@ -292,12 +292,6 @@ export class SelectTool implements ITool, IObsItemDestroyed
   leftClick(tile: Vector2) {
     this.cameraService.resetSinWave();
     this.updateSelectionTool(tile);
-
-    // Test
-    let tileStart = new Vector2(0.5, 0.5);
-    let tileStop = new Vector2(-5.5, 3.5);
-
-    //BuildTool.logStepByStep(tileStart, tileStop);
   }
 
   rightClick(tile: Vector2) {
