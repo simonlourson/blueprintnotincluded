@@ -523,7 +523,7 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy, IObsOverlayC
 
     if (this.blueprint != null)
     {
-      for (var templateItem of this.blueprint.templateItems)
+      for (var templateItem of this.blueprint.blueprintItems)
       {
         templateItem.prepareSpriteInfoModifier(this.blueprint);
         this.drawPixi.drawTemplateItem(templateItem, this.cameraService);

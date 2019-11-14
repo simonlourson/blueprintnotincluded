@@ -186,7 +186,7 @@ export class ComponentBlueprintParentComponent implements OnInit {
     this.menu.clickOverlay({item:{id:Overlay.Base}});
 
     let summary: string = "Loaded blueprint : " + template.name;
-    let detail: string = template.templateItems.length + " items loaded";
+    let detail: string = template.blueprintItems.length + " items loaded";
 
     // TODO error handling
     this.messageService.add({severity:'success', summary:summary , detail:detail});

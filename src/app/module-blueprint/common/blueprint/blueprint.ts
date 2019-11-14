@@ -17,7 +17,7 @@ export class Blueprint
 {
   id: string;
   name: string;
-  templateItems: BlueprintItem[];
+  blueprintItems: BlueprintItem[];
   templateTiles: BlueprintItem[][];
 
   innerYaml: any;
@@ -25,7 +25,7 @@ export class Blueprint
   constructor()
   {
     this.name = 'default';
-    this.templateItems = [];
+    this.blueprintItems = [];
     this.distinctElements = [];
 
     this.obeserversItemDestroyed = [];
@@ -34,7 +34,7 @@ export class Blueprint
   public importOniTemplate(oniTemplate: OniTemplate)
   {
     this.name = oniTemplate.name;
-    this.templateItems = [];
+    this.blueprintItems = [];
     
 
     // Copy the buildings
@@ -78,7 +78,7 @@ export class Blueprint
   {
     this.name = bniBlueprint.friendlyname;
 
-    this.templateItems = [];
+    this.blueprintItems = [];
 
     for (let building of bniBlueprint.buildings)
     {
@@ -94,9 +94,9 @@ export class Blueprint
   public importFromCloud(original: Blueprint)
   {
     this.name = original.name;
-    this.templateItems = [];
+    this.blueprintItems = [];
 
-    for (let originalTemplateItem of original.templateItems)
+    for (let originalTemplateItem of original.blueprintItems)
     {
       let newTemplateItem = Blueprint.createInstance(originalTemplateItem.id);
       if (newTemplateItem == null) continue;
@@ -171,20 +171,20 @@ export class Blueprint
 
   public refreshOverlayInfo()
   {
-    for (let templateItem of this.templateItems) templateItem.prepareOverlayInfo(this.currentOverlay);
+    for (let templateItem of this.blueprintItems) templateItem.prepareOverlayInfo(this.currentOverlay);
   }
 
   distinctElements: ComposingElement[];
   public prepareDistinctElements()
   {
-    for (let templateItem of this.templateItems.filter(t => t.oniItem.isElement))
+    for (let templateItem of this.blueprintItems.filter(t => t.oniItem.isElement))
       if (this.distinctElements.indexOf(templateItem.element) == -1)
         this.distinctElements.push(templateItem.element)
   }
 
   public addTemplateItem(templateItem: BlueprintItem)
   {
-    this.templateItems.push(templateItem);
+    this.blueprintItems.push(templateItem);
     templateItem.tileIndexes = [];
 
     for (let x = templateItem.topLeft.x; x <= templateItem.bottomRight.x; x++)
@@ -243,10 +243,10 @@ export class Blueprint
     let returnValue = new Blueprint();
     returnValue.name = this.name;
     returnValue.id = undefined;
-    returnValue.templateItems = [];
+    returnValue.blueprintItems = [];
 
-    for (let originalTemplateItem of this.templateItems) 
-      returnValue.templateItems.push(originalTemplateItem.cloneForExport());
+    for (let originalTemplateItem of this.blueprintItems) 
+      returnValue.blueprintItems.push(originalTemplateItem.cloneForExport());
     
 
     returnValue.templateTiles = undefined;
@@ -268,8 +268,8 @@ export class Blueprint
       }
 
     // Then remove from the item list, 
-    const index = this.templateItems.indexOf(templateItem, 0);
-    if (index > -1) this.templateItems.splice(index, 1);
+    const index = this.blueprintItems.indexOf(templateItem, 0);
+    if (index > -1) this.blueprintItems.splice(index, 1);
 
     // Then destroy the sprite
     templateItem.destroy();
@@ -280,8 +280,17 @@ export class Blueprint
 
   public destroy()
   {
-    if (this.templateItems != null)
-      for (let t of this.templateItems) t.destroy();
+    if (this.blueprintItems != null) {
+
+      let blueprintItemsCopy: BlueprintItem[] = [];
+
+      for (let b of this.blueprintItems) blueprintItemsCopy.push(b);
+      for (let b of blueprintItemsCopy) this.destroyTemplateItem(b);
+    }
+
+
+      
+    
   }
 }
 

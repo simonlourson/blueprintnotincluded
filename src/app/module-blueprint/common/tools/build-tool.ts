@@ -158,12 +158,11 @@ export class BuildTool implements ITool
 
   dragStepByStep(tileStart: Vector2, tileStop: Vector2) {
     
-    // Current tile is the float tile that will 
-    let currentTile = Vector2.clone(tileStart);
+    
 
-    console.log('start')
-    console.log(tileStart);
-    console.log(tileStop);
+    //console.log('start')
+    //console.log(tileStart);
+    //console.log(tileStop);
 
     // This is the unit taxicab vector representing the general direction of movement
     let delta = new Vector2(
@@ -172,9 +171,21 @@ export class BuildTool implements ITool
     );
 
     delta = new Vector2(
-      delta.x == 0 ? 0 : (delta.x / Math.abs(delta.x)),
-      delta.y == 0 ? 0 : (delta.y / Math.abs(delta.y))
+      delta.x == 0 ? 0 : 1 * (delta.x / Math.abs(delta.x)),
+      delta.y == 0 ? 0 : 1 * (delta.y / Math.abs(delta.y))
     )
+    
+    // Special cases : if tileStart or tileStop is an integer, we run into problems, so let's change that
+    if (tileStart.x == Math.floor(tileStart.x)) tileStart.x -= delta.x * 0.005;
+    if (tileStop.x == Math.floor(tileStop.x)) tileStop.x += delta.x * 0.005;
+    if (tileStart.y == Math.floor(tileStart.y)) tileStart.y -= delta.y * 0.005;
+    if (tileStop.y == Math.floor(tileStop.y)) tileStop.y += delta.y * 0.005;
+
+    // Current tile is the float tile that will 
+    let currentTile = Vector2.clone(tileStart);
+
+    //console.log('delta');
+    //console.log(delta);
 
     // We will either stop advancing when we reach the goal, or when too many loops are through
     let advance = true;
@@ -194,11 +205,12 @@ export class BuildTool implements ITool
       // nextTile is currentTile advanced by delta
       // and then floored of ceilingedto be closest to currentTile
       let nextTile = new Vector2(currentTile.x + delta.x, currentTile.y + delta.y);
-      if (delta.x == 1) nextTile.x = Math.floor(nextTile.x);
-      else if (delta.x == -1) nextTile.x = Math.ceil(nextTile.x);
-      if (delta.y == 1) nextTile.y = Math.floor(nextTile.y);
-      else if (delta.y == -1) nextTile.y = Math.ceil(nextTile.y);
+      if (delta.x > 0) nextTile.x = Math.floor(nextTile.x);
+      else if (delta.x < 0) nextTile.x = Math.ceil(nextTile.x);
+      if (delta.y > 0) nextTile.y = Math.floor(nextTile.y);
+      else if (delta.y < 0) nextTile.y = Math.ceil(nextTile.y);
 
+      
       //console.log('nextTile');
       //console.log(nextTile);
 
@@ -232,7 +244,7 @@ export class BuildTool implements ITool
 
       let newTile: Vector2;
       if (Math.abs(distX - distY) < 0.0000005 && distX < dLengthSquared) {
-        
+        //console.log('build');
         //console.log('equal')
 
         newTile = new Vector2(startTile.x + delta.x, startTile.y);
@@ -249,6 +261,7 @@ export class BuildTool implements ITool
         currentTile.y += d.y * (dp.x / d.x);
       }
       else if (distX <= distY && distX < dLengthSquared) {
+        //console.log('build');
         currentTile.x += dp.x;
         currentTile.y += d.y * (dp.x / d.x);
 
@@ -258,6 +271,7 @@ export class BuildTool implements ITool
         //console.log(startTile);
       }
       else if (distY < distX && distY < dLengthSquared) {
+        //console.log('build');
         currentTile.x += d.x * (dp.y / d.y);
         currentTile.y += dp.y;
 
@@ -271,19 +285,9 @@ export class BuildTool implements ITool
         advance = false;
       } 
 
-      if (advance) {
-        //console.log(currentTile);
-        //console.log(DrawHelpers.getIntegerTile(currentTile));
-      }
-      //console.log('currentTile after');
-      //console.log(currentTile);
-      
-
       i++;
-      if (i > 999) {
-        throw new Error("The tile dragger was too long");
-        //continueAlg = false;
-      }
+      if (i > 999) throw new Error("The tile dragger was too long");
+      
     }
     
   }
