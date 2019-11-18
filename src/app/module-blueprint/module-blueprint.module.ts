@@ -53,6 +53,7 @@ import { ComponentSideBuildToolComponent } from './components/side-bar/build-too
 import { SelectionToolSingleComponent } from './components/side-bar/selection-tool-single/selection-tool-single.component';
 import { SelectionToolMultipleComponent } from './components/side-bar/selection-tool-multiple/selection-tool-multiple.component';
 import { ItemCollectionInfoComponent } from './components/side-bar/item-collection-info/item-collection-info.component';
+import { DialogBrowseComponent } from './components/dialogs/dialog-browse/dialog-browse.component';
 
 @NgModule({
   imports: [
@@ -63,7 +64,7 @@ import { ItemCollectionInfoComponent } from './components/side-bar/item-collecti
     RecaptchaV3Module,
     BrowserAnimationsModule
   ],
-  declarations: [StringSanitationDirective, ComponentCanvasComponent, MouseWheelDirective, DragAndDropDirective, KeyboardDirective, ComponentMenuComponent, ComponentSidepanelComponent, ComponentBlueprintParentComponent, TileInfoComponent, ComponentSaveDialogComponent, ComponentSideBuildToolComponent, ComponentSideSelectionToolComponent, ComponentElementKeyPanelComponent, ComponentLoginDialogComponent, RegisterFormComponent, LoginFormComponent, DialogShareUrlComponent, SelectionToolSingleComponent, SelectionToolMultipleComponent, ItemCollectionInfoComponent],
+  declarations: [StringSanitationDirective, ComponentCanvasComponent, MouseWheelDirective, DragAndDropDirective, KeyboardDirective, ComponentMenuComponent, ComponentSidepanelComponent, ComponentBlueprintParentComponent, TileInfoComponent, ComponentSaveDialogComponent, ComponentSideBuildToolComponent, ComponentSideSelectionToolComponent, ComponentElementKeyPanelComponent, ComponentLoginDialogComponent, RegisterFormComponent, LoginFormComponent, DialogShareUrlComponent, SelectionToolSingleComponent, SelectionToolMultipleComponent, ItemCollectionInfoComponent, DialogBrowseComponent],
   providers: [CheckDuplicateService, AuthenticationService, BlueprintService, ToolService, SelectTool, BuildTool,
     { provide: RECAPTCHA_V3_SITE_KEY, useValue: '6LdS0b8UAAAAAGb8P_L33ypsdiS41Nu8q3CwRg_M' }
   ],

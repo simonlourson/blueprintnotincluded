@@ -19,7 +19,7 @@ import { ConnectionType } from '../../common/utility-connection';
 import { ZIndex, Overlay } from '../../common/overlay-type';
 import { ComposingElement } from '../../common/composing-element';
 import { SaveInfo } from '../../common/save-info';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, UrlSegment } from '@angular/router';
 import { BlueprintParams } from '../../common/params';
 import { ComponentMenuComponent, MenuCommand, MenuCommandType } from '../component-menu/component-menu.component';
 import { ToolType } from '../../common/tools/tool';
@@ -37,6 +37,7 @@ import { BlueprintService } from '../../services/blueprint-service';
 import { ComponentSaveDialogComponent } from '../dialogs/component-save-dialog/component-save-dialog.component';
 import { DialogShareUrlComponent } from '../dialogs/dialog-share-url/dialog-share-url.component';
 import { CameraService } from '../../services/camera-service';
+import { DialogBrowseComponent } from '../dialogs/dialog-browse/dialog-browse.component';
 
 @Component({
   selector: 'app-component-blueprint-parent',
@@ -57,6 +58,9 @@ export class ComponentBlueprintParentComponent implements OnInit {
   
   @ViewChild('saveDialog', {static: true})
   saveDialog: ComponentSaveDialogComponent;
+
+  @ViewChild('browseDialog', {static: true})
+  browseDialog: DialogBrowseComponent;
 
   @ViewChild('loginDialog', {static: true})
   loginDialog: ComponentLoginDialogComponent;
@@ -89,7 +93,15 @@ export class ComponentBlueprintParentComponent implements OnInit {
       
       this.sidePanel.oniItemsLoaded();
 
+      this.route.url.subscribe((url: UrlSegment[]) => {
+        console.log(url);
+        if (url != null && url.length > 0 && url[0].path == 'browse') {
+          this.browseDialog.showDialog();
+        }
+      })
+
       this.route.params.subscribe((params: Params): void => {
+        
         if (params.id != null)
         {
           this.blueprintService.getBlueprint(params.id).subscribe({

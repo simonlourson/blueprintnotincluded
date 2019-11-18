@@ -11,6 +11,7 @@ import { Blueprint } from '../../common/blueprint/blueprint';
 import { BehaviorSubject } from 'rxjs';
 import { ToolService, ToolRequest, IObsToolChanged } from '../../services/tool-service';
 import { CameraService, IObsOverlayChanged } from '../../services/camera-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-component-menu',
@@ -40,7 +41,8 @@ export class ComponentMenuComponent implements OnInit, IObsToolChanged, IObsOver
     public authService: AuthenticationService, 
     private messageService: MessageService,
     private toolService: ToolService,
-    private cameraService: CameraService) 
+    private cameraService: CameraService,
+    private router: Router) 
   {
     this.toolService.subscribeToolChanged(this);
     this.cameraService.subscribeOverlayChange(this);
@@ -84,6 +86,7 @@ export class ComponentMenuComponent implements OnInit, IObsToolChanged, IObsOver
             {label: 'Blueprint (json)', command: (event) => { this.uploadJsonTemplate(); } },
             {label: 'Blueprint (binary)', command: (event) => { this.uploadBsonTemplate(); } }
           ]},
+          {label: 'Browse', icon:'pi pi-search', command: (event) => { this.router.navigateByUrl('/browse'); } },
           {label: 'Get shareable Url', icon:'pi pi-external-link', command: (event) => { this.onMenuCommand.emit({type: MenuCommandType.getShareableUrl, data: null}); } },
         ]
       },

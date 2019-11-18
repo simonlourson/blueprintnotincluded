@@ -77,16 +77,14 @@ export class SelectTool implements ITool, IObsItemDestroyed
       this.templateItemsToShow = this.blueprintService.blueprint.getTemplateItemsAt(tile);
 
       let newSelected = null
-      if (oldSelected != null) {
-        
-        // Is there an item in the new selected with the same id as the old selected?
-        if (this.templateItemsToShow.filter((item) => { return item.oniItem.id == oldSelected.oniItem.id; }).length > 0)
-          newSelected = this.templateItemsToShow.filter((item) => { return item.oniItem.id == oldSelected.oniItem.id; })[0];
+      // Is there an item in the new selected with the same id as the old selected?
+      if (oldSelected != null && this.templateItemsToShow.filter((item) => { return item.oniItem.id == oldSelected.oniItem.id; }).length > 0)
+        newSelected = this.templateItemsToShow.filter((item) => { return item.oniItem.id == oldSelected.oniItem.id; })[0];
 
-        // Is there an item in the new selected with the same overlay as the current ?
-        if (newSelected == null && this.templateItemsToShow.filter((item) => { return item.isOpaque; }).length > 0)
-          newSelected = this.templateItemsToShow.filter((item) => { return item.isOpaque; })[0];
-      }
+      // Is there an item in the new selected with the same overlay as the current ?
+      if (newSelected == null && this.templateItemsToShow.filter((item) => { return item.isOpaque; }).length > 0)
+        newSelected = this.templateItemsToShow.filter((item) => { return item.isOpaque; })[0];
+      
 
       let nbNext = 0;
       if (newSelected != null) nbNext = this.templateItemsToShow.indexOf(newSelected);
