@@ -1,5 +1,5 @@
 // Angular imports
-import { Component, OnInit, OnDestroy, ViewChild, ElementRef, NgZone, Output, EventEmitter, HostListener } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, ElementRef, NgZone, Output, EventEmitter, HostListener, Pipe } from '@angular/core';
 //import { Http, Response } from "@angular/http"
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { ComponentSidepanelComponent } from 'src/app/module-blueprint/components/side-bar/side-panel/side-panel.component';
@@ -28,6 +28,8 @@ import { BlueprintItem } from '../../common/blueprint/blueprint-item';
 import { TechnicalRepack } from '../../common/technical-repack';
 import { BlueprintService } from '../../services/blueprint-service';
 import { ToolService } from '../../services/tool-service';
+import { Container } from 'pixi.js';
+import { read } from 'fs';
 
 
 @Component({
@@ -59,6 +61,8 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy, IObsOverlayC
     private toolService: ToolService) {
     
     this.drawPixi = new DrawPixi();
+    
+
     this.technicalRepack = new TechnicalRepack();
   }
 
@@ -66,7 +70,10 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy, IObsOverlayC
   ngOnInit() {
     // Start the rendering loop
     this.running = true;
-    this.ngZone.runOutsideAngular(() => this.drawPixi.Init(this.canvasRef, this));
+    this.ngZone.runOutsideAngular(() => {
+      this.drawPixi.Init(this.canvasRef, this);
+      this.cameraService.container = this.drawPixi.pixiApp.stage;
+    });
 
     //this.drawAbstraction.Init(this.canvasRef, this)
   }
@@ -453,6 +460,144 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy, IObsOverlayC
     }
   }
 
+  exportImages() {
+
+    let clone = this.blueprint.clone();
+    if (clone.blueprintItems.length == 0) throw new Error('No buildings to export')
+
+    // TODO error checking?
+    let topLeft = new Vector2(9999, 9999);
+    let bottomRight = new Vector2(-9999, -9999);
+
+    clone.blueprintItems.map((item) => { 
+      item.cleanUp();
+
+      // TODO big item topleft here
+      if (topLeft.x > item.position.x) topLeft.x = item.position.x;
+      if (topLeft.y > item.position.y) topLeft.y = item.position.y;
+      if (bottomRight.x < item.position.x) bottomRight.x = item.position.x;
+      if (bottomRight.y < item.position.y) bottomRight.y = item.position.y;
+    });
+
+    let tileSize = 64;
+    let totalTileSize = new Vector2(bottomRight.x - topLeft.x + 3, bottomRight.y - topLeft.y + 3);
+    
+    // Save real size
+    //this.saveImage(clone, new Vector2(totalTileSize.x * tileSize, totalTileSize.y * tileSize), tileSize, new Vector2(-topLeft.x - 1, bottomRight.y + 1));
+
+    let thumbnailSize = 500;
+    let maxTotalSize = Math.max(totalTileSize.x, totalTileSize.y);
+    let thumbnailTileSize = thumbnailSize / maxTotalSize;
+    let cameraOffset = new Vector2(-topLeft.x + 1, bottomRight.y + 1);
+    if (totalTileSize.x > totalTileSize.y) cameraOffset.y += totalTileSize.x / 2 - totalTileSize.y / 2;
+    if (totalTileSize.y > totalTileSize.x) cameraOffset.x += totalTileSize.y / 2 - totalTileSize.x / 2;
+    
+    this.saveImage(clone, new Vector2(thumbnailSize, thumbnailSize), thumbnailTileSize, cameraOffset);
+  }
+
+  updateThumbnail() {
+
+    this.blueprintService.thumbnail = null;
+
+
+    let clone = this.blueprint.clone();
+    if (clone.blueprintItems.length == 0) throw new Error('No buildings to export')
+
+    // TODO error checking?
+    let topLeft = new Vector2(9999, 9999);
+    let bottomRight = new Vector2(-9999, -9999);
+
+    clone.blueprintItems.map((item) => { 
+      // TODO big item topleft here
+      if (topLeft.x > item.position.x) topLeft.x = item.position.x;
+      if (topLeft.y > item.position.y) topLeft.y = item.position.y;
+      if (bottomRight.x < item.position.x) bottomRight.x = item.position.x;
+      if (bottomRight.y < item.position.y) bottomRight.y = item.position.y;
+    });
+
+    let totalTileSize = new Vector2(bottomRight.x - topLeft.x + 3, bottomRight.y - topLeft.y + 3);
+    
+    let thumbnailSize = 500;
+    let maxTotalSize = Math.max(totalTileSize.x, totalTileSize.y);
+    let thumbnailTileSize = thumbnailSize / maxTotalSize;
+    let cameraOffset = new Vector2(-topLeft.x + 1, bottomRight.y + 1);
+    if (totalTileSize.x > totalTileSize.y) cameraOffset.y += totalTileSize.x / 2 - totalTileSize.y / 2;
+    if (totalTileSize.y > totalTileSize.x) cameraOffset.x += totalTileSize.y / 2 - totalTileSize.x / 2;
+    
+    let exportCamera = new CameraService();
+    exportCamera.setHardZoom(thumbnailTileSize);
+    exportCamera.cameraOffset = cameraOffset;
+    exportCamera.overlay = Overlay.Base;
+    exportCamera.container = new Container();
+
+    let graphics = new PIXI.Graphics();
+    exportCamera.container.addChild(graphics);
+
+    // TODO color in parameter
+    graphics.beginFill(0x007AD9);
+    graphics.drawRect(0, 0, thumbnailSize, thumbnailSize);
+    graphics.endFill();
+
+    clone.blueprintItems.map((item) => { 
+      item.prepareOverlayInfo(exportCamera.overlay);
+      item.prepareSpriteInfoModifier(clone);
+      item.drawPixi(exportCamera, this.drawPixi);
+    });
+
+    let brt = new PIXI.BaseRenderTexture({width: thumbnailSize, height: thumbnailSize, scaleMode: PIXI.SCALE_MODES.LINEAR});
+    let rt = new PIXI.RenderTexture(brt);
+
+    this.drawPixi.pixiApp.renderer.render(exportCamera.container, rt, false);
+    this.drawPixi.pixiApp.renderer.extract.canvas(rt).toBlob((blob) => { 
+      let reader = new FileReader();
+      reader.onload = () => { this.blueprintService.thumbnail = reader.result as string; };
+      reader.readAsDataURL(blob);
+
+      /*
+      // Test download
+      let a = document.createElement('a');
+        document.body.append(a);
+        a.download = ComponentCanvasComponent.downloadFile;
+        a.href = URL.createObjectURL(blob);
+        a.click();
+        a.remove();
+      */
+    }); 
+  }
+
+  saveImage(clone: Blueprint, sizeInPixels: Vector2, tileSizeInPixels: number, cameraOffset: Vector2) {
+
+    console.log(sizeInPixels);
+    console.log(tileSizeInPixels);
+    console.log(cameraOffset);
+
+    let exportCamera = new CameraService();
+    exportCamera.setHardZoom(tileSizeInPixels);
+    exportCamera.cameraOffset = cameraOffset;
+    exportCamera.overlay = Overlay.Base;
+    exportCamera.container = new Container();
+
+    clone.blueprintItems.map((item) => { 
+      item.prepareOverlayInfo(exportCamera.overlay);
+      item.prepareSpriteInfoModifier(clone);
+      item.drawPixi(exportCamera, this.drawPixi);
+    });
+
+    let brt = new PIXI.BaseRenderTexture({width: sizeInPixels.x, height: sizeInPixels.y, scaleMode: PIXI.SCALE_MODES.LINEAR});
+    let rt = new PIXI.RenderTexture(brt);
+
+    this.drawPixi.pixiApp.renderer.render(exportCamera.container, rt, false);
+
+    this.drawPixi.pixiApp.renderer.extract.canvas(rt).toBlob((blob) => { 
+        let a = document.createElement('a');
+        document.body.append(a);
+        a.download = ComponentCanvasComponent.downloadFile;
+        a.href = URL.createObjectURL(blob);
+        a.click();
+        a.remove();                     
+      }); 
+  }
+  
   drawAll()
   {
     //console.log(this.running);

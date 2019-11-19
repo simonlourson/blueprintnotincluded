@@ -4,6 +4,7 @@ import { SpriteInfo } from "./sprite-info";
 import { SpriteModifier } from "./sprite-modifier";
 import { ImageSource } from "./image-source";
 import { BSpriteInfo } from '../common/bexport/b-sprite-info';
+import { BlueprintItem } from '../common/blueprint/blueprint-item';
 
 export class DrawHelpers
 {

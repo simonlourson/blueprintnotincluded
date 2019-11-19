@@ -82,6 +82,7 @@ export class ComponentSaveDialogComponent implements OnInit {
 
   showDialog()
   {
+    this.blueprintService.thumbnail == null
     this.reset();
     this.visible = true;
     

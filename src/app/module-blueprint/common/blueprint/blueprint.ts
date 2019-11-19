@@ -12,6 +12,7 @@ import { ComposingElement } from '../composing-element';
 import { BniBlueprint } from './io/bni/bni-blueprint';
 import { BinaryReader, Encoding } from 'csharp-binary-stream';
 import { BniBuilding } from './io/bni/bni-building';
+import { BlueprintHelpers } from './blueprint-helpers';
 
 export class Blueprint
 {
@@ -42,7 +43,7 @@ export class Blueprint
     {
       let oniItem = OniItem.getOniItem(building.id);
 
-      let newTemplateItem = Blueprint.createInstance(building.id);
+      let newTemplateItem = BlueprintHelpers.createInstance(building.id);
       if (newTemplateItem == null) continue;
 
       newTemplateItem.importOniBuilding(building);
@@ -53,7 +54,7 @@ export class Blueprint
     // Copy the cells
     for (let cell of oniTemplate.cells)
     {
-      let newTemplateItem = Blueprint.createInstance(OniItem.elementId);
+      let newTemplateItem = BlueprintHelpers.createInstance(OniItem.elementId);
       if (newTemplateItem == null) continue;
       // TODO add a warning on import
 
@@ -82,7 +83,7 @@ export class Blueprint
 
     for (let building of bniBlueprint.buildings)
     {
-      let newTemplateItem = Blueprint.createInstance(building.buildingdef);
+      let newTemplateItem = BlueprintHelpers.createInstance(building.buildingdef);
       if (newTemplateItem == null) continue;
 
       newTemplateItem.importBniBuilding(building);
@@ -98,7 +99,7 @@ export class Blueprint
 
     for (let originalTemplateItem of original.blueprintItems)
     {
-      let newTemplateItem = Blueprint.createInstance(originalTemplateItem.id);
+      let newTemplateItem = BlueprintHelpers.createInstance(originalTemplateItem.id);
       if (newTemplateItem == null) continue;
 
       newTemplateItem.importFromCloud(originalTemplateItem);
@@ -144,21 +145,6 @@ export class Blueprint
 
     this.importBniBlueprint(bniBlueprint);
 
-  }
-
-  static createInstance(id: string): BlueprintItem
-  {
-    let newTemplateItem;
-    let oniItem = OniItem.getOniItem(id);
-
-    if (oniItem == null) return null;
-
-    if (oniItem.isWire) newTemplateItem = new BlueprintItemWire(id);
-    else if (oniItem.isTile) newTemplateItem = new BlueprintItemTile(id);
-    else if (oniItem.isElement) newTemplateItem = new TemplateItemElement(id);
-    else newTemplateItem = new BlueprintItem(id);
-  
-    return newTemplateItem;
   }
 
   // TODO should just use the camera service overlay
@@ -250,6 +236,27 @@ export class Blueprint
     
 
     returnValue.templateTiles = undefined;
+    returnValue.innerYaml = undefined;
+    returnValue.obeserversItemDestroyed = undefined;
+
+    return returnValue;
+  }
+
+  public clone(): Blueprint
+  {
+    let returnValue = new Blueprint();
+    returnValue.name = this.name;
+    returnValue.id = undefined;
+    returnValue.blueprintItems = [];
+
+    for (let originalTemplateItem of this.blueprintItems) {
+      let newItem = BlueprintHelpers.createInstance(originalTemplateItem.id);
+      newItem.copyFromForExport(originalTemplateItem);
+      newItem.cleanUp();
+      newItem.prepareBoundingBox();
+      returnValue.addTemplateItem(newItem);
+    }
+
     returnValue.innerYaml = undefined;
     returnValue.obeserversItemDestroyed = undefined;
 

@@ -11,6 +11,7 @@
   [resizable]="false" 
   >
 
+  <div *ngIf="blueprintService.thumbnail == null" class="error-red">The thumbnail is being generated</div>
     <br>
     <span class="ui-float-label">
       <input class="float-input" type="text" size="60" formControlName="name" pInputText> 

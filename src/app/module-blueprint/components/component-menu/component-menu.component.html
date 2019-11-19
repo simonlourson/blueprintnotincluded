@@ -4,6 +4,7 @@
 <p-menubar 
   #menu 
   [model]="menuItems">
+  
   <button *ngIf="!authService.isLoggedIn()" pButton icon="pi pi-sign-in"  label="Login" (click)="login()"></button>
   <div *ngIf="authService.isLoggedIn()">
     <!--TODO Show username-->

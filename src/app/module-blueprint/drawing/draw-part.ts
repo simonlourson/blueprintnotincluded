@@ -33,7 +33,7 @@ export class DrawPart
     this.spriteModifierId = spriteModifierId;
   }
 
-  public getPreparedSprite(camera: CameraService, drawPixi: DrawPixi, oniItem: OniItem): PIXI.Sprite
+  public getPreparedSprite(camera: CameraService, oniItem: OniItem): PIXI.Sprite
   {
     this.spriteModifier = SpriteModifier.getSpriteModifer(this.spriteModifierId);
 
@@ -75,7 +75,6 @@ export class DrawPart
       this.sprite.x = 0 + (this.spriteModifier.translation.x + tileOffset.x) * camera.currentZoom / 100;
       this.sprite.y = 0 - (this.spriteModifier.translation.y + tileOffset.y) * camera.currentZoom / 100;
       
-
       this.sprite.alpha = this.alpha;
 
       if (this.selected)

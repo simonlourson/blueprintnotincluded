@@ -5,6 +5,7 @@ import { AuthenticationService } from './authentification-service';
 import { map } from 'rxjs/operators';
 import { IObsOverlayChanged, CameraService } from './camera-service';
 import { Overlay } from '../common/overlay-type';
+import { BlueprintListItem } from './blueprint-list-item';
 
 @Injectable({ providedIn: 'root' })
 export class BlueprintService implements IObsOverlayChanged
@@ -13,6 +14,7 @@ export class BlueprintService implements IObsOverlayChanged
 
   // TODO observable when modified, to be subscribed by the canvas
   blueprint: Blueprint;
+  thumbnail: string;
 
   static blueprintService: BlueprintService;
 
@@ -45,6 +47,17 @@ export class BlueprintService implements IObsOverlayChanged
     return request;
   }
 
+  getBlueprints() {
+    const request = this.http.get('/api/getblueprints').pipe(
+      map((response: any) => {
+        let blueprintListItems = response as BlueprintListItem[];
+        return blueprintListItems;
+      })
+    );
+
+    return request;
+  }
+
   saveBlueprint(blueprint: Blueprint, overwrite: boolean)
   {
     let saveBlueprint = blueprint.cloneForExport();
@@ -53,7 +66,7 @@ export class BlueprintService implements IObsOverlayChanged
     body.overwrite = overwrite;
     body.name = saveBlueprint.name;
     body.blueprint = saveBlueprint;
-
+    body.thumbnail = this.thumbnail;
     const request = this.http.post('/api/uploadblueprint', body, { headers: { Authorization: `Bearer ${this.authService.getToken()}` }}).pipe(
       map((response: any) => {
         if (response.id) { this.blueprint.id = response.id; }
@@ -71,4 +84,5 @@ export class SaveBlueprintMessage
   name: string;
   tags?: string[];
   blueprint: Blueprint;
+  thumbnail: string;
 }

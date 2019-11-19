@@ -30,7 +30,7 @@ import {ColorPickerModule} from 'primeng/colorpicker';
 import {PasswordModule} from 'primeng/password';
 import {TooltipModule} from 'primeng/tooltip';
 import {MessageService} from 'primeng/api';
-import {CaptchaModule} from 'primeng/captcha';
+import {PanelModule} from 'primeng/panel';
 import { TileInfoComponent } from './components/side-bar/tile-info/tile-info.component';
 import { StringSanitationDirective } from './directives/string-sanitation.directive';
 import { ComponentSideSelectionToolComponent } from './components/side-bar/selection-tool/selection-tool.component';
@@ -60,7 +60,7 @@ import { DialogBrowseComponent } from './components/dialogs/dialog-browse/dialog
     CommonModule, 
     HttpClientModule,
     FormsModule, ReactiveFormsModule,
-    PasswordModule, ColorPickerModule, InputTextModule, SliderModule, ButtonModule, CardModule, ScrollPanelModule, OverlayPanelModule, MenubarModule, TabMenuModule, SlideMenuModule, DialogModule, DropdownModule, AccordionModule, ToastModule, TooltipModule, CaptchaModule,
+    PasswordModule, ColorPickerModule, InputTextModule, SliderModule, ButtonModule, CardModule, ScrollPanelModule, OverlayPanelModule, MenubarModule, TabMenuModule, SlideMenuModule, DialogModule, DropdownModule, AccordionModule, ToastModule, TooltipModule, PanelModule,
     RecaptchaV3Module,
     BrowserAnimationsModule
   ],

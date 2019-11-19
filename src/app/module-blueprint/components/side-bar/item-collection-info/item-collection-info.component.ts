@@ -4,6 +4,7 @@ import { BlueprintService } from 'src/app/module-blueprint/services/blueprint-se
 import { ToolService } from 'src/app/module-blueprint/services/tool-service';
 import { ToolType } from 'src/app/module-blueprint/common/tools/tool';
 import { Blueprint } from 'src/app/module-blueprint/common/blueprint/blueprint';
+import { BlueprintHelpers } from 'src/app/module-blueprint/common/blueprint/blueprint-helpers';
 
 @Component({
   selector: 'app-item-collection-info',
@@ -31,7 +32,7 @@ export class ItemCollectionInfoComponent implements OnInit {
 
   buildingsCopy() {
     this.toolService.changeTool(ToolType.build);
-    this.toolService.buildTool.changeItem(Blueprint.createInstance(this.itemCollection.oniItem.id) );
+    this.toolService.buildTool.changeItem(BlueprintHelpers.createInstance(this.itemCollection.oniItem.id) );
   }
 
 }

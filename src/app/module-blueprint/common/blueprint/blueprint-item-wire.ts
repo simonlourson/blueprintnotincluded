@@ -147,7 +147,7 @@ export class BlueprintItemWire extends BlueprintItem implements TemplateItemClon
     super.drawPixi(camera, drawPixi);
 
     this.drawPartSolid.selected = this.selected;
-    let solidSprite = this.drawPartSolid.getPreparedSprite(camera, drawPixi, this.oniItem);
+    let solidSprite = this.drawPartSolid.getPreparedSprite(camera, this.oniItem);
 
     if (solidSprite != null)
     {

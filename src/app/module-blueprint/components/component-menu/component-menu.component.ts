@@ -86,8 +86,9 @@ export class ComponentMenuComponent implements OnInit, IObsToolChanged, IObsOver
             {label: 'Blueprint (json)', command: (event) => { this.uploadJsonTemplate(); } },
             {label: 'Blueprint (binary)', command: (event) => { this.uploadBsonTemplate(); } }
           ]},
-          {label: 'Browse', icon:'pi pi-search', command: (event) => { this.router.navigateByUrl('/browse'); } },
+          {label: 'Browse', icon:'pi pi-search', command: (event) => { this.onMenuCommand.emit({type: MenuCommandType.browseBlueprints, data: null}); } },
           {label: 'Get shareable Url', icon:'pi pi-external-link', command: (event) => { this.onMenuCommand.emit({type: MenuCommandType.getShareableUrl, data: null}); } },
+          {label: 'Export images', icon:'pi pi-images', command: (event) => { this.onMenuCommand.emit({type: MenuCommandType.exportImages, data: null}); } }
         ]
       },
       {
@@ -221,8 +222,10 @@ export enum MenuCommandType
   changeTool,
   changeOverlay,
 
+  browseBlueprints,
   saveBlueprint,
   getShareableUrl,
+  exportImages,
 
   fetchIcons,
   downloadIcons,

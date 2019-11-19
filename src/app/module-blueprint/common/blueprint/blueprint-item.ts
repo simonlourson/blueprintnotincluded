@@ -411,10 +411,10 @@ export class BlueprintItem implements TemplateItemCloneable<BlueprintItem>
       {
         this.container = new Container();
         this.container.sortableChildren = true;
-        drawPixi.pixiApp.stage.addChild(this.container);
+        camera.container.addChild(this.container);
       }
 
-      let sprite = this.drawPart.getPreparedSprite(camera, drawPixi, this.oniItem);
+      let sprite = this.drawPart.getPreparedSprite(camera, this.oniItem);
       this.drawPart.selected = this.selected;
 
       if (sprite != null)
@@ -495,7 +495,7 @@ export class BlueprintItem implements TemplateItemCloneable<BlueprintItem>
               
               this.utilitySprites[connexionIndex].tint = tint;
               this.utilitySprites[connexionIndex].zIndex = 100;
-              drawPixi.pixiApp.stage.addChild(this.utilitySprites[connexionIndex]);
+              camera.container.addChild(this.utilitySprites[connexionIndex]);
             }
           }
         }

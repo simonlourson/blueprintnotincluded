@@ -94,7 +94,7 @@ export class ComponentBlueprintParentComponent implements OnInit {
       this.sidePanel.oniItemsLoaded();
 
       this.route.url.subscribe((url: UrlSegment[]) => {
-        console.log(url);
+        //console.log(url);
         if (url != null && url.length > 0 && url[0].path == 'browse') {
           this.browseDialog.showDialog();
         }
@@ -185,8 +185,11 @@ export class ComponentBlueprintParentComponent implements OnInit {
   {
     if (menuCommand.type == MenuCommandType.newBlueprint) this.loadTemplateIntoCanvas(new Blueprint());
     else if (menuCommand.type == MenuCommandType.showLoginDialog) this.openLoginDialog();
+    // TODO own method?
+    else if (menuCommand.type == MenuCommandType.browseBlueprints) this.browseDialog.showDialog();
     else if (menuCommand.type == MenuCommandType.saveBlueprint) this.saveToCloud();
     else if (menuCommand.type == MenuCommandType.getShareableUrl) this.getShareableUrl();
+    else if (menuCommand.type == MenuCommandType.exportImages) this.exportImages();
     else if (menuCommand.type == MenuCommandType.fetchIcons) this.fetchIcons();
     else if (menuCommand.type == MenuCommandType.downloadUtility) this.downloadUtility();
     
@@ -221,6 +224,11 @@ export class ComponentBlueprintParentComponent implements OnInit {
     this.shareUrlDialog.showDialog();
   }
 
+  exportImages()
+  {
+    this.canvas.exportImages();
+  }
+
   templateUploadJson(fileList: FileList)
   {
     if (fileList.length > 0)
@@ -247,6 +255,7 @@ export class ComponentBlueprintParentComponent implements OnInit {
 
   saveToCloud()
   {
+    this.canvas.updateThumbnail();
     this.saveDialog.showDialog();
   }
 

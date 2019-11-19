@@ -15,6 +15,7 @@ import { BuildMenuCategory, BuildMenuItem } from '../../../common/bexport/b-buil
 import { ToolService, IObsToolChanged } from 'src/app/module-blueprint/services/tool-service';
 import { IObsTemplateItemChanged } from 'src/app/module-blueprint/common/tools/select-tool';
 import { IObsBuildItemChanged } from 'src/app/module-blueprint/common/tools/build-tool';
+import { BlueprintHelpers } from 'src/app/module-blueprint/common/blueprint/blueprint-helpers';
 
 
 
@@ -86,7 +87,7 @@ export class ComponentSideBuildToolComponent implements OnInit, IObsBuildItemCha
 
   uiItemChanged()
   {
-    this.toolService.buildTool.changeItem(Blueprint.createInstance(this.currentItem.id));
+    this.toolService.buildTool.changeItem(BlueprintHelpers.createInstance(this.currentItem.id));
   }
 
   // IObsBuildItemChanged

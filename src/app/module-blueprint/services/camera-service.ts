@@ -3,6 +3,7 @@ import { ZIndex, Overlay } from "../common/overlay-type";
 import { Injectable } from '@angular/core';
 import { OniItem } from '../common/oni-item';
 import { DrawHelpers } from '../drawing/draw-helpers';
+import { Container } from 'pixi.js';
 
 @Injectable({ providedIn: 'root' })
 export class CameraService
@@ -29,6 +30,8 @@ export class CameraService
   private targetZoom: number;
   private lastZoomCenter: Vector2;
 
+  container: Container;
+
   // For classes that want to use the service and are not created by angular
   static cameraService: CameraService;
 
@@ -43,7 +46,7 @@ export class CameraService
 
     this.observersToOverlayChange = [];
 
-    CameraService.cameraService = this;
+    if (CameraService.cameraService == null) CameraService.cameraService = this;
   }
 
     observersToOverlayChange: IObsOverlayChanged[];
@@ -96,6 +99,10 @@ export class CameraService
         if (this.currentZoomIndex >= this.zoomLevels.length) this.currentZoomIndex = this.zoomLevels.length - 1;
 
         this.targetZoom = this.zoomLevels[this.currentZoomIndex];
+    }
+
+    setHardZoom(zoomLevel: number) {
+      this.targetZoom = this.currentZoom = zoomLevel;
     }
 
     changeZoom(zoomDelta: number, zoomCenter: Vector2)
