@@ -72,6 +72,7 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy, IObsOverlayC
     this.running = true;
     this.ngZone.runOutsideAngular(() => {
       this.drawPixi.Init(this.canvasRef, this);
+      this.drawPixi.InitAnimation();
       this.cameraService.container = this.drawPixi.pixiApp.stage;
     });
 
@@ -159,41 +160,6 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy, IObsOverlayC
     {
       this.toolService.drag(previousTileFloat, currentTileFloat);
 
-      let previousTile = previousTileFloat == null ? null : new Vector2(Math.floor(previousTileFloat.x), Math.ceil(previousTileFloat.y));
-      let currentTile = new Vector2(Math.floor(currentTileFloat.x), Math.ceil(currentTileFloat.y));
-
-      /*
-      if (previousTileFloat != null && !previousTile.equals(currentTile))
-      {
-        console.log("********************************");
-        console.log("Start drag from " + JSON.stringify(previousTileFloat) + ' to ' + JSON.stringify(currentTileFloat));
-
-        do
-        {
-          
-          let distanceToCurrent: Vector2 = new Vector2(currentTileFloat.x - previousTileFloat.x, currentTileFloat.y - previousTileFloat.y);
-          
-          
-          let nextGrid: Vector2;
-          nextGrid.x = currentTileFloat.x > previousTileFloat.x ? previousTile.x + 1 : previousTile.x - 1;
-          nextGrid.y = currentTileFloat.y > previousTileFloat.y ? previousTile.y + 1 : previousTile.y - 1;
-
-          let distanceToNextGrid = new Vector2(nextGrid.x - previousTileFloat.x, nextGrid.y - previousTileFloat.y);
-
-          if (distanceToCurrent.x < distanceToNextGrid.x)
-          {
-            previousTileFloat
-          }
-
-          //nextGrid.x = previousTileFloat.x == previousTile.x ? previousTile.x
-        }
-        while (!currentTileFloat.equals(previousTileFloat))
-
-      }
-      */
-      //if (previousTile != null)
-      //  this.currentTool.changeTileDrag(this.blueprint, previousTile, currentTile);
-      
     }
 
     this.storePreviousTileFloat = Vector2.clone(currentTileFloat);
@@ -621,7 +587,6 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy, IObsOverlayC
 
     
     this.cameraService.updateZoom();
-    this.cameraService.updateSinWave(this.drawPixi.pixiApp.ticker.elapsedMS);
 
     //console.log('tick');
     //this.drawAbstraction.Init(this.canvasRef, this);
@@ -682,6 +647,10 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy, IObsOverlayC
     //requestAnimationFrame(() => this.drawAll());
   }
   
+  animateAll() {
+    this.cameraService.updateAnimations(this.drawPixi.pixiApp.ticker.elapsedMS);
+  }
+
   drawBlueprintLine(ctx: CanvasRenderingContext2D, xStart: number, yStart: number, xEnd: number, yEnd: number, lineWidth: number, alpha: number)
   {
     let offset: number = (lineWidth % 2) / 2;

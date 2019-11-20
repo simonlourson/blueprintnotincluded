@@ -40,7 +40,11 @@ export class DrawPixi
     this.pixiApp.stage.addChild(this.frontGraphics);
     this.pixiApp.stage.sortableChildren = true;
     this.pixiApp.ticker.add(() => {this.drawAll();});
-  }    
+  }   
+  
+  InitAnimation() {
+    this.pixiApp.ticker.add(() => {this.animateAll();});
+  }
 
   drawAll()
   {
@@ -57,6 +61,10 @@ export class DrawPixi
     }
 
     this.parent.drawAll();
+  }
+
+  animateAll() {
+    this.parent.animateAll();
   }
 
   clearGraphics()

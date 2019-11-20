@@ -24,6 +24,8 @@ export class CameraService
     this.overlay_ = value;
   }
 
+  spinner: number;
+
   private sinWaveTime: number;
   sinWave: number;
   
@@ -43,8 +45,10 @@ export class CameraService
     this.targetZoom = this.currentZoom = this.zoomLevels[this.currentZoomIndex];
     this.sinWaveTime = 0;
     this.sinWave = 0;
+    this.spinner = 0;
 
     this.observersToOverlayChange = [];
+    this.observersToAnimationChange = [];
 
     if (CameraService.cameraService == null) CameraService.cameraService = this;
   }
@@ -52,6 +56,11 @@ export class CameraService
     observersToOverlayChange: IObsOverlayChanged[];
     subscribeOverlayChange(observer: IObsOverlayChanged) {
       this.observersToOverlayChange.push(observer);
+    }
+
+    observersToAnimationChange: IObsAnimationChanged[];
+    subscribeAnimationChange(observer: IObsAnimationChanged) {
+      this.observersToAnimationChange.push(observer);
     }
 
     setOverlayForItem(item: OniItem) {
@@ -73,11 +82,23 @@ export class CameraService
       this.sinWaveTime = 45;
     }
 
+    updateAnimations(deltaTime: number) {
+      this.updateSinWave(deltaTime);
+      this.updateSpinner(deltaTime);
+
+      this.observersToAnimationChange.map((observer) => { observer.animationChanged(); })
+    }
+
     updateSinWave(deltaTime: number) {
       this.sinWaveTime += deltaTime / 3;
       if (this.sinWaveTime > 360) this.sinWaveTime -= 360;
 
       this.sinWave = Math.sin(this.sinWaveTime * Math.PI / 180) / 2 + 0.5;
+    }
+
+    updateSpinner(deltaTime: number) {
+      this.spinner += deltaTime / 6;
+      if (this.spinner > 360) this.spinner -= 360;
     }
 
     resetZoom(canvasSize: Vector2)
@@ -143,4 +164,8 @@ export class CameraService
 
 export interface IObsOverlayChanged {
   overlayChanged(newOverlay: Overlay);
+}
+
+export interface IObsAnimationChanged {
+  animationChanged();
 }
