@@ -483,7 +483,7 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy, IObsOverlayC
 
     let totalTileSize = new Vector2(bottomRight.x - topLeft.x + 3, bottomRight.y - topLeft.y + 3);
     
-    let thumbnailSize = 500;
+    let thumbnailSize = 200;
     let maxTotalSize = Math.max(totalTileSize.x, totalTileSize.y);
     let thumbnailTileSize = thumbnailSize / maxTotalSize;
     let cameraOffset = new Vector2(-topLeft.x + 1, bottomRight.y + 1);

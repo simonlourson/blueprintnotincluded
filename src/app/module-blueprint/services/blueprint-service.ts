@@ -6,6 +6,7 @@ import { map } from 'rxjs/operators';
 import { IObsOverlayChanged, CameraService } from './camera-service';
 import { Overlay } from '../common/overlay-type';
 import { BlueprintListItem } from './blueprint-list-item';
+import { ComponentMenuComponent } from '../components/component-menu/component-menu.component';
 
 @Injectable({ providedIn: 'root' })
 export class BlueprintService implements IObsOverlayChanged
@@ -13,7 +14,13 @@ export class BlueprintService implements IObsOverlayChanged
   static baseUrl: string = 'blueprintnotincluded.com/';
 
   // TODO observable when modified, to be subscribed by the canvas
-  blueprint: Blueprint;
+  // TODO not sure getter setters are useful
+  blueprint_: Blueprint;
+  get blueprint() { return this.blueprint_; }
+  set blueprint(value: Blueprint) { 
+    this.blueprint_ = value;
+    //this.observersBlueprintChanged.map((observer) => { observer.blueprintChanged(this.blueprint_); }) 
+  }
   thumbnail: string;
 
   static blueprintService: BlueprintService;
@@ -21,13 +28,41 @@ export class BlueprintService implements IObsOverlayChanged
   constructor(private http: HttpClient, private authService: AuthenticationService, private cameraService: CameraService) {
     this.blueprint = new Blueprint();
 
+
+    this.observersBlueprintChanged = [];
+
     this.cameraService.subscribeOverlayChange(this);
+
 
     BlueprintService.blueprintService = this;
   }
 
   overlayChanged(newOverlay: Overlay) {
     this.blueprint.prepareOverlayInfo(newOverlay);
+  }
+
+  observersBlueprintChanged: IObsBlueprintChanged[];
+  subscribeBlueprintChanged(observer: IObsBlueprintChanged) {
+    this.observersBlueprintChanged.push(observer);
+  }
+
+  // TODO return observable here so we can close the browse window on success?
+  openBlueprint(id: string) {
+    this.getBlueprint(id).subscribe({
+      next: this.handleGetBlueprint.bind(this),
+      error: this.handleGetBlueprintError.bind(this)
+    });
+  }
+
+  handleGetBlueprint(blueprint: Blueprint)
+  {
+    this.observersBlueprintChanged.map((observer) => { observer.blueprintChanged(blueprint); })
+  }
+
+  handleGetBlueprintError(error: any)
+  {
+    // TODO toast here
+    console.log(error)
   }
 
   getBlueprint(id: string)
@@ -85,4 +120,8 @@ export class SaveBlueprintMessage
   tags?: string[];
   blueprint: Blueprint;
   thumbnail: string;
+}
+
+export interface IObsBlueprintChanged {
+  blueprintChanged(blueprint: Blueprint);
 }

@@ -33,7 +33,7 @@ import { BSpriteModifier } from '../../common/bexport/b-sprite-modifier';
 import { BniBlueprint } from '../../common/blueprint/io/bni/bni-blueprint';
 import { ComponentLoginDialogComponent } from '../user-auth/login-dialog/login-dialog.component';
 import { LoginInfo } from '../../common/api/login-info';
-import { BlueprintService } from '../../services/blueprint-service';
+import { BlueprintService, IObsBlueprintChanged } from '../../services/blueprint-service';
 import { ComponentSaveDialogComponent } from '../dialogs/component-save-dialog/component-save-dialog.component';
 import { DialogShareUrlComponent } from '../dialogs/dialog-share-url/dialog-share-url.component';
 import { CameraService } from '../../services/camera-service';
@@ -45,7 +45,7 @@ import { DialogBrowseComponent } from '../dialogs/dialog-browse/dialog-browse.co
   styleUrls: ['./component-blueprint-parent.component.css'],
   providers: [MessageService]
 })
-export class ComponentBlueprintParentComponent implements OnInit {
+export class ComponentBlueprintParentComponent implements OnInit, IObsBlueprintChanged {
 
   @ViewChild('canvas', {static: true})
   canvas: ComponentCanvasComponent;
@@ -89,6 +89,8 @@ export class ComponentBlueprintParentComponent implements OnInit {
     BuildMenuCategory.init();
     BuildMenuItem.init();
 
+    this.blueprintService.subscribeBlueprintChanged(this);
+
     this.fetchDatabase().then(() => {
       
       this.sidePanel.oniItemsLoaded();
@@ -115,6 +117,10 @@ export class ComponentBlueprintParentComponent implements OnInit {
       this.messageService.add({severity:'error', summary:'Error loading database' , detail:error, sticky:true});   
     });
 
+  }
+
+  blueprintChanged(blueprint: Blueprint) {
+    this.loadTemplateIntoCanvas(blueprint);
   }
 
   handleGetBlueprint(response: Blueprint)

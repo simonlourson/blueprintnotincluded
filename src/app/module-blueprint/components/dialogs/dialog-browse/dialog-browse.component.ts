@@ -43,6 +43,7 @@ export class DialogBrowseComponent implements OnInit, IObsAnimationChanged {
 
     let tempDate = new Date();
     let loadingBlueprintItem: BlueprintListItem = {
+      id: null,
       name: 'Loading...',
       ownerName: 'Loading...',
       createdAt: tempDate,
@@ -55,7 +56,12 @@ export class DialogBrowseComponent implements OnInit, IObsAnimationChanged {
   }
 
   openBlueprint(item: BlueprintListItem) {
-    console.log(item);
+    this.hideDialog();
+    this.blueprintService.openBlueprint(item.id)
+  }
+
+  hideDialog() {
+    this.visible = false;
   }
 
   animationChanged() {
