@@ -7,6 +7,9 @@ import { IObsOverlayChanged, CameraService } from './camera-service';
 import { Overlay } from '../common/overlay-type';
 import { BlueprintListItem } from './blueprint-list-item';
 import { ComponentMenuComponent } from '../components/component-menu/component-menu.component';
+import { OniTemplate } from '../common/blueprint/io/oni/oni-template';
+import * as yaml from 'node_modules/js-yaml/lib/js-yaml';
+import { BniBlueprint } from '../common/blueprint/io/bni/bni-blueprint';
 
 @Injectable({ providedIn: 'root' })
 export class BlueprintService implements IObsOverlayChanged
@@ -46,8 +49,67 @@ export class BlueprintService implements IObsOverlayChanged
     this.observersBlueprintChanged.push(observer);
   }
 
+  openBlueprintFromUpload(fileType: BlueprintFileType, fileList: FileList) {
+    if (fileList.length > 0)
+    {
+      if (fileType == BlueprintFileType.YAML) this.openYamlBlueprint(fileList[0]);
+      else if (fileType == BlueprintFileType.JSON) this.openJsonBlueprint(fileList[0]);
+      else if (fileType == BlueprintFileType.BSON) this.openBsonBlueprint(fileList[0]);
+    }
+  }
+
+  private openYamlBlueprint(file: File) {
+    let reader = new FileReader();
+    reader.onloadend = () => { this.loadYamlBlueprint(reader.result as string); };
+    reader.readAsText(file);
+  }
+
+  private loadYamlBlueprint(yamlString: string) {
+    let templateYaml: OniTemplate = yaml.safeLoad(yamlString);
+
+    let newBlueprint = new Blueprint();
+    newBlueprint.importOniTemplate(templateYaml);
+
+    this.observersBlueprintChanged.map((observer) => { observer.blueprintChanged(newBlueprint); })
+  }
+
+  private openJsonBlueprint(file: File) {
+    let reader = new FileReader();
+    reader.onloadend = () => { this.loadJsonBlueprint(reader.result as string); };
+    reader.readAsText(file);
+  }
+
+  private loadJsonBlueprint(template: string)
+  {
+    let templateJson: BniBlueprint = JSON.parse(template);
+
+    let newBlueprint = new Blueprint();
+    newBlueprint.importBniBlueprint(templateJson);
+    
+    this.observersBlueprintChanged.map((observer) => { observer.blueprintChanged(newBlueprint); })
+  }
+
+  private openBsonBlueprint(file: File) {
+    let reader = new FileReader();
+    reader.onloadend = () => { this.loadBsonBlueprint(reader.result as ArrayBuffer); };
+    reader.readAsArrayBuffer(file);
+  }
+
+  private loadBsonBlueprint(template: ArrayBuffer)
+  {
+    let newBlueprint = new Blueprint();
+    newBlueprint.importFromBinary(template);
+    
+    this.observersBlueprintChanged.map((observer) => { observer.blueprintChanged(newBlueprint); })
+  }
+
+  newBlueprint() {
+    let newBlueprint = new Blueprint();
+    this.observersBlueprintChanged.map((observer) => { observer.blueprintChanged(newBlueprint); })
+  }
+
   // TODO return observable here so we can close the browse window on success?
-  openBlueprint(id: string) {
+  openBlueprintFromId(id: string) {
     this.getBlueprint(id).subscribe({
       next: this.handleGetBlueprint.bind(this),
       error: this.handleGetBlueprintError.bind(this)
@@ -82,10 +144,11 @@ export class BlueprintService implements IObsOverlayChanged
     return request;
   }
 
-  getBlueprints() {
-    const request = this.http.get('/api/getblueprints').pipe(
+  getBlueprints(olderThan: Date) { 
+    const request = this.http.get('/api/getblueprints?olderthan='+olderThan.getTime().toString()).pipe(
       map((response: any) => {
         let blueprintListItems = response as BlueprintListItem[];
+        console.log(blueprintListItems);
         return blueprintListItems;
       })
     );
@@ -93,9 +156,9 @@ export class BlueprintService implements IObsOverlayChanged
     return request;
   }
 
-  saveBlueprint(blueprint: Blueprint, overwrite: boolean)
+  saveBlueprint(overwrite: boolean)
   {
-    let saveBlueprint = blueprint.cloneForExport();
+    let saveBlueprint = this.blueprint.cloneForExport();
 
     let body = new SaveBlueprintMessage();
     body.overwrite = overwrite;
@@ -120,6 +183,12 @@ export class SaveBlueprintMessage
   tags?: string[];
   blueprint: Blueprint;
   thumbnail: string;
+}
+
+export enum BlueprintFileType {
+  YAML,
+  JSON,
+  BSON
 }
 
 export interface IObsBlueprintChanged {

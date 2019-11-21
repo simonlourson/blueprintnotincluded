@@ -15,7 +15,6 @@ export class ComponentSaveDialogComponent implements OnInit {
 
   visible: boolean = false;
 
-  @Input() blueprint: Blueprint;
   @Output() onSave = new EventEmitter();
   
   saveBlueprintForm = new FormGroup({
@@ -41,8 +40,8 @@ export class ComponentSaveDialogComponent implements OnInit {
   {
     this.working = true;
 
-    this.blueprint.name = this.saveBlueprintForm.value.name;
-    this.blueprintService.saveBlueprint(this.blueprint, false).subscribe({
+    this.blueprintService.blueprint.name = this.saveBlueprintForm.value.name;
+    this.blueprintService.saveBlueprint(false).subscribe({
       next: this.handleSaveNext.bind(this),
       error: this.handleSaveError.bind(this)
     });
@@ -64,7 +63,7 @@ export class ComponentSaveDialogComponent implements OnInit {
       this.hideDialog();
 
       // TODO move this to the service ?
-      let summary: string = this.blueprint.name + ' saved';
+      let summary: string = this.blueprintService.blueprint.name + ' saved';
       let detail: string = '';
   
       this.messageService.add({severity:'success', summary:summary , detail:detail});
@@ -86,7 +85,7 @@ export class ComponentSaveDialogComponent implements OnInit {
     this.reset();
     this.visible = true;
     
-    if (this.blueprint.name != null && this.blueprint.name != '') this.saveBlueprintForm.patchValue({name: this.blueprint.name});
+    if (this.blueprintService.blueprint.name != null && this.blueprintService.blueprint.name != '') this.saveBlueprintForm.patchValue({name: this.blueprintService.blueprint.name});
   }
 
   reset()
@@ -107,8 +106,8 @@ export class ComponentSaveDialogComponent implements OnInit {
   {
     this.working = true;
 
-    this.blueprint.name = this.saveBlueprintForm.value.name;
-    this.blueprintService.saveBlueprint(this.blueprint, true).subscribe({
+    this.blueprintService.blueprint.name = this.saveBlueprintForm.value.name;
+    this.blueprintService.saveBlueprint(true).subscribe({
       next: this.handleSaveNext.bind(this),
       error: this.handleSaveError.bind(this)
     });

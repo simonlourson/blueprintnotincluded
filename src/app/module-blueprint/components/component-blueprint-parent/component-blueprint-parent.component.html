@@ -2,12 +2,7 @@
 <p-toast position="top-right" [style]="{marginTop: '40px'}"></p-toast>
 <div class="p-grid p-nogutter">
   <div class="p-col-12">
-    <app-component-menu 
-      #menu
-      (onMenuCommand)="menuCommand($event)"
-      (onTemplateUpload)="templateUpload($event)"
-      (onTemplateUploadJson)="templateUploadJson($event)"
-      (onTemplateUploadBson)="templateUploadBson($event)">
+    <app-component-menu #menu (onMenuCommand)="menuCommand($event)">
     </app-component-menu>
   </div>
   <div class="p-col-12">
@@ -29,7 +24,7 @@
   </div>
 </div>
 
-<app-component-save-dialog #saveDialog [blueprint]="this.canvas.blueprint" ></app-component-save-dialog>
+<app-component-save-dialog #saveDialog></app-component-save-dialog>
 <app-login-dialog #loginDialog></app-login-dialog>
 <app-dialog-share-url #shareUrlDialog></app-dialog-share-url>
 <app-dialog-browse #browseDialog></app-dialog-browse>

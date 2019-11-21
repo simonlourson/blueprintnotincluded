@@ -10,7 +10,7 @@ import { DatePipe } from '@angular/common';
   templateUrl: './dialog-browse.component.html',
   styleUrls: ['./dialog-browse.component.css']
 })
-export class DialogBrowseComponent implements OnInit, IObsAnimationChanged {
+export class DialogBrowseComponent implements OnInit {
 
   @ViewChild('browseDialog', {static: true}) browseDialog: Dialog
 
@@ -20,17 +20,13 @@ export class DialogBrowseComponent implements OnInit, IObsAnimationChanged {
   working: boolean;
   firstLoading: boolean;
 
+  get disabled() { return this.working; }
   get icon() { return this.working ? 'pi pi-spin pi-spinner' : ''; }
-  //get transform() { return 'rotate('+this.cameraService.spinner+' 100 100)' }
-  get transform() { return 'rotate('+0+' 100 100)' }
 
   constructor(
     private blueprintService: BlueprintService, 
-    public datepipe: DatePipe,
-    private cdref: ChangeDetectorRef,
-    private cameraService: CameraService) { 
+    public datepipe: DatePipe) { 
 
-    //this.cameraService.subscribeAnimationChange(this);
     this.reset();
   }
 
@@ -57,40 +53,49 @@ export class DialogBrowseComponent implements OnInit, IObsAnimationChanged {
 
   openBlueprint(item: BlueprintListItem) {
     this.hideDialog();
-    this.blueprintService.openBlueprint(item.id)
+    this.blueprintService.openBlueprintFromId(item.id)
   }
 
   hideDialog() {
     this.visible = false;
   }
 
-  animationChanged() {
-    //console.log('detect changes')
-    //if (this.firstLoading) setTimeout(() => {this.cdref.detectChanges();}, 0) 
-  }
-
   showDialog()
   {
     this.reset();
-    this.blueprintService.getBlueprints().subscribe({
+    this.blueprintService.getBlueprints(new Date()).subscribe({
       next: this.handleGetBlueprints.bind(this)
     });
     this.visible = true;
   }
 
   handleGetBlueprints(blueprintListItems: BlueprintListItem[]) {
-    //this.working = false;
+    this.working = false;
     if (this.firstLoading) {
       this.firstLoading = false;
       this.blueprintListItems = [];
       //blueprintListItems.map((item) => { item.thumbnail='svg'; this.blueprintListItems.push(item); });
       blueprintListItems.map((item) => { this.blueprintListItems.push(item); });
     }
+    else {
+      // TODO remove duplicates
+      blueprintListItems.map((item) => { this.blueprintListItems.push(item); });
+    }
     //this.recenter();
   }
 
-  recenter()
-  {
-    setTimeout(() => {this.browseDialog.positionOverlay();}, 0)
+  loadMoreBlueprints() {
+    // Get the oldest date received
+    this.working = true;
+    let oldestDate = new Date();
+    this.blueprintListItems.map((item) => { 
+      let createdAt = new Date(item.createdAt);
+      if (createdAt.getTime() < oldestDate.getTime()) oldestDate = createdAt; 
+    })
+
+    this.blueprintService.getBlueprints(oldestDate).subscribe({
+      next: this.handleGetBlueprints.bind(this)
+    });
+
   }
 }

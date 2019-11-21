@@ -12,6 +12,7 @@ import { BehaviorSubject } from 'rxjs';
 import { ToolService, ToolRequest, IObsToolChanged } from '../../services/tool-service';
 import { CameraService, IObsOverlayChanged } from '../../services/camera-service';
 import { Router } from '@angular/router';
+import { BlueprintService, BlueprintFileType } from '../../services/blueprint-service';
 
 @Component({
   selector: 'app-component-menu',
@@ -21,13 +22,6 @@ import { Router } from '@angular/router';
 export class ComponentMenuComponent implements OnInit, IObsToolChanged, IObsOverlayChanged {
 
   @Output() onMenuCommand = new EventEmitter<MenuCommand>();
-
-  @Output() onTemplateUpload = new EventEmitter<FileList>();
-  @Output() onTemplateUploadJson = new EventEmitter<FileList>();
-  @Output() onTemplateUploadBson = new EventEmitter<FileList>();
-  @Output() onDownloadAsJson = new EventEmitter();
-  @Output() onSaveToCloud = new EventEmitter();
-  @Output() onChangeOverlay = new EventEmitter<ZIndex>();
 
   menuItems: MenuItem[];
   overlayMenuItems: MenuItem[];
@@ -42,6 +36,7 @@ export class ComponentMenuComponent implements OnInit, IObsToolChanged, IObsOver
     private messageService: MessageService,
     private toolService: ToolService,
     private cameraService: CameraService,
+    private blueprintService: BlueprintService,
     private router: Router) 
   {
     this.toolService.subscribeToolChanged(this);
@@ -178,27 +173,25 @@ export class ComponentMenuComponent implements OnInit, IObsToolChanged, IObsOver
     fileElem.click();
   }
 
-  saveToCloud()
-  {
-    this.onSaveToCloud.emit();
-  }
-
   templateUpload(event: any)
   {
     let fileElem = document.getElementById("fileChooser") as HTMLInputElement;
-    this.onTemplateUpload.emit(fileElem.files);
+    this.blueprintService.openBlueprintFromUpload(BlueprintFileType.YAML, fileElem.files);
+    fileElem.value = '';
   }
 
   templateUploadJson(event: any)
   {
     let fileElem = document.getElementById("fileChooserJson") as HTMLInputElement;
-    this.onTemplateUploadJson.emit(fileElem.files);
+    this.blueprintService.openBlueprintFromUpload(BlueprintFileType.JSON, fileElem.files);
+    fileElem.value = '';
   }
 
   templateUploadBson(event: any)
   {
     let fileElem = document.getElementById("fileChooserBson") as HTMLInputElement;
-    this.onTemplateUploadBson.emit(fileElem.files);
+    this.blueprintService.openBlueprintFromUpload(BlueprintFileType.BSON, fileElem.files);
+    fileElem.value = '';
   }
 
   login()
