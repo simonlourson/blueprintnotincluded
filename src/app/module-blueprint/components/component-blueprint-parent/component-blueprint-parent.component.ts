@@ -37,6 +37,7 @@ import { ComponentSaveDialogComponent } from '../dialogs/component-save-dialog/c
 import { DialogShareUrlComponent } from '../dialogs/dialog-share-url/dialog-share-url.component';
 import { CameraService } from '../../services/camera-service';
 import { DialogBrowseComponent } from '../dialogs/dialog-browse/dialog-browse.component';
+import { DialogExportImagesComponent } from '../dialogs/dialog-export-images/dialog-export-images.component';
 
 @Component({
   selector: 'app-component-blueprint-parent',
@@ -63,6 +64,9 @@ export class ComponentBlueprintParentComponent implements OnInit, IObsBlueprintC
 
   @ViewChild('loginDialog', {static: true})
   loginDialog: ComponentLoginDialogComponent;
+
+  @ViewChild('exportImagesDialog', {static: true})
+  exportImagesDialog: DialogExportImagesComponent;
 
   @ViewChild('shareUrlDialog', {static: true})
   shareUrlDialog: DialogShareUrlComponent;
@@ -154,10 +158,10 @@ export class ComponentBlueprintParentComponent implements OnInit, IObsBlueprintC
     else if (menuCommand.type == MenuCommandType.showLoginDialog) this.loginDialog.showDialog();
     else if (menuCommand.type == MenuCommandType.browseBlueprints) this.browseDialog.showDialog();
     else if (menuCommand.type == MenuCommandType.getShareableUrl) this.shareUrlDialog.showDialog();
+    else if (menuCommand.type == MenuCommandType.exportImages) this.exportImagesDialog.showDialog();
     else if (menuCommand.type == MenuCommandType.saveBlueprint) this.saveBlueprint();
 
     // Technical (repack, generate solid sprites, etc)
-    else if (menuCommand.type == MenuCommandType.exportImages) this.canvas.exportImages();
     else if (menuCommand.type == MenuCommandType.fetchIcons) this.canvas.fetchIcons();
     else if (menuCommand.type == MenuCommandType.downloadUtility) this.canvas.downloadUtility();
     else if (menuCommand.type == MenuCommandType.repackTextures) this.canvas.repackTextures(this.database);

@@ -110,7 +110,8 @@ export class CameraService
       this.cameraOffset.y = canvasSize.y * 0.5 / this.currentZoom;
     }
 
-    private zoomLevels: number[] = [16, 18, 20, 23, 27, 32, 38, 45, 54, 64, 76, 90, 108, 128]
+    // Public because this is used by the export images dialog
+    public zoomLevels: number[] = [16, 18, 20, 23, 27, 32, 38, 45, 54, 64, 76, 90, 108, 128]
     private currentZoomIndex: number
     zoom(delta: number, zoomCenter: Vector2)
     {

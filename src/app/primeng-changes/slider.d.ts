@@ -12,6 +12,7 @@ export declare class Slider implements OnDestroy, ControlValueAccessor {
     max: number;
     orientation: string;
     step: number;
+    customStep: number[];
     range: boolean;
     style: any;
     styleClass: string;

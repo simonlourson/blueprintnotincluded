@@ -168,6 +168,9 @@ var Slider = /** @class */ (function () {
             if (this.step) {
                 this.handleStepChange(newValue, this.values[this.handleIndex]);
             }
+            else if (this.customStep) {
+                this.handleCustomStepChange(newValue, this.value);
+            }
             else {
                 this.handleValues[this.handleIndex] = handleValue;
                 this.updateValue(newValue, event);
@@ -176,6 +179,9 @@ var Slider = /** @class */ (function () {
         else {
             if (this.step) {
                 this.handleStepChange(newValue, this.value);
+            }
+            else if (this.customStep) {
+              this.handleCustomStepChange(newValue, this.value);
             }
             else {
                 this.handleValue = handleValue;
@@ -194,6 +200,17 @@ var Slider = /** @class */ (function () {
         }
         this.updateValue(val);
         this.updateHandleValue();
+    };
+    Slider.prototype.handleCustomStepChange = function (newValue, oldValue) {
+      var val = oldValue;
+      for (var customStepValue of this.customStep) {
+        let diffOld = Math.abs(val - customStepValue);
+        let diffNew = Math.abs(newValue - customStepValue);
+
+        if (diffNew < diffOld) val = customStepValue;
+      }
+      this.updateValue(val);
+      this.updateHandleValue();
     };
     Slider.prototype.writeValue = function (value) {
         if (this.range)
@@ -358,6 +375,10 @@ var Slider = /** @class */ (function () {
         core_1.Input(),
         __metadata("design:type", Number)
     ], Slider.prototype, "step", void 0);
+    __decorate([
+      core_1.Input(),
+      __metadata("design:type", Array[Number])
+  ], Slider.prototype, "customStep", void 0);
     __decorate([
         core_1.Input(),
         __metadata("design:type", Boolean)

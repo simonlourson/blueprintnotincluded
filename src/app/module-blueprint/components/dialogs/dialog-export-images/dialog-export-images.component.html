@@ -10,4 +10,7 @@
   [resizable]="false" 
   >
 
+  {{val}}
+  <p-slider [(ngModel)]="val" [customStep]="cameraService.zoomLevels" [min]="minZoomLevel" [max]="maxZoomLevel" ></p-slider>
+
 </p-dialog>
