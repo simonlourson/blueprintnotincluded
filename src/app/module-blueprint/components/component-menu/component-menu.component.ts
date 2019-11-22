@@ -13,6 +13,7 @@ import { ToolService, ToolRequest, IObsToolChanged } from '../../services/tool-s
 import { CameraService, IObsOverlayChanged } from '../../services/camera-service';
 import { Router } from '@angular/router';
 import { BlueprintService, BlueprintFileType } from '../../services/blueprint-service';
+import { DrawHelpers } from '../../drawing/draw-helpers';
 
 @Component({
   selector: 'app-component-menu',
@@ -53,16 +54,19 @@ export class ComponentMenuComponent implements OnInit, IObsToolChanged, IObsOver
 
   ngOnInit() {
     
-    this.overlayMenuItems = [
-      {label: 'Buildings',    id:Overlay.Base.toString(),       command: (event) => { this.clickOverlay(event); }},
-      {label: 'Power',        id:Overlay.Power.toString(),          command: (event) => { this.clickOverlay(event); }},
-      {label: 'Plumbing',     id:Overlay.Liquid.toString(), command: (event) => { this.clickOverlay(event); }},
-      {label: 'Ventilation',  id:Overlay.Gas.toString(),    command: (event) => { this.clickOverlay(event); }},
-      {label: 'Automation',   id:Overlay.Automation.toString(),     command: (event) => { this.clickOverlay(event); }},
-      {label: 'Shipment',     id:Overlay.Conveyor.toString(),  command: (event) => { this.clickOverlay(event); }},
-      {label: 'Background',   id:Overlay.Unknown.toString(),       command: (event) => { this.clickOverlay(event); }},
-      {label: 'Gas',          id:Overlay.Unknown.toString(),            command: (event) => { this.clickOverlay(event); }}
-    ];
+    let overlayList: Overlay[] = [
+      Overlay.Base,
+      Overlay.Power,
+      Overlay.Liquid,
+      Overlay.Gas,
+      Overlay.Automation,
+      Overlay.Conveyor
+    ]
+
+    this.overlayMenuItems = [];
+    overlayList.map((overlay) => {
+      this.overlayMenuItems.push({label:DrawHelpers.overlayString[overlay], id:overlay.toString(), command: (event) => { this.clickOverlay(event); }})
+    })
 
     this.toolMenuItems = [
       {label: 'Select',       id:ToolType.select.toString(),    command: (event) => { this.clickTool(event); }},

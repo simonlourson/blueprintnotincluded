@@ -241,4 +241,19 @@ export class DrawHelpers
     'RUD',
     'LRUD'
   ];
+
+  static overlayString: string[] = [
+    'Buildings',
+    'Power',
+    'Plumbing',
+    'Ventilation',
+    'Automation',
+    'Oxygen',
+    'Shipment',
+    'Decor',
+    'Light',
+    'Temperature',
+    'Room',
+    'Unknown'
+  ]
 }

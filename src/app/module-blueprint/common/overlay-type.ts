@@ -53,3 +53,9 @@ export enum Overlay
     Room,
     Unknown
 }
+
+export interface OverlayCheck {
+  overlay: Overlay;
+  name: string;
+  checked: boolean;
+}
