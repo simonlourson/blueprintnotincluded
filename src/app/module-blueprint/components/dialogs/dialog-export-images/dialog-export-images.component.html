@@ -8,9 +8,29 @@
   [maximizable]="false" 
   [draggable]="false" 
   [resizable]="false" 
+  [contentStyle]="{'width':'800px'}"
   >
 
-  {{val}}
-  <p-slider [(ngModel)]="val" [customStep]="cameraService.zoomLevels" [min]="minZoomLevel" [max]="maxZoomLevel" ></p-slider>
+  <div class="p-grid">
+    <div class="p-col-3 box">
+      <p-inputSwitch [(ngModel)]="checked"></p-inputSwitch>
+    </div>
+    <div class="p-col-9 box">
+      <h4>Included grid lines</h4>
+    </div>
+    <div class="p-col-3 box">
+      <p-slider [(ngModel)]="val" [customStep]="cameraService.zoomLevels" [min]="minZoomLevel" [max]="maxZoomLevel" [style]="{'width':'100%'}"></p-slider>
+    </div>
+    <div class="p-col-9 box">
+      <h4>Pixels per tile : {{val}}</h4>
+    </div>
+    <div class="p-col-3 box">
+      <p-inputSwitch [(ngModel)]="checked"></p-inputSwitch>
+    </div>
+    <div class="p-col-9 box">
+      <h4>Included grid lines</h4>
+    </div>
+  </div>
+  
 
 </p-dialog>

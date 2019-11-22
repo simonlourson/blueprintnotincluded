@@ -469,17 +469,9 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy, IObsOverlayC
     let clone = this.blueprint.clone();
     if (clone.blueprintItems.length == 0) throw new Error('No buildings to export')
 
-    // TODO error checking?
-    let topLeft = new Vector2(9999, 9999);
-    let bottomRight = new Vector2(-9999, -9999);
-
-    clone.blueprintItems.map((item) => { 
-      // TODO big item topleft here
-      if (topLeft.x > item.position.x) topLeft.x = item.position.x;
-      if (topLeft.y > item.position.y) topLeft.y = item.position.y;
-      if (bottomRight.x < item.position.x) bottomRight.x = item.position.x;
-      if (bottomRight.y < item.position.y) bottomRight.y = item.position.y;
-    });
+    let boundingBox = clone.getBoundingBox();
+    let topLeft = boundingBox[0];
+    let bottomRight = boundingBox[1];
 
     let totalTileSize = new Vector2(bottomRight.x - topLeft.x + 3, bottomRight.y - topLeft.y + 3);
     

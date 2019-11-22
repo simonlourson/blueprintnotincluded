@@ -285,6 +285,22 @@ export class Blueprint
     this.obeserversItemDestroyed.map((observer) => {observer.itemDestroyed();})
   }
 
+  public getBoundingBox(): Vector2[] {
+    let topLeft = new Vector2(9999, 9999);
+    let bottomRight = new Vector2(-9999, -9999);
+
+    this.blueprintItems.map((item) => { 
+
+      // TODO big item topleft here
+      if (topLeft.x > item.position.x) topLeft.x = item.position.x;
+      if (topLeft.y > item.position.y) topLeft.y = item.position.y;
+      if (bottomRight.x < item.position.x) bottomRight.x = item.position.x;
+      if (bottomRight.y < item.position.y) bottomRight.y = item.position.y;
+    });
+
+    return [topLeft, bottomRight];
+  }
+
   public destroy()
   {
     if (this.blueprintItems != null) {

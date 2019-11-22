@@ -11,8 +11,9 @@ import { CameraService } from 'src/app/module-blueprint/services/camera-service'
 })
 export class DialogExportImagesComponent implements OnInit {
 
+  checked: boolean;
   visible: boolean = false;
-  val: Number
+  val: Number = 64;
 
   overlaysToExport: OverlayCheck[];
   get zoomLevels() { return this.cameraService.zoomLevels; }
