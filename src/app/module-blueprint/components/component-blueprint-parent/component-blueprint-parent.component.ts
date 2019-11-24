@@ -163,6 +163,7 @@ export class ComponentBlueprintParentComponent implements OnInit, IObsBlueprintC
 
     // Technical (repack, generate solid sprites, etc)
     else if (menuCommand.type == MenuCommandType.fetchIcons) this.canvas.fetchIcons();
+    else if (menuCommand.type == MenuCommandType.downloadIcons) this.canvas.downloadIcons();
     else if (menuCommand.type == MenuCommandType.downloadUtility) this.canvas.downloadUtility();
     else if (menuCommand.type == MenuCommandType.repackTextures) this.canvas.repackTextures(this.database);
     

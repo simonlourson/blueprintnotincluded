@@ -463,7 +463,7 @@
         "y": 3.0
       },
       "sceneLayer": 19,
-      "viewMode": 0,
+      "viewMode": 1,
       "tileableType": 0,
       "utilities": [
         {
@@ -750,6 +750,44 @@
             "y": 0.0
           },
           "type": 7,
+          "isSecondary": false
+        }
+      ]
+    },
+    {
+      "DefaultAnimState": "off",
+      "name": "Beach Chair",
+      "prefabId": "BeachChair",
+      "kanimPrefix": "BeachChair_",
+      "textureName": "beach_chair_0",
+      "isTile": false,
+      "isUtility": false,
+      "isBridge": false,
+      "drawSolid": false,
+      "backColor": 0,
+      "frontColor": 16777215,
+      "sizeInCells": {
+        "x": 2.0,
+        "y": 3.0
+      },
+      "sceneLayer": 19,
+      "viewMode": 0,
+      "tileableType": 1,
+      "utilities": [
+        {
+          "offset": {
+            "x": 0.0,
+            "y": 1.0
+          },
+          "type": 10,
+          "isSecondary": false
+        },
+        {
+          "offset": {
+            "x": 1.0,
+            "y": 0.0
+          },
+          "type": 10,
           "isSecondary": false
         }
       ]
@@ -2425,7 +2463,7 @@
         "y": 3.0
       },
       "sceneLayer": 19,
-      "viewMode": 0,
+      "viewMode": 2,
       "tileableType": 0,
       "utilities": [
         {
@@ -4321,6 +4359,60 @@
       ]
     },
     {
+      "DefaultAnimState": "off",
+      "name": "Hot Tub",
+      "prefabId": "HotTub",
+      "kanimPrefix": "HotTub_",
+      "textureName": "hottub_0",
+      "isTile": false,
+      "isUtility": false,
+      "isBridge": false,
+      "drawSolid": false,
+      "backColor": 0,
+      "frontColor": 16777215,
+      "sizeInCells": {
+        "x": 5.0,
+        "y": 2.0
+      },
+      "sceneLayer": 21,
+      "viewMode": 2,
+      "tileableType": 0,
+      "utilities": [
+        {
+          "offset": {
+            "x": -2.0,
+            "y": 0.0
+          },
+          "type": 0,
+          "isSecondary": false
+        },
+        {
+          "offset": {
+            "x": -1.0,
+            "y": 0.0
+          },
+          "type": 4,
+          "isSecondary": false
+        },
+        {
+          "offset": {
+            "x": 2.0,
+            "y": 0.0
+          },
+          "type": 5,
+          "isSecondary": false
+        },
+        {
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "type": 6,
+          "isSecondary": false
+        }
+      ]
+    },
+    {
       "DefaultAnimState": "grounded",
       "name": "Hydrogen Engine",
       "prefabId": "HydrogenEngine",
@@ -4820,6 +4912,60 @@
             "y": 0.0
           },
           "type": 10,
+          "isSecondary": false
+        }
+      ]
+    },
+    {
+      "DefaultAnimState": "off",
+      "name": "Juicer",
+      "prefabId": "Juicer",
+      "kanimPrefix": "Juicer_",
+      "textureName": "juicer_0",
+      "isTile": false,
+      "isUtility": false,
+      "isBridge": false,
+      "drawSolid": false,
+      "backColor": 0,
+      "frontColor": 16777215,
+      "sizeInCells": {
+        "x": 3.0,
+        "y": 4.0
+      },
+      "sceneLayer": 19,
+      "viewMode": 2,
+      "tileableType": 0,
+      "utilities": [
+        {
+          "offset": {
+            "x": 1.0,
+            "y": 0.0
+          },
+          "type": 0,
+          "isSecondary": false
+        },
+        {
+          "offset": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "type": 4,
+          "isSecondary": false
+        },
+        {
+          "offset": {
+            "x": 1.0,
+            "y": 0.0
+          },
+          "type": 10,
+          "isSecondary": false
+        },
+        {
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "type": 6,
           "isSecondary": false
         }
       ]
@@ -6968,6 +7114,60 @@
     },
     {
       "DefaultAnimState": "off",
+      "name": "Mechanical Surfboard",
+      "prefabId": "MechanicalSurfboard",
+      "kanimPrefix": "MechanicalSurfboard_",
+      "textureName": "mechanical_surfboard_0",
+      "isTile": false,
+      "isUtility": false,
+      "isBridge": false,
+      "drawSolid": false,
+      "backColor": 0,
+      "frontColor": 16777215,
+      "sizeInCells": {
+        "x": 2.0,
+        "y": 3.0
+      },
+      "sceneLayer": 19,
+      "viewMode": 2,
+      "tileableType": 0,
+      "utilities": [
+        {
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "type": 0,
+          "isSecondary": false
+        },
+        {
+          "offset": {
+            "x": 1.0,
+            "y": 0.0
+          },
+          "type": 4,
+          "isSecondary": false
+        },
+        {
+          "offset": {
+            "x": 1.0,
+            "y": 0.0
+          },
+          "type": 10,
+          "isSecondary": false
+        },
+        {
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "type": 6,
+          "isSecondary": false
+        }
+      ]
+    },
+    {
+      "DefaultAnimState": "off",
       "name": "Triage Cot",
       "prefabId": "MedicalCot",
       "kanimPrefix": "MedicalCot_",
@@ -7947,7 +8147,7 @@
         "y": 3.0
       },
       "sceneLayer": 19,
-      "viewMode": 0,
+      "viewMode": 1,
       "tileableType": 0,
       "utilities": [
         {
@@ -8951,6 +9151,60 @@
       ]
     },
     {
+      "DefaultAnimState": "off",
+      "name": "Sauna",
+      "prefabId": "Sauna",
+      "kanimPrefix": "Sauna_",
+      "textureName": "sauna_0",
+      "isTile": false,
+      "isUtility": false,
+      "isBridge": false,
+      "drawSolid": false,
+      "backColor": 0,
+      "frontColor": 16777215,
+      "sizeInCells": {
+        "x": 3.0,
+        "y": 3.0
+      },
+      "sceneLayer": 19,
+      "viewMode": 3,
+      "tileableType": 0,
+      "utilities": [
+        {
+          "offset": {
+            "x": 0.0,
+            "y": 2.0
+          },
+          "type": 0,
+          "isSecondary": false
+        },
+        {
+          "offset": {
+            "x": -1.0,
+            "y": 0.0
+          },
+          "type": 2,
+          "isSecondary": false
+        },
+        {
+          "offset": {
+            "x": 1.0,
+            "y": 0.0
+          },
+          "type": 5,
+          "isSecondary": false
+        },
+        {
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "type": 6,
+          "isSecondary": false
+        }
+      ]
+    },
+    {
       "DefaultAnimState": "slab",
       "name": "Large Sculpting Block",
       "prefabId": "Sculpture",
@@ -9114,6 +9368,60 @@
             "y": 0.0
           },
           "type": 10,
+          "isSecondary": false
+        }
+      ]
+    },
+    {
+      "DefaultAnimState": "off",
+      "name": "Soda Fountain",
+      "prefabId": "SodaFountain",
+      "kanimPrefix": "SodaFountain_",
+      "textureName": "sodamaker_0",
+      "isTile": false,
+      "isUtility": false,
+      "isBridge": false,
+      "drawSolid": false,
+      "backColor": 0,
+      "frontColor": 16777215,
+      "sizeInCells": {
+        "x": 2.0,
+        "y": 2.0
+      },
+      "sceneLayer": 19,
+      "viewMode": 2,
+      "tileableType": 0,
+      "utilities": [
+        {
+          "offset": {
+            "x": 1.0,
+            "y": 0.0
+          },
+          "type": 0,
+          "isSecondary": false
+        },
+        {
+          "offset": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "type": 4,
+          "isSecondary": false
+        },
+        {
+          "offset": {
+            "x": 1.0,
+            "y": 0.0
+          },
+          "type": 10,
+          "isSecondary": false
+        },
+        {
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "type": 6,
           "isSecondary": false
         }
       ]
@@ -9970,6 +10278,60 @@
     },
     {
       "DefaultAnimState": "off",
+      "name": "Sun Lamp",
+      "prefabId": "SunLamp",
+      "kanimPrefix": "SunLamp_",
+      "textureName": "sun_lamp_0",
+      "isTile": false,
+      "isUtility": false,
+      "isBridge": false,
+      "drawSolid": false,
+      "backColor": 0,
+      "frontColor": 16777215,
+      "sizeInCells": {
+        "x": 2.0,
+        "y": 4.0
+      },
+      "sceneLayer": 19,
+      "viewMode": 8,
+      "tileableType": 0,
+      "utilities": [
+        {
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "type": 0,
+          "isSecondary": false
+        },
+        {
+          "offset": {
+            "x": 0.0,
+            "y": 1.0
+          },
+          "type": 10,
+          "isSecondary": false
+        },
+        {
+          "offset": {
+            "x": 1.0,
+            "y": 0.0
+          },
+          "type": 10,
+          "isSecondary": false
+        },
+        {
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "type": 6,
+          "isSecondary": false
+        }
+      ]
+    },
+    {
+      "DefaultAnimState": "off",
       "name": "Molecular Forge",
       "prefabId": "SupermaterialRefinery",
       "kanimPrefix": "SupermaterialRefinery_",
@@ -10430,6 +10792,60 @@
             "y": 2.0
           },
           "type": 10,
+          "isSecondary": false
+        }
+      ]
+    },
+    {
+      "DefaultAnimState": "off",
+      "name": "Vertical Wind Tunnel",
+      "prefabId": "VerticalWindTunnel",
+      "kanimPrefix": "VerticalWindTunnel_",
+      "textureName": "wind_tunnel_0",
+      "isTile": false,
+      "isUtility": false,
+      "isBridge": false,
+      "drawSolid": false,
+      "backColor": 0,
+      "frontColor": 16777215,
+      "sizeInCells": {
+        "x": 5.0,
+        "y": 6.0
+      },
+      "sceneLayer": 19,
+      "viewMode": 1,
+      "tileableType": 0,
+      "utilities": [
+        {
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "type": 0,
+          "isSecondary": false
+        },
+        {
+          "offset": {
+            "x": 0.0,
+            "y": 1.0
+          },
+          "type": 10,
+          "isSecondary": false
+        },
+        {
+          "offset": {
+            "x": 1.0,
+            "y": 0.0
+          },
+          "type": 10,
+          "isSecondary": false
+        },
+        {
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "type": 6,
           "isSecondary": false
         }
       ]
@@ -11624,6 +12040,90 @@
       "pivot": {
         "x": 0.49345237,
         "y": 0.8098077
+      }
+    },
+    {
+      "name": "BeachChair_cap_left_place_0",
+      "textureName": "beach_chair_0",
+      "isIcon": false,
+      "uvMin": {
+        "x": 738.0,
+        "y": 0.0
+      },
+      "uvSize": {
+        "x": 86.0,
+        "y": 322.0
+      },
+      "realSize": {
+        "x": 86.0,
+        "y": 322.0
+      },
+      "pivot": {
+        "x": 0.5127907,
+        "y": 0.4982531
+      }
+    },
+    {
+      "name": "BeachChair_cap_right_place_0",
+      "textureName": "beach_chair_0",
+      "isIcon": false,
+      "uvMin": {
+        "x": 552.0,
+        "y": 0.0
+      },
+      "uvSize": {
+        "x": 100.0,
+        "y": 322.0
+      },
+      "realSize": {
+        "x": 100.0,
+        "y": 322.0
+      },
+      "pivot": {
+        "x": 0.585999966,
+        "y": 0.4965062
+      }
+    },
+    {
+      "name": "BeachChair_place_0",
+      "textureName": "beach_chair_0",
+      "isIcon": false,
+      "uvMin": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "uvSize": {
+        "x": 226.0,
+        "y": 324.0
+      },
+      "realSize": {
+        "x": 226.0,
+        "y": 324.0
+      },
+      "pivot": {
+        "x": 0.5128872,
+        "y": 0.04274693
+      }
+    },
+    {
+      "name": "BeachChair_ui_0",
+      "textureName": "beach_chair_0",
+      "isIcon": true,
+      "uvMin": {
+        "x": 200.0,
+        "y": 324.0
+      },
+      "uvSize": {
+        "x": 124.0,
+        "y": 132.0
+      },
+      "realSize": {
+        "x": 124.0,
+        "y": 132.0
+      },
+      "pivot": {
+        "x": 0.474798381,
+        "y": 0.0572916679
       }
     },
     {
@@ -13399,8 +13899,8 @@
         "y": 0.0
       },
       "uvSize": {
-        "x": 222.0,
-        "y": 172.0
+        "x": 444.0,
+        "y": 344.0
       },
       "realSize": {
         "x": 444.0,
@@ -13416,12 +13916,12 @@
       "textureName": "ethanoldistillery_0",
       "isIcon": true,
       "uvMin": {
-        "x": 335.0,
-        "y": 960.0
+        "x": 1690.0,
+        "y": 1020.0
       },
       "uvSize": {
-        "x": 77.0,
-        "y": 61.0
+        "x": 154.0,
+        "y": 122.0
       },
       "realSize": {
         "x": 154.0,
@@ -15974,6 +16474,48 @@
       }
     },
     {
+      "name": "HotTub_place_0",
+      "textureName": "hottub_0",
+      "isIcon": false,
+      "uvMin": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "uvSize": {
+        "x": 536.0,
+        "y": 178.0
+      },
+      "realSize": {
+        "x": 536.0,
+        "y": 178.0
+      },
+      "pivot": {
+        "x": 0.4974347,
+        "y": -0.00512643857
+      }
+    },
+    {
+      "name": "HotTub_ui_0",
+      "textureName": "hottub_0",
+      "isIcon": true,
+      "uvMin": {
+        "x": 536.0,
+        "y": 290.0
+      },
+      "uvSize": {
+        "x": 162.0,
+        "y": 86.0
+      },
+      "realSize": {
+        "x": 162.0,
+        "y": 86.0
+      },
+      "pivot": {
+        "x": 0.489274681,
+        "y": 0.115261607
+      }
+    },
+    {
       "name": "HydrogenEngine_place_0",
       "textureName": "rocket_hydrogen_engine_0",
       "isIcon": false,
@@ -17147,6 +17689,48 @@
       "pivot": {
         "x": 0.500781238,
         "y": 0.5023077
+      }
+    },
+    {
+      "name": "Juicer_place_0",
+      "textureName": "juicer_0",
+      "isIcon": false,
+      "uvMin": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "uvSize": {
+        "x": 258.0,
+        "y": 364.0
+      },
+      "realSize": {
+        "x": 258.0,
+        "y": 364.0
+      },
+      "pivot": {
+        "x": 0.6243217,
+        "y": 0.0175824016
+      }
+    },
+    {
+      "name": "Juicer_ui_0",
+      "textureName": "juicer_0",
+      "isIcon": true,
+      "uvMin": {
+        "x": 1460.0,
+        "y": 276.0
+      },
+      "uvSize": {
+        "x": 90.0,
+        "y": 122.0
+      },
+      "realSize": {
+        "x": 90.0,
+        "y": 122.0
+      },
+      "pivot": {
+        "x": 0.6030556,
+        "y": -0.0517418049
       }
     },
     {
@@ -20300,6 +20884,48 @@
       }
     },
     {
+      "name": "MechanicalSurfboard_place_0",
+      "textureName": "mechanical_surfboard_0",
+      "isIcon": false,
+      "uvMin": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "uvSize": {
+        "x": 258.0,
+        "y": 332.0
+      },
+      "realSize": {
+        "x": 258.0,
+        "y": 332.0
+      },
+      "pivot": {
+        "x": 0.026308164,
+        "y": 0.3170557
+      }
+    },
+    {
+      "name": "MechanicalSurfboard_ui_0",
+      "textureName": "mechanical_surfboard_0",
+      "isIcon": true,
+      "uvMin": {
+        "x": 582.0,
+        "y": 644.0
+      },
+      "uvSize": {
+        "x": 122.0,
+        "y": 128.0
+      },
+      "realSize": {
+        "x": 122.0,
+        "y": 128.0
+      },
+      "pivot": {
+        "x": -0.053176254,
+        "y": 0.570703149
+      }
+    },
+    {
       "name": "MedicalCot_place_0",
       "textureName": "medical_cot_0",
       "isIcon": false,
@@ -22190,6 +22816,48 @@
       }
     },
     {
+      "name": "Sauna_place_0",
+      "textureName": "sauna_0",
+      "isIcon": false,
+      "uvMin": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "uvSize": {
+        "x": 330.0,
+        "y": 332.0
+      },
+      "realSize": {
+        "x": 330.0,
+        "y": 332.0
+      },
+      "pivot": {
+        "x": 0.505946934,
+        "y": 0.63915664
+      }
+    },
+    {
+      "name": "Sauna_ui_0",
+      "textureName": "sauna_0",
+      "isIcon": true,
+      "uvMin": {
+        "x": 658.0,
+        "y": 1014.0
+      },
+      "uvSize": {
+        "x": 132.0,
+        "y": 132.0
+      },
+      "realSize": {
+        "x": 132.0,
+        "y": 132.0
+      },
+      "pivot": {
+        "x": 0.503598452,
+        "y": 0.07916664
+      }
+    },
+    {
       "name": "Sculpture_place_0",
       "textureName": "sculpture_0",
       "isIcon": false,
@@ -22355,6 +23023,48 @@
       "pivot": {
         "x": 0.5214939,
         "y": -0.0529713258
+      }
+    },
+    {
+      "name": "SodaFountain_place_0",
+      "textureName": "sodamaker_0",
+      "isIcon": false,
+      "uvMin": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "uvSize": {
+        "x": 200.0,
+        "y": 216.0
+      },
+      "realSize": {
+        "x": 200.0,
+        "y": 216.0
+      },
+      "pivot": {
+        "x": 0.561375,
+        "y": -0.00387728657
+      }
+    },
+    {
+      "name": "SodaFountain_ui_0",
+      "textureName": "sodamaker_0",
+      "isIcon": true,
+      "uvMin": {
+        "x": 158.0,
+        "y": 216.0
+      },
+      "uvSize": {
+        "x": 110.0,
+        "y": 124.0
+      },
+      "realSize": {
+        "x": 110.0,
+        "y": 124.0
+      },
+      "pivot": {
+        "x": 0.4872727,
+        "y": -0.0183467865
       }
     },
     {
@@ -23576,6 +24286,48 @@
       }
     },
     {
+      "name": "SunLamp_place_0",
+      "textureName": "sun_lamp_0",
+      "isIcon": false,
+      "uvMin": {
+        "x": 0.0,
+        "y": 384.0
+      },
+      "uvSize": {
+        "x": 226.0,
+        "y": 428.0
+      },
+      "realSize": {
+        "x": 226.0,
+        "y": 428.0
+      },
+      "pivot": {
+        "x": 0.5175885,
+        "y": 0.247283861
+      }
+    },
+    {
+      "name": "SunLamp_ui_0",
+      "textureName": "sun_lamp_0",
+      "isIcon": true,
+      "uvMin": {
+        "x": 490.0,
+        "y": 0.0
+      },
+      "uvSize": {
+        "x": 86.0,
+        "y": 138.0
+      },
+      "realSize": {
+        "x": 86.0,
+        "y": 138.0
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.0921195745
+      }
+    },
+    {
       "name": "SupermaterialRefinery_place_0",
       "textureName": "supermaterial_refinery_0",
       "isIcon": false,
@@ -24287,6 +25039,48 @@
       "pivot": {
         "x": 0.494750023,
         "y": 0.04676727
+      }
+    },
+    {
+      "name": "VerticalWindTunnel_place_0",
+      "textureName": "wind_tunnel_0",
+      "isIcon": false,
+      "uvMin": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "uvSize": {
+        "x": 538.0,
+        "y": 1058.0
+      },
+      "realSize": {
+        "x": 538.0,
+        "y": 1058.0
+      },
+      "pivot": {
+        "x": 0.499326229,
+        "y": 0.2153119
+      }
+    },
+    {
+      "name": "VerticalWindTunnel_ui_0",
+      "textureName": "wind_tunnel_0",
+      "isIcon": true,
+      "uvMin": {
+        "x": 1596.0,
+        "y": 1212.0
+      },
+      "uvSize": {
+        "x": 84.0,
+        "y": 138.0
+      },
+      "realSize": {
+        "x": 84.0,
+        "y": 138.0
+      },
+      "pivot": {
+        "x": 0.494345248,
+        "y": 0.424637675
       }
     },
     {
@@ -26037,8 +26831,8 @@
       "textureName": "electrical_disconnected",
       "isIcon": true,
       "uvMin": {
-        "x": 0.07612038,
-        "y": 1174.02673
+        "x": 1298.07617,
+        "y": 1614.02673
       },
       "uvSize": {
         "x": 214.910965,
@@ -26058,8 +26852,8 @@
       "textureName": "icon_category_automation",
       "isIcon": true,
       "uvMin": {
-        "x": 943.026733,
-        "y": 1043.076
+        "x": 1003.02673,
+        "y": 1555.07617
       },
       "uvSize": {
         "x": 224.960342,
@@ -26079,8 +26873,8 @@
       "textureName": "icon_category_automation",
       "isIcon": true,
       "uvMin": {
-        "x": 1211.0,
-        "y": 556.07605
+        "x": 1469.0,
+        "y": 807.0762
       },
       "uvSize": {
         "x": 208.960114,
@@ -26100,8 +26894,8 @@
       "textureName": "icon_category_automation",
       "isIcon": true,
       "uvMin": {
-        "x": 460.051331,
-        "y": 1251.02673
+        "x": 711.051331,
+        "y": 1249.02673
       },
       "uvSize": {
         "x": 210.872559,
@@ -26121,8 +26915,8 @@
       "textureName": "electrical_disconnected",
       "isIcon": true,
       "uvMin": {
-        "x": 1461.07617,
-        "y": 1133.0
+        "x": 860.0761,
+        "y": 235.000046
       },
       "uvSize": {
         "x": 164.847748,
@@ -26142,8 +26936,8 @@
       "textureName": "icon_category_automation",
       "isIcon": true,
       "uvMin": {
-        "x": 1728.07617,
-        "y": 1774.05127
+        "x": 750.0761,
+        "y": 685.0513
       },
       "uvSize": {
         "x": 205.865677,
@@ -26163,8 +26957,8 @@
       "textureName": "electrical_disconnected",
       "isIcon": true,
       "uvMin": {
-        "x": 1730.06311,
-        "y": 916.026733
+        "x": 1875.06311,
+        "y": 70.0267639
       },
       "uvSize": {
         "x": 172.894028,
@@ -26185,7 +26979,7 @@
       "isIcon": true,
       "uvMin": {
         "x": 0.01291275,
-        "y": 536.042969
+        "y": 325.042938
       },
       "uvSize": {
         "x": 257.960327,
@@ -26206,7 +27000,7 @@
       "isIcon": true,
       "uvMin": {
         "x": 1848.07617,
-        "y": 747.0268
+        "y": 1011.02673
       },
       "uvSize": {
         "x": 196.847748,
@@ -26226,8 +27020,8 @@
       "textureName": "electrical_disconnected",
       "isIcon": true,
       "uvMin": {
-        "x": 1090.07617,
-        "y": 725.012939
+        "x": 626.0761,
+        "y": 303.012939
       },
       "uvSize": {
         "x": 225.910965,
@@ -26247,8 +27041,8 @@
       "textureName": "electrical_disconnected",
       "isIcon": true,
       "uvMin": {
-        "x": 466.0761,
-        "y": 1567.0
+        "x": 889.0761,
+        "y": 1528.0
       },
       "uvSize": {
         "x": 178.847748,
@@ -26269,7 +27063,7 @@
       "isIcon": true,
       "uvMin": {
         "x": 772.0761,
-        "y": 780.0761
+        "y": 575.07605
       },
       "uvSize": {
         "x": 243.921936,
@@ -26289,8 +27083,8 @@
       "textureName": "icon_category_furniture",
       "isIcon": true,
       "uvMin": {
-        "x": 266.026764,
-        "y": 508.07605
+        "x": 1024.02673,
+        "y": 739.07605
       },
       "uvSize": {
         "x": 242.930344,
@@ -26307,11 +27101,11 @@
     },
     {
       "name": "icon_category_plumbing",
-      "textureName": "icon_category_plumbing",
+      "textureName": "electrical_disconnected",
       "isIcon": true,
       "uvMin": {
-        "x": 1848.02673,
-        "y": 1798.05408
+        "x": 0.0267505646,
+        "y": 1553.05408
       },
       "uvSize": {
         "x": 191.930344,
@@ -26331,8 +27125,8 @@
       "textureName": "icon_category_furniture",
       "isIcon": true,
       "uvMin": {
-        "x": 517.012939,
-        "y": 501.07605
+        "x": 1571.013,
+        "y": 1762.076
       },
       "uvSize": {
         "x": 236.910965,
@@ -26352,8 +27146,8 @@
       "textureName": "icon_category_automation",
       "isIcon": true,
       "uvMin": {
-        "x": 691.0761,
-        "y": 565.07605
+        "x": 1478.07617,
+        "y": 1542.076
       },
       "uvSize": {
         "x": 204.847748,
@@ -26373,8 +27167,8 @@
       "textureName": "electrical_disconnected",
       "isIcon": true,
       "uvMin": {
-        "x": 227.076126,
-        "y": 1640.043
+        "x": 675.0761,
+        "y": 1151.043
       },
       "uvSize": {
         "x": 230.887589,
@@ -26394,8 +27188,8 @@
       "textureName": "icon_category_utilities",
       "isIcon": true,
       "uvMin": {
-        "x": 263.0761,
-        "y": 451.07605
+        "x": 1302.07617,
+        "y": 201.07605
       },
       "uvSize": {
         "x": 216.847748,
@@ -26415,7 +27209,7 @@
       "textureName": "icon_category_utilities",
       "isIcon": true,
       "uvMin": {
-        "x": 0.0267505646,
+        "x": 525.026733,
         "y": 737.012939
       },
       "uvSize": {
@@ -26436,8 +27230,8 @@
       "textureName": "electrical_disconnected",
       "isIcon": true,
       "uvMin": {
-        "x": 223.012909,
-        "y": 1395.07617
+        "x": 1472.013,
+        "y": 1835.07617
       },
       "uvSize": {
         "x": 214.910965,
@@ -26457,7 +27251,7 @@
       "textureName": "icon_category_lights",
       "isIcon": true,
       "uvMin": {
-        "x": 1056.0,
+        "x": 1584.0,
         "y": 472.0
       },
       "uvSize": {
@@ -26475,11 +27269,11 @@
     },
     {
       "name": "logicOutput",
-      "textureName": "icon_category_plumbing",
+      "textureName": "logicOutput",
       "isIcon": true,
       "uvMin": {
         "x": 792.0,
-        "y": 1792.0
+        "y": 1264.0
       },
       "uvSize": {
         "x": 256.0,
@@ -26499,8 +27293,8 @@
       "textureName": "electrical_disconnected",
       "isIcon": true,
       "uvMin": {
-        "x": 0.0129125118,
-        "y": 1395.07617
+        "x": 1249.013,
+        "y": 1835.07617
       },
       "uvSize": {
         "x": 214.910965,
@@ -26958,6 +27752,62 @@
       "translation": {
         "x": -1.325,
         "y": 97.3
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0
+      },
+      "rotation": 0.0
+    },
+    {
+      "name": "BeachChair_left",
+      "type": 3,
+      "spriteInfoName": "BeachChair_cap_left_place_0",
+      "translation": {
+        "x": -104.15,
+        "y": 147.85
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0
+      },
+      "rotation": 0.0
+    },
+    {
+      "name": "BeachChair_right",
+      "type": 4,
+      "spriteInfoName": "BeachChair_cap_right_place_0",
+      "translation": {
+        "x": 106.8,
+        "y": 147.575
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0
+      },
+      "rotation": 0.0
+    },
+    {
+      "name": "BeachChair_place",
+      "type": 0,
+      "spriteInfoName": "BeachChair_place_0",
+      "translation": {
+        "x": 3.15,
+        "y": -1.875
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0
+      },
+      "rotation": 0.0
+    },
+    {
+      "name": "BeachChair_ui",
+      "type": 0,
+      "spriteInfoName": "BeachChair_ui_0",
+      "translation": {
+        "x": -2.1,
+        "y": 1.075
       },
       "scale": {
         "x": 1.0,
@@ -30270,6 +31120,34 @@
       "rotation": 0.0
     },
     {
+      "name": "HotTub_place",
+      "type": 0,
+      "spriteInfoName": "HotTub_place_0",
+      "translation": {
+        "x": 0.825,
+        "y": -18.45
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0
+      },
+      "rotation": 0.0
+    },
+    {
+      "name": "HotTub_ui",
+      "type": 0,
+      "spriteInfoName": "HotTub_ui_0",
+      "translation": {
+        "x": -0.425,
+        "y": 1.95
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0
+      },
+      "rotation": 0.0
+    },
+    {
       "name": "HydrogenEngine_place",
       "type": 0,
       "spriteInfoName": "HydrogenEngine_place_0",
@@ -31466,6 +32344,34 @@
       "translation": {
         "x": -0.175,
         "y": 58.8
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0
+      },
+      "rotation": 0.0
+    },
+    {
+      "name": "Juicer_place",
+      "type": 0,
+      "spriteInfoName": "Juicer_place_0",
+      "translation": {
+        "x": 37.775,
+        "y": -0.75
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0
+      },
+      "rotation": 0.0
+    },
+    {
+      "name": "Juicer_ui",
+      "type": 0,
+      "spriteInfoName": "Juicer_ui_0",
+      "translation": {
+        "x": 0.5,
+        "y": -10.775
       },
       "scale": {
         "x": 1.0,
@@ -34302,6 +35208,34 @@
       "rotation": 0.0
     },
     {
+      "name": "MechanicalSurfboard_place",
+      "type": 0,
+      "spriteInfoName": "MechanicalSurfboard_place_0",
+      "translation": {
+        "x": -119.775,
+        "y": 94.125
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0
+      },
+      "rotation": 0.0
+    },
+    {
+      "name": "MechanicalSurfboard_ui",
+      "type": 0,
+      "spriteInfoName": "MechanicalSurfboard_ui_0",
+      "translation": {
+        "x": -67.3,
+        "y": 67.4
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0
+      },
+      "rotation": 0.0
+    },
+    {
       "name": "MedicalCot_place",
       "type": 0,
       "spriteInfoName": "MedicalCot_place_0",
@@ -35562,6 +36496,34 @@
       "rotation": 0.0
     },
     {
+      "name": "Sauna_place",
+      "type": 0,
+      "spriteInfoName": "Sauna_place_0",
+      "translation": {
+        "x": 0.1,
+        "y": 197.375
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0
+      },
+      "rotation": 0.0
+    },
+    {
+      "name": "Sauna_ui",
+      "type": 0,
+      "spriteInfoName": "Sauna_ui_0",
+      "translation": {
+        "x": -0.7,
+        "y": 2.35
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0
+      },
+      "rotation": 0.0
+    },
+    {
       "name": "Sculpture_place",
       "type": 0,
       "spriteInfoName": "Sculpture_place_0",
@@ -35666,6 +36628,34 @@
       "translation": {
         "x": 0.0,
         "y": -12.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0
+      },
+      "rotation": 0.0
+    },
+    {
+      "name": "SodaFountain_place",
+      "type": 0,
+      "spriteInfoName": "SodaFountain_place_0",
+      "translation": {
+        "x": 1.8,
+        "y": -10.775
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0
+      },
+      "rotation": 0.0
+    },
+    {
+      "name": "SodaFountain_ui",
+      "type": 0,
+      "spriteInfoName": "SodaFountain_ui_0",
+      "translation": {
+        "x": 0.5,
+        "y": -10.775
       },
       "scale": {
         "x": 1.0,
@@ -36682,6 +37672,34 @@
       "rotation": 0.0
     },
     {
+      "name": "SunLamp_place",
+      "type": 0,
+      "spriteInfoName": "SunLamp_place_0",
+      "translation": {
+        "x": 1.075,
+        "y": 96.3
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0
+      },
+      "rotation": 0.0
+    },
+    {
+      "name": "SunLamp_ui",
+      "type": 0,
+      "spriteInfoName": "SunLamp_ui_0",
+      "translation": {
+        "x": 0.075,
+        "y": -0.2
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0
+      },
+      "rotation": 0.0
+    },
+    {
       "name": "SupermaterialRefinery_place",
       "type": 0,
       "spriteInfoName": "SupermaterialRefinery_place_0",
@@ -37476,6 +38494,34 @@
       "scale": {
         "x": 1.0,
         "y": 1.0
+      },
+      "rotation": 0.0
+    },
+    {
+      "name": "VerticalWindTunnel_place",
+      "type": 0,
+      "spriteInfoName": "VerticalWindTunnel_place_0",
+      "translation": {
+        "x": 0.375,
+        "y": -7.675
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0
+      },
+      "rotation": 0.0
+    },
+    {
+      "name": "VerticalWindTunnel_ui",
+      "type": 0,
+      "spriteInfoName": "VerticalWindTunnel_ui_0",
+      "translation": {
+        "x": -0.825,
+        "y": 36.55
+      },
+      "scale": {
+        "x": 0.7225342,
+        "y": 0.7225342
       },
       "rotation": 0.0
     },
@@ -40397,6 +41443,10 @@
     },
     {
       "category": -1264537710,
+      "buildingId": "SunLamp"
+    },
+    {
+      "category": -1264537710,
       "buildingId": "DiningTable"
     },
     {
@@ -40414,6 +41464,34 @@
     {
       "category": -1264537710,
       "buildingId": "EspressoMachine"
+    },
+    {
+      "category": -1264537710,
+      "buildingId": "HotTub"
+    },
+    {
+      "category": -1264537710,
+      "buildingId": "MechanicalSurfboard"
+    },
+    {
+      "category": -1264537710,
+      "buildingId": "Sauna"
+    },
+    {
+      "category": -1264537710,
+      "buildingId": "Juicer"
+    },
+    {
+      "category": -1264537710,
+      "buildingId": "SodaFountain"
+    },
+    {
+      "category": -1264537710,
+      "buildingId": "BeachChair"
+    },
+    {
+      "category": -1264537710,
+      "buildingId": "VerticalWindTunnel"
     },
     {
       "category": -1264537710,
