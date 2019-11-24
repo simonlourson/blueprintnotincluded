@@ -30,6 +30,8 @@ export class OniItem
   backColor: number;
   frontColor: number;
   orientations: AuthorizedOrientations[];
+  dragBuild: boolean;
+  objectLayer: number; // TODO import enum?
 
   // Overlay
   zIndex: ZIndex;
@@ -55,6 +57,9 @@ export class OniItem
     this.overlay = this.getRealOverlay(original.viewMode);
     this.backColor = original.backColor;
     this.frontColor = original.frontColor;
+
+    this.dragBuild = original.dragBuild;
+    this.objectLayer = original.objectLayer;
 
     let imageId: string = original.textureName;
     let imageUrl: string = DrawHelpers.createUrl(imageId, false);

@@ -42,7 +42,7 @@ export class BuildTool implements ITool
     // TODO we should loop the tiles of the templateItemToBuild according to it's bounding box
     let alreadyPresent = false;
     for (let templateItem of this.blueprintService.blueprint.getTemplateItemsAt(this.templateItemToBuild.position)) 
-      if (templateItem.id == this.templateItemToBuild.id) 
+      if (templateItem.oniItem.objectLayer == this.templateItemToBuild.oniItem.objectLayer) 
         alreadyPresent = true;
 
     return !alreadyPresent;
@@ -92,8 +92,8 @@ export class BuildTool implements ITool
     
     if (this.templateItemToBuild.oniItem.isWire)
     {
-      let itemsPrevious = this.blueprintService.blueprint.getTemplateItemsAt(tileStart).filter(i => i.id == this.templateItemToBuild.id);
-      let itemsCurrent = this.blueprintService.blueprint.getTemplateItemsAt(tileStop).filter(i => i.id == this.templateItemToBuild.id);
+      let itemsPrevious = this.blueprintService.blueprint.getTemplateItemsAt(tileStart).filter(i => i.oniItem.objectLayer == this.templateItemToBuild.oniItem.objectLayer);
+      let itemsCurrent = this.blueprintService.blueprint.getTemplateItemsAt(tileStop).filter(i => i.oniItem.objectLayer == this.templateItemToBuild.oniItem.objectLayer);
 
       if (itemsPrevious != null && itemsPrevious.length > 0 && itemsCurrent != null && itemsCurrent.length > 0)
       {

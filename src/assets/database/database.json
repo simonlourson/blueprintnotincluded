@@ -10,6 +10,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -17,6 +18,7 @@
         "y": 3.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 2,
       "tileableType": 0,
       "utilities": [
@@ -64,6 +66,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -71,6 +74,7 @@
         "y": 3.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 0,
       "tileableType": 0,
       "utilities": [
@@ -80,22 +84,6 @@
             "y": 0.0
           },
           "type": 0,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
           "isSecondary": false
         },
         {
@@ -118,6 +106,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -125,6 +114,7 @@
         "y": 3.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 1,
       "tileableType": 0,
       "utilities": [
@@ -134,22 +124,6 @@
             "y": 0.0
           },
           "type": 0,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
           "isSecondary": false
         },
         {
@@ -172,6 +146,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -179,25 +154,10 @@
         "y": 4.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 0,
       "tileableType": 0,
       "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
         {
           "offset": {
             "x": 0.0,
@@ -218,6 +178,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -225,6 +186,7 @@
         "y": 2.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 3,
       "tileableType": 0,
       "utilities": [
@@ -272,6 +234,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -279,26 +242,10 @@
         "y": 1.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 5,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -310,6 +257,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -317,6 +265,7 @@
         "y": 4.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 2,
       "tileableType": 0,
       "utilities": [
@@ -326,14 +275,6 @@
             "y": 0.0
           },
           "type": 0,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 0.0
-          },
-          "type": 10,
           "isSecondary": false
         },
         {
@@ -364,6 +305,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -371,26 +313,10 @@
         "y": 2.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 5,
       "tileableType": 1,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -402,6 +328,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -409,6 +336,7 @@
         "y": 3.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 1,
       "tileableType": 0,
       "utilities": [
@@ -418,22 +346,6 @@
             "y": 0.0
           },
           "type": 0,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
           "isSecondary": false
         },
         {
@@ -456,6 +368,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -463,6 +376,7 @@
         "y": 3.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 1,
       "tileableType": 0,
       "utilities": [
@@ -472,22 +386,6 @@
             "y": 0.0
           },
           "type": 0,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
           "isSecondary": false
         },
         {
@@ -510,6 +408,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -517,6 +416,7 @@
         "y": 5.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 1,
       "tileableType": 0,
       "utilities": [
@@ -526,22 +426,6 @@
             "y": 0.0
           },
           "type": 0,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
           "isSecondary": false
         },
         {
@@ -564,6 +448,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -571,6 +456,7 @@
         "y": 2.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 0,
       "tileableType": 0,
       "utilities": [
@@ -580,22 +466,6 @@
             "y": 0.0
           },
           "type": 0,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
           "isSecondary": false
         },
         {
@@ -618,6 +488,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -625,6 +496,7 @@
         "y": 2.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 1,
       "tileableType": 0,
       "utilities": [
@@ -634,22 +506,6 @@
             "y": 0.0
           },
           "type": 1,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
           "isSecondary": false
         }
       ]
@@ -664,6 +520,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -671,6 +528,7 @@
         "y": 2.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 1,
       "tileableType": 0,
       "utilities": [
@@ -680,22 +538,6 @@
             "y": 0.0
           },
           "type": 1,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
           "isSecondary": false
         }
       ]
@@ -710,6 +552,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -717,6 +560,7 @@
         "y": 2.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 1,
       "tileableType": 0,
       "utilities": [
@@ -726,22 +570,6 @@
             "y": 0.0
           },
           "type": 1,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
           "isSecondary": false
         },
         {
@@ -764,6 +592,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -771,26 +600,10 @@
         "y": 3.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 0,
       "tileableType": 1,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -802,6 +615,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -809,26 +623,10 @@
         "y": 2.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 0,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -840,6 +638,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -847,26 +646,10 @@
         "y": 3.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 0,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -878,6 +661,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -885,26 +669,10 @@
         "y": 3.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 0,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -916,6 +684,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -923,6 +692,7 @@
         "y": 1.0
       },
       "sceneLayer": 30,
+      "objectLayer": 1,
       "viewMode": 0,
       "tileableType": 0,
       "utilities": [
@@ -932,22 +702,6 @@
             "y": 0.0
           },
           "type": 0,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
           "isSecondary": false
         },
         {
@@ -970,6 +724,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -977,26 +732,10 @@
         "y": 1.0
       },
       "sceneLayer": 30,
+      "objectLayer": 1,
       "viewMode": 0,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -1008,6 +747,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -1015,26 +755,10 @@
         "y": 2.0
       },
       "sceneLayer": 16,
+      "objectLayer": 1,
       "viewMode": 7,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -1046,6 +770,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -1053,26 +778,10 @@
         "y": 3.0
       },
       "sceneLayer": 16,
+      "objectLayer": 1,
       "viewMode": 7,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -1084,6 +793,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -1091,26 +801,10 @@
         "y": 2.0
       },
       "sceneLayer": 16,
+      "objectLayer": 1,
       "viewMode": 7,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "grounded",
@@ -1122,6 +816,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -1129,17 +824,10 @@
         "y": 5.0
       },
       "sceneLayer": 21,
+      "objectLayer": 1,
       "viewMode": 0,
       "tileableType": 0,
       "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
         {
           "offset": {
             "x": 0.0,
@@ -1160,6 +848,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -1167,26 +856,10 @@
         "y": 1.0
       },
       "sceneLayer": 30,
+      "objectLayer": 1,
       "viewMode": 0,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -1198,6 +871,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -1205,6 +879,7 @@
         "y": 1.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 8,
       "tileableType": 0,
       "utilities": [
@@ -1214,22 +889,6 @@
             "y": 0.0
           },
           "type": 0,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
           "isSecondary": false
         },
         {
@@ -1252,6 +911,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -1259,6 +919,7 @@
         "y": 3.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 0,
       "tileableType": 0,
       "utilities": [
@@ -1268,22 +929,6 @@
             "y": 2.0
           },
           "type": 0,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
           "isSecondary": false
         },
         {
@@ -1306,6 +951,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -1313,6 +959,7 @@
         "y": 3.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 1,
       "tileableType": 0,
       "utilities": [
@@ -1322,22 +969,6 @@
             "y": 0.0
           },
           "type": 0,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
           "isSecondary": false
         },
         {
@@ -1360,6 +991,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -1367,6 +999,7 @@
         "y": 2.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 5,
       "tileableType": 0,
       "utilities": [
@@ -1414,6 +1047,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -1421,6 +1055,7 @@
         "y": 4.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 4,
       "tileableType": 0,
       "utilities": [
@@ -1430,22 +1065,6 @@
             "y": 0.0
           },
           "type": 0,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
           "isSecondary": false
         },
         {
@@ -1468,6 +1087,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -1475,25 +1095,10 @@
         "y": 5.0
       },
       "sceneLayer": 21,
+      "objectLayer": 1,
       "viewMode": 0,
       "tileableType": 0,
       "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
         {
           "offset": {
             "x": 0.0,
@@ -1522,6 +1127,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -1529,26 +1135,10 @@
         "y": 2.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 0,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -1560,6 +1150,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -1567,25 +1158,10 @@
         "y": 1.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 4,
       "tileableType": 0,
       "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
         {
           "offset": {
             "x": 0.0,
@@ -1606,6 +1182,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -1613,25 +1190,10 @@
         "y": 1.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 4,
       "tileableType": 0,
       "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
         {
           "offset": {
             "x": 0.0,
@@ -1652,6 +1214,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -1659,25 +1222,10 @@
         "y": 1.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 4,
       "tileableType": 0,
       "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
         {
           "offset": {
             "x": 0.0,
@@ -1698,6 +1246,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -1705,25 +1254,10 @@
         "y": 1.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 4,
       "tileableType": 0,
       "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
         {
           "offset": {
             "x": 0.0,
@@ -1744,6 +1278,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -1751,25 +1286,10 @@
         "y": 1.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 4,
       "tileableType": 0,
       "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
         {
           "offset": {
             "x": 0.0,
@@ -1790,6 +1310,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -1797,25 +1318,10 @@
         "y": 1.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 4,
       "tileableType": 0,
       "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
         {
           "offset": {
             "x": 0.0,
@@ -1836,6 +1342,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -1843,6 +1350,7 @@
         "y": 2.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 1,
       "tileableType": 0,
       "utilities": [
@@ -1852,22 +1360,6 @@
             "y": 0.0
           },
           "type": 0,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
           "isSecondary": false
         },
         {
@@ -1890,6 +1382,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -1897,26 +1390,10 @@
         "y": 1.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 7,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -1928,6 +1405,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -1935,6 +1413,7 @@
         "y": 4.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 1,
       "tileableType": 0,
       "utilities": [
@@ -1944,22 +1423,6 @@
             "y": 0.0
           },
           "type": 0,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
           "isSecondary": false
         },
         {
@@ -1982,6 +1445,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -1989,26 +1453,10 @@
         "y": 3.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 10,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -2020,6 +1468,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -2027,26 +1476,10 @@
         "y": 2.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 0,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -2058,6 +1491,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -2065,26 +1499,10 @@
         "y": 1.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 0,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -2096,6 +1514,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -2103,6 +1522,7 @@
         "y": 19.0
       },
       "sceneLayer": 21,
+      "objectLayer": 1,
       "viewMode": 0,
       "tileableType": 0,
       "utilities": [
@@ -2120,14 +1540,6 @@
             "y": 6.0
           },
           "type": 2,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
           "isSecondary": false
         },
         {
@@ -2150,6 +1562,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -2157,26 +1570,10 @@
         "y": 1.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 7,
       "tileableType": 1,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -2188,6 +1585,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -2195,26 +1593,10 @@
         "y": 1.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 0,
       "tileableType": 1,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -2226,6 +1608,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -2233,26 +1616,10 @@
         "y": 2.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 0,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -2264,6 +1631,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -2271,25 +1639,10 @@
         "y": 2.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 0,
       "tileableType": 0,
       "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
         {
           "offset": {
             "x": 0.0,
@@ -2310,6 +1663,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -2317,26 +1671,10 @@
         "y": 2.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 0,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -2348,6 +1686,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -2355,6 +1694,7 @@
         "y": 3.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 0,
       "tileableType": 0,
       "utilities": [
@@ -2364,22 +1704,6 @@
             "y": 0.0
           },
           "type": 0,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
           "isSecondary": false
         },
         {
@@ -2402,6 +1726,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -2409,6 +1734,7 @@
         "y": 2.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 5,
       "tileableType": 0,
       "utilities": [
@@ -2431,14 +1757,6 @@
         {
           "offset": {
             "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
             "y": 1.0
           },
           "type": 6,
@@ -2456,6 +1774,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -2463,6 +1782,7 @@
         "y": 3.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 2,
       "tileableType": 0,
       "utilities": [
@@ -2480,14 +1800,6 @@
             "y": 2.0
           },
           "type": 4,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
           "isSecondary": false
         },
         {
@@ -2510,6 +1822,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -2517,6 +1830,7 @@
         "y": 3.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 2,
       "tileableType": 0,
       "utilities": [
@@ -2526,14 +1840,6 @@
             "y": 0.0
           },
           "type": 0,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
           "isSecondary": false
         },
         {
@@ -2564,6 +1870,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -2571,26 +1878,10 @@
         "y": 1.0
       },
       "sceneLayer": 1,
+      "objectLayer": 2,
       "viewMode": 0,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -2602,6 +1893,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -2609,26 +1901,10 @@
         "y": 6.0
       },
       "sceneLayer": 1,
+      "objectLayer": 2,
       "viewMode": 0,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -2640,6 +1916,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -2647,25 +1924,10 @@
         "y": 3.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 10,
       "tileableType": 0,
       "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
         {
           "offset": {
             "x": 0.0,
@@ -2686,6 +1948,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": true,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -2693,26 +1956,10 @@
         "y": 1.0
       },
       "sceneLayer": 30,
+      "objectLayer": 1,
       "viewMode": 0,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -2724,6 +1971,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -2731,6 +1979,7 @@
         "y": 3.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 2,
       "tileableType": 0,
       "utilities": [
@@ -2748,14 +1997,6 @@
             "y": 0.0
           },
           "type": 4,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
           "isSecondary": false
         },
         {
@@ -2778,6 +2019,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": true,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -2785,26 +2027,10 @@
         "y": 1.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 0,
       "tileableType": 2,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -2816,6 +2042,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -2823,26 +2050,10 @@
         "y": 3.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 10,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -2854,6 +2065,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -2861,26 +2073,10 @@
         "y": 3.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 0,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -2892,6 +2088,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -2899,26 +2096,10 @@
         "y": 2.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 0,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -2930,6 +2111,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -2937,6 +2119,7 @@
         "y": 2.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 8,
       "tileableType": 0,
       "utilities": [
@@ -2946,22 +2129,6 @@
             "y": 0.0
           },
           "type": 0,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
           "isSecondary": false
         },
         {
@@ -2984,6 +2151,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -2991,25 +2159,10 @@
         "y": 1.0
       },
       "sceneLayer": 30,
+      "objectLayer": 1,
       "viewMode": 4,
       "tileableType": 0,
       "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
         {
           "offset": {
             "x": 0.0,
@@ -3030,6 +2183,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -3037,26 +2191,10 @@
         "y": 1.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 7,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -3068,6 +2206,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -3075,26 +2214,10 @@
         "y": 2.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 7,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -3106,6 +2229,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -3113,26 +2237,10 @@
         "y": 2.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 7,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -3144,6 +2252,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -3151,26 +2260,10 @@
         "y": 1.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 7,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -3182,6 +2275,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -3189,6 +2283,7 @@
         "y": 3.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 2,
       "tileableType": 0,
       "utilities": [
@@ -3220,6 +2315,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -3227,26 +2323,10 @@
         "y": 2.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 0,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -3258,6 +2338,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -3265,6 +2346,7 @@
         "y": 2.0
       },
       "sceneLayer": 30,
+      "objectLayer": 38,
       "viewMode": 0,
       "tileableType": 0,
       "utilities": [
@@ -3274,22 +2356,6 @@
             "y": 0.0
           },
           "type": 0,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
           "isSecondary": false
         },
         {
@@ -3312,6 +2378,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -3319,6 +2386,7 @@
         "y": 2.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 3,
       "tileableType": 0,
       "utilities": [
@@ -3328,14 +2396,6 @@
             "y": 0.0
           },
           "type": 2,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
           "isSecondary": false
         }
       ]
@@ -3350,6 +2410,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -3357,17 +2418,10 @@
         "y": 5.0
       },
       "sceneLayer": 21,
+      "objectLayer": 1,
       "viewMode": 0,
       "tileableType": 0,
       "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
         {
           "offset": {
             "x": 0.0,
@@ -3388,6 +2442,7 @@
       "isUtility": false,
       "isBridge": true,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -3395,6 +2450,7 @@
         "y": 1.0
       },
       "sceneLayer": 4,
+      "objectLayer": 15,
       "viewMode": 3,
       "tileableType": 0,
       "utilities": [
@@ -3426,6 +2482,7 @@
       "isUtility": true,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": true,
       "backColor": 13882839,
       "frontColor": 8026746,
       "sizeInCells": {
@@ -3433,26 +2490,10 @@
         "y": 1.0
       },
       "sceneLayer": 3,
+      "objectLayer": 12,
       "viewMode": 3,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -3464,6 +2505,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -3471,6 +2513,7 @@
         "y": 2.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 3,
       "tileableType": 0,
       "utilities": [
@@ -3510,6 +2553,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -3517,6 +2561,7 @@
         "y": 2.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 3,
       "tileableType": 0,
       "utilities": [
@@ -3556,6 +2601,7 @@
       "isUtility": true,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": true,
       "backColor": 15132280,
       "frontColor": 12296522,
       "sizeInCells": {
@@ -3563,26 +2609,10 @@
         "y": 1.0
       },
       "sceneLayer": 3,
+      "objectLayer": 12,
       "viewMode": 3,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -3594,6 +2624,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -3601,6 +2632,7 @@
         "y": 1.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 3,
       "tileableType": 0,
       "utilities": [
@@ -3656,6 +2688,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -3663,6 +2696,7 @@
         "y": 2.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 3,
       "tileableType": 0,
       "utilities": [
@@ -3710,6 +2744,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -3717,6 +2752,7 @@
         "y": 2.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 3,
       "tileableType": 0,
       "utilities": [
@@ -3726,14 +2762,6 @@
             "y": 0.0
           },
           "type": 0,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
           "isSecondary": false
         },
         {
@@ -3764,6 +2792,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -3771,26 +2800,10 @@
         "y": 1.0
       },
       "sceneLayer": 30,
+      "objectLayer": 1,
       "viewMode": 0,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -3802,6 +2815,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -3809,6 +2823,7 @@
         "y": 2.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 3,
       "tileableType": 0,
       "utilities": [
@@ -3818,14 +2833,6 @@
             "y": 1.0
           },
           "type": 0,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
           "isSecondary": false
         },
         {
@@ -3856,6 +2863,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -3863,6 +2871,7 @@
         "y": 3.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 3,
       "tileableType": 0,
       "utilities": [
@@ -3894,6 +2903,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -3901,6 +2911,7 @@
         "y": 2.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 3,
       "tileableType": 0,
       "utilities": [
@@ -3932,6 +2943,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -3939,6 +2951,7 @@
         "y": 1.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 3,
       "tileableType": 0,
       "utilities": [
@@ -3948,14 +2961,6 @@
             "y": 0.0
           },
           "type": 2,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 0.0
-          },
-          "type": 10,
           "isSecondary": false
         }
       ]
@@ -3970,6 +2975,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -3977,6 +2983,7 @@
         "y": 1.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 3,
       "tileableType": 0,
       "utilities": [
@@ -3986,14 +2993,6 @@
             "y": 0.0
           },
           "type": 2,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 0.0
-          },
-          "type": 10,
           "isSecondary": false
         }
       ]
@@ -4008,6 +3007,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -4015,25 +3015,10 @@
         "y": 3.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 1,
       "tileableType": 0,
       "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
         {
           "offset": {
             "x": 0.0,
@@ -4054,6 +3039,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -4061,6 +3047,7 @@
         "y": 3.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 1,
       "tileableType": 0,
       "utilities": [
@@ -4070,22 +3057,6 @@
             "y": 0.0
           },
           "type": 0,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
           "isSecondary": false
         },
         {
@@ -4108,6 +3079,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -4115,6 +3087,7 @@
         "y": 4.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 1,
       "tileableType": 0,
       "utilities": [
@@ -4124,14 +3097,6 @@
             "y": 0.0
           },
           "type": 0,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
           "isSecondary": false
         },
         {
@@ -4162,6 +3127,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -4169,26 +3135,10 @@
         "y": 1.0
       },
       "sceneLayer": 27,
+      "objectLayer": 1,
       "viewMode": 0,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -4200,6 +3150,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -4207,6 +3158,7 @@
         "y": 3.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 1,
       "tileableType": 0,
       "utilities": [
@@ -4224,14 +3176,6 @@
             "y": 0.0
           },
           "type": 2,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
           "isSecondary": false
         },
         {
@@ -4254,6 +3198,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -4261,26 +3206,10 @@
         "y": 2.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 0,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -4292,6 +3221,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -4299,26 +3229,10 @@
         "y": 3.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 0,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "idle",
@@ -4330,6 +3244,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -4337,26 +3252,10 @@
         "y": 4.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 0,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -4368,6 +3267,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -4375,6 +3275,7 @@
         "y": 2.0
       },
       "sceneLayer": 21,
+      "objectLayer": 1,
       "viewMode": 2,
       "tileableType": 0,
       "utilities": [
@@ -4422,6 +3323,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -4429,26 +3331,10 @@
         "y": 5.0
       },
       "sceneLayer": 21,
+      "objectLayer": 1,
       "viewMode": 0,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -4460,6 +3346,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -4467,6 +3354,7 @@
         "y": 3.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 1,
       "tileableType": 0,
       "utilities": [
@@ -4476,14 +3364,6 @@
             "y": 0.0
           },
           "type": 2,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
           "isSecondary": false
         },
         {
@@ -4506,6 +3386,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -4513,6 +3394,7 @@
         "y": 1.0
       },
       "sceneLayer": 30,
+      "objectLayer": 1,
       "viewMode": 0,
       "tileableType": 0,
       "utilities": [
@@ -4522,14 +3404,6 @@
             "y": 0.0
           },
           "type": 4,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
           "isSecondary": false
         }
       ]
@@ -4544,6 +3418,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -4551,26 +3426,10 @@
         "y": 2.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 9,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -4582,6 +3441,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -4589,6 +3449,7 @@
         "y": 3.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 9,
       "tileableType": 0,
       "utilities": [
@@ -4598,22 +3459,6 @@
             "y": 0.0
           },
           "type": 0,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
           "isSecondary": false
         },
         {
@@ -4636,6 +3481,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -4643,26 +3489,10 @@
         "y": 2.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 7,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -4674,6 +3504,7 @@
       "isUtility": true,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": true,
       "backColor": 15119985,
       "frontColor": 11302461,
       "sizeInCells": {
@@ -4681,26 +3512,10 @@
         "y": 1.0
       },
       "sceneLayer": 3,
+      "objectLayer": 12,
       "viewMode": 3,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -4712,6 +3527,7 @@
       "isUtility": true,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": true,
       "backColor": 15119985,
       "frontColor": 11302461,
       "sizeInCells": {
@@ -4719,26 +3535,10 @@
         "y": 1.0
       },
       "sceneLayer": 5,
+      "objectLayer": 16,
       "viewMode": 2,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -4750,6 +3550,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -4757,26 +3558,10 @@
         "y": 1.0
       },
       "sceneLayer": 30,
+      "objectLayer": 1,
       "viewMode": 0,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "pedestal",
@@ -4788,6 +3573,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -4795,26 +3581,10 @@
         "y": 2.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 7,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -4826,6 +3596,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -4833,6 +3604,7 @@
         "y": 4.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 0,
       "tileableType": 0,
       "utilities": [
@@ -4850,14 +3622,6 @@
             "y": 0.0
           },
           "type": 2,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
           "isSecondary": false
         },
         {
@@ -4888,6 +3652,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -4895,26 +3660,10 @@
         "y": 4.0
       },
       "sceneLayer": 20,
+      "objectLayer": 1,
       "viewMode": 0,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -4926,6 +3675,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -4933,6 +3683,7 @@
         "y": 4.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 2,
       "tileableType": 0,
       "utilities": [
@@ -4950,14 +3701,6 @@
             "y": 1.0
           },
           "type": 4,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
           "isSecondary": false
         },
         {
@@ -4980,6 +3723,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -4987,26 +3731,10 @@
         "y": 5.0
       },
       "sceneLayer": 21,
+      "objectLayer": 1,
       "viewMode": 0,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -5018,6 +3746,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -5025,25 +3754,10 @@
         "y": 2.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 0,
       "tileableType": 0,
       "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
         {
           "offset": {
             "x": 0.0,
@@ -5064,6 +3778,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": true,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -5071,26 +3786,10 @@
         "y": 1.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 0,
       "tileableType": 2,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -5102,6 +3801,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": true,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -5109,26 +3809,10 @@
         "y": 1.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 0,
       "tileableType": 2,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "grounded",
@@ -5140,6 +3824,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -5147,17 +3832,10 @@
         "y": 5.0
       },
       "sceneLayer": 21,
+      "objectLayer": 1,
       "viewMode": 0,
       "tileableType": 0,
       "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
         {
           "offset": {
             "x": 0.0,
@@ -5178,6 +3856,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -5185,6 +3864,7 @@
         "y": 2.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 2,
       "tileableType": 0,
       "utilities": [
@@ -5232,6 +3912,7 @@
       "isUtility": false,
       "isBridge": true,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -5239,6 +3920,7 @@
         "y": 1.0
       },
       "sceneLayer": 6,
+      "objectLayer": 19,
       "viewMode": 2,
       "tileableType": 0,
       "utilities": [
@@ -5270,6 +3952,7 @@
       "isUtility": true,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": true,
       "backColor": 13882839,
       "frontColor": 8026746,
       "sizeInCells": {
@@ -5277,26 +3960,10 @@
         "y": 1.0
       },
       "sceneLayer": 5,
+      "objectLayer": 16,
       "viewMode": 2,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -5308,6 +3975,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -5315,6 +3983,7 @@
         "y": 2.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 2,
       "tileableType": 0,
       "utilities": [
@@ -5354,6 +4023,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -5361,6 +4031,7 @@
         "y": 2.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 2,
       "tileableType": 0,
       "utilities": [
@@ -5400,6 +4071,7 @@
       "isUtility": true,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": true,
       "backColor": 15132280,
       "frontColor": 12296522,
       "sizeInCells": {
@@ -5407,26 +4079,10 @@
         "y": 1.0
       },
       "sceneLayer": 5,
+      "objectLayer": 16,
       "viewMode": 2,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -5438,6 +4094,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -5445,26 +4102,10 @@
         "y": 2.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 9,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -5476,6 +4117,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -5483,6 +4125,7 @@
         "y": 1.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 2,
       "tileableType": 0,
       "utilities": [
@@ -5538,6 +4181,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -5545,6 +4189,7 @@
         "y": 5.0
       },
       "sceneLayer": 21,
+      "objectLayer": 1,
       "viewMode": 0,
       "tileableType": 0,
       "utilities": [
@@ -5554,14 +4199,6 @@
             "y": 3.0
           },
           "type": 4,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
           "isSecondary": false
         }
       ]
@@ -5576,6 +4213,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -5583,6 +4221,7 @@
         "y": 1.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 1,
       "tileableType": 0,
       "utilities": [
@@ -5592,22 +4231,6 @@
             "y": 0.0
           },
           "type": 0,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
           "isSecondary": false
         },
         {
@@ -5630,6 +4253,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -5637,6 +4261,7 @@
         "y": 2.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 2,
       "tileableType": 0,
       "utilities": [
@@ -5684,6 +4309,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -5691,6 +4317,7 @@
         "y": 2.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 2,
       "tileableType": 0,
       "utilities": [
@@ -5700,14 +4327,6 @@
             "y": 0.0
           },
           "type": 0,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
           "isSecondary": false
         },
         {
@@ -5738,6 +4357,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -5745,6 +4365,7 @@
         "y": 2.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 2,
       "tileableType": 0,
       "utilities": [
@@ -5754,14 +4375,6 @@
             "y": 1.0
           },
           "type": 0,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
           "isSecondary": false
         },
         {
@@ -5792,6 +4405,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -5799,26 +4413,10 @@
         "y": 4.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 0,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -5830,6 +4428,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -5837,6 +4436,7 @@
         "y": 3.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 2,
       "tileableType": 0,
       "utilities": [
@@ -5868,6 +4468,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -5875,6 +4476,7 @@
         "y": 2.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 2,
       "tileableType": 0,
       "utilities": [
@@ -5906,6 +4508,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -5913,6 +4516,7 @@
         "y": 1.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 2,
       "tileableType": 0,
       "utilities": [
@@ -5922,14 +4526,6 @@
             "y": 0.0
           },
           "type": 4,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 0.0
-          },
-          "type": 10,
           "isSecondary": false
         }
       ]
@@ -5944,6 +4540,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -5951,25 +4548,10 @@
         "y": 1.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 4,
       "tileableType": 0,
       "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
         {
           "offset": {
             "x": 0.0,
@@ -5990,6 +4572,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -5997,25 +4580,10 @@
         "y": 1.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 4,
       "tileableType": 0,
       "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
         {
           "offset": {
             "x": 0.0,
@@ -6036,6 +4604,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -6043,25 +4612,10 @@
         "y": 1.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 4,
       "tileableType": 0,
       "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
         {
           "offset": {
             "x": 0.0,
@@ -6082,6 +4636,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -6089,25 +4644,10 @@
         "y": 1.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 4,
       "tileableType": 0,
       "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
         {
           "offset": {
             "x": 0.0,
@@ -6128,6 +4668,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -6135,25 +4676,10 @@
         "y": 1.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 4,
       "tileableType": 0,
       "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
         {
           "offset": {
             "x": 0.0,
@@ -6174,6 +4700,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": true,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -6181,26 +4708,10 @@
         "y": 2.0
       },
       "sceneLayer": 14,
+      "objectLayer": 30,
       "viewMode": 4,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -6212,6 +4723,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": true,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -6219,26 +4731,10 @@
         "y": 2.0
       },
       "sceneLayer": 14,
+      "objectLayer": 30,
       "viewMode": 4,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -6250,6 +4746,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": true,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -6257,26 +4754,10 @@
         "y": 2.0
       },
       "sceneLayer": 14,
+      "objectLayer": 30,
       "viewMode": 4,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -6288,6 +4769,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": true,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -6295,26 +4777,10 @@
         "y": 1.0
       },
       "sceneLayer": 14,
+      "objectLayer": 30,
       "viewMode": 4,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -6326,6 +4792,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": true,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -6333,26 +4800,10 @@
         "y": 1.0
       },
       "sceneLayer": 14,
+      "objectLayer": 30,
       "viewMode": 4,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -6364,6 +4815,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": true,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -6371,26 +4823,10 @@
         "y": 1.0
       },
       "sceneLayer": 14,
+      "objectLayer": 30,
       "viewMode": 4,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -6402,6 +4838,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -6409,25 +4846,10 @@
         "y": 2.0
       },
       "sceneLayer": 14,
+      "objectLayer": 30,
       "viewMode": 4,
       "tileableType": 0,
       "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
         {
           "offset": {
             "x": 0.0,
@@ -6464,6 +4886,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -6471,25 +4894,10 @@
         "y": 1.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 1,
       "tileableType": 0,
       "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
         {
           "offset": {
             "x": 0.0,
@@ -6510,6 +4918,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -6517,25 +4926,10 @@
         "y": 1.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 4,
       "tileableType": 0,
       "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
         {
           "offset": {
             "x": 0.0,
@@ -6556,6 +4950,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -6563,25 +4958,10 @@
         "y": 1.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 4,
       "tileableType": 0,
       "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
         {
           "offset": {
             "x": 0.0,
@@ -6602,6 +4982,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -6609,25 +4990,10 @@
         "y": 1.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 4,
       "tileableType": 0,
       "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
         {
           "offset": {
             "x": 0.0,
@@ -6648,6 +5014,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -6655,25 +5022,10 @@
         "y": 1.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 4,
       "tileableType": 0,
       "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
         {
           "offset": {
             "x": 0.0,
@@ -6694,6 +5046,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -6701,25 +5054,10 @@
         "y": 1.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 4,
       "tileableType": 0,
       "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
         {
           "offset": {
             "x": 0.0,
@@ -6740,6 +5078,7 @@
       "isUtility": false,
       "isBridge": true,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -6747,25 +5086,10 @@
         "y": 1.0
       },
       "sceneLayer": 14,
+      "objectLayer": 30,
       "viewMode": 4,
       "tileableType": 0,
       "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 2.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
         {
           "offset": {
             "x": -1.0,
@@ -6794,33 +5118,18 @@
       "isUtility": true,
       "isBridge": false,
       "drawSolid": false,
-      "backColor": 8315338,
-      "frontColor": 6401894,
+      "dragBuild": true,
+      "backColor": 14925539,
+      "frontColor": 12804983,
       "sizeInCells": {
         "x": 1.0,
         "y": 1.0
       },
       "sceneLayer": 13,
+      "objectLayer": 31,
       "viewMode": 4,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -6832,6 +5141,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -6839,26 +5149,10 @@
         "y": 2.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 0,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -6870,6 +5164,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -6877,26 +5172,10 @@
         "y": 2.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 10,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -6908,6 +5187,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -6915,25 +5195,10 @@
         "y": 2.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 1,
       "tileableType": 0,
       "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
         {
           "offset": {
             "x": 0.0,
@@ -6954,6 +5219,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -6961,26 +5227,10 @@
         "y": 2.0
       },
       "sceneLayer": 30,
+      "objectLayer": 1,
       "viewMode": 0,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "slab",
@@ -6992,6 +5242,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -6999,26 +5250,10 @@
         "y": 3.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 7,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -7030,6 +5265,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -7037,6 +5273,7 @@
         "y": 2.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 0,
       "tileableType": 0,
       "utilities": [
@@ -7046,22 +5283,6 @@
             "y": 0.0
           },
           "type": 0,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
           "isSecondary": false
         },
         {
@@ -7084,6 +5305,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -7091,6 +5313,7 @@
         "y": 4.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 0,
       "tileableType": 0,
       "utilities": [
@@ -7100,14 +5323,6 @@
             "y": 0.0
           },
           "type": 2,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
           "isSecondary": false
         }
       ]
@@ -7122,6 +5337,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -7129,6 +5345,7 @@
         "y": 3.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 2,
       "tileableType": 0,
       "utilities": [
@@ -7146,14 +5363,6 @@
             "y": 0.0
           },
           "type": 4,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
           "isSecondary": false
         },
         {
@@ -7176,6 +5385,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -7183,26 +5393,10 @@
         "y": 2.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 0,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -7214,6 +5408,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -7221,26 +5416,10 @@
         "y": 1.0
       },
       "sceneLayer": 30,
+      "objectLayer": 1,
       "viewMode": 0,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -7252,6 +5431,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -7259,6 +5439,7 @@
         "y": 4.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 1,
       "tileableType": 0,
       "utilities": [
@@ -7306,6 +5487,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -7313,26 +5495,10 @@
         "y": 3.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 7,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -7344,6 +5510,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -7351,26 +5518,10 @@
         "y": 1.0
       },
       "sceneLayer": 30,
+      "objectLayer": 1,
       "viewMode": 0,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -7382,6 +5533,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -7389,6 +5541,7 @@
         "y": 3.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 1,
       "tileableType": 0,
       "utilities": [
@@ -7428,6 +5581,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -7435,6 +5589,7 @@
         "y": 3.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 1,
       "tileableType": 0,
       "utilities": [
@@ -7444,22 +5599,6 @@
             "y": 0.0
           },
           "type": 0,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
           "isSecondary": false
         },
         {
@@ -7482,6 +5621,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -7489,6 +5629,7 @@
         "y": 2.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 5,
       "tileableType": 0,
       "utilities": [
@@ -7498,22 +5639,6 @@
             "y": 0.0
           },
           "type": 0,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
           "isSecondary": false
         },
         {
@@ -7536,6 +5661,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -7543,26 +5669,10 @@
         "y": 5.0
       },
       "sceneLayer": 21,
+      "objectLayer": 1,
       "viewMode": 0,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -7574,6 +5684,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -7581,26 +5692,10 @@
         "y": 5.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 0,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -7612,6 +5707,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -7619,26 +5715,10 @@
         "y": 5.0
       },
       "sceneLayer": 21,
+      "objectLayer": 1,
       "viewMode": 0,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -7650,6 +5730,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -7657,26 +5738,10 @@
         "y": 1.0
       },
       "sceneLayer": 30,
+      "objectLayer": 1,
       "viewMode": 0,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -7688,6 +5753,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -7695,6 +5761,7 @@
         "y": 2.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 1,
       "tileableType": 0,
       "utilities": [
@@ -7704,22 +5771,6 @@
             "y": 0.0
           },
           "type": 0,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
           "isSecondary": false
         },
         {
@@ -7742,6 +5793,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -7749,6 +5801,7 @@
         "y": 4.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 2,
       "tileableType": 0,
       "utilities": [
@@ -7796,6 +5849,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -7803,6 +5857,7 @@
         "y": 4.0
       },
       "sceneLayer": 21,
+      "objectLayer": 37,
       "viewMode": 2,
       "tileableType": 0,
       "utilities": [
@@ -7820,14 +5875,6 @@
             "y": 1.0
           },
           "type": 4,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
           "isSecondary": false
         },
         {
@@ -7850,6 +5897,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -7857,6 +5905,7 @@
         "y": 3.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 0,
       "tileableType": 0,
       "utilities": [
@@ -7866,14 +5915,6 @@
             "y": 1.0
           },
           "type": 2,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
           "isSecondary": false
         }
       ]
@@ -7888,6 +5929,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -7895,26 +5937,10 @@
         "y": 3.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 0,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "grounded",
@@ -7926,6 +5952,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -7933,26 +5960,10 @@
         "y": 5.0
       },
       "sceneLayer": 21,
+      "objectLayer": 1,
       "viewMode": 0,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "grounded",
@@ -7964,6 +5975,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -7971,6 +5983,7 @@
         "y": 5.0
       },
       "sceneLayer": 21,
+      "objectLayer": 1,
       "viewMode": 0,
       "tileableType": 0,
       "utilities": [
@@ -7980,14 +5993,6 @@
             "y": 3.0
           },
           "type": 4,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
           "isSecondary": false
         }
       ]
@@ -8002,6 +6007,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -8009,6 +6015,7 @@
         "y": 4.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 0,
       "tileableType": 0,
       "utilities": [
@@ -8026,14 +6033,6 @@
             "y": 0.0
           },
           "type": 2,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
           "isSecondary": false
         },
         {
@@ -8056,6 +6055,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -8063,26 +6063,10 @@
         "y": 2.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 10,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -8094,6 +6078,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -8101,6 +6086,7 @@
         "y": 4.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 1,
       "tileableType": 0,
       "utilities": [
@@ -8110,14 +6096,6 @@
             "y": 0.0
           },
           "type": 4,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
           "isSecondary": false
         },
         {
@@ -8140,6 +6118,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -8147,6 +6126,7 @@
         "y": 3.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 1,
       "tileableType": 0,
       "utilities": [
@@ -8156,22 +6136,6 @@
             "y": 0.0
           },
           "type": 0,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
           "isSecondary": false
         },
         {
@@ -8194,6 +6158,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -8201,26 +6166,10 @@
         "y": 1.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 0,
       "tileableType": 1,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -8232,6 +6181,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -8239,26 +6189,10 @@
         "y": 1.0
       },
       "sceneLayer": 30,
+      "objectLayer": 1,
       "viewMode": 0,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -8270,6 +6204,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -8277,26 +6212,10 @@
         "y": 2.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 0,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -8308,6 +6227,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -8315,25 +6235,10 @@
         "y": 2.0
       },
       "sceneLayer": 30,
+      "objectLayer": 1,
       "viewMode": 0,
       "tileableType": 0,
       "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
         {
           "offset": {
             "x": 0.0,
@@ -8354,6 +6259,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -8361,26 +6267,10 @@
         "y": 3.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 0,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -8392,6 +6282,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -8399,6 +6290,7 @@
         "y": 3.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 1,
       "tileableType": 0,
       "utilities": [
@@ -8446,6 +6338,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -8453,25 +6346,10 @@
         "y": 4.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 10,
       "tileableType": 0,
       "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
         {
           "offset": {
             "x": 0.0,
@@ -8492,6 +6370,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -8499,6 +6378,7 @@
         "y": 2.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 1,
       "tileableType": 0,
       "utilities": [
@@ -8508,22 +6388,6 @@
             "y": 1.0
           },
           "type": 0,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
           "isSecondary": false
         },
         {
@@ -8546,6 +6410,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -8553,6 +6418,7 @@
         "y": 2.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 1,
       "tileableType": 0,
       "utilities": [
@@ -8562,22 +6428,6 @@
             "y": 1.0
           },
           "type": 0,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
           "isSecondary": false
         },
         {
@@ -8600,6 +6450,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -8607,6 +6458,7 @@
         "y": 2.0
       },
       "sceneLayer": 30,
+      "objectLayer": 1,
       "viewMode": 1,
       "tileableType": 0,
       "utilities": [
@@ -8616,22 +6468,6 @@
             "y": 0.0
           },
           "type": 0,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
           "isSecondary": false
         },
         {
@@ -8654,6 +6490,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -8661,26 +6498,10 @@
         "y": 1.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 1,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -8692,6 +6513,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -8699,26 +6521,10 @@
         "y": 1.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 1,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -8730,6 +6536,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -8737,25 +6544,10 @@
         "y": 3.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 10,
       "tileableType": 0,
       "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
         {
           "offset": {
             "x": 0.0,
@@ -8776,6 +6568,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -8783,26 +6576,10 @@
         "y": 2.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 0,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -8814,6 +6591,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -8821,6 +6599,7 @@
         "y": 2.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 1,
       "tileableType": 0,
       "utilities": [
@@ -8830,22 +6609,6 @@
             "y": 0.0
           },
           "type": 0,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
           "isSecondary": false
         },
         {
@@ -8868,6 +6631,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -8875,6 +6639,7 @@
         "y": 2.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 1,
       "tileableType": 0,
       "utilities": [
@@ -8884,22 +6649,6 @@
             "y": 0.0
           },
           "type": 0,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
           "isSecondary": false
         },
         {
@@ -8922,6 +6671,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -8929,26 +6679,10 @@
         "y": 5.0
       },
       "sceneLayer": 21,
+      "objectLayer": 1,
       "viewMode": 0,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -8960,6 +6694,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -8967,6 +6702,7 @@
         "y": 3.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 1,
       "tileableType": 0,
       "utilities": [
@@ -8976,22 +6712,6 @@
             "y": 0.0
           },
           "type": 0,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
           "isSecondary": false
         },
         {
@@ -9014,6 +6734,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -9021,6 +6742,7 @@
         "y": 4.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 1,
       "tileableType": 0,
       "utilities": [
@@ -9030,22 +6752,6 @@
             "y": 0.0
           },
           "type": 0,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
           "isSecondary": false
         },
         {
@@ -9068,6 +6774,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -9075,26 +6782,10 @@
         "y": 2.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 0,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -9106,6 +6797,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -9113,6 +6805,7 @@
         "y": 3.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 5,
       "tileableType": 0,
       "utilities": [
@@ -9122,22 +6815,6 @@
             "y": 0.0
           },
           "type": 0,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
           "isSecondary": false
         },
         {
@@ -9160,6 +6837,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -9167,6 +6845,7 @@
         "y": 3.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 3,
       "tileableType": 0,
       "utilities": [
@@ -9214,6 +6893,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -9221,26 +6901,10 @@
         "y": 3.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 7,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "on",
@@ -9252,6 +6916,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -9259,6 +6924,7 @@
         "y": 3.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 0,
       "tileableType": 0,
       "utilities": [
@@ -9268,22 +6934,6 @@
             "y": 0.0
           },
           "type": 0,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 0.0
-          },
-          "type": 10,
           "isSecondary": false
         },
         {
@@ -9306,6 +6956,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -9313,6 +6964,7 @@
         "y": 4.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 2,
       "tileableType": 0,
       "utilities": [
@@ -9344,6 +6996,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -9351,26 +7004,10 @@
         "y": 2.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 7,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -9382,6 +7019,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -9389,6 +7027,7 @@
         "y": 2.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 2,
       "tileableType": 0,
       "utilities": [
@@ -9406,14 +7045,6 @@
             "y": 1.0
           },
           "type": 4,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
           "isSecondary": false
         },
         {
@@ -9436,6 +7067,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -9443,26 +7075,10 @@
         "y": 3.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 1,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "grounded",
@@ -9474,6 +7090,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -9481,26 +7098,10 @@
         "y": 5.0
       },
       "sceneLayer": 21,
+      "objectLayer": 1,
       "viewMode": 0,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -9512,6 +7113,7 @@
       "isUtility": false,
       "isBridge": true,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -9519,6 +7121,7 @@
         "y": 1.0
       },
       "sceneLayer": 9,
+      "objectLayer": 23,
       "viewMode": 6,
       "tileableType": 0,
       "utilities": [
@@ -9550,6 +7153,7 @@
       "isUtility": true,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": true,
       "backColor": 9393436,
       "frontColor": 6437652,
       "sizeInCells": {
@@ -9557,26 +7161,10 @@
         "y": 1.0
       },
       "sceneLayer": 7,
+      "objectLayer": 20,
       "viewMode": 6,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -9588,6 +7176,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -9595,6 +7184,7 @@
         "y": 2.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 6,
       "tileableType": 0,
       "utilities": [
@@ -9604,14 +7194,6 @@
             "y": 1.0
           },
           "type": 0,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
           "isSecondary": false
         },
         {
@@ -9642,6 +7224,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -9649,6 +7232,7 @@
         "y": 2.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 6,
       "tileableType": 0,
       "utilities": [
@@ -9658,14 +7242,6 @@
             "y": 0.0
           },
           "type": 8,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
           "isSecondary": false
         }
       ]
@@ -9680,6 +7256,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -9687,6 +7264,7 @@
         "y": 2.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 6,
       "tileableType": 0,
       "utilities": [
@@ -9734,6 +7312,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -9741,6 +7320,7 @@
         "y": 1.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 0,
       "tileableType": 0,
       "utilities": [
@@ -9750,22 +7330,6 @@
             "y": 0.0
           },
           "type": 0,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
           "isSecondary": false
         },
         {
@@ -9788,6 +7352,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -9795,6 +7360,7 @@
         "y": 1.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 6,
       "tileableType": 0,
       "utilities": [
@@ -9804,14 +7370,6 @@
             "y": 0.0
           },
           "type": 8,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 0.0
-          },
-          "type": 10,
           "isSecondary": false
         }
       ]
@@ -9826,6 +7384,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -9833,6 +7392,7 @@
         "y": 2.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 1,
       "tileableType": 0,
       "utilities": [
@@ -9842,22 +7402,6 @@
             "y": 0.0
           },
           "type": 0,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
           "isSecondary": false
         },
         {
@@ -9880,6 +7424,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -9887,26 +7432,10 @@
         "y": 5.0
       },
       "sceneLayer": 21,
+      "objectLayer": 1,
       "viewMode": 0,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "grounded",
@@ -9918,6 +7447,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -9925,6 +7455,7 @@
         "y": 5.0
       },
       "sceneLayer": 21,
+      "objectLayer": 1,
       "viewMode": 0,
       "tileableType": 0,
       "utilities": [
@@ -9934,14 +7465,6 @@
             "y": 3.0
           },
           "type": 2,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
           "isSecondary": false
         }
       ]
@@ -9956,6 +7479,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -9963,25 +7487,10 @@
         "y": 4.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 1,
       "tileableType": 0,
       "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
         {
           "offset": {
             "x": 0.0,
@@ -10002,6 +7511,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -10009,17 +7519,10 @@
         "y": 3.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 1,
       "tileableType": 0,
       "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
         {
           "offset": {
             "x": 2.0,
@@ -10048,6 +7551,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -10055,26 +7559,10 @@
         "y": 2.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 0,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -10086,6 +7574,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -10093,6 +7582,7 @@
         "y": 2.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 4,
       "tileableType": 0,
       "utilities": [
@@ -10102,22 +7592,6 @@
             "y": 0.0
           },
           "type": 0,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
           "isSecondary": false
         },
         {
@@ -10140,6 +7614,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -10147,6 +7622,7 @@
         "y": 3.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 1,
       "tileableType": 0,
       "utilities": [
@@ -10156,22 +7632,6 @@
             "y": 0.0
           },
           "type": 0,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
           "isSecondary": false
         },
         {
@@ -10194,6 +7654,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -10201,6 +7662,7 @@
         "y": 3.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 0,
       "tileableType": 1,
       "utilities": [
@@ -10218,14 +7680,6 @@
             "y": 0.0
           },
           "type": 2,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
           "isSecondary": false
         },
         {
@@ -10248,6 +7702,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -10255,26 +7710,10 @@
         "y": 3.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 0,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -10286,6 +7725,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -10293,6 +7733,7 @@
         "y": 4.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 8,
       "tileableType": 0,
       "utilities": [
@@ -10302,22 +7743,6 @@
             "y": 0.0
           },
           "type": 0,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
           "isSecondary": false
         },
         {
@@ -10340,6 +7765,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -10347,6 +7773,7 @@
         "y": 5.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 1,
       "tileableType": 0,
       "utilities": [
@@ -10356,22 +7783,6 @@
             "y": 0.0
           },
           "type": 0,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
           "isSecondary": false
         },
         {
@@ -10394,6 +7805,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -10401,26 +7813,10 @@
         "y": 1.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 1,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -10432,6 +7828,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -10439,6 +7836,7 @@
         "y": 6.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 1,
       "tileableType": 0,
       "utilities": [
@@ -10456,14 +7854,6 @@
             "y": 0.0
           },
           "type": 2,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
           "isSecondary": false
         },
         {
@@ -10486,6 +7876,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -10493,26 +7884,10 @@
         "y": 1.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 1,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -10524,6 +7899,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -10531,26 +7907,10 @@
         "y": 1.0
       },
       "sceneLayer": 1,
+      "objectLayer": 2,
       "viewMode": 9,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -10562,6 +7922,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": true,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -10569,26 +7930,10 @@
         "y": 1.0
       },
       "sceneLayer": 30,
+      "objectLayer": 1,
       "viewMode": 0,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -10600,6 +7945,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -10607,26 +7953,10 @@
         "y": 1.0
       },
       "sceneLayer": 30,
+      "objectLayer": 1,
       "viewMode": 0,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "grounded",
@@ -10638,6 +7968,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -10645,26 +7976,10 @@
         "y": 5.0
       },
       "sceneLayer": 21,
+      "objectLayer": 1,
       "viewMode": 0,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -10676,6 +7991,7 @@
       "isUtility": true,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": true,
       "backColor": 13882839,
       "frontColor": 8026746,
       "sizeInCells": {
@@ -10683,26 +7999,10 @@
         "y": 1.0
       },
       "sceneLayer": 21,
+      "objectLayer": 1,
       "viewMode": 0,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -10714,6 +8014,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -10721,6 +8022,7 @@
         "y": 2.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 0,
       "tileableType": 0,
       "utilities": [
@@ -10730,22 +8032,6 @@
             "y": 0.0
           },
           "type": 0,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
           "isSecondary": false
         },
         {
@@ -10768,6 +8054,7 @@
       "isUtility": false,
       "isBridge": true,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -10775,26 +8062,10 @@
         "y": 1.0
       },
       "sceneLayer": 21,
+      "objectLayer": 1,
       "viewMode": 0,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 2.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -10806,6 +8077,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -10813,6 +8085,7 @@
         "y": 6.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 1,
       "tileableType": 0,
       "utilities": [
@@ -10822,22 +8095,6 @@
             "y": 0.0
           },
           "type": 0,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
           "isSecondary": false
         },
         {
@@ -10860,6 +8117,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -10867,26 +8125,10 @@
         "y": 3.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 0,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -10898,6 +8140,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -10905,6 +8148,7 @@
         "y": 3.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 2,
       "tileableType": 0,
       "utilities": [
@@ -10936,6 +8180,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -10943,26 +8188,10 @@
         "y": 2.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 0,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -10974,6 +8203,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -10981,6 +8211,7 @@
         "y": 3.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 2,
       "tileableType": 0,
       "utilities": [
@@ -11028,6 +8259,7 @@
       "isUtility": false,
       "isBridge": true,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -11035,26 +8267,10 @@
         "y": 1.0
       },
       "sceneLayer": 11,
+      "objectLayer": 29,
       "viewMode": 1,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 2.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -11066,6 +8282,7 @@
       "isUtility": false,
       "isBridge": true,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -11073,26 +8290,10 @@
         "y": 1.0
       },
       "sceneLayer": 12,
+      "objectLayer": 1,
       "viewMode": 1,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 2.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -11104,6 +8305,7 @@
       "isUtility": true,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": true,
       "backColor": 11951450,
       "frontColor": 11876133,
       "sizeInCells": {
@@ -11111,26 +8313,10 @@
         "y": 1.0
       },
       "sceneLayer": 10,
+      "objectLayer": 26,
       "viewMode": 1,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -11142,6 +8328,7 @@
       "isUtility": true,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": true,
       "backColor": 11951450,
       "frontColor": 11876133,
       "sizeInCells": {
@@ -11149,26 +8336,10 @@
         "y": 1.0
       },
       "sceneLayer": 10,
+      "objectLayer": 26,
       "viewMode": 1,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -11180,6 +8351,7 @@
       "isUtility": false,
       "isBridge": true,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -11187,26 +8359,10 @@
         "y": 1.0
       },
       "sceneLayer": 11,
+      "objectLayer": 29,
       "viewMode": 1,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 2.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -11218,6 +8374,7 @@
       "isUtility": false,
       "isBridge": true,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -11225,26 +8382,10 @@
         "y": 1.0
       },
       "sceneLayer": 11,
+      "objectLayer": 1,
       "viewMode": 1,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 2.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -11256,6 +8397,7 @@
       "isUtility": true,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": true,
       "backColor": 11951450,
       "frontColor": 11876133,
       "sizeInCells": {
@@ -11263,26 +8405,10 @@
         "y": 1.0
       },
       "sceneLayer": 10,
+      "objectLayer": 26,
       "viewMode": 1,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -11294,6 +8420,7 @@
       "isUtility": true,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": true,
       "backColor": 11951450,
       "frontColor": 11876133,
       "sizeInCells": {
@@ -11301,26 +8428,10 @@
         "y": 1.0
       },
       "sceneLayer": 10,
+      "objectLayer": 26,
       "viewMode": 1,
       "tileableType": 0,
-      "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        }
-      ]
+      "utilities": []
     },
     {
       "DefaultAnimState": "off",
@@ -11332,6 +8443,7 @@
       "isUtility": false,
       "isBridge": false,
       "drawSolid": false,
+      "dragBuild": false,
       "backColor": 0,
       "frontColor": 16777215,
       "sizeInCells": {
@@ -11339,25 +8451,10 @@
         "y": 2.0
       },
       "sceneLayer": 19,
+      "objectLayer": 1,
       "viewMode": 1,
       "tileableType": 0,
       "utilities": [
-        {
-          "offset": {
-            "x": 0.0,
-            "y": 1.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
-        {
-          "offset": {
-            "x": 1.0,
-            "y": 0.0
-          },
-          "type": 10,
-          "isSecondary": false
-        },
         {
           "offset": {
             "x": 1.0,
