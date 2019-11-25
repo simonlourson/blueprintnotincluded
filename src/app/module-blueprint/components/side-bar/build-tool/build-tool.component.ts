@@ -57,9 +57,9 @@ export class ComponentSideBuildToolComponent implements OnInit, IObsBuildItemCha
     for (let buildCategory of BuildMenuCategory.buildMenuCategories)
       this.categories.push({label:buildCategory.categoryName, value:buildCategory});
 
-    this.currentCategory = BuildMenuCategory.allCategories;
-    this.currentItem = OniItem.getOniItem('Tile');
+    this.currentCategory = BuildMenuCategory.buildMenuCategories[0];
     this.changeCategory();
+    this.currentItem = OniItem.getOniItem('Tile');
 
     this.databaseLoaded = true;
   }
@@ -68,6 +68,7 @@ export class ComponentSideBuildToolComponent implements OnInit, IObsBuildItemCha
   {
     this.items = [];
 
+    console.log(this.currentCategory)
     for (let buildMenuItem of BuildMenuItem.buildMenuItems)
     {
       if (this.currentCategory == BuildMenuCategory.allCategories || this.currentCategory.category == buildMenuItem.category)
@@ -94,7 +95,7 @@ export class ComponentSideBuildToolComponent implements OnInit, IObsBuildItemCha
   itemChanged(templateItem: BlueprintItem) {
     let category = BuildMenuCategory.getCategoryFromItem(templateItem.oniItem);
     if (category != null) {
-      this.currentCategory = category;
+      if (this.currentCategory != BuildMenuCategory.allCategories) this.currentCategory = category;
       this.updateItemList();
       
       this.currentItem = templateItem.oniItem;

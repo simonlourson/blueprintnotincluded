@@ -158,7 +158,7 @@ export class ComponentBlueprintParentComponent implements OnInit, IObsBlueprintC
     else if (menuCommand.type == MenuCommandType.showLoginDialog) this.loginDialog.showDialog();
     else if (menuCommand.type == MenuCommandType.browseBlueprints) this.browseDialog.showDialog();
     else if (menuCommand.type == MenuCommandType.getShareableUrl) this.shareUrlDialog.showDialog();
-    else if (menuCommand.type == MenuCommandType.exportImages) this.exportImagesDialog.showDialog();
+    else if (menuCommand.type == MenuCommandType.exportImages) this.exportImages();
     else if (menuCommand.type == MenuCommandType.saveBlueprint) this.saveBlueprint();
 
     // Technical (repack, generate solid sprites, etc)
@@ -183,7 +183,16 @@ export class ComponentBlueprintParentComponent implements OnInit, IObsBlueprintC
 
   saveBlueprint()
   {
-    this.canvas.updateThumbnail();
-    this.saveDialog.showDialog();
+    if (this.blueprintService.blueprint.blueprintItems.length == 0) this.messageService.add({severity:'error', summary:'Empty blueprint', detail:'Add some buildings before trying to save'});
+    else {
+      this.canvas.updateThumbnail();
+      this.saveDialog.showDialog();
+    }
+  }
+
+  // TODO toast on save and generate url also
+  exportImages() {
+    if (this.blueprintService.blueprint.blueprintItems.length == 0) this.messageService.add({severity:'error', summary:'Empty blueprint', detail:'Add some buildings before trying to export images'});
+    else this.exportImagesDialog.showDialog();
   }
 }

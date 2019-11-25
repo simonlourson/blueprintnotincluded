@@ -16,7 +16,7 @@ import { BuildTool } from './build-tool';
 @Injectable()
 export class SelectTool implements ITool, IObsItemDestroyed
 {
-  public headerString;
+  public headerString: string;
   public selectionType: SelectionType;
   get isSingle() {return this.selectionType == SelectionType.Single;}
   get isMultiple() {return this.selectionType == SelectionType.Multiple;}
@@ -72,7 +72,7 @@ export class SelectTool implements ITool, IObsItemDestroyed
         oldSelected = this.templateItemsToShow.filter((item) => item.selected)[0];
 
       this.deselectAll();
-      this.headerString = 'Selected at x:' + tile.x+', y:'+tile.y;
+      this.headerString = 'Selected : x:' + tile.x+', y:'+tile.y;
       
       this.templateItemsToShow = this.blueprintService.blueprint.getTemplateItemsAt(tile);
 
@@ -135,7 +135,6 @@ export class SelectTool implements ITool, IObsItemDestroyed
   }
   doMultipleSelect()
   {
-    // TODO does not work in reverse
     // TODO multiple to single by oniItem id
     if (this.beginSelection != null && this.endSelection != null)
     {
@@ -177,6 +176,7 @@ export class SelectTool implements ITool, IObsItemDestroyed
         this.updateSelectionTool(tileSelected[0]);
       }
       else {
+        this.headerString = 'Selected : Multiple tiles';
         this.selectionType = SelectionType.Multiple;
 
         for (let tile of tileSelected) {

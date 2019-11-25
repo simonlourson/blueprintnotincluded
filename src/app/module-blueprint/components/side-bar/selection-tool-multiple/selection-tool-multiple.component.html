@@ -3,10 +3,11 @@
 <button pButton type="button" class="ui-button buttonspace" icon="pi pi-chevron-up"   (click)="itemGroupePrevious()" pTooltip="Select previous item group"></button>
 <button pButton type="button" class="ui-button buttonspace" icon="pi pi-trash"        (click)="destroyAll()" pTooltip="Destroy every item group"></button>
 <br><br>
-<p-accordion 
-#buildingsAccordion >
-  <p-accordionTab *ngFor="let itemCollection of toolService.selectTool.sameItemCollections" [(selected)]="itemCollection.selected" [header]="itemCollection.oniItem.name" [transitionOptions]="'0ms'">
-    <app-item-collection-info [itemCollection]=itemCollection>
-    </app-item-collection-info>
-  </p-accordionTab>
-</p-accordion>
+<p-scrollPanel [style]="{width: '100%', height: '400px'}">
+  <p-accordion #buildingsAccordion >
+    <p-accordionTab *ngFor="let itemCollection of toolService.selectTool.sameItemCollections" [(selected)]="itemCollection.selected" [header]="itemCollection.oniItem.name" [transitionOptions]="'0ms'">
+      <app-item-collection-info [itemCollection]=itemCollection>
+      </app-item-collection-info>
+    </p-accordionTab>
+  </p-accordion>
+</p-scrollPanel>

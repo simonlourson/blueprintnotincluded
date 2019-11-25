@@ -22,9 +22,11 @@ export class ComponentSaveDialogComponent implements OnInit {
   });
 
   get f() { return this.saveBlueprintForm.controls; }
-  get icon() { return this.working ? 'pi pi-spin pi-spinner' : ''; }
+  get icon() { return this.working || this.blueprintService.thumbnail == null ? 'pi pi-spin pi-spinner' : ''; }
+  get saveLabel() { return this.blueprintService.thumbnail == null ? 'Generating thumbnail' : 'Save' }
 
   working: boolean = false;
+  thumbnailReady: boolean = false;
   overwrite: boolean = false;
 
   constructor(
@@ -73,27 +75,45 @@ export class ComponentSaveDialogComponent implements OnInit {
 
   }
 
+  // TODO in browser also
   handleSaveError()
   {
-    
     this.working = false;
   }
 
+
+  intervalId: number;
   showDialog()
   {
-    this.blueprintService.thumbnail == null
     this.reset();
     this.visible = true;
-    
+
     if (this.blueprintService.blueprint.name != null && this.blueprintService.blueprint.name != '') this.saveBlueprintForm.patchValue({name: this.blueprintService.blueprint.name});
+  }
+
+  tryClearInterval() {
+    if (this.intervalId != null) window.clearInterval(this.intervalId);
+    this.intervalId = null;
+  }
+
+  updateThumbnailReady() {
+    //console.log('updateThumbnailReady');
+    this.thumbnailReady = this.blueprintService.thumbnail != null;
+
+    if (this.thumbnailReady) this.tryClearInterval();
   }
 
   reset()
   {
     this.working = false;
+    this.thumbnailReady = false;
     this.overwrite = false;
     this.saveBlueprintForm.controls.name.enable();
     this.saveBlueprintForm.reset();
+
+    // We add an interval to check the thumbnail status, because it is generated outside angular
+    this.tryClearInterval();
+    this.intervalId = window.setInterval(this.updateThumbnailReady.bind(this), 500);
   }
 
   doNotOverwrite()

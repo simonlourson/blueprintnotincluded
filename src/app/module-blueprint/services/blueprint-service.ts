@@ -5,7 +5,7 @@ import { AuthenticationService } from './authentification-service';
 import { map } from 'rxjs/operators';
 import { IObsOverlayChanged, CameraService } from './camera-service';
 import { Overlay } from '../common/overlay-type';
-import { BlueprintListItem } from './blueprint-list-item';
+import { BlueprintListItem } from './blueprint-list-response';
 import { ComponentMenuComponent } from '../components/component-menu/component-menu.component';
 import { OniTemplate } from '../common/blueprint/io/oni/oni-template';
 import * as yaml from 'node_modules/js-yaml/lib/js-yaml';

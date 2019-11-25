@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ChangeDetectorRef, HostListener, AfterContentInit } from '@angular/core';
-import { BlueprintListItem } from 'src/app/module-blueprint/services/blueprint-list-item';
+import { BlueprintListItem, BlueprintListResponse } from 'src/app/module-blueprint/services/blueprint-list-response';
 import { BlueprintService } from 'src/app/module-blueprint/services/blueprint-service';
 import { Dialog } from 'primeng/dialog';
 import { CameraService, IObsAnimationChanged } from 'src/app/module-blueprint/services/camera-service';
@@ -97,22 +97,24 @@ export class DialogBrowseComponent implements OnInit, AfterContentInit {
   }
 
   scroll(e: Event) {
+    //console.log('scroll')
     let scrollTop: number = this.browseDialog.contentViewChild.nativeElement.scrollTop;
     let scrollMax: number = this.browseDialog.contentViewChild.nativeElement.scrollHeight - this.browseDialog.contentViewChild.nativeElement.clientHeight;
-    if (!this.noMoreBlueprints && !this.working && scrollTop == scrollMax) {
+    //console.log({scrollTop: scrollTop, scrollMax: scrollMax});
+    if (!this.noMoreBlueprints && !this.working && scrollTop >  scrollMax - 5) {
       this.loadMoreBlueprints();
     }
   }
 
-  handleGetBlueprints(blueprintListItems: BlueprintListItem[]) {
+  handleGetBlueprints(blueprintListItems: BlueprintListResponse) {
     this.working = false;
-    if (blueprintListItems.length == 0) this.noMoreBlueprints = true;
+    if (blueprintListItems.blueprints == null || blueprintListItems.blueprints.length == 0) this.noMoreBlueprints = true;
     if (this.firstLoading) this.firstLoading = false;
       
     this.blueprintListItems = this.blueprintListItems.filter((i) => { return i != this.loadingBlueprintItem; });
 
     // TODO remove duplicates
-    blueprintListItems.map((item) => { this.blueprintListItems.push(item); });
+    blueprintListItems.blueprints.map((item) => { this.blueprintListItems.push(item); });
     
     //this.recenter();
   }

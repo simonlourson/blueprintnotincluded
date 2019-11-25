@@ -19,7 +19,8 @@
       <h4>Included grid lines</h4>
     </div>
     <div class="p-col-3 box">
-      <p-slider [(ngModel)]="val" [customStep]="cameraService.zoomLevels" [min]="minZoomLevel" [max]="maxZoomLevel" [style]="{'width':'100%'}"></p-slider>
+      <!--<p-slider [(ngModel)]="val" [customStep]="cameraService.zoomLevels" [min]="minZoomLevel" [max]="maxZoomLevel" [style]="{'width':'100%'}"></p-slider>-->
+      <p-slider [(ngModel)]="val" [min]="minZoomLevel" [max]="maxZoomLevel" [style]="{'width':'100%'}"></p-slider>
     </div>
     <div class="p-col-9 box">
       <h4>Pixels per tile : {{val}}</h4>

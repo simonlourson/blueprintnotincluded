@@ -11,7 +11,6 @@
   [resizable]="false" 
   >
 
-  <div *ngIf="blueprintService.thumbnail == null" class="error-red">The thumbnail is being generated</div>
     <br>
     <span class="ui-float-label">
       <input class="float-input" type="text" size="60" formControlName="name" pInputText> 
@@ -25,7 +24,7 @@
 
     <p-footer>
       
-      <p-button *ngIf="!overwrite" type="submit" label="Save" [icon]="icon" [disabled]="!saveBlueprintForm.valid || saveBlueprintForm.pending || working || !authService.isLoggedIn()" ></p-button>
+      <p-button *ngIf="!overwrite" type="submit" [label]="saveLabel" [icon]="icon" [disabled]="!saveBlueprintForm.valid || saveBlueprintForm.pending || working || !authService.isLoggedIn() || blueprintService.thumbnail == null" ></p-button>
       <button *ngIf="overwrite" type="button" pButton icon="pi pi-times" (click)="doNotOverwrite()" label="No" class="ui-button-danger"></button>
       <button *ngIf="overwrite" type="button" pButton [icon]="working ? 'pi pi-spin pi-spinner' : 'pi pi-check'" (click)="doOverwrite()" label="Yes" [disabled]="working"></button>
     </p-footer>

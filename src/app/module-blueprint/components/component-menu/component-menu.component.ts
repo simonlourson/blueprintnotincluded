@@ -98,7 +98,7 @@ export class ComponentMenuComponent implements OnInit, IObsToolChanged, IObsOver
         label: 'Overlay',
         items: this.overlayMenuItems
       }
-      , //TODO use menuCommand
+      ,
       {
         label: 'Technical',
         items: [
