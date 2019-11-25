@@ -4,7 +4,6 @@ import { SpriteInfo } from "./sprite-info";
 import { SpriteModifier } from "./sprite-modifier";
 import { ImageSource } from "./image-source";
 import { BSpriteInfo } from '../common/bexport/b-sprite-info';
-import { BlueprintItem } from '../common/blueprint/blueprint-item';
 
 export class DrawHelpers
 {
@@ -202,6 +201,11 @@ export class DrawHelpers
     }
 
     return returnValue;
+  }
+
+  public static getTileIndex(position: Vector2): number
+  {
+    return (position.x + 500) + 1001 * (position.y + 500);;
   }
 
   static connectionString: string[] = [

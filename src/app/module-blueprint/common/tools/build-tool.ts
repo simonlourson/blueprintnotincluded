@@ -39,12 +39,15 @@ export class BuildTool implements ITool
 
   private canBuild(): boolean
   {
-    // TODO we should loop the tiles of the templateItemToBuild according to it's bounding box
     let alreadyPresent = false;
-    for (let templateItem of this.blueprintService.blueprint.getTemplateItemsAt(this.templateItemToBuild.position)) 
-      if (templateItem.oniItem.objectLayer == this.templateItemToBuild.oniItem.objectLayer) 
-        alreadyPresent = true;
-
+    for (let tileIndex of this.templateItemToBuild.tileIndexes) {
+      for (let templateItem of this.blueprintService.blueprint.getTemplateItemsAtIndex(tileIndex)) 
+        if (this.templateItemToBuild.oniItem.isWire && templateItem.oniItem.objectLayer == this.templateItemToBuild.oniItem.objectLayer) 
+          alreadyPresent = true;
+        else if (templateItem.oniItem.id == this.templateItemToBuild.oniItem.id) 
+          alreadyPresent = true;
+    }
+    
     return !alreadyPresent;
   }
 
@@ -53,6 +56,7 @@ export class BuildTool implements ITool
     if (!this.canBuild()) return;
 
     let newItem = this.templateItemToBuild.clone();
+    newItem.prepareOverlayInfo(this.cameraService.overlay);
     newItem.prepareBoundingBox();
     newItem.prepareSpriteInfoModifier(this.blueprintService.blueprint);
     this.blueprintService.blueprint.addTemplateItem(newItem);
@@ -139,9 +143,6 @@ export class BuildTool implements ITool
     this.templateItemToBuild.position = Vector2.clone(tile);
     this.templateItemToBuild.prepareBoundingBox();
     this.templateItemToBuild.prepareSpriteInfoModifier(this.blueprintService.blueprint);
-
-    if (this.canBuild()) this.templateItemToBuild.drawPart.tint = DrawHelpers.whiteColor;
-    else this.templateItemToBuild.drawPart.tint = 0xD40000;
   }
 
   drag(tileStart: Vector2, tileStop: Vector2) {
@@ -296,8 +297,12 @@ export class BuildTool implements ITool
   }
 
   draw(drawPixi: DrawPixi, camera: CameraService) {
+
+    if (this.canBuild()) this.templateItemToBuild.drawPart.tint = DrawHelpers.whiteColor;
+    else this.templateItemToBuild.drawPart.tint = 0xD40000;
+
     this.templateItemToBuild.drawPixi(camera, drawPixi);
-    // TODO utility behind object
+    // TODO correct red and alpha when building outside of overlay 
   }
 }
 

@@ -13,6 +13,8 @@ import { BniBlueprint } from './io/bni/bni-blueprint';
 import { BinaryReader, Encoding } from 'csharp-binary-stream';
 import { BniBuilding } from './io/bni/bni-building';
 import { BlueprintHelpers } from './blueprint-helpers';
+import { DrawHelpers } from '../../drawing/draw-helpers';
+import { ControlContainer } from '@angular/forms';
 
 export class Blueprint
 {
@@ -171,33 +173,27 @@ export class Blueprint
   public addTemplateItem(templateItem: BlueprintItem)
   {
     this.blueprintItems.push(templateItem);
-    templateItem.tileIndexes = [];
 
-    for (let x = templateItem.topLeft.x; x <= templateItem.bottomRight.x; x++)
-      for (let y = templateItem.topLeft.y; y >= templateItem.bottomRight.y; y--)
-      {
-        let tilePosition = new Vector2(x, y);
-        templateItem.tileIndexes.push(this.getTileIndex(tilePosition));
-        this.getTemplateItemsAt(tilePosition).push(templateItem);
-      }
-  }
+    if (templateItem.tileIndexes == null) templateItem.prepareBoundingBox();
 
-  public getTileIndex(position: Vector2): number
-  {
-    return (position.x + 500) + 1001 * (position.y + 500);;
+    for (let tileIndex of templateItem.tileIndexes) this.getTemplateItemsAtIndex(tileIndex).push(templateItem);
+    
   }
 
   public getTemplateItemsAt(position: Vector2): BlueprintItem[]
   {
+    let arrayIndex = DrawHelpers.getTileIndex(position);
+    return this.getTemplateItemsAtIndex(arrayIndex);
+  }
+
+  public getTemplateItemsAtIndex(index: number): BlueprintItem[] {
     if (this.templateTiles == null) this.templateTiles = [];
 
-    let arrayIndex = this.getTileIndex(position);
-
-    let returnValue = this.templateTiles[arrayIndex];
+    let returnValue = this.templateTiles[index];
     if (returnValue == null)
     {
       returnValue = [];
-      this.templateTiles[arrayIndex] = returnValue;
+      this.templateTiles[index] = returnValue;
     }
 
     return returnValue;

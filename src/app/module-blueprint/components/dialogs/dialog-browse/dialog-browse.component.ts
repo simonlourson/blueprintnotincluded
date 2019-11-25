@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ChangeDetectorRef, HostListener, AfterContentInit } from '@angular/core';
 import { BlueprintListItem } from 'src/app/module-blueprint/services/blueprint-list-item';
 import { BlueprintService } from 'src/app/module-blueprint/services/blueprint-service';
 import { Dialog } from 'primeng/dialog';
@@ -10,7 +10,7 @@ import { DatePipe } from '@angular/common';
   templateUrl: './dialog-browse.component.html',
   styleUrls: ['./dialog-browse.component.css']
 })
-export class DialogBrowseComponent implements OnInit {
+export class DialogBrowseComponent implements OnInit, AfterContentInit {
 
   @ViewChild('browseDialog', {static: true}) browseDialog: Dialog
 
@@ -18,27 +18,20 @@ export class DialogBrowseComponent implements OnInit {
   blueprintListItems: BlueprintListItem[];
 
   working: boolean;
+  noMoreBlueprints: boolean;
   firstLoading: boolean;
 
   get disabled() { return this.working; }
   get icon() { return this.working ? 'pi pi-spin pi-spinner' : ''; }
 
+  loadingBlueprintItem: BlueprintListItem;
+
   constructor(
     private blueprintService: BlueprintService, 
     public datepipe: DatePipe) { 
 
-    this.reset();
-  }
-
-  ngOnInit() {
-  }
-
-  reset() {
-    this.firstLoading = true;
-    this.working = true;
-
     let tempDate = new Date();
-    let loadingBlueprintItem: BlueprintListItem = {
+    this.loadingBlueprintItem = {
       id: null,
       name: 'Loading...',
       ownerName: 'Loading...',
@@ -48,7 +41,30 @@ export class DialogBrowseComponent implements OnInit {
       tags: null
     };
 
-    this.blueprintListItems = [loadingBlueprintItem, loadingBlueprintItem, loadingBlueprintItem, loadingBlueprintItem, loadingBlueprintItem, loadingBlueprintItem];
+    this.reset();
+  }
+
+  ngOnInit() {
+    this.browseDialog.onShow.subscribe({
+      next: this.handleOnShow.bind(this)
+    });
+  }
+
+  ngAfterContentInit(): void {
+    //console.log(this.browseDialog.contentViewChild.nativeElement);
+  }
+
+  reset() {
+    this.firstLoading = true;
+    this.working = true;
+    this.noMoreBlueprints = false;
+
+    this.blueprintListItems = [];
+    this.appendTemp();
+  }
+
+  appendTemp() {
+    for (let i = 0; i < 6; i++) this.blueprintListItems.push(this.loadingBlueprintItem);
   }
 
   openBlueprint(item: BlueprintListItem) {
@@ -67,26 +83,47 @@ export class DialogBrowseComponent implements OnInit {
       next: this.handleGetBlueprints.bind(this)
     });
     this.visible = true;
+
+    
+    //console.log(this.browseDialog.contentViewChild.nativeElement);
+    
+    //this.browseDialog.contentViewChild.nativeElement.addEventListener('scroll', function(e) {
+    //  console.log('scroll');
+    //});
+  }
+
+  handleOnShow() {
+    this.browseDialog.contentViewChild.nativeElement.addEventListener('scroll', this.scroll.bind(this));
+  }
+
+  scroll(e: Event) {
+    let scrollTop: number = this.browseDialog.contentViewChild.nativeElement.scrollTop;
+    let scrollMax: number = this.browseDialog.contentViewChild.nativeElement.scrollHeight - this.browseDialog.contentViewChild.nativeElement.clientHeight;
+    if (!this.noMoreBlueprints && !this.working && scrollTop == scrollMax) {
+      this.loadMoreBlueprints();
+    }
   }
 
   handleGetBlueprints(blueprintListItems: BlueprintListItem[]) {
     this.working = false;
-    if (this.firstLoading) {
-      this.firstLoading = false;
-      this.blueprintListItems = [];
-      //blueprintListItems.map((item) => { item.thumbnail='svg'; this.blueprintListItems.push(item); });
-      blueprintListItems.map((item) => { this.blueprintListItems.push(item); });
-    }
-    else {
-      // TODO remove duplicates
-      blueprintListItems.map((item) => { this.blueprintListItems.push(item); });
-    }
+    if (blueprintListItems.length == 0) this.noMoreBlueprints = true;
+    if (this.firstLoading) this.firstLoading = false;
+      
+    this.blueprintListItems = this.blueprintListItems.filter((i) => { return i != this.loadingBlueprintItem; });
+
+    // TODO remove duplicates
+    blueprintListItems.map((item) => { this.blueprintListItems.push(item); });
+    
     //this.recenter();
   }
 
   loadMoreBlueprints() {
+
     // Get the oldest date received
+    // TODO oldest date and isLast in response
     this.working = true;
+    this.appendTemp();
+
     let oldestDate = new Date();
     this.blueprintListItems.map((item) => { 
       let createdAt = new Date(item.createdAt);

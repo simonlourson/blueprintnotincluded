@@ -356,6 +356,13 @@ export class BlueprintItem implements TemplateItemCloneable<BlueprintItem>
         flippedTopLeft.x > flippedBottomRight.x ? flippedTopLeft.x : flippedBottomRight.x,
         flippedTopLeft.y < flippedBottomRight.y ? flippedTopLeft.y : flippedBottomRight.y,
       );
+
+      this.tileIndexes = [];
+      for (let x = this.topLeft.x; x <= this.bottomRight.x; x++)
+        for (let y = this.topLeft.y; y >= this.bottomRight.y; y--)
+          this.tileIndexes.push(DrawHelpers.getTileIndex(new Vector2(x, y)));
+
+      //console.log(this.tileIndexes); 
     }
 
     public prepareSpriteInfoModifier(blueprint: Blueprint)
@@ -494,7 +501,7 @@ export class BlueprintItem implements TemplateItemCloneable<BlueprintItem>
               this.utilitySprites[connexionIndex] = PIXI.Sprite.from(connectionTexture);
               
               this.utilitySprites[connexionIndex].tint = tint;
-              this.utilitySprites[connexionIndex].zIndex = 100;
+              this.utilitySprites[connexionIndex].zIndex = 101;
               camera.container.addChild(this.utilitySprites[connexionIndex]);
             }
           }

@@ -148,7 +148,6 @@ export class BlueprintService implements IObsOverlayChanged
     const request = this.http.get('/api/getblueprints?olderthan='+olderThan.getTime().toString()).pipe(
       map((response: any) => {
         let blueprintListItems = response as BlueprintListItem[];
-        console.log(blueprintListItems);
         return blueprintListItems;
       })
     );
