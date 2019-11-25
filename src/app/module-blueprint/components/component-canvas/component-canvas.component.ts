@@ -30,6 +30,7 @@ import { BlueprintService } from '../../services/blueprint-service';
 import { ToolService } from '../../services/tool-service';
 import { Container } from 'pixi.js';
 import { read } from 'fs';
+import { BinController } from '../../common/bin-packing/bin-controller';
 
 
 @Component({
@@ -261,11 +262,98 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy, IObsOverlayC
 
   repackTextures(database: any)
   {
+    // Tests bintrays
+    let traySize = 1024;
+    let textureBaseString = 'repack_';
+    let binController = new BinController(new Vector2(traySize, traySize));
+
+    let bleed = new Vector2(10, 10);
+    /*
+    // Tests
+    binController.addItem('test_0', new Vector2(50, 50), bleed);
+    binController.addItem('test_1', new Vector2(50, 50), bleed);
+    binController.addItem('test_2', new Vector2(10, 50), bleed);
+    binController.addItem('test_3', new Vector2(10, 50), bleed);
+    */
+
+    // First, we clone the existing spriteInfos into a new array :
+    let newSpriteInfos: BSpriteInfo[] = [];
+
+    for (let spriteInfo of SpriteInfo.spriteInfos) {
+      // Copy the sprite info into the BSpriteInfo.
+      // We need to start from the start info because some of them are generated (tiles)
+      let newSpriteInfo = new BSpriteInfo();
+      newSpriteInfo.name = spriteInfo.spriteInfoId;
+      newSpriteInfo.uvMin = Vector2.clone(spriteInfo.uvMin);
+      newSpriteInfo.uvSize = Vector2.clone(spriteInfo.uvSize);
+      newSpriteInfo.realSize = Vector2.clone(spriteInfo.realSize);
+      newSpriteInfo.pivot = Vector2.clone(spriteInfo.pivot);
+      newSpriteInfo.isIcon = spriteInfo.isIcon;
+      newSpriteInfos.push(newSpriteInfo);
+    }
+
+    // Sort our new array of BSpriteInfo by descending height
+    newSpriteInfos = newSpriteInfos.sort((i1, i2) => { return i2.uvSize.y - i1.uvSize.y; });
+
+    for (let spriteInfo of newSpriteInfos) {
+      let itemAdded  = binController.addItem(spriteInfo.name, Vector2.clone(spriteInfo.uvSize), bleed);
+      if (itemAdded != null) {
+        spriteInfo.uvMin = Vector2.clone(itemAdded.uvStart);
+        spriteInfo.textureName = textureBaseString + itemAdded.trayIndex;
+      }
+    }
+
+    
+    database.uiSprites = newSpriteInfos;
+
+    ComponentCanvasComponent.zip = new JSZip();
+    ComponentCanvasComponent.nbBlob = 0;
+    ComponentCanvasComponent.downloadFile = 'repackedTextureAndDatabase.zip';
+    ComponentCanvasComponent.nbBlobMax = binController.binTrays.length;
+
+    ComponentCanvasComponent.zip.file('database_repacked.json', JSON.stringify(database, null, 2));
+
+
+    for (let trayIndex = 0; trayIndex < binController.binTrays.length; trayIndex++) {
+      let brt = new PIXI.BaseRenderTexture({width: binController.binTrays[trayIndex].binSize.x, height: binController.binTrays[trayIndex].binSize.y});
+      let rt = new PIXI.RenderTexture(brt);
+
+      let graphics = new PIXI.Graphics();
+      let container = new Container();
+      container.addChild(graphics);
+
+      for (let spriteInfo of newSpriteInfos.filter((s) => { return s.textureName == textureBaseString + trayIndex; })) {
+        let sprite = PIXI.Sprite.from(SpriteInfo.getSpriteInfo(spriteInfo.name).getTexture());
+
+        sprite.x = spriteInfo.uvMin.x;
+        sprite.y = spriteInfo.uvMin.y;
+        container.addChild(sprite);
+
+        //graphics.beginFill(0x007AD9);
+        //graphics.drawRect(spriteInfo.uvMin.x, spriteInfo.uvMin.y, spriteInfo.uvSize.x, spriteInfo.uvSize.y);
+        //graphics.endFill();
+      }
+
+      this.drawPixi.pixiApp.renderer.render(container, rt, true);
+
+      this.drawPixi.pixiApp.renderer.extract.canvas(rt).toBlob((b) => 
+      {
+        this.addBlob(b, textureBaseString + trayIndex + '.png');
+      }, 'image/png');
+    }
+
+    
+
+    
+
+    
+
+/*
     let uiSprites: BSpriteInfo[] = database.uiSprites;
     let newSpriteInfos: BSpriteInfo[] = [];
 
 
-    let packSize = new Vector2(1024, 1024);
+    let packSize = new Vector2(2048, 2048);
     let bleedSize: number = 10;
     let repackIndex = -1;
     let currentUv = Vector2.clone(Vector2.Zero);
@@ -379,6 +467,8 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy, IObsOverlayC
         this.addBlob(b, baseString + indexRt + '.png');
       }, 'image/png');
     }
+
+    */
   }
   
   downloadIcons()

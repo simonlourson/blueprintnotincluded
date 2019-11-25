@@ -33,6 +33,7 @@ export class SpriteInfo
 
     // Keys is used for some repack stuff
     public static get keys() { return Array.from(SpriteInfo.spriteInfosMap.keys()); }
+    public static get spriteInfos() { return Array.from(SpriteInfo.spriteInfosMap.values()); }
     public static init()
     {
       SpriteInfo.spriteInfosMap = new Map<string, SpriteInfo>();
