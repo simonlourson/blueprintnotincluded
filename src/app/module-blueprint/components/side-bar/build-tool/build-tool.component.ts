@@ -68,7 +68,6 @@ export class ComponentSideBuildToolComponent implements OnInit, IObsBuildItemCha
   {
     this.items = [];
 
-    console.log(this.currentCategory)
     for (let buildMenuItem of BuildMenuItem.buildMenuItems)
     {
       if (this.currentCategory == BuildMenuCategory.allCategories || this.currentCategory.category == buildMenuItem.category)

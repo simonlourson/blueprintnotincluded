@@ -1,31 +1,15 @@
-<!--
-<p-dialog #buildingsDialog 
-header='{{header}}' 
-[style]="{width: '450px', minHeight: '20px'}"
-[modal]="false" 
-[responsive]="false" 
-[closable]="false" 
-[focusOnShow]="false" 
-[maximizable]="false" 
-[draggable]="true" 
-[baseZIndex]="90" 
-[autoZIndex]="false" 
-[resizable]="false"
-[positionTop]="150" 
-[positionLeft]="30" 
-[visible]="true"
-[transitionOptions]="'0ms'"
->-->
-<app-selection-tool 
-  #selectionTool 
-  [hidden]="toolService.currentToolType!=0"
-  (onAskChangeTool)="askChangeTool($event)">
-</app-selection-tool>
-<app-build-tool 
-  #buildTool 
-  [hidden]="toolService.currentToolType!=1"
-  (onAskChangeTool)="askChangeTool($event)">
-</app-build-tool>
+<div class="test">
+  <app-selection-tool 
+    #selectionTool 
+    [hidden]="toolService.currentToolType!=0"
+    (onAskChangeTool)="askChangeTool($event)">
+  </app-selection-tool>
+  <app-build-tool 
+    #buildTool 
+    [hidden]="toolService.currentToolType!=1"
+    (onAskChangeTool)="askChangeTool($event)">
+  </app-build-tool>
+</div>
 
 
         

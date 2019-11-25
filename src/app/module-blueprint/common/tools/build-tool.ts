@@ -47,7 +47,6 @@ export class BuildTool implements ITool
         else if (templateItem.oniItem.id == this.templateItemToBuild.oniItem.id) 
           alreadyPresent = true;
     }
-    
     return !alreadyPresent;
   }
 
@@ -92,6 +91,7 @@ export class BuildTool implements ITool
 
   buildAndConnect(tileStart: Vector2, tileStop: Vector2) {
     this.templateItemToBuild.position = Vector2.clone(tileStop);
+    this.templateItemToBuild.prepareBoundingBox();
     this.build();
     
     if (this.templateItemToBuild.oniItem.isWire)
