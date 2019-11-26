@@ -296,6 +296,13 @@ export class BuildTool implements ITool
   dragStop() {
   }
 
+  keyDown(keyCode: string) {
+    if (keyCode == 'o') {
+      if (this.templateItemToBuild != null) this.templateItemToBuild.nextOrientation();
+      console.log('rotate')
+    }
+  }
+
   draw(drawPixi: DrawPixi, camera: CameraService) {
 
     if (this.canBuild()) this.templateItemToBuild.drawPart.tint = DrawHelpers.whiteColor;

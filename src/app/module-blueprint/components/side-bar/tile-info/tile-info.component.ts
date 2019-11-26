@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter, OnDestroy, ChangeDetect
 import { BlueprintItem } from '../../../common/blueprint/blueprint-item';
 import { ComposingElement } from '../../../common/composing-element';
 import { BlueprintItemWire } from '../../../common/blueprint/blueprint-item-wire';
-import { AuthorizedOrientations } from '../../../common/oni-item';
+import { Orientation } from '../../../common/oni-item';
 import { SelectItem } from 'primeng/api';
 import { ToolType } from '../../../common/tools/tool';
 import { BlueprintService } from '../../../services/blueprint-service';
@@ -17,17 +17,19 @@ export class TileInfoComponent implements OnInit, OnDestroy {
 
 
   @Input() templateItem: BlueprintItem;
+  @Input() build: boolean;
 
   get elements() { return ComposingElement.elements; }
   get showColor() { return this.templateItem instanceof BlueprintItemWire }
   get showOrientation() { return this.templateItem.oniItem.orientations.length > 1 }
 
 
+  // TODO remove
   get authorizedOrientations(): SelectItem[] 
   {
     let returnValue: SelectItem[] = [];
-    for (let authorizedOrientation of this.templateItem.oniItem.orientations) 
-      returnValue.push({value:authorizedOrientation, label:AuthorizedOrientations[authorizedOrientation]});
+    //for (let authorizedOrientation of this.templateItem.oniItem.orientations) 
+    //  returnValue.push({value:authorizedOrientation, label:AuthorizedOrientations[authorizedOrientation]});
 
     return returnValue;
   }

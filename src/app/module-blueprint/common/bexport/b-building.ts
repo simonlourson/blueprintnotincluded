@@ -3,6 +3,7 @@ import { BSpriteInfo } from "./b-sprite-info";
 import { BSpriteModifier } from "./b-sprite-modifier";
 import { UtilityConnection } from '../utility-connection';
 import { ZIndex, Overlay } from '../overlay-type';
+import { PermittedRotations } from '../../drawing/draw-helpers';
 
 export class BBuilding
 {
@@ -25,4 +26,5 @@ export class BBuilding
 
   dragBuild: boolean;
   objectLayer: number;
+  permittedRotations: PermittedRotations;
 }

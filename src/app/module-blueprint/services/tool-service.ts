@@ -10,7 +10,6 @@ import { BlueprintItem } from '../common/blueprint/blueprint-item';
 @Injectable({ providedIn: 'root' })
 export class ToolService implements ITool, IChangeTool
 {
-
   public currentToolType: ToolType;
   private get currentTool(): ITool { 
     if (this.currentToolType == ToolType.select) return this.selectTool;
@@ -66,6 +65,9 @@ export class ToolService implements ITool, IChangeTool
   }
   dragStop() {
     this.currentTool.dragStop();
+  }
+  keyDown(keyCode: string) {
+    this.currentTool.keyDown(keyCode);
   }
   draw(drawPixi: DrawPixi, camera: CameraService) {
     this.currentTool.draw(drawPixi, camera);

@@ -318,6 +318,10 @@ export class SelectTool implements ITool, IObsItemDestroyed
     this.beginSelection = null;
   }
 
+  keyDown(keyCode: string) {
+
+  }
+
   draw(drawPixi: DrawPixi, camera: CameraService) {
 
     // Return

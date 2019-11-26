@@ -20,6 +20,7 @@ export interface ITool
   hover(tile: Vector2);
   drag(tileStart: Vector2, tileStop: Vector2);
   dragStop();
+  keyDown(keyCode: string);
   draw(drawPixi: DrawPixi, camera: CameraService);
 }
 

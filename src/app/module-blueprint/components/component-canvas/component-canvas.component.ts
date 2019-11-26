@@ -31,6 +31,7 @@ import { ToolService } from '../../services/tool-service';
 import { Container } from 'pixi.js';
 import { read } from 'fs';
 import { BinController } from '../../common/bin-packing/bin-controller';
+import { IObsBuildItemChanged } from '../../common/tools/build-tool';
 
 
 @Component({
@@ -38,7 +39,7 @@ import { BinController } from '../../common/bin-packing/bin-controller';
   templateUrl: './component-canvas.component.html',
   styleUrls: ['./component-canvas.component.css']
 })
-export class ComponentCanvasComponent implements OnInit, OnDestroy, IObsOverlayChanged  {
+export class ComponentCanvasComponent implements OnInit, OnDestroy, IObsBuildItemChanged  {
 
   width: number;
   height: number;
@@ -64,6 +65,7 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy, IObsOverlayC
     
     this.drawPixi = new DrawPixi();
     
+    this.toolService.buildTool.subscribeBuildItemChanged(this);
 
     this.technicalRepack = new TechnicalRepack();
   }
@@ -101,7 +103,10 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy, IObsOverlayC
     ));
   }
 
-
+  itemChanged(templateItem: BlueprintItem) {
+    console.log('focus')
+    this.canvasRef.nativeElement.focus();
+  }
 
   getCursorPosition(event): Vector2 {
     let rect = this.canvasRef.nativeElement.getBoundingClientRect();
@@ -189,11 +194,7 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy, IObsOverlayC
 
   keyPress(event: any)
   {
-    console.log(event);
-  }
-
-  overlayChanged(newOverlay: Overlay) {
-    this.prepareOverlayInfo();
+    this.toolService.keyDown(event.key)
   }
 
   prepareOverlayInfo()

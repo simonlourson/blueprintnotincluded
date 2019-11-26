@@ -2,7 +2,7 @@ import { Vector2 } from "./vector2";
 import { UtilityConnection, ConnectionType } from "./utility-connection";
 import { ZIndex, Overlay } from "./overlay-type";
 import { BlueprintParams } from "./params";
-import { DrawHelpers } from "../drawing/draw-helpers";
+import { DrawHelpers, PermittedRotations } from "../drawing/draw-helpers";
 import { BBuilding } from "./bexport/b-building";
 import { ImageSource } from "../drawing/image-source";
 import { SpriteInfo } from "../drawing/sprite-info";
@@ -29,9 +29,21 @@ export class OniItem
   utilityConnections: UtilityConnection[];
   backColor: number;
   frontColor: number;
-  orientations: AuthorizedOrientations[];
+  orientations: Orientation[];
   dragBuild: boolean;
   objectLayer: number; // TODO import enum?
+  
+  private permittedRotations_: PermittedRotations;
+  get permittedRotations() { return this.permittedRotations_; }
+  set permittedRotations(value: PermittedRotations) {
+    this.permittedRotations_ = value;
+
+    if (value == PermittedRotations.Unrotatable) this.orientations = [Orientation.Neutral];
+    else if (value == PermittedRotations.FlipH) this.orientations = [Orientation.Neutral, Orientation.FlipH];
+    else if (value == PermittedRotations.FlipV) this.orientations = [Orientation.Neutral, Orientation.FlipV];
+    else if (value == PermittedRotations.R90) this.orientations = [Orientation.Neutral, Orientation.R90];
+    else if (value == PermittedRotations.R360) this.orientations = [Orientation.Neutral, Orientation.R90, Orientation.R180, Orientation.R270];
+  }
 
   // Overlay
   zIndex: ZIndex;
@@ -60,6 +72,7 @@ export class OniItem
 
     this.dragBuild = original.dragBuild;
     this.objectLayer = original.objectLayer;
+    this.permittedRotations = original.permittedRotations;
 
     let imageId: string = original.textureName;
     let imageUrl: string = DrawHelpers.createUrl(imageId, false);
@@ -103,7 +116,7 @@ export class OniItem
     if (this.size == null) this.size = new Vector2();
     if (this.utilityConnections == null) this.utilityConnections = [];
     if (this.zIndex == null) this.zIndex = ZIndex.Building;
-    if (this.orientations == null) this.orientations = [AuthorizedOrientations.None];
+    if (this.permittedRotations == null) this.permittedRotations = PermittedRotations.Unrotatable;
     if (this.backColor == null) this.backColor = 0x000000;
     if (this.frontColor == null) this.frontColor = 0xFFFFFF;
     
@@ -171,16 +184,6 @@ insulated gas pipe : green gas input
 gas pipe : white gas input
 radiant gas pipe : orange gas
 */
-
-export enum AuthorizedOrientations
-{
-  None,
-  FlipH,
-  FlipV,
-  R90,
-  R180,
-  R270
-}
 
 export enum Orientation
 {

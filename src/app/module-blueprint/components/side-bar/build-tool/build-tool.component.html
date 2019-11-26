@@ -17,7 +17,7 @@
     </ng-template>
   </p-dropdown>
   <p-dropdown 
-    (onChange)="uiItemChanged()" 
+    (onChange)="uiItemChanged($event)" 
     [options]=items 
     [style]="{'width':'100%'}" 
     [(ngModel)]="currentItem"
@@ -37,7 +37,7 @@
   <p-accordion *ngIf="toolService.buildTool.templateItemToBuild != null" #buildingsAccordion [(activeIndex)]="activeIndex" >
     
     <p-accordionTab header="{{toolService.buildTool.templateItemToBuild.id}}">
-      <app-tile-info [templateItem]=toolService.buildTool.templateItemToBuild></app-tile-info>
+      <app-tile-info [templateItem]=toolService.buildTool.templateItemToBuild [build]="true"></app-tile-info>
     </p-accordionTab>
   
   </p-accordion>

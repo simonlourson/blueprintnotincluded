@@ -19,7 +19,8 @@ export class DialogBrowseComponent implements OnInit, AfterContentInit {
 
   working: boolean;
   noMoreBlueprints: boolean;
-  firstLoading: boolean;
+  oldestDate: Date;
+  remaining: number;
 
   get disabled() { return this.working; }
   get icon() { return this.working ? 'pi pi-spin pi-spinner' : ''; }
@@ -55,16 +56,17 @@ export class DialogBrowseComponent implements OnInit, AfterContentInit {
   }
 
   reset() {
-    this.firstLoading = true;
     this.working = true;
     this.noMoreBlueprints = false;
+    this.oldestDate = new Date();
+    this.remaining = 6;
 
     this.blueprintListItems = [];
     this.appendTemp();
   }
 
   appendTemp() {
-    for (let i = 0; i < 6; i++) this.blueprintListItems.push(this.loadingBlueprintItem);
+    for (let i = 0; i < this.remaining; i++) this.blueprintListItems.push(this.loadingBlueprintItem);
   }
 
   openBlueprint(item: BlueprintListItem) {
@@ -97,28 +99,31 @@ export class DialogBrowseComponent implements OnInit, AfterContentInit {
   }
 
   scroll(e: Event) {
-    //console.log('scroll')
     let scrollTop: number = this.browseDialog.contentViewChild.nativeElement.scrollTop;
     let scrollMax: number = this.browseDialog.contentViewChild.nativeElement.scrollHeight - this.browseDialog.contentViewChild.nativeElement.clientHeight;
+    //console.log('scroll')
     //console.log({scrollTop: scrollTop, scrollMax: scrollMax});
     if (!this.noMoreBlueprints && !this.working && scrollTop >  scrollMax - 5) {
       this.loadMoreBlueprints();
     }
   }
 
-  handleGetBlueprints(blueprintListItems: BlueprintListResponse) {
+  handleGetBlueprints(blueprintListResponse: BlueprintListResponse) {
     this.working = false;
-    if (blueprintListItems.blueprints == null || blueprintListItems.blueprints.length == 0) this.noMoreBlueprints = true;
-    if (this.firstLoading) this.firstLoading = false;
+    this.oldestDate = new Date(blueprintListResponse.oldest);
+    this.remaining = blueprintListResponse.remaining;
+
+    if (this.remaining == 0) this.noMoreBlueprints = true;
       
     this.blueprintListItems = this.blueprintListItems.filter((i) => { return i != this.loadingBlueprintItem; });
 
     // TODO remove duplicates
-    blueprintListItems.blueprints.map((item) => { this.blueprintListItems.push(item); });
+    blueprintListResponse.blueprints.map((item) => { this.blueprintListItems.push(item); });
     
     //this.recenter();
   }
 
+  
   loadMoreBlueprints() {
 
     // Get the oldest date received
@@ -126,13 +131,7 @@ export class DialogBrowseComponent implements OnInit, AfterContentInit {
     this.working = true;
     this.appendTemp();
 
-    let oldestDate = new Date();
-    this.blueprintListItems.map((item) => { 
-      let createdAt = new Date(item.createdAt);
-      if (createdAt.getTime() < oldestDate.getTime()) oldestDate = createdAt; 
-    })
-
-    this.blueprintService.getBlueprints(oldestDate).subscribe({
+    this.blueprintService.getBlueprints(this.oldestDate).subscribe({
       next: this.handleGetBlueprints.bind(this)
     });
 

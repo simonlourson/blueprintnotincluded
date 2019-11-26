@@ -1,5 +1,5 @@
 import { Vector2 } from "../vector2";
-import { OniItem, AuthorizedOrientations, Orientation } from "../oni-item";
+import { OniItem, Orientation } from "../oni-item";
 import { OniBuilding } from "./io/oni/oni-building";
 import { ImageSource } from "../../drawing/image-source";
 import { SpriteInfo } from "../../drawing/sprite-info";
@@ -7,7 +7,7 @@ import { SpriteModifier } from "../../drawing/sprite-modifier";
 import { CameraService } from "../../services/camera-service";
 import { ConnectionType, ConnectionHelper } from "../utility-connection";
 import { ZIndex, Overlay } from "../overlay-type";
-import { DrawHelpers } from "../../drawing/draw-helpers";
+import { DrawHelpers, PermittedRotations } from "../../drawing/draw-helpers";
 import { ComposingElement } from "../composing-element";
 import { Blueprint } from "./blueprint";
 import { TemplateItemCloneable } from "./template-item-cloneable";
@@ -51,7 +51,7 @@ export class BlueprintItem implements TemplateItemCloneable<BlueprintItem>
   set selectedMultiple(value: boolean) { this.selected_ = value; }
 
   position: Vector2;
-  orientation: AuthorizedOrientations;
+  orientation: Orientation;
   rotation: number;
   scale: Vector2;
   get oniItem() { return OniItem.getOniItem(this.id); };
@@ -139,19 +139,19 @@ export class BlueprintItem implements TemplateItemCloneable<BlueprintItem>
       switch (building.rotationOrientation)
       {
         case 'R90':
-          this.changeOrientation(AuthorizedOrientations.R90);
+          this.changeOrientation(Orientation.R90);
           break;
         case 'R180':
-          this.changeOrientation(AuthorizedOrientations.R180);
+          this.changeOrientation(Orientation.R180);
           break;
         case 'R270':
-          this.changeOrientation(AuthorizedOrientations.R270);
+          this.changeOrientation(Orientation.R270);
           break;
         case 'FlipH':
-          this.changeOrientation(AuthorizedOrientations.FlipH);
+          this.changeOrientation(Orientation.FlipH);
           break;
         case 'FlipV':
-          this.changeOrientation(AuthorizedOrientations.FlipV);
+          this.changeOrientation(Orientation.FlipV);
           break;
       }
 
@@ -173,24 +173,28 @@ export class BlueprintItem implements TemplateItemCloneable<BlueprintItem>
       );
     else this.position = Vector2.zero();
 
+    this.changeOrientation(building.orientation);
+    /*
+    // TODO remove after tests
     switch (building.orientation)
     {
       case Orientation.R90:
-        this.changeOrientation(AuthorizedOrientations.R90);
+        this.changeOrientation(Orientation.R90);
         break;
       case Orientation.R180:
-        this.changeOrientation(AuthorizedOrientations.R180);
+        this.changeOrientation(Orientation.R180);
         break;
       case Orientation.R270:
-        this.changeOrientation(AuthorizedOrientations.R270);
+        this.changeOrientation(Orientation.R270);
         break;
       case Orientation.FlipH:
-        this.changeOrientation(AuthorizedOrientations.FlipH);
+        this.changeOrientation(Orientation.FlipH);
         break;
       case Orientation.FlipV:
-        this.changeOrientation(AuthorizedOrientations.FlipV);
+        this.changeOrientation(Orientation.FlipV);
         break;
     }
+    */
 
     this.cleanUp();
     this.prepareBoundingBox();
@@ -214,32 +218,33 @@ export class BlueprintItem implements TemplateItemCloneable<BlueprintItem>
   {
     switch (this.orientation)
     {
-      case AuthorizedOrientations.None:
+      case Orientation.Neutral:
         this.rotation = 0;
         this.scale = Vector2.One;
         break;
-      case AuthorizedOrientations.R90:
+      case Orientation.R90:
         this.rotation = 90;
         this.scale = Vector2.One;
         break;
-      case AuthorizedOrientations.R180:
+      case Orientation.R180:
         this.rotation = 180;
         this.scale = Vector2.One;
         break;
-      case AuthorizedOrientations.R270:
+      case Orientation.R270:
         this.rotation = 270;
         this.scale = Vector2.One;
         break;
-      case AuthorizedOrientations.FlipH:
+      case Orientation.FlipH:
         this.rotation = 0;
         this.scale = new Vector2(-1, 1);
         break;
-      case AuthorizedOrientations.FlipV:
+      case Orientation.FlipV:
         this.rotation = 0;
         this.scale = new Vector2(1, -1);
         break;
     }
 
+    this.prepareBoundingBox();
   }
 
     public importFromCloud(original: BlueprintItem)
@@ -257,7 +262,13 @@ export class BlueprintItem implements TemplateItemCloneable<BlueprintItem>
       this.prepareBoundingBox();
     }
 
-    changeOrientation(newOrientation: AuthorizedOrientations)
+    nextOrientation() {
+      let indexCurrentOrientation = this.oniItem.orientations.indexOf(this.orientation);
+      indexCurrentOrientation = (indexCurrentOrientation + 1) % this.oniItem.orientations.length;
+      this.changeOrientation(this.oniItem.orientations[indexCurrentOrientation]);
+    }
+
+    changeOrientation(newOrientation: Orientation)
     {
       this.orientation = newOrientation;
       this.updateRotationScale();
@@ -269,7 +280,7 @@ export class BlueprintItem implements TemplateItemCloneable<BlueprintItem>
       if (this.scale == null) this.scale = BlueprintItem.defaultScale;
       if (this.element == null) this.element = ComposingElement.unknownElement;
 
-      if (this.orientation == null) this.changeOrientation(AuthorizedOrientations.None);
+      if (this.orientation == null) this.changeOrientation(Orientation.Neutral);
       this.selected_ = false;
     }
   
@@ -313,7 +324,7 @@ export class BlueprintItem implements TemplateItemCloneable<BlueprintItem>
 
   public deleteDefaultForExport()
   {
-    if (AuthorizedOrientations.None == this.orientation) this.orientation = undefined;
+    if (Orientation.Neutral == this.orientation) this.orientation = undefined;
 
     this.tileIndexes = undefined;
 

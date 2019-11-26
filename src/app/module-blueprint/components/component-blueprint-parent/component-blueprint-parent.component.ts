@@ -8,7 +8,7 @@ import {BinaryReader, Encoding} from 'csharp-binary-stream';
 import { OniTemplate } from '../../common/blueprint/io/oni/oni-template';
 import { TileInfo } from '../../common/tile-info';
 import { ComponentSidepanelComponent } from '../side-bar/side-panel/side-panel.component';
-import { OniItem, AuthorizedOrientations } from '../../common/oni-item';
+import { OniItem } from '../../common/oni-item';
 import { ImageSource } from '../../drawing/image-source';
 import { Vector2 } from '../../common/vector2';
 import { SpriteInfo } from '../../drawing/sprite-info';
