@@ -218,10 +218,6 @@ export class BlueprintItem implements TemplateItemCloneable<BlueprintItem>
   {
     switch (this.orientation)
     {
-      case Orientation.Neutral:
-        this.rotation = 0;
-        this.scale = Vector2.One;
-        break;
       case Orientation.R90:
         this.rotation = 90;
         this.scale = Vector2.One;
@@ -241,6 +237,11 @@ export class BlueprintItem implements TemplateItemCloneable<BlueprintItem>
       case Orientation.FlipV:
         this.rotation = 0;
         this.scale = new Vector2(1, -1);
+        break;
+      case Orientation.Neutral:
+      default: 
+        this.rotation = 0;
+        this.scale = Vector2.One;
         break;
     }
 

@@ -65,8 +65,8 @@ export class ComponentMenuComponent implements OnInit, IObsToolChanged, IObsOver
 
     this.overlayMenuItems = [];
     overlayList.map((overlay) => {
-      this.overlayMenuItems.push({label:DrawHelpers.overlayString[overlay], id:overlay.toString(), command: (event) => { this.clickOverlay(event); }})
-    })
+      this.overlayMenuItems.push({label:'            '+DrawHelpers.overlayString[overlay], id:overlay.toString(), img:DrawHelpers.getOverlayUrl(overlay), command: (event) => { this.clickOverlay(event); }})
+    });
 
     this.toolMenuItems = [
       {label: 'Select',       id:ToolType.select.toString(),    command: (event) => { this.clickTool(event); }},

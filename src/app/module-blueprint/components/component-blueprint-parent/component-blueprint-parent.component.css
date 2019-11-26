@@ -14,10 +14,4 @@
 .outer {
   display: flex;
   flex-flow: column;
-  height: 100vh;
-}
-
-.inner_remaining {
-  flex-grow : 1;
-  background-color: #000000;
 }

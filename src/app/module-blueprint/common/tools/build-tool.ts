@@ -299,7 +299,6 @@ export class BuildTool implements ITool
   keyDown(keyCode: string) {
     if (keyCode == 'o') {
       if (this.templateItemToBuild != null) this.templateItemToBuild.nextOrientation();
-      console.log('rotate')
     }
   }
 

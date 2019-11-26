@@ -1,8 +1,5 @@
 #blueprintCanvas {
   background-color: black;
+  position: absolute;
   z-index: -1;
-}
-
-.height-test-2 {
-  height: 100%;
 }

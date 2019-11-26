@@ -39,7 +39,7 @@ import { IObsBuildItemChanged } from '../../common/tools/build-tool';
   templateUrl: './component-canvas.component.html',
   styleUrls: ['./component-canvas.component.css']
 })
-export class ComponentCanvasComponent implements OnInit, OnDestroy, IObsBuildItemChanged  {
+export class ComponentCanvasComponent implements OnInit, OnDestroy  {
 
   width: number;
   height: number;
@@ -64,8 +64,6 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy, IObsBuildIte
     private toolService: ToolService) {
     
     this.drawPixi = new DrawPixi();
-    
-    this.toolService.buildTool.subscribeBuildItemChanged(this);
 
     this.technicalRepack = new TechnicalRepack();
   }
@@ -101,11 +99,6 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy, IObsBuildIte
       rect.width - rect.left,
       rect.height - rect.top
     ));
-  }
-
-  itemChanged(templateItem: BlueprintItem) {
-    console.log('focus')
-    this.canvasRef.nativeElement.focus();
   }
 
   getCursorPosition(event): Vector2 {

@@ -1,7 +1,9 @@
 
 <p-card header="Build Tool">
+  <div #focusTarget tabindex="0"></div>
   <p-dropdown 
     (onChange)="changeCategory()" 
+    (onFocus)="onFocus()"
     [options]=categories 
     [style]="{'width':'100%'}" 
     [(ngModel)]="currentCategory">
@@ -18,6 +20,7 @@
   </p-dropdown>
   <p-dropdown 
     (onChange)="uiItemChanged($event)" 
+    (onFocus)="onFocus()"
     [options]=items 
     [style]="{'width':'100%'}" 
     [(ngModel)]="currentItem"

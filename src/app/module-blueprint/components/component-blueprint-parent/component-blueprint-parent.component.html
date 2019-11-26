@@ -1,5 +1,7 @@
 
 <p-toast position="top-right" [style]="{marginTop: '40px'}"></p-toast>
+
+<app-component-canvas #canvas></app-component-canvas>
 <div class="outer">
   <div>
     <app-component-menu #menu (onMenuCommand)="menuCommand($event)">
@@ -8,11 +10,8 @@
       <app-side-panel #sidePanel></app-side-panel>
     </div>
   </div>
-  <div class="inner_remaining">
-    <app-component-canvas #canvas></app-component-canvas>
-  </div>
-
 </div>
+
 
 <app-component-save-dialog #saveDialog></app-component-save-dialog>
 <app-login-dialog #loginDialog></app-login-dialog>

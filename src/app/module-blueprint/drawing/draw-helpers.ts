@@ -4,6 +4,7 @@ import { SpriteInfo } from "./sprite-info";
 import { SpriteModifier } from "./sprite-modifier";
 import { ImageSource } from "./image-source";
 import { BSpriteInfo } from '../common/bexport/b-sprite-info';
+import { Overlay } from '../common/overlay-type';
 
 export class DrawHelpers
 {
@@ -13,6 +14,19 @@ export class DrawHelpers
   {
     return 'assets/images/'+(ui?'ui/':'')+ressource+'.png';
   }
+
+  public static getOverlayUrl(overlay: Overlay): string {
+
+    switch (overlay) {
+      case Overlay.Base: return DrawHelpers.createUrl('icon_category_base', true);
+      case Overlay.Power: return DrawHelpers.createUrl('icon_category_electrical', true);
+      case Overlay.Liquid: return DrawHelpers.createUrl('icon_category_plumbing', true);
+      case Overlay.Gas: return DrawHelpers.createUrl('icon_category_ventilation', true);
+      case Overlay.Automation: return DrawHelpers.createUrl('icon_category_automation', true);
+      case Overlay.Conveyor: return DrawHelpers.createUrl('icon_category_shipping', true);
+      default: return DrawHelpers.createUrl('icon_category_base', true);
+    }
+  } 
 
   public static rotateVector2(v: Vector2, center: Vector2, rotation: number): Vector2
   {

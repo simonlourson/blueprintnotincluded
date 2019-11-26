@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 import { OniItem } from '../../../common/oni-item';
 import {SelectItem} from 'primeng/api';
 import { BlueprintItem } from '../../../common/blueprint/blueprint-item';
@@ -16,6 +16,7 @@ import { ToolService, IObsToolChanged } from 'src/app/module-blueprint/services/
 import { IObsTemplateItemChanged } from 'src/app/module-blueprint/common/tools/select-tool';
 import { IObsBuildItemChanged } from 'src/app/module-blueprint/common/tools/build-tool';
 import { BlueprintHelpers } from 'src/app/module-blueprint/common/blueprint/blueprint-helpers';
+import { Dropdown } from 'primeng/dropdown';
 
 
 
@@ -34,6 +35,8 @@ export class ComponentSideBuildToolComponent implements OnInit, IObsBuildItemCha
 
   currentCategory: BuildMenuCategory;
   currentItem: OniItem;
+
+  @ViewChild('focusTarget', {static: true}) focusTarget: ElementRef
 
   constructor(private toolService: ToolService) 
   {
@@ -88,6 +91,11 @@ export class ComponentSideBuildToolComponent implements OnInit, IObsBuildItemCha
   uiItemChanged()
   {
     this.toolService.buildTool.changeItem(BlueprintHelpers.createInstance(this.currentItem.id));
+    this.focusTarget.nativeElement.focus();
+  }
+
+  onFocus() {
+    this.focusTarget.nativeElement.focus();
   }
 
   // IObsBuildItemChanged
