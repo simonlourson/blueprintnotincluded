@@ -1,27 +1,17 @@
 
 <p-toast position="top-right" [style]="{marginTop: '40px'}"></p-toast>
-<div class="p-grid p-nogutter">
-  <div class="p-col-12">
+<div class="outer">
+  <div>
     <app-component-menu #menu (onMenuCommand)="menuCommand($event)">
     </app-component-menu>
-  </div>
-  <div class="p-col-12">
-    <div class="p-grid p-nogutter">
-      <div class="p-col-fixed blue" style="width:300px">
-        <app-side-panel 
-          #sidePanel 
-          (onAskChangeTool)=askChangeTool($event)>
-        </app-side-panel>
-      </div>
-      <div class="p-col">
-        <app-component-canvas 
-          #canvas 
-          (onTileInfoChange)="onTileInfoChange($event)"
-          (onAskChangeTool)=askChangeTool($event)>
-        </app-component-canvas>
-      </div>
+    <div class="side-panel">
+      <app-side-panel #sidePanel></app-side-panel>
     </div>
   </div>
+  <div class="inner_remaining">
+    <app-component-canvas #canvas></app-component-canvas>
+  </div>
+
 </div>
 
 <app-component-save-dialog #saveDialog></app-component-save-dialog>

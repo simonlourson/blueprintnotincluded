@@ -59,6 +59,7 @@ export class DragAndDropDirective {
   }
 
   @HostListener('contextmenu', ['$event']) onContextMenu(event: any) {
+    // Comment this to get context on canvas
     return false;
   }
 

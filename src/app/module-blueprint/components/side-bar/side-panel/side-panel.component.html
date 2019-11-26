@@ -1,7 +1,7 @@
 <div class="test">
   <app-selection-tool 
     #selectionTool 
-    [hidden]="toolService.currentToolType!=0"
+    [hidden]="toolService.currentToolType!=0 || !toolService.selectTool.showTool"
     (onAskChangeTool)="askChangeTool($event)">
   </app-selection-tool>
   <app-build-tool 

@@ -49,7 +49,8 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy, IObsOverlayC
   @ViewChild('blueprintCanvas', {static: true}) 
   canvasRef: ElementRef;
 
-  @Output() onTileInfoChange = new EventEmitter<TileInfo>();
+  @ViewChild('divCalcHeight', {static: true})
+  divCalcHeight: ElementRef;
 
   drawPixi: DrawPixi;
   technicalRepack: TechnicalRepack;
@@ -341,134 +342,6 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy, IObsOverlayC
         this.addBlob(b, textureBaseString + trayIndex + '.png');
       }, 'image/png');
     }
-
-    
-
-    
-
-    
-
-/*
-    let uiSprites: BSpriteInfo[] = database.uiSprites;
-    let newSpriteInfos: BSpriteInfo[] = [];
-
-
-    let packSize = new Vector2(2048, 2048);
-    let bleedSize: number = 10;
-    let repackIndex = -1;
-    let currentUv = Vector2.clone(Vector2.Zero);
-    let currentLineHeight = 0;
-    let baseString = 'repack_';
-    let currentTextureName = baseString + repackIndex;
-    let renderTextures: PIXI.RenderTexture[] = [];
-    let newRenderTarget: boolean = true;
-    for (let k of SpriteInfo.keys)
-    {
-      let spriteInfo = SpriteInfo.getSpriteInfo(k);
-      
-      // First copy the sprite info into the BSpriteInfo.
-      // We need to start from the start info because some of them are generated (tiles)
-      let newSpriteInfo = new BSpriteInfo();
-      newSpriteInfo.name = spriteInfo.spriteInfoId;
-      newSpriteInfo.uvMin = Vector2.clone(spriteInfo.uvMin);
-      newSpriteInfo.uvSize = Vector2.clone(spriteInfo.uvSize);
-      newSpriteInfo.realSize = Vector2.clone(spriteInfo.realSize);
-      newSpriteInfo.pivot = Vector2.clone(spriteInfo.pivot);
-      newSpriteInfo.isIcon = spriteInfo.isIcon;
-
-      // If the sprite does not enter at all in our pack, log it and move on
-      if (newSpriteInfo.uvSize.x > packSize.x || newSpriteInfo.uvSize.y > packSize.y)
-      {
-        console.log(newSpriteInfo.name + ' does not fit');
-        console.log(newSpriteInfo);
-
-        continue;
-      }
-
-      
-      newSpriteInfos.push(newSpriteInfo);
-
-      let fitHeight = (currentUv.y + newSpriteInfo.uvSize.y) <= packSize.y;
-      let fitWidth = (currentUv.x + newSpriteInfo.uvSize.x) <= packSize.x;
-
-      
-      // If there is no vertical space, we start a new texture
-      if (!fitHeight) newRenderTarget = true;
-
-      // If there is no horizontal space, we start a new line
-      if (!fitWidth)
-      {
-        // Add one pixel vertically to account for mipmapping
-        currentUv.x = 0;
-        currentUv.y += Math.ceil(currentLineHeight) + bleedSize;
-        currentLineHeight = 0;
-
-        // And now we have to check for height again
-        fitHeight = (currentUv.y + newSpriteInfo.uvSize.y) <= packSize.y;
-        if (!fitHeight) newRenderTarget = true;
-      }
-
-      if (newRenderTarget)
-      {
-        newRenderTarget = false;
-        currentUv = Vector2.zero();
-        repackIndex++;
-        currentTextureName = baseString + repackIndex;
-
-        // Create new renderTarget if currentUv = 0
-        // Save the previous renderTarget
-        let brt = new PIXI.BaseRenderTexture({width: packSize.x, height: packSize.y});
-        let rt = new PIXI.RenderTexture(brt);
-        //console.log(rt);
-        renderTextures.push(rt);
-        //console.log(renderTextures);
-        //console.log('creating render target ' + currentTextureName)
-        //console.log(renderTextures.length)
-      }
-      
-
-      // Change the textureName to the repacked texture
-      newSpriteInfo.textureName = currentTextureName;
-
-      // Change the uvMin in the newSpriteInfo
-      newSpriteInfo.uvMin = Vector2.clone(currentUv);
-
-      // Add the sprite width +1 to account for mipmaps
-      currentUv.x += Math.ceil(newSpriteInfo.uvSize.x) + bleedSize;
-      
-      // Update the current line height, if it is taller than the other sprites in this line
-      if (newSpriteInfo.uvSize.y > currentLineHeight) currentLineHeight = newSpriteInfo.uvSize.y;
-
-      // Draw the sprite to the renderTarget
-      let sprite = PIXI.Sprite.from(SpriteInfo.getSpriteInfo(newSpriteInfo.name).getTexture());
-
-      sprite.x = newSpriteInfo.uvMin.x;
-      sprite.y = newSpriteInfo.uvMin.y;
-      //console.log('drawing ' + newSpriteInfo.name + ' on render target ' + repackIndex);
-      //console.log(newSpriteInfo.uvMin);
-      this.drawPixi.pixiApp.renderer.render(sprite, renderTextures[repackIndex], false);
-    }
-
-    database.uiSprites = newSpriteInfos;
-
-    ComponentCanvasComponent.zip = new JSZip();
-    ComponentCanvasComponent.nbBlob = 0;
-    ComponentCanvasComponent.downloadFile = 'repackedTextureAndDatabase.zip';
-    ComponentCanvasComponent.nbBlobMax = renderTextures.length;
-
-    ComponentCanvasComponent.zip.file('database_repacked.json', JSON.stringify(database, null, 2));
-
-    for (let indexRt = 0; indexRt < renderTextures.length; indexRt++)
-    {
-      let rt = renderTextures[indexRt];
-
-      this.drawPixi.pixiApp.renderer.extract.canvas(rt).toBlob((b) => 
-      {
-        this.addBlob(b, baseString + indexRt + '.png');
-      }, 'image/png');
-    }
-
-    */
   }
   
   downloadIcons()
@@ -664,8 +537,11 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy, IObsOverlayC
     // TODO ugly
     //if (this.canvasRef == null) return;
 
-    this.canvasRef.nativeElement.width = window.innerWidth - 301;
+    //console.log(this.divCalcHeight.nativeElement.offsetHeight)
+    this.canvasRef.nativeElement.width = window.innerWidth;
+    //this.canvasRef.nativeElement.height = 500;
     this.canvasRef.nativeElement.height = window.innerHeight;
+    //this.canvasRef.nativeElement.height = this.divCalcHeight.nativeElement.offsetHeight - 7;
 
     
     this.cameraService.updateZoom();

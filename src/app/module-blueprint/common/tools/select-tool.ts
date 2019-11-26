@@ -38,6 +38,12 @@ export class SelectTool implements ITool, IObsItemDestroyed
     this.reset();
   }
 
+  get showTool() { 
+    if (this.isSingle) return this.templateItemsToShow.length > 0; 
+    else if (this.isMultiple) return this.sameItemCollections.length > 0;
+    else return false;
+  }
+
   reset()
   {
     this.templateItemsToShow = [];
@@ -119,10 +125,12 @@ export class SelectTool implements ITool, IObsItemDestroyed
     if (this.templateItemsToShow != null)
       for (let templateItem of this.templateItemsToShow)
         templateItem.selectedSingle = false;
+    this.templateItemsToShow = [];
 
     if (this.sameItemCollections != null)
       for (let itemCollection of this.sameItemCollections)
         itemCollection.selected = false;
+    this.sameItemCollections= [];
   }
 
   topLeft: Vector2;
@@ -282,7 +290,7 @@ export class SelectTool implements ITool, IObsItemDestroyed
   }
 
   switchTo() {
-    
+    this.deselectAll();
   }
 
   mouseOut() {}

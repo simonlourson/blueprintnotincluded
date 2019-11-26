@@ -3,6 +3,6 @@
   z-index: -1;
 }
 
-#loadedImages {
-  display: none
+.height-test-2 {
+  height: 100%;
 }

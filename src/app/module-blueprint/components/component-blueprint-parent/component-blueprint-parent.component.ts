@@ -38,6 +38,7 @@ import { DialogShareUrlComponent } from '../dialogs/dialog-share-url/dialog-shar
 import { CameraService } from '../../services/camera-service';
 import { DialogBrowseComponent } from '../dialogs/dialog-browse/dialog-browse.component';
 import { DialogExportImagesComponent } from '../dialogs/dialog-export-images/dialog-export-images.component';
+import { ToolService } from '../../services/tool-service';
 
 @Component({
   selector: 'app-component-blueprint-parent',
@@ -77,7 +78,8 @@ export class ComponentBlueprintParentComponent implements OnInit, IObsBlueprintC
   constructor(
     private messageService: MessageService, 
     private route: ActivatedRoute,
-    private blueprintService: BlueprintService) { }
+    private blueprintService: BlueprintService,
+    private toolService: ToolService) { }
 
   ngOnInit() {
    
@@ -173,6 +175,7 @@ export class ComponentBlueprintParentComponent implements OnInit, IObsBlueprintC
   {
     this.canvas.loadNewBlueprint(template);
     this.menu.clickOverlay({item:{id:Overlay.Base}});
+    this.toolService.changeTool(ToolType.select);
 
     let summary: string = "Loaded blueprint : " + template.name;
     let detail: string = template.blueprintItems.length + " items loaded";

@@ -1,3 +1,23 @@
-.blue {
-  background-color: #007AD9
+.side-panel {
+  position: absolute;
+  width: 300px;
+}
+
+.height-test {
+  height: 100vh;
+}
+
+.height-test-2 {
+  height: 100vh;
+}
+
+.outer {
+  display: flex;
+  flex-flow: column;
+  height: 100vh;
+}
+
+.inner_remaining {
+  flex-grow : 1;
+  background-color: #000000;
 }
