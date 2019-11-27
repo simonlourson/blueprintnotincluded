@@ -3,20 +3,19 @@
   grid-template-columns: auto 1fr;
   grid-template-rows: min-content 1fr;
   grid-template-areas:
-    "one two"
     "one three"
 }
 
 .one {
   grid-area: one;
-  padding-right: 50px;
-}
-
-.two {
-  grid-area: two;
-  text-align: center;
+  padding-right: 20px;
 }
 
 .three {
   grid-area: three;
+}
+
+.error-red {
+	color: darkred;
+  margin-left: 0.5em;
 }

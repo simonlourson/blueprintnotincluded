@@ -63,8 +63,12 @@ export class SelectTool implements ITool, IObsItemDestroyed
   previousTile: Vector2;
   public updateSelectionTool(tile: Vector2)
   {
+    //console.log('updateSelectionTool')
+
     // Deselect everything if we are coming from a multiple selection
-    if (this.selectionType == SelectionType.Multiple) this.deselectAll();
+    if (this.selectionType == SelectionType.Multiple) {
+      this.deselectAll(false, true);
+    }
 
     this.selectionType = SelectionType.Single;
 
@@ -77,10 +81,12 @@ export class SelectTool implements ITool, IObsItemDestroyed
       if (this.templateItemsToShow != null && this.templateItemsToShow.filter((item) => {return item.selected;}).length > 0)
         oldSelected = this.templateItemsToShow.filter((item) => item.selected)[0];
 
-      this.deselectAll();
+      this.deselectAll(true, false);
       this.headerString = 'Selected : x:' + tile.x+', y:'+tile.y;
+      //console.log(this.headerString)
       
       this.templateItemsToShow = this.blueprintService.blueprint.getTemplateItemsAt(tile);
+      //console.log(this.templateItemsToShow)
 
       let newSelected = null
       // Is there an item in the new selected with the same id as the old selected?
@@ -105,6 +111,7 @@ export class SelectTool implements ITool, IObsItemDestroyed
 
   nextSelection()
   {
+    //console.log('nextSelection')
     // First find the current real active index
     let realActiveIndex = -1;
     for (let currentActiveIndex = 0; currentActiveIndex < this.templateItemsToShow.length; currentActiveIndex++)
@@ -119,18 +126,24 @@ export class SelectTool implements ITool, IObsItemDestroyed
     for (let currentActiveIndex = 0; currentActiveIndex < this.templateItemsToShow.length; currentActiveIndex++)
       this.templateItemsToShow[currentActiveIndex].selectedSingle = (currentActiveIndex == realActiveIndex);
 
+    //console.log(this.templateItemsToShow)
   }
 
-  deselectAll() {
-    if (this.templateItemsToShow != null)
-      for (let templateItem of this.templateItemsToShow)
-        templateItem.selectedSingle = false;
-    this.templateItemsToShow = [];
+  deselectAll(single: boolean, multiple: boolean) {
+    //console.log('deselectAll');
+    if (single) {
+      if (this.templateItemsToShow != null)
+        for (let templateItem of this.templateItemsToShow)
+          templateItem.selectedSingle = false;
+      this.templateItemsToShow = [];
+    }
 
-    if (this.sameItemCollections != null)
-      for (let itemCollection of this.sameItemCollections)
-        itemCollection.selected = false;
-    this.sameItemCollections= [];
+    if (multiple) {
+      if (this.sameItemCollections != null)
+        for (let itemCollection of this.sameItemCollections)
+          itemCollection.selected = false;
+      this.sameItemCollections= [];
+    }
   }
 
   topLeft: Vector2;
@@ -168,8 +181,12 @@ export class SelectTool implements ITool, IObsItemDestroyed
 
   updateMultipleSelect() {
 
-    this.deselectAll();
+    this.deselectAll(false, true);
     this.sameItemCollections = [];
+
+    //console.log('updateMultipleSelect')
+    //console.log(this.topLeft)
+    //console.log(this.bottomRight)
 
     if (this.topLeft != null && this.bottomRight != null) {
       let tileSelected: Vector2[] = [];
@@ -286,11 +303,11 @@ export class SelectTool implements ITool, IObsItemDestroyed
 
   // Tool interface :
   switchFrom() {
-    this.deselectAll();
+    this.deselectAll(true, true);
   }
 
   switchTo() {
-    this.deselectAll();
+    this.deselectAll(true, true);
   }
 
   mouseOut() {}

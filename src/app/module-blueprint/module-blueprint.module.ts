@@ -34,6 +34,7 @@ import {PanelModule} from 'primeng/panel';
 import {CheckboxModule} from 'primeng/checkbox';
 import {InputSwitchModule} from 'primeng/inputswitch';
 import {FieldsetModule} from 'primeng/fieldset';
+import {ListboxModule} from 'primeng/listbox';
 import { TileInfoComponent } from './components/side-bar/tile-info/tile-info.component';
 import { StringSanitationDirective } from './directives/string-sanitation.directive';
 import { ComponentSideSelectionToolComponent } from './components/side-bar/selection-tool/selection-tool.component';
@@ -64,7 +65,7 @@ import { DialogExportImagesComponent } from './components/dialogs/dialog-export-
     CommonModule, 
     HttpClientModule,
     FormsModule, ReactiveFormsModule,
-    PasswordModule, ColorPickerModule, InputTextModule, SliderModule, ButtonModule, CardModule, ScrollPanelModule, OverlayPanelModule, MenubarModule, TabMenuModule, SlideMenuModule, DialogModule, DropdownModule, AccordionModule, ToastModule, TooltipModule, PanelModule, InputSwitchModule, CheckboxModule, FieldsetModule,
+    PasswordModule, ColorPickerModule, InputTextModule, SliderModule, ButtonModule, CardModule, ScrollPanelModule, OverlayPanelModule, MenubarModule, TabMenuModule, SlideMenuModule, DialogModule, DropdownModule, AccordionModule, ToastModule, TooltipModule, PanelModule, InputSwitchModule, CheckboxModule, FieldsetModule, ListboxModule,
     RecaptchaV3Module,
     BrowserAnimationsModule
   ],
