@@ -1,5 +1,5 @@
 <p-dialog #exportImagesDialog 
-  header='Exports images' 
+  header='Export options' 
   [(visible)]="visible"
   [modal]="true" 
   [dismissableMask]="true"
@@ -8,30 +8,26 @@
   [maximizable]="false" 
   [draggable]="false" 
   [resizable]="false" 
-  [contentStyle]="{'width':'800px'}"
   >
-
-  <div class="p-grid">
-    <div class="p-col-3 box">
-      <p-inputSwitch [(ngModel)]="checked"></p-inputSwitch>
+  <div class="grid">
+    <div class="one">
+        <p-fieldset legend="Size and grid options :">
+        <p-checkbox binary="true" label="Export with grid lines"  [(ngModel)]="gridLines"></p-checkbox><br>
+        <p-dropdown [options]="pixelPerTile" [(ngModel)]="currentPixelPerTile"></p-dropdown><br>
+        Final images will be 1920x1080
+        </p-fieldset>
     </div>
-    <div class="p-col-9 box">
-      <h4>Included grid lines</h4>
-    </div>
-    <div class="p-col-3 box">
-      <!--<p-slider [(ngModel)]="val" [customStep]="cameraService.zoomLevels" [min]="minZoomLevel" [max]="maxZoomLevel" [style]="{'width':'100%'}"></p-slider>-->
-      <p-slider [(ngModel)]="val" [min]="minZoomLevel" [max]="maxZoomLevel" [style]="{'width':'100%'}"></p-slider>
-    </div>
-    <div class="p-col-9 box">
-      <h4>Pixels per tile : {{val}}</h4>
-    </div>
-    <div class="p-col-3 box">
-      <p-inputSwitch [(ngModel)]="checked"></p-inputSwitch>
-    </div>
-    <div class="p-col-9 box">
-      <h4>Included grid lines</h4>
+    <div class="three">
+        <div>
+          <p-fieldset legend="Overlays to export :">
+            <div *ngFor="let overlayToExport of overlaysToExport"><p-checkbox binary="true" [label]="overlayToExport.name"  [(ngModel)]="overlayToExport.checked"></p-checkbox></div>
+          </p-fieldset>
+        </div>
     </div>
   </div>
-  
+
+  <p-footer>
+    <p-button label="Download images"></p-button>
+  </p-footer>
 
 </p-dialog>

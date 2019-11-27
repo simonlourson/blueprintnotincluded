@@ -3,6 +3,7 @@ import { BlueprintService } from 'src/app/module-blueprint/services/blueprint-se
 import { OverlayCheck, Overlay } from 'src/app/module-blueprint/common/overlay-type';
 import { DrawHelpers } from 'src/app/module-blueprint/drawing/draw-helpers';
 import { CameraService } from 'src/app/module-blueprint/services/camera-service';
+import { SelectItem } from 'primeng/api';
 
 @Component({
   selector: 'app-dialog-export-images',
@@ -12,8 +13,12 @@ import { CameraService } from 'src/app/module-blueprint/services/camera-service'
 export class DialogExportImagesComponent implements OnInit {
 
   checked: boolean;
+  gridLines: boolean;
   visible: boolean = false;
-  val: Number = 64;
+
+  currentPixelPerTile: SelectItem;
+  pixelPerTile: SelectItem[];
+  
 
   overlaysToExport: OverlayCheck[];
   get zoomLevels() { return this.cameraService.zoomLevels; }
@@ -21,12 +26,37 @@ export class DialogExportImagesComponent implements OnInit {
   get maxZoomLevel() { return Math.max(...this.zoomLevels); }
 
   constructor(private blueprintService: BlueprintService, private cameraService: CameraService) { 
-    this.overlaysToExport = [
-      {overlay: Overlay.Base, name:DrawHelpers.overlayString[Overlay.Base], checked:true} 
-    ]
+    
+
+    
   }
 
   ngOnInit() {
+    let overlayList: Overlay[] = [
+      Overlay.Base,
+      Overlay.Power,
+      Overlay.Liquid,
+      Overlay.Gas,
+      Overlay.Automation,
+      Overlay.Conveyor
+    ]
+
+    this.overlaysToExport = [];
+    overlayList.map((overlay) => {
+      this.overlaysToExport.push({overlay: overlay, name:DrawHelpers.overlayString[overlay], checked:true});
+    });
+
+    this.pixelPerTile = [
+      {label:'16 pixels per tile', value:16},
+      {label:'24 pixels per tile', value:24},
+      {label:'32 pixels per tile', value:32},
+      {label:'48 pixels per tile', value:48},
+      {label:'64 pixels per tile', value:64},
+      {label:'96 pixels per tile', value:96},
+      {label:'128 pixels per tile', value:128}
+    ];
+
+    this.currentPixelPerTile = this.pixelPerTile[2];
   }
 
   hideDialog() {
