@@ -1,6 +1,22 @@
-.box {
-  margin: 0;
-  background-color: #cce4f7;
-  border-radius: 4px;
-  vertical-align: center;
+.grid {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: min-content 1fr;
+  grid-template-areas:
+    "one two"
+    "one three"
+}
+
+.one {
+  grid-area: one;
+  padding-right: 50px;
+}
+
+.two {
+  grid-area: two;
+  text-align: center;
+}
+
+.three {
+  grid-area: three;
 }

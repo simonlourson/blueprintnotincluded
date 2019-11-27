@@ -3,14 +3,6 @@
   width: 300px;
 }
 
-.height-test {
-  height: 100vh;
-}
-
-.height-test-2 {
-  height: 100vh;
-}
-
 .outer {
   display: flex;
   flex-flow: column;
