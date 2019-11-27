@@ -29,6 +29,7 @@ export class DrawPixi
     options.width = canvas.nativeElement.width;
     options.height = canvas.nativeElement.height;
     options.autoResize = true;
+    //options.forceCanvas = true;
     
     PIXI.utils.skipHello();
     this.pixiApp = new PIXI.Application(options);

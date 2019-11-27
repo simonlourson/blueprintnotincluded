@@ -88,7 +88,7 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
   public loadNewBlueprint(blueprint: Blueprint)
   {
     // First destroy the old blueprint
-    if (this.blueprint != null) this.blueprint.destroy();
+    if (this.blueprint != null) this.blueprint.destroy(); 
 
     // TODO make sure nothing creates a "real  blueprint" before this
     this.blueprint.importFromCloud(blueprint);
