@@ -26,7 +26,7 @@ import * as JSZip from 'jszip';
 import { BSpriteInfo } from '../../common/bexport/b-sprite-info';
 import { BlueprintItem } from '../../common/blueprint/blueprint-item';
 import { TechnicalRepack } from '../../common/technical-repack';
-import { BlueprintService } from '../../services/blueprint-service';
+import { BlueprintService, ExportImageOptions } from '../../services/blueprint-service';
 import { ToolService } from '../../services/tool-service';
 import { Container } from 'pixi.js';
 import { read } from 'fs';
@@ -383,41 +383,6 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
     }
   }
 
-  exportImages() {
-
-    let clone = this.blueprint.clone();
-    if (clone.blueprintItems.length == 0) throw new Error('No buildings to export')
-
-    // TODO error checking?
-    let topLeft = new Vector2(9999, 9999);
-    let bottomRight = new Vector2(-9999, -9999);
-
-    clone.blueprintItems.map((item) => { 
-      item.cleanUp();
-
-      // TODO big item topleft here
-      if (topLeft.x > item.position.x) topLeft.x = item.position.x;
-      if (topLeft.y > item.position.y) topLeft.y = item.position.y;
-      if (bottomRight.x < item.position.x) bottomRight.x = item.position.x;
-      if (bottomRight.y < item.position.y) bottomRight.y = item.position.y;
-    });
-
-    let tileSize = 64;
-    let totalTileSize = new Vector2(bottomRight.x - topLeft.x + 3, bottomRight.y - topLeft.y + 3);
-    
-    // Save real size
-    //this.saveImage(clone, new Vector2(totalTileSize.x * tileSize, totalTileSize.y * tileSize), tileSize, new Vector2(-topLeft.x - 1, bottomRight.y + 1));
-
-    let thumbnailSize = 500;
-    let maxTotalSize = Math.max(totalTileSize.x, totalTileSize.y);
-    let thumbnailTileSize = thumbnailSize / maxTotalSize;
-    let cameraOffset = new Vector2(-topLeft.x + 1, bottomRight.y + 1);
-    if (totalTileSize.x > totalTileSize.y) cameraOffset.y += totalTileSize.x / 2 - totalTileSize.y / 2;
-    if (totalTileSize.y > totalTileSize.x) cameraOffset.x += totalTileSize.y / 2 - totalTileSize.x / 2;
-    
-    this.saveImage(clone, new Vector2(thumbnailSize, thumbnailSize), thumbnailTileSize, cameraOffset);
-  }
-
   updateThumbnail() {
 
     this.blueprintService.thumbnail = null;
@@ -480,6 +445,40 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
     }); 
   }
 
+  saveImages(exportOptions: ExportImageOptions) {
+    let clone = this.blueprint.clone();
+    if (clone.blueprintItems.length == 0) throw new Error('No buildings to export')
+
+    let boundingBox = clone.getBoundingBox();
+    let topLeft = boundingBox[0];
+    let bottomRight = boundingBox[1];
+
+    let tileSize = exportOptions.pixelsPerTile;
+    let totalTileSize = new Vector2(bottomRight.x - topLeft.x + 3, bottomRight.y - topLeft.y + 3);
+
+    let exportCamera = new CameraService();
+    exportCamera.setHardZoom(tileSize);
+    exportCamera.cameraOffset = new Vector2(-topLeft.x + 1, bottomRight.y + 1);
+    exportCamera.container = new Container();
+
+    exportOptions.selectedOverlays.map((overlay) => {
+
+      exportCamera.overlay = overlay;
+      
+      clone.blueprintItems.map((item) => { 
+        item.prepareOverlayInfo(exportCamera.overlay);
+        item.prepareSpriteInfoModifier(clone);
+        item.drawPixi(exportCamera, this.drawPixi);
+      });
+
+      let brt = new PIXI.BaseRenderTexture({width: sizeInPixels.x, height: sizeInPixels.y, scaleMode: PIXI.SCALE_MODES.LINEAR});
+      let rt = new PIXI.RenderTexture(brt);
+
+    });
+
+
+  }
+
   saveImage(clone: Blueprint, sizeInPixels: Vector2, tileSizeInPixels: number, cameraOffset: Vector2) {
 
     console.log(sizeInPixels);
@@ -492,14 +491,9 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
     exportCamera.overlay = Overlay.Base;
     exportCamera.container = new Container();
 
-    clone.blueprintItems.map((item) => { 
-      item.prepareOverlayInfo(exportCamera.overlay);
-      item.prepareSpriteInfoModifier(clone);
-      item.drawPixi(exportCamera, this.drawPixi);
-    });
+    
 
-    let brt = new PIXI.BaseRenderTexture({width: sizeInPixels.x, height: sizeInPixels.y, scaleMode: PIXI.SCALE_MODES.LINEAR});
-    let rt = new PIXI.RenderTexture(brt);
+    
 
     this.drawPixi.pixiApp.renderer.render(exportCamera.container, rt, false);
 

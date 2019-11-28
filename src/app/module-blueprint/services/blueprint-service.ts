@@ -193,3 +193,9 @@ export enum BlueprintFileType {
 export interface IObsBlueprintChanged {
   blueprintChanged(blueprint: Blueprint);
 }
+
+export interface ExportImageOptions {
+  gridLines: boolean;
+  selectedOverlays: Overlay[];
+  pixelsPerTile: number;
+}

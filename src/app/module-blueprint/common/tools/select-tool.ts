@@ -89,6 +89,7 @@ export class SelectTool implements ITool, IObsItemDestroyed
       //console.log(this.templateItemsToShow)
 
       let newSelected = null
+      // TODO this could be done better with the new selected getters and setters
       // Is there an item in the new selected with the same id as the old selected?
       if (oldSelected != null && this.templateItemsToShow.filter((item) => { return item.oniItem.id == oldSelected.oniItem.id; }).length > 0)
         newSelected = this.templateItemsToShow.filter((item) => { return item.oniItem.id == oldSelected.oniItem.id; })[0];
@@ -238,7 +239,6 @@ export class SelectTool implements ITool, IObsItemDestroyed
 
   }
 
-  // TODO do the same thing for single selection
   buildingsDestroy(itemCollection: SameItemCollection) {
     this.rememberMultipleSelectionIndex = this.currentMultipleSelectionIndex;
     
@@ -250,6 +250,16 @@ export class SelectTool implements ITool, IObsItemDestroyed
     this.clampRememberMultipleSelectionIndex();
 
     this.currentMultipleSelectionIndex = this.rememberMultipleSelectionIndex;
+  }
+
+  get currentSingleSelectionIndex() {
+    let activeIndex = -1;
+
+    for (let indexSelected = 0; indexSelected < this.templateItemsToShow.length; indexSelected++)
+      if (this.templateItemsToShow[indexSelected].selectedSingle)
+        activeIndex = indexSelected;
+
+    return activeIndex;
   }
 
   // TODO do the same thing for single selection
@@ -336,7 +346,16 @@ export class SelectTool implements ITool, IObsItemDestroyed
   }
 
   keyDown(keyCode: string) {
-
+    if (keyCode == 'Delete') {
+      if (this.selectionType == SelectionType.Single) { 
+        let itemToDestroyIndex = this.currentSingleSelectionIndex;
+        if (itemToDestroyIndex != -1) this.blueprintService.blueprint.destroyTemplateItem(this.templateItemsToShow[itemToDestroyIndex]);
+      }
+      else if (this.selectionType == SelectionType.Multiple) {
+        let itemGroupToDestroyIndex = this.currentMultipleSelectionIndex;
+        if (itemGroupToDestroyIndex != -1) this.buildingsDestroy(this.sameItemCollections[itemGroupToDestroyIndex]);
+      }
+    }
   }
 
   draw(drawPixi: DrawPixi, camera: CameraService) {

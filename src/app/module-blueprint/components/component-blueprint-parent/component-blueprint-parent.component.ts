@@ -32,7 +32,7 @@ import { BSpriteModifier } from '../../common/bexport/b-sprite-modifier';
 import { BniBlueprint } from '../../common/blueprint/io/bni/bni-blueprint';
 import { ComponentLoginDialogComponent } from '../user-auth/login-dialog/login-dialog.component';
 import { LoginInfo } from '../../common/api/login-info';
-import { BlueprintService, IObsBlueprintChanged } from '../../services/blueprint-service';
+import { BlueprintService, IObsBlueprintChanged, ExportImageOptions } from '../../services/blueprint-service';
 import { ComponentSaveDialogComponent } from '../dialogs/component-save-dialog/component-save-dialog.component';
 import { DialogShareUrlComponent } from '../dialogs/dialog-share-url/dialog-share-url.component';
 import { CameraService } from '../../services/camera-service';
@@ -169,6 +169,10 @@ export class ComponentBlueprintParentComponent implements OnInit, IObsBlueprintC
     else if (menuCommand.type == MenuCommandType.downloadUtility) this.canvas.downloadUtility();
     else if (menuCommand.type == MenuCommandType.repackTextures) this.canvas.repackTextures(this.database);
     
+  }
+
+  saveImages(exportOptions: ExportImageOptions) {
+    console.log(exportOptions);
   }
 
   loadTemplateIntoCanvas(template: Blueprint)

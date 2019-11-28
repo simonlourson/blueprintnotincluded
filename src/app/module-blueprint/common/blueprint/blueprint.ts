@@ -306,10 +306,6 @@ export class Blueprint
       for (let b of this.blueprintItems) blueprintItemsCopy.push(b);
       for (let b of blueprintItemsCopy) this.destroyTemplateItem(b);
     }
-
-
-      
-    
   }
 }
 

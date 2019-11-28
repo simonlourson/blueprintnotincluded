@@ -17,5 +17,5 @@
 <app-login-dialog #loginDialog></app-login-dialog>
 <app-dialog-share-url #shareUrlDialog></app-dialog-share-url>
 <app-dialog-browse #browseDialog></app-dialog-browse>
-<app-dialog-export-images #exportImagesDialog></app-dialog-export-images>
+<app-dialog-export-images #exportImagesDialog (onSaveImages)="saveImages($event)"></app-dialog-export-images>
 

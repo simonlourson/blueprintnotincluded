@@ -11,9 +11,9 @@
   >
   <div class="grid">
     <div class="one">
-        <p-checkbox binary="true" label="Export with grid lines"  [(ngModel)]="gridLines"></p-checkbox><br><br>
-        <p-dropdown #pixelPerTileDropdown [options]="pixelPerTile" [(ngModel)]="currentPixelPerTile" [style]="{width: '15em'}"></p-dropdown><br>
-        Image size: {{finalSize}}
+        <p-checkbox binary="true" label="Export with grid lines"  [(ngModel)]="exportOptions.gridLines"></p-checkbox><br><br>
+        <p-dropdown [options]="pixelPerTile" [(ngModel)]="exportOptions.pixelsPerTile" [style]="{width: '15em'}"></p-dropdown><br>
+        (Image size: {{finalSize}})
     </div>
     <div class="three">
         <div>
@@ -22,7 +22,7 @@
             <div *ngFor="let overlayToExport of overlaysToExport"><p-checkbox binary="true" [label]="overlayToExport.name"  [(ngModel)]="overlayToExport.checked"></p-checkbox></div>
           </p-fieldset>
           -->
-          <p-listbox [options]="overlayOptions" [multiple]="true" [metaKeySelection]="false" [(ngModel)]="selectedOverlays" >
+          <p-listbox [options]="overlayOptions" [multiple]="true" [metaKeySelection]="false" [(ngModel)]="exportOptions.selectedOverlays" >
             <ng-template let-overlay pTemplate="item">
                 <img [src]="getOverlayUrl(overlay.value)" style="display:inline-block;margin:0px 0 0 0px" height="20px">
                 <span style="float:right;margin:0px 0px 0 0">{{overlayString(overlay.value)}}</span>
@@ -33,7 +33,7 @@
   </div>
 
   <p-footer>
-    <p-button label="Download images" [disabled]="!selectedOverlays.length>0"></p-button>
+    <p-button label="Download images" [disabled]="!exportOptions.selectedOverlays.length>0" (click)="downloadImages()"></p-button>
   </p-footer>
 
 </p-dialog>
