@@ -5,17 +5,20 @@ import { AuthenticationService } from './authentification-service';
 import { map } from 'rxjs/operators';
 import { IObsOverlayChanged, CameraService } from './camera-service';
 import { Overlay } from '../common/overlay-type';
-import { BlueprintListItem } from './blueprint-list-response';
+import { BlueprintListItem } from './messages/blueprint-list-response';
 import { ComponentMenuComponent } from '../components/component-menu/component-menu.component';
 import { OniTemplate } from '../common/blueprint/io/oni/oni-template';
 import * as yaml from 'node_modules/js-yaml/lib/js-yaml';
 import { BniBlueprint } from '../common/blueprint/io/bni/bni-blueprint';
+import { BlueprintResponse } from './messages/blueprint-response';
 
 @Injectable({ providedIn: 'root' })
 export class BlueprintService implements IObsOverlayChanged
 {
   static baseUrl: string = 'blueprintnotincluded.com/';
 
+  id: string;
+  name: string;
   // TODO observable when modified, to be subscribed by the canvas
   // TODO not sure getter setters are useful
   blueprint_: Blueprint;
@@ -68,6 +71,7 @@ export class BlueprintService implements IObsOverlayChanged
     let templateYaml: OniTemplate = yaml.safeLoad(yamlString);
 
     let newBlueprint = new Blueprint();
+    this.name = templateYaml.name;
     newBlueprint.importOniTemplate(templateYaml);
 
     this.observersBlueprintChanged.map((observer) => { observer.blueprintChanged(newBlueprint); })
@@ -84,6 +88,7 @@ export class BlueprintService implements IObsOverlayChanged
     let templateJson: BniBlueprint = JSON.parse(template);
 
     let newBlueprint = new Blueprint();
+    this.name = templateJson.friendlyname;
     newBlueprint.importBniBlueprint(templateJson);
     
     this.observersBlueprintChanged.map((observer) => { observer.blueprintChanged(newBlueprint); })
@@ -104,6 +109,8 @@ export class BlueprintService implements IObsOverlayChanged
   }
 
   newBlueprint() {
+    this.name = 'new blueprint';
+    this.id = null;
     let newBlueprint = new Blueprint();
     this.observersBlueprintChanged.map((observer) => { observer.blueprintChanged(newBlueprint); })
   }
@@ -130,11 +137,12 @@ export class BlueprintService implements IObsOverlayChanged
   getBlueprint(id: string)
   {
     const request = this.http.get(`/api/getblueprint/${id}`).pipe(
-      map((response: any) => {
+      map((response: BlueprintResponse) => {
         if (response.data) {
           let blueprint = new Blueprint();
 
-          blueprint.id = response._id;
+          this.id = response.id;
+          this.name = response.name
           blueprint.importFromCloud(response.data);
           return blueprint;
         }
@@ -161,12 +169,12 @@ export class BlueprintService implements IObsOverlayChanged
 
     let body = new SaveBlueprintMessage();
     body.overwrite = overwrite;
-    body.name = saveBlueprint.name;
+    body.name = this.name;
     body.blueprint = saveBlueprint;
     body.thumbnail = this.thumbnail;
     const request = this.http.post('/api/uploadblueprint', body, { headers: { Authorization: `Bearer ${this.authService.getToken()}` }}).pipe(
       map((response: any) => {
-        if (response.id) { this.blueprint.id = response.id; }
+        if (response.id) { this.id = response.id; }
         return response;
       })
     );

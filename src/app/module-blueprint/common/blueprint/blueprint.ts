@@ -18,8 +18,6 @@ import { ControlContainer } from '@angular/forms';
 
 export class Blueprint
 {
-  id: string;
-  name: string;
   blueprintItems: BlueprintItem[];
   templateTiles: BlueprintItem[][];
 
@@ -27,7 +25,6 @@ export class Blueprint
 
   constructor()
   {
-    this.name = 'default';
     this.blueprintItems = [];
     this.distinctElements = [];
 
@@ -36,7 +33,6 @@ export class Blueprint
 
   public importOniTemplate(oniTemplate: OniTemplate)
   {
-    this.name = oniTemplate.name;
     this.blueprintItems = [];
     
 
@@ -79,8 +75,6 @@ export class Blueprint
 
   public importBniBlueprint(bniBlueprint: BniBlueprint)
   {
-    this.name = bniBlueprint.friendlyname;
-
     this.blueprintItems = [];
 
     for (let building of bniBlueprint.buildings)
@@ -96,7 +90,6 @@ export class Blueprint
 
   public importFromCloud(original: Blueprint)
   {
-    this.name = original.name;
     this.blueprintItems = [];
 
     for (let originalTemplateItem of original.blueprintItems)
@@ -223,8 +216,6 @@ export class Blueprint
   public cloneForExport(): Blueprint
   {
     let returnValue = new Blueprint();
-    returnValue.name = this.name;
-    returnValue.id = undefined;
     returnValue.blueprintItems = [];
 
     for (let originalTemplateItem of this.blueprintItems) 
@@ -241,8 +232,6 @@ export class Blueprint
   public clone(): Blueprint
   {
     let returnValue = new Blueprint();
-    returnValue.name = this.name;
-    returnValue.id = undefined;
     returnValue.blueprintItems = [];
 
     for (let originalTemplateItem of this.blueprintItems) {

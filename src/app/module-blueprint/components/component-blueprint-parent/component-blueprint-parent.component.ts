@@ -40,6 +40,7 @@ import { DialogBrowseComponent } from '../dialogs/dialog-browse/dialog-browse.co
 import { DialogExportImagesComponent } from '../dialogs/dialog-export-images/dialog-export-images.component';
 import { ToolService } from '../../services/tool-service';
 import { DrawHelpers } from '../../drawing/draw-helpers';
+import { AuthenticationService } from '../../services/authentification-service';
 
 /*
 TODO Feature List before release :
@@ -47,11 +48,10 @@ TODO Feature List before release :
  * Limit and sanitize blueprint name
  * Correct dragBuild
  * Unify select tool
+ * dont open next on delete select tool
  * Filter author on browse
- * Remove Name and id from blueprit to blueprintservice
- * Fix sahre url behaviour
  * Toast on blueprint error, nb item skipped
- * Toast on open save or share url when not logged in or not saved
+ * save camera offset and zoom on save + shared code on save
 
 */
 
@@ -94,14 +94,12 @@ export class ComponentBlueprintParentComponent implements OnInit, IObsBlueprintC
   constructor(
     private messageService: MessageService, 
     private route: ActivatedRoute,
+    private authService: AuthenticationService,
     private blueprintService: BlueprintService,
     private toolService: ToolService) { }
 
   ngOnInit() {
-   
-    // TODO remove
-    for (let i = 0; i < 16; i++) console.log(JSON.stringify(DrawHelpers.getConnectionArray(i)));
-
+    
     OniItem.init();
     ImageSource.init();
     SpriteModifier.init();
@@ -178,7 +176,7 @@ export class ComponentBlueprintParentComponent implements OnInit, IObsBlueprintC
     if (menuCommand.type == MenuCommandType.newBlueprint) this.blueprintService.newBlueprint();
     else if (menuCommand.type == MenuCommandType.showLoginDialog) this.loginDialog.showDialog();
     else if (menuCommand.type == MenuCommandType.browseBlueprints) this.browseDialog.showDialog();
-    else if (menuCommand.type == MenuCommandType.getShareableUrl) this.shareUrlDialog.showDialog();
+    else if (menuCommand.type == MenuCommandType.getShareableUrl) this.shareUrl();
     else if (menuCommand.type == MenuCommandType.exportImages) this.exportImages();
     else if (menuCommand.type == MenuCommandType.saveBlueprint) this.saveBlueprint();
 
@@ -200,7 +198,7 @@ export class ComponentBlueprintParentComponent implements OnInit, IObsBlueprintC
     this.menu.clickOverlay({item:{id:Overlay.Base}});
     this.toolService.changeTool(ToolType.select);
 
-    let summary: string = "Loaded blueprint : " + template.name;
+    let summary: string = "Loaded blueprint : " + this.blueprintService.name;
     let detail: string = template.blueprintItems.length + " items loaded";
 
     // TODO error handling
@@ -209,11 +207,17 @@ export class ComponentBlueprintParentComponent implements OnInit, IObsBlueprintC
 
   saveBlueprint()
   {
-    if (this.blueprintService.blueprint.blueprintItems.length == 0) this.messageService.add({severity:'error', summary:'Empty blueprint', detail:'Add some buildings before trying to save'});
+    if (!this.authService.isLoggedIn()) this.messageService.add({severity:'error', summary:'Not logged in', detail:'You must be logged in to be able to save blueprints'});
+    else if (this.blueprintService.blueprint.blueprintItems.length == 0) this.messageService.add({severity:'error', summary:'Empty blueprint', detail:'Add some buildings before trying to save'});
     else {
       this.canvas.updateThumbnail();
       this.saveDialog.showDialog();
     }
+  }
+
+  shareUrl() {
+    if (this.blueprintService.id == null) this.messageService.add({severity:'error', summary:'Blueprint not saved', detail:'Save this blueprint to share it with others'});
+    else this.shareUrlDialog.showDialog();
   }
 
   // TODO toast on save and generate url also

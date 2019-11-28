@@ -42,7 +42,7 @@ export class ComponentSaveDialogComponent implements OnInit {
   {
     this.working = true;
 
-    this.blueprintService.blueprint.name = this.saveBlueprintForm.value.name;
+    this.blueprintService.name = this.saveBlueprintForm.value.name;
     this.blueprintService.saveBlueprint(false).subscribe({
       next: this.handleSaveNext.bind(this),
       error: this.handleSaveError.bind(this)
@@ -65,7 +65,7 @@ export class ComponentSaveDialogComponent implements OnInit {
       this.hideDialog();
 
       // TODO move this to the service ?
-      let summary: string = this.blueprintService.blueprint.name + ' saved';
+      let summary: string = this.blueprintService.name + ' saved';
       let detail: string = '';
   
       this.messageService.add({severity:'success', summary:summary , detail:detail});
@@ -88,7 +88,7 @@ export class ComponentSaveDialogComponent implements OnInit {
     this.reset();
     this.visible = true;
 
-    if (this.blueprintService.blueprint.name != null && this.blueprintService.blueprint.name != '') this.saveBlueprintForm.patchValue({name: this.blueprintService.blueprint.name});
+    if (this.blueprintService.name != null && this.blueprintService.name != '') this.saveBlueprintForm.patchValue({name: this.blueprintService.name});
   }
 
   tryClearInterval() {
@@ -126,7 +126,7 @@ export class ComponentSaveDialogComponent implements OnInit {
   {
     this.working = true;
 
-    this.blueprintService.blueprint.name = this.saveBlueprintForm.value.name;
+    this.blueprintService.name = this.saveBlueprintForm.value.name;
     this.blueprintService.saveBlueprint(true).subscribe({
       next: this.handleSaveNext.bind(this),
       error: this.handleSaveError.bind(this)

@@ -15,8 +15,8 @@ export class DialogShareUrlComponent implements OnInit {
     public blueprintService: BlueprintService,
     private messageService: MessageService) { }
 
-  get url() { return this.blueprintService.blueprint.id != null ? 
-    BlueprintService.baseUrl + 'b/' + this.blueprintService.blueprint.id : ''
+  get url() { return this.blueprintService.id != null ? 
+    BlueprintService.baseUrl + 'b/' + this.blueprintService.id : ''
   }
 
   ngOnInit() {
