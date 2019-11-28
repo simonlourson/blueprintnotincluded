@@ -26,6 +26,7 @@ export class DialogExportImagesComponent implements OnInit {
   @Output() onSaveImages = new EventEmitter<ExportImageOptions>();
 
   get finalSize(): string { return this.blueprintSize == null ? '' : this.blueprintSize.x * this.exportOptions.pixelsPerTile + 'x' + this.blueprintSize.y * this.exportOptions.pixelsPerTile }
+  get finalSizeMb(): number { return this.blueprintSize == null ? 0 : this.blueprintSize.x * this.exportOptions.pixelsPerTile * this.blueprintSize.y * this.exportOptions.pixelsPerTile * this.exportOptions.selectedOverlays.length * 0.00000068120021446078431372549 }
 
   constructor(private blueprintService: BlueprintService, private cameraService: CameraService) { 
     this.pixelPerTile = [
@@ -39,7 +40,15 @@ export class DialogExportImagesComponent implements OnInit {
     ];
 
     this.exportOptions = {
-      selectedOverlays: [Overlay.Base],
+      //selectedOverlays: [Overlay.Base],
+      selectedOverlays:[
+        Overlay.Base,
+        Overlay.Power,
+        Overlay.Liquid,
+        Overlay.Gas,
+        Overlay.Automation,
+        Overlay.Conveyor
+      ],
       pixelsPerTile: this.pixelPerTile[2].value,
       gridLines: false
     }  

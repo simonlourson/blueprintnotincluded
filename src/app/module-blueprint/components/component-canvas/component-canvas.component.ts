@@ -32,6 +32,7 @@ import { Container } from 'pixi.js';
 import { read } from 'fs';
 import { BinController } from '../../common/bin-packing/bin-controller';
 import { IObsBuildItemChanged } from '../../common/tools/build-tool';
+import { DrawHelpers } from '../../drawing/draw-helpers';
 
 
 @Component({
@@ -409,11 +410,11 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
     exportCamera.cameraOffset = cameraOffset;
     exportCamera.overlay = Overlay.Base;
     exportCamera.container = new Container();
+    exportCamera.container.sortableChildren = true;
 
     let graphics = new PIXI.Graphics();
     exportCamera.container.addChild(graphics);
 
-    // TODO color in parameter
     graphics.beginFill(0x007AD9);
     graphics.drawRect(0, 0, thumbnailSize, thumbnailSize);
     graphics.endFill();
@@ -446,6 +447,7 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
   }
 
   saveImages(exportOptions: ExportImageOptions) {
+    console.log(exportOptions)
     let clone = this.blueprint.clone();
     if (clone.blueprintItems.length == 0) throw new Error('No buildings to export')
 
@@ -455,11 +457,27 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
 
     let tileSize = exportOptions.pixelsPerTile;
     let totalTileSize = new Vector2(bottomRight.x - topLeft.x + 3, bottomRight.y - topLeft.y + 3);
+    console.log(totalTileSize)
+    let sizeInPixels = new Vector2(totalTileSize.x * tileSize, totalTileSize.y * tileSize)
 
     let exportCamera = new CameraService();
     exportCamera.setHardZoom(tileSize);
     exportCamera.cameraOffset = new Vector2(-topLeft.x + 1, bottomRight.y + 1);
     exportCamera.container = new Container();
+    exportCamera.container.sortableChildren = true;
+
+    let graphics = new PIXI.Graphics();
+    exportCamera.container.addChild(graphics);
+
+    // TODO color in parameter
+    graphics.beginFill(0x007AD9);
+    graphics.drawRect(0, 0, sizeInPixels.x, sizeInPixels.y);
+    graphics.endFill();
+
+    ComponentCanvasComponent.zip = new JSZip();
+    ComponentCanvasComponent.nbBlob = 0;
+    ComponentCanvasComponent.downloadFile = 'export.zip';
+    ComponentCanvasComponent.nbBlobMax = exportOptions.selectedOverlays.length;
 
     exportOptions.selectedOverlays.map((overlay) => {
 
@@ -474,37 +492,14 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
       let brt = new PIXI.BaseRenderTexture({width: sizeInPixels.x, height: sizeInPixels.y, scaleMode: PIXI.SCALE_MODES.LINEAR});
       let rt = new PIXI.RenderTexture(brt);
 
+      this.drawPixi.pixiApp.renderer.render(exportCamera.container, rt, false);
+
+      this.drawPixi.pixiApp.renderer.extract.canvas(rt).toBlob((blob) => { 
+        this.addBlob(blob, 'export_' + DrawHelpers.overlayString[overlay] + '.png');
+      }); 
     });
 
 
-  }
-
-  saveImage(clone: Blueprint, sizeInPixels: Vector2, tileSizeInPixels: number, cameraOffset: Vector2) {
-
-    console.log(sizeInPixels);
-    console.log(tileSizeInPixels);
-    console.log(cameraOffset);
-
-    let exportCamera = new CameraService();
-    exportCamera.setHardZoom(tileSizeInPixels);
-    exportCamera.cameraOffset = cameraOffset;
-    exportCamera.overlay = Overlay.Base;
-    exportCamera.container = new Container();
-
-    
-
-    
-
-    this.drawPixi.pixiApp.renderer.render(exportCamera.container, rt, false);
-
-    this.drawPixi.pixiApp.renderer.extract.canvas(rt).toBlob((blob) => { 
-        let a = document.createElement('a');
-        document.body.append(a);
-        a.download = ComponentCanvasComponent.downloadFile;
-        a.href = URL.createObjectURL(blob);
-        a.click();
-        a.remove();                     
-      }); 
   }
   
   drawAll()

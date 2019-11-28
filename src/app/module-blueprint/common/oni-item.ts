@@ -174,17 +174,6 @@ export class OniItem
   }
 }
 
-/*
-conductive wire : green power
-wire : white power
-insulated liquid pipe : green liquid output
-liquid pipe : white liquid input
-radiant liquid pipe : orange liquid
-insulated gas pipe : green gas input
-gas pipe : white gas input
-radiant gas pipe : orange gas
-*/
-
 export enum Orientation
 {
   Neutral,

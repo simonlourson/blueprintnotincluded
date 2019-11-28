@@ -262,6 +262,30 @@ export class Blueprint
 
   public destroyTemplateItem(templateItem: BlueprintItem)
   {
+    // If the item is a wire, we need to disconnect it
+    if (templateItem.oniItem.isWire) {
+      let templateItemWire = templateItem as BlueprintItemWire;
+
+      let connectionsArray = DrawHelpers.getConnectionArray(templateItemWire.connections);
+      for (let i = 0; i < 4; i++) {
+        if (connectionsArray[i]) {
+          let offsetToModify = DrawHelpers.connectionVectors[i];
+          let positionToModify = new Vector2(templateItem.position.x + offsetToModify.x, templateItem.position.y + offsetToModify.y);
+
+          let itemsToModify = this.getTemplateItemsAt(positionToModify).filter(i => i.oniItem.objectLayer == templateItem.oniItem.objectLayer);
+          for (let itemToModify of itemsToModify) {
+            let itemToModifyWire = itemToModify as BlueprintItemWire;
+
+            if (itemToModifyWire != null) {
+              let connectionsArrayToModify = DrawHelpers.getConnectionArray(itemToModifyWire.connections);
+              connectionsArrayToModify[DrawHelpers.connectionBitsOpposite[i]] = false;
+              itemToModifyWire.connections = DrawHelpers.getConnection(connectionsArrayToModify);
+            }
+          }
+        }
+      }
+    }
+
     // First remove from the tilemap
     if (templateItem.tileIndexes != null && templateItem.tileIndexes.length > 0)
       for (let tileIndex of templateItem.tileIndexes)

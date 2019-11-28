@@ -104,6 +104,21 @@ export class DrawHelpers
 
     return R << 16 | G << 8 | B;
   }
+
+  static connectionBits: number[] = [1, 2, 4, 8];
+  static connectionBitsOpposite: number[] = [1, 0, 3, 2];
+  static connectionVectors: Vector2[] = [Vector2.Left, Vector2.Right, Vector2.Up, Vector2.Down];
+  public static getConnectionArray(connections: number): boolean[] {
+    let returnValue = [false, false, false, false];
+    for (let i = 0; i < 4; i++) returnValue[i] = ((connections & DrawHelpers.connectionBits[i]) == DrawHelpers.connectionBits[i]);
+    return returnValue;
+  }
+
+  public static getConnection(connectionArray: boolean[]): number {
+    let returnValue = 0;
+    for (let i = 0; i < 4; i++) if (connectionArray[i]) returnValue += DrawHelpers.connectionBits[i];
+    return returnValue;
+  }
   
   public static getIntegerTile(floatTile: Vector2): Vector2 {
     return new Vector2(

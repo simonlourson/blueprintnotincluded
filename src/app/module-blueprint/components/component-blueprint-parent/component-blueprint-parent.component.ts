@@ -18,7 +18,7 @@ import { ConnectionType } from '../../common/utility-connection';
 import { ZIndex, Overlay } from '../../common/overlay-type';
 import { ComposingElement } from '../../common/composing-element';
 import { SaveInfo } from '../../common/save-info';
-import { ActivatedRoute, Params, UrlSegment } from '@angular/router';
+import { ActivatedRoute, Params, UrlSegment, convertToParamMap } from '@angular/router';
 import { BlueprintParams } from '../../common/params';
 import { ComponentMenuComponent, MenuCommand, MenuCommandType } from '../component-menu/component-menu.component';
 import { ToolType } from '../../common/tools/tool';
@@ -39,6 +39,21 @@ import { CameraService } from '../../services/camera-service';
 import { DialogBrowseComponent } from '../dialogs/dialog-browse/dialog-browse.component';
 import { DialogExportImagesComponent } from '../dialogs/dialog-export-images/dialog-export-images.component';
 import { ToolService } from '../../services/tool-service';
+import { DrawHelpers } from '../../drawing/draw-helpers';
+
+/*
+TODO Feature List :
+
+ * Limit and sanitize blueprint name
+ * Unify select tool
+ * Filter author on browse
+ * Remove Name and id from blueprit to blueprintservice
+ * Fix sahre url behaviour
+ * Toast on blueprint error, nb item skipped
+ * Toast on open save or share url when not logged in or not saved
+
+*/
+
 
 @Component({
   selector: 'app-component-blueprint-parent',
@@ -83,6 +98,9 @@ export class ComponentBlueprintParentComponent implements OnInit, IObsBlueprintC
 
   ngOnInit() {
    
+    // TODO remove
+    for (let i = 0; i < 16; i++) console.log(JSON.stringify(DrawHelpers.getConnectionArray(i)));
+
     OniItem.init();
     ImageSource.init();
     SpriteModifier.init();
@@ -172,7 +190,7 @@ export class ComponentBlueprintParentComponent implements OnInit, IObsBlueprintC
   }
 
   saveImages(exportOptions: ExportImageOptions) {
-    console.log(exportOptions);
+    this.canvas.saveImages(exportOptions);
   }
 
   loadTemplateIntoCanvas(template: Blueprint)

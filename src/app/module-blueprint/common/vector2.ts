@@ -52,4 +52,8 @@ export class Vector2
 
     public static Zero = new Vector2();
     public static One = new Vector2(1, 1);
+    public static Left = new Vector2(-1, 0);
+    public static Right = new Vector2(1, 0);
+    public static Up = new Vector2(0, 1);
+    public static Down = new Vector2(0, -1);
 }

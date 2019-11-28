@@ -174,27 +174,6 @@ export class BlueprintItem implements TemplateItemCloneable<BlueprintItem>
     else this.position = Vector2.zero();
 
     this.changeOrientation(building.orientation);
-    /*
-    // TODO remove after tests
-    switch (building.orientation)
-    {
-      case Orientation.R90:
-        this.changeOrientation(Orientation.R90);
-        break;
-      case Orientation.R180:
-        this.changeOrientation(Orientation.R180);
-        break;
-      case Orientation.R270:
-        this.changeOrientation(Orientation.R270);
-        break;
-      case Orientation.FlipH:
-        this.changeOrientation(Orientation.FlipH);
-        break;
-      case Orientation.FlipV:
-        this.changeOrientation(Orientation.FlipV);
-        break;
-    }
-    */
 
     this.cleanUp();
     this.prepareBoundingBox();
@@ -336,6 +315,11 @@ export class BlueprintItem implements TemplateItemCloneable<BlueprintItem>
     this.selected_ = undefined;
     this.destroyed = undefined;
     this.isOpaque = undefined;
+
+    this.topLeft = undefined;
+    this.bottomRight = undefined;
+
+    this.element = undefined;
   }
 
     public prepareBoundingBox()

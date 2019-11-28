@@ -13,7 +13,9 @@
     <div class="one">
         <p-checkbox binary="true" label="Export with grid lines"  [(ngModel)]="exportOptions.gridLines"></p-checkbox><br><br>
         <p-dropdown [options]="pixelPerTile" [(ngModel)]="exportOptions.pixelsPerTile" [style]="{width: '15em'}"></p-dropdown><br>
-        (Image size: {{finalSize}})
+        Image size: {{finalSize}}
+        <br>
+        About {{finalSizeMb | number:'1.2-2'}}Mb
     </div>
     <div class="three">
         <div>
