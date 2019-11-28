@@ -42,9 +42,10 @@ import { ToolService } from '../../services/tool-service';
 import { DrawHelpers } from '../../drawing/draw-helpers';
 
 /*
-TODO Feature List :
+TODO Feature List before release :
 
  * Limit and sanitize blueprint name
+ * Correct dragBuild
  * Unify select tool
  * Filter author on browse
  * Remove Name and id from blueprit to blueprintservice
