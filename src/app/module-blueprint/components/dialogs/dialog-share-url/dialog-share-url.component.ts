@@ -40,4 +40,8 @@ export class DialogShareUrlComponent implements OnInit {
     this.hideDialog();
   }
 
+  newTab() {
+    window.open(this.url, "__blank");
+  }
+
 }

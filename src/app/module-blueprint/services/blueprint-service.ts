@@ -15,7 +15,8 @@ import { BlueprintResponse } from './messages/blueprint-response';
 @Injectable({ providedIn: 'root' })
 export class BlueprintService implements IObsOverlayChanged
 {
-  static baseUrl: string = 'blueprintnotincluded.com/';
+  //static baseUrl: string = 'blueprintnotincluded.com/';
+  static baseUrl: string = 'http://localhost:4200/';
 
   id: string;
   name: string;

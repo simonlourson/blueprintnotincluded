@@ -14,255 +14,106 @@ import { OniItem } from '../oni-item';
 import { BuildTool } from './build-tool';
 
 @Injectable()
-export class SelectTool implements ITool, IObsItemDestroyed
+export class SelectTool implements ITool
 {
   public headerString: string;
-  public selectionType: SelectionType;
-  get isSingle() {return this.selectionType == SelectionType.Single;}
-  get isMultiple() {return this.selectionType == SelectionType.Multiple;}
-  public templateItemsToShow: BlueprintItem[];
   public sameItemCollections: SameItemCollection[];
 
-  private observers: IObsTemplateItemChanged[];
-
-  parent: IChangeTool;
-
   constructor(private blueprintService: BlueprintService, private cameraService: CameraService) {
-    
-    this.blueprintService.blueprint.subscribeItemDestroyed(this);
-
-    this.observers = [];
-    this.selectionType = SelectionType.None;
 
     // TODO also do this on blueprint loading
     this.reset();
   }
 
   get showTool() { 
-    if (this.isSingle) return this.templateItemsToShow.length > 0; 
-    else if (this.isMultiple) return this.sameItemCollections.length > 0;
-    else return false;
+    return this.sameItemCollections.length > 0;
   }
 
   reset()
   {
-    this.templateItemsToShow = [];
+    this.deselectAll();
     this.sameItemCollections = [];
-    this.previousTile = null;
   }
 
-  public subscribe(subscriber: IObsTemplateItemChanged)
-  {
-    this.observers.push(subscriber);
-  }
-
-  itemDestroyed() {
-    this.nextSelection();
-  }
-
-  previousTile: Vector2;
-  public updateSelectionTool(tile: Vector2)
-  {
-    //console.log('updateSelectionTool')
-
-    // Deselect everything if we are coming from a multiple selection
-    if (this.selectionType == SelectionType.Multiple) {
-      this.deselectAll(false, true);
-    }
-
-    this.selectionType = SelectionType.Single;
-
-    // If the user clicked on the same tile, just advance the accordeon
-    if (tile.equals(this.previousTile)) this.nextSelection();
-    else
-    {
-      // First, store the item already selected, if any
-      let oldSelected = null
-      if (this.templateItemsToShow != null && this.templateItemsToShow.filter((item) => {return item.selected;}).length > 0)
-        oldSelected = this.templateItemsToShow.filter((item) => item.selected)[0];
-
-      this.deselectAll(true, false);
-      this.headerString = 'Selected : x:' + tile.x+', y:'+tile.y;
-      //console.log(this.headerString)
-      
-      this.templateItemsToShow = this.blueprintService.blueprint.getTemplateItemsAt(tile);
-      //console.log(this.templateItemsToShow)
-
-      let newSelected = null
-      // TODO this could be done better with the new selected getters and setters
-      // Is there an item in the new selected with the same id as the old selected?
-      if (oldSelected != null && this.templateItemsToShow.filter((item) => { return item.oniItem.id == oldSelected.oniItem.id; }).length > 0)
-        newSelected = this.templateItemsToShow.filter((item) => { return item.oniItem.id == oldSelected.oniItem.id; })[0];
-
-      // Is there an item in the new selected with the same overlay as the current ?
-      if (newSelected == null && this.templateItemsToShow.filter((item) => { return item.isOpaque; }).length > 0)
-        newSelected = this.templateItemsToShow.filter((item) => { return item.isOpaque; })[0];
-      
-
-      let nbNext = 0;
-      if (newSelected != null) nbNext = this.templateItemsToShow.indexOf(newSelected);
-
-      for (let i = 0; i <= nbNext; i++) {
-        this.nextSelection();
-      }
-    }
-
-    this.previousTile = Vector2.clone(tile);
-  }
-
-  nextSelection()
-  {
-    //console.log('nextSelection')
-    // First find the current real active index
-    let realActiveIndex = -1;
-    for (let currentActiveIndex = 0; currentActiveIndex < this.templateItemsToShow.length; currentActiveIndex++)
-      if (this.templateItemsToShow[currentActiveIndex].selected)
-        realActiveIndex = currentActiveIndex;
-
-    // Then advance it by one and loop back to 0
-    realActiveIndex++;
-    realActiveIndex = realActiveIndex % this.templateItemsToShow.length;
-    
-    // Then set selected for each item not accordingly
-    for (let currentActiveIndex = 0; currentActiveIndex < this.templateItemsToShow.length; currentActiveIndex++)
-      this.templateItemsToShow[currentActiveIndex].selectedSingle = (currentActiveIndex == realActiveIndex);
-
-    //console.log(this.templateItemsToShow)
-  }
-
-  deselectAll(single: boolean, multiple: boolean) {
-    //console.log('deselectAll');
-    if (single) {
-      if (this.templateItemsToShow != null)
-        for (let templateItem of this.templateItemsToShow)
-          templateItem.selectedSingle = false;
-      this.templateItemsToShow = [];
-    }
-
-    if (multiple) {
-      if (this.sameItemCollections != null)
-        for (let itemCollection of this.sameItemCollections)
-          itemCollection.selected = false;
-      this.sameItemCollections= [];
-    }
-  }
-
-  topLeft: Vector2;
-  bottomRight: Vector2;
-  rememberMultipleSelectionIndex: number;
-  rememberExclusions: OniItem[];
-  clampRememberMultipleSelectionIndex() {
-    // Clamping, in case the items deleted were the last in the list
-    if (this.rememberMultipleSelectionIndex >= this.sameItemCollections.length) this.rememberMultipleSelectionIndex = this.sameItemCollections.length - 1;
-  }
-  doMultipleSelect()
-  {
-    // TODO multiple to single by oniItem id
-    if (this.beginSelection != null && this.endSelection != null)
-    {
-      let beginTile = DrawHelpers.getIntegerTile(this.beginSelection);
-      let endTile = DrawHelpers.getIntegerTile(this.endSelection);
-
-      this.topLeft = new Vector2(
-        Math.min(beginTile.x, endTile.x),
-        Math.max(beginTile.y, endTile.y)
-      );
-  
-      this.bottomRight = new Vector2(
-        Math.max(beginTile.x, endTile.x),
-        Math.min(beginTile.y, endTile.y)
-      );
-
-      this.rememberMultipleSelectionIndex = 0;
-      this.rememberExclusions = [];
-
-      this.updateMultipleSelect();
-    }
-  }
-
-  updateMultipleSelect() {
-
-    this.deselectAll(false, true);
+  private lastSelected: BlueprintItem;
+  private lastSelectedDate: Date;
+  selectFromBox(topLeft: Vector2, bottomRight: Vector2) {
+    this.deselectAll();
     this.sameItemCollections = [];
 
-    //console.log('updateMultipleSelect')
-    //console.log(this.topLeft)
-    //console.log(this.bottomRight)
+    let tileSelected: Vector2[] = [];
+      
+    for (let x = topLeft.x; x <= bottomRight.x; x++)
+      for (let y = topLeft.y; y >= bottomRight.y; y--)
+        tileSelected.push(new Vector2(x, y));
+      
+    if (tileSelected.length > 0) {
+      // TODO fix this
+      this.headerString = 'Selected : Multiple tiles';
 
-    if (this.topLeft != null && this.bottomRight != null) {
-      let tileSelected: Vector2[] = [];
-        
-      for (let x = this.topLeft.x; x <= this.bottomRight.x; x++)
-        for (let y = this.topLeft.y; y >= this.bottomRight.y; y--)
-          tileSelected.push(new Vector2(x, y));
-        
-
-      if (tileSelected.length == 1) {
-        this.selectionType = SelectionType.Single;
-        this.updateSelectionTool(tileSelected[0]);
+      for (let tile of tileSelected) {
+        let itemsInTile = this.blueprintService.blueprint.getTemplateItemsAt(tile);
+        for (let item of itemsInTile) this.addToCollection(item);
       }
-      else {
-        this.headerString = 'Selected : Multiple tiles';
-        this.selectionType = SelectionType.Multiple;
 
-        for (let tile of tileSelected) {
-          let itemsInTile = this.blueprintService.blueprint.getTemplateItemsAt(tile);
-          for (let item of itemsInTile.filter((item) => { return this.rememberExclusions.indexOf(item.oniItem) == -1; })) {
-            let itemCollectionArray = this.sameItemCollections.filter((sameItem) => { return item.oniItem.id == sameItem.oniItem.id; });
-            if (itemCollectionArray.length == 0) {
-              let newItemCollection = new SameItemCollection();
-              newItemCollection.oniItem = item.oniItem;
-              newItemCollection.items.push(item);
+      this.sameItemCollections = this.sameItemCollections.sort((i1, i2) => { return i2.oniItem.zIndex - i1.oniItem.zIndex; });
 
-              this.sameItemCollections.push(newItemCollection);
-            }
-            else if (itemCollectionArray[0].items.indexOf(item) == -1) itemCollectionArray[0].items.push(item);
-          }
+      let firstSelected: BlueprintItem = null;
+      this.sameItemCollections.map((itemCollection) => {
+        if (itemCollection.items != null && itemCollection.items.length > 0 && itemCollection.items[0].isOpaque) {
+          firstSelected = itemCollection.items[0];
+
+          let newDate = new Date();
+          if (firstSelected == this.lastSelected && this.lastSelectedDate != null && newDate.getTime() - this.lastSelectedDate.getTime() < 500) this.selectAll(firstSelected.oniItem);
+          else itemCollection.selected = true;
+
+          this.lastSelected = firstSelected;
+          this.lastSelectedDate = newDate;
         }
+      });
 
-        this.sameItemCollections = this.sameItemCollections.sort((i1, i2) => { return i2.oniItem.zIndex - i1.oniItem.zIndex; });
-
-        this.currentMultipleSelectionIndex = 0;
-      }
+      if (firstSelected == null) this.currentMultipleSelectionIndex = 0;
     }
   }
 
-  removeFromSelection(itemCollection: SameItemCollection) {
-    
-    this.rememberExclusions.push(itemCollection.oniItem);
+  selectAll(oniItem: OniItem) {
+    this.deselectAll();
 
-    this.rememberMultipleSelectionIndex = this.currentMultipleSelectionIndex;
-    this.sameItemCollections[this.rememberMultipleSelectionIndex].selected = false;
-    this.updateMultipleSelect();
-    this.clampRememberMultipleSelectionIndex();
-    this.currentMultipleSelectionIndex = this.rememberMultipleSelectionIndex;
+    this.blueprintService.blueprint.blueprintItems.filter((item) => { return item.oniItem == oniItem; }).map((item) => {
+      this.addToCollection(item);
+    });
 
+    this.currentMultipleSelectionIndex = 0;
+  }
+
+  addToCollection(blueprintItem: BlueprintItem) {
+
+    // Find if there is already an item collection for this oniItem
+    let itemCollectionArray = this.sameItemCollections.filter((sameItem) => { return blueprintItem.oniItem.id == sameItem.oniItem.id; });
+    if (itemCollectionArray.length == 0) {
+      let newItemCollection = new SameItemCollection();
+      newItemCollection.oniItem = blueprintItem.oniItem;
+      newItemCollection.items.push(blueprintItem);
+
+      this.sameItemCollections.push(newItemCollection);
+    }
+    // We need to test if the item was already added to this collection, (some items are bigger than one tile)
+    else if (itemCollectionArray[0].items.indexOf(blueprintItem) == -1) itemCollectionArray[0].items.push(blueprintItem);
+  }
+
+  deselectAll() {
+    if (this.sameItemCollections != null) this.sameItemCollections.map((itemCollection) => { itemCollection.selected = false; });
+    this.sameItemCollections= [];
   }
 
   buildingsDestroy(itemCollection: SameItemCollection) {
-    this.rememberMultipleSelectionIndex = this.currentMultipleSelectionIndex;
     
     for (let item of itemCollection.items)
       this.blueprintService.blueprint.destroyTemplateItem(item);
 
-    this.updateMultipleSelect();
-    
-    this.clampRememberMultipleSelectionIndex();
-
-    this.currentMultipleSelectionIndex = this.rememberMultipleSelectionIndex;
+    this.sameItemCollections.splice(this.sameItemCollections.indexOf(itemCollection), 1);
   }
 
-  get currentSingleSelectionIndex() {
-    let activeIndex = -1;
-
-    for (let indexSelected = 0; indexSelected < this.templateItemsToShow.length; indexSelected++)
-      if (this.templateItemsToShow[indexSelected].selectedSingle)
-        activeIndex = indexSelected;
-
-    return activeIndex;
-  }
-
-  // TODO do the same thing for single selection
   get currentMultipleSelectionIndex() {
     let activeIndex = -1;
 
@@ -304,27 +155,22 @@ export class SelectTool implements ITool, IObsItemDestroyed
       for (let itemCollection of this.sameItemCollections)
         itemCollection.destroyAll();
 
-    this.rememberMultipleSelectionIndex = 0;
-
-    this.topLeft = null;
-    this.bottomRight = null;
-    this.updateMultipleSelect();
+    this.deselectAll();
   }
 
   // Tool interface :
   switchFrom() {
-    this.deselectAll(true, true);
+    this.deselectAll();
   }
 
   switchTo() {
-    this.deselectAll(true, true);
+    this.deselectAll();
   }
 
   mouseOut() {}
   
   leftClick(tile: Vector2) {
-    this.cameraService.resetSinWave();
-    this.updateSelectionTool(tile);
+    this.selectFromBox(tile, tile);
   }
 
   rightClick(tile: Vector2) {
@@ -341,20 +187,32 @@ export class SelectTool implements ITool, IObsItemDestroyed
   }
 
   dragStop() {
-    this.doMultipleSelect();
+    
+    if (this.beginSelection != null && this.endSelection != null)
+    {
+      let beginTile = DrawHelpers.getIntegerTile(this.beginSelection);
+      let endTile = DrawHelpers.getIntegerTile(this.endSelection);
+
+      let topLeft = new Vector2(
+        Math.min(beginTile.x, endTile.x),
+        Math.max(beginTile.y, endTile.y)
+      );
+  
+      let bottomRight = new Vector2(
+        Math.max(beginTile.x, endTile.x),
+        Math.min(beginTile.y, endTile.y)
+      );
+
+      this.selectFromBox(topLeft, bottomRight);
+    }
+
     this.beginSelection = null;
   }
 
   keyDown(keyCode: string) {
     if (keyCode == 'Delete') {
-      if (this.selectionType == SelectionType.Single) { 
-        let itemToDestroyIndex = this.currentSingleSelectionIndex;
-        if (itemToDestroyIndex != -1) this.blueprintService.blueprint.destroyTemplateItem(this.templateItemsToShow[itemToDestroyIndex]);
-      }
-      else if (this.selectionType == SelectionType.Multiple) {
-        let itemGroupToDestroyIndex = this.currentMultipleSelectionIndex;
-        if (itemGroupToDestroyIndex != -1) this.buildingsDestroy(this.sameItemCollections[itemGroupToDestroyIndex]);
-      }
+      let itemGroupToDestroyIndex = this.currentMultipleSelectionIndex;
+      if (itemGroupToDestroyIndex != -1) this.buildingsDestroy(this.sameItemCollections[itemGroupToDestroyIndex]);
     }
   }
 

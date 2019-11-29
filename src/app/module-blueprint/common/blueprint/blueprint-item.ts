@@ -379,15 +379,12 @@ export class BlueprintItem implements TemplateItemCloneable<BlueprintItem>
       // TODO general case for elements
       if (currentOverlay == Overlay.Unknown) Overlay.Base;
 
-      let isPrimary = currentOverlay == ConnectionHelper.getOverlayFromLayer(this.oniItem.zIndex);
-      let isSecondary = currentOverlay == this.oniItem.overlay;
+      this.isOpaque = this.oniItem.isOverlayPrimary(currentOverlay) || this.oniItem.isOverlaySecondary(currentOverlay);
 
-      this.isOpaque = isPrimary || isSecondary;
-
-      if (isPrimary || isSecondary) this.drawPart.alpha = 1;
+      if (this.isOpaque) this.drawPart.alpha = 1;
       else this.drawPart.alpha = 0.3;
 
-      if (isPrimary)
+      if (this.oniItem.isOverlayPrimary(currentOverlay))
       {
           this.depth = this.oniItem.zIndex + 50;
           this.correctOverlay = true;

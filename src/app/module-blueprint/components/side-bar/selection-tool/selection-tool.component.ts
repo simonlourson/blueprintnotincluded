@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, Output, EventEmitter, ViewChild } from '@angular/core';
 import { TileInfo } from '../../../common/tile-info';
 import { BlueprintItem } from '../../../common/blueprint/blueprint-item';
 import { ToolType } from '../../../common/tools/tool';
@@ -9,27 +9,33 @@ import { BlueprintService } from '../../../services/blueprint-service';
 import { ToolService } from '../../../services/tool-service';
 import { IObsTemplateItemChanged } from '../../../common/tools/select-tool';
 import { SelectionType } from '../../../common/tools/select-tool';
+import { Accordion } from 'primeng/accordion';
 
 @Component({
   selector: 'app-selection-tool',
   templateUrl: './selection-tool.component.html',
   styleUrls: ['./selection-tool.component.css']
 })
-export class ComponentSideSelectionToolComponent implements OnInit, IObsTemplateItemChanged {
+export class ComponentSideSelectionToolComponent implements OnInit {
+
+  @ViewChild('buildingsAccordion', {static: true}) buildingsAccordion: Accordion
 
   constructor(private cd: ChangeDetectorRef, private blueprintService: BlueprintService, private toolService: ToolService) 
   { 
   }
 
   ngOnInit() {
-    this.toolService.selectTool.subscribe(this);
   }
 
-  newSelection()
-  {
+  itemGroupeNext() {
+    this.toolService.selectTool.itemGroupeNext();
   }
 
-  nextSelection()
-  {
+  itemGroupePrevious() {
+    this.toolService.selectTool.itemGroupePrevious();
+  }
+
+  destroyAll() {
+    this.toolService.selectTool.destroyAll();
   }
 }

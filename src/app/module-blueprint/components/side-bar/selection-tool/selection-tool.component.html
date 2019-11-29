@@ -1,9 +1,18 @@
 <p-card header="Selection Tool">
   
   <h3>{{toolService.selectTool.headerString}}</h3>
-  <app-selection-tool-single *ngIf="toolService.selectTool.isSingle">
-  </app-selection-tool-single>
-  <app-selection-tool-multiple *ngIf="toolService.selectTool.isMultiple">
-  </app-selection-tool-multiple>
+
+  <button pButton type="button" class="ui-button"             icon="pi pi-chevron-down" (click)="itemGroupeNext()" pTooltip="Select next item group"></button>
+  <button pButton type="button" class="ui-button buttonspace" icon="pi pi-chevron-up"   (click)="itemGroupePrevious()" pTooltip="Select previous item group"></button>
+  <button pButton type="button" class="ui-button buttonspace" icon="pi pi-trash"        (click)="destroyAll()" pTooltip="Destroy every item group"></button>
+  <br><br>
+  <div class="scrollable">
+    <p-accordion #buildingsAccordion>
+      <p-accordionTab *ngFor="let itemCollection of toolService.selectTool.sameItemCollections" [(selected)]="itemCollection.selected" [header]="itemCollection.oniItem.name" [transitionOptions]="'0ms'">
+        <app-item-collection-info [itemCollection]=itemCollection>
+        </app-item-collection-info>
+      </p-accordionTab>
+    </p-accordion>
+  </div>
  
 </p-card>

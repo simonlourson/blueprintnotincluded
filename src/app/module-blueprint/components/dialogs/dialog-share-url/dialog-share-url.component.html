@@ -13,5 +13,6 @@
   <div>Use the following url to share this blueprint : </div>
   <input #urlInput class="float-input" type="text" size="60" [ngModel]="url" pInputText [disabled]="blueprintService.id == null"> 
   <button pButton type="button" class="ui-button copy-button" icon="pi pi-clone" (click)="copyToClipboard(urlInput)" pTooltip="Copy url to clipboard" [disabled]="blueprintService.id == null"></button>
+  <button pButton type="button" class="ui-button copy-button" icon="pi pi-external-link" (click)="newTab()" pTooltip="Open in new tab" [disabled]="blueprintService.id == null"></button>
 
 </p-dialog>

@@ -13,6 +13,7 @@ export class SameItemCollection
     if (this.selected_) {
       CameraService.cameraService.resetSinWave();
       CameraService.cameraService.setOverlayForItem(this.oniItem);
+      this.observersSelected.map((observer) => { observer.selected(); })
     }
   }
 
@@ -21,6 +22,8 @@ export class SameItemCollection
 
   constructor() {
     this.items = [];
+
+    this.observersSelected = [];
   }
 
   setSelection() {
@@ -33,4 +36,13 @@ export class SameItemCollection
     for (let item of this.items)
       BlueprintService.blueprintService.blueprint.destroyTemplateItem(item);
   }
+
+  private observersSelected: IObsSelected[];
+  public subscribeSelected(observer: IObsSelected) {
+    this.observersSelected.push(observer);
+  }
+}
+
+export interface IObsSelected {
+  selected();
 }

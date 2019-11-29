@@ -1,5 +1,5 @@
 import { Vector2 } from "./vector2";
-import { UtilityConnection, ConnectionType } from "./utility-connection";
+import { UtilityConnection, ConnectionType, ConnectionHelper } from "./utility-connection";
 import { ZIndex, Overlay } from "./overlay-type";
 import { BlueprintParams } from "./params";
 import { DrawHelpers, PermittedRotations } from "../drawing/draw-helpers";
@@ -158,6 +158,14 @@ export class OniItem
       
       OniItem.oniItemsMap.set(oniItem.id, oniItem);
     }
+  }
+
+  public isOverlayPrimary(overlay: Overlay): boolean {
+    return overlay == ConnectionHelper.getOverlayFromLayer(this.zIndex)
+  }
+
+  public isOverlaySecondary(overlay: Overlay): boolean {
+    return overlay == this.overlay
   }
 
   public static getOniItem(id: string): OniItem

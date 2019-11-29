@@ -87,15 +87,13 @@ export class ComponentBlueprintParentComponent implements OnInit, IObsBlueprintC
 
   @ViewChild('shareUrlDialog', {static: true})
   shareUrlDialog: DialogShareUrlComponent;
-  
-  @ViewChild('menu', {static: true})
-  menu: ComponentMenuComponent
 
   constructor(
     private messageService: MessageService, 
     private route: ActivatedRoute,
     private authService: AuthenticationService,
     private blueprintService: BlueprintService,
+    private cameraService: CameraService,
     private toolService: ToolService) { }
 
   ngOnInit() {
@@ -195,7 +193,7 @@ export class ComponentBlueprintParentComponent implements OnInit, IObsBlueprintC
   loadTemplateIntoCanvas(template: Blueprint)
   {
     this.canvas.loadNewBlueprint(template);
-    this.menu.clickOverlay({item:{id:Overlay.Base}});
+    this.cameraService.overlay = Overlay.Base;
     this.toolService.changeTool(ToolType.select);
 
     let summary: string = "Loaded blueprint : " + this.blueprintService.name;
