@@ -47,7 +47,6 @@ TODO Feature List before release :
 
  * Limit and sanitize blueprint name
  * Correct dragBuild
- * Unify select tool
  * dont open next on delete select tool
  * Filter author on browse
  * Toast on blueprint error, nb item skipped

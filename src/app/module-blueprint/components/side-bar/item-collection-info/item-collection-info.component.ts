@@ -29,10 +29,6 @@ export class ItemCollectionInfoComponent implements OnInit, IObsSelected {
     this.toolService.selectTool.buildingsDestroy(this.itemCollection);
   }
 
-  removeFromSelection() {
-    this.toolService.selectTool.removeFromSelection(this.itemCollection);
-  }
-
   buildingsCopy() {
     this.toolService.changeTool(ToolType.build);
     this.toolService.buildTool.changeItem(BlueprintHelpers.createInstance(this.itemCollection.oniItem.id) );

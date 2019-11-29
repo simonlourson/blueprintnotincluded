@@ -23,18 +23,6 @@ export class TileInfoComponent implements OnInit, OnDestroy {
   get showColor() { return this.templateItem instanceof BlueprintItemWire }
   get showOrientation() { return this.templateItem.oniItem.orientations.length > 1 }
 
-
-  // TODO remove
-  get authorizedOrientations(): SelectItem[] 
-  {
-    let returnValue: SelectItem[] = [];
-    //for (let authorizedOrientation of this.templateItem.oniItem.orientations) 
-    //  returnValue.push({value:authorizedOrientation, label:AuthorizedOrientations[authorizedOrientation]});
-
-    return returnValue;
-  }
-
-
   constructor(private blueprintService: BlueprintService, private toolService: ToolService) { }
 
   ngOnInit() {

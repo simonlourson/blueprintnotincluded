@@ -23,7 +23,6 @@ export class ToolService implements ITool, IChangeTool
     this.currentToolType = ToolType.select;
     this.observers = [];
 
-    this.selectTool.parent = this;
     this.buildTool.parent = this;
   }
 
