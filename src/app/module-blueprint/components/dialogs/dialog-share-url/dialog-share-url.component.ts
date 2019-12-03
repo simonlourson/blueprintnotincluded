@@ -41,7 +41,7 @@ export class DialogShareUrlComponent implements OnInit {
   }
 
   newTab() {
-    window.open(this.url, "__blank");
+    window.open(this.url, Math.random().toString(36));
   }
 
 }

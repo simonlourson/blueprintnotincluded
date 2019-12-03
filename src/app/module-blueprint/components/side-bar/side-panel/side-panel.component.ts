@@ -33,7 +33,7 @@ export class ComponentSidepanelComponent implements OnInit {
 
   @Output() onDestroyTemplateItem = new EventEmitter<BlueprintItem>();
 
-  constructor(private toolService: ToolService) { 
+  constructor(public toolService: ToolService) { 
     
   }
 

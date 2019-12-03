@@ -18,6 +18,8 @@
     </span>
     <div *ngIf="f.name.invalid && (f.name.dirty || f.name.touched)" class="error-red" >
       <div *ngIf="f.name.errors.required">Blueprint name is required.</div>
+      <div *ngIf="f.name.errors.invalidChars">Invalid characters in blueprint name</div>
+      <div *ngIf="f.name.errors.tooLong">Blueprint name is too long</div>
     </div>
     <div *ngIf="overwrite" class="error-red">You already have a blueprint with this name. Overwrite?</div>
     <div *ngIf="!authService.isLoggedIn()" class="error-red">You must be logged in to save a blueprint</div>

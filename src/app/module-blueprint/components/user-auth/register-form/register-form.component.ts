@@ -7,6 +7,7 @@ import { AuthenticationService } from '../../../services/authentification-servic
 import { MessageService } from 'primeng/api';
 import { Subscription } from 'rxjs';
 import { ReCaptchaV3Service } from 'ng-recaptcha';
+import { UsernameValidationDirective } from 'src/app/module-blueprint/directives/username-validation.directive';
 
 
 @Component({
@@ -18,7 +19,7 @@ export class RegisterFormComponent implements OnInit {
 
   registerForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
-    username: new FormControl('', [Validators.required], [this.checkDuplicateService.usernameValidator()]),
+    username: new FormControl('', [Validators.required, UsernameValidationDirective.validate], [this.checkDuplicateService.usernameValidator()]),
     password: new FormControl('', [Validators.required]),
     confirmPassword: new FormControl('', [Validators.required])
   }, {validators:[this.passwordConfirming]});

@@ -45,12 +45,17 @@ import { AuthenticationService } from '../../services/authentification-service';
 /*
 TODO Feature List before release :
 
- * Limit and sanitize blueprint name
- * Correct dragBuild
- * dont open next on delete select tool
  * Filter author on browse
  * Toast on blueprint error, nb item skipped
  * save camera offset and zoom on save + shared code on save
+ * 
+ 
+ Less important stuff :
+ * Unify returns in backend
+ * dragBuild is not used
+ * build drag on move with keyboard
+ * 
+ * 
 
 */
 

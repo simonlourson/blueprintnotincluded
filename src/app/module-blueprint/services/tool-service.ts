@@ -50,6 +50,10 @@ export class ToolService implements ITool, IChangeTool
     this.currentTool.mouseOut();
   }
 
+  mouseDown(tile: Vector2) {
+    this.currentTool.mouseDown(tile);
+  }
+
   leftClick(tile: Vector2) {
     this.currentTool.leftClick(tile);
   }

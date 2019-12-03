@@ -35,7 +35,7 @@
   </div>
 
   <p-footer>
-    <p-button label="Download images" [disabled]="!exportOptions.selectedOverlays.length>0" (click)="downloadImages()"></p-button>
+    <p-button label="Download images" [disabled]="disabled" (click)="downloadImages()"></p-button>
   </p-footer>
 
 </p-dialog>

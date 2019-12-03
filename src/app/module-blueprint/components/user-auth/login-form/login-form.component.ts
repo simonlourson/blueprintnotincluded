@@ -5,6 +5,7 @@ import { AuthenticationService } from '../../../services/authentification-servic
 import { MessageService } from 'primeng/api';
 import { ReCaptchaV3Service } from 'ng-recaptcha';  
 import { Observable, Subscription } from 'rxjs';
+import { UsernameValidationDirective } from 'src/app/module-blueprint/directives/username-validation.directive';
 
 @Component({
   selector: 'app-login-form',
@@ -14,7 +15,7 @@ import { Observable, Subscription } from 'rxjs';
 export class LoginFormComponent implements OnInit {
 
   loginForm = new FormGroup({
-    username: new FormControl('', [Validators.required]),
+    username: new FormControl('', [Validators.required, UsernameValidationDirective.validate]),
     password: new FormControl('', [Validators.required])
   });
 

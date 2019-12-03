@@ -50,6 +50,7 @@ export class BlueprintItem implements TemplateItemCloneable<BlueprintItem>
   get selectedMultiple() { return this.selected_; }
   set selectedMultiple(value: boolean) { this.selected_ = value; }
 
+  // TODO getter setter with prepare bounding box
   position: Vector2;
   orientation: Orientation;
   rotation: number;

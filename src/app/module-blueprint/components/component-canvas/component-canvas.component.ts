@@ -132,7 +132,9 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
 
   mouseDown(event: any)
   {
-  
+    if (event.button == 0) {
+      this.toolService.mouseDown(this.getCurrentTile(event));
+    }
   }
 
   mouseOut(event: any) {
@@ -189,6 +191,12 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
   keyPress(event: any)
   {
     this.toolService.keyDown(event.key)
+    if (event.key == 'ArrowLeft') this.cameraService.cameraOffset.x += 1;
+    if (event.key == 'ArrowRight') this.cameraService.cameraOffset.x -= 1;
+    if (event.key == 'ArrowUp') this.cameraService.cameraOffset.y += 1;
+    if (event.key == 'ArrowDown') this.cameraService.cameraOffset.y -= 1; 
+
+    this.canvasRef.nativeElement.click();
   }
 
   prepareOverlayInfo()

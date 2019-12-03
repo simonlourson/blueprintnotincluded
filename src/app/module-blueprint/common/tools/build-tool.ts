@@ -157,6 +157,11 @@ export class BuildTool implements ITool
     
   }
 
+  mouseDown(tile: Vector2) {
+    this.templateItemToBuild.position = tile;
+    this.build();
+  }
+
   dragStepByStep(tileStart: Vector2, tileStop: Vector2) {
     
     

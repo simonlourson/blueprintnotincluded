@@ -20,7 +20,7 @@ export class ComponentSideSelectionToolComponent implements OnInit {
 
   @ViewChild('buildingsAccordion', {static: true}) buildingsAccordion: Accordion
 
-  constructor(private cd: ChangeDetectorRef, private blueprintService: BlueprintService, private toolService: ToolService) 
+  constructor(private blueprintService: BlueprintService, public toolService: ToolService) 
   { 
   }
 

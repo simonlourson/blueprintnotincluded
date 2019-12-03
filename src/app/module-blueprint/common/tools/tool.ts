@@ -16,6 +16,7 @@ export interface ITool
   // Interaction
   leftClick(tile: Vector2);
   rightClick(tile: Vector2);
+  mouseDown(tile: Vector2);
   mouseOut();
   hover(tile: Vector2);
   drag(tileStart: Vector2, tileStop: Vector2);

@@ -16,7 +16,6 @@ import { BuildTool } from './build-tool';
 @Injectable()
 export class SelectTool implements ITool
 {
-  public headerString: string;
   public sameItemCollections: SameItemCollection[];
 
   constructor(private blueprintService: BlueprintService, private cameraService: CameraService) {
@@ -48,24 +47,28 @@ export class SelectTool implements ITool
         tileSelected.push(new Vector2(x, y));
       
     if (tileSelected.length > 0) {
-      // TODO fix this
-      this.headerString = 'Selected : Multiple tiles';
 
       for (let tile of tileSelected) {
         let itemsInTile = this.blueprintService.blueprint.getTemplateItemsAt(tile);
         for (let item of itemsInTile) this.addToCollection(item);
       }
 
+      // TODO adjusted zindex here
       this.sameItemCollections = this.sameItemCollections.sort((i1, i2) => { return i2.oniItem.zIndex - i1.oniItem.zIndex; });
 
       let firstSelected: BlueprintItem = null;
+      let selectedOne = false;
       this.sameItemCollections.map((itemCollection) => {
-        if (itemCollection.items != null && itemCollection.items.length > 0 && itemCollection.items[0].isOpaque) {
+        if (!selectedOne && itemCollection.items != null && itemCollection.items.length > 0 && itemCollection.items[0].isOpaque) {
+          selectedOne = true;
           firstSelected = itemCollection.items[0];
 
           let newDate = new Date();
           if (firstSelected == this.lastSelected && this.lastSelectedDate != null && newDate.getTime() - this.lastSelectedDate.getTime() < 500) this.selectAll(firstSelected.oniItem);
-          else itemCollection.selected = true;
+          else {
+            itemCollection.selected = true;
+            
+          }
 
           this.lastSelected = firstSelected;
           this.lastSelectedDate = newDate;
@@ -168,6 +171,8 @@ export class SelectTool implements ITool
   }
 
   mouseOut() {}
+
+  mouseDown(tile: Vector2) {}
   
   leftClick(tile: Vector2) {
     this.selectFromBox(tile, tile);

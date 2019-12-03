@@ -7,6 +7,8 @@
   </span>
   <div *ngIf="f.username.invalid && (f.username.dirty || f.username.touched)" class="error-red" >
     <div *ngIf="f.username.errors.required">Username is required.</div>
+    <div *ngIf="f.username.errors.invalidChars">Invalid characters in username</div>
+    <div *ngIf="f.username.errors.tooLong">Username is too long</div>
   </div>
 
   <br>

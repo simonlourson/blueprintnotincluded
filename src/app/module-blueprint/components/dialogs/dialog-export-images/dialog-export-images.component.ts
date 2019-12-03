@@ -23,6 +23,8 @@ export class DialogExportImagesComponent implements OnInit {
 
   exportOptions: ExportImageOptions;
 
+  get disabled() { return !(this.exportOptions.selectedOverlays.length>0) }
+
   @Output() onSaveImages = new EventEmitter<ExportImageOptions>();
 
   get finalSize(): string { return this.blueprintSize == null ? '' : this.blueprintSize.x * this.exportOptions.pixelsPerTile + 'x' + this.blueprintSize.y * this.exportOptions.pixelsPerTile }

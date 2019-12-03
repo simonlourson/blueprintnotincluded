@@ -5,6 +5,7 @@ import { BlueprintService } from '../../../services/blueprint-service';
 import { Blueprint } from '../../../common/blueprint/blueprint';
 import { MessageService } from 'primeng/api';
 import { AuthenticationService } from '../../../services/authentification-service';
+import { BlueprintNameValidationDirective } from 'src/app/module-blueprint/directives/blueprint-name-validation.directive';
 
 @Component({
   selector: 'app-component-save-dialog',
@@ -18,7 +19,7 @@ export class ComponentSaveDialogComponent implements OnInit {
   @Output() onSave = new EventEmitter();
   
   saveBlueprintForm = new FormGroup({
-    name: new FormControl('', [Validators.required])
+    name: new FormControl('', [Validators.required, BlueprintNameValidationDirective.validateBlueprintName])
   });
 
   get f() { return this.saveBlueprintForm.controls; }
@@ -30,7 +31,7 @@ export class ComponentSaveDialogComponent implements OnInit {
   overwrite: boolean = false;
 
   constructor(
-    private blueprintService: BlueprintService, 
+    public blueprintService: BlueprintService, 
     private messageService: MessageService,
     //TODO should not be public
     public authService: AuthenticationService) { }
@@ -75,9 +76,10 @@ export class ComponentSaveDialogComponent implements OnInit {
 
   }
 
-  // TODO in browser also
   handleSaveError()
   {
+    this.hideDialog();
+    this.messageService.add({severity:'error', summary:'Error saving blueprint'});
     this.working = false;
   }
 

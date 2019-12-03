@@ -34,6 +34,10 @@ export class ItemCollectionInfoComponent implements OnInit, IObsSelected {
     this.toolService.buildTool.changeItem(BlueprintHelpers.createInstance(this.itemCollection.oniItem.id) );
   }
 
+  selectEvery() {
+    this.toolService.selectTool.selectAll(this.itemCollection.oniItem);
+  }
+
   selected() {
     this.focusElement.nativeElement.focus();
   }

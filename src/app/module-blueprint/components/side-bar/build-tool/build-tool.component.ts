@@ -38,7 +38,7 @@ export class ComponentSideBuildToolComponent implements OnInit, IObsBuildItemCha
 
   @ViewChild('focusTarget', {static: true}) focusTarget: ElementRef
 
-  constructor(private toolService: ToolService) 
+  constructor(public toolService: ToolService) 
   {
 
     this.categories = []
