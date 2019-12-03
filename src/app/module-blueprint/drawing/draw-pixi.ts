@@ -5,7 +5,9 @@ import { CameraService } from "../services/camera-service";
 import { Vector2 } from "../common/vector2";
 import { SpriteInfo } from './sprite-info';
 import { ComponentMenuComponent } from '../components/component-menu/component-menu.component';
-declare var PIXI: any;
+
+import {  } from 'pixi.js-legacy';
+declare var PIXI: any;
 
 export class DrawPixi
 {
@@ -29,7 +31,7 @@ export class DrawPixi
     options.width = canvas.nativeElement.width;
     options.height = canvas.nativeElement.height;
     options.autoResize = true;
-    //options.forceCanvas = true;
+    //options.forceCanvas = true; 
     
     PIXI.utils.skipHello();
     this.pixiApp = new PIXI.Application(options);

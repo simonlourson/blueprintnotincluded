@@ -28,11 +28,13 @@ import { BlueprintItem } from '../../common/blueprint/blueprint-item';
 import { TechnicalRepack } from '../../common/technical-repack';
 import { BlueprintService, ExportImageOptions } from '../../services/blueprint-service';
 import { ToolService } from '../../services/tool-service';
-import { Container } from 'pixi.js';
 import { read } from 'fs';
 import { BinController } from '../../common/bin-packing/bin-controller';
 import { IObsBuildItemChanged } from '../../common/tools/build-tool';
 import { DrawHelpers } from '../../drawing/draw-helpers';
+
+import {  } from 'pixi.js-legacy';
+declare var PIXI: any;
 
 
 @Component({
@@ -323,7 +325,7 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
       let rt = new PIXI.RenderTexture(brt);
 
       let graphics = new PIXI.Graphics();
-      let container = new Container();
+      let container = new PIXI.Container();
       container.addChild(graphics);
 
       for (let spriteInfo of newSpriteInfos.filter((s) => { return s.textureName == textureBaseString + trayIndex; })) {
@@ -417,7 +419,7 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
     exportCamera.setHardZoom(thumbnailTileSize);
     exportCamera.cameraOffset = cameraOffset;
     exportCamera.overlay = Overlay.Base;
-    exportCamera.container = new Container();
+    exportCamera.container = new PIXI.Container();
     exportCamera.container.sortableChildren = true;
 
     let graphics = new PIXI.Graphics();
@@ -471,7 +473,7 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
     let exportCamera = new CameraService();
     exportCamera.setHardZoom(tileSize);
     exportCamera.cameraOffset = new Vector2(-topLeft.x + 1, bottomRight.y + 1);
-    exportCamera.container = new Container();
+    exportCamera.container = new PIXI.Container();
     exportCamera.container.sortableChildren = true;
 
     let graphics = new PIXI.Graphics();

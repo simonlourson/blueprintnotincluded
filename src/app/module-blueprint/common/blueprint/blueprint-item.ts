@@ -12,13 +12,13 @@ import { ComposingElement } from "../composing-element";
 import { Blueprint } from "./blueprint";
 import { TemplateItemCloneable } from "./template-item-cloneable";
 import { OniCell } from "./io/oni/oni-cell";
-import { Container } from 'pixi.js';
 import { DrawPixi } from '../../drawing/draw-pixi';
 import { DrawPart } from '../../drawing/draw-part';
 import { BniBuilding } from './io/bni/bni-building';
 import { Inject } from '@angular/core';
-declare var PIXI: any;
-//import { Texture, BaseTexture, Rectangle } from "pixi.js";
+
+import {  } from 'pixi.js-legacy';
+declare var PIXI: any;
 
 export class BlueprintItem implements TemplateItemCloneable<BlueprintItem>
 {
@@ -410,7 +410,7 @@ export class BlueprintItem implements TemplateItemCloneable<BlueprintItem>
 
       if (this.container == null) 
       {
-        this.container = new Container();
+        this.container = new PIXI.Container();
         this.container.sortableChildren = true;
         camera.container.addChild(this.container);
       }

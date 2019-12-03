@@ -31,7 +31,7 @@
               "node_modules/primeflex/primeflex.css"
             ],
             "scripts": [
-              "node_modules/pixi.js/dist/pixi.min.js"
+              "node_modules/pixi.js-legacy/dist/pixi-legacy.min.js"
             ]
           },
           "configurations": {
@@ -103,7 +103,7 @@
               "node_modules/primeflex/primeflex.css"
             ],
             "scripts": [
-              "node_modules/pixi.js/dist/pixi.min.js"
+              "node_modules/pixi.js-legacy/dist/pixi-legacy.min.js"
             ]
           }
         },

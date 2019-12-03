@@ -3,7 +3,9 @@ import { ZIndex, Overlay } from "../common/overlay-type";
 import { Injectable } from '@angular/core';
 import { OniItem } from '../common/oni-item';
 import { DrawHelpers } from '../drawing/draw-helpers';
-import { Container } from 'pixi.js';
+
+import {  } from 'pixi.js-legacy';
+declare var PIXI: any;
 
 @Injectable({ providedIn: 'root' })
 export class CameraService
@@ -32,7 +34,7 @@ export class CameraService
   private targetZoom: number;
   private lastZoomCenter: Vector2;
 
-  container: Container;
+  container: PIXI.Container;
 
   // For classes that want to use the service and are not created by angular
   static cameraService: CameraService;
