@@ -1,7 +1,12 @@
 <div #focusElement tabindex="0"></div>
 {{nbItems}}<br>
 
-<img [src]="itemCollection.oniItem.iconUrl" height="70px"><br>
+<img [src]="itemCollection.oniItem.iconUrl" height="70px">
+<br>
+<app-buildable-element-dropdown 
+  [oniItem]="itemCollection.oniItem">
+</app-buildable-element-dropdown>
+<br>
 <button pButton type="button" class="ui-button buttonspace" icon="pi pi-clone" (click)="buildingsCopy()" pTooltip="Build this type of building"></button>
 <button pButton type="button" class="ui-button buttonspace" icon="pi pi-search-plus" (click)="selectEvery()" pTooltip="Select every {{itemCollection.oniItem.name}}"></button>
 <button pButton type="button" class="ui-button buttonspace" icon="pi pi-trash" (click)="buildingsDestroy()" pTooltip="Destroy these buildings (Delete key)"></button>

@@ -2,7 +2,6 @@ import { Component, OnInit, Output, EventEmitter, ViewChild, ElementRef } from '
 import { OniItem } from '../../../common/oni-item';
 import {SelectItem} from 'primeng/api';
 import { BlueprintItem } from '../../../common/blueprint/blueprint-item';
-import { ComposingElement } from '../../../common/composing-element';
 import { Blueprint } from '../../../common/blueprint/blueprint';
 import { ToolType } from '../../../common/tools/tool';
 import { TileInfo } from '../../../common/tile-info';
@@ -47,6 +46,8 @@ export class ComponentSideBuildToolComponent implements OnInit, IObsBuildItemCha
     this.toolService.buildTool.subscribeBuildItemChanged(this);
     this.toolService.subscribeToolChanged(this);
   }
+
+  // TODO the template for the dropdowns fixes the width, whereas the template for the list fixes the height
 
   ngOnInit() {
     let allCategories = {label:BuildMenuCategory.allCategories.categoryName, value:BuildMenuCategory.allCategories}

@@ -1,12 +1,12 @@
 import { Component, OnInit, Input, Output, EventEmitter, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { BlueprintItem } from '../../../common/blueprint/blueprint-item';
-import { ComposingElement } from '../../../common/composing-element';
 import { BlueprintItemWire } from '../../../common/blueprint/blueprint-item-wire';
 import { Orientation } from '../../../common/oni-item';
 import { SelectItem } from 'primeng/api';
 import { ToolType } from '../../../common/tools/tool';
 import { BlueprintService } from '../../../services/blueprint-service';
 import { ToolService } from 'src/app/module-blueprint/services/tool-service';
+import { BuildableElement } from 'src/app/module-blueprint/common/bexport/b-element';
 
 @Component({
   selector: 'app-tile-info',
@@ -19,14 +19,12 @@ export class TileInfoComponent implements OnInit, OnDestroy {
   @Input() templateItem: BlueprintItem;
   @Input() build: boolean;
 
-  get elements() { return ComposingElement.elements; }
   get showColor() { return this.templateItem instanceof BlueprintItemWire }
   get showOrientation() { return this.templateItem.oniItem.orientations.length > 1 }
 
   constructor(private blueprintService: BlueprintService, private toolService: ToolService) { }
 
   ngOnInit() {
-
   }
 
   ngOnDestroy(): void {

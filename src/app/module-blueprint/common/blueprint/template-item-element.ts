@@ -88,6 +88,6 @@ export class TemplateItemElement extends BlueprintItem implements TemplateItemCl
 
   public draw(ctx: CanvasRenderingContext2D, camera: CameraService)
   {
-    if (this.correctOverlay && this.element.color != null) DrawHelpers.drawFullRectangle(ctx, camera, this.topLeft, this.bottomRight, this.element.color);
+    //if (this.correctOverlay && this.element.color != null) DrawHelpers.drawFullRectangle(ctx, camera, this.topLeft, this.bottomRight, this.element.color);
   }
 }

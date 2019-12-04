@@ -23,6 +23,7 @@ export class BBuilding
   spriteInfos: BSpriteInfo[];
   spriteModifiers : BSpriteModifier[];
   utilities: UtilityConnection[];
+  materialCategory: string[];
 
   dragBuild: boolean;
   objectLayer: number;

@@ -39,7 +39,6 @@ import { TileInfoComponent } from './components/side-bar/tile-info/tile-info.com
 import { UsernameValidationDirective } from './directives/username-validation.directive';
 import { ComponentSideSelectionToolComponent } from './components/side-bar/selection-tool/selection-tool.component';
 import { KeyboardDirective } from './directives/keyboard.directive';
-import { ComponentElementKeyPanelComponent } from './components/component-element-key-panel/component-element-key-panel.component';
 import { ComponentLoginDialogComponent } from './components/user-auth/login-dialog/login-dialog.component';
 import { RegisterFormComponent } from './components/user-auth/register-form/register-form.component';
 import { CheckDuplicateService } from './services/check-duplicate-service';
@@ -59,6 +58,7 @@ import { DialogBrowseComponent } from './components/dialogs/dialog-browse/dialog
 import { DialogExportImagesComponent } from './components/dialogs/dialog-export-images/dialog-export-images.component';
 import { BlueprintNameValidationDirective } from './directives/blueprint-name-validation.directive';
 import { LikeWidgetComponent } from './components/like-widget/like-widget.component';
+import { BuildableElementDropdownComponent } from './components/side-bar/buildable-element-dropdown/buildable-element-dropdown.component';
 
 @NgModule({
   imports: [
@@ -69,7 +69,7 @@ import { LikeWidgetComponent } from './components/like-widget/like-widget.compon
     RecaptchaV3Module,
     BrowserAnimationsModule
   ],
-  declarations: [UsernameValidationDirective, BlueprintNameValidationDirective, ComponentCanvasComponent, MouseWheelDirective, DragAndDropDirective, KeyboardDirective, ComponentMenuComponent, ComponentSidepanelComponent, ComponentBlueprintParentComponent, TileInfoComponent, ComponentSaveDialogComponent, ComponentSideBuildToolComponent, ComponentSideSelectionToolComponent, ComponentElementKeyPanelComponent, ComponentLoginDialogComponent, RegisterFormComponent, LoginFormComponent, DialogShareUrlComponent, ItemCollectionInfoComponent, DialogBrowseComponent, DialogExportImagesComponent, LikeWidgetComponent],
+  declarations: [UsernameValidationDirective, BlueprintNameValidationDirective, ComponentCanvasComponent, MouseWheelDirective, DragAndDropDirective, KeyboardDirective, ComponentMenuComponent, ComponentSidepanelComponent, ComponentBlueprintParentComponent, TileInfoComponent, ComponentSaveDialogComponent, ComponentSideBuildToolComponent, ComponentSideSelectionToolComponent, ComponentLoginDialogComponent, RegisterFormComponent, LoginFormComponent, DialogShareUrlComponent, ItemCollectionInfoComponent, DialogBrowseComponent, DialogExportImagesComponent, LikeWidgetComponent, BuildableElementDropdownComponent],
   providers: [CheckDuplicateService, AuthenticationService, BlueprintService, ToolService, SelectTool, BuildTool, DatePipe,
     { provide: RECAPTCHA_V3_SITE_KEY, useValue: '6LdS0b8UAAAAAGb8P_L33ypsdiS41Nu8q3CwRg_M' }
   ],

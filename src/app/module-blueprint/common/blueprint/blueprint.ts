@@ -8,7 +8,6 @@ import { BlueprintItem } from './blueprint-item';
 import { BlueprintItemWire } from "./blueprint-item-wire";
 import { BlueprintItemTile } from "./blueprint-item-tile";
 import { TemplateItemElement } from './template-item-element';
-import { ComposingElement } from '../composing-element';
 import { BniBlueprint } from './io/bni/bni-blueprint';
 import { BinaryReader, Encoding } from 'csharp-binary-stream';
 import { BniBuilding } from './io/bni/bni-building';
@@ -26,7 +25,6 @@ export class Blueprint
   constructor()
   {
     this.blueprintItems = [];
-    this.distinctElements = [];
 
     this.obeserversItemDestroyed = [];
   }
@@ -153,14 +151,6 @@ export class Blueprint
   public refreshOverlayInfo()
   {
     for (let templateItem of this.blueprintItems) templateItem.prepareOverlayInfo(this.currentOverlay);
-  }
-
-  distinctElements: ComposingElement[];
-  public prepareDistinctElements()
-  {
-    for (let templateItem of this.blueprintItems.filter(t => t.oniItem.isElement))
-      if (this.distinctElements.indexOf(templateItem.element) == -1)
-        this.distinctElements.push(templateItem.element)
   }
 
   public addTemplateItem(templateItem: BlueprintItem)

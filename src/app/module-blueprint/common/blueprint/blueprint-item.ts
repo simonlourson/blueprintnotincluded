@@ -8,7 +8,6 @@ import { CameraService } from "../../services/camera-service";
 import { ConnectionType, ConnectionHelper } from "../utility-connection";
 import { ZIndex, Overlay } from "../overlay-type";
 import { DrawHelpers, PermittedRotations } from "../../drawing/draw-helpers";
-import { ComposingElement } from "../composing-element";
 import { Blueprint } from "./blueprint";
 import { TemplateItemCloneable } from "./template-item-cloneable";
 import { OniCell } from "./io/oni/oni-cell";
@@ -27,7 +26,7 @@ export class BlueprintItem implements TemplateItemCloneable<BlueprintItem>
   static defaultScale = Vector2.One;
 
   public id: string;
-  public element: ComposingElement;
+  public element: string;
   public temperature: number;
 
   // Each template item should remember where it was added, to make removal easier
@@ -156,7 +155,7 @@ export class BlueprintItem implements TemplateItemCloneable<BlueprintItem>
           break;
       }
 
-      this.element = ComposingElement.getElement(building.element);
+      this.element = building.element;
       this.temperature = Math.floor(building.temperature);
 
       this.cleanUp();
@@ -187,7 +186,7 @@ export class BlueprintItem implements TemplateItemCloneable<BlueprintItem>
       cell.location_y == null ? 0 : cell.location_y
     );
 
-    this.element = ComposingElement.getElement(cell.element);
+    this.element = cell.element;
     this.temperature = Math.floor(cell.temperature);
     
     this.cleanUp();
@@ -233,7 +232,7 @@ export class BlueprintItem implements TemplateItemCloneable<BlueprintItem>
       this.position = Vector2.clone(original.position);
       this.rotation = original.rotation;
       this.scale = original.scale;
-      if (original.element != null) this.element = ComposingElement.getElement(original.element.elementId);
+      if (original.element != null) this.element = original.element;
       
       // TODO default temperature
       this.temperature = original.temperature;
@@ -259,7 +258,7 @@ export class BlueprintItem implements TemplateItemCloneable<BlueprintItem>
     {
       if (this.rotation == null) this.rotation = BlueprintItem.defaultRotation;
       if (this.scale == null) this.scale = BlueprintItem.defaultScale;
-      if (this.element == null) this.element = ComposingElement.unknownElement;
+      if (this.element == null) this.element = 'Void';
 
       if (this.orientation == null) this.changeOrientation(Orientation.Neutral);
       this.selected_ = false;

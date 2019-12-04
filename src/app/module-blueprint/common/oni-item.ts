@@ -8,6 +8,7 @@ import { ImageSource } from "../drawing/image-source";
 import { SpriteInfo } from "../drawing/sprite-info";
 import { SpriteModifier } from "../drawing/sprite-modifier";
 import { BSpriteInfo } from './bexport/b-sprite-info';
+import { BuildableElement } from './bexport/b-element';
 
 export class OniItem
 {
@@ -32,6 +33,7 @@ export class OniItem
   orientations: Orientation[];
   dragBuild: boolean;
   objectLayer: number; // TODO import enum?
+  buildableElements: BuildableElement[];
   
   private permittedRotations_: PermittedRotations;
   get permittedRotations() { return this.permittedRotations_; }
@@ -77,7 +79,9 @@ export class OniItem
     let imageId: string = original.textureName;
     let imageUrl: string = DrawHelpers.createUrl(imageId, false);
     ImageSource.AddImagePixi(imageId, imageUrl);
-    
+
+    this.buildableElements = BuildableElement.getElementsFromTags(original.materialCategory);
+
     this.imageId = imageId;
 
     this.utilityConnections = [];
@@ -119,6 +123,7 @@ export class OniItem
     if (this.permittedRotations == null) this.permittedRotations = PermittedRotations.Unrotatable;
     if (this.backColor == null) this.backColor = 0x000000;
     if (this.frontColor == null) this.frontColor = 0xFFFFFF;
+    if (this.buildableElements == null) this.buildableElements = [];
     
     if (Vector2.Zero.equals(this.size)) this.tileOffset = Vector2.Zero;
     else

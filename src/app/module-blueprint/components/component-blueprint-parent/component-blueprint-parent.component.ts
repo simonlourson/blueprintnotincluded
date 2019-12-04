@@ -16,14 +16,12 @@ import { Blueprint } from '../../common/blueprint/blueprint';
 import { SpriteModifier } from '../../drawing/sprite-modifier';
 import { ConnectionType } from '../../common/utility-connection';
 import { ZIndex, Overlay } from '../../common/overlay-type';
-import { ComposingElement } from '../../common/composing-element';
 import { SaveInfo } from '../../common/save-info';
 import { ActivatedRoute, Params, UrlSegment, convertToParamMap } from '@angular/router';
 import { BlueprintParams } from '../../common/params';
 import { ComponentMenuComponent, MenuCommand, MenuCommandType } from '../component-menu/component-menu.component';
 import { ToolType } from '../../common/tools/tool';
 import { BlueprintItem } from '../../common/blueprint/blueprint-item';
-import { ComponentElementKeyPanelComponent } from '../component-element-key-panel/component-element-key-panel.component';
 import { BlueprintItemTile } from '../../common/blueprint/blueprint-item-tile';
 import { BuildMenuCategory, BuildMenuItem } from '../../common/bexport/b-build-order';
 import { BBuilding } from '../../common/bexport/b-building';
@@ -41,6 +39,7 @@ import { DialogExportImagesComponent } from '../dialogs/dialog-export-images/dia
 import { ToolService } from '../../services/tool-service';
 import { DrawHelpers } from '../../drawing/draw-helpers';
 import { AuthenticationService } from '../../services/authentification-service';
+import { BuildableElement } from '../../common/bexport/b-element';
 
 /*
 TODO Feature List before release :
@@ -73,9 +72,6 @@ export class ComponentBlueprintParentComponent implements OnInit, IObsBlueprintC
 
   @ViewChild('sidePanel', {static: true})
   sidePanel: ComponentSidepanelComponent;
-
-  @ViewChild('elementKeyPanel', {static: true})
-  elementKeyPanel: ComponentElementKeyPanelComponent;
   
   @ViewChild('saveDialog', {static: true})
   saveDialog: ComponentSaveDialogComponent;
@@ -106,9 +102,9 @@ export class ComponentBlueprintParentComponent implements OnInit, IObsBlueprintC
     ImageSource.init();
     SpriteModifier.init();
     SpriteInfo.init();
-    ComposingElement.init();
     BuildMenuCategory.init();
     BuildMenuItem.init();
+    BuildableElement.init();
 
     this.blueprintService.subscribeBlueprintChanged(this);
 
@@ -146,6 +142,10 @@ export class ComponentBlueprintParentComponent implements OnInit, IObsBlueprintC
       .then(json => {
 
         this.database = json;
+
+        let elements: BuildableElement[] = json.elements;
+        BuildableElement.load(elements);
+
         let buildings: BBuilding[] = json.buildings;
         OniItem.load(buildings);
 

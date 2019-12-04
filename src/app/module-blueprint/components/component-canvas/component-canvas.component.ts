@@ -25,7 +25,6 @@ import { DrawPixi } from '../../drawing/draw-pixi';
 import * as JSZip from 'jszip';
 import { BSpriteInfo } from '../../common/bexport/b-sprite-info';
 import { BlueprintItem } from '../../common/blueprint/blueprint-item';
-import { TechnicalRepack } from '../../common/technical-repack';
 import { BlueprintService, ExportImageOptions } from '../../services/blueprint-service';
 import { ToolService } from '../../services/tool-service';
 import { read } from 'fs';
@@ -57,7 +56,6 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
   divCalcHeight: ElementRef;
 
   drawPixi: DrawPixi;
-  technicalRepack: TechnicalRepack;
 
   public get blueprint() { return this.blueprintService.blueprint; }
   constructor(
@@ -68,7 +66,6 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
     
     this.drawPixi = new DrawPixi();
 
-    this.technicalRepack = new TechnicalRepack();
   }
 
   private running: boolean;

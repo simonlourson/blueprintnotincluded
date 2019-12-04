@@ -3,3 +3,7 @@
   width: 100%;
 }
 
+.scrollable {
+  overflow-y: auto;
+  max-height: 60vh;
+}
