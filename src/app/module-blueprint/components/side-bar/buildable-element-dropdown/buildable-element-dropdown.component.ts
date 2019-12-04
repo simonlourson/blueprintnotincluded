@@ -26,14 +26,14 @@ export class BuildableElementDropdownComponent implements OnInit {
       this.elements = [];
       for (let element of this.oniItem.buildableElements) 
         this.elements.push({label:element.name, value:element});
-
+        
+      if (this.oniItem.buildableElements.length > 0) this.currentElement = this.oniItem.buildableElements[2]
         console.log(this.elements)
     }
   }
 
   elements: SelectItem[];
-
-  currentElement: Element;
+  currentElement: BuildableElement;
 
   constructor() { }
 

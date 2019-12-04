@@ -5,7 +5,6 @@
   (onFocus)="onFocus()"
   [options]="elements" 
   [style]="{'width':'100%'}" 
-  appendTo="body"
   [(ngModel)]="currentElement">
   <ng-template let-item pTemplate="selectedItem">
     <img src="{{item.value.iconUrl}}" style="height:20px;vertical-align:middle" />
