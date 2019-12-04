@@ -23,7 +23,13 @@
         </svg>
         <h4>Author : {{item.ownerName}}</h4>
         <h4>Created : {{this.datepipe.transform(item.createdAt, 'yyyy-MM-dd')}}</h4>
-        <h4>Modified : {{this.datepipe.transform(item.modifiedAt, 'yyyy-MM-dd')}}</h4>
+        <h4>Modified : {{this.datepipe.transform(item.modifiedAt, 'yyyy-MM-dd')}}</h4>        
+        <app-like-widget 
+          [blueprintId]="item.id" 
+          [nbLikes]="item.nbLikes" 
+          [likedByMe]="item.likedByMe"
+          [disabled]="!authService.isLoggedIn() || item.thumbnail == 'svg'">
+        </app-like-widget>
       </p-panel>
     </div>
   </div>

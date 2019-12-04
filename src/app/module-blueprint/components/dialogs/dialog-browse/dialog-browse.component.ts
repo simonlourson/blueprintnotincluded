@@ -4,6 +4,7 @@ import { BlueprintService } from 'src/app/module-blueprint/services/blueprint-se
 import { Dialog } from 'primeng/dialog';
 import { CameraService, IObsAnimationChanged } from 'src/app/module-blueprint/services/camera-service';
 import { DatePipe } from '@angular/common';
+import { AuthenticationService } from 'src/app/module-blueprint/services/authentification-service';
 
 @Component({
   selector: 'app-dialog-browse',
@@ -29,6 +30,7 @@ export class DialogBrowseComponent implements OnInit, AfterContentInit {
 
   constructor(
     private blueprintService: BlueprintService, 
+    private authService: AuthenticationService,
     public datepipe: DatePipe) { 
 
     let tempDate = new Date();
@@ -39,7 +41,9 @@ export class DialogBrowseComponent implements OnInit, AfterContentInit {
       createdAt: tempDate,
       modifiedAt: tempDate,
       thumbnail: 'svg',
-      tags: null
+      tags: null,
+      likedByMe: false,
+      nbLikes: 0
     };
 
     this.reset();

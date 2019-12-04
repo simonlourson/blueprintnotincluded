@@ -65,7 +65,8 @@ export class ComponentMenuComponent implements OnInit, IObsToolChanged, IObsOver
 
     this.overlayMenuItems = [];
     overlayList.map((overlay) => {
-      this.overlayMenuItems.push({label:'            '+DrawHelpers.overlayString[overlay], id:overlay.toString(), img:DrawHelpers.getOverlayUrl(overlay), command: (event) => { this.clickOverlay(event); }})
+      //this.overlayMenuItems.push({label:'            '+DrawHelpers.overlayString[overlay], id:overlay.toString(), img:DrawHelpers.getOverlayUrl(overlay), command: (event) => { this.clickOverlay(event); }})
+      this.overlayMenuItems.push({label:'            '+DrawHelpers.overlayString[overlay], id:overlay.toString(), command: (event) => { this.clickOverlay(event); }})
     });
 
     this.toolMenuItems = [
@@ -136,6 +137,10 @@ export class ComponentMenuComponent implements OnInit, IObsToolChanged, IObsOver
   clickTool(event: any, templateItem: BlueprintItem = null)
   {
     this.toolService.changeTool(event.item.id as ToolType);
+  }
+
+  userProfile() {
+    this.messageService.add({severity:'warn', summary:'User profile', detail:'Coming soon !!!'});
   }
 
   public askChangeTool(toolRequest: ToolRequest)

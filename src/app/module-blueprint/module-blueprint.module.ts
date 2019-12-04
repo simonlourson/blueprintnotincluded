@@ -58,6 +58,7 @@ import { ItemCollectionInfoComponent } from './components/side-bar/item-collecti
 import { DialogBrowseComponent } from './components/dialogs/dialog-browse/dialog-browse.component';
 import { DialogExportImagesComponent } from './components/dialogs/dialog-export-images/dialog-export-images.component';
 import { BlueprintNameValidationDirective } from './directives/blueprint-name-validation.directive';
+import { LikeWidgetComponent } from './components/like-widget/like-widget.component';
 
 @NgModule({
   imports: [
@@ -68,7 +69,7 @@ import { BlueprintNameValidationDirective } from './directives/blueprint-name-va
     RecaptchaV3Module,
     BrowserAnimationsModule
   ],
-  declarations: [UsernameValidationDirective, BlueprintNameValidationDirective, ComponentCanvasComponent, MouseWheelDirective, DragAndDropDirective, KeyboardDirective, ComponentMenuComponent, ComponentSidepanelComponent, ComponentBlueprintParentComponent, TileInfoComponent, ComponentSaveDialogComponent, ComponentSideBuildToolComponent, ComponentSideSelectionToolComponent, ComponentElementKeyPanelComponent, ComponentLoginDialogComponent, RegisterFormComponent, LoginFormComponent, DialogShareUrlComponent, ItemCollectionInfoComponent, DialogBrowseComponent, DialogExportImagesComponent],
+  declarations: [UsernameValidationDirective, BlueprintNameValidationDirective, ComponentCanvasComponent, MouseWheelDirective, DragAndDropDirective, KeyboardDirective, ComponentMenuComponent, ComponentSidepanelComponent, ComponentBlueprintParentComponent, TileInfoComponent, ComponentSaveDialogComponent, ComponentSideBuildToolComponent, ComponentSideSelectionToolComponent, ComponentElementKeyPanelComponent, ComponentLoginDialogComponent, RegisterFormComponent, LoginFormComponent, DialogShareUrlComponent, ItemCollectionInfoComponent, DialogBrowseComponent, DialogExportImagesComponent, LikeWidgetComponent],
   providers: [CheckDuplicateService, AuthenticationService, BlueprintService, ToolService, SelectTool, BuildTool, DatePipe,
     { provide: RECAPTCHA_V3_SITE_KEY, useValue: '6LdS0b8UAAAAAGb8P_L33ypsdiS41Nu8q3CwRg_M' }
   ],

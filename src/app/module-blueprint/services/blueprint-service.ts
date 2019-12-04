@@ -5,7 +5,7 @@ import { AuthenticationService } from './authentification-service';
 import { map } from 'rxjs/operators';
 import { IObsOverlayChanged, CameraService } from './camera-service';
 import { Overlay } from '../common/overlay-type';
-import { BlueprintListItem } from './messages/blueprint-list-response';
+import { BlueprintListItem, BlueprintLike } from './messages/blueprint-list-response';
 import { ComponentMenuComponent } from '../components/component-menu/component-menu.component';
 import { OniTemplate } from '../common/blueprint/io/oni/oni-template';
 import * as yaml from 'node_modules/js-yaml/lib/js-yaml';
@@ -30,6 +30,8 @@ export class BlueprintService implements IObsOverlayChanged
   }
   thumbnail: string;
 
+  get savedBlueprint() { return this.id != null; }
+
   static blueprintService: BlueprintService;
 
   constructor(private http: HttpClient, private authService: AuthenticationService, private cameraService: CameraService) {
@@ -42,6 +44,8 @@ export class BlueprintService implements IObsOverlayChanged
 
 
     BlueprintService.blueprintService = this;
+
+    this.reset();
   }
 
   overlayChanged(newOverlay: Overlay) {
@@ -111,10 +115,15 @@ export class BlueprintService implements IObsOverlayChanged
 
   newBlueprint() {
     this.name = 'new blueprint';
-    this.id = null;
+    this.reset();
     let newBlueprint = new Blueprint();
     this.observersBlueprintChanged.map((observer) => { observer.blueprintChanged(newBlueprint); })
   }
+
+  reset() {
+    this.id = null;
+    this.likedByMe = false;
+  }  
 
   // TODO return observable here so we can close the browse window on success?
   openBlueprintFromId(id: string) {
@@ -143,7 +152,9 @@ export class BlueprintService implements IObsOverlayChanged
           let blueprint = new Blueprint();
 
           this.id = response.id;
-          this.name = response.name
+          this.name = response.name;
+          this.likedByMe = response.likedByMe;
+          this.nbLikes = response.nbLikes;
           blueprint.importFromCloud(response.data);
           return blueprint;
         }
@@ -152,9 +163,11 @@ export class BlueprintService implements IObsOverlayChanged
 
     return request;
   }
-
+ 
   getBlueprints(olderThan: Date) { 
-    const request = this.http.get('/api/getblueprints?olderthan='+olderThan.getTime().toString()).pipe(
+    let parameterOlderThan = 'olderthan='+olderThan.getTime().toString();
+    let parameterUserId = 'userId='+ (this.authService.isLoggedIn() ? this.authService.getUserDetails()._id : '')
+    const request = this.http.get('/api/getblueprints?'+parameterOlderThan+'&'+parameterUserId).pipe(
       map((response: any) => {
         let blueprintListItems = response as BlueprintListItem[];
         return blueprintListItems;
@@ -181,6 +194,19 @@ export class BlueprintService implements IObsOverlayChanged
     );
 
     return request;
+  }
+
+  nbLikes: number;
+  likedByMe: boolean;
+  likeBlueprint(blueprintId: string, like: boolean) {
+    this.likedByMe = !this.likedByMe;
+    let body: BlueprintLike = {
+      blueprintId: blueprintId,
+      like: like
+    }
+
+    // We don't care about the response
+    this.http.post('/api/likeblueprint', body, { headers: { Authorization: `Bearer ${this.authService.getToken()}` }}).subscribe();
   }
 }
 

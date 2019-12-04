@@ -15,4 +15,11 @@ export interface BlueprintListItem
   createdAt: Date;
   modifiedAt: Date;
   thumbnail: string;
+  nbLikes: number;
+  likedByMe: boolean;
+}
+
+export interface BlueprintLike {
+  blueprintId: string;
+  like: boolean;
 }

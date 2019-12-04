@@ -4,12 +4,15 @@
 <p-menubar 
   #menu 
   [model]="menuItems">
-  
-  <button *ngIf="!authService.isLoggedIn()" pButton icon="pi pi-sign-in"  label="Login" (click)="login()"></button>
-  <div *ngIf="authService.isLoggedIn()">
-    <!--TODO Show username-->
-    <button pButton class="ui-button-warning" icon="pi pi-sign-out" label="Logout" (click)="logout()"></button>
-  </div>
+    <div class="menu-line">
+      <div *ngIf="authService.isLoggedIn()" class="ui-inputgroup like-bloc">
+        <span class="ui-inputgroup-addon">Welcome, {{authService.getUserDetails().username}}</span>  
+        <button pButton type="button" icon="pi pi-user" (click)="userProfile()" pTooltip="User profile" tooltipPosition="bottom"></button>
+        <button pButton class="ui-button-warning" icon="pi pi-sign-out" (click)="logout()" pTooltip="Logout" tooltipPosition="bottom"></button>
+      </div>
+      
+      <button *ngIf="!authService.isLoggedIn()" pButton icon="pi pi-sign-in"  label="Login" (click)="login()"></button>
+    </div>
 </p-menubar>
 <input type="file" id="fileChooser" accept=".yaml" style="display: none" (change)="templateUpload($event)">
 <input type="file" id="fileChooserJson" accept=".json,.blueprint" style="display: none" (change)="templateUploadJson($event)">
