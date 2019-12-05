@@ -1,7 +1,26 @@
 
 <p-card header="Build Tool">
   <div #focusTarget tabindex="0"></div>
-  <div class="scrollable">
+  <div *ngIf="databaseLoaded">
+    <button pButton type="button" class="ui-button-secondary element-button" (click)="showCategories($event)" style="margin-bottom: 5px;">
+      <div class="building-panel-content">
+        <img src="{{currentItem.iconUrl}}" height="40px" />
+        <div class="left"></div>
+        <div>{{currentItem.name}}</div>
+        <div class="right"></div>
+      </div>
+    </button>
+    <p-overlayPanel #categoryPanel [appendTo]="'body'">
+      <div class="building-panel-content">
+        <div *ngFor="let buildableElement of buildableElements">
+          <button pButton type="button" class="ui-button-secondary element-button" [pTooltip]="buildableElement.name" (click)="chooseElement(buildableElement)" tooltipPosition="bottom">
+            <img src="{{buildableElement.iconUrl}}" height="40px" />
+          </button>
+        </div>
+      </div>
+    </p-overlayPanel>
+  </div>
+  <div>
   <p-dropdown 
     (onChange)="changeCategory()" 
     (onFocus)="onFocus()"
@@ -40,7 +59,7 @@
 
   <p-accordion *ngIf="toolService.buildTool.templateItemToBuild != null" #buildingsAccordion [(activeIndex)]="activeIndex" >
     
-    <p-accordionTab header="{{toolService.buildTool.templateItemToBuild.id}}">
+    <p-accordionTab header="{{toolService.buildTool.templateItemToBuild.oniItem.name}}">
       <app-tile-info [templateItem]=toolService.buildTool.templateItemToBuild [build]="true"></app-tile-info>
     </p-accordionTab>
   

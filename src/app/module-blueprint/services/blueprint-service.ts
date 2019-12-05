@@ -11,6 +11,7 @@ import { OniTemplate } from '../common/blueprint/io/oni/oni-template';
 import * as yaml from 'node_modules/js-yaml/lib/js-yaml';
 import { BniBlueprint } from '../common/blueprint/io/bni/bni-blueprint';
 import { BlueprintResponse } from './messages/blueprint-response';
+import { MdbBlueprint } from '../common/blueprint/io/mdb/mdb-blueprint';
 
 @Injectable({ providedIn: 'root' })
 export class BlueprintService implements IObsOverlayChanged
@@ -179,7 +180,7 @@ export class BlueprintService implements IObsOverlayChanged
 
   saveBlueprint(overwrite: boolean)
   {
-    let saveBlueprint = this.blueprint.cloneForExport();
+    let saveBlueprint = this.blueprint.toMdbBlueprint();
 
     let body = new SaveBlueprintMessage();
     body.overwrite = overwrite;
@@ -215,7 +216,7 @@ export class SaveBlueprintMessage
   overwrite: boolean;
   name: string;
   tags?: string[];
-  blueprint: Blueprint;
+  blueprint: MdbBlueprint;
   thumbnail: string;
 }
 

@@ -1,6 +1,7 @@
 
 <!--<p-menubar [model]="menuItems" [baseZIndex]="2" [autoZIndex]="false" >
 <button type="button" pButton icon="pi pi-bars" label="Menu" (click)="menu.toggle($event)"></button>-->
+
 <p-menubar 
   #menu 
   [model]="menuItems">
@@ -14,6 +15,7 @@
       <button *ngIf="!authService.isLoggedIn()" pButton icon="pi pi-sign-in"  label="Login" (click)="login()"></button>
     </div>
 </p-menubar>
+
 <input type="file" id="fileChooser" accept=".yaml" style="display: none" (change)="templateUpload($event)">
 <input type="file" id="fileChooserJson" accept=".json,.blueprint" style="display: none" (change)="templateUploadJson($event)">
 <input type="file" id="fileChooserBson" accept=".blueprint" style="display: none" (change)="templateUploadBson($event)">

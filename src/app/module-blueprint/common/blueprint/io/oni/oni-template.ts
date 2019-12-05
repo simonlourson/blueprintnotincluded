@@ -6,5 +6,4 @@ export interface OniTemplate
     name: string;
     buildings: OniBuilding[]
     cells: OniCell[]
-
 }

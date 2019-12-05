@@ -17,6 +17,8 @@ import { BniBuilding } from './io/bni/bni-building';
 import { Inject } from '@angular/core';
 
 import {  } from 'pixi.js-legacy';
+import { BuildableElement } from '../bexport/b-element';
+import { MdbBuilding } from './io/mdb/mdb-building';
 declare var PIXI: any;
 
 export class BlueprintItem implements TemplateItemCloneable<BlueprintItem>
@@ -26,8 +28,16 @@ export class BlueprintItem implements TemplateItemCloneable<BlueprintItem>
   static defaultScale = Vector2.One;
 
   public id: string;
-  public element: string;
   public temperature: number;
+
+  private element_: string;
+  public buildableElement: BuildableElement;
+
+  get element(): string { return this.element_; }
+  set element(value: string) {
+    this.element_ = value;
+    this.buildableElement = BuildableElement.getElement(this.element_);
+  }
 
   // Each template item should remember where it was added, to make removal easier
   public tileIndexes: number[];
@@ -258,7 +268,8 @@ export class BlueprintItem implements TemplateItemCloneable<BlueprintItem>
     {
       if (this.rotation == null) this.rotation = BlueprintItem.defaultRotation;
       if (this.scale == null) this.scale = BlueprintItem.defaultScale;
-      if (this.element == null) this.element = 'Void';
+      if (this.element == null) this.element = this.oniItem.defaultElement.id;
+
 
       if (this.orientation == null) this.changeOrientation(Orientation.Neutral);
       this.selected_ = false;
@@ -280,6 +291,20 @@ export class BlueprintItem implements TemplateItemCloneable<BlueprintItem>
 
     returnValue.copyFromForExport(this);
     returnValue.deleteDefaultForExport()
+
+    return returnValue;
+  }
+
+  public toMdbBuilding(): MdbBuilding {
+    let returnValue: MdbBuilding = {
+      id: this.id
+    }
+
+    returnValue.position = Vector2.clone(this.position);
+    returnValue.temperature = this.temperature;
+
+    if (this.element != this.oniItem.defaultElement.id) returnValue.element = this.element;
+    if (this.orientation != Orientation.Neutral) returnValue.orientation = this.orientation;
 
     return returnValue;
   }
@@ -319,7 +344,9 @@ export class BlueprintItem implements TemplateItemCloneable<BlueprintItem>
     this.topLeft = undefined;
     this.bottomRight = undefined;
 
-    this.element = undefined;
+    if (this.element != this.oniItem.defaultElement.id) this.element = undefined;
+    this.element_ = undefined;
+    this.buildableElement = undefined;
   }
 
     public prepareBoundingBox()

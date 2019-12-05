@@ -58,7 +58,7 @@ import { DialogBrowseComponent } from './components/dialogs/dialog-browse/dialog
 import { DialogExportImagesComponent } from './components/dialogs/dialog-export-images/dialog-export-images.component';
 import { BlueprintNameValidationDirective } from './directives/blueprint-name-validation.directive';
 import { LikeWidgetComponent } from './components/like-widget/like-widget.component';
-import { BuildableElementDropdownComponent } from './components/side-bar/buildable-element-dropdown/buildable-element-dropdown.component';
+import { BuildableElementPickerComponent } from './components/side-bar/buildable-element-picker/buildable-element-picker.component';
 
 @NgModule({
   imports: [
@@ -69,7 +69,7 @@ import { BuildableElementDropdownComponent } from './components/side-bar/buildab
     RecaptchaV3Module,
     BrowserAnimationsModule
   ],
-  declarations: [UsernameValidationDirective, BlueprintNameValidationDirective, ComponentCanvasComponent, MouseWheelDirective, DragAndDropDirective, KeyboardDirective, ComponentMenuComponent, ComponentSidepanelComponent, ComponentBlueprintParentComponent, TileInfoComponent, ComponentSaveDialogComponent, ComponentSideBuildToolComponent, ComponentSideSelectionToolComponent, ComponentLoginDialogComponent, RegisterFormComponent, LoginFormComponent, DialogShareUrlComponent, ItemCollectionInfoComponent, DialogBrowseComponent, DialogExportImagesComponent, LikeWidgetComponent, BuildableElementDropdownComponent],
+  declarations: [UsernameValidationDirective, BlueprintNameValidationDirective, ComponentCanvasComponent, MouseWheelDirective, DragAndDropDirective, KeyboardDirective, ComponentMenuComponent, ComponentSidepanelComponent, ComponentBlueprintParentComponent, TileInfoComponent, ComponentSaveDialogComponent, ComponentSideBuildToolComponent, ComponentSideSelectionToolComponent, ComponentLoginDialogComponent, RegisterFormComponent, LoginFormComponent, DialogShareUrlComponent, ItemCollectionInfoComponent, DialogBrowseComponent, DialogExportImagesComponent, LikeWidgetComponent, BuildableElementPickerComponent],
   providers: [CheckDuplicateService, AuthenticationService, BlueprintService, ToolService, SelectTool, BuildTool, DatePipe,
     { provide: RECAPTCHA_V3_SITE_KEY, useValue: '6LdS0b8UAAAAAGb8P_L33ypsdiS41Nu8q3CwRg_M' }
   ],

@@ -34,6 +34,7 @@ export class OniItem
   dragBuild: boolean;
   objectLayer: number; // TODO import enum?
   buildableElements: BuildableElement[];
+  defaultElement: BuildableElement;
   
   private permittedRotations_: PermittedRotations;
   get permittedRotations() { return this.permittedRotations_; }
@@ -81,6 +82,8 @@ export class OniItem
     ImageSource.AddImagePixi(imageId, imageUrl);
 
     this.buildableElements = BuildableElement.getElementsFromTags(original.materialCategory);
+    if (this.buildableElements.length > 0) this.defaultElement = this.buildableElements[0];
+    else this.defaultElement = BuildableElement.getElement('Unobtanium');
 
     this.imageId = imageId;
 

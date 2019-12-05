@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BuildableElementDropdownComponent } from './buildable-element-dropdown.component';
+import { BuildableElementPickerComponent } from './buildable-element-picker.component';
 
 describe('BuildableElementDropdownComponent', () => {
-  let component: BuildableElementDropdownComponent;
-  let fixture: ComponentFixture<BuildableElementDropdownComponent>;
+  let component: BuildableElementPickerComponent;
+  let fixture: ComponentFixture<BuildableElementPickerComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BuildableElementDropdownComponent ]
+      declarations: [ BuildableElementPickerComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BuildableElementDropdownComponent);
+    fixture = TestBed.createComponent(BuildableElementPickerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -14,6 +14,7 @@ import { BniBuilding } from './io/bni/bni-building';
 import { BlueprintHelpers } from './blueprint-helpers';
 import { DrawHelpers } from '../../drawing/draw-helpers';
 import { ControlContainer } from '@angular/forms';
+import { MdbBlueprint } from './io/mdb/mdb-blueprint';
 
 export class Blueprint
 {
@@ -216,6 +217,18 @@ export class Blueprint
     returnValue.innerYaml = undefined;
     returnValue.obeserversItemDestroyed = undefined;
 
+    return returnValue;
+  }
+
+  public toMdbBlueprint(): MdbBlueprint
+  {
+    let returnValue: MdbBlueprint = {
+      blueprintItems: []
+    }
+
+    for (let originalTemplateItem of this.blueprintItems) 
+      returnValue.blueprintItems.push(originalTemplateItem.toMdbBuilding());
+    
     return returnValue;
   }
 

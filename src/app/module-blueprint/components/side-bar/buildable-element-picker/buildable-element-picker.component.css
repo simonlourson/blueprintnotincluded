@@ -1,14 +1,4 @@
-.rightHandCells {
-  padding-left: 10px;
-  width: 100%;
-}
-
-.scrollable {
-  overflow-y: auto;
-  max-height: 60vh;
-}
-
-.building-panel-content {
+.element-panel-content {
   display: flex;
   flex-flow: row;
   align-items: center;

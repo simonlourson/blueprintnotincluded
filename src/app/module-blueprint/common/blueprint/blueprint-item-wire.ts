@@ -13,6 +13,7 @@ import { DrawPixi } from '../../drawing/draw-pixi';
 import { DrawPart } from '../../drawing/draw-part';
 import { Overlay } from '../overlay-type';
 import { BniBuilding } from './io/bni/bni-building';
+import { MdbBuilding } from './io/mdb/mdb-building';
 
 export class BlueprintItemWire extends BlueprintItem implements TemplateItemCloneable<BlueprintItemWire>
 {
@@ -73,6 +74,14 @@ export class BlueprintItemWire extends BlueprintItem implements TemplateItemClon
 
     returnValue.copyFromForExport(this);
     returnValue.deleteDefaultForExport()
+
+    return returnValue;
+  }
+
+  public toMdbBuilding(): MdbBuilding {
+    let returnValue = super.toMdbBuilding();
+
+    if (this.connections != 0) returnValue.connections = this.connections;
 
     return returnValue;
   }

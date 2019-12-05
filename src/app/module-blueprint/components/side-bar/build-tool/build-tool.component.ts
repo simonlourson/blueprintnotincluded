@@ -16,6 +16,7 @@ import { IObsTemplateItemChanged } from 'src/app/module-blueprint/common/tools/s
 import { IObsBuildItemChanged } from 'src/app/module-blueprint/common/tools/build-tool';
 import { BlueprintHelpers } from 'src/app/module-blueprint/common/blueprint/blueprint-helpers';
 import { Dropdown } from 'primeng/dropdown';
+import { OverlayPanel } from 'primeng/overlaypanel';
 
 
 
@@ -35,7 +36,7 @@ export class ComponentSideBuildToolComponent implements OnInit, IObsBuildItemCha
   currentCategory: BuildMenuCategory;
   currentItem: OniItem;
 
-  @ViewChild('focusTarget', {static: true}) focusTarget: ElementRef
+  @ViewChild('categoryPanel', {static: true}) categoryPanel: OverlayPanel
 
   constructor(public toolService: ToolService) 
   {
@@ -68,6 +69,10 @@ export class ComponentSideBuildToolComponent implements OnInit, IObsBuildItemCha
     this.databaseLoaded = true;
   }
 
+  showCategories(event: any) {
+    this.categoryPanel.show(event);
+  }
+
   updateItemList()
   {
     this.items = [];
@@ -92,11 +97,11 @@ export class ComponentSideBuildToolComponent implements OnInit, IObsBuildItemCha
   uiItemChanged()
   {
     this.toolService.buildTool.changeItem(BlueprintHelpers.createInstance(this.currentItem.id));
-    this.focusTarget.nativeElement.focus();
+    //this.focusTarget.nativeElement.focus();
   }
 
   onFocus() {
-    this.focusTarget.nativeElement.focus();
+    //this.focusTarget.nativeElement.focus();
   }
 
   // IObsBuildItemChanged
