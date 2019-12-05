@@ -7,13 +7,7 @@
 <div *ngIf="templateItem.id != 'Vacuum'">
 <img [src]="templateItem.oniItem.iconUrl" height="70px"><br>
 
-<app-buildable-element-picker 
-  [currentElement]="templateItem.buildableElement"
-  [buildableElements]="templateItem.oniItem.buildableElements"
-  (changeElement)="changeElement($event)">
-</app-buildable-element-picker>
 
-<div *ngIf="build && templateItem.oniItem.orientations.length > 1" >Press "O" to change item orientation</div>
 <button *ngIf="!build" pButton type="button" class="ui-button" icon="pi pi-clone" (click)="buildCopy($event)" pTooltip="Clone this building"></button>
 <button *ngIf="!build" pButton type="button" class="ui-button buttonspace" icon="pi pi-trash" (click)="buildDestroy($event)" pTooltip="Destroy this building (Delete key)"></button>
 <!--
@@ -22,7 +16,6 @@
 -->
 </div>
 
-<div *ngIf="templateItem.id == 'Vacuum'">Your ad here</div>
 
 
 <!--

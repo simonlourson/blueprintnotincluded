@@ -14,8 +14,26 @@
   align-items: center;
 }
 
+.building-panel-item-content {
+  display: flex;
+  max-width: 500px;
+  flex-flow: row;
+  flex-wrap: wrap;
+  justify-items: left;
+  align-items: center;
+}
+
+.building-panel-item {
+  flex: 1 1 20%;
+}
+
 .element-button {
   width: 100%;
+  height: 50px;
+  padding: 5px;
+}
+
+.element-button-fixed {
   height: 50px;
   padding: 5px;
 }

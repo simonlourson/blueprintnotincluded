@@ -17,6 +17,7 @@ import { IObsBuildItemChanged } from 'src/app/module-blueprint/common/tools/buil
 import { BlueprintHelpers } from 'src/app/module-blueprint/common/blueprint/blueprint-helpers';
 import { Dropdown } from 'primeng/dropdown';
 import { OverlayPanel } from 'primeng/overlaypanel';
+import { BuildableElement } from 'src/app/module-blueprint/common/bexport/b-element';
 
 
 
@@ -28,15 +29,19 @@ import { OverlayPanel } from 'primeng/overlaypanel';
 export class ComponentSideBuildToolComponent implements OnInit, IObsBuildItemChanged, IObsToolChanged {
 
   categories: SelectItem[];
-  items: SelectItem[];
+  items: OniItem[];
 
   // This is used by the accordeon
   activeIndex=0;
 
+  get buildMenuCategories() { return BuildMenuCategory.buildMenuCategories; }
+
   currentCategory: BuildMenuCategory;
   currentItem: OniItem;
 
-  @ViewChild('categoryPanel', {static: true}) categoryPanel: OverlayPanel
+  @ViewChild('categoryPanel', {static: true}) categoryPanel: OverlayPanel;
+  @ViewChild('itemPanel', {static: true}) itemPanel: OverlayPanel;
+  @ViewChild('itemPanelTarget', {static: true}) itemPanelTarget: ElementRef;
 
   constructor(public toolService: ToolService) 
   {
@@ -59,45 +64,40 @@ export class ComponentSideBuildToolComponent implements OnInit, IObsBuildItemCha
   databaseLoaded: boolean = false;
   oniItemsLoaded()
   {
-    for (let buildCategory of BuildMenuCategory.buildMenuCategories)
-      this.categories.push({label:buildCategory.categoryName, value:buildCategory});
-
-    this.currentCategory = BuildMenuCategory.buildMenuCategories[0];
-    this.changeCategory();
     this.currentItem = OniItem.getOniItem('Tile');
 
     this.databaseLoaded = true;
   }
 
   showCategories(event: any) {
-    this.categoryPanel.show(event);
+    this.categoryPanel.toggle(event);
+    if (this.itemPanel.visible) this.itemPanel.hide();
   }
 
-  updateItemList()
-  {
+  showItems(event: any, buildMenuCategory: BuildMenuCategory) {
     this.items = [];
-
     for (let buildMenuItem of BuildMenuItem.buildMenuItems)
-    {
-      if (this.currentCategory == BuildMenuCategory.allCategories || this.currentCategory.category == buildMenuItem.category)
-      {
+      if (buildMenuCategory.category == buildMenuItem.category) {
         let oniItem = OniItem.getOniItem(buildMenuItem.buildingId);
-        this.items.push({label:oniItem.id, value:oniItem});
+        this.items.push(oniItem);
       }
-    }
+
+    this.itemPanel.show(event);
   }
 
-  changeCategory()
-  {
-    this.updateItemList();
-    if (this.items.length >= 1) this.currentItem = this.items[0].value;
+  chooseItem(item: OniItem) {
+    this.itemPanel.hide();
+    this.currentItem = item;
     this.uiItemChanged();
+  }
+
+  changeElement(element: BuildableElement) {
+    this.toolService.buildTool.templateItemToBuild.element = element.id;
   }
 
   uiItemChanged()
   {
     this.toolService.buildTool.changeItem(BlueprintHelpers.createInstance(this.currentItem.id));
-    //this.focusTarget.nativeElement.focus();
   }
 
   onFocus() {
@@ -109,7 +109,6 @@ export class ComponentSideBuildToolComponent implements OnInit, IObsBuildItemCha
     let category = BuildMenuCategory.getCategoryFromItem(templateItem.oniItem);
     if (category != null) {
       if (this.currentCategory != BuildMenuCategory.allCategories) this.currentCategory = category;
-      this.updateItemList();
       
       this.currentItem = templateItem.oniItem;
     }

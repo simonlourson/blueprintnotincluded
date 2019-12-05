@@ -1,4 +1,7 @@
 
+
+
+
 <p-card header="Build Tool">
   <div #focusTarget tabindex="0"></div>
   <div *ngIf="databaseLoaded">
@@ -10,60 +13,34 @@
         <div class="right"></div>
       </div>
     </button>
-    <p-overlayPanel #categoryPanel [appendTo]="'body'">
-      <div class="building-panel-content">
-        <div *ngFor="let buildableElement of buildableElements">
-          <button pButton type="button" class="ui-button-secondary element-button" [pTooltip]="buildableElement.name" (click)="chooseElement(buildableElement)" tooltipPosition="bottom">
-            <img src="{{buildableElement.iconUrl}}" height="40px" />
-          </button>
-        </div>
-      </div>
-    </p-overlayPanel>
-  </div>
-  <div>
-  <p-dropdown 
-    (onChange)="changeCategory()" 
-    (onFocus)="onFocus()"
-    [options]=categories 
-    [style]="{'width':'100%'}" 
-    [(ngModel)]="currentCategory">
-    <ng-template let-item pTemplate="selectedItem">
-        <img src="{{item.value.categoryIconUrl}}" style="width:16px;vertical-align:middle" />
-        <span style="vertical-align:middle; margin-left: .5em">{{item.value.categoryName}}</span>
-    </ng-template>
-    <ng-template let-category pTemplate="item">
-      <div class="ui-helper-clearfix" style="position: relative;height: 30px;">
-          <img src="{{category.value.categoryIconUrl}}" style="height:30px;position:absolute;left:5px"/>
-          <div style="font-size:14px;float:right;margin-top:4px">{{category.value.categoryName}}</div>
-      </div>
-    </ng-template>
-  </p-dropdown>
-  <p-dropdown 
-    (onChange)="uiItemChanged()" 
-    (onFocus)="onFocus()"
-    [options]=items 
-    [style]="{'width':'100%'}" 
-    [(ngModel)]="currentItem"
-    filter="true">
-    <ng-template let-item pTemplate="selectedItem">
-        <img src="{{item.value.iconUrl}}" style="width:16px;vertical-align:middle" />
-        <span style="vertical-align:middle; margin-left: .5em">{{item.value.name}}</span>
-    </ng-template>
-    <ng-template let-item pTemplate="item">
-      <div class="ui-helper-clearfix" style="position: relative;height: 30px;">
-          <img src="{{item.value.iconUrl}}" style="height:30px;position:absolute;left:5px"/>
-          <div style="font-size:14px;float:right;margin-top:4px">{{item.value.name}}</div>
-      </div>
-    </ng-template>
-  </p-dropdown>
-
-  <p-accordion *ngIf="toolService.buildTool.templateItemToBuild != null" #buildingsAccordion [(activeIndex)]="activeIndex" >
-    
-    <p-accordionTab header="{{toolService.buildTool.templateItemToBuild.oniItem.name}}">
-      <app-tile-info [templateItem]=toolService.buildTool.templateItemToBuild [build]="true"></app-tile-info>
-    </p-accordionTab>
+    <app-buildable-element-picker 
+      [currentElement]="currentItem.defaultElement"
+      [buildableElements]="currentItem.buildableElements"
+      (changeElement)="changeElement($event)">
+    </app-buildable-element-picker>
   
-  </p-accordion>
+    <div *ngIf="currentItem.orientations.length > 1" >Press "O" to change item orientation</div>
   </div>
 </p-card>
+
+<p-overlayPanel #categoryPanel [appendTo]="'body'">
+  <div class="building-panel-content">
+    <div #itemPanelTarget></div>
+    <div *ngFor="let buildMenuCategory of buildMenuCategories">
+      <button pButton type="button" class="ui-button-secondary element-button" [pTooltip]="buildMenuCategory.categoryName" (click)="showItems($event, buildMenuCategory)" tooltipPosition="bottom">
+        <img src="{{buildMenuCategory.categoryIconUrl}}" height="40px" />
+      </button>
+    </div>
+  </div>
+</p-overlayPanel>
+
+<p-overlayPanel #itemPanel [appendTo]="'body'">
+  <div class="building-panel-item-content">
+    <div *ngFor="let item of items" class="building-panel-item">
+      <button pButton type="button" class="ui-button-secondary element-button-fixed" [pTooltip]="item.name" (click)="chooseItem(item)" tooltipPosition="bottom">
+        <img src="{{item.iconUrl}}" height="40px" />
+      </button>
+    </div>
+  </div>
+</p-overlayPanel>
 

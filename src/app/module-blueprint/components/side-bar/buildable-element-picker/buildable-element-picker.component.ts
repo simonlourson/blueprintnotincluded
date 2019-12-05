@@ -24,7 +24,7 @@ export class BuildableElementPickerComponent implements OnInit {
   }
 
   showElements(event: any) {
-    this.elementPanel.show(event);
+    this.elementPanel.toggle(event);
   }
 
   chooseElement(buildableElement: BuildableElement) {
