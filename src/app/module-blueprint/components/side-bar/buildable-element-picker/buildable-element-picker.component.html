@@ -1,19 +1,26 @@
 
-
-<div class="ui-clickable-icon element-button" (click)="showElements($event)" style="margin-bottom: 5px;">
-  <div class="element-panel-content">
-    <img src="{{currentElement.iconUrl}}" height="40px" />
-    <div class="left"></div>
-    <div>{{currentElement.name}}</div>
-    <div class="right"></div>
-  </div>
-</div>
-<p-overlayPanel #elementPanel [appendTo]="'body'">
-  <div class="element-panel-content">
-    <div *ngFor="let buildableElement of buildableElements">
-      <div class="ui-clickable-icon element-button" (click)="chooseElement(buildableElement)" [pTooltip]="buildableElement.name" tooltipPosition="bottom">
-        <img src="{{buildableElement.iconUrl}}" height="40px" />
+<p-fieldset legend="Elements">
+  <div *ngFor="let buildableElements of buildableElementsArray; let indexElement = index">
+    <div class="ui-clickable-icon element-button" (click)="showElements($event, indexElement)" style="margin-bottom: 5px;">
+      <div class="element-panel-content">
+        <img src="{{currentElement[indexElement].iconUrl}}" height="40px" />
+        <div class="left"></div>
+        <div>{{currentElement[indexElement].name}}</div>
+        <div class="right"></div>
       </div>
     </div>
+
+    <p-overlayPanel [appendTo]="'body'">
+      <div class="element-panel-content">
+        <div *ngFor="let buildableElement of buildableElementsArray[indexElement]">
+          <div class="ui-clickable-icon element-button" (click)="chooseElement(buildableElement, indexElement)" [pTooltip]="buildableElement.name" tooltipPosition="bottom">
+            <img src="{{buildableElement.iconUrl}}" height="40px" />
+          </div>
+        </div>
+      </div>
+    </p-overlayPanel>
   </div>
-</p-overlayPanel>
+
+
+</p-fieldset>
+

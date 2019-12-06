@@ -54,29 +54,30 @@ export class BuildableElement {
     return null;
   }
 
-  public static getElementsFromTag(tag: string, returnValue: BuildableElement[]): BuildableElement[] {
+  public static getElementsFromTag(tag: string): BuildableElement[] {
     
-    //console.log('getElementsFromTag');
-    //console.log(tag);
+    let returnValue: BuildableElement[] = []; 
 
     for (let element of BuildableElement.elements) 
       if (returnValue.indexOf(element) == -1 && (element.id == tag || element.oreTags.indexOf(tag) != -1) && element.oreTags.indexOf('BuildableAny') != -1 )
         returnValue.push(element);
 
-    //console.log(returnValue)
+    returnValue = returnValue.sort((i1, i2) => { return i1.buildMenuSort - i2.buildMenuSort; });
     return returnValue;
   }
 
-  public static getElementsFromTags(tags: string[]): BuildableElement[] {
+  public static getElementsFromTags(tags: string[]): BuildableElement[][] {
     //console.log('getElementsFromTags')
 
-    let returnValue: BuildableElement[] = [];
+    let returnValue: BuildableElement[][] = [];
 
-    for (let tag of tags)
-      BuildableElement.getElementsFromTag(tag, returnValue);
+    for (let indexTag = 0; indexTag < tags.length; indexTag++) {
+      returnValue[indexTag] = [];
+      returnValue[indexTag] = this.getElementsFromTag(tags[indexTag]);
+    }
 
     //console.log(returnValue)
-    returnValue = returnValue.sort((i1, i2) => { return i1.buildMenuSort - i2.buildMenuSort; });
+    
     return returnValue;
   }
 }

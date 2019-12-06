@@ -33,8 +33,8 @@ export class OniItem
   orientations: Orientation[];
   dragBuild: boolean;
   objectLayer: number; // TODO import enum?
-  buildableElements: BuildableElement[];
-  defaultElement: BuildableElement;
+  buildableElementsArray: BuildableElement[][];
+  defaultElement: BuildableElement[];
   
   private permittedRotations_: PermittedRotations;
   get permittedRotations() { return this.permittedRotations_; }
@@ -81,9 +81,13 @@ export class OniItem
     let imageUrl: string = DrawHelpers.createUrl(imageId, false);
     ImageSource.AddImagePixi(imageId, imageUrl);
 
-    this.buildableElements = BuildableElement.getElementsFromTags(original.materialCategory);
-    if (this.buildableElements.length > 0) this.defaultElement = this.buildableElements[0];
-    else this.defaultElement = BuildableElement.getElement('Unobtanium');
+    this.buildableElementsArray = BuildableElement.getElementsFromTags(original.materialCategory);
+    this.defaultElement = [];
+    for (let indexElements = 0; indexElements < this.buildableElementsArray.length; indexElements++) {
+      let buildableElement = this.buildableElementsArray[indexElements];
+      if (buildableElement.length > 0) this.defaultElement[indexElements] = buildableElement[0];
+      else this.defaultElement[indexElements] = BuildableElement.getElement('Unobtanium');
+    }
 
     this.imageId = imageId;
 
@@ -126,7 +130,7 @@ export class OniItem
     if (this.permittedRotations == null) this.permittedRotations = PermittedRotations.Unrotatable;
     if (this.backColor == null) this.backColor = 0x000000;
     if (this.frontColor == null) this.frontColor = 0xFFFFFF;
-    if (this.buildableElements == null) this.buildableElements = [];
+    if (this.buildableElementsArray == null) this.buildableElementsArray = [];
     
     if (Vector2.Zero.equals(this.size)) this.tileOffset = Vector2.Zero;
     else

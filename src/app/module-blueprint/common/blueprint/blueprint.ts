@@ -63,7 +63,7 @@ export class Blueprint
         if (t.oniItem.isElement)
         {
           elementAlreadyOnTile = true;
-          if (t.element != newTemplateItem.element) throw new Error('Two different elements on the same tile');
+          //if (t.element != newTemplateItem.element) throw new Error('Two different elements on the same tile');
         }
       }
     }

@@ -4,7 +4,7 @@ export interface MdbBuilding {
   id: string;
   temperature?: number;
   position?: Vector2;
-  element?: string;
+  elements?: string[];
   connections?: number;
   orientation?: number;
 }

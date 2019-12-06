@@ -121,10 +121,10 @@ export class ComponentBlueprintParentComponent implements OnInit, IObsBlueprintC
       this.route.params.subscribe((params: Params): void => {
         if (params.id != null) this.blueprintService.openBlueprintFromId(params.id);
       });
-    })
+    })/*
     .catch((error) => {
       this.messageService.add({severity:'error', summary:'Error loading database' , detail:error, sticky:true});   
-    });
+    });*/
 
   }
 

@@ -3,11 +3,13 @@
 
 <img [src]="itemCollection.oniItem.iconUrl" height="70px">
 
+<!--
 <app-buildable-element-picker 
   [currentElement]="itemCollection.items[0].buildableElement"
   [buildableElements]="itemCollection.oniItem.buildableElements"
   (changeElement)="changeElement($event)">
 </app-buildable-element-picker>
+-->
 
 <button pButton type="button" class="ui-button buttonspace" icon="pi pi-clone" (click)="buildingsCopy()" pTooltip="Build this type of building"></button>
 <button pButton type="button" class="ui-button buttonspace" icon="pi pi-search-plus" (click)="selectEvery()" pTooltip="Select every {{itemCollection.oniItem.name}}"></button>

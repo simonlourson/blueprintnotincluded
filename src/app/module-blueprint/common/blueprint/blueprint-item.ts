@@ -30,13 +30,10 @@ export class BlueprintItem implements TemplateItemCloneable<BlueprintItem>
   public id: string;
   public temperature: number;
 
-  private element_: string;
-  public buildableElement: BuildableElement;
-
-  get element(): string { return this.element_; }
-  set element(value: string) {
-    this.element_ = value;
-    this.buildableElement = BuildableElement.getElement(this.element_);
+  public buildableElements: BuildableElement[];
+  public setElement(elementId: string, index: number) {
+    if (this.buildableElements == null) this.buildableElements = [];
+    this.buildableElements[index] = BuildableElement.getElement(elementId);
   }
 
   // Each template item should remember where it was added, to make removal easier
@@ -165,7 +162,7 @@ export class BlueprintItem implements TemplateItemCloneable<BlueprintItem>
           break;
       }
 
-      this.element = building.element;
+      this.setElement(building.element, 0);
       this.temperature = Math.floor(building.temperature);
 
       this.cleanUp();
@@ -196,7 +193,7 @@ export class BlueprintItem implements TemplateItemCloneable<BlueprintItem>
       cell.location_y == null ? 0 : cell.location_y
     );
 
-    this.element = cell.element;
+    //this.element = cell.element;
     this.temperature = Math.floor(cell.temperature);
     
     this.cleanUp();
@@ -242,7 +239,10 @@ export class BlueprintItem implements TemplateItemCloneable<BlueprintItem>
       this.position = Vector2.clone(original.position);
       this.rotation = original.rotation;
       this.scale = original.scale;
-      if (original.element != null) this.element = original.element;
+      if (original.buildableElements != null)
+        for (let indexElement = 0; indexElement < original.buildableElements.length; indexElement++)
+          if (original.buildableElements[indexElement] != null) this.setElement(original.buildableElements[indexElement].id, indexElement);
+          else this.setElement(this.oniItem.defaultElement[indexElement].id, indexElement);
       
       // TODO default temperature
       this.temperature = original.temperature;
@@ -268,8 +268,11 @@ export class BlueprintItem implements TemplateItemCloneable<BlueprintItem>
     {
       if (this.rotation == null) this.rotation = BlueprintItem.defaultRotation;
       if (this.scale == null) this.scale = BlueprintItem.defaultScale;
-      if (this.element == null) this.element = this.oniItem.defaultElement.id;
-
+      
+      if (this.buildableElements == null) this.buildableElements = [];
+      for (let indexElement = 0; indexElement < this.oniItem.buildableElementsArray.length; indexElement++)
+        if (this.buildableElements[indexElement] == null)
+          this.setElement(this.oniItem.defaultElement[indexElement].id, indexElement);
 
       if (this.orientation == null) this.changeOrientation(Orientation.Neutral);
       this.selected_ = false;
@@ -303,7 +306,17 @@ export class BlueprintItem implements TemplateItemCloneable<BlueprintItem>
     returnValue.position = Vector2.clone(this.position);
     returnValue.temperature = this.temperature;
 
-    if (this.element != this.oniItem.defaultElement.id) returnValue.element = this.element;
+    let elements: string[] = [];
+    let exportElements = false;
+
+    for (let indexElement = 0; indexElement < this.buildableElements.length; indexElement++)
+      if (this.buildableElements[indexElement] != this.oniItem.defaultElement[indexElement]) {
+        elements[indexElement] = this.buildableElements[indexElement].id;
+        exportElements = true;
+      }
+
+    if (exportElements) returnValue.elements = elements;
+
     if (this.orientation != Orientation.Neutral) returnValue.orientation = this.orientation;
 
     return returnValue;
@@ -321,7 +334,11 @@ export class BlueprintItem implements TemplateItemCloneable<BlueprintItem>
 
   public copyFromForExport(original: BlueprintItem)
   {
-    this.element = original.element;
+    if (original.buildableElements != null)
+        for (let indexElement = 0; indexElement < original.buildableElements.length; indexElement++)
+          if (original.buildableElements[indexElement] != null) this.setElement(original.buildableElements[indexElement].id, indexElement);
+          else this.setElement(this.oniItem.defaultElement[indexElement].id, indexElement);
+
     this.temperature = original.temperature;
     this.position = original.position;
     this.changeOrientation(original.orientation);
@@ -344,9 +361,7 @@ export class BlueprintItem implements TemplateItemCloneable<BlueprintItem>
     this.topLeft = undefined;
     this.bottomRight = undefined;
 
-    if (this.element != this.oniItem.defaultElement.id) this.element = undefined;
-    this.element_ = undefined;
-    this.buildableElement = undefined;
+    this.buildableElements = undefined;
   }
 
     public prepareBoundingBox()
