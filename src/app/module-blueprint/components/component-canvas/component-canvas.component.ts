@@ -32,7 +32,7 @@ import { BinController } from '../../common/bin-packing/bin-controller';
 import { IObsBuildItemChanged } from '../../common/tools/build-tool';
 import { DrawHelpers } from '../../drawing/draw-helpers';
 
-import {  } from 'pixi.js-legacy';
+import { } from 'pixi.js-legacy';
 declare var PIXI: any;
 
 
@@ -358,11 +358,25 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
     {
       let uiSpriteInfo = SpriteInfo.getSpriteInfo(k);
       let texture = uiSpriteInfo.getTexture();
-      let uiSPrite = PIXI.Sprite.from(texture);
+      let uiSprite =  PIXI.Sprite.from(texture);
 
-      this.drawPixi.pixiApp.renderer.extract.canvas(uiSPrite).toBlob((b) => 
-      {
-        this.addBlob(b, k + '.png');
+      let size = Math.max(texture.width, texture.height)
+
+      let container = new PIXI.Container();
+      container.addChild(uiSprite);
+
+      uiSprite.x = 0;
+      uiSprite.y = 0;
+
+      if (texture.width > texture.height) uiSprite.y += (texture.width / 2 - texture.height / 2);
+      if (texture.height > texture.width) uiSprite.x += (texture.height / 2 - texture.width / 2);
+
+      let brt = new PIXI.BaseRenderTexture({width: size, height: size, scaleMode: PIXI.SCALE_MODES.LINEAR});
+      let rt = new PIXI.RenderTexture(brt);
+
+      this.drawPixi.pixiApp.renderer.render(container, rt, true);
+      this.drawPixi.pixiApp.renderer.extract.canvas(rt).toBlob((blob) => { 
+        this.addBlob(blob, k + '.png');
       }, 'image/png');
     }
   }

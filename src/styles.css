@@ -1,12 +1,41 @@
 /* You can add global styles to this file, and also import other style files */
 
 body {
-    margin: 0; 
-    padding: 0; 
-    overflow-y:auto;
-    overflow-x:hidden;
+  margin: 0; 
+  padding: 0; 
+  overflow-y:auto;
+  overflow-x:auto;
 }
 
 .grecaptcha-badge{
 	visibility: collapse !important;  
+}
+
+.ui-clickable-icon {
+  color: #333333;
+  background-color: #f4f4f4;
+  border: 1px solid #f4f4f4;
+  box-sizing: border-box;
+  display: inline-block;
+  transition: background-color 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+  border-radius: 3px;
+}
+  
+.ui-clickable-icon:hover {
+  background-color: #c8c8c8;
+  color: #333333;
+  border-color: #c8c8c8;
+}
+
+.ui-clickable-icon:focus {
+  -webkit-box-shadow: 0 0 0 0.2em #8dcdff;
+  -moz-box-shadow: 0 0 0 0.2em #8dcdff;
+  box-shadow: 0 0 0 0.2em #8dcdff;
+}
+
+.ui-clickable-icon:active {
+  background-color: #a0a0a0;
+  color: #333333;
+  border-color: #a0a0a0;
 }

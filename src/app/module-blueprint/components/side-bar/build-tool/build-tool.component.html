@@ -1,18 +1,13 @@
-
-
-
-
 <p-card header="Build Tool">
-  <div #focusTarget tabindex="0"></div>
   <div *ngIf="databaseLoaded">
-    <button pButton type="button" class="ui-button-secondary element-button" (click)="showCategories($event)" style="margin-bottom: 5px;">
+    <div class="ui-clickable-icon element-button-width" (click)="showCategories($event)" style="margin-bottom: 5px;">
       <div class="building-panel-content">
         <img src="{{currentItem.iconUrl}}" height="40px" />
         <div class="left"></div>
         <div>{{currentItem.name}}</div>
         <div class="right"></div>
       </div>
-    </button>
+    </div>
     <app-buildable-element-picker 
       [currentElement]="currentItem.defaultElement"
       [buildableElements]="currentItem.buildableElements"
@@ -27,19 +22,19 @@
   <div class="building-panel-content">
     <div #itemPanelTarget></div>
     <div *ngFor="let buildMenuCategory of buildMenuCategories">
-      <button pButton type="button" class="ui-button-secondary element-button" [pTooltip]="buildMenuCategory.categoryName" (click)="showItems($event, buildMenuCategory)" tooltipPosition="bottom">
+      <div class="ui-clickable-icon element-button" (click)="showItems($event, buildMenuCategory)" [pTooltip]="buildMenuCategory.categoryName" tooltipPosition="bottom">
         <img src="{{buildMenuCategory.categoryIconUrl}}" height="40px" />
-      </button>
+      </div>
     </div>
   </div>
 </p-overlayPanel>
 
 <p-overlayPanel #itemPanel [appendTo]="'body'">
-  <div class="building-panel-item-content">
-    <div *ngFor="let item of items" class="building-panel-item">
-      <button pButton type="button" class="ui-button-secondary element-button-fixed" [pTooltip]="item.name" (click)="chooseItem(item)" tooltipPosition="bottom">
-        <img src="{{item.iconUrl}}" height="40px" />
-      </button>
+  <div >
+    <div *ngFor="let itemArray of items" class="building-panel-content">
+      <div *ngFor="let item of itemArray" class="ui-clickable-icon element-button" (click)="chooseItem(item)" [pTooltip]="item.name" tooltipPosition="bottom">
+          <img src="{{item.iconUrl}}" height="40px" />
+      </div>
     </div>
   </div>
 </p-overlayPanel>

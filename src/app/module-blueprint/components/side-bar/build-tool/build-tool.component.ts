@@ -28,11 +28,7 @@ import { BuildableElement } from 'src/app/module-blueprint/common/bexport/b-elem
 })
 export class ComponentSideBuildToolComponent implements OnInit, IObsBuildItemChanged, IObsToolChanged {
 
-  categories: SelectItem[];
-  items: OniItem[];
-
-  // This is used by the accordeon
-  activeIndex=0;
+  items: OniItem[][];
 
   get buildMenuCategories() { return BuildMenuCategory.buildMenuCategories; }
 
@@ -45,10 +41,6 @@ export class ComponentSideBuildToolComponent implements OnInit, IObsBuildItemCha
 
   constructor(public toolService: ToolService) 
   {
-
-    this.categories = []
-    this.items = [];
-
     this.toolService.buildTool.subscribeBuildItemChanged(this);
     this.toolService.subscribeToolChanged(this);
   }
@@ -56,33 +48,47 @@ export class ComponentSideBuildToolComponent implements OnInit, IObsBuildItemCha
   // TODO the template for the dropdowns fixes the width, whereas the template for the list fixes the height
 
   ngOnInit() {
-    let allCategories = {label:BuildMenuCategory.allCategories.categoryName, value:BuildMenuCategory.allCategories}
-    this.categories.push(allCategories);
-    this.currentCategory = BuildMenuCategory.allCategories;
   }
 
   databaseLoaded: boolean = false;
   oniItemsLoaded()
   {
     this.currentItem = OniItem.getOniItem('Tile');
-
     this.databaseLoaded = true;
   }
 
   showCategories(event: any) {
     this.categoryPanel.toggle(event);
-    if (this.itemPanel.visible) this.itemPanel.hide();
+    this.itemPanel.hide();
   }
 
   showItems(event: any, buildMenuCategory: BuildMenuCategory) {
+
+    
+
     this.items = [];
+    
+    let lineIndex = 0;
+    let itemIndex = 0;
+
     for (let buildMenuItem of BuildMenuItem.buildMenuItems)
       if (buildMenuCategory.category == buildMenuItem.category) {
         let oniItem = OniItem.getOniItem(buildMenuItem.buildingId);
-        this.items.push(oniItem);
+        if (this.items[lineIndex] == null) this.items.push([]);
+
+        this.items[lineIndex].push(oniItem);
+        itemIndex++;
+
+        if (itemIndex > 6) {
+          itemIndex = 0;
+          lineIndex++;
+        }
       }
 
-    this.itemPanel.show(event);
+    if (this.currentCategory == buildMenuCategory) this.itemPanel.toggle(event);
+    else this.itemPanel.show(event);
+
+    this.currentCategory = buildMenuCategory;
   }
 
   chooseItem(item: OniItem) {
@@ -106,12 +112,7 @@ export class ComponentSideBuildToolComponent implements OnInit, IObsBuildItemCha
 
   // IObsBuildItemChanged
   itemChanged(templateItem: BlueprintItem) {
-    let category = BuildMenuCategory.getCategoryFromItem(templateItem.oniItem);
-    if (category != null) {
-      if (this.currentCategory != BuildMenuCategory.allCategories) this.currentCategory = category;
-      
-      this.currentItem = templateItem.oniItem;
-    }
+    this.currentItem = templateItem.oniItem;
   }
 
   // IObsToolChanged

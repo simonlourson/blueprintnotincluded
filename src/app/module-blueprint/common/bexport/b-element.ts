@@ -60,7 +60,7 @@ export class BuildableElement {
     //console.log(tag);
 
     for (let element of BuildableElement.elements) 
-      if (returnValue.indexOf(element) == -1 && element.oreTags.indexOf(tag) != -1 && element.oreTags.indexOf('BuildableAny') != -1 )
+      if (returnValue.indexOf(element) == -1 && (element.id == tag || element.oreTags.indexOf(tag) != -1) && element.oreTags.indexOf('BuildableAny') != -1 )
         returnValue.push(element);
 
     //console.log(returnValue)

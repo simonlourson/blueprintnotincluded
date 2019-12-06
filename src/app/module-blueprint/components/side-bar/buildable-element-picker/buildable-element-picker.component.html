@@ -1,17 +1,19 @@
-<button pButton type="button" class="ui-button-secondary element-button" (click)="showElements($event)" style="margin-bottom: 5px;">
+
+
+<div class="ui-clickable-icon element-button" (click)="showElements($event)" style="margin-bottom: 5px;">
   <div class="element-panel-content">
     <img src="{{currentElement.iconUrl}}" height="40px" />
     <div class="left"></div>
     <div>{{currentElement.name}}</div>
     <div class="right"></div>
   </div>
-</button>
+</div>
 <p-overlayPanel #elementPanel [appendTo]="'body'">
   <div class="element-panel-content">
     <div *ngFor="let buildableElement of buildableElements">
-      <button pButton type="button" class="ui-button-secondary element-button" [pTooltip]="buildableElement.name" (click)="chooseElement(buildableElement)" tooltipPosition="bottom">
+      <div class="ui-clickable-icon element-button" (click)="chooseElement(buildableElement)" [pTooltip]="buildableElement.name" tooltipPosition="bottom">
         <img src="{{buildableElement.iconUrl}}" height="40px" />
-      </button>
+      </div>
     </div>
   </div>
 </p-overlayPanel>
