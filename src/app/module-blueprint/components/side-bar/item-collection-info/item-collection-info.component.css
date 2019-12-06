@@ -1,3 +1,9 @@
 .buttonspace {
   margin-left: 5px
 }
+
+.icon-nb-items {
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+}

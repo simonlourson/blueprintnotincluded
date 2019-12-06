@@ -47,7 +47,7 @@ export class TileInfoComponent implements OnInit, OnDestroy {
   buildDestroy(event: any)
   {
     // TODO this should trigger an event that should be listened to by side panel
-    this.blueprintService.blueprint.destroyTemplateItem(this.templateItem);
+    this.blueprintService.blueprint.destroyBlueprintItem(this.templateItem);
   }
 
 }

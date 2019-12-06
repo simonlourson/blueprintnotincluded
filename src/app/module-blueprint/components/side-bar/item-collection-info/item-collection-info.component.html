@@ -1,16 +1,16 @@
 <div #focusElement tabindex="0"></div>
-{{nbItems}}<br>
+<div class="icon-nb-items">
+  <img [src]="itemCollection.oniItem.iconUrl" height="70px">
+  <div>{{nbItems}}</div>
+</div>
 
-<img [src]="itemCollection.oniItem.iconUrl" height="70px">
-
-<!--
 <app-buildable-element-picker 
-  [currentElement]="itemCollection.items[0].buildableElement"
-  [buildableElements]="itemCollection.oniItem.buildableElements"
+  [currentElement]="itemCollection.items[0].buildableElements"
+  [buildableElementsArray]="itemCollection.oniItem.buildableElementsArray"
   (changeElement)="changeElement($event)">
 </app-buildable-element-picker>
--->
 
+<br>
 <button pButton type="button" class="ui-button buttonspace" icon="pi pi-clone" (click)="buildingsCopy()" pTooltip="Build this type of building"></button>
 <button pButton type="button" class="ui-button buttonspace" icon="pi pi-search-plus" (click)="selectEvery()" pTooltip="Select every {{itemCollection.oniItem.name}}"></button>
 <button pButton type="button" class="ui-button buttonspace" icon="pi pi-trash" (click)="buildingsDestroy()" pTooltip="Destroy these buildings (Delete key)"></button>

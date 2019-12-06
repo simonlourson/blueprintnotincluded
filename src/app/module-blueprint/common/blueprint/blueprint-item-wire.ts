@@ -45,11 +45,10 @@ export class BlueprintItemWire extends BlueprintItem implements TemplateItemClon
       this.connections = building.flags == null ? BlueprintItemWire.defaultConnections : building.flags
   }
 
-  public importFromCloud(original: BlueprintItem)
+  public importMdbBuilding(original: MdbBuilding)
   {
-    let originalCast = original as BlueprintItemWire;
-    this.connections = originalCast.connections;
-    super.importFromCloud(original);
+    super.importMdbBuilding(original);
+    this.connections = original.connections;
   }
 
   public cleanUp()

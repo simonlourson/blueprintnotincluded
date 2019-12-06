@@ -62,6 +62,8 @@ export class BuildableElement {
       if (returnValue.indexOf(element) == -1 && (element.id == tag || element.oreTags.indexOf(tag) != -1) && element.oreTags.indexOf('BuildableAny') != -1 )
         returnValue.push(element);
 
+    if (returnValue.length == 0) returnValue.push(BuildableElement.getElement('Unobtanium'))
+
     returnValue = returnValue.sort((i1, i2) => { return i1.buildMenuSort - i2.buildMenuSort; });
     return returnValue;
   }

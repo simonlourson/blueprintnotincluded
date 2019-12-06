@@ -78,7 +78,7 @@ export class BlueprintService implements IObsOverlayChanged
 
     let newBlueprint = new Blueprint();
     this.name = templateYaml.name;
-    newBlueprint.importOniTemplate(templateYaml);
+    newBlueprint.importFromOni(templateYaml);
 
     this.observersBlueprintChanged.map((observer) => { observer.blueprintChanged(newBlueprint); })
   }
@@ -95,7 +95,7 @@ export class BlueprintService implements IObsOverlayChanged
 
     let newBlueprint = new Blueprint();
     this.name = templateJson.friendlyname;
-    newBlueprint.importBniBlueprint(templateJson);
+    newBlueprint.importFromBni(templateJson);
     
     this.observersBlueprintChanged.map((observer) => { observer.blueprintChanged(newBlueprint); })
   }
@@ -156,7 +156,7 @@ export class BlueprintService implements IObsOverlayChanged
           this.name = response.name;
           this.likedByMe = response.likedByMe;
           this.nbLikes = response.nbLikes;
-          blueprint.importFromCloud(response.data);
+          blueprint.importFromMdb(response.data);
           return blueprint;
         }
       })

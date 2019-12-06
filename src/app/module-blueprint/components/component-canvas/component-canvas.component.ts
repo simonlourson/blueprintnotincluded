@@ -85,13 +85,12 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
     this.running = false;
   }
 
-  public loadNewBlueprint(blueprint: Blueprint)
+  public loadNewBlueprint(source: Blueprint)
   {
-    // First destroy the old blueprint
-    if (this.blueprint != null) this.blueprint.destroy(); 
-
     // TODO make sure nothing creates a "real  blueprint" before this
-    this.blueprint.importFromCloud(blueprint);
+    // TODO fixme
+    this.blueprint.destroyAndCopyItems(source);
+
     this.cameraService.overlay = Overlay.Base; 
 
     let rect = this.canvasRef.nativeElement.getBoundingClientRect();
@@ -468,7 +467,6 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
   }
 
   saveImages(exportOptions: ExportImageOptions) {
-    console.log(exportOptions)
     let clone = this.blueprint.clone();
     if (clone.blueprintItems.length == 0) throw new Error('No buildings to export')
 

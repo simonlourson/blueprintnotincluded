@@ -41,7 +41,7 @@ export class BuildTool implements ITool
   {
     let alreadyPresent = false;
     for (let tileIndex of this.templateItemToBuild.tileIndexes) {
-      for (let templateItem of this.blueprintService.blueprint.getTemplateItemsAtIndex(tileIndex)) 
+      for (let templateItem of this.blueprintService.blueprint.getBlueprintItemsAtIndex(tileIndex)) 
         if (this.templateItemToBuild.oniItem.isWire && templateItem.oniItem.objectLayer == this.templateItemToBuild.oniItem.objectLayer) 
           alreadyPresent = true;
         else if (templateItem.oniItem.id == this.templateItemToBuild.oniItem.id) 
@@ -58,7 +58,7 @@ export class BuildTool implements ITool
     newItem.prepareOverlayInfo(this.cameraService.overlay);
     newItem.prepareBoundingBox();
     newItem.prepareSpriteInfoModifier(this.blueprintService.blueprint);
-    this.blueprintService.blueprint.addTemplateItem(newItem);
+    this.blueprintService.blueprint.addBlueprintItem(newItem);
     this.blueprintService.blueprint.refreshOverlayInfo()
   }
 
@@ -96,8 +96,8 @@ export class BuildTool implements ITool
     
     if (this.templateItemToBuild.oniItem.isWire)
     {
-      let itemsPrevious = this.blueprintService.blueprint.getTemplateItemsAt(tileStart).filter(i => i.oniItem.objectLayer == this.templateItemToBuild.oniItem.objectLayer);
-      let itemsCurrent = this.blueprintService.blueprint.getTemplateItemsAt(tileStop).filter(i => i.oniItem.objectLayer == this.templateItemToBuild.oniItem.objectLayer);
+      let itemsPrevious = this.blueprintService.blueprint.getBlueprintItemsAt(tileStart).filter(i => i.oniItem.objectLayer == this.templateItemToBuild.oniItem.objectLayer);
+      let itemsCurrent = this.blueprintService.blueprint.getBlueprintItemsAt(tileStop).filter(i => i.oniItem.objectLayer == this.templateItemToBuild.oniItem.objectLayer);
 
       if (itemsPrevious != null && itemsPrevious.length > 0 && itemsCurrent != null && itemsCurrent.length > 0)
       {

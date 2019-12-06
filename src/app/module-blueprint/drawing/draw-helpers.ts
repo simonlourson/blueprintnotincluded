@@ -237,6 +237,21 @@ export class DrawHelpers
     return (position.x + 500) + 1001 * (position.y + 500);;
   }
 
+  public static getTilePosition(index: number): Vector2
+  {
+    let returnValue = new Vector2(0, 0);
+
+    returnValue.x = (index % 1001);
+    index -= returnValue.x;
+
+    returnValue.y = index / 1001;
+
+    returnValue.x -= 500;
+    returnValue.y -= 500;
+
+    return returnValue;
+  }
+
   static connectionString: string[] = [
     'None_place',
     'L_place',

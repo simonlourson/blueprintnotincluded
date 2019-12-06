@@ -234,14 +234,13 @@ export class BlueprintItem implements TemplateItemCloneable<BlueprintItem>
     this.prepareBoundingBox();
   }
 
-    public importFromCloud(original: BlueprintItem)
+    public importMdbBuilding(original: MdbBuilding)
     {
       this.position = Vector2.clone(original.position);
-      this.rotation = original.rotation;
-      this.scale = original.scale;
-      if (original.buildableElements != null)
-        for (let indexElement = 0; indexElement < original.buildableElements.length; indexElement++)
-          if (original.buildableElements[indexElement] != null) this.setElement(original.buildableElements[indexElement].id, indexElement);
+      
+      if (original.elements != null && original.elements.length > 0)
+        for (let indexElement = 0; indexElement < original.elements.length; indexElement++)
+          if (original.elements[indexElement] != null) this.setElement(original.elements[indexElement], indexElement);
           else this.setElement(this.oniItem.defaultElement[indexElement].id, indexElement);
       
       // TODO default temperature

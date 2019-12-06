@@ -10,7 +10,7 @@
     </div>
     
     <app-buildable-element-picker 
-      [currentElement]="currentItem.defaultElement"
+      [currentElement]="currentItemToBuild.buildableElements"
       [buildableElementsArray]="currentItem.buildableElementsArray"
       (changeElement)="changeElement($event)">
     </app-buildable-element-picker>

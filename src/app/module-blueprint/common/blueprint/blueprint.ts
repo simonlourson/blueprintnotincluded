@@ -27,16 +27,16 @@ export class Blueprint
   {
     this.blueprintItems = [];
 
-    this.obeserversItemDestroyed = [];
+    this.observersItemDestroyed = [];
   }
 
-  public importOniTemplate(oniTemplate: OniTemplate)
+  public importFromOni(oniBlueprint: OniTemplate)
   {
     this.blueprintItems = [];
     
 
     // Copy the buildings
-    for (let building of oniTemplate.buildings)
+    for (let building of oniBlueprint.buildings)
     {
       let oniItem = OniItem.getOniItem(building.id);
 
@@ -45,11 +45,11 @@ export class Blueprint
 
       newTemplateItem.importOniBuilding(building);
       
-      this.addTemplateItem(newTemplateItem);
+      this.addBlueprintItem(newTemplateItem);
     }
 
     // Copy the cells
-    for (let cell of oniTemplate.cells)
+    for (let cell of oniBlueprint.cells)
     {
       let newTemplateItem = BlueprintHelpers.createInstance(OniItem.elementId);
       if (newTemplateItem == null) continue;
@@ -58,7 +58,7 @@ export class Blueprint
       newTemplateItem.importOniCell(cell);
 
       let elementAlreadyOnTile: boolean = false;
-      for (let t of this.getTemplateItemsAt(newTemplateItem.position))
+      for (let t of this.getBlueprintItemsAt(newTemplateItem.position))
       {
         if (t.oniItem.isElement)
         {
@@ -69,10 +69,10 @@ export class Blueprint
     }
 
     // Keep a copy of the yaml object in memory
-    this.innerYaml = oniTemplate;
+    this.innerYaml = oniBlueprint;
   }
 
-  public importBniBlueprint(bniBlueprint: BniBlueprint)
+  public importFromBni(bniBlueprint: BniBlueprint)
   {
     this.blueprintItems = [];
 
@@ -83,21 +83,23 @@ export class Blueprint
 
       newTemplateItem.importBniBuilding(building);
       
-      this.addTemplateItem(newTemplateItem);
+      this.addBlueprintItem(newTemplateItem);
     }
   }
 
-  public importFromCloud(original: Blueprint)
+  public importFromMdb(mdbBlueprint: MdbBlueprint)
   {
     this.blueprintItems = [];
 
-    for (let originalTemplateItem of original.blueprintItems)
+    for (let originalTemplateItem of mdbBlueprint.blueprintItems)
     {
       let newTemplateItem = BlueprintHelpers.createInstance(originalTemplateItem.id);
+      
+      // Don't import buildings we don't recognise
       if (newTemplateItem == null) continue;
 
-      newTemplateItem.importFromCloud(originalTemplateItem);
-      this.addTemplateItem(newTemplateItem);
+      newTemplateItem.importMdbBuilding(originalTemplateItem);
+      this.addBlueprintItem(newTemplateItem);
     }
   }
 
@@ -137,11 +139,16 @@ export class Blueprint
       bniBlueprint.buildings.push(bniBuilding);
     }
 
-    this.importBniBlueprint(bniBlueprint);
+    this.importFromBni(bniBlueprint);
 
   }
 
-  // TODO should just use the camera service overlay
+  public destroyAndCopyItems(source: Blueprint) {
+    this.destroy();
+
+    for (let blueprintItem of source.blueprintItems) this.addBlueprintItem(blueprintItem);
+  }
+
   private currentOverlay: Overlay
   public prepareOverlayInfo(currentOverlay: Overlay)
   {
@@ -154,105 +161,16 @@ export class Blueprint
     for (let templateItem of this.blueprintItems) templateItem.prepareOverlayInfo(this.currentOverlay);
   }
 
-  public addTemplateItem(templateItem: BlueprintItem)
+  public addBlueprintItem(templateItem: BlueprintItem)
   {
     this.blueprintItems.push(templateItem);
 
     if (templateItem.tileIndexes == null) templateItem.prepareBoundingBox();
 
-    for (let tileIndex of templateItem.tileIndexes) this.getTemplateItemsAtIndex(tileIndex).push(templateItem);
-    
+    for (let tileIndex of templateItem.tileIndexes) this.getBlueprintItemsAtIndex(tileIndex).push(templateItem);
   }
 
-  public getTemplateItemsAt(position: Vector2): BlueprintItem[]
-  {
-    let arrayIndex = DrawHelpers.getTileIndex(position);
-    return this.getTemplateItemsAtIndex(arrayIndex);
-  }
-
-  public getTemplateItemsAtIndex(index: number): BlueprintItem[] {
-    if (this.templateTiles == null) this.templateTiles = [];
-
-    let returnValue = this.templateTiles[index];
-    if (returnValue == null)
-    {
-      returnValue = [];
-      this.templateTiles[index] = returnValue;
-    }
-
-    return returnValue;
-  }
-
-  obeserversItemDestroyed: IObsItemDestroyed[];
-  public subscribeItemDestroyed(observer: IObsItemDestroyed) {
-    this.obeserversItemDestroyed.push(observer);
-  }
-
-  public destroyTemplateItemsAt(position: Vector2): BlueprintItem[]
-  {
-    if (this.templateTiles == null) this.templateTiles = [];
-
-    let arrayIndex = (position.x + 500) + 1001 * (position.y + 500);
-
-    let returnValue = this.templateTiles[arrayIndex];
-    if (returnValue == null)
-    {
-      returnValue = [];
-      this.templateTiles[arrayIndex] = returnValue;
-    }
-
-    return returnValue;
-  }
-    
-  public cloneForExport(): Blueprint
-  {
-    let returnValue = new Blueprint();
-    returnValue.blueprintItems = [];
-
-    for (let originalTemplateItem of this.blueprintItems) 
-      returnValue.blueprintItems.push(originalTemplateItem.cloneForExport());
-    
-
-    returnValue.templateTiles = undefined;
-    returnValue.innerYaml = undefined;
-    returnValue.obeserversItemDestroyed = undefined;
-
-    return returnValue;
-  }
-
-  public toMdbBlueprint(): MdbBlueprint
-  {
-    let returnValue: MdbBlueprint = {
-      blueprintItems: []
-    }
-
-    for (let originalTemplateItem of this.blueprintItems) 
-      returnValue.blueprintItems.push(originalTemplateItem.toMdbBuilding());
-    
-    return returnValue;
-  }
-
-  public clone(): Blueprint
-  {
-    let returnValue = new Blueprint();
-    returnValue.blueprintItems = [];
-
-    for (let originalTemplateItem of this.blueprintItems) {
-      let newItem = BlueprintHelpers.createInstance(originalTemplateItem.id);
-      newItem.copyFromForExport(originalTemplateItem);
-      newItem.cleanUp();
-      newItem.prepareBoundingBox();
-      returnValue.addTemplateItem(newItem);
-    }
-
-    returnValue.innerYaml = undefined;
-    returnValue.obeserversItemDestroyed = undefined;
-
-    return returnValue;
-  }
-
-
-  public destroyTemplateItem(templateItem: BlueprintItem)
+  public destroyBlueprintItem(templateItem: BlueprintItem)
   {
     // If the item is a wire, we need to disconnect it
     if (templateItem.oniItem.isWire) {
@@ -264,7 +182,7 @@ export class Blueprint
           let offsetToModify = DrawHelpers.connectionVectors[i];
           let positionToModify = new Vector2(templateItem.position.x + offsetToModify.x, templateItem.position.y + offsetToModify.y);
 
-          let itemsToModify = this.getTemplateItemsAt(positionToModify).filter(i => i.oniItem.objectLayer == templateItem.oniItem.objectLayer);
+          let itemsToModify = this.getBlueprintItemsAt(positionToModify).filter(i => i.oniItem.objectLayer == templateItem.oniItem.objectLayer);
           for (let itemToModify of itemsToModify) {
             let itemToModifyWire = itemToModify as BlueprintItemWire;
 
@@ -294,20 +212,69 @@ export class Blueprint
     templateItem.destroy();
 
     // Then fire the event
-    this.obeserversItemDestroyed.map((observer) => {observer.itemDestroyed();})
+    this.observersItemDestroyed.map((observer) => {observer.itemDestroyed();})
+  }
+
+  public getBlueprintItemsAt(position: Vector2): BlueprintItem[]
+  {
+    let arrayIndex = DrawHelpers.getTileIndex(position);
+    return this.getBlueprintItemsAtIndex(arrayIndex);
+  }
+
+  public getBlueprintItemsAtIndex(index: number): BlueprintItem[] {
+    if (this.templateTiles == null) this.templateTiles = [];
+
+    let returnValue = this.templateTiles[index];
+    if (returnValue == null)
+    {
+      returnValue = [];
+      this.templateTiles[index] = returnValue;
+    }
+
+    return returnValue;
+  }
+
+  // TODO is this really useful
+  observersItemDestroyed: IObsItemDestroyed[];
+  public subscribeItemDestroyed(observer: IObsItemDestroyed) {
+    this.observersItemDestroyed.push(observer);
+  }
+
+  public toMdbBlueprint(): MdbBlueprint
+  {
+    let returnValue: MdbBlueprint = {
+      blueprintItems: []
+    }
+
+    for (let originalTemplateItem of this.blueprintItems) 
+      returnValue.blueprintItems.push(originalTemplateItem.toMdbBuilding());
+    
+    return returnValue;
+  }
+
+  public clone(): Blueprint
+  {
+    let mdb = this.toMdbBlueprint();
+
+    let returnValue = new Blueprint();
+    returnValue.importFromMdb(mdb);
+
+    return returnValue;
   }
 
   public getBoundingBox(): Vector2[] {
+
     let topLeft = new Vector2(9999, 9999);
     let bottomRight = new Vector2(-9999, -9999);
 
     this.blueprintItems.map((item) => { 
-
-      // TODO big item topleft here
-      if (topLeft.x > item.position.x) topLeft.x = item.position.x;
-      if (topLeft.y > item.position.y) topLeft.y = item.position.y;
-      if (bottomRight.x < item.position.x) bottomRight.x = item.position.x;
-      if (bottomRight.y < item.position.y) bottomRight.y = item.position.y;
+      item.tileIndexes.map((index) => {
+        let position = DrawHelpers.getTilePosition(index);
+        if (topLeft.x > position.x) topLeft.x = position.x;
+        if (topLeft.y > position.y) topLeft.y = position.y;
+        if (bottomRight.x < position.x) bottomRight.x = position.x;
+        if (bottomRight.y < position.y) bottomRight.y = position.y;
+      });
     });
 
     return [topLeft, bottomRight];
@@ -320,7 +287,7 @@ export class Blueprint
       let blueprintItemsCopy: BlueprintItem[] = [];
 
       for (let b of this.blueprintItems) blueprintItemsCopy.push(b);
-      for (let b of blueprintItemsCopy) this.destroyTemplateItem(b);
+      for (let b of blueprintItemsCopy) this.destroyBlueprintItem(b);
     }
   }
 }

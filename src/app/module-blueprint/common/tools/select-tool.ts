@@ -49,7 +49,7 @@ export class SelectTool implements ITool
     if (tileSelected.length > 0) {
 
       for (let tile of tileSelected) {
-        let itemsInTile = this.blueprintService.blueprint.getTemplateItemsAt(tile);
+        let itemsInTile = this.blueprintService.blueprint.getBlueprintItemsAt(tile);
         for (let item of itemsInTile) this.addToCollection(item);
       }
 
@@ -112,7 +112,7 @@ export class SelectTool implements ITool
   buildingsDestroy(itemCollection: SameItemCollection) {
     
     for (let item of itemCollection.items)
-      this.blueprintService.blueprint.destroyTemplateItem(item);
+      this.blueprintService.blueprint.destroyBlueprintItem(item);
 
     this.sameItemCollections.splice(this.sameItemCollections.indexOf(itemCollection), 1);
   }

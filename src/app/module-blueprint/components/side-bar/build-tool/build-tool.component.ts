@@ -111,7 +111,7 @@ export class ComponentSideBuildToolComponent implements OnInit, IObsBuildItemCha
   }
 
   changeElement(elementChangeInfo: ElementChangeInfo) {
-    this.toolService.buildTool.templateItemToBuild.setElement(elementChangeInfo.newElement.id, elementChangeInfo.index);
+    //this.toolService.buildTool.templateItemToBuild.setElement(elementChangeInfo.newElement.id, elementChangeInfo.index);
   }
 
   uiItemChanged()

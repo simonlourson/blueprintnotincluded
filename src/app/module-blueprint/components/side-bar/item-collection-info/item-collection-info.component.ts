@@ -6,6 +6,7 @@ import { ToolType } from 'src/app/module-blueprint/common/tools/tool';
 import { Blueprint } from 'src/app/module-blueprint/common/blueprint/blueprint';
 import { BlueprintHelpers } from 'src/app/module-blueprint/common/blueprint/blueprint-helpers';
 import { BuildableElement } from 'src/app/module-blueprint/common/bexport/b-element';
+import { ElementChangeInfo } from '../buildable-element-picker/buildable-element-picker.component';
 
 @Component({
   selector: 'app-item-collection-info',
@@ -43,7 +44,11 @@ export class ItemCollectionInfoComponent implements OnInit, IObsSelected {
     this.focusElement.nativeElement.focus();
   }
 
-  changeElement(buildableElement: BuildableElement) {
-    console.log(buildableElement)
+  changeElement(elementChangeInfo: ElementChangeInfo) {
+    // TODO confirm dialog
+
+    this.itemCollection.items.map((item) => {
+      item.setElement(elementChangeInfo.newElement.id, elementChangeInfo.index);
+    })
   }
 }

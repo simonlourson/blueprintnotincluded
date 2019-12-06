@@ -34,7 +34,7 @@ export class SameItemCollection
 
   destroyAll() {
     for (let item of this.items)
-      BlueprintService.blueprintService.blueprint.destroyTemplateItem(item);
+      BlueprintService.blueprintService.blueprint.destroyBlueprintItem(item);
   }
 
   private observersSelected: IObsSelected[];
