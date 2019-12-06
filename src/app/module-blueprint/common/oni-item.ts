@@ -35,6 +35,7 @@ export class OniItem
   objectLayer: number; // TODO import enum?
   buildableElementsArray: BuildableElement[][];
   defaultElement: BuildableElement[];
+  materialMass: number[];
   
   private permittedRotations_: PermittedRotations;
   get permittedRotations() { return this.permittedRotations_; }
@@ -88,6 +89,9 @@ export class OniItem
       if (buildableElement.length > 0) this.defaultElement[indexElements] = buildableElement[0];
       else this.defaultElement[indexElements] = BuildableElement.getElement('Unobtanium');
     }
+
+    this.materialMass = [];
+    for (let mass of original.materialMass) this.materialMass.push(mass);
 
     this.imageId = imageId;
 

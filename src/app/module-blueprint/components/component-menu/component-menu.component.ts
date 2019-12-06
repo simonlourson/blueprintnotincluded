@@ -66,12 +66,14 @@ export class ComponentMenuComponent implements OnInit, IObsToolChanged, IObsOver
     this.overlayMenuItems = [];
     overlayList.map((overlay) => {
       //this.overlayMenuItems.push({label:'            '+DrawHelpers.overlayString[overlay], id:overlay.toString(), img:DrawHelpers.getOverlayUrl(overlay), command: (event) => { this.clickOverlay(event); }})
-      this.overlayMenuItems.push({label:'            '+DrawHelpers.overlayString[overlay], id:overlay.toString(), command: (event) => { this.clickOverlay(event); }})
+      this.overlayMenuItems.push({label:DrawHelpers.overlayString[overlay], id:overlay.toString(), command: (event) => { this.clickOverlay(event); }})
     });
 
     this.toolMenuItems = [
-      {label: 'Select',       id:ToolType.select.toString(),    command: (event) => { this.clickTool(event); }},
-      {label: 'Build',        id:ToolType.build.toString(),     command: (event) => { this.clickTool(event); }},
+      {label: 'Select',         id:ToolType.select.toString(),        command: (event) => { this.clickTool(event); }},
+      {label: 'Build',          id:ToolType.build.toString(),         command: (event) => { this.clickTool(event); }},
+      {separator:true},
+      {label: 'Element Report', id:ToolType.elementReport.toString(), command: (event) => { this.clickTool(event); }},
     ];
 
     this.menuItems = [
@@ -129,8 +131,17 @@ export class ComponentMenuComponent implements OnInit, IObsToolChanged, IObsOver
   {
     for (let menuItem of this.toolMenuItems)
     {
-      if (menuItem.id == toolType.toString()) {menuItem.icon = 'pi pi-fw pi-check';}
-      else menuItem.icon = 'pi pi-fw pi-none';
+      // TODO general case, also in ToolService.ChangeTool
+      if (toolType == ToolType.select || toolType == ToolType.build) {
+        if (menuItem.id == toolType.toString()) {menuItem.icon = 'pi pi-fw pi-check';}
+        else menuItem.icon = 'pi pi-fw pi-none';
+      }
+      else if (toolType == ToolType.elementReport) 
+        if (menuItem.id == toolType.toString()) {
+          if (this.toolService.elementReportTool.visible) menuItem.icon = 'pi pi-fw pi-check';
+          else menuItem.icon = 'pi pi-fw pi-none';
+        }
+
     }   
   }
 

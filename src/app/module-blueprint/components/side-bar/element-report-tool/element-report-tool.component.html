@@ -1,0 +1,11 @@
+<p-card header="Element Report">
+  <p-virtualScroller [value]="data" scrollHeight="500px">
+    <ng-template let-element pTemplate="item" let-i="index">
+      <div class="scroller-line">
+          <img [src]="element.buildableElement.iconUrl" height="50px">
+          <div>{{element.buildableElement.name}} : {{element.totalMass}} Kg</div>
+      </div>
+        
+    </ng-template>
+  </p-virtualScroller>
+</p-card>

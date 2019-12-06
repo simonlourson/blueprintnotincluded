@@ -6,6 +6,7 @@ import { DrawPixi } from '../drawing/draw-pixi';
 import { CameraService } from './camera-service';
 import { BuildTool } from '../common/tools/build-tool';
 import { BlueprintItem } from '../common/blueprint/blueprint-item';
+import { ElementReportTool } from '../common/tools/element-report-tool';
 
 @Injectable({ providedIn: 'root' })
 export class ToolService implements ITool, IChangeTool
@@ -13,17 +14,22 @@ export class ToolService implements ITool, IChangeTool
   public currentToolType: ToolType;
   private get currentTool(): ITool { 
     if (this.currentToolType == ToolType.select) return this.selectTool;
-    if (this.currentToolType == ToolType.build) return this.buildTool;
+    else if (this.currentToolType == ToolType.build) return this.buildTool;
+    else if (this.currentToolType == ToolType.elementReport) return this.elementReportTool;
     else return null;
   }
   private observers: IObsToolChanged[];
 
-  constructor(public selectTool: SelectTool, public buildTool: BuildTool)
+  constructor(
+    public selectTool: SelectTool, 
+    public buildTool: BuildTool,
+    public elementReportTool: ElementReportTool)
   {
     this.currentToolType = ToolType.select;
     this.observers = [];
 
     this.buildTool.parent = this;
+    this.elementReportTool.parent = this;
   }
 
   subscribeToolChanged(observer: IObsToolChanged)
@@ -33,9 +39,14 @@ export class ToolService implements ITool, IChangeTool
 
   changeTool(newTool: ToolType)
   {
-    this.currentTool.switchFrom();
-    this.currentToolType = newTool;
-    this.currentTool.switchTo();
+    if (newTool == ToolType.select || newTool == ToolType.build) {
+      this.currentTool.switchFrom();
+      this.currentToolType = newTool;
+      this.currentTool.switchTo();
+    }
+    else if (newTool == ToolType.elementReport) {
+      this.elementReportTool.toggle();
+    }
     
 
     this.observers.map((observer) => observer.toolChanged(newTool) );

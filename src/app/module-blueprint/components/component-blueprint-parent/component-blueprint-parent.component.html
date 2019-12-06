@@ -1,5 +1,5 @@
 
-<p-toast position="top-right" [style]="{marginTop: '40px'}"></p-toast>
+<p-toast position="top-center" [style]="{marginTop: '40px'}"></p-toast>
 
 <app-component-canvas #canvas></app-component-canvas>
 <div class="outer">
@@ -7,7 +7,12 @@
     <app-component-menu #menu (onMenuCommand)="menuCommand($event)">
     </app-component-menu>
     <div class="side-panel">
-      <app-side-panel #sidePanel></app-side-panel>
+      <app-side-panel #sidePanel>
+      </app-side-panel>
+    </div>
+    <div class="side-panel-right">
+      <app-element-report-tool  *ngIf="toolService.elementReportTool.visible" #elementReportTool>
+      </app-element-report-tool>
     </div>
   </div>
 </div>

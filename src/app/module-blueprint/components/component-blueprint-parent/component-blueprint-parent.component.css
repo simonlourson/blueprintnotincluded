@@ -1,6 +1,14 @@
 .side-panel {
   position: absolute;
   width: 300px;
+  padding: 10px;
+}
+
+.side-panel-right {
+  position: absolute;
+  right:0;
+  width: 300px;
+  padding: 10px;
 }
 
 .outer {

@@ -5,7 +5,8 @@ import { CameraService } from '../../services/camera-service';
 export enum ToolType
 {
     select,
-    build
+    build,
+    elementReport
 }
 
 export interface ITool

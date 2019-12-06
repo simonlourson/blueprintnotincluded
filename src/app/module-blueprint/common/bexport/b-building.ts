@@ -24,6 +24,7 @@ export class BBuilding
   spriteModifiers : BSpriteModifier[];
   utilities: UtilityConnection[];
   materialCategory: string[];
+  materialMass: number[];
 
   dragBuild: boolean;
   objectLayer: number;
