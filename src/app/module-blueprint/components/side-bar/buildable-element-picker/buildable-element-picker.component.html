@@ -9,6 +9,9 @@
         <div class="right"></div>
       </div>
     </div>
+    <div *ngIf="showWarning(indexElement)" class="error-red">
+      Warning : Not every selected building is made of {{currentElement[indexElement].name}}
+    </div>
 
     <p-overlayPanel [appendTo]="'body'">
       <div class="element-panel-content">

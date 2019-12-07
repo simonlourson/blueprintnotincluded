@@ -56,7 +56,8 @@ export class ComponentSideBuildToolComponent implements OnInit, IObsBuildItemCha
   databaseLoaded: boolean = false;
   oniItemsLoaded()
   {
-    this.toolService.buildTool.changeItem(BlueprintHelpers.createInstance('SteamTurbine2'));
+    //this.toolService.buildTool.changeItem(BlueprintHelpers.createInstance('SteamTurbine2'));
+    this.toolService.buildTool.changeItem(BlueprintHelpers.createInstance('Tile'));
     this.databaseLoaded = true;
   }
 

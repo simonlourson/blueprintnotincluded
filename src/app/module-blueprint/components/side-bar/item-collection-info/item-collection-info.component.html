@@ -1,12 +1,13 @@
 <div #focusElement tabindex="0"></div>
 <div class="icon-nb-items">
   <img [src]="itemCollection.oniItem.iconUrl" height="70px">
-  <div>{{nbItems}}</div>
+  <div class="text-nb-items">{{nbItems}}</div>
 </div>
 
 <app-buildable-element-picker 
   [currentElement]="itemCollection.items[0].buildableElements"
   [buildableElementsArray]="itemCollection.oniItem.buildableElementsArray"
+  [nbElements]="itemCollection.nbElements"
   (changeElement)="changeElement($event)">
 </app-buildable-element-picker>
 

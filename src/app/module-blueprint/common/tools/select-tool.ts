@@ -3,15 +3,16 @@ import { BlueprintItem } from '../blueprint/blueprint-item';
 import { Vector2 } from '../vector2';
 import { Injectable, ChangeDetectorRef } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ITool, IChangeTool } from './tool';
+import { ITool, IChangeTool, ToolType } from './tool';
 import { DrawPixi } from '../../drawing/draw-pixi';
 import { CameraService } from '../../services/camera-service';
 import { ConnectionHelper } from '../utility-connection';
-import { IObsItemDestroyed } from '../blueprint/blueprint';
+import { IObsBlueprintChange } from '../blueprint/blueprint';
 import { DrawHelpers } from '../../drawing/draw-helpers';
 import { SameItemCollection } from './same-item-collection';
 import { OniItem } from '../oni-item';
 import { BuildTool } from './build-tool';
+import { BuildableElement } from '../bexport/b-element';
 
 @Injectable()
 export class SelectTool implements ITool
@@ -89,19 +90,30 @@ export class SelectTool implements ITool
     this.currentMultipleSelectionIndex = 0;
   }
 
+  selectEveryElement(buildableElement: BuildableElement) {
+    this.deselectAll();
+
+    for (let blueprintItem of this.blueprintService.blueprint.blueprintItems)
+      if (blueprintItem.buildableElements.indexOf(buildableElement) != -1)
+        this.addToCollection(blueprintItem);
+
+    // TODO this does not seem to sort
+    this.sameItemCollections = this.sameItemCollections.sort((i1, i2) => { return i2.oniItem.zIndex - i1.oniItem.zIndex; });
+
+    this.currentMultipleSelectionIndex = 0;
+  }
+
   addToCollection(blueprintItem: BlueprintItem) {
 
     // Find if there is already an item collection for this oniItem
     let itemCollectionArray = this.sameItemCollections.filter((sameItem) => { return blueprintItem.oniItem.id == sameItem.oniItem.id; });
     if (itemCollectionArray.length == 0) {
-      let newItemCollection = new SameItemCollection();
-      newItemCollection.oniItem = blueprintItem.oniItem;
-      newItemCollection.items.push(blueprintItem);
+      let newItemCollection = new SameItemCollection(blueprintItem.oniItem);
+      newItemCollection.addItem(blueprintItem);
 
       this.sameItemCollections.push(newItemCollection);
     }
-    // We need to test if the item was already added to this collection, (some items are bigger than one tile)
-    else if (itemCollectionArray[0].items.indexOf(blueprintItem) == -1) itemCollectionArray[0].items.push(blueprintItem);
+    else itemCollectionArray[0].addItem(blueprintItem);
   }
 
   deselectAll() {
@@ -111,8 +123,10 @@ export class SelectTool implements ITool
 
   buildingsDestroy(itemCollection: SameItemCollection) {
     
+    this.blueprintService.blueprint.pauseChangeEvents();
     for (let item of itemCollection.items)
       this.blueprintService.blueprint.destroyBlueprintItem(item);
+    this.blueprintService.blueprint.resumeChangeEvents();
 
     this.sameItemCollections.splice(this.sameItemCollections.indexOf(itemCollection), 1);
   }
@@ -238,6 +252,12 @@ export class SelectTool implements ITool
 
     drawPixi.drawTileRectangle(camera, topLeft, bottomRight, true, 2, 0x4CFF00, 0x2D9600, 0.25, 0.8);
   }
+
+  toggleable: boolean = false;
+  visible: boolean = false;
+  captureInput: boolean = true;
+  toolType = ToolType.select;
+  toolGroup: number = 1;
 }
 
 export interface IObsTemplateItemChanged

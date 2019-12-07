@@ -9,7 +9,6 @@ import { ConnectionType, ConnectionHelper } from "../utility-connection";
 import { ZIndex, Overlay } from "../overlay-type";
 import { DrawHelpers, PermittedRotations } from "../../drawing/draw-helpers";
 import { Blueprint } from "./blueprint";
-import { TemplateItemCloneable } from "./template-item-cloneable";
 import { OniCell } from "./io/oni/oni-cell";
 import { DrawPixi } from '../../drawing/draw-pixi';
 import { DrawPart } from '../../drawing/draw-part';
@@ -21,7 +20,7 @@ import { BuildableElement } from '../bexport/b-element';
 import { MdbBuilding } from './io/mdb/mdb-building';
 declare var PIXI: any;
 
-export class BlueprintItem implements TemplateItemCloneable<BlueprintItem>
+export class BlueprintItem
 {
   public static vacuumItem = new BlueprintItem();
   static defaultRotation = 0;
@@ -276,26 +275,6 @@ export class BlueprintItem implements TemplateItemCloneable<BlueprintItem>
       if (this.orientation == null) this.changeOrientation(Orientation.Neutral);
       this.selected_ = false;
     }
-  
-  public clone(): BlueprintItem
-  {
-    let returnValue = new BlueprintItem(this.id);
-
-    returnValue.copyFromForExport(this);
-    returnValue.cleanUp();
-
-    return returnValue;
-  }
-
-  public cloneForExport(): BlueprintItem
-  {
-    let returnValue = new BlueprintItem(this.id);
-
-    returnValue.copyFromForExport(this);
-    returnValue.deleteDefaultForExport()
-
-    return returnValue;
-  }
 
   public toMdbBuilding(): MdbBuilding {
     let returnValue: MdbBuilding = {

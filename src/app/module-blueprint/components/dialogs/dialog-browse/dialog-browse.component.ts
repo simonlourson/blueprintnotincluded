@@ -30,7 +30,7 @@ export class DialogBrowseComponent implements OnInit, AfterContentInit {
 
   constructor(
     private blueprintService: BlueprintService, 
-    private authService: AuthenticationService,
+    public authService: AuthenticationService,
     public datepipe: DatePipe) { 
 
     let tempDate = new Date();

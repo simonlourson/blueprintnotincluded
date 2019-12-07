@@ -13,15 +13,22 @@ export class BuildableElementPickerComponent implements OnInit {
 
   @Input() buildableElementsArray: BuildableElement[][];
   @Input() currentElement: BuildableElement[];
+  @Input() nbElements: number[];
 
   @Output() changeElement: EventEmitter<ElementChangeInfo> = new EventEmitter<ElementChangeInfo>();
 
   @ViewChildren(OverlayPanel) elementPanels !: QueryList<OverlayPanel>;
 
+ 
   constructor() { }
 
   ngOnInit() {
   }
+
+  showWarning(indexElement: number) { 
+    return this.nbElements != null && this.nbElements[indexElement] > 1;
+  } 
+
 
   showElements(event: any, indexElement: number) {
     let currentIndexElement = 0;

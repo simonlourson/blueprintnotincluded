@@ -70,10 +70,10 @@ export class ComponentMenuComponent implements OnInit, IObsToolChanged, IObsOver
     });
 
     this.toolMenuItems = [
-      {label: 'Select',         id:ToolType.select.toString(),        command: (event) => { this.clickTool(event); }},
-      {label: 'Build',          id:ToolType.build.toString(),         command: (event) => { this.clickTool(event); }},
+      {label: 'Select',         id:ToolType[ToolType.select],        command: (event) => { this.clickTool(ToolType.select); }},
+      {label: 'Build',          id:ToolType[ToolType.build],         command: (event) => { this.clickTool(ToolType.build); }},
       {separator:true},
-      {label: 'Element Report', id:ToolType.elementReport.toString(), command: (event) => { this.clickTool(event); }},
+      {label: 'Element Report', id:ToolType[ToolType.elementReport], command: (event) => { this.clickTool(ToolType.elementReport); }},
     ];
 
     this.menuItems = [
@@ -118,45 +118,32 @@ export class ComponentMenuComponent implements OnInit, IObsToolChanged, IObsOver
     
     this.clickOverlay({item:{id:Overlay.Base}});
 
-    this.askChangeTool({toolType:ToolType.select, templateItem:null});
-    this.clickTool({item:{id:ToolType.select}});
+    this.clickTool(ToolType.select);
 
   }
 
   toolChanged(toolType: ToolType) {
-    this.updateToolIcon(toolType);
+    this.updateToolIcon();
   }
 
-  updateToolIcon(toolType: ToolType)
+  updateToolIcon()
   {
     for (let menuItem of this.toolMenuItems)
     {
-      // TODO general case, also in ToolService.ChangeTool
-      if (toolType == ToolType.select || toolType == ToolType.build) {
-        if (menuItem.id == toolType.toString()) {menuItem.icon = 'pi pi-fw pi-check';}
+      if(!menuItem.separator) {
+        if (this.toolService.getTool(ToolType[menuItem.id]).visible) menuItem.icon = 'pi pi-fw pi-check';
         else menuItem.icon = 'pi pi-fw pi-none';
       }
-      else if (toolType == ToolType.elementReport) 
-        if (menuItem.id == toolType.toString()) {
-          if (this.toolService.elementReportTool.visible) menuItem.icon = 'pi pi-fw pi-check';
-          else menuItem.icon = 'pi pi-fw pi-none';
-        }
-
     }   
   }
 
-  clickTool(event: any, templateItem: BlueprintItem = null)
+  clickTool(toolType: ToolType)
   {
-    this.toolService.changeTool(event.item.id as ToolType);
+    this.toolService.changeTool(toolType);
   }
 
   userProfile() {
     this.messageService.add({severity:'warn', summary:'User profile', detail:'Coming soon !!!'});
-  }
-
-  public askChangeTool(toolRequest: ToolRequest)
-  {
-    this.clickTool({item:{id:toolRequest.toolType}}, toolRequest.templateItem);
   }
 
   overlayChanged(newOverlay: Overlay) {

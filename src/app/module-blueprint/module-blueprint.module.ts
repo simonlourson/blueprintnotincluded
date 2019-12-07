@@ -5,7 +5,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { Routes, RouterModule } from '@angular/router';
 import { ComponentCanvasComponent } from 'src/app/module-blueprint/components/component-canvas/component-canvas.component';
 import { ComponentMenuComponent } from 'src/app/module-blueprint/components/component-menu/component-menu.component';
-import { ComponentSidepanelComponent } from 'src/app/module-blueprint/components/side-bar/side-panel/side-panel.component';
 import { ComponentBlueprintParentComponent } from 'src/app/module-blueprint/components/component-blueprint-parent/component-blueprint-parent.component';
 
 import { MouseWheelDirective } from 'src/app/module-blueprint/directives/mousewheel.directive';
@@ -72,7 +71,7 @@ import { ElementReportToolComponent } from './components/side-bar/element-report
     RecaptchaV3Module,
     BrowserAnimationsModule
   ],
-  declarations: [UsernameValidationDirective, BlueprintNameValidationDirective, ComponentCanvasComponent, MouseWheelDirective, DragAndDropDirective, KeyboardDirective, ComponentMenuComponent, ComponentSidepanelComponent, ComponentBlueprintParentComponent, TileInfoComponent, ComponentSaveDialogComponent, ComponentSideBuildToolComponent, ComponentSideSelectionToolComponent, ComponentLoginDialogComponent, RegisterFormComponent, LoginFormComponent, DialogShareUrlComponent, ItemCollectionInfoComponent, DialogBrowseComponent, DialogExportImagesComponent, LikeWidgetComponent, BuildableElementPickerComponent, ElementReportToolComponent],
+  declarations: [UsernameValidationDirective, BlueprintNameValidationDirective, ComponentCanvasComponent, MouseWheelDirective, DragAndDropDirective, KeyboardDirective, ComponentMenuComponent, ComponentBlueprintParentComponent, TileInfoComponent, ComponentSaveDialogComponent, ComponentSideBuildToolComponent, ComponentSideSelectionToolComponent, ComponentLoginDialogComponent, RegisterFormComponent, LoginFormComponent, DialogShareUrlComponent, ItemCollectionInfoComponent, DialogBrowseComponent, DialogExportImagesComponent, LikeWidgetComponent, BuildableElementPickerComponent, ElementReportToolComponent],
   providers: [CheckDuplicateService, AuthenticationService, BlueprintService, ToolService, SelectTool, BuildTool, ElementReportTool, DatePipe,
     { provide: RECAPTCHA_V3_SITE_KEY, useValue: '6LdS0b8UAAAAAGb8P_L33ypsdiS41Nu8q3CwRg_M' }
   ],

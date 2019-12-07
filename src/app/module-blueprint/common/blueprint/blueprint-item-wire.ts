@@ -8,14 +8,13 @@ import { CameraService } from "../../services/camera-service";
 import { SpriteInfo } from "../../drawing/sprite-info";
 import { ImageSource } from "../../drawing/image-source";
 import { DrawHelpers } from "../../drawing/draw-helpers";
-import { TemplateItemCloneable } from "./template-item-cloneable";
 import { DrawPixi } from '../../drawing/draw-pixi';
 import { DrawPart } from '../../drawing/draw-part';
 import { Overlay } from '../overlay-type';
 import { BniBuilding } from './io/bni/bni-building';
 import { MdbBuilding } from './io/mdb/mdb-building';
 
-export class BlueprintItemWire extends BlueprintItem implements TemplateItemCloneable<BlueprintItemWire>
+export class BlueprintItemWire extends BlueprintItem 
 {
   static defaultConnections = 0;
   connections: number;

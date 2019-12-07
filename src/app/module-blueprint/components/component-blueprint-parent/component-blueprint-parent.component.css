@@ -2,12 +2,12 @@
   position: absolute;
   width: 300px;
   padding: 10px;
+  max-height: 60vh;
 }
 
 .side-panel-right {
   position: absolute;
   right:0;
-  width: 300px;
   padding: 10px;
 }
 

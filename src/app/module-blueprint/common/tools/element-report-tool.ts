@@ -5,17 +5,19 @@ import { CameraService } from '../../services/camera-service';
 import { BlueprintService } from '../../services/blueprint-service';
 import { Injectable } from '@angular/core';
 import { BuildableElement } from '../bexport/b-element';
+import { IObsBlueprintChange } from '../blueprint/blueprint';
+import { BlueprintItem } from '../blueprint/blueprint-item';
 
 @Injectable()
-export class ElementReportTool implements ITool {
-
-  visible: boolean = false;
+export class ElementReportTool implements ITool, IObsBlueprintChange {
 
   parent: IChangeTool;
   data: ElementReportDataItem[];
 
   constructor(private blueprintService: BlueprintService) {
     this.data = [];
+
+    this.blueprintService.blueprint.subscribeBlueprintChanged(this)
   }
 
   updateElementReport() {
@@ -26,12 +28,8 @@ export class ElementReportTool implements ITool {
         this.addElementToReport(item.buildableElements[elementIndex], item.oniItem.materialMass[elementIndex])
       }
     });
-  }
 
-  toggle() {
-    this.visible = !this.visible;
-
-    if (this.visible) this.updateElementReport();
+    this.data = this.data.sort((i1, i2) => { return i2.totalMass - i1.totalMass; });
   }
 
   private addElementToReport(buildableElement: BuildableElement, mass: number) {
@@ -49,6 +47,13 @@ export class ElementReportTool implements ITool {
         totalMass: mass
       });
     }
+  }
+
+  // Blueprint Change interface
+  itemDestroyed() {}
+  itemAdded(blueprintItem: BlueprintItem) {}
+  blueprintChanged() {
+    this.updateElementReport();
   }
 
   // Tool interface
@@ -77,7 +82,11 @@ export class ElementReportTool implements ITool {
   draw(drawPixi: DrawPixi, camera: CameraService) {
   }
 
-
+  toggleable: boolean = true;
+  visible: boolean = false;
+  captureInput: boolean = false;
+  toolType = ToolType.elementReport;
+  toolGroup: number = 2;
 }
 
 export interface ElementReportDataItem {

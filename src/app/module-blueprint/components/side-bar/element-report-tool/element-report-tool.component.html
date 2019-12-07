@@ -1,11 +1,11 @@
-<p-card header="Element Report">
-  <p-virtualScroller [value]="data" scrollHeight="500px">
-    <ng-template let-element pTemplate="item" let-i="index">
-      <div class="scroller-line">
-          <img [src]="element.buildableElement.iconUrl" height="50px">
-          <div>{{element.buildableElement.name}} : {{element.totalMass}} Kg</div>
-      </div>
-        
-    </ng-template>
-  </p-virtualScroller>
+<p-card header="Element Report" [style]="{width: '100%'}">
+  <div class="scrollable">
+    <div *ngFor="let dataItem of data" class="scroller-line">
+      <img [src]="dataItem.buildableElement.iconUrl" class="element-image">
+      <div class="element-text">{{dataItem.buildableElement.name}}</div>
+      <div class="element-spacer"></div>
+      <div class="element-mass">{{getMass(dataItem.totalMass)}}</div>
+      <button pButton type="button" class="ui-button element-button" icon="pi pi-search-plus" (click)="selectEveryElement(dataItem.buildableElement)" pTooltip="Select every building made of {{dataItem.buildableElement.name}}" tooltipPosition="left"></button>
+    </div>
+  </div>
 </p-card>

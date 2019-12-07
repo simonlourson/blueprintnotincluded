@@ -2,5 +2,37 @@
   display: flex;
   flex-flow: row;
   align-items: center;
-  height:"50px";
+  justify-content: space-between;
+  height:40px;
+  width: 100%;
+}
+
+.scrollable {
+  overflow-y: auto;
+  max-height: 60vh;
+  width: 100%;
+}
+
+.element-image {
+  margin: 5px;
+  height: 30px;
+}
+
+.element-text {
+  margin-right: auto;
+}
+
+.element-spacer {
+  width: 10px;
+  flex: 1
+}
+
+.element-mass {
+  margin-left: auto;
+  margin-right: 5px;
+}
+
+.element-button {
+  margin-left: auto;
+  margin-right: 5px;
 }

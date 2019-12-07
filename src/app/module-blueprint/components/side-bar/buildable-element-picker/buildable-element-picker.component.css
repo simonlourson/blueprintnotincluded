@@ -17,3 +17,7 @@
 .right {
   flex: 2;
 }
+
+.error-red {
+	color: darkred;
+}

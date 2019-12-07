@@ -7,8 +7,14 @@
     <app-component-menu #menu (onMenuCommand)="menuCommand($event)">
     </app-component-menu>
     <div class="side-panel">
-      <app-side-panel #sidePanel>
-      </app-side-panel>
+      <app-selection-tool 
+        #selectionTool 
+        [hidden]="!toolService.selectTool.visible || !toolService.selectTool.showTool">
+      </app-selection-tool>
+      <app-build-tool 
+        #buildTool 
+        [hidden]="!toolService.buildTool.visible">
+      </app-build-tool>
     </div>
     <div class="side-panel-right">
       <app-element-report-tool  *ngIf="toolService.elementReportTool.visible" #elementReportTool>

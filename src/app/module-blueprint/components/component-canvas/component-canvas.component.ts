@@ -2,7 +2,6 @@
 import { Component, OnInit, OnDestroy, ViewChild, ElementRef, NgZone, Output, EventEmitter, HostListener, Pipe } from '@angular/core';
 //import { Http, Response } from "@angular/http"
 import { HttpClientModule, HttpClient } from '@angular/common/http';
-import { ComponentSidepanelComponent } from 'src/app/module-blueprint/components/side-bar/side-panel/side-panel.component';
 
 // Engine imports
 import { CameraService, IObsOverlayChanged } from 'src/app/module-blueprint/services/camera-service';

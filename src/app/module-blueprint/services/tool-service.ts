@@ -11,13 +11,14 @@ import { ElementReportTool } from '../common/tools/element-report-tool';
 @Injectable({ providedIn: 'root' })
 export class ToolService implements ITool, IChangeTool
 {
-  public currentToolType: ToolType;
-  private get currentTool(): ITool { 
-    if (this.currentToolType == ToolType.select) return this.selectTool;
-    else if (this.currentToolType == ToolType.build) return this.buildTool;
-    else if (this.currentToolType == ToolType.elementReport) return this.elementReportTool;
-    else return null;
+  private allTools: ITool[];
+  private currentTool: ITool;
+
+  // This is used by the menu to get the visible status of the tools
+  public getTool(toolType: ToolType) {
+    return this.allTools.filter((t) => { return t.toolType == toolType })[0];
   }
+
   private observers: IObsToolChanged[];
 
   constructor(
@@ -25,8 +26,14 @@ export class ToolService implements ITool, IChangeTool
     public buildTool: BuildTool,
     public elementReportTool: ElementReportTool)
   {
-    this.currentToolType = ToolType.select;
     this.observers = [];
+
+    this.currentTool = this.selectTool;
+
+    this.allTools = [];
+    this.allTools.push(this.selectTool);
+    this.allTools.push(this.buildTool);
+    this.allTools.push(this.elementReportTool);
 
     this.buildTool.parent = this;
     this.elementReportTool.parent = this;
@@ -39,16 +46,30 @@ export class ToolService implements ITool, IChangeTool
 
   changeTool(newTool: ToolType)
   {
-    if (newTool == ToolType.select || newTool == ToolType.build) {
-      this.currentTool.switchFrom();
-      this.currentToolType = newTool;
-      this.currentTool.switchTo();
+    let newToolInstance = this.getTool(newTool);
+
+    // Iterate over every tool of the same group
+    // Switch from and make invisible if needed
+    this.allTools.filter((t) => { return (
+      t.toolGroup == newToolInstance.toolGroup && 
+      t.toolType != newToolInstance.toolType) }).map((t) => {
+        if (t.visible) {
+          t.switchFrom();
+          t.visible = false;
+        }
+      });
+
+    if (newToolInstance.captureInput) this.currentTool = newToolInstance
+
+    if (newToolInstance.toggleable && newToolInstance.visible) {
+      newToolInstance.visible = false;
+      newToolInstance.switchFrom();
     }
-    else if (newTool == ToolType.elementReport) {
-      this.elementReportTool.toggle();
+    else {
+      newToolInstance.visible = true;
+      newToolInstance.switchTo();
     }
     
-
     this.observers.map((observer) => observer.toolChanged(newTool) );
   }
 
@@ -60,11 +81,9 @@ export class ToolService implements ITool, IChangeTool
   mouseOut() {
     this.currentTool.mouseOut();
   }
-
   mouseDown(tile: Vector2) {
     this.currentTool.mouseDown(tile);
   }
-
   leftClick(tile: Vector2) {
     this.currentTool.leftClick(tile);
   }
@@ -86,6 +105,13 @@ export class ToolService implements ITool, IChangeTool
   draw(drawPixi: DrawPixi, camera: CameraService) {
     this.currentTool.draw(drawPixi, camera);
   }
+
+  // These should never be used
+  toggleable: boolean;
+  visible: boolean;
+  captureInput: boolean;
+  toolType: ToolType;
+  toolGroup: number;
 }
 
 export class ToolRequest

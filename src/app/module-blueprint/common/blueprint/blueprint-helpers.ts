@@ -20,4 +20,16 @@ export class BlueprintHelpers
   
     return newTemplateItem;
   }
+
+  static cloneBlueprintItem(original: BlueprintItem, withConnections: boolean = false, withOrientation: boolean = false) {
+    let returnValue = BlueprintHelpers.createInstance(original.id);
+
+    let mdbClone = original.toMdbBuilding();
+    if (!withConnections) mdbClone.connections = undefined;
+    if (!withOrientation) mdbClone.orientation = undefined;
+
+    returnValue.importMdbBuilding(mdbClone);
+
+    return returnValue;
+  }
 }

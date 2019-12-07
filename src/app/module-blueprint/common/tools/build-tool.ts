@@ -9,6 +9,7 @@ import { CameraService } from '../../services/camera-service';
 import { BlueprintItemWire } from '../blueprint/blueprint-item-wire';
 import { Blueprint } from '../blueprint/blueprint';
 import { DrawHelpers } from '../../drawing/draw-helpers';
+import { BlueprintHelpers } from '../blueprint/blueprint-helpers';
 
 @Injectable()
 export class BuildTool implements ITool
@@ -54,7 +55,8 @@ export class BuildTool implements ITool
   {
     if (!this.canBuild()) return;
 
-    let newItem = this.templateItemToBuild.clone();
+    let newItem = BlueprintHelpers.cloneBlueprintItem(this.templateItemToBuild, false, true);
+
     newItem.prepareOverlayInfo(this.cameraService.overlay);
     newItem.prepareBoundingBox();
     newItem.prepareSpriteInfoModifier(this.blueprintService.blueprint);
@@ -128,11 +130,6 @@ export class BuildTool implements ITool
   {
     this.templateItemToBuild.position = tile;
     this.build();
-
-    // Test
-    //let tileStart = new Vector2(-50.5, -50.5);
-    //let tileStop = new Vector2(50.5, 100.5);
-    //this.drag(tileStart, tileStop);
   }
 
   rightClick(tile: Vector2) {
@@ -315,6 +312,12 @@ export class BuildTool implements ITool
     this.templateItemToBuild.drawPixi(camera, drawPixi);
     // TODO correct red and alpha when building outside of overlay 
   }
+
+  toggleable: boolean = false;
+  visible: boolean = false;
+  captureInput: boolean = true;
+  toolType = ToolType.build;
+  toolGroup: number = 1;
 }
 
 export interface IObsBuildItemChanged

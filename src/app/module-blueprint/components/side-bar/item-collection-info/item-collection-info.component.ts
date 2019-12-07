@@ -33,7 +33,10 @@ export class ItemCollectionInfoComponent implements OnInit, IObsSelected {
 
   buildingsCopy() {
     this.toolService.changeTool(ToolType.build);
-    this.toolService.buildTool.changeItem(BlueprintHelpers.createInstance(this.itemCollection.oniItem.id) );
+    
+    let newItem = BlueprintHelpers.cloneBlueprintItem(this.itemCollection.items[0]);
+
+    this.toolService.buildTool.changeItem(newItem);
   }
 
   selectEvery() {
@@ -49,6 +52,9 @@ export class ItemCollectionInfoComponent implements OnInit, IObsSelected {
 
     this.itemCollection.items.map((item) => {
       item.setElement(elementChangeInfo.newElement.id, elementChangeInfo.index);
-    })
+    });
+
+    this.itemCollection.updateNbElements();
+    this.blueprintService.blueprint.emitBlueprintChanged();
   }
 }

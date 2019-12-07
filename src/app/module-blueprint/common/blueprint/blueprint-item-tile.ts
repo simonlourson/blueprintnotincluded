@@ -1,11 +1,10 @@
 import { Vector2 } from "../vector2";
 import { Blueprint } from "./blueprint";
 import { BlueprintItem } from "./blueprint-item";
-import { TemplateItemCloneable } from "./template-item-cloneable";
 import { DrawHelpers } from '../../drawing/draw-helpers';
 import { DrawPart } from '../../drawing/draw-part';
 
-export class BlueprintItemTile extends BlueprintItem implements TemplateItemCloneable<BlueprintItemTile>
+export class BlueprintItemTile extends BlueprintItem
 {
 
   tileConnections: number;

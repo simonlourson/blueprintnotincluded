@@ -27,7 +27,7 @@ export class Blueprint
   {
     this.blueprintItems = [];
 
-    this.observersItemDestroyed = [];
+    this.observersBlueprintChanged = [];
   }
 
   public importFromOni(oniBlueprint: OniTemplate)
@@ -146,7 +146,9 @@ export class Blueprint
   public destroyAndCopyItems(source: Blueprint) {
     this.destroy();
 
+    this.pauseChangeEvents();
     for (let blueprintItem of source.blueprintItems) this.addBlueprintItem(blueprintItem);
+    this.resumeChangeEvents();
   }
 
   private currentOverlay: Overlay
@@ -161,13 +163,15 @@ export class Blueprint
     for (let templateItem of this.blueprintItems) templateItem.prepareOverlayInfo(this.currentOverlay);
   }
 
-  public addBlueprintItem(templateItem: BlueprintItem)
+  public addBlueprintItem(blueprintItem: BlueprintItem)
   {
-    this.blueprintItems.push(templateItem);
+    this.blueprintItems.push(blueprintItem);
 
-    if (templateItem.tileIndexes == null) templateItem.prepareBoundingBox();
+    if (blueprintItem.tileIndexes == null) blueprintItem.prepareBoundingBox();
 
-    for (let tileIndex of templateItem.tileIndexes) this.getBlueprintItemsAtIndex(tileIndex).push(templateItem);
+    for (let tileIndex of blueprintItem.tileIndexes) this.getBlueprintItemsAtIndex(tileIndex).push(blueprintItem);
+  
+    this.emitItemAdded(blueprintItem);
   }
 
   public destroyBlueprintItem(templateItem: BlueprintItem)
@@ -211,8 +215,8 @@ export class Blueprint
     // Then destroy the sprite
     templateItem.destroy();
 
-    // Then fire the event
-    this.observersItemDestroyed.map((observer) => {observer.itemDestroyed();})
+    // Then fire the events
+    this.emitItemDestroyed();
   }
 
   public getBlueprintItemsAt(position: Vector2): BlueprintItem[]
@@ -234,10 +238,37 @@ export class Blueprint
     return returnValue;
   }
 
-  // TODO is this really useful
-  observersItemDestroyed: IObsItemDestroyed[];
-  public subscribeItemDestroyed(observer: IObsItemDestroyed) {
-    this.observersItemDestroyed.push(observer);
+  // Sometimes we need to pause the events (when lots of changes are happening at once)
+  private pauseChangeEvents_: boolean = false;
+  public pauseChangeEvents() {
+    this.pauseChangeEvents_ = true;
+  }
+  public resumeChangeEvents() {
+    this.pauseChangeEvents_ = false;
+    this.emitBlueprintChanged();
+  }
+
+  observersBlueprintChanged: IObsBlueprintChange[];
+  public subscribeBlueprintChanged(observer: IObsBlueprintChange) {
+    this.observersBlueprintChanged.push(observer);
+  }
+
+  private emitItemDestroyed() {
+    if (!this.pauseChangeEvents_) {
+      this.observersBlueprintChanged.map((observer) => {observer.itemDestroyed();});
+      this.emitBlueprintChanged();
+    }
+  }
+
+  private emitItemAdded(blueprintItem: BlueprintItem) {
+    if (!this.pauseChangeEvents_) {
+      this.observersBlueprintChanged.map((observer) => { observer.itemAdded(blueprintItem); });
+      this.emitBlueprintChanged();
+    }
+  }
+
+  public emitBlueprintChanged() {
+    if (!this.pauseChangeEvents_) this.observersBlueprintChanged.map((observer) => { observer.blueprintChanged(); });
   }
 
   public toMdbBlueprint(): MdbBlueprint
@@ -287,11 +318,16 @@ export class Blueprint
       let blueprintItemsCopy: BlueprintItem[] = [];
 
       for (let b of this.blueprintItems) blueprintItemsCopy.push(b);
+
+      this.pauseChangeEvents();
       for (let b of blueprintItemsCopy) this.destroyBlueprintItem(b);
+      this.resumeChangeEvents();
     }
   }
 }
 
-export interface IObsItemDestroyed {
+export interface IObsBlueprintChange {
   itemDestroyed();
+  itemAdded(blueprintItem: BlueprintItem);
+  blueprintChanged();
 }

@@ -5,9 +5,6 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import {BinaryReader, Encoding} from 'csharp-binary-stream';
 
 // Library imports
-import { OniTemplate } from '../../common/blueprint/io/oni/oni-template';
-import { TileInfo } from '../../common/tile-info';
-import { ComponentSidepanelComponent } from '../side-bar/side-panel/side-panel.component';
 import { OniItem } from '../../common/oni-item';
 import { ImageSource } from '../../drawing/image-source';
 import { Vector2 } from '../../common/vector2';
@@ -40,6 +37,7 @@ import { ToolService } from '../../services/tool-service';
 import { DrawHelpers } from '../../drawing/draw-helpers';
 import { AuthenticationService } from '../../services/authentification-service';
 import { BuildableElement } from '../../common/bexport/b-element';
+import { ComponentSideBuildToolComponent } from '../side-bar/build-tool/build-tool.component';
 
 /*
 TODO Feature List before release :
@@ -70,8 +68,8 @@ export class ComponentBlueprintParentComponent implements OnInit, IObsBlueprintC
   @ViewChild('canvas', {static: true})
   canvas: ComponentCanvasComponent;
 
-  @ViewChild('sidePanel', {static: true})
-  sidePanel: ComponentSidepanelComponent;
+  @ViewChild('buildTool', {static: true})
+  buildTool: ComponentSideBuildToolComponent;
   
   @ViewChild('saveDialog', {static: true})
   saveDialog: ComponentSaveDialogComponent;
@@ -94,7 +92,7 @@ export class ComponentBlueprintParentComponent implements OnInit, IObsBlueprintC
     private authService: AuthenticationService,
     private blueprintService: BlueprintService,
     private cameraService: CameraService,
-    private toolService: ToolService) { }
+    public toolService: ToolService) { }
 
   ngOnInit() {
     
@@ -110,7 +108,7 @@ export class ComponentBlueprintParentComponent implements OnInit, IObsBlueprintC
 
     this.fetchDatabase().then(() => {
       
-      this.sidePanel.oniItemsLoaded();
+      this.buildTool.oniItemsLoaded();
 
       this.route.url.subscribe((url: UrlSegment[]) => {
         if (url != null && url.length > 0 && url[0].path == 'browse') {
