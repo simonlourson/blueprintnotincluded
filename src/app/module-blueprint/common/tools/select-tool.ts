@@ -168,9 +168,14 @@ export class SelectTool implements ITool
   }
 
   destroyAll() {
-    if (this.sameItemCollections != null)
+    if (this.sameItemCollections != null) {
+      this.blueprintService.blueprint.pauseChangeEvents();
+
       for (let itemCollection of this.sameItemCollections)
         itemCollection.destroyAll();
+
+      this.blueprintService.blueprint.resumeChangeEvents();
+    }
 
     this.deselectAll();
   }
