@@ -143,12 +143,12 @@ export class Blueprint
 
   }
 
-  public destroyAndCopyItems(source: Blueprint) {
-    this.destroy();
+  public destroyAndCopyItems(source: Blueprint, emitChanges: boolean = true) {
+    this.destroy(emitChanges);
 
     this.pauseChangeEvents();
     for (let blueprintItem of source.blueprintItems) this.addBlueprintItem(blueprintItem);
-    this.resumeChangeEvents();
+    this.resumeChangeEvents(emitChanges);
   }
 
   private currentOverlay: Overlay
@@ -243,9 +243,9 @@ export class Blueprint
   public pauseChangeEvents() {
     this.pauseChangeEvents_ = true;
   }
-  public resumeChangeEvents() {
+  public resumeChangeEvents(emitChanges: boolean = true) {
     this.pauseChangeEvents_ = false;
-    this.emitBlueprintChanged();
+    if (emitChanges) this.emitBlueprintChanged();
   }
 
   observersBlueprintChanged: IObsBlueprintChange[];
@@ -311,7 +311,7 @@ export class Blueprint
     return [topLeft, bottomRight];
   }
 
-  public destroy()
+  public destroy(emitChanges: boolean = true)
   {
     if (this.blueprintItems != null) {
 
@@ -321,7 +321,7 @@ export class Blueprint
 
       this.pauseChangeEvents();
       for (let b of blueprintItemsCopy) this.destroyBlueprintItem(b);
-      this.resumeChangeEvents();
+      this.resumeChangeEvents(emitChanges);
     }
   }
 }

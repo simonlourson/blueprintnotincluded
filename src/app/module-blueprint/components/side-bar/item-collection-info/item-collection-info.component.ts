@@ -20,6 +20,12 @@ export class ItemCollectionInfoComponent implements OnInit, IObsSelected {
 
   @ViewChild('focusElement', {static: true}) focusElement: ElementRef;
 
+  get debug() { 
+    let debug = this.itemCollection.items[0] as any;
+    let debugInfo = {connections: debug.connections };
+    return JSON.stringify(debugInfo);
+  }
+
   constructor(private blueprintService: BlueprintService, private toolService: ToolService) { }
 
   ngOnInit() {

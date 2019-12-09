@@ -110,6 +110,8 @@ export class BuildTool implements ITool
         this.connectAToB(itemCurrent, itemPrevious);
         itemPrevious.prepareSpriteInfoModifier(this.blueprintService.blueprint);
         itemCurrent.prepareSpriteInfoModifier(this.blueprintService.blueprint);
+
+        this.blueprintService.blueprint.emitBlueprintChanged();
       }
     }
   }

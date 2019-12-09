@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Blueprint } from '../common/blueprint/blueprint';
+import { Blueprint, IObsBlueprintChange } from '../common/blueprint/blueprint';
 import { AuthenticationService } from './authentification-service';
 import { map } from 'rxjs/operators';
 import { IObsOverlayChanged, CameraService } from './camera-service';
@@ -12,9 +12,10 @@ import * as yaml from 'node_modules/js-yaml/lib/js-yaml';
 import { BniBlueprint } from '../common/blueprint/io/bni/bni-blueprint';
 import { BlueprintResponse } from './messages/blueprint-response';
 import { MdbBlueprint } from '../common/blueprint/io/mdb/mdb-blueprint';
+import { BlueprintItem } from '../common/blueprint/blueprint-item';
 
 @Injectable({ providedIn: 'root' })
-export class BlueprintService implements IObsOverlayChanged
+export class BlueprintService implements IObsOverlayChanged, IObsBlueprintChange
 {
   //static baseUrl: string = 'blueprintnotincluded.com/';
   static baseUrl: string = 'https://blueprintnotincluded.com/';
@@ -38,6 +39,9 @@ export class BlueprintService implements IObsOverlayChanged
   constructor(private http: HttpClient, private authService: AuthenticationService, private cameraService: CameraService) {
     this.blueprint = new Blueprint();
 
+    // Undo / Redo stuff
+    this.blueprint.subscribeBlueprintChanged(this)
+    this.resetUndoStates();
 
     this.observersBlueprintChanged = [];
 
@@ -64,6 +68,8 @@ export class BlueprintService implements IObsOverlayChanged
       if (fileType == BlueprintFileType.YAML) this.openYamlBlueprint(fileList[0]);
       else if (fileType == BlueprintFileType.JSON) this.openJsonBlueprint(fileList[0]);
       else if (fileType == BlueprintFileType.BSON) this.openBsonBlueprint(fileList[0]);
+
+      this.resetUndoStates();
     }
   }
 
@@ -118,13 +124,95 @@ export class BlueprintService implements IObsOverlayChanged
     this.name = 'new blueprint';
     this.reset();
     let newBlueprint = new Blueprint();
+
     this.observersBlueprintChanged.map((observer) => { observer.blueprintChanged(newBlueprint); })
+    this.resetUndoStates();
+    // TODO firing the observable and then restting the states is duplicated. fix this
   }
 
   reset() {
     this.id = null;
     this.likedByMe = false;
   }  
+
+  suppressChanges: boolean;
+  undoStates: MdbBlueprint[];
+  undoIndex: number;
+  undo() {
+    let tempUndoIndex = this.undoIndex - 1;
+
+    if (tempUndoIndex < 0 || tempUndoIndex >= this.undoStates.length) return;
+
+    this.undoIndex = tempUndoIndex;
+    this.reloadUndoIndex();
+  }
+
+  redo() {
+    let tempUndoIndex = this.undoIndex + 1;
+
+    if (tempUndoIndex >= this.undoStates.length) return;
+
+    this.undoIndex = tempUndoIndex;
+    this.reloadUndoIndex();
+  }
+
+  reloadUndoIndex() {
+    let newBlueprint = new Blueprint();
+    newBlueprint.importFromMdb(this.undoStates[this.undoIndex]);
+
+    this.suppressChanges = true;
+    this.blueprint.destroyAndCopyItems(newBlueprint);
+    this.blueprint.refreshOverlayInfo();
+    this.suppressChanges = false;
+  }
+
+  resetUndoStates() {
+    this.suppressChanges = false;
+    this.undoStates = [];
+    this.undoIndex = 0;
+
+    this.blueprintChanged();
+  }
+
+  itemDestroyed() {}
+  itemAdded(blueprintItem: BlueprintItem) {}
+  blueprintChanged() {
+
+    // We don't want to add a state if the changes come from the undo / redo action
+    if (this.suppressChanges) return;
+
+    // If we are in the middle of the states, doing anythings scraps the further redos
+    if (this.undoIndex < this.undoStates.length - 1) this.undoStates.splice(this.undoIndex + 1);
+
+    
+    let newState = this.blueprint.toMdbBlueprint();
+    /*if (this.undoStates.length > 0) {
+      let oldState = this.undoStates[this.undoStates.length - 1];
+      let oldHash = this.hashMdb(oldState);
+      let newHash = this.hashMdb(newState);
+      if (oldHash != newHash) this.undoStates.push(newState);
+    }
+    else */this.undoStates.push(newState);
+
+    
+    
+
+    while (this.undoStates.length > 50) this.undoStates.splice(0, 1);
+
+    this.undoIndex = this.undoStates.length - 1;
+  }
+
+  hashMdb(mdb: MdbBlueprint) {
+    let s = JSON.stringify(mdb);
+    var hash = 0, i, chr;
+    if (s.length === 0) return hash;
+    for (i = 0; i < s.length; i++) {
+      chr   = s.charCodeAt(i);
+      hash  = ((hash << 5) - hash) + chr;
+      hash |= 0; // Convert to 32bit integer
+    }
+    return hash;
+  }
 
   // TODO return observable here so we can close the browse window on success?
   openBlueprintFromId(id: string) {
@@ -136,7 +224,8 @@ export class BlueprintService implements IObsOverlayChanged
 
   handleGetBlueprint(blueprint: Blueprint)
   {
-    this.observersBlueprintChanged.map((observer) => { observer.blueprintChanged(blueprint); })
+    this.observersBlueprintChanged.map((observer) => { observer.blueprintChanged(blueprint); });
+    this.resetUndoStates();
   }
 
   handleGetBlueprintError(error: any)

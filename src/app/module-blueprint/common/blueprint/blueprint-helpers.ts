@@ -29,7 +29,7 @@ export class BlueprintHelpers
     if (!withOrientation) mdbClone.orientation = undefined;
 
     returnValue.importMdbBuilding(mdbClone);
-
+    
     return returnValue;
   }
 }

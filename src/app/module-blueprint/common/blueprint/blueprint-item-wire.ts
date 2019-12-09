@@ -17,7 +17,7 @@ import { MdbBuilding } from './io/mdb/mdb-building';
 export class BlueprintItemWire extends BlueprintItem 
 {
   static defaultConnections = 0;
-  connections: number;
+  public connections: number;
 
   drawPartSolid_: DrawPart;
   get drawPartSolid() {
@@ -46,13 +46,14 @@ export class BlueprintItemWire extends BlueprintItem
 
   public importMdbBuilding(original: MdbBuilding)
   {
+    this.connections = original.connections; 
     super.importMdbBuilding(original);
-    this.connections = original.connections;
   }
 
   public cleanUp()
   {
     if (this.connections == null) this.connections = BlueprintItemWire.defaultConnections;
+    
     super.cleanUp();
   }
 
@@ -79,7 +80,7 @@ export class BlueprintItemWire extends BlueprintItem
   public toMdbBuilding(): MdbBuilding {
     let returnValue = super.toMdbBuilding();
 
-    if (this.connections != 0) returnValue.connections = this.connections;
+    if (this.connections != BlueprintItemWire.defaultConnections) returnValue.connections = this.connections;
 
     return returnValue;
   }

@@ -94,6 +94,13 @@ export class ComponentMenuComponent implements OnInit, IObsToolChanged, IObsOver
         ]
       },
       {
+        label: 'Edit',
+        items: [
+          {label: 'Undo', icon:'pi pi-undo',    command: (event) => { this.blueprintService.undo(); } },
+          {label: 'Redo', icon:'pi pi-replay',  command: (event) => { this.blueprintService.redo(); } },
+        ]
+      },
+      {
         label: 'Tools',
         items: this.toolMenuItems
       },
