@@ -1457,6 +1457,7 @@
           "thresholdValueUnits": "germs",
           "rangeMin": 0.0,
           "rangeMax": 100000.0,
+          "incrementScale": 1,
           "defaultValue": 0.0,
           "defaultBoolean": true,
           "id": "ThresholdSwitchSideScreen",
@@ -1516,6 +1517,7 @@
           "thresholdValueUnits": "germs",
           "rangeMin": 0.0,
           "rangeMax": 100000.0,
+          "incrementScale": 1,
           "defaultValue": 0.0,
           "defaultBoolean": true,
           "id": "ThresholdSwitchSideScreen",
@@ -1655,6 +1657,7 @@
           "thresholdValueUnits": " ºC",
           "rangeMin": 0.0,
           "rangeMax": 9999.0,
+          "incrementScale": 1,
           "defaultValue": 280.0,
           "defaultBoolean": true,
           "id": "ThresholdSwitchSideScreen",
@@ -1712,6 +1715,7 @@
           "thresholdValueUnits": " ºC",
           "rangeMin": 0.0,
           "rangeMax": 9999.0,
+          "incrementScale": 1,
           "defaultValue": 280.0,
           "defaultBoolean": true,
           "id": "ThresholdSwitchSideScreen",
@@ -2786,6 +2790,7 @@
           "thresholdValueUnits": " Kg",
           "rangeMin": 0.0,
           "rangeMax": 2000.0,
+          "incrementScale": 1,
           "defaultValue": 10.0,
           "defaultBoolean": true,
           "id": "ThresholdSwitchSideScreen",
@@ -3854,10 +3859,10 @@
           "min": 0.0,
           "max": 100.0,
           "tooltip": "Duplicants will be requested to deliver <style=\"KKeyword\">{0}</style> when the total charge of the connected <style=\"KKeyword\">Batteries</style> falls below <b>{1}%</b>",
+          "sliderDecimalPlaces": 0,
           "defaultValue": 50.0,
           "id": "SingleSliderSideScreen",
           "inputs": [
-            "number",
             "number"
           ]
         }
@@ -5760,6 +5765,7 @@
           "thresholdValueUnits": "",
           "rangeMin": 0.0,
           "rangeMax": 64.0,
+          "incrementScale": 1,
           "defaultValue": 0.0,
           "defaultBoolean": true,
           "id": "ThresholdSwitchSideScreen",
@@ -5817,6 +5823,7 @@
           "thresholdValueUnits": "germs",
           "rangeMin": 0.0,
           "rangeMax": 100000.0,
+          "incrementScale": 100,
           "defaultValue": 0.0,
           "defaultBoolean": true,
           "id": "ThresholdSwitchSideScreen",
@@ -6109,10 +6116,10 @@
           "min": 0.1,
           "max": 200.0,
           "tooltip": "Will continue to send a <b><color=#57b95e>Green Signal</b></color> for <b>{0} seconds</b> after receiving a <b><color=#f44a47>Red Signal</b></color>",
+          "sliderDecimalPlaces": 1,
           "defaultValue": 5.0,
           "id": "SingleSliderSideScreen",
           "inputs": [
-            "number",
             "number"
           ]
         }
@@ -6154,10 +6161,10 @@
           "min": 0.1,
           "max": 200.0,
           "tooltip": "Will only send a <b><color=#57b95e>Green Signal</b></color> if it receives <b><color=#57b95e>Green</b></color> for longer than <b>{0} seconds</b>",
+          "sliderDecimalPlaces": 1,
           "defaultValue": 5.0,
           "id": "SingleSliderSideScreen",
           "inputs": [
-            "number",
             "number"
           ]
         }
@@ -6306,6 +6313,7 @@
           "thresholdValueUnits": " g",
           "rangeMin": 0.0,
           "rangeMax": 20.0,
+          "incrementScale": 1,
           "defaultValue": 1.0,
           "defaultBoolean": false,
           "id": "ThresholdSwitchSideScreen",
@@ -6363,6 +6371,7 @@
           "thresholdValueUnits": " Kg",
           "rangeMin": 0.0,
           "rangeMax": 2000.0,
+          "incrementScale": 1,
           "defaultValue": 500.0,
           "defaultBoolean": false,
           "id": "ThresholdSwitchSideScreen",
@@ -6460,6 +6469,7 @@
           "thresholdValueUnits": " ºC",
           "rangeMin": 0.0,
           "rangeMax": 9999.0,
+          "incrementScale": 1,
           "defaultValue": 280.0,
           "defaultBoolean": false,
           "id": "ThresholdSwitchSideScreen",
@@ -6696,10 +6706,10 @@
           "min": 0.0,
           "max": 100.0,
           "tooltip": "Duplicants will be requested to operate this generator when the total charge of the connected <style=\"KKeyword\">Batteries</style> falls below <b>{0}%</b>",
+          "sliderDecimalPlaces": 0,
           "defaultValue": 50.0,
           "id": "SingleSliderSideScreen",
           "inputs": [
-            "number",
             "number"
           ]
         }
@@ -6947,10 +6957,10 @@
           "min": 0.0,
           "max": 100.0,
           "tooltip": "A Duplicant may not use this cot until their <style=\"KKeyword\">Health</style> falls below <b>{0}%</b>",
+          "sliderDecimalPlaces": 0,
           "defaultValue": 100.0,
           "id": "SingleSliderSideScreen",
           "inputs": [
-            "number",
             "number"
           ]
         }
@@ -7572,10 +7582,10 @@
           "min": 0.0,
           "max": 100.0,
           "tooltip": "Duplicants will be requested to release backpressure buildup when it exceeds <b>{0}%</b>",
+          "sliderDecimalPlaces": 0,
           "defaultValue": 75.0,
           "id": "SingleSliderSideScreen",
           "inputs": [
-            "number",
             "number"
           ]
         }
@@ -8358,6 +8368,7 @@
           "thresholdValueUnits": " g",
           "rangeMin": 0.0,
           "rangeMax": 2.0,
+          "incrementScale": 1,
           "defaultValue": 1.0,
           "defaultBoolean": false,
           "id": "ThresholdSwitchSideScreen",
@@ -8406,6 +8417,7 @@
           "thresholdValueUnits": " Kg",
           "rangeMin": 0.0,
           "rangeMax": 2000.0,
+          "incrementScale": 1,
           "defaultValue": 500.0,
           "defaultBoolean": false,
           "id": "ThresholdSwitchSideScreen",
@@ -10109,6 +10121,7 @@
           "thresholdValueUnits": " ºC",
           "rangeMin": 0.0,
           "rangeMax": 573.15,
+          "incrementScale": 1,
           "defaultValue": 280.0,
           "defaultBoolean": false,
           "id": "ThresholdSwitchSideScreen",
@@ -10868,10 +10881,10 @@
           "min": 0.0,
           "max": 100.0,
           "tooltip": "Duplicants will be requested to deliver <style=\"KKeyword\">{0}</style> when the total charge of the connected <style=\"KKeyword\">Batteries</style> falls below <b>{1}%</b>",
+          "sliderDecimalPlaces": 0,
           "defaultValue": 50.0,
           "id": "SingleSliderSideScreen",
           "inputs": [
-            "number",
             "number"
           ]
         }
