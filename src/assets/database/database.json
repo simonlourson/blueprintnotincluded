@@ -1450,40 +1450,19 @@
       ],
       "uiScreens": [
         {
+          "title": "Germ Threshold",
+          "aboveToolTip": "Will send a <b><color=#57b95e>Green Signal</b></color> if the number of <style=\"KKeyword\">Germs</style> is above <b>{0}</b>",
+          "belowToolTip": "Will send a <b><color=#57b95e>Green Signal</b></color> if the number of <style=\"KKeyword\">Germs</style> is below <b>{0}</b>",
+          "thresholdValueName": "Germs",
+          "thresholdValueUnits": "germs",
+          "rangeMin": 0.0,
+          "rangeMax": 100000.0,
+          "defaultValue": 0.0,
+          "defaultBoolean": true,
           "id": "ThresholdSwitchSideScreen",
-          "uiStrings": [
-            {
-              "key": "title",
-              "value": "Germ Threshold"
-            },
-            {
-              "key": "aboveToolTip",
-              "value": "Will send a <b><color=#57b95e>Green Signal</b></color> if the number of <style=\"KKeyword\">Germs</style> is above <b>{0}</b>"
-            },
-            {
-              "key": "belowToolTip",
-              "value": "Will send a <b><color=#57b95e>Green Signal</b></color> if the number of <style=\"KKeyword\">Germs</style> is below <b>{0}</b>"
-            },
-            {
-              "key": "thresholdValueName",
-              "value": "Germs"
-            },
-            {
-              "key": "thresholdValueUnits",
-              "value": "germs"
-            },
-            {
-              "key": "rangeMin",
-              "value": "0"
-            },
-            {
-              "key": "rangeMax",
-              "value": "100000"
-            }
-          ],
           "inputs": [
-            "value",
-            "above"
+            "number",
+            "boolean"
           ]
         }
       ],
@@ -1530,40 +1509,19 @@
       ],
       "uiScreens": [
         {
+          "title": "Germ Threshold",
+          "aboveToolTip": "Will send a <b><color=#57b95e>Green Signal</b></color> if the number of <style=\"KKeyword\">Germs</style> is above <b>{0}</b>",
+          "belowToolTip": "Will send a <b><color=#57b95e>Green Signal</b></color> if the number of <style=\"KKeyword\">Germs</style> is below <b>{0}</b>",
+          "thresholdValueName": "Germs",
+          "thresholdValueUnits": "germs",
+          "rangeMin": 0.0,
+          "rangeMax": 100000.0,
+          "defaultValue": 0.0,
+          "defaultBoolean": true,
           "id": "ThresholdSwitchSideScreen",
-          "uiStrings": [
-            {
-              "key": "title",
-              "value": "Germ Threshold"
-            },
-            {
-              "key": "aboveToolTip",
-              "value": "Will send a <b><color=#57b95e>Green Signal</b></color> if the number of <style=\"KKeyword\">Germs</style> is above <b>{0}</b>"
-            },
-            {
-              "key": "belowToolTip",
-              "value": "Will send a <b><color=#57b95e>Green Signal</b></color> if the number of <style=\"KKeyword\">Germs</style> is below <b>{0}</b>"
-            },
-            {
-              "key": "thresholdValueName",
-              "value": "Germs"
-            },
-            {
-              "key": "thresholdValueUnits",
-              "value": "germs"
-            },
-            {
-              "key": "rangeMin",
-              "value": "0"
-            },
-            {
-              "key": "rangeMax",
-              "value": "100000"
-            }
-          ],
           "inputs": [
-            "value",
-            "above"
+            "number",
+            "boolean"
           ]
         }
       ],
@@ -1690,40 +1648,19 @@
       ],
       "uiScreens": [
         {
+          "title": "Temperature Threshold",
+          "aboveToolTip": "Will send a <b><color=#57b95e>Green Signal</b></color> if the ambient <style=\"KKeyword\">Temperature</style> is above <b>{0}</b>",
+          "belowToolTip": "Will send a <b><color=#57b95e>Green Signal</b></color> if the ambient <style=\"KKeyword\">Temperature</style> is below <b>{0}</b>",
+          "thresholdValueName": "Temperature",
+          "thresholdValueUnits": " ºC",
+          "rangeMin": 0.0,
+          "rangeMax": 9999.0,
+          "defaultValue": 280.0,
+          "defaultBoolean": true,
           "id": "ThresholdSwitchSideScreen",
-          "uiStrings": [
-            {
-              "key": "title",
-              "value": "Temperature Threshold"
-            },
-            {
-              "key": "aboveToolTip",
-              "value": "Will send a <b><color=#57b95e>Green Signal</b></color> if the ambient <style=\"KKeyword\">Temperature</style> is above <b>{0}</b>"
-            },
-            {
-              "key": "belowToolTip",
-              "value": "Will send a <b><color=#57b95e>Green Signal</b></color> if the ambient <style=\"KKeyword\">Temperature</style> is below <b>{0}</b>"
-            },
-            {
-              "key": "thresholdValueName",
-              "value": "Temperature"
-            },
-            {
-              "key": "thresholdValueUnits",
-              "value": " ºC"
-            },
-            {
-              "key": "rangeMin",
-              "value": "0"
-            },
-            {
-              "key": "rangeMax",
-              "value": "9999"
-            }
-          ],
           "inputs": [
-            "value",
-            "above"
+            "number",
+            "boolean"
           ]
         }
       ],
@@ -1768,40 +1705,19 @@
       ],
       "uiScreens": [
         {
+          "title": "Temperature Threshold",
+          "aboveToolTip": "Will send a <b><color=#57b95e>Green Signal</b></color> if the ambient <style=\"KKeyword\">Temperature</style> is above <b>{0}</b>",
+          "belowToolTip": "Will send a <b><color=#57b95e>Green Signal</b></color> if the ambient <style=\"KKeyword\">Temperature</style> is below <b>{0}</b>",
+          "thresholdValueName": "Temperature",
+          "thresholdValueUnits": " ºC",
+          "rangeMin": 0.0,
+          "rangeMax": 9999.0,
+          "defaultValue": 280.0,
+          "defaultBoolean": true,
           "id": "ThresholdSwitchSideScreen",
-          "uiStrings": [
-            {
-              "key": "title",
-              "value": "Temperature Threshold"
-            },
-            {
-              "key": "aboveToolTip",
-              "value": "Will send a <b><color=#57b95e>Green Signal</b></color> if the ambient <style=\"KKeyword\">Temperature</style> is above <b>{0}</b>"
-            },
-            {
-              "key": "belowToolTip",
-              "value": "Will send a <b><color=#57b95e>Green Signal</b></color> if the ambient <style=\"KKeyword\">Temperature</style> is below <b>{0}</b>"
-            },
-            {
-              "key": "thresholdValueName",
-              "value": "Temperature"
-            },
-            {
-              "key": "thresholdValueUnits",
-              "value": " ºC"
-            },
-            {
-              "key": "rangeMin",
-              "value": "0"
-            },
-            {
-              "key": "rangeMax",
-              "value": "9999"
-            }
-          ],
           "inputs": [
-            "value",
-            "above"
+            "number",
+            "boolean"
           ]
         }
       ],
@@ -2863,40 +2779,19 @@
       ],
       "uiScreens": [
         {
+          "title": "Pressure Threshold",
+          "aboveToolTip": "Will send a <b><color=#57b95e>Green Signal</b></color> if the <style=\"KKeyword\">Pressure</style> is above <b>{0}</b>",
+          "belowToolTip": "Will send a <b><color=#57b95e>Green Signal</b></color> if the <style=\"KKeyword\">Pressure</style> is below <b>{0}</b>",
+          "thresholdValueName": "Pressure",
+          "thresholdValueUnits": " Kg",
+          "rangeMin": 0.0,
+          "rangeMax": 2000.0,
+          "defaultValue": 10.0,
+          "defaultBoolean": true,
           "id": "ThresholdSwitchSideScreen",
-          "uiStrings": [
-            {
-              "key": "title",
-              "value": "Pressure Threshold"
-            },
-            {
-              "key": "aboveToolTip",
-              "value": "Will send a <b><color=#57b95e>Green Signal</b></color> if the <style=\"KKeyword\">Pressure</style> is above <b>{0}</b>"
-            },
-            {
-              "key": "belowToolTip",
-              "value": "Will send a <b><color=#57b95e>Green Signal</b></color> if the <style=\"KKeyword\">Pressure</style> is below <b>{0}</b>"
-            },
-            {
-              "key": "thresholdValueName",
-              "value": "Pressure"
-            },
-            {
-              "key": "thresholdValueUnits",
-              "value": " Kg"
-            },
-            {
-              "key": "rangeMin",
-              "value": "0"
-            },
-            {
-              "key": "rangeMax",
-              "value": "2000"
-            }
-          ],
           "inputs": [
-            "value",
-            "above"
+            "number",
+            "boolean"
           ]
         }
       ],
@@ -3954,31 +3849,16 @@
       ],
       "uiScreens": [
         {
+          "title": "Fuel Request Threshold",
+          "sliderUnits": "%",
+          "min": 0.0,
+          "max": 100.0,
+          "tooltip": "Duplicants will be requested to deliver <style=\"KKeyword\">{0}</style> when the total charge of the connected <style=\"KKeyword\">Batteries</style> falls below <b>{1}%</b>",
+          "defaultValue": 50.0,
           "id": "SingleSliderSideScreen",
-          "uiStrings": [
-            {
-              "key": "title",
-              "value": "Fuel Request Threshold"
-            },
-            {
-              "key": "sliderUnits",
-              "value": "%"
-            },
-            {
-              "key": "min",
-              "value": "0"
-            },
-            {
-              "key": "max",
-              "value": "100"
-            },
-            {
-              "key": "tooltip",
-              "value": "Duplicants will be requested to deliver <style=\"KKeyword\">{0}</style> when the total charge of the connected <style=\"KKeyword\">Batteries</style> falls below <b>{1}%</b>"
-            }
-          ],
           "inputs": [
-            "value"
+            "number",
+            "number"
           ]
         }
       ],
@@ -5873,40 +5753,19 @@
       ],
       "uiScreens": [
         {
+          "title": "Critter Count Sensor",
+          "aboveToolTip": "Will send a <b><color=#57b95e>Green Signal</b></color> if there are more than <b>{0}</b> <style=\"KKeyword\">Critters</style> or <style=\"KKeyword\">Eggs</style> in the room",
+          "belowToolTip": "Will send a <b><color=#57b95e>Green Signal</b></color> if there are fewer than <b>{0}</b> <style=\"KKeyword\">Critters</style> or <style=\"KKeyword\">Eggs</style> in the room",
+          "thresholdValueName": "Critter / Egg Count",
+          "thresholdValueUnits": "",
+          "rangeMin": 0.0,
+          "rangeMax": 64.0,
+          "defaultValue": 0.0,
+          "defaultBoolean": true,
           "id": "ThresholdSwitchSideScreen",
-          "uiStrings": [
-            {
-              "key": "title",
-              "value": "Critter Count Sensor"
-            },
-            {
-              "key": "aboveToolTip",
-              "value": "Will send a <b><color=#57b95e>Green Signal</b></color> if there are more than <b>{0}</b> <style=\"KKeyword\">Critters</style> or <style=\"KKeyword\">Eggs</style> in the room"
-            },
-            {
-              "key": "belowToolTip",
-              "value": "Will send a <b><color=#57b95e>Green Signal</b></color> if there are fewer than <b>{0}</b> <style=\"KKeyword\">Critters</style> or <style=\"KKeyword\">Eggs</style> in the room"
-            },
-            {
-              "key": "thresholdValueName",
-              "value": "Critter / Egg Count"
-            },
-            {
-              "key": "thresholdValueUnits",
-              "value": ""
-            },
-            {
-              "key": "rangeMin",
-              "value": "0"
-            },
-            {
-              "key": "rangeMax",
-              "value": "64"
-            }
-          ],
           "inputs": [
-            "value",
-            "above"
+            "number",
+            "boolean"
           ]
         }
       ],
@@ -5951,40 +5810,19 @@
       ],
       "uiScreens": [
         {
+          "title": "Germ Threshold",
+          "aboveToolTip": "Will send a <b><color=#57b95e>Green Signal</b></color> if the number of <style=\"KKeyword\">Germs</style> is above <b>{0}</b>",
+          "belowToolTip": "Will send a <b><color=#57b95e>Green Signal</b></color> if the number of <style=\"KKeyword\">Germs</style> is below <b>{0}</b>",
+          "thresholdValueName": "Germs",
+          "thresholdValueUnits": "germs",
+          "rangeMin": 0.0,
+          "rangeMax": 100000.0,
+          "defaultValue": 0.0,
+          "defaultBoolean": true,
           "id": "ThresholdSwitchSideScreen",
-          "uiStrings": [
-            {
-              "key": "title",
-              "value": "Germ Threshold"
-            },
-            {
-              "key": "aboveToolTip",
-              "value": "Will send a <b><color=#57b95e>Green Signal</b></color> if the number of <style=\"KKeyword\">Germs</style> is above <b>{0}</b>"
-            },
-            {
-              "key": "belowToolTip",
-              "value": "Will send a <b><color=#57b95e>Green Signal</b></color> if the number of <style=\"KKeyword\">Germs</style> is below <b>{0}</b>"
-            },
-            {
-              "key": "thresholdValueName",
-              "value": "Germs"
-            },
-            {
-              "key": "thresholdValueUnits",
-              "value": "germs"
-            },
-            {
-              "key": "rangeMin",
-              "value": "0"
-            },
-            {
-              "key": "rangeMax",
-              "value": "100000"
-            }
-          ],
           "inputs": [
-            "value",
-            "above"
+            "number",
+            "boolean"
           ]
         }
       ],
@@ -6266,31 +6104,16 @@
       "utilities": [],
       "uiScreens": [
         {
+          "title": "Buffer Time",
+          "sliderUnits": " s",
+          "min": 0.1,
+          "max": 200.0,
+          "tooltip": "Will continue to send a <b><color=#57b95e>Green Signal</b></color> for <b>{0} seconds</b> after receiving a <b><color=#f44a47>Red Signal</b></color>",
+          "defaultValue": 5.0,
           "id": "SingleSliderSideScreen",
-          "uiStrings": [
-            {
-              "key": "title",
-              "value": "Buffer Time"
-            },
-            {
-              "key": "sliderUnits",
-              "value": " s"
-            },
-            {
-              "key": "min",
-              "value": "0.1"
-            },
-            {
-              "key": "max",
-              "value": "200"
-            },
-            {
-              "key": "tooltip",
-              "value": "Will continue to send a <b><color=#57b95e>Green Signal</b></color> for <b>{0} seconds</b> after receiving a <b><color=#f44a47>Red Signal</b></color>"
-            }
-          ],
           "inputs": [
-            "value"
+            "number",
+            "number"
           ]
         }
       ],
@@ -6326,31 +6149,16 @@
       "utilities": [],
       "uiScreens": [
         {
+          "title": "Filter Time",
+          "sliderUnits": " s",
+          "min": 0.1,
+          "max": 200.0,
+          "tooltip": "Will only send a <b><color=#57b95e>Green Signal</b></color> if it receives <b><color=#57b95e>Green</b></color> for longer than <b>{0} seconds</b>",
+          "defaultValue": 5.0,
           "id": "SingleSliderSideScreen",
-          "uiStrings": [
-            {
-              "key": "title",
-              "value": "Filter Time"
-            },
-            {
-              "key": "sliderUnits",
-              "value": " s"
-            },
-            {
-              "key": "min",
-              "value": "0.1"
-            },
-            {
-              "key": "max",
-              "value": "200"
-            },
-            {
-              "key": "tooltip",
-              "value": "Will only send a <b><color=#57b95e>Green Signal</b></color> if it receives <b><color=#57b95e>Green</b></color> for longer than <b>{0} seconds</b>"
-            }
-          ],
           "inputs": [
-            "value"
+            "number",
+            "number"
           ]
         }
       ],
@@ -6491,40 +6299,19 @@
       ],
       "uiScreens": [
         {
+          "title": "Pressure Threshold",
+          "aboveToolTip": "Will send a <b><color=#57b95e>Green Signal</b></color> if the <style=\"KKeyword\">Pressure</style> is above <b>{0}</b>",
+          "belowToolTip": "Will send a <b><color=#57b95e>Green Signal</b></color> if the <style=\"KKeyword\">Pressure</style> is below <b>{0}</b>",
+          "thresholdValueName": "Pressure",
+          "thresholdValueUnits": " g",
+          "rangeMin": 0.0,
+          "rangeMax": 20.0,
+          "defaultValue": 1.0,
+          "defaultBoolean": false,
           "id": "ThresholdSwitchSideScreen",
-          "uiStrings": [
-            {
-              "key": "title",
-              "value": "Pressure Threshold"
-            },
-            {
-              "key": "aboveToolTip",
-              "value": "Will send a <b><color=#57b95e>Green Signal</b></color> if the <style=\"KKeyword\">Pressure</style> is above <b>{0}</b>"
-            },
-            {
-              "key": "belowToolTip",
-              "value": "Will send a <b><color=#57b95e>Green Signal</b></color> if the <style=\"KKeyword\">Pressure</style> is below <b>{0}</b>"
-            },
-            {
-              "key": "thresholdValueName",
-              "value": "Pressure"
-            },
-            {
-              "key": "thresholdValueUnits",
-              "value": " g"
-            },
-            {
-              "key": "rangeMin",
-              "value": "0"
-            },
-            {
-              "key": "rangeMax",
-              "value": "20"
-            }
-          ],
           "inputs": [
-            "value",
-            "above"
+            "number",
+            "boolean"
           ]
         }
       ],
@@ -6569,40 +6356,19 @@
       ],
       "uiScreens": [
         {
+          "title": "Pressure Threshold",
+          "aboveToolTip": "Will send a <b><color=#57b95e>Green Signal</b></color> if the <style=\"KKeyword\">Pressure</style> is above <b>{0}</b>",
+          "belowToolTip": "Will send a <b><color=#57b95e>Green Signal</b></color> if the <style=\"KKeyword\">Pressure</style> is below <b>{0}</b>",
+          "thresholdValueName": "Pressure",
+          "thresholdValueUnits": " Kg",
+          "rangeMin": 0.0,
+          "rangeMax": 2000.0,
+          "defaultValue": 500.0,
+          "defaultBoolean": false,
           "id": "ThresholdSwitchSideScreen",
-          "uiStrings": [
-            {
-              "key": "title",
-              "value": "Pressure Threshold"
-            },
-            {
-              "key": "aboveToolTip",
-              "value": "Will send a <b><color=#57b95e>Green Signal</b></color> if the <style=\"KKeyword\">Pressure</style> is above <b>{0}</b>"
-            },
-            {
-              "key": "belowToolTip",
-              "value": "Will send a <b><color=#57b95e>Green Signal</b></color> if the <style=\"KKeyword\">Pressure</style> is below <b>{0}</b>"
-            },
-            {
-              "key": "thresholdValueName",
-              "value": "Pressure"
-            },
-            {
-              "key": "thresholdValueUnits",
-              "value": " Kg"
-            },
-            {
-              "key": "rangeMin",
-              "value": "0"
-            },
-            {
-              "key": "rangeMax",
-              "value": "2000"
-            }
-          ],
           "inputs": [
-            "value",
-            "above"
+            "number",
+            "boolean"
           ]
         }
       ],
@@ -6687,40 +6453,19 @@
       ],
       "uiScreens": [
         {
+          "title": "Temperature Threshold",
+          "aboveToolTip": "Will send a <b><color=#57b95e>Green Signal</b></color> if the ambient <style=\"KKeyword\">Temperature</style> is above <b>{0}</b>",
+          "belowToolTip": "Will send a <b><color=#57b95e>Green Signal</b></color> if the ambient <style=\"KKeyword\">Temperature</style> is below <b>{0}</b>",
+          "thresholdValueName": "Temperature",
+          "thresholdValueUnits": " ºC",
+          "rangeMin": 0.0,
+          "rangeMax": 9999.0,
+          "defaultValue": 280.0,
+          "defaultBoolean": false,
           "id": "ThresholdSwitchSideScreen",
-          "uiStrings": [
-            {
-              "key": "title",
-              "value": "Temperature Threshold"
-            },
-            {
-              "key": "aboveToolTip",
-              "value": "Will send a <b><color=#57b95e>Green Signal</b></color> if the ambient <style=\"KKeyword\">Temperature</style> is above <b>{0}</b>"
-            },
-            {
-              "key": "belowToolTip",
-              "value": "Will send a <b><color=#57b95e>Green Signal</b></color> if the ambient <style=\"KKeyword\">Temperature</style> is below <b>{0}</b>"
-            },
-            {
-              "key": "thresholdValueName",
-              "value": "Temperature"
-            },
-            {
-              "key": "thresholdValueUnits",
-              "value": " ºC"
-            },
-            {
-              "key": "rangeMin",
-              "value": "0"
-            },
-            {
-              "key": "rangeMax",
-              "value": "9999"
-            }
-          ],
           "inputs": [
-            "value",
-            "above"
+            "number",
+            "boolean"
           ]
         }
       ],
@@ -6946,31 +6691,16 @@
       ],
       "uiScreens": [
         {
+          "title": "Battery Recharge Threshold",
+          "sliderUnits": "%",
+          "min": 0.0,
+          "max": 100.0,
+          "tooltip": "Duplicants will be requested to operate this generator when the total charge of the connected <style=\"KKeyword\">Batteries</style> falls below <b>{0}%</b>",
+          "defaultValue": 50.0,
           "id": "SingleSliderSideScreen",
-          "uiStrings": [
-            {
-              "key": "title",
-              "value": "Battery Recharge Threshold"
-            },
-            {
-              "key": "sliderUnits",
-              "value": "%"
-            },
-            {
-              "key": "min",
-              "value": "0"
-            },
-            {
-              "key": "max",
-              "value": "100"
-            },
-            {
-              "key": "tooltip",
-              "value": "Duplicants will be requested to operate this generator when the total charge of the connected <style=\"KKeyword\">Batteries</style> falls below <b>{0}%</b>"
-            }
-          ],
           "inputs": [
-            "value"
+            "number",
+            "number"
           ]
         }
       ],
@@ -7212,31 +6942,16 @@
       "utilities": [],
       "uiScreens": [
         {
+          "title": "Severity Requirement",
+          "sliderUnits": "%",
+          "min": 0.0,
+          "max": 100.0,
+          "tooltip": "A Duplicant may not use this cot until their <style=\"KKeyword\">Health</style> falls below <b>{0}%</b>",
+          "defaultValue": 100.0,
           "id": "SingleSliderSideScreen",
-          "uiStrings": [
-            {
-              "key": "title",
-              "value": "Severity Requirement"
-            },
-            {
-              "key": "sliderUnits",
-              "value": "%"
-            },
-            {
-              "key": "min",
-              "value": "0"
-            },
-            {
-              "key": "max",
-              "value": "100"
-            },
-            {
-              "key": "tooltip",
-              "value": "A Duplicant may not use this cot until their <style=\"KKeyword\">Health</style> falls below <b>{0}%</b>"
-            }
-          ],
           "inputs": [
-            "value"
+            "number",
+            "number"
           ]
         }
       ],
@@ -7852,31 +7567,16 @@
       ],
       "uiScreens": [
         {
+          "title": "Backpressure Release Threshold",
+          "sliderUnits": "%",
+          "min": 0.0,
+          "max": 100.0,
+          "tooltip": "Duplicants will be requested to release backpressure buildup when it exceeds <b>{0}%</b>",
+          "defaultValue": 75.0,
           "id": "SingleSliderSideScreen",
-          "uiStrings": [
-            {
-              "key": "title",
-              "value": "Backpressure Release Threshold"
-            },
-            {
-              "key": "sliderUnits",
-              "value": "%"
-            },
-            {
-              "key": "min",
-              "value": "0"
-            },
-            {
-              "key": "max",
-              "value": "100"
-            },
-            {
-              "key": "tooltip",
-              "value": "Duplicants will be requested to release backpressure buildup when it exceeds <b>{0}%</b>"
-            }
-          ],
           "inputs": [
-            "value"
+            "number",
+            "number"
           ]
         }
       ],
@@ -8651,40 +8351,19 @@
       "utilities": [],
       "uiScreens": [
         {
+          "title": "Pressure Threshold",
+          "aboveToolTip": "Will send a <b><color=#57b95e>Green Signal</b></color> if the <style=\"KKeyword\">Pressure</style> is above <b>{0}</b>",
+          "belowToolTip": "Will send a <b><color=#57b95e>Green Signal</b></color> if the <style=\"KKeyword\">Pressure</style> is below <b>{0}</b>",
+          "thresholdValueName": "Pressure",
+          "thresholdValueUnits": " g",
+          "rangeMin": 0.0,
+          "rangeMax": 2.0,
+          "defaultValue": 1.0,
+          "defaultBoolean": false,
           "id": "ThresholdSwitchSideScreen",
-          "uiStrings": [
-            {
-              "key": "title",
-              "value": "Pressure Threshold"
-            },
-            {
-              "key": "aboveToolTip",
-              "value": "Will send a <b><color=#57b95e>Green Signal</b></color> if the <style=\"KKeyword\">Pressure</style> is above <b>{0}</b>"
-            },
-            {
-              "key": "belowToolTip",
-              "value": "Will send a <b><color=#57b95e>Green Signal</b></color> if the <style=\"KKeyword\">Pressure</style> is below <b>{0}</b>"
-            },
-            {
-              "key": "thresholdValueName",
-              "value": "Pressure"
-            },
-            {
-              "key": "thresholdValueUnits",
-              "value": " g"
-            },
-            {
-              "key": "rangeMin",
-              "value": "0"
-            },
-            {
-              "key": "rangeMax",
-              "value": "2"
-            }
-          ],
           "inputs": [
-            "value",
-            "above"
+            "number",
+            "boolean"
           ]
         }
       ],
@@ -8720,40 +8399,19 @@
       "utilities": [],
       "uiScreens": [
         {
+          "title": "Pressure Threshold",
+          "aboveToolTip": "Will send a <b><color=#57b95e>Green Signal</b></color> if the <style=\"KKeyword\">Pressure</style> is above <b>{0}</b>",
+          "belowToolTip": "Will send a <b><color=#57b95e>Green Signal</b></color> if the <style=\"KKeyword\">Pressure</style> is below <b>{0}</b>",
+          "thresholdValueName": "Pressure",
+          "thresholdValueUnits": " Kg",
+          "rangeMin": 0.0,
+          "rangeMax": 2000.0,
+          "defaultValue": 500.0,
+          "defaultBoolean": false,
           "id": "ThresholdSwitchSideScreen",
-          "uiStrings": [
-            {
-              "key": "title",
-              "value": "Pressure Threshold"
-            },
-            {
-              "key": "aboveToolTip",
-              "value": "Will send a <b><color=#57b95e>Green Signal</b></color> if the <style=\"KKeyword\">Pressure</style> is above <b>{0}</b>"
-            },
-            {
-              "key": "belowToolTip",
-              "value": "Will send a <b><color=#57b95e>Green Signal</b></color> if the <style=\"KKeyword\">Pressure</style> is below <b>{0}</b>"
-            },
-            {
-              "key": "thresholdValueName",
-              "value": "Pressure"
-            },
-            {
-              "key": "thresholdValueUnits",
-              "value": " Kg"
-            },
-            {
-              "key": "rangeMin",
-              "value": "0"
-            },
-            {
-              "key": "rangeMax",
-              "value": "2000"
-            }
-          ],
           "inputs": [
-            "value",
-            "above"
+            "number",
+            "boolean"
           ]
         }
       ],
@@ -10444,40 +10102,19 @@
       "utilities": [],
       "uiScreens": [
         {
+          "title": "Temperature Threshold",
+          "aboveToolTip": "Will send a <b><color=#57b95e>Green Signal</b></color> if the ambient <style=\"KKeyword\">Temperature</style> is above <b>{0}</b>",
+          "belowToolTip": "Will send a <b><color=#57b95e>Green Signal</b></color> if the ambient <style=\"KKeyword\">Temperature</style> is below <b>{0}</b>",
+          "thresholdValueName": "Temperature",
+          "thresholdValueUnits": " ºC",
+          "rangeMin": 0.0,
+          "rangeMax": 573.15,
+          "defaultValue": 280.0,
+          "defaultBoolean": false,
           "id": "ThresholdSwitchSideScreen",
-          "uiStrings": [
-            {
-              "key": "title",
-              "value": "Temperature Threshold"
-            },
-            {
-              "key": "aboveToolTip",
-              "value": "Will send a <b><color=#57b95e>Green Signal</b></color> if the ambient <style=\"KKeyword\">Temperature</style> is above <b>{0}</b>"
-            },
-            {
-              "key": "belowToolTip",
-              "value": "Will send a <b><color=#57b95e>Green Signal</b></color> if the ambient <style=\"KKeyword\">Temperature</style> is below <b>{0}</b>"
-            },
-            {
-              "key": "thresholdValueName",
-              "value": "Temperature"
-            },
-            {
-              "key": "thresholdValueUnits",
-              "value": " ºC"
-            },
-            {
-              "key": "rangeMin",
-              "value": "0"
-            },
-            {
-              "key": "rangeMax",
-              "value": "573.15"
-            }
-          ],
           "inputs": [
-            "value",
-            "above"
+            "number",
+            "boolean"
           ]
         }
       ],
@@ -11226,31 +10863,16 @@
       ],
       "uiScreens": [
         {
+          "title": "Fuel Request Threshold",
+          "sliderUnits": "%",
+          "min": 0.0,
+          "max": 100.0,
+          "tooltip": "Duplicants will be requested to deliver <style=\"KKeyword\">{0}</style> when the total charge of the connected <style=\"KKeyword\">Batteries</style> falls below <b>{1}%</b>",
+          "defaultValue": 50.0,
           "id": "SingleSliderSideScreen",
-          "uiStrings": [
-            {
-              "key": "title",
-              "value": "Fuel Request Threshold"
-            },
-            {
-              "key": "sliderUnits",
-              "value": "%"
-            },
-            {
-              "key": "min",
-              "value": "0"
-            },
-            {
-              "key": "max",
-              "value": "100"
-            },
-            {
-              "key": "tooltip",
-              "value": "Duplicants will be requested to deliver <style=\"KKeyword\">{0}</style> when the total charge of the connected <style=\"KKeyword\">Batteries</style> falls below <b>{1}%</b>"
-            }
-          ],
           "inputs": [
-            "value"
+            "number",
+            "number"
           ]
         }
       ],
