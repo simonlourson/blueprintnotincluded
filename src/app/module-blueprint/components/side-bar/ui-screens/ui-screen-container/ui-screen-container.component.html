@@ -1,0 +1,14 @@
+<p-fieldset *ngIf="showSettings" legend="Settings">
+  <div *ngFor="let uiScreen of uiScreens">
+      <app-single-slider-screen
+        *ngIf="uiScreen.id=='SingleSliderSideScreen'"
+        [blueprintItem]="blueprintItem"
+        [singleSliderSideScreen]="uiScreen">
+      </app-single-slider-screen>
+      <app-threshold-switch-screen
+        *ngIf="uiScreen.id=='ThresholdSwitchSideScreen'"
+        [blueprintItem]="blueprintItem"
+        [thresholdSwitchSideScreen]="uiScreen">
+      </app-threshold-switch-screen>
+  </div>
+</p-fieldset>

@@ -4,6 +4,7 @@ import { BSpriteModifier } from "./b-sprite-modifier";
 import { UtilityConnection } from '../utility-connection';
 import { ZIndex, Overlay } from '../overlay-type';
 import { PermittedRotations } from '../../drawing/draw-helpers';
+import { BUiScreen } from './b-ui-screen';
 
 export class BBuilding
 {
@@ -25,6 +26,7 @@ export class BBuilding
   utilities: UtilityConnection[];
   materialCategory: string[];
   materialMass: number[];
+  uiScreens: BUiScreen[];
 
   dragBuild: boolean;
   objectLayer: number;

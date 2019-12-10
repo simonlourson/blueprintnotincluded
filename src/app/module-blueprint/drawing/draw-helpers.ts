@@ -252,6 +252,12 @@ export class DrawHelpers
     return returnValue;
   }
 
+  static domParser = new DOMParser();
+  public static stripHtml(html: string) : string {
+    let doc = new DOMParser().parseFromString(html, 'text/html');
+    return doc.body.textContent || '';
+  }
+
   static connectionString: string[] = [
     'None_place',
     'L_place',

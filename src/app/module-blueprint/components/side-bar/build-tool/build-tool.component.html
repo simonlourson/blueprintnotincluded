@@ -8,14 +8,18 @@
         <div class="right"></div>
       </div>
     </div>
+
+    <div *ngIf="currentItem.orientations.length > 1" >Press "O" to change item orientation</div>
     
     <app-buildable-element-picker 
       [currentElement]="currentItemToBuild.buildableElements"
       [buildableElementsArray]="currentItem.buildableElementsArray"
       (changeElement)="changeElement($event)">
     </app-buildable-element-picker>
-    
-    <div *ngIf="currentItem.orientations.length > 1" >Press "O" to change item orientation</div>
+
+    <app-ui-screen-container
+      [blueprintItem]="currentItemToBuild">
+    </app-ui-screen-container>
     
     <!-- These go first so we don't have to add one to the index when querying them -->
     <p-overlayPanel [appendTo]="'body'" *ngFor="let buildMenuCategory of buildMenuCategories; let indexCategory = index">

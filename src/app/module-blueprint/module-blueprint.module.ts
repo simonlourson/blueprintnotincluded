@@ -35,6 +35,7 @@ import {InputSwitchModule} from 'primeng/inputswitch';
 import {FieldsetModule} from 'primeng/fieldset';
 import {ListboxModule} from 'primeng/listbox';
 import {VirtualScrollerModule} from 'primeng/virtualscroller';
+import {ToggleButtonModule} from 'primeng/togglebutton';
 import { TileInfoComponent } from './components/side-bar/tile-info/tile-info.component';
 import { UsernameValidationDirective } from './directives/username-validation.directive';
 import { ComponentSideSelectionToolComponent } from './components/side-bar/selection-tool/selection-tool.component';
@@ -61,17 +62,20 @@ import { LikeWidgetComponent } from './components/like-widget/like-widget.compon
 import { BuildableElementPickerComponent } from './components/side-bar/buildable-element-picker/buildable-element-picker.component';
 import { ElementReportTool } from './common/tools/element-report-tool';
 import { ElementReportToolComponent } from './components/side-bar/element-report-tool/element-report-tool.component';
+import { UiScreenContainerComponent } from './components/side-bar/ui-screens/ui-screen-container/ui-screen-container.component';
+import { SingleSliderScreenComponent } from './components/side-bar/ui-screens/single-slider-screen/single-slider-screen.component';
+import { ThresholdSwhitchScreenComponent } from './components/side-bar/ui-screens/threshold-swhitch-screen/threshold-swhitch-screen.component';
 
 @NgModule({
   imports: [
     CommonModule, 
     HttpClientModule,
     FormsModule, ReactiveFormsModule,
-    PasswordModule, ColorPickerModule, InputTextModule, SliderModule, ButtonModule, CardModule, ScrollPanelModule, OverlayPanelModule, MenubarModule, TabMenuModule, SlideMenuModule, DialogModule, DropdownModule, AccordionModule, ToastModule, TooltipModule, PanelModule, InputSwitchModule, CheckboxModule, FieldsetModule, ListboxModule, VirtualScrollerModule, 
+    PasswordModule, ColorPickerModule, InputTextModule, SliderModule, ButtonModule, CardModule, ScrollPanelModule, OverlayPanelModule, MenubarModule, TabMenuModule, SlideMenuModule, DialogModule, DropdownModule, AccordionModule, ToastModule, TooltipModule, PanelModule, InputSwitchModule, CheckboxModule, FieldsetModule, ListboxModule, VirtualScrollerModule, ToggleButtonModule, 
     RecaptchaV3Module,
     BrowserAnimationsModule
   ],
-  declarations: [UsernameValidationDirective, BlueprintNameValidationDirective, ComponentCanvasComponent, MouseWheelDirective, DragAndDropDirective, KeyboardDirective, ComponentMenuComponent, ComponentBlueprintParentComponent, TileInfoComponent, ComponentSaveDialogComponent, ComponentSideBuildToolComponent, ComponentSideSelectionToolComponent, ComponentLoginDialogComponent, RegisterFormComponent, LoginFormComponent, DialogShareUrlComponent, ItemCollectionInfoComponent, DialogBrowseComponent, DialogExportImagesComponent, LikeWidgetComponent, BuildableElementPickerComponent, ElementReportToolComponent],
+  declarations: [UsernameValidationDirective, BlueprintNameValidationDirective, ComponentCanvasComponent, MouseWheelDirective, DragAndDropDirective, KeyboardDirective, ComponentMenuComponent, ComponentBlueprintParentComponent, TileInfoComponent, ComponentSaveDialogComponent, ComponentSideBuildToolComponent, ComponentSideSelectionToolComponent, ComponentLoginDialogComponent, RegisterFormComponent, LoginFormComponent, DialogShareUrlComponent, ItemCollectionInfoComponent, DialogBrowseComponent, DialogExportImagesComponent, LikeWidgetComponent, BuildableElementPickerComponent, ElementReportToolComponent, UiScreenContainerComponent, SingleSliderScreenComponent, ThresholdSwhitchScreenComponent],
   providers: [CheckDuplicateService, AuthenticationService, BlueprintService, ToolService, SelectTool, BuildTool, ElementReportTool, DatePipe,
     { provide: RECAPTCHA_V3_SITE_KEY, useValue: '6LdS0b8UAAAAAGb8P_L33ypsdiS41Nu8q3CwRg_M' }
   ],

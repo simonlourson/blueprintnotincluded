@@ -18,6 +18,7 @@ import { Inject } from '@angular/core';
 import {  } from 'pixi.js-legacy';
 import { BuildableElement } from '../bexport/b-element';
 import { MdbBuilding } from './io/mdb/mdb-building';
+import { UiSaveSettings } from '../bexport/b-ui-screen';
 declare var PIXI: any;
 
 export class BlueprintItem
@@ -30,6 +31,15 @@ export class BlueprintItem
   public temperature: number;
 
   public buildableElements: BuildableElement[];
+
+  public uiSaveSettings: UiSaveSettings[];
+  public getUiSettings(id: string): UiSaveSettings {
+    for (let uiSave of this.uiSaveSettings)
+      if (uiSave.id == id) return uiSave;
+
+    return null;
+  }
+
   public setElement(elementId: string, index: number) {
     if (this.buildableElements == null) this.buildableElements = [];
     this.buildableElements[index] = BuildableElement.getElement(elementId);
@@ -40,6 +50,7 @@ export class BlueprintItem
   private selected_: boolean;
   get selected() { return this.selected_; }
   
+  // TODO some of these are not used anymore
   // For selected single (used when a single tile is selected)
   // We want each item to be responsible for the overlay switch
   get selectedSingle() { return this.selected_; }
@@ -242,6 +253,11 @@ export class BlueprintItem
           if (original.elements[indexElement] != null) this.setElement(original.elements[indexElement], indexElement);
           else this.setElement(this.oniItem.defaultElement[indexElement].id, indexElement);
       
+      if (original.settings != null && original.settings.length > 0) {
+        this.uiSaveSettings = [];
+        for (let setting of original.settings) this.uiSaveSettings.push(UiSaveSettings.clone(setting));
+      }
+
       // TODO default temperature
       this.temperature = original.temperature;
       this.changeOrientation(original.orientation);
@@ -272,6 +288,20 @@ export class BlueprintItem
         if (this.buildableElements[indexElement] == null)
           this.setElement(this.oniItem.defaultElement[indexElement].id, indexElement);
 
+      if (this.uiSaveSettings == null) this.uiSaveSettings = [];
+      for (let uiScreen of this.oniItem.uiScreens) {
+        if (this.getUiSettings(uiScreen.id) == null) {
+          let newSaveSettings = new UiSaveSettings(uiScreen.id);
+
+          for (let indexValue = 0; indexValue < uiScreen.inputs.length; indexValue++) {
+            newSaveSettings.values[indexValue] = uiScreen.getDefaultValue(indexValue);
+          }
+
+          this.uiSaveSettings.push(newSaveSettings);
+        }
+        
+      }
+
       if (this.orientation == null) this.changeOrientation(Orientation.Neutral);
       this.selected_ = false;
     }
@@ -294,6 +324,13 @@ export class BlueprintItem
       }
 
     if (exportElements) returnValue.elements = elements;
+
+    if (this.uiSaveSettings.length > 0) {
+      returnValue.settings = [];
+      for (let setting of this.uiSaveSettings) {
+        returnValue.settings.push(UiSaveSettings.clone(setting));
+      }
+    }
 
     if (this.orientation != Orientation.Neutral) returnValue.orientation = this.orientation;
 

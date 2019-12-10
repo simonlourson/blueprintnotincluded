@@ -189,10 +189,12 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
   {
     this.toolService.keyDown(event.key);
 
-    if (event.key == 'ArrowLeft') this.cameraService.cameraOffset.x += 1;
-    if (event.key == 'ArrowRight') this.cameraService.cameraOffset.x -= 1;
-    if (event.key == 'ArrowUp') this.cameraService.cameraOffset.y += 1;
-    if (event.key == 'ArrowDown') this.cameraService.cameraOffset.y -= 1; 
+    if (document.body == document.activeElement) {
+      if (event.key == 'ArrowLeft') this.cameraService.cameraOffset.x += 1;
+      if (event.key == 'ArrowRight') this.cameraService.cameraOffset.x -= 1;
+      if (event.key == 'ArrowUp') this.cameraService.cameraOffset.y += 1;
+      if (event.key == 'ArrowDown') this.cameraService.cameraOffset.y -= 1; 
+    }
 
     if (event.key == 'z' && event.ctrlKey) this.blueprintService.undo();
     if (event.key == 'y' && event.ctrlKey) this.blueprintService.redo();
