@@ -65,6 +65,7 @@ import { ElementReportToolComponent } from './components/side-bar/element-report
 import { UiScreenContainerComponent } from './components/side-bar/ui-screens/ui-screen-container/ui-screen-container.component';
 import { SingleSliderScreenComponent } from './components/side-bar/ui-screens/single-slider-screen/single-slider-screen.component';
 import { ThresholdSwhitchScreenComponent } from './components/side-bar/ui-screens/threshold-swhitch-screen/threshold-swhitch-screen.component';
+import { ActiveRangeScreenComponent } from './components/side-bar/ui-screens/active-range-screen/active-range-screen.component';
 
 @NgModule({
   imports: [
@@ -75,7 +76,7 @@ import { ThresholdSwhitchScreenComponent } from './components/side-bar/ui-screen
     RecaptchaV3Module,
     BrowserAnimationsModule
   ],
-  declarations: [UsernameValidationDirective, BlueprintNameValidationDirective, ComponentCanvasComponent, MouseWheelDirective, DragAndDropDirective, KeyboardDirective, ComponentMenuComponent, ComponentBlueprintParentComponent, TileInfoComponent, ComponentSaveDialogComponent, ComponentSideBuildToolComponent, ComponentSideSelectionToolComponent, ComponentLoginDialogComponent, RegisterFormComponent, LoginFormComponent, DialogShareUrlComponent, ItemCollectionInfoComponent, DialogBrowseComponent, DialogExportImagesComponent, LikeWidgetComponent, BuildableElementPickerComponent, ElementReportToolComponent, UiScreenContainerComponent, SingleSliderScreenComponent, ThresholdSwhitchScreenComponent],
+  declarations: [UsernameValidationDirective, BlueprintNameValidationDirective, ComponentCanvasComponent, MouseWheelDirective, DragAndDropDirective, KeyboardDirective, ComponentMenuComponent, ComponentBlueprintParentComponent, TileInfoComponent, ComponentSaveDialogComponent, ComponentSideBuildToolComponent, ComponentSideSelectionToolComponent, ComponentLoginDialogComponent, RegisterFormComponent, LoginFormComponent, DialogShareUrlComponent, ItemCollectionInfoComponent, DialogBrowseComponent, DialogExportImagesComponent, LikeWidgetComponent, BuildableElementPickerComponent, ElementReportToolComponent, UiScreenContainerComponent, SingleSliderScreenComponent, ThresholdSwhitchScreenComponent, ActiveRangeScreenComponent],
   providers: [CheckDuplicateService, AuthenticationService, BlueprintService, ToolService, SelectTool, BuildTool, ElementReportTool, DatePipe,
     { provide: RECAPTCHA_V3_SITE_KEY, useValue: '6LdS0b8UAAAAAGb8P_L33ypsdiS41Nu8q3CwRg_M' }
   ],

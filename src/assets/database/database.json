@@ -694,7 +694,24 @@
           "isSecondary": false
         }
       ],
-      "uiScreens": [],
+      "uiScreens": [
+        {
+          "minValue": 0.0,
+          "maxValue": 100.0,
+          "defaultActivateValue": 0.0,
+          "defaultDeactivateValue": 0.0,
+          "title": "Logic Activation Parameters",
+          "activateSliderLabelText": "High Threshold:",
+          "deactivateSliderLabelText": "Low Threshold:",
+          "activateTooltip": "Sends a <b><color=#f44a47>Red Signal</b></color> when battery is more than <b>{0}%</b> charged",
+          "deactivateTooltip": "Sends a <b><color=#57b95e>Green Signal</b></color> when battery is less than <b>{0}%</b> charged",
+          "id": "ActiveRangeSideScreen",
+          "inputs": [
+            "number",
+            "number"
+          ]
+        }
+      ],
       "materialCategory": [
         "RefinedMetal"
       ],
@@ -6823,7 +6840,24 @@
           "isSecondary": false
         }
       ],
-      "uiScreens": [],
+      "uiScreens": [
+        {
+          "minValue": 0.0,
+          "maxValue": 100.0,
+          "defaultActivateValue": 0.0,
+          "defaultDeactivateValue": 0.0,
+          "title": "Breaktime Policy",
+          "activateSliderLabelText": "Break starts at:",
+          "deactivateSliderLabelText": "Break ends at:",
+          "activateTooltip": "Duplicants must take a break when their stress reaches {0}",
+          "deactivateTooltip": "Breaktime ends when stress is reduced to {0}",
+          "id": "ActiveRangeSideScreen",
+          "inputs": [
+            "number",
+            "number"
+          ]
+        }
+      ],
       "materialCategory": [
         "BuildableRaw"
       ],

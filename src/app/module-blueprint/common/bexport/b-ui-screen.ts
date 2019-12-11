@@ -27,6 +27,11 @@ export class BUiScreen {
       returnValue.importFrom(original as BThresholdSwitchSideScreen);
       return returnValue;
     }
+    else if (original.id == 'ActiveRangeSideScreen') {
+      let returnValue = new BActiveRangeSideScreen(original.id);
+      returnValue.importFrom(original as BActiveRangeSideScreen);
+      return returnValue;
+    }
   }
 }
 
@@ -107,8 +112,8 @@ export class BThresholdSwitchSideScreen extends BUiScreen {
   importFrom(original: BThresholdSwitchSideScreen) {
     super.importFrom(original);
     this.title = original.title;
-    this.aboveToolTip = original.aboveToolTip;
-    this.belowToolTip = original.belowToolTip;
+    this.aboveToolTip = DrawHelpers.stripHtml(original.aboveToolTip);
+    this.belowToolTip = DrawHelpers.stripHtml(original.belowToolTip);
     this.thresholdValueName = original.thresholdValueName;
     this.thresholdValueUnits = original.thresholdValueUnits;
     this.rangeMin = original.rangeMin;
@@ -116,5 +121,37 @@ export class BThresholdSwitchSideScreen extends BUiScreen {
     this.incrementScale = original.incrementScale;
     this.defaultValue = original.defaultValue;
     this.defaultBoolean = original.defaultBoolean;
+  }
+}
+
+export class BActiveRangeSideScreen extends BUiScreen {
+  
+  public title: string;
+  public minValue: number;
+  public maxValue: number;
+  public defaultActivateValue: number;
+  public defaultDeactivateValue: number;
+  public activateSliderLabelText: string;
+  public deactivateSliderLabelText: string;
+  public activateTooltip: string;
+  public deactivateTooltip: string;
+
+  constructor(id: string) {
+    super(id);
+  }
+
+  getDefaultValue(index: number): any { 
+    if (index == 0) return this.minValue;
+    else if (index == 1) return this.maxValue;
+    else return null;
+  }
+
+  importFrom(original: BActiveRangeSideScreen) {
+    super.importFrom(original);
+    this.title = original.title;
+    this.activateTooltip = DrawHelpers.stripHtml(original.activateTooltip);
+    this.deactivateTooltip = DrawHelpers.stripHtml(original.deactivateTooltip);
+    this.minValue = original.minValue;
+    this.maxValue = original.maxValue;
   }
 }

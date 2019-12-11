@@ -10,5 +10,10 @@
         [blueprintItem]="blueprintItem"
         [thresholdSwitchSideScreen]="uiScreen">
       </app-threshold-switch-screen>
+      <app-active-range-screen
+        *ngIf="uiScreen.id=='ActiveRangeSideScreen'"
+        [blueprintItem]="blueprintItem"
+        [activeRangeSideScreen]="uiScreen">
+      </app-active-range-screen>
   </div>
 </p-fieldset>
