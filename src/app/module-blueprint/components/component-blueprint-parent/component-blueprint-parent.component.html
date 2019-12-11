@@ -17,9 +17,14 @@
       </app-build-tool>
     </div>
     <div class="side-panel-right">
+      <app-dialog-about #aboutDialog></app-dialog-about>
       <app-element-report-tool  *ngIf="toolService.elementReportTool.visible" #elementReportTool>
       </app-element-report-tool>
     </div>
+    <div class="side-panel-about">
+      <app-dialog-about #aboutDialog></app-dialog-about>
+    </div>
+    
   </div>
 </div>
 
@@ -29,4 +34,5 @@
 <app-dialog-share-url #shareUrlDialog></app-dialog-share-url>
 <app-dialog-browse #browseDialog></app-dialog-browse>
 <app-dialog-export-images #exportImagesDialog (onSaveImages)="saveImages($event)"></app-dialog-export-images>
+
 

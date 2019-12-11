@@ -24,7 +24,7 @@
     <!-- These go first so we don't have to add one to the index when querying them -->
     <p-overlayPanel [appendTo]="'body'" *ngFor="let buildMenuCategory of buildMenuCategories; let indexCategory = index">
       <div *ngFor="let itemArray of items[indexCategory]" class="building-panel-content">
-        <div *ngFor="let item of itemArray" class="ui-clickable-icon element-button" (click)="chooseItem(item)" [pTooltip]="item.name" tooltipPosition="bottom">
+        <div *ngFor="let item of itemArray" class="ui-clickable-icon element-button" (click)="chooseItem(item)" [pTooltip]="item.name" tooltipPosition="bottom" life="5000">
             <img src="{{item.iconUrl}}" height="40px" />
         </div>
       </div>
@@ -39,7 +39,7 @@
 <p-overlayPanel #categoryPanel [appendTo]="'body'">
   <div class="building-panel-content">
     <div *ngFor="let buildMenuCategory of buildMenuCategories; let indexCategory = index">
-      <div class="ui-clickable-icon element-button" (click)="showItems($event, buildMenuCategory, indexCategory)" [pTooltip]="buildMenuCategory.categoryName" tooltipPosition="bottom">
+      <div class="ui-clickable-icon element-button" (click)="showItems($event, buildMenuCategory, indexCategory)" [pTooltip]="buildMenuCategory.categoryName" tooltipPosition="bottom" life="5000">
         <img src="{{buildMenuCategory.categoryIconUrl}}" height="40px" />
       </div>
     </div>

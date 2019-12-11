@@ -16,7 +16,7 @@
     <p-overlayPanel [appendTo]="'body'">
       <div class="element-panel-content">
         <div *ngFor="let buildableElement of buildableElementsArray[indexElement]">
-          <div class="ui-clickable-icon element-button" (click)="chooseElement(buildableElement, indexElement)" [pTooltip]="buildableElement.name" tooltipPosition="bottom">
+          <div class="ui-clickable-icon element-button" (click)="chooseElement(buildableElement, indexElement)" [pTooltip]="buildableElement.name" tooltipPosition="bottom" life="5000">
             <img src="{{buildableElement.iconUrl}}" height="40px" />
           </div>
         </div>

@@ -10,6 +10,12 @@
   right:0;
   padding: 10px;
 }
+.side-panel-about {
+  position: absolute;
+  right:0;
+  padding: 10px;
+  height: 80vh;
+}
 
 .outer {
   display: flex;

@@ -109,6 +109,11 @@ export class ComponentMenuComponent implements OnInit, IObsToolChanged, IObsOver
         items: this.overlayMenuItems
       }
       ,
+      {separator:true},
+      {
+        label: 'About',
+        icon:'pi pi-info-circle', command: (event) => { this.onMenuCommand.emit({type: MenuCommandType.about, data: null}); }
+      }
       /*
       {
         label: 'Technical',
@@ -230,6 +235,7 @@ export enum MenuCommandType
   uploadYaml,
   changeTool,
   changeOverlay,
+  about,
 
   browseBlueprints,
   saveBlueprint,

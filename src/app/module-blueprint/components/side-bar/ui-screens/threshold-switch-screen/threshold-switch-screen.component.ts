@@ -4,8 +4,8 @@ import { BThresholdSwitchSideScreen } from 'src/app/module-blueprint/common/bexp
 
 @Component({
   selector: 'app-threshold-switch-screen',
-  templateUrl: './threshold-swhitch-screen.component.html',
-  styleUrls: ['./threshold-swhitch-screen.component.css']
+  templateUrl: './threshold-switch-screen.component.html',
+  styleUrls: ['./threshold-switch-screen.component.css']
 })
 export class ThresholdSwhitchScreenComponent implements OnInit {
 

@@ -38,6 +38,7 @@ import { DrawHelpers } from '../../drawing/draw-helpers';
 import { AuthenticationService } from '../../services/authentification-service';
 import { BuildableElement } from '../../common/bexport/b-element';
 import { ComponentSideBuildToolComponent } from '../side-bar/build-tool/build-tool.component';
+import { DialogAboutComponent } from '../dialogs/dialog-about/dialog-about.component';
 
 /*
 TODO Feature List before release :
@@ -85,6 +86,9 @@ export class ComponentBlueprintParentComponent implements OnInit, IObsBlueprintC
 
   @ViewChild('shareUrlDialog', {static: true})
   shareUrlDialog: DialogShareUrlComponent;
+
+  @ViewChild('aboutDialog', {static: true})
+  aboutDialog: DialogAboutComponent;
 
   constructor(
     private messageService: MessageService, 
@@ -176,6 +180,7 @@ export class ComponentBlueprintParentComponent implements OnInit, IObsBlueprintC
     if (menuCommand.type == MenuCommandType.newBlueprint) this.blueprintService.newBlueprint();
     else if (menuCommand.type == MenuCommandType.showLoginDialog) this.loginDialog.showDialog();
     else if (menuCommand.type == MenuCommandType.browseBlueprints) this.browseDialog.showDialog();
+    else if (menuCommand.type == MenuCommandType.about) this.aboutDialog.showDialog();
     else if (menuCommand.type == MenuCommandType.getShareableUrl) this.shareUrl();
     else if (menuCommand.type == MenuCommandType.exportImages) this.exportImages();
     else if (menuCommand.type == MenuCommandType.saveBlueprint) this.saveBlueprint();

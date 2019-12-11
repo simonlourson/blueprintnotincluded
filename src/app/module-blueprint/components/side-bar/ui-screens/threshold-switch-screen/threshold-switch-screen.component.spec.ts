@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ThresholdSwhitchScreenComponent } from './threshold-swhitch-screen.component';
+import { ThresholdSwhitchScreenComponent } from './threshold-switch-screen.component';
 
 describe('ThresholdSwhitchScreenComponent', () => {
   let component: ThresholdSwhitchScreenComponent;
