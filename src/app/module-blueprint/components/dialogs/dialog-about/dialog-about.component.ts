@@ -7,16 +7,19 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 })
 export class DialogAboutComponent implements OnInit {
 
-  visible: boolean;
+  visible: boolean = true;
 
   constructor() { }
 
   ngOnInit() {
   }
 
-  showDialog()
+  toggleDialog()
   {
-    this.visible = true;
+    this.visible = !this.visible;
   }
 
+  close() {
+    this.visible = false;
+  }
 }

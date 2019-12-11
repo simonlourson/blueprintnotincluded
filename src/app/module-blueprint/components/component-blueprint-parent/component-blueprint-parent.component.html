@@ -3,9 +3,9 @@
 
 <app-component-canvas #canvas></app-component-canvas>
 <div class="outer">
+  <app-component-menu #menu (onMenuCommand)="menuCommand($event)">
+  </app-component-menu>
   <div>
-    <app-component-menu #menu (onMenuCommand)="menuCommand($event)">
-    </app-component-menu>
     <div class="side-panel">
       <app-selection-tool 
         #selectionTool 
@@ -17,14 +17,17 @@
       </app-build-tool>
     </div>
     <div class="side-panel-right">
-      <app-dialog-about #aboutDialog></app-dialog-about>
-      <app-element-report-tool  *ngIf="toolService.elementReportTool.visible" #elementReportTool>
+      <app-element-report-tool  
+        *ngIf="toolService.elementReportTool.visible && !aboutDialog.visible" 
+        #elementReportTool>
       </app-element-report-tool>
     </div>
     <div class="side-panel-about">
-      <app-dialog-about #aboutDialog></app-dialog-about>
+      <app-dialog-about 
+        [hidden]="!aboutDialog.visible" 
+        #aboutDialog>
+      </app-dialog-about>
     </div>
-    
   </div>
 </div>
 

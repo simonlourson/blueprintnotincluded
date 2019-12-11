@@ -87,7 +87,7 @@ export class ComponentBlueprintParentComponent implements OnInit, IObsBlueprintC
   @ViewChild('shareUrlDialog', {static: true})
   shareUrlDialog: DialogShareUrlComponent;
 
-  @ViewChild('aboutDialog', {static: true})
+  @ViewChild('aboutDialog', {static: false})
   aboutDialog: DialogAboutComponent;
 
   constructor(
@@ -180,7 +180,7 @@ export class ComponentBlueprintParentComponent implements OnInit, IObsBlueprintC
     if (menuCommand.type == MenuCommandType.newBlueprint) this.blueprintService.newBlueprint();
     else if (menuCommand.type == MenuCommandType.showLoginDialog) this.loginDialog.showDialog();
     else if (menuCommand.type == MenuCommandType.browseBlueprints) this.browseDialog.showDialog();
-    else if (menuCommand.type == MenuCommandType.about) this.aboutDialog.showDialog();
+    else if (menuCommand.type == MenuCommandType.about) this.aboutDialog.toggleDialog();
     else if (menuCommand.type == MenuCommandType.getShareableUrl) this.shareUrl();
     else if (menuCommand.type == MenuCommandType.exportImages) this.exportImages();
     else if (menuCommand.type == MenuCommandType.saveBlueprint) this.saveBlueprint();
