@@ -11,7 +11,7 @@ import { AuthenticationService } from 'src/app/module-blueprint/services/authent
   templateUrl: './dialog-browse.component.html',
   styleUrls: ['./dialog-browse.component.css']
 })
-export class DialogBrowseComponent implements OnInit, AfterContentInit {
+export class DialogBrowseComponent implements OnInit {
 
   @ViewChild('browseDialog', {static: true}) browseDialog: Dialog
 
@@ -37,6 +37,7 @@ export class DialogBrowseComponent implements OnInit, AfterContentInit {
     this.loadingBlueprintItem = {
       id: null,
       name: 'Loading...',
+      ownerId: '',
       ownerName: 'Loading...',
       createdAt: tempDate,
       modifiedAt: tempDate,
@@ -54,9 +55,12 @@ export class DialogBrowseComponent implements OnInit, AfterContentInit {
       next: this.handleOnShow.bind(this)
     });
   }
-
-  ngAfterContentInit(): void {
-    //console.log(this.browseDialog.contentViewChild.nativeElement);
+  
+  filterOwner(id: string) {
+    this.reset();
+    this.blueprintService.getBlueprints(new Date(), id).subscribe({
+      next: this.handleGetBlueprints.bind(this)
+    });
   }
 
   reset() {

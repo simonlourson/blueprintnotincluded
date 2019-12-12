@@ -1,3 +1,4 @@
+// SHARED CODE
 
 export class Vector2
 {
@@ -14,6 +15,14 @@ export class Vector2
     {
         if (v == null) return false;
         return this.x == v.x && this.y == v.y;
+    }
+
+    static compare(v1?: Vector2, v2?: Vector2) {
+      if (v1 == null && v2 == null) return true;
+      else if (v1 == null || v2 == null) return false;
+      else {
+        return v1.x == v2.x && v1.y == v2.y;
+      }
     }
 
     copyFrom(original: Vector2)

@@ -254,10 +254,17 @@ export class BlueprintService implements IObsOverlayChanged, IObsBlueprintChange
     return request;
   }
  
-  getBlueprints(olderThan: Date) { 
+  getBlueprints(olderThan: Date, filterUserId: string = null) { 
     let parameterOlderThan = 'olderthan='+olderThan.getTime().toString();
-    let parameterUserId = 'userId='+ (this.authService.isLoggedIn() ? this.authService.getUserDetails()._id : '')
-    const request = this.http.get('/api/getblueprints?'+parameterOlderThan+'&'+parameterUserId).pipe(
+    
+    let parameterFilterUserId = '';
+    if (filterUserId != null) parameterFilterUserId = '&userId='+filterUserId;
+
+    let request = this.authService.isLoggedIn() ? 
+      this.http.get('/api/getblueprintsSecure?'+parameterOlderThan+parameterFilterUserId, { headers: { Authorization: `Bearer ${this.authService.getToken()}` }}) :
+      this.http.get('/api/getblueprints?'+parameterOlderThan+parameterFilterUserId) ;
+
+    request.pipe(
       map((response: any) => {
         let blueprintListItems = response as BlueprintListItem[];
         return blueprintListItems;
