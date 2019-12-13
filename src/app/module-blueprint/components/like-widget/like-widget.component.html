@@ -1,6 +1,6 @@
 
 <div class="ui-inputgroup">
-  <span class="ui-inputgroup-addon">{{nbLikesString}}</span>  
+  <span class="ui-inputgroup-addon">{{nbLikes}}&nbsp;{{nbLikesString}}</span>  
   <button *ngIf="!likedByMe" pButton type="button" icon="pi pi-heart" [disabled]="disabled" class="ui-button-secondary" (click)="like()"></button>
   <button *ngIf="likedByMe"  pButton type="button" icon="pi pi-heart" [disabled]="disabled" class="ui-button-danger" (click)="like()"></button>
 </div>

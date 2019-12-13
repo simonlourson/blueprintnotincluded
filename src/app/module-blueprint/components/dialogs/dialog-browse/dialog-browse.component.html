@@ -8,11 +8,17 @@
   [maximizable]="false" 
   [draggable]="false" 
   [resizable]="false"
-  [contentStyle]="{'max-height':'600px', 'max-width':'800px', 'overflow-y':'auto'}"
+  [contentStyle]=""
   >
-  <div class="p-grid"> 
-    <div class="p-col-4" *ngFor="let item of blueprintListItems">
-      <p-panel [header]=item.name>
+
+  <p-checkbox [(ngModel)]="getDuplicates" binary="true" label="Show duplicate blueprints" (onChange)="duplicateChange()"></p-checkbox>
+  <br>
+  <p-checkbox *ngIf="filterUserName != null" [(ngModel)]="filterUser" binary="true" label="Show only bluprints by {{filterUserName}}" (onChange)="filterUserChange()"></p-checkbox>
+
+  <div #scrollable class="scrollable">
+
+    <div class="blueprint-line" *ngFor="let item of blueprintListItems">
+      <div class="thumbnail">
         <a href="javascript:void(0);" (click)="openBlueprint(item)">
           <img *ngIf="item.thumbnail != 'svg'" [src]=item.thumbnail width="200px">
         </a>
@@ -21,17 +27,31 @@
           <path fill="#fff" d="m114.92 91.943 9.4524-6.3017c4.671-3.1163 7.4625-8.3331 7.4625-13.944v-11.499c4.1094-1.4649 7.0755-5.355 7.0755-9.9637v-7.0755c0-1.9554-1.5823-3.5378-3.5378-3.5378h-70.755c-1.9554 0-3.5378 1.5823-3.5378 3.5378v7.0755c0 4.6087 2.966 8.4989 7.0755 9.9637v11.499c0 5.6106 2.7915 10.827 7.4625 13.944l9.4524 6.3017c2.7017 1.8033 4.3116 4.8161 4.3116 8.0566 0 3.2406-1.6099 6.2533-4.3116 8.0566l-9.4524 6.3017c-4.671 3.1163-7.4625 8.3331-7.4625 13.944v11.499c-4.1094 1.4649-7.0755 5.355-7.0755 9.9637v7.0755c0 1.9554 1.5823 3.5378 3.5378 3.5378h70.755c1.9554 0 3.5378-1.5823 3.5378-3.5378v-7.0755c0-4.6087-2.966-8.4988-7.0755-9.9637v-11.499c0-5.6106-2.7915-10.827-7.4625-13.944l-9.4524-6.3017c-2.7017-1.8033-4.3116-4.8161-4.3116-8.0566 0-3.2406 1.6099-6.2533 4.3116-8.0566zm-11.387 8.0566c0 5.6106 2.7915 10.827 7.4625 13.944l9.4524 6.3017c2.7017 1.8033 4.3116 4.8161 4.3116 8.0566v10.849h-49.529v-10.849c0-3.2406 1.6099-6.2533 4.3116-8.0566l9.4524-6.3017c4.671-3.1163 7.4625-8.333 7.4625-13.944 0-5.6106-2.7915-10.827-7.4625-13.944l-9.4524-6.3017c-2.7017-1.8033-4.3116-4.8161-4.3116-8.0566v-10.849h49.529v10.849c0 3.2406-1.6099 6.2533-4.3116 8.0566l-9.4524 6.3017c-4.671 3.1163-7.4625 8.3331-7.4625 13.944z"/>
           <path fill="#fff" d="m102.12 118.39c-1.2576-0.93963-2.9849-0.93963-4.2425 0l-15.568 11.677v2.0047h35.378v-2.0047z"/>
         </svg>
-        <b>Author :&nbsp;</b><a [routerLink]="" (click)="filterOwner(item.ownerId)">{{item.ownerName}}</a>
-        <h4>Created : {{this.datepipe.transform(item.createdAt, 'yyyy-MM-dd')}}</h4>
-        <h4>Modified : {{this.datepipe.transform(item.modifiedAt, 'yyyy-MM-dd')}}</h4>        
-        <app-like-widget 
-          [blueprintId]="item.id" 
-          [nbLikes]="item.nbLikes" 
-          [likedByMe]="item.likedByMe"
-          [disabled]="!authService.isLoggedIn() || item.thumbnail == 'svg'">
-        </app-like-widget>
-      </p-panel>
+      </div>
+      
+      <div style="width: 100%;">
+        <div class="title-line">
+          <b>{{item.name}}</b>
+          <div class="like-widget">
+            <app-like-widget
+              [blueprintId]="item.id" 
+              [nbLikes]="item.nbLikes" 
+              [likedByMe]="item.likedByMe"
+              [disabled]="!authService.isLoggedIn() || item.thumbnail == 'svg'">
+            </app-like-widget>
+          </div>
+        </div>
+        <br>
+        
+        <div>Author :&nbsp;<a [routerLink]="" (click)="filterOwner(item.ownerId, item.ownerName)">{{item.ownerName}}</a></div>
+        <div>Created : {{this.datepipe.transform(item.createdAt, 'yyyy-MM-dd')}}</div>
+        <div>Modified : {{this.datepipe.transform(item.modifiedAt, 'yyyy-MM-dd')}}</div>
+
+        
+        
+      </div>
     </div>
+    
   </div>
 
 </p-dialog>

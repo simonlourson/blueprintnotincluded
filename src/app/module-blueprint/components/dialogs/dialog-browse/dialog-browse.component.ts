@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ChangeDetectorRef, HostListener, AfterContentInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ChangeDetectorRef, HostListener, AfterContentInit, ElementRef } from '@angular/core';
 import { BlueprintListItem, BlueprintListResponse } from 'src/app/module-blueprint/services/messages/blueprint-list-response';
 import { BlueprintService } from 'src/app/module-blueprint/services/blueprint-service';
 import { Dialog } from 'primeng/dialog';
@@ -14,6 +14,7 @@ import { AuthenticationService } from 'src/app/module-blueprint/services/authent
 export class DialogBrowseComponent implements OnInit {
 
   @ViewChild('browseDialog', {static: true}) browseDialog: Dialog
+  @ViewChild('scrollable', {static: true}) scrollable: ElementRef
 
   visible: boolean = false;
   blueprintListItems: BlueprintListItem[];
@@ -21,7 +22,22 @@ export class DialogBrowseComponent implements OnInit {
   working: boolean;
   noMoreBlueprints: boolean;
   oldestDate: Date;
+  filterUser: boolean;
+  filterUserId: string;
+  filterUserName: string;
   remaining: number;
+
+  getDuplicates: boolean;
+  duplicateChange() {
+
+  }
+
+  filterUserChange() {
+    if (this.filterUser == false) {
+      this.reset();
+      this.getBlueprints();
+    }
+  }
 
   get disabled() { return this.working; }
   get icon() { return this.working ? 'pi pi-spin pi-spinner' : ''; }
@@ -47,28 +63,45 @@ export class DialogBrowseComponent implements OnInit {
       nbLikes: 0
     };
 
-    this.reset();
+    
   }
 
   ngOnInit() {
     this.browseDialog.onShow.subscribe({
       next: this.handleOnShow.bind(this)
     });
+
+    this.reset();
   }
   
-  filterOwner(id: string) {
+  filterOwner(id: string, name: string) {
     this.reset();
-    this.blueprintService.getBlueprints(new Date(), id).subscribe({
+    this.filterUser = true;
+    this.filterUserId = id;
+    this.filterUserName = name;
+    this.getBlueprints();
+  }
+
+  getBlueprints() {
+    this.blueprintService.getBlueprints(this.oldestDate, this.filterUserId, this.getDuplicates).subscribe({
       next: this.handleGetBlueprints.bind(this)
     });
   }
 
   reset() {
-    this.working = true;
+    
     this.noMoreBlueprints = false;
     this.oldestDate = new Date();
-    this.remaining = 6;
+    this.filterUserId = null;
+    this.filterUserName = null;
+    
+    this.removeAll();
+  }
 
+  removeAll() {
+    this.working = true;
+    this.scrollable.nativeElement.scrollTop = 0;
+    this.remaining = 6;
     this.blueprintListItems = [];
     this.appendTemp();
   }
@@ -89,26 +122,18 @@ export class DialogBrowseComponent implements OnInit {
   showDialog()
   {
     this.reset();
-    this.blueprintService.getBlueprints(new Date()).subscribe({
-      next: this.handleGetBlueprints.bind(this)
-    });
+    this.getBlueprints();
     this.visible = true;
 
-    
-    //console.log(this.browseDialog.contentViewChild.nativeElement);
-    
-    //this.browseDialog.contentViewChild.nativeElement.addEventListener('scroll', function(e) {
-    //  console.log('scroll');
-    //});
   }
 
   handleOnShow() {
-    this.browseDialog.contentViewChild.nativeElement.addEventListener('scroll', this.scroll.bind(this));
+    this.scrollable.nativeElement.addEventListener('scroll', this.scroll.bind(this));
   }
 
   scroll(e: Event) {
-    let scrollTop: number = this.browseDialog.contentViewChild.nativeElement.scrollTop;
-    let scrollMax: number = this.browseDialog.contentViewChild.nativeElement.scrollHeight - this.browseDialog.contentViewChild.nativeElement.clientHeight;
+    let scrollTop: number = this.scrollable.nativeElement.scrollTop;
+    let scrollMax: number = this.scrollable.nativeElement.scrollHeight - this.scrollable.nativeElement.clientHeight;
     //console.log('scroll')
     //console.log({scrollTop: scrollTop, scrollMax: scrollMax});
     if (!this.noMoreBlueprints && !this.working && scrollTop >  scrollMax - 5) {
@@ -125,23 +150,13 @@ export class DialogBrowseComponent implements OnInit {
       
     this.blueprintListItems = this.blueprintListItems.filter((i) => { return i != this.loadingBlueprintItem; });
 
-    // TODO remove duplicates
     blueprintListResponse.blueprints.map((item) => { this.blueprintListItems.push(item); });
     
-    //this.recenter();
   }
-
   
   loadMoreBlueprints() {
-
-    // Get the oldest date received
-    // TODO oldest date and isLast in response
     this.working = true;
     this.appendTemp();
-
-    this.blueprintService.getBlueprints(this.oldestDate).subscribe({
-      next: this.handleGetBlueprints.bind(this)
-    });
-
+    this.getBlueprints();
   }
 }

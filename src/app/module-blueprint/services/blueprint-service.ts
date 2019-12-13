@@ -254,15 +254,18 @@ export class BlueprintService implements IObsOverlayChanged, IObsBlueprintChange
     return request;
   }
  
-  getBlueprints(olderThan: Date, filterUserId: string = null) { 
+  getBlueprints(olderThan: Date, filterUserId: string, getDuplicates: boolean) { 
     let parameterOlderThan = 'olderthan='+olderThan.getTime().toString();
     
     let parameterFilterUserId = '';
     if (filterUserId != null) parameterFilterUserId = '&userId='+filterUserId;
+    let parameterGetDuplicates = '&getDuplicates='+getDuplicates;
+
+    let parameters = parameterOlderThan+parameterFilterUserId+parameterGetDuplicates;
 
     let request = this.authService.isLoggedIn() ? 
-      this.http.get('/api/getblueprintsSecure?'+parameterOlderThan+parameterFilterUserId, { headers: { Authorization: `Bearer ${this.authService.getToken()}` }}) :
-      this.http.get('/api/getblueprints?'+parameterOlderThan+parameterFilterUserId) ;
+      this.http.get('/api/getblueprintsSecure?'+parameters, { headers: { Authorization: `Bearer ${this.authService.getToken()}` }}) :
+      this.http.get('/api/getblueprints?'+parameters) ;
 
     request.pipe(
       map((response: any) => {

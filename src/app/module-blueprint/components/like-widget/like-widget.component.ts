@@ -13,7 +13,7 @@ export class LikeWidgetComponent implements OnInit {
   @Input() likedByMe: boolean;
   @Input() disabled: boolean;
 
-  get nbLikesString() { return this.nbLikes + ' like' + (this.nbLikes != 1 ? 's':''); }
+  get nbLikesString() { return 'like' + (this.nbLikes != 1 ? 's':''); }
 
   constructor(private blueprintService: BlueprintService) { }
 

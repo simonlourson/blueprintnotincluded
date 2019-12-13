@@ -39,3 +39,14 @@ body {
   color: #333333;
   border-color: #a0a0a0;
 }
+
+.ui-close-button {
+  color: #848484;
+  float: right;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.ui-close-button:hover {
+  color: #333333;
+}
