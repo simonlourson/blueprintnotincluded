@@ -155,7 +155,13 @@ export class ComponentMenuComponent implements OnInit, IObsToolChanged, IObsOver
   }
 
   userProfile() {
-    this.messageService.add({severity:'warn', summary:'User profile', detail:'Coming soon !!!'});
+    let userFilter: BrowseData = {
+      filterUserId: this.authService.getUserDetails()._id,
+      filterUserName: this.authService.getUserDetails().username,
+      getDuplicates: true
+    }
+    
+    this.onMenuCommand.emit({type: MenuCommandType.browseBlueprints, data: userFilter});
   }
 
   overlayChanged(newOverlay: Overlay) {
@@ -255,4 +261,10 @@ export class MenuCommand
 {
   type: MenuCommandType;
   data: any;
+}
+
+export interface BrowseData {
+  filterUserId: string;
+  filterUserName: string;
+  getDuplicates: boolean;
 }

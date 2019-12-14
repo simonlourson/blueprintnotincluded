@@ -5,6 +5,10 @@ import { Dialog } from 'primeng/dialog';
 import { CameraService, IObsAnimationChanged } from 'src/app/module-blueprint/services/camera-service';
 import { DatePipe } from '@angular/common';
 import { AuthenticationService } from 'src/app/module-blueprint/services/authentification-service';
+import { timingSafeEqual } from 'crypto';
+import { timer, Subject } from 'rxjs';
+import { switchMap, debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { BlueprintItem } from 'src/app/module-blueprint/common/blueprint/blueprint-item';
 
 @Component({
   selector: 'app-dialog-browse',
@@ -22,27 +26,18 @@ export class DialogBrowseComponent implements OnInit {
   working: boolean;
   noMoreBlueprints: boolean;
   oldestDate: Date;
-  filterUser: boolean;
   filterUserId: string;
   filterUserName: string;
   remaining: number;
 
+  
+  filterUser: boolean;
   getDuplicates: boolean;
-  duplicateChange() {
-
-  }
-
-  filterUserChange() {
-    if (this.filterUser == false) {
-      this.reset();
-      this.getBlueprints();
-    }
-  }
-
-  get disabled() { return this.working; }
-  get icon() { return this.working ? 'pi pi-spin pi-spinner' : ''; }
+  filterNameSubject = new Subject<string>();
+  filterName: string;
 
   loadingBlueprintItem: BlueprintListItem;
+  nothingBlueprintItem: BlueprintListItem
 
   constructor(
     private blueprintService: BlueprintService, 
@@ -63,7 +58,34 @@ export class DialogBrowseComponent implements OnInit {
       nbLikes: 0
     };
 
+    this.nothingBlueprintItem = {
+      id: null,
+      name: 'No Results',
+      ownerId: '',
+      ownerName: 'Loading...',
+      createdAt: tempDate,
+      modifiedAt: tempDate,
+      thumbnail: 'svg_nothing',
+      tags: null,
+      likedByMe: false,
+      nbLikes: 0
+    };
+
+    this.filterNameSubject.pipe(
+      debounceTime(1000))
+      //,distinctUntilChanged())
+      .subscribe(value => {
+        this.filterNameChange();
+      });
+
+    this.filterNameSubject.subscribe(value => {
+      this.removeAll();
+    });
     
+  }
+
+  isReal(thumbnail: string): boolean {
+    return thumbnail != 'svg' && thumbnail != 'svg_nothing';
   }
 
   ngOnInit() {
@@ -73,32 +95,62 @@ export class DialogBrowseComponent implements OnInit {
 
     this.reset();
   }
+
+  duplicateChange() {
+    this.removeAll();
+    this.oldestDate = new Date();
+    this.getBlueprints();
+  }
+
+  // This is used when clicking on the checkbox
+  filterUserChange() {
+    if (this.filterUser == false) {
+      this.removeAll();
+      this.filterUserId = null;
+      this.filterUserName = null;
+      this.oldestDate = new Date();
+      this.getBlueprints();
+    }
+  }
+
+  filterNameChange() {
+    this.removeAll();
+    this.oldestDate = new Date();
+    this.getBlueprints();
+  }
   
+  // This is used by links
   filterOwner(id: string, name: string) {
-    this.reset();
     this.filterUser = true;
     this.filterUserId = id;
     this.filterUserName = name;
+    this.removeAll();
     this.getBlueprints();
   }
 
   getBlueprints() {
-    this.blueprintService.getBlueprints(this.oldestDate, this.filterUserId, this.getDuplicates).subscribe({
+    let filterName = null;
+    if (this.filterName != '' && this.filterName != null) filterName = this.filterName; 
+
+    this.blueprintService.getBlueprints(this.oldestDate, this.filterUserId, filterName, this.getDuplicates).subscribe({
       next: this.handleGetBlueprints.bind(this)
     });
   }
 
   reset() {
     
-    this.noMoreBlueprints = false;
-    this.oldestDate = new Date();
+    this.filterUser = false;
     this.filterUserId = null;
     this.filterUserName = null;
+    this.getDuplicates = false;
+    this.filterName = null;
     
     this.removeAll();
   }
 
   removeAll() {
+    this.noMoreBlueprints = false;
+    this.oldestDate = new Date();
     this.working = true;
     this.scrollable.nativeElement.scrollTop = 0;
     this.remaining = 6;
@@ -119,9 +171,15 @@ export class DialogBrowseComponent implements OnInit {
     this.visible = false;
   }
 
-  showDialog()
+  showDialog(filterUserId: string = null, filterUserName: string = null, getDuplicates: boolean = false)
   {
     this.reset();
+    if (filterUserId != null) {
+      this.filterUserId = filterUserId;
+      this.filterUserName = filterUserName;
+      this.filterUser = true;
+    }
+    this.getDuplicates = getDuplicates;
     this.getBlueprints();
     this.visible = true;
 
@@ -152,6 +210,7 @@ export class DialogBrowseComponent implements OnInit {
 
     blueprintListResponse.blueprints.map((item) => { this.blueprintListItems.push(item); });
     
+    if (this.blueprintListItems.length == 0) this.blueprintListItems.push(this.nothingBlueprintItem);
   }
   
   loadMoreBlueprints() {

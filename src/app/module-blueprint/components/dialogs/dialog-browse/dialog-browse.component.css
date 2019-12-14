@@ -33,3 +33,11 @@
   margin-right: 10px;
 }
 
+.clickable-image {
+  width: 200px;
+  cursor: pointer;
+}
+
+.search {
+  margin-top: 10px;
+}

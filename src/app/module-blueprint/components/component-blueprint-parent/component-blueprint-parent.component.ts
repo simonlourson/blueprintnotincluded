@@ -16,7 +16,7 @@ import { ZIndex, Overlay } from '../../common/overlay-type';
 import { SaveInfo } from '../../common/save-info';
 import { ActivatedRoute, Params, UrlSegment, convertToParamMap } from '@angular/router';
 import { BlueprintParams } from '../../common/params';
-import { ComponentMenuComponent, MenuCommand, MenuCommandType } from '../component-menu/component-menu.component';
+import { ComponentMenuComponent, MenuCommand, MenuCommandType, BrowseData } from '../component-menu/component-menu.component';
 import { ToolType } from '../../common/tools/tool';
 import { BlueprintItem } from '../../common/blueprint/blueprint-item';
 import { BlueprintItemTile } from '../../common/blueprint/blueprint-item-tile';
@@ -179,7 +179,7 @@ export class ComponentBlueprintParentComponent implements OnInit, IObsBlueprintC
   {
     if (menuCommand.type == MenuCommandType.newBlueprint) this.blueprintService.newBlueprint();
     else if (menuCommand.type == MenuCommandType.showLoginDialog) this.loginDialog.showDialog();
-    else if (menuCommand.type == MenuCommandType.browseBlueprints) this.browseDialog.showDialog();
+    else if (menuCommand.type == MenuCommandType.browseBlueprints) this.browseBlueprints(menuCommand.data);
     else if (menuCommand.type == MenuCommandType.about) this.aboutDialog.toggleDialog();
     else if (menuCommand.type == MenuCommandType.getShareableUrl) this.shareUrl();
     else if (menuCommand.type == MenuCommandType.exportImages) this.exportImages();
@@ -223,6 +223,12 @@ export class ComponentBlueprintParentComponent implements OnInit, IObsBlueprintC
   shareUrl() {
     if (this.blueprintService.id == null) this.messageService.add({severity:'error', summary:'Blueprint not saved', detail:'Save this blueprint to share it with others'});
     else this.shareUrlDialog.showDialog();
+  }
+
+  browseBlueprints(data: any) {
+    let browseData = data as BrowseData;
+    if (browseData != null) this.browseDialog.showDialog(browseData.filterUserId, browseData.filterUserName, browseData.getDuplicates);
+    else this.browseDialog.showDialog();
   }
 
   // TODO toast on save and generate url also

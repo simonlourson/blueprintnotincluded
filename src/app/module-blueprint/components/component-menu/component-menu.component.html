@@ -8,7 +8,7 @@
     <div class="menu-line">
       <div *ngIf="authService.isLoggedIn()" class="ui-inputgroup like-bloc">
         <span class="ui-inputgroup-addon">Welcome, {{authService.getUserDetails().username}}</span>  
-        <button pButton type="button" icon="pi pi-user" (click)="userProfile()" pTooltip="User profile" tooltipPosition="bottom"></button>
+        <button pButton type="button" icon="pi pi-user" (click)="userProfile()" pTooltip="My Blueprints" tooltipPosition="bottom"></button>
         <button pButton class="ui-button-warning" icon="pi pi-sign-out" (click)="logout()" pTooltip="Logout" tooltipPosition="bottom"></button>
       </div>
       
