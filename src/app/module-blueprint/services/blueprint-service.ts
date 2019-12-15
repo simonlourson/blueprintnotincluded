@@ -120,6 +120,13 @@ export class BlueprintService implements IObsOverlayChanged, IObsBlueprintChange
     this.observersBlueprintChanged.map((observer) => { observer.blueprintChanged(newBlueprint); })
   }
 
+  public loadUrlBlueprint(url: string)
+  {
+    this.http.get(url).subscribe(value => {
+      console.log(value);
+    });
+  }
+
   newBlueprint() {
     this.name = 'new blueprint';
     this.reset();

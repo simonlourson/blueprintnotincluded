@@ -115,8 +115,15 @@ export class ComponentBlueprintParentComponent implements OnInit, IObsBlueprintC
       this.buildTool.oniItemsLoaded();
 
       this.route.url.subscribe((url: UrlSegment[]) => {
+        console.log(url)
         if (url != null && url.length > 0 && url[0].path == 'browse') {
           this.browseDialog.showDialog();
+        }
+        else if (url != null && url.length > 0 && url[0].path == 'about') {
+          this.aboutDialog.visible = true;
+        }
+        else if (url != null && url.length > 1 && url[0].path == 'openfromurl') {
+          this.blueprintService.loadUrlBlueprint(url[1].path)
         }
       })
 

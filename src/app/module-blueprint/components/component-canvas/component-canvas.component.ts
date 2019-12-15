@@ -179,10 +179,12 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
     this.toolService.dragStop();
   }
 
+  // previousMouse is used by the keyboard zoom
+  previousMouse: Vector2 = new Vector2();
   previousTileUnderMouse: Vector2;
   mouseMove(event: any)
   {
-    
+    this.previousMouse = this.getCursorPosition(event)
     let currentTileUnderMouse = this.getCurrentTile(event);
 
     if (this.previousTileUnderMouse == null || !this.previousTileUnderMouse.equals(currentTileUnderMouse))
@@ -195,6 +197,7 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
 
   keyPress(event: any)
   {
+    //console.log(event.key)
     this.toolService.keyDown(event.key);
 
     if (document.body == document.activeElement) {
@@ -202,6 +205,8 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
       if (event.key == 'ArrowRight') this.cameraService.cameraOffset.x -= 1;
       if (event.key == 'ArrowUp') this.cameraService.cameraOffset.y += 1;
       if (event.key == 'ArrowDown') this.cameraService.cameraOffset.y -= 1; 
+      if (event.key == '+') this.cameraService.zoom(1, this.previousMouse);
+      if (event.key == '-') this.cameraService.zoom(-1, this.previousMouse);
     }
 
     if (event.key == 'z' && event.ctrlKey) this.blueprintService.undo();

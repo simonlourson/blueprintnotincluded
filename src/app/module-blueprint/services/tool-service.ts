@@ -100,7 +100,8 @@ export class ToolService implements ITool, IChangeTool
     this.currentTool.dragStop();
   }
   keyDown(keyCode: string) {
-    this.currentTool.keyDown(keyCode);
+    if (keyCode == 'b' && this.currentTool.toolType != ToolType.build) this.changeTool(ToolType.build);    
+    else this.currentTool.keyDown(keyCode);
   }
   draw(drawPixi: DrawPixi, camera: CameraService) {
     this.currentTool.draw(drawPixi, camera);
