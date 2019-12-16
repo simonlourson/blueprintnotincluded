@@ -27,8 +27,27 @@ export class BBuilding
   materialCategory: string[];
   materialMass: number[];
   uiScreens: BUiScreen[];
+  sprites: BSpriteGroup[];
 
   dragBuild: boolean;
   objectLayer: number;
   permittedRotations: PermittedRotations;
+}
+
+export class BSpriteGroup {
+  groupName: string;
+  spriteNames: string[];
+
+  constructor(groupName: string) {
+    this.groupName = groupName;
+  }
+
+  static clone(original: BSpriteGroup) {
+    let returnValue = new BSpriteGroup(original.groupName);
+
+    returnValue.spriteNames = [];
+    for (let spriteName of original.spriteNames) returnValue.spriteNames.push(spriteName);
+
+    return returnValue;
+  }
 }

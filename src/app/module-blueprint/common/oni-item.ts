@@ -3,13 +3,14 @@ import { UtilityConnection, ConnectionType, ConnectionHelper } from "./utility-c
 import { ZIndex, Overlay } from "./overlay-type";
 import { BlueprintParams } from "./params";
 import { DrawHelpers, PermittedRotations } from "../drawing/draw-helpers";
-import { BBuilding } from "./bexport/b-building";
+import { BBuilding, BSpriteGroup } from "./bexport/b-building";
 import { ImageSource } from "../drawing/image-source";
 import { SpriteInfo } from "../drawing/sprite-info";
 import { SpriteModifier } from "../drawing/sprite-modifier";
 import { BSpriteInfo } from './bexport/b-sprite-info';
 import { BuildableElement } from './bexport/b-element';
 import { BUiScreen } from './bexport/b-ui-screen';
+import { SpriteModifierGroup } from '../drawing/sprite-modifier-group';
 
 export class OniItem
 {
@@ -38,6 +39,7 @@ export class OniItem
   defaultElement: BuildableElement[];
   materialMass: number[];
   uiScreens: BUiScreen[];
+  spriteGroups: Map<string, SpriteModifierGroup>;
   
   private permittedRotations_: PermittedRotations;
   get permittedRotations() { return this.permittedRotations_; }
@@ -98,6 +100,12 @@ export class OniItem
     this.uiScreens = [];
     for (let uiScreen of original.uiScreens) this.uiScreens.push(BUiScreen.clone(uiScreen));
 
+    this.spriteGroups = new Map<string, SpriteModifierGroup>();
+    for (let spriteGroup of original.sprites) {
+      let newGroup = SpriteModifierGroup.copyFrom(spriteGroup);
+      this.spriteGroups.set(newGroup.groupName, newGroup);
+    }
+  
     this.imageId = imageId;
 
     this.utilityConnections = [];
@@ -141,6 +149,7 @@ export class OniItem
     if (this.frontColor == null) this.frontColor = 0xFFFFFF;
     if (this.buildableElementsArray == null) this.buildableElementsArray = [];
     if (this.uiScreens == null) this.uiScreens = [];
+    if (this.spriteGroups == null) this.spriteGroups = new Map<string, SpriteModifierGroup>();
     
     if (Vector2.Zero.equals(this.size)) this.tileOffset = Vector2.Zero;
     else

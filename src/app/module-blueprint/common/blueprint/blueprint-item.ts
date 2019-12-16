@@ -14,11 +14,11 @@ import { DrawPixi } from '../../drawing/draw-pixi';
 import { DrawPart } from '../../drawing/draw-part';
 import { BniBuilding } from './io/bni/bni-building';
 import { Inject } from '@angular/core';
-
-import {  } from 'pixi.js-legacy';
 import { BuildableElement } from '../bexport/b-element';
 import { MdbBuilding } from './io/mdb/mdb-building';
 import { UiSaveSettings } from '../bexport/b-ui-screen';
+
+import {  } from 'pixi.js-legacy';
 declare var PIXI: any;
 
 export class BlueprintItem
@@ -81,6 +81,8 @@ export class BlueprintItem
     if (this.drawPart_ == null) this.drawPart_ = new DrawPart();
     return this.drawPart_;
   }
+
+  testDrawParts: DrawPart[];
 
   depth: number;
   alpha: number;
@@ -304,6 +306,11 @@ export class BlueprintItem
 
       if (this.orientation == null) this.changeOrientation(Orientation.Neutral);
       this.selected_ = false;
+
+      this.testDrawParts = [];
+      for (let spriteModifier of this.oniItem.spriteGroups.get("solid").spriteModifiers) {
+        this.testDrawParts.push(new DrawPart());
+      }
     }
 
   public toMdbBuilding(): MdbBuilding {
@@ -426,6 +433,13 @@ export class BlueprintItem
       // * the main place id, and left / right / up / down
       // * the id for the ui icon
       this.drawPart.prepareSpriteInfoModifier(this.oniItem.spriteModifierId + 'place');
+
+      let indexDrawPart = 0;
+      for (let spriteModifier of this.oniItem.spriteGroups.get("solid").spriteModifiers) {
+        this.testDrawParts[indexDrawPart].prepareSpriteInfoModifier(spriteModifier.spriteModifierId);
+
+        indexDrawPart++;
+      }
     }
 
     // This is used by the selection tool to prioritize opaque buildings during selection
@@ -474,12 +488,35 @@ export class BlueprintItem
       let sprite = this.drawPart.getPreparedSprite(camera, this.oniItem);
       this.drawPart.selected = this.selected;
 
-      if (sprite != null)
+      let indexDrawPart = 0;
+      let solidSprites: PIXI.Sprite[] = [];
+      for (let spriteModifier of this.oniItem.spriteGroups.get("solid").spriteModifiers) {
+        let solidSprite = this.testDrawParts[indexDrawPart].getPreparedSprite(camera, this.oniItem);
+        if (solidSprite != null) {
+          solidSprite.zIndex -= (indexDrawPart / 50)
+          solidSprites.push(solidSprite);
+
+          if (!this.testDrawParts[indexDrawPart].addedToContainer) {
+            this.container.addChild(solidSprite);
+            this.container.calculateBounds();
+            // TODO use this for repack
+            //console.log(this.container.getBounds());
+            this.testDrawParts[indexDrawPart].addedToContainer = true;
+          }
+        }
+        indexDrawPart++;
+      }
+
+      if (solidSprites.length > 0)
       {
         if (!this.drawPart.addedToContainer)
         {
-          this.container.addChild(sprite);
-          this.drawPart.addedToContainer = true;
+          //this.container.addChild(sprite);
+          //this.drawPart.addedToContainer = true;
+        }
+
+        for (let solidSprite of solidSprites) {
+
         }
 
         let positionCorrected = new Vector2(
@@ -488,12 +525,12 @@ export class BlueprintItem
         );
 
         // If the texture has not loaded, draw a debug rectangle
-        if (!sprite.texture.baseTexture.valid) this.drawPixiDebug(camera, drawPixi, positionCorrected);
+        //if (!sprite.texture.baseTexture.valid) this.drawPixiDebug(camera, drawPixi, positionCorrected);
         
         // Debug
         //this.drawPixiDebug(camera, drawPixi, positionCorrected);
 
-        sprite.zIndex = 0;
+        //sprite.zIndex = 0;
 
         this.container.x = positionCorrected.x;
         this.container.y = positionCorrected.y;

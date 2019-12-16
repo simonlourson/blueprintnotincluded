@@ -24,6 +24,7 @@
     "@types/jszip": "^3.1.6",
     "csharp-binary-stream": "^1.0.1",
     "jszip": "^3.2.2",
+    "jszip-utils": "^0.1.0",
     "ng-recaptcha": "^5.0.0",
     "pixi.js-legacy": "^5.2.0",
     "primeflex": "^1.0.0-rc.1",
@@ -54,5 +55,8 @@
     "ts-node": "~7.0.0",
     "tslint": "~5.15.0",
     "typescript": "~3.5.3"
+  },
+  "resolutions": {
+    "serialize-javascript": "^2.1.1"
   }
 }

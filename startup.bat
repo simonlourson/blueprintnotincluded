@@ -1,5 +1,5 @@
 start cmd.exe /k "code . & ng serve"
-pause
+sleep 2
 
 cd ..
 cd blueprintnotincluded-backend

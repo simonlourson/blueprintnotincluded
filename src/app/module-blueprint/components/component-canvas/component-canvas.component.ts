@@ -280,6 +280,72 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
     }
   }
 
+  downloadGroups(database: any) {
+    console.log('downloadGroups')
+    for (let oniItem of OniItem.oniItems) {
+      if (oniItem.id != 'AdvancedDoctorStation') continue;
+
+      let container: PIXI.Container = new PIXI.Container();
+      container.sortableChildren = true;
+
+      let indexDrawPart = 0;
+      for (let spriteModifier of oniItem.spriteGroups.get('solid').spriteModifiers) {
+        let spriteInfo = SpriteInfo.getSpriteInfo(spriteModifier.spriteInfoName);
+        let texture = spriteInfo.getTexture();
+        let sprite = PIXI.Sprite.from(texture);
+        sprite.anchor.set(spriteInfo.pivot.x, 1-spriteInfo.pivot.y);
+        sprite.x = 0 + (spriteModifier.translation.x);
+        sprite.y = 0 - (spriteModifier.translation.y);
+        sprite.scale.x = spriteModifier.scale.x;
+        sprite.scale.y = spriteModifier.scale.y;
+        sprite.angle = -spriteModifier.rotation;
+        sprite.width = spriteInfo.realSize.x;
+        sprite.height = spriteInfo.realSize.y;
+        sprite.zIndex -= (indexDrawPart / 50)
+
+        container.addChild(sprite);
+
+        indexDrawPart++;
+      }
+
+      container.calculateBounds();
+      let bounds = container.getBounds();
+      bounds.x = Math.floor(bounds.x);
+      bounds.y = Math.floor(bounds.y);
+      bounds.width = Math.ceil(bounds.width);
+      bounds.height = Math.ceil(bounds.height);
+
+      let diff = new Vector2(bounds.x, bounds.y);
+      for (let child of container.children) {
+        child.x -= diff.x;
+        child.y -= diff.y
+      }
+
+      console.log(bounds)
+      //container.x = -bounds.x;
+      //container.y = bounds.y;
+
+      let pivot = new Vector2(1 - ((bounds.width + bounds.x) / bounds.width), ((bounds.height + bounds.y) / bounds.height));
+      console.log(pivot);
+
+      let brt = new PIXI.BaseRenderTexture({width: bounds.width, height: bounds.height, scaleMode: PIXI.SCALE_MODES.NEAREST});
+      let rt = new PIXI.RenderTexture(brt);
+
+      this.drawPixi.pixiApp.renderer.render(container, rt);
+      this.drawPixi.pixiApp.renderer.extract.canvas(rt).toBlob((blob) => { 
+        
+        // Test download
+        let a = document.createElement('a');
+          document.body.append(a);
+          a.download = 'test.png';
+          a.href = URL.createObjectURL(blob);
+          a.click();
+          a.remove();
+      }); 
+
+    }
+  }
+
   repackTextures(database: any)
   {
     // Tests bintrays
@@ -572,7 +638,8 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
     //let ctx: CanvasRenderingContext2D = this.canvasRef.nativeElement.getContext('2d');
 
     this.drawPixi.clearGraphics();
-    this.drawPixi.FillRect(0x007AD9, 0, 0, this.width, this.height);
+    //this.drawPixi.FillRect(0x007AD9, 0, 0, this.width, this.height);
+    this.drawPixi.FillRect(0x888888, 0, 0, this.width, this.height); 
     
     let alphaOrig: number = 0.4;
     let alpha: number = alphaOrig;

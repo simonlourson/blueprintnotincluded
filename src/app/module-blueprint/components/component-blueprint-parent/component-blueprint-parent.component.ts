@@ -3,6 +3,8 @@ import {MessageService, Message} from 'primeng/api';
 import { ComponentCanvasComponent } from '../component-canvas/component-canvas.component';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import {BinaryReader, Encoding} from 'csharp-binary-stream';
+import * as JSZipUtils from 'jszip-utils';
+import * as JSZip from 'jszip';
 
 // Library imports
 import { OniItem } from '../../common/oni-item';
@@ -115,7 +117,6 @@ export class ComponentBlueprintParentComponent implements OnInit, IObsBlueprintC
       this.buildTool.oniItemsLoaded();
 
       this.route.url.subscribe((url: UrlSegment[]) => {
-        console.log(url)
         if (url != null && url.length > 0 && url[0].path == 'browse') {
           this.browseDialog.showDialog();
         }
@@ -146,7 +147,18 @@ export class ComponentBlueprintParentComponent implements OnInit, IObsBlueprintC
   {
     let promise = new Promise((resolve, reject) => {
 
-      fetch("/assets/database/database.json")
+    JSZipUtils.getBinaryContent('/assets/database/database.zip', function(err, data) {
+      if(err) { throw err; }
+  
+      JSZip.loadAsync(data).then((zipped) => {
+        zipped.files['database.json'].async('text').then((text) => {
+          // TODO when database is stable
+          //console.log(JSON.parse(text));
+        })
+      });
+    });
+
+    fetch("/assets/database/database.json")
       .then(response => { return response.json(); })
       .then(json => {
 
@@ -154,9 +166,6 @@ export class ComponentBlueprintParentComponent implements OnInit, IObsBlueprintC
 
         let elements: BuildableElement[] = json.elements;
         BuildableElement.load(elements);
-
-        let buildings: BBuilding[] = json.buildings;
-        OniItem.load(buildings);
 
         let buildMenuCategories: BuildMenuCategory[] = json.buildMenuCategories;
         BuildMenuCategory.load(buildMenuCategories);
@@ -169,13 +178,15 @@ export class ComponentBlueprintParentComponent implements OnInit, IObsBlueprintC
 
         let spriteModifiers: BSpriteModifier[] = json.spriteModifiers;
         SpriteModifier.load(spriteModifiers);
+        
+        let buildings: BBuilding[] = json.buildings;
+        OniItem.load(buildings);
 
         resolve(0);
-
-      })
-      .catch((error) => {
-        reject(error);
-      })
+    })
+    .catch((error) => {
+      reject(error);
+    })
 
     });
 
@@ -195,6 +206,7 @@ export class ComponentBlueprintParentComponent implements OnInit, IObsBlueprintC
     // Technical (repack, generate solid sprites, etc)
     else if (menuCommand.type == MenuCommandType.fetchIcons) this.canvas.fetchIcons();
     else if (menuCommand.type == MenuCommandType.downloadIcons) this.canvas.downloadIcons();
+    else if (menuCommand.type == MenuCommandType.downloadGroups) this.canvas.downloadGroups(this.database);
     else if (menuCommand.type == MenuCommandType.downloadUtility) this.canvas.downloadUtility();
     else if (menuCommand.type == MenuCommandType.repackTextures) this.canvas.repackTextures(this.database);
     

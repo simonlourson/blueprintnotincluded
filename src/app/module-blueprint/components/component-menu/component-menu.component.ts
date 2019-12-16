@@ -114,17 +114,18 @@ export class ComponentMenuComponent implements OnInit, IObsToolChanged, IObsOver
         label: 'About',
         icon:'pi pi-info-circle', command: (event) => { this.onMenuCommand.emit({type: MenuCommandType.about, data: null}); }
       }
-      /*
-      {
+      
+      ,{
         label: 'Technical',
         items: [
-          {label: 'Fetch icons',          icon:'pi pi-download', command: (event) => { this.onMenuCommand.emit({type: MenuCommandType.fetchIcons, data:null}); } },
-          {label: 'Download icons',       icon:'pi pi-download', command: (event) => { this.onMenuCommand.emit({type: MenuCommandType.downloadIcons, data:null}); } },
-          {label: 'Download utility',     icon:'pi pi-download', command: (event) => { this.onMenuCommand.emit({type: MenuCommandType.downloadUtility, data:null}); } },
-          {label: 'Repack textures',      icon:'pi pi-download', command: (event) => { this.onMenuCommand.emit({type: MenuCommandType.repackTextures, data:null}); } }
+          {label: 'Fetch images',          icon:'pi pi-download', command: (event) => { this.onMenuCommand.emit({type: MenuCommandType.fetchIcons, data:null}); } },
+          {label: 'Download groups',       icon:'pi pi-download', command: (event) => { this.onMenuCommand.emit({type: MenuCommandType.downloadGroups, data:null}); } },
+          {label: 'Download icons',        icon:'pi pi-download', command: (event) => { this.onMenuCommand.emit({type: MenuCommandType.downloadIcons, data:null}); } },
+          {label: 'Download utility',      icon:'pi pi-download', command: (event) => { this.onMenuCommand.emit({type: MenuCommandType.downloadUtility, data:null}); } },
+          {label: 'Repack textures',       icon:'pi pi-download', command: (event) => { this.onMenuCommand.emit({type: MenuCommandType.repackTextures, data:null}); } }
         ]
       }
-      */
+      
     ];
    
     
@@ -250,6 +251,7 @@ export enum MenuCommandType
 
   fetchIcons,
   downloadIcons,
+  downloadGroups,
   downloadUtility,
   repackTextures,
 
