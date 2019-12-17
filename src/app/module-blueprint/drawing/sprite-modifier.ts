@@ -8,7 +8,7 @@ export class SpriteModifier
 {
   spriteModifierId: string;
   spriteInfoName: string;
-  spriteTag: SpriteTag;
+  tag: SpriteTag;
 
   rotation: number;
   scale: Vector2;
@@ -27,6 +27,7 @@ export class SpriteModifier
     this.translation = original.translation;
     this.scale = original.scale;
     this.rotation = original.rotation;
+    this.tag = original.tag;
   }
 
   public cleanUp()
@@ -34,7 +35,7 @@ export class SpriteModifier
     if (this.rotation == null) this.rotation = 0;
     if (this.scale == null) this.scale = Vector2.clone(Vector2.One);
     if (this.translation == null) this.translation = Vector2.clone(Vector2.Zero);
-    if (this.spriteTag == null) this.spriteTag = SpriteTag.none;
+    if (this.tag == null) this.tag = SpriteTag.none;
   }
 
   public static AddSpriteModifier(bBuilding: BBuilding)

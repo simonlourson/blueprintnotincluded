@@ -1,4 +1,4 @@
-import { SpriteModifier } from './sprite-modifier';
+import { SpriteModifier, SpriteTag } from './sprite-modifier';
 import { BSpriteGroup } from '../common/bexport/b-building';
 
 export class SpriteModifierGroup {
@@ -7,6 +7,14 @@ export class SpriteModifierGroup {
 
   constructor(groupName: string) {
     this.groupName = groupName;
+  }
+
+  getModifierFromTag(tag: SpriteTag) {
+    for (let spriteModifier of this.spriteModifiers)
+      if (spriteModifier.tag == tag)
+        return spriteModifier;
+
+    return null;
   }
 
   static copyFrom(original: BSpriteGroup) {

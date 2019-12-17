@@ -127,8 +127,17 @@ export class BlueprintItemWire extends BlueprintItem
 
   public prepareSpriteInfoModifier(blueprint: Blueprint)
   {
-    this.drawPart.prepareSpriteInfoModifier(this.oniItem.spriteModifierId + DrawHelpers.connectionString[this.connections]);
+    
+    //this.drawPart.prepareSpriteInfoModifier(this.oniItem.spriteGroups.get("solid").getModifierFromTag(DrawHelpers.connectionTag[this.connections]).;
     this.drawPartSolid.prepareSpriteInfoModifier(this.oniItem.spriteModifierId + DrawHelpers.connectionStringSolid[this.connections]);
+  
+    let spriteModifierConnection = this.oniItem.spriteGroups.get("solid").getModifierFromTag(DrawHelpers.connectionTag[this.connections]);
+    let indexDrawPart = 0;
+    for (let spriteModifier of this.oniItem.spriteGroups.get("solid").spriteModifiers) {
+      if (spriteModifier != null) this.testDrawParts[indexDrawPart].prepareSpriteInfoModifier(spriteModifier.spriteModifierId);
+
+      indexDrawPart++;
+    }
   }
 
   public prepareOverlayInfo(currentOverlay: Overlay)

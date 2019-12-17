@@ -1,4 +1,5 @@
 import { Vector2 } from "../vector2";
+import { SpriteTag } from '../../drawing/sprite-modifier';
 
 export class BSpriteModifier
 {
@@ -8,4 +9,5 @@ export class BSpriteModifier
   translation: Vector2;
   scale: Vector2;
   rotation: number;
+  tag: SpriteTag;
 }

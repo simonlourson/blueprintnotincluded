@@ -1,7 +1,7 @@
 import { Vector2 } from "../common/vector2";
 import { CameraService } from "../services/camera-service";
 import { SpriteInfo } from "./sprite-info";
-import { SpriteModifier } from "./sprite-modifier";
+import { SpriteModifier, SpriteTag } from "./sprite-modifier";
 import { ImageSource } from "./image-source";
 import { BSpriteInfo } from '../common/bexport/b-sprite-info';
 import { Overlay } from '../common/overlay-type';
@@ -275,6 +275,25 @@ export class DrawHelpers
     'LUD_place',
     'RUD_place',
     'LRUD_place'
+  ];
+
+  static connectionTag: SpriteTag[] = [
+    SpriteTag.noConnection,
+    SpriteTag.L,
+    SpriteTag.R,
+    SpriteTag.LR,
+    SpriteTag.U,
+    SpriteTag.LU,
+    SpriteTag.RU,
+    SpriteTag.LRU,
+    SpriteTag.D,
+    SpriteTag.LD,
+    SpriteTag.RD,
+    SpriteTag.LRD,
+    SpriteTag.UD,
+    SpriteTag.LUD,
+    SpriteTag.RUD,
+    SpriteTag.LRUD
   ];
 
   static connectionStringSolid: string[] = [
