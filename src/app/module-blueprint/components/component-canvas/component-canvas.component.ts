@@ -91,11 +91,6 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
     this.blueprint.destroyAndCopyItems(source);
 
     this.cameraService.overlay = Overlay.Base; 
-
-    let boundingBox = this.blueprint.getBoundingBox();
-    let topLeft = boundingBox[0];
-    let bottomRight = boundingBox[1];
-
     //let cameraOffset = new Vector2(-topLeft.x + 1, bottomRight.y + 1);
 
     let rect = this.canvasRef.nativeElement.getBoundingClientRect();
@@ -103,8 +98,14 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
       rect.width - rect.left,
       rect.height - rect.top
     ));
-    this.cameraService.cameraOffset.x = -topLeft.x + 1;
-    this.cameraService.cameraOffset.y = bottomRight.y + 2; // (add 2 instead of 1, one tile will probably be hidden by the menu)
+
+    if (source.blueprintItems.length > 0) {
+      let boundingBox = this.blueprint.getBoundingBox();
+      let topLeft = boundingBox[0];
+      let bottomRight = boundingBox[1];
+      this.cameraService.cameraOffset.x = -topLeft.x + 1;
+      this.cameraService.cameraOffset.y = bottomRight.y + 2; // (add 2 instead of 1, one tile will probably be hidden by the menu)
+    }
   }
 
   getCursorPosition(event): Vector2 {

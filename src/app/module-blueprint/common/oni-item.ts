@@ -101,10 +101,12 @@ export class OniItem
     for (let uiScreen of original.uiScreens) this.uiScreens.push(BUiScreen.clone(uiScreen));
 
     this.spriteGroups = new Map<string, SpriteModifierGroup>();
+    /*
     for (let spriteGroup of original.sprites) {
       let newGroup = SpriteModifierGroup.copyFrom(spriteGroup);
       this.spriteGroups.set(newGroup.groupName, newGroup);
     }
+    */
   
     this.imageId = imageId;
 

@@ -308,9 +308,11 @@ export class BlueprintItem
       this.selected_ = false;
 
       this.testDrawParts = [];
+      /*
       for (let spriteModifier of this.oniItem.spriteGroups.get("solid").spriteModifiers) {
         this.testDrawParts.push(new DrawPart());
       }
+      */
     }
 
   public toMdbBuilding(): MdbBuilding {
@@ -434,12 +436,14 @@ export class BlueprintItem
       // * the id for the ui icon
       this.drawPart.prepareSpriteInfoModifier(this.oniItem.spriteModifierId + 'place');
 
+      /*
       let indexDrawPart = 0;
       for (let spriteModifier of this.oniItem.spriteGroups.get("solid").spriteModifiers) {
         this.testDrawParts[indexDrawPart].prepareSpriteInfoModifier(spriteModifier.spriteModifierId);
 
         indexDrawPart++;
       }
+      */
     }
 
     // This is used by the selection tool to prioritize opaque buildings during selection
@@ -490,6 +494,7 @@ export class BlueprintItem
 
       let indexDrawPart = 0;
       let solidSprites: PIXI.Sprite[] = [];
+      /*
       for (let spriteModifier of this.oniItem.spriteGroups.get("solid").spriteModifiers) {
         let solidSprite = this.testDrawParts[indexDrawPart].getPreparedSprite(camera, this.oniItem);
         if (solidSprite != null) {
@@ -499,20 +504,19 @@ export class BlueprintItem
           if (!this.testDrawParts[indexDrawPart].addedToContainer) {
             this.container.addChild(solidSprite);
             this.container.calculateBounds();
-            // TODO use this for repack
-            //console.log(this.container.getBounds());
             this.testDrawParts[indexDrawPart].addedToContainer = true;
           }
         }
         indexDrawPart++;
       }
+      */
 
       if (solidSprites.length > 0)
       {
         if (!this.drawPart.addedToContainer)
         {
-          //this.container.addChild(sprite);
-          //this.drawPart.addedToContainer = true;
+          this.container.addChild(sprite);
+          this.drawPart.addedToContainer = true;
         }
 
         for (let solidSprite of solidSprites) {
@@ -525,12 +529,12 @@ export class BlueprintItem
         );
 
         // If the texture has not loaded, draw a debug rectangle
-        //if (!sprite.texture.baseTexture.valid) this.drawPixiDebug(camera, drawPixi, positionCorrected);
+        if (!sprite.texture.baseTexture.valid) this.drawPixiDebug(camera, drawPixi, positionCorrected);
         
         // Debug
         //this.drawPixiDebug(camera, drawPixi, positionCorrected);
 
-        //sprite.zIndex = 0;
+        sprite.zIndex = 0;
 
         this.container.x = positionCorrected.x;
         this.container.y = positionCorrected.y;

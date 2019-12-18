@@ -131,6 +131,7 @@ export class BlueprintItemWire extends BlueprintItem
     //this.drawPart.prepareSpriteInfoModifier(this.oniItem.spriteGroups.get("solid").getModifierFromTag(DrawHelpers.connectionTag[this.connections]).;
     this.drawPartSolid.prepareSpriteInfoModifier(this.oniItem.spriteModifierId + DrawHelpers.connectionStringSolid[this.connections]);
   
+    /*
     let spriteModifierConnection = this.oniItem.spriteGroups.get("solid").getModifierFromTag(DrawHelpers.connectionTag[this.connections]);
     let indexDrawPart = 0;
     for (let spriteModifier of this.oniItem.spriteGroups.get("solid").spriteModifiers) {
@@ -138,6 +139,7 @@ export class BlueprintItemWire extends BlueprintItem
 
       indexDrawPart++;
     }
+    */
   }
 
   public prepareOverlayInfo(currentOverlay: Overlay)
