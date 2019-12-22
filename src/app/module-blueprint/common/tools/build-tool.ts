@@ -59,7 +59,7 @@ export class BuildTool implements ITool
 
     newItem.prepareOverlayInfo(this.cameraService.overlay);
     newItem.prepareBoundingBox();
-    newItem.prepareSpriteInfoModifier(this.blueprintService.blueprint);
+    newItem.updateTileables(this.blueprintService.blueprint);
     this.blueprintService.blueprint.addBlueprintItem(newItem);
     this.blueprintService.blueprint.refreshOverlayInfo()
   }
@@ -87,7 +87,7 @@ export class BuildTool implements ITool
     this.templateItemToBuild.cleanUp();
     
     this.templateItemToBuild.prepareBoundingBox();
-    this.templateItemToBuild.prepareSpriteInfoModifier(this.blueprintService.blueprint);
+    this.templateItemToBuild.updateTileables(this.blueprintService.blueprint);
     this.observers.map((observer) => observer.itemChanged(item) );
   }
 
@@ -108,8 +108,8 @@ export class BuildTool implements ITool
 
         this.connectAToB(itemPrevious, itemCurrent);
         this.connectAToB(itemCurrent, itemPrevious);
-        itemPrevious.prepareSpriteInfoModifier(this.blueprintService.blueprint);
-        itemCurrent.prepareSpriteInfoModifier(this.blueprintService.blueprint);
+        itemPrevious.updateTileables(this.blueprintService.blueprint);
+        itemCurrent.updateTileables(this.blueprintService.blueprint);
 
         this.blueprintService.blueprint.emitBlueprintChanged();
       }
@@ -141,7 +141,7 @@ export class BuildTool implements ITool
   hover(tile: Vector2) {
     this.templateItemToBuild.position = Vector2.clone(tile);
     this.templateItemToBuild.prepareBoundingBox();
-    this.templateItemToBuild.prepareSpriteInfoModifier(this.blueprintService.blueprint);
+    this.templateItemToBuild.updateTileables(this.blueprintService.blueprint);
   }
 
   drag(tileStart: Vector2, tileStop: Vector2) {
@@ -308,8 +308,9 @@ export class BuildTool implements ITool
 
   draw(drawPixi: DrawPixi, camera: CameraService) {
 
-    if (this.canBuild()) this.templateItemToBuild.drawPart.tint = DrawHelpers.whiteColor;
-    else this.templateItemToBuild.drawPart.tint = 0xD40000;
+    // TODO SOLID
+    //if (this.canBuild()) this.templateItemToBuild.drawPart.tint = DrawHelpers.whiteColor;
+    //else this.templateItemToBuild.drawPart.tint = 0xD40000;
 
     this.templateItemToBuild.drawPixi(camera, drawPixi);
     // TODO correct red and alpha when building outside of overlay 

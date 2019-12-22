@@ -3,10 +3,10 @@ import { OniItem, Orientation } from "../oni-item";
 import { OniBuilding } from "./io/oni/oni-building";
 import { ImageSource } from "../../drawing/image-source";
 import { SpriteInfo } from "../../drawing/sprite-info";
-import { SpriteModifier } from "../../drawing/sprite-modifier";
+import { SpriteModifier, SpriteTag } from "../../drawing/sprite-modifier";
 import { CameraService } from "../../services/camera-service";
 import { ConnectionType, ConnectionHelper } from "../utility-connection";
-import { ZIndex, Overlay } from "../overlay-type";
+import { ZIndex, Overlay, Display } from "../overlay-type";
 import { DrawHelpers, PermittedRotations } from "../../drawing/draw-helpers";
 import { Blueprint } from "./blueprint";
 import { OniCell } from "./io/oni/oni-cell";
@@ -76,18 +76,14 @@ export class BlueprintItem
   topLeft: Vector2;
   bottomRight: Vector2;
 
-  drawPart_: DrawPart;  
-  get drawPart() {
-    if (this.drawPart_ == null) this.drawPart_ = new DrawPart();
-    return this.drawPart_;
-  }
-
-  testDrawParts: DrawPart[];
+  drawParts: DrawPart[];
 
   depth: number;
   alpha: number;
   visible: boolean;
-  correctOverlay: boolean;
+  correctOverlay: boolean; 
+
+  tileable: boolean[];
 
   innerYaml: any;
 
@@ -301,18 +297,26 @@ export class BlueprintItem
 
           this.uiSaveSettings.push(newSaveSettings);
         }
-        
       }
 
       if (this.orientation == null) this.changeOrientation(Orientation.Neutral);
       this.selected_ = false;
 
-      this.testDrawParts = [];
-      /*
-      for (let spriteModifier of this.oniItem.spriteGroups.get("solid").spriteModifiers) {
-        this.testDrawParts.push(new DrawPart());
+      this.tileable = [false, false, false, false];
+
+      this.drawParts = [];
+      let drawPartIndex = 0;
+      for (let spriteModifier of this.oniItem.spriteGroup.spriteModifiers) {
+        if (spriteModifier.tags.indexOf(SpriteTag.ui) == -1) {
+          let newDrawPart = new DrawPart();
+          newDrawPart.zIndex = 1 - (drawPartIndex / (this.oniItem.spriteGroup.spriteModifiers.length * 2))
+          newDrawPart.spriteModifier = spriteModifier;
+          newDrawPart.visible = false;
+          this.drawParts.push(newDrawPart);
+        }
+
+        drawPartIndex++;
       }
-      */
     }
 
   public toMdbBuilding(): MdbBuilding {
@@ -388,164 +392,151 @@ export class BlueprintItem
     this.buildableElements = undefined;
   }
 
-    public prepareBoundingBox()
-    {
-      let realSize = this.oniItem.size;
-      if (Vector2.Zero.equals(realSize)) realSize = Vector2.One;
+  public prepareBoundingBox()
+  {
+    let realSize = this.oniItem.size;
+    if (Vector2.Zero.equals(realSize)) realSize = Vector2.One;
 
-      let originalTopLeft = new Vector2(
-        this.position.x + this.oniItem.tileOffset.x,
-        this.position.y + this.oniItem.tileOffset.y + realSize.y - 1
-      );
-      let orignialBottomRight = new Vector2(
-        originalTopLeft.x + realSize.x - 1,
-        originalTopLeft.y - realSize.y + 1
-      );
+    let originalTopLeft = new Vector2(
+      this.position.x + this.oniItem.tileOffset.x,
+      this.position.y + this.oniItem.tileOffset.y + realSize.y - 1
+    );
+    let orignialBottomRight = new Vector2(
+      originalTopLeft.x + realSize.x - 1,
+      originalTopLeft.y - realSize.y + 1
+    );
 
+    let rotatedTopLeft = DrawHelpers.rotateVector2(originalTopLeft, this.position, this.rotation);
+    let rotatedBottomRight = DrawHelpers.rotateVector2(orignialBottomRight, this.position, this.rotation);
+    let flippedTopLeft =  DrawHelpers.scaleVector2(rotatedTopLeft, this.position, this.scale);
+    let flippedBottomRight = DrawHelpers.scaleVector2(rotatedBottomRight, this.position, this.scale);
 
-      let rotatedTopLeft = DrawHelpers.rotateVector2(originalTopLeft, this.position, this.rotation);
-      let rotatedBottomRight = DrawHelpers.rotateVector2(orignialBottomRight, this.position, this.rotation);
-      let flippedTopLeft =  DrawHelpers.scaleVector2(rotatedTopLeft, this.position, this.scale);
-      let flippedBottomRight = DrawHelpers.scaleVector2(rotatedBottomRight, this.position, this.scale);
+    this.topLeft = new Vector2(
+      flippedTopLeft.x < flippedBottomRight.x ? flippedTopLeft.x : flippedBottomRight.x,
+      flippedTopLeft.y > flippedBottomRight.y ? flippedTopLeft.y : flippedBottomRight.y,
+    );
+    this.bottomRight = new Vector2(
+      flippedTopLeft.x > flippedBottomRight.x ? flippedTopLeft.x : flippedBottomRight.x,
+      flippedTopLeft.y < flippedBottomRight.y ? flippedTopLeft.y : flippedBottomRight.y,
+    );
 
+    this.tileIndexes = [];
+    for (let x = this.topLeft.x; x <= this.bottomRight.x; x++)
+      for (let y = this.topLeft.y; y >= this.bottomRight.y; y--)
+        this.tileIndexes.push(DrawHelpers.getTileIndex(new Vector2(x, y)));
+
+    //console.log(this.tileIndexes); 
+  }
+
+  public updateTileables(blueprint: Blueprint)
+  {
+    for (let i = 0; i < 4; i++) this.tileable[i] = false;
+
+    // TODO fix beach chair
+
+    if (this.oniItem.tileableLeftRight) {
+      if (blueprint.getBlueprintItemsAt(new Vector2(this.position.x - 1, this.position.y)).filter(b => b.id == this.id).length > 0)
+        this.tileable[0] = true;
+
+      if (blueprint.getBlueprintItemsAt(new Vector2(this.position.x + 1, this.position.y)).filter(b => b.id == this.id).length > 0)
+        this.tileable[1] = true;
+    }
+
+    if (this.oniItem.tileableTopBottom) {
+      if (blueprint.getBlueprintItemsAt(new Vector2(this.position.x, this.position.y + 1)).filter(b => b.id == this.id).length > 0)
+        this.tileable[2] = true;
       
-
-      this.topLeft = new Vector2(
-        flippedTopLeft.x < flippedBottomRight.x ? flippedTopLeft.x : flippedBottomRight.x,
-        flippedTopLeft.y > flippedBottomRight.y ? flippedTopLeft.y : flippedBottomRight.y,
-      );
-      this.bottomRight = new Vector2(
-        flippedTopLeft.x > flippedBottomRight.x ? flippedTopLeft.x : flippedBottomRight.x,
-        flippedTopLeft.y < flippedBottomRight.y ? flippedTopLeft.y : flippedBottomRight.y,
-      );
-
-      this.tileIndexes = [];
-      for (let x = this.topLeft.x; x <= this.bottomRight.x; x++)
-        for (let y = this.topLeft.y; y >= this.bottomRight.y; y--)
-          this.tileIndexes.push(DrawHelpers.getTileIndex(new Vector2(x, y)));
-
-      //console.log(this.tileIndexes); 
+      if (blueprint.getBlueprintItemsAt(new Vector2(this.position.x, this.position.y -  1)).filter(b => b.id == this.id).length > 0)
+        this.tileable[3] = true;
     }
+  }
 
-    public prepareSpriteInfoModifier(blueprint: Blueprint)
+  prepareSpriteVisibility(camera: CameraService) {
+    for (let drawPart of this.drawParts) drawPart.prepareVisibilityBasedOnDisplay(camera.display);
+  
+    if (this.tileable[0]) for (let drawPart of this.drawParts) drawPart.makeThisTagInvisible(SpriteTag.tileable_left);
+    if (this.tileable[1]) for (let drawPart of this.drawParts) drawPart.makeThisTagInvisible(SpriteTag.tileable_right);
+    if (this.tileable[2]) for (let drawPart of this.drawParts) drawPart.makeThisTagInvisible(SpriteTag.tileable_up);
+    if (this.tileable[3]) for (let drawPart of this.drawParts) drawPart.makeThisTagInvisible(SpriteTag.tileable_down);
+  }
+
+  // This is used by the selection tool to prioritize opaque buildings during selection
+  isOpaque: boolean;
+  public prepareOverlayInfo(currentOverlay: Overlay)
+  {
+    // Special case : we show the buildings in element mode
+    // TODO general case for elements
+    if (currentOverlay == Overlay.Unknown) Overlay.Base;
+
+    this.isOpaque = this.oniItem.isOverlayPrimary(currentOverlay) || this.oniItem.isOverlaySecondary(currentOverlay);
+
+    if (this.isOpaque) this.alpha = 1;
+    else this.alpha = 0.3;
+
+    if (this.oniItem.isOverlayPrimary(currentOverlay))
     {
-      // If there is no spriteInfoId, we use the item id to prevent collision between image sizes
-      //this.realSpriteInfoId =  this.oniItem.spriteInfoId == null ? this.oniItem.id : this.oniItem.spriteInfoId;
-      // TODO The export should tell us :
-      // * the main place id, and left / right / up / down
-      // * the id for the ui icon
-      this.drawPart.prepareSpriteInfoModifier(this.oniItem.spriteModifierId + 'place');
-
-      /*
-      let indexDrawPart = 0;
-      for (let spriteModifier of this.oniItem.spriteGroups.get("solid").spriteModifiers) {
-        this.testDrawParts[indexDrawPart].prepareSpriteInfoModifier(spriteModifier.spriteModifierId);
-
-        indexDrawPart++;
-      }
-      */
+        this.depth = this.oniItem.zIndex + 50;
+        this.correctOverlay = true;
     }
-
-    // This is used by the selection tool to prioritize opaque buildings during selection
-    isOpaque: boolean;
-    public prepareOverlayInfo(currentOverlay: Overlay)
+    else
     {
-      // Special case : we show the buildings in element mode
-      // TODO general case for elements
-      if (currentOverlay == Overlay.Unknown) Overlay.Base;
-
-      this.isOpaque = this.oniItem.isOverlayPrimary(currentOverlay) || this.oniItem.isOverlaySecondary(currentOverlay);
-
-      if (this.isOpaque) this.drawPart.alpha = 1;
-      else this.drawPart.alpha = 0.3;
-
-      if (this.oniItem.isOverlayPrimary(currentOverlay))
-      {
-          this.depth = this.oniItem.zIndex + 50;
-          this.correctOverlay = true;
-      }
-      else
-      {
-          this.depth = this.oniItem.zIndex;
-          this.correctOverlay = false;
-      }
+        this.depth = this.oniItem.zIndex;
+        this.correctOverlay = false;
     }
+  }
+
+  // TODO SOLID delete
+  displayChanged(newDisplay: Display) {
+  }
 
   setInvisible() {
     this.position = new Vector2(-99999, -99999);
   }
 
-    // Pixi stuff
-    utilitySprites: PIXI.Sprite[];
-    container: PIXI.Container;
-    public drawPixi(camera: CameraService, drawPixi: DrawPixi)
+  // Pixi stuff
+  utilitySprites: PIXI.Sprite[];
+  container: PIXI.Container;
+  public drawPixi(camera: CameraService, drawPixi: DrawPixi)
+  {
+    this.prepareSpriteVisibility(camera);
+    this.drawPixiUtility(camera, drawPixi);
+
+    // Create the container
+    if (this.container == null) 
     {
-      this.drawPixiUtility(camera, drawPixi);
+      this.container = new PIXI.Container();
+      this.container.sortableChildren = true;
+      camera.container.addChild(this.container);
+    }
 
-      if (this.container == null) 
-      {
-        this.container = new PIXI.Container();
-        this.container.sortableChildren = true;
-        camera.container.addChild(this.container);
-      }
+    for (let drawPart of this.drawParts) drawPart.prepareSprite(camera, this.container, this.oniItem);
+    
 
-      let sprite = this.drawPart.getPreparedSprite(camera, this.oniItem);
-      this.drawPart.selected = this.selected;
 
-      let indexDrawPart = 0;
-      let solidSprites: PIXI.Sprite[] = [];
-      /*
-      for (let spriteModifier of this.oniItem.spriteGroups.get("solid").spriteModifiers) {
-        let solidSprite = this.testDrawParts[indexDrawPart].getPreparedSprite(camera, this.oniItem);
-        if (solidSprite != null) {
-          solidSprite.zIndex -= (indexDrawPart / 50)
-          solidSprites.push(solidSprite);
+      let positionCorrected = new Vector2(
+        ( this.position.x + camera.cameraOffset.x + 0.5) * camera.currentZoom,
+        (-this.position.y + camera.cameraOffset.y + 0.5) * camera.currentZoom
+      );
 
-          if (!this.testDrawParts[indexDrawPart].addedToContainer) {
-            this.container.addChild(solidSprite);
-            this.container.calculateBounds();
-            this.testDrawParts[indexDrawPart].addedToContainer = true;
-          }
-        }
-        indexDrawPart++;
-      }
-      */
+      // If the texture has not loaded, draw a debug rectangle
+      // TODO draw debug until all drawParts are ready
+      //if (!sprite.texture.baseTexture.valid) this.drawPixiDebug(camera, drawPixi, positionCorrected);
+      
+      // Debug
+      //this.drawPixiDebug(camera, drawPixi, positionCorrected);
 
-      if (solidSprites.length > 0)
-      {
-        if (!this.drawPart.addedToContainer)
-        {
-          this.container.addChild(sprite);
-          this.drawPart.addedToContainer = true;
-        }
+      //sprite.zIndex = 0;
 
-        for (let solidSprite of solidSprites) {
+      this.container.x = positionCorrected.x;
+      this.container.y = positionCorrected.y;
+      
+      this.container.scale.x = this.scale.x;
+      this.container.scale.y = this.scale.y;
+      this.container.angle = this.rotation;
 
-        }
-
-        let positionCorrected = new Vector2(
-          ( this.position.x + camera.cameraOffset.x + 0.5) * camera.currentZoom,
-          (-this.position.y + camera.cameraOffset.y + 0.5) * camera.currentZoom
-        );
-
-        // If the texture has not loaded, draw a debug rectangle
-        if (!sprite.texture.baseTexture.valid) this.drawPixiDebug(camera, drawPixi, positionCorrected);
-        
-        // Debug
-        //this.drawPixiDebug(camera, drawPixi, positionCorrected);
-
-        sprite.zIndex = 0;
-
-        this.container.x = positionCorrected.x;
-        this.container.y = positionCorrected.y;
-        
-        this.container.scale.x = this.scale.x;
-        this.container.scale.y = this.scale.y;
-        this.container.angle = this.rotation;
-
-        // Overlay stuff
-        this.container.zIndex = this.depth;
-      }
+      // Overlay stuff
+      this.container.zIndex = this.depth;
+      this.container.alpha = this.alpha;
     }
 
     private drawPixiUtility(camera: CameraService, drawPixi: DrawPixi)

@@ -3,7 +3,7 @@ import {OniCell} from './io/oni/oni-cell'
 import { OniTemplate } from './io/oni/oni-template';
 import { OniItem } from '../oni-item';
 import { Vector2 } from '../vector2';
-import { ZIndex, Overlay } from '../overlay-type';
+import { ZIndex, Overlay, Display } from '../overlay-type';
 import { BlueprintItem } from './blueprint-item';
 import { BlueprintItemWire } from "./blueprint-item-wire";
 import { BlueprintItemTile } from "./blueprint-item-tile";
@@ -160,7 +160,17 @@ export class Blueprint
 
   public refreshOverlayInfo()
   {
-    for (let templateItem of this.blueprintItems) templateItem.prepareOverlayInfo(this.currentOverlay);
+    for (let blueprintItem of this.blueprintItems) blueprintItem.prepareOverlayInfo(this.currentOverlay);
+  }
+
+  private currentDisplay: Display
+  displayChanged(newDisplay: Display) {
+    this.currentDisplay = newDisplay;
+    this.refreshDisplay();
+  }
+
+  refreshDisplay() {
+    for (let blueprintItem of this.blueprintItems) blueprintItem.displayChanged(this.currentDisplay);
   }
 
   public addBlueprintItem(blueprintItem: BlueprintItem)

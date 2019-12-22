@@ -3,8 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Blueprint, IObsBlueprintChange } from '../common/blueprint/blueprint';
 import { AuthenticationService } from './authentification-service';
 import { map } from 'rxjs/operators';
-import { IObsOverlayChanged, CameraService } from './camera-service';
-import { Overlay } from '../common/overlay-type';
+import { IObsOverlayChanged, CameraService, IObsDisplayChanged } from './camera-service';
+import { Overlay, Display } from '../common/overlay-type';
 import { BlueprintListItem, BlueprintLike } from './messages/blueprint-list-response';
 import { ComponentMenuComponent } from '../components/component-menu/component-menu.component';
 import { OniTemplate } from '../common/blueprint/io/oni/oni-template';
@@ -15,7 +15,7 @@ import { MdbBlueprint } from '../common/blueprint/io/mdb/mdb-blueprint';
 import { BlueprintItem } from '../common/blueprint/blueprint-item';
 
 @Injectable({ providedIn: 'root' })
-export class BlueprintService implements IObsOverlayChanged, IObsBlueprintChange
+export class BlueprintService implements IObsOverlayChanged, IObsDisplayChanged, IObsBlueprintChange
 {
   //static baseUrl: string = 'blueprintnotincluded.com/';
   static baseUrl: string = 'https://blueprintnotincluded.com/';
@@ -46,6 +46,7 @@ export class BlueprintService implements IObsOverlayChanged, IObsBlueprintChange
     this.observersBlueprintChanged = [];
 
     this.cameraService.subscribeOverlayChange(this);
+    this.cameraService.subscribeDisplayChange(this);
 
 
     BlueprintService.blueprintService = this;
@@ -55,6 +56,10 @@ export class BlueprintService implements IObsOverlayChanged, IObsBlueprintChange
 
   overlayChanged(newOverlay: Overlay) {
     this.blueprint.prepareOverlayInfo(newOverlay);
+  }
+
+  displayChanged(newDisplay: Display) {
+    this.blueprint.displayChanged(newDisplay);
   }
 
   observersBlueprintChanged: IObsBlueprintChanged[];

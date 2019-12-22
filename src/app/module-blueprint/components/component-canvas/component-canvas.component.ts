@@ -11,13 +11,13 @@ import { ImageSource } from 'src/app/module-blueprint/drawing/image-source';
 import { OniTemplate } from 'src/app/module-blueprint/common/blueprint/io/oni/oni-template';
 import { OniItem } from 'src/app/module-blueprint/common/oni-item';
 import { OniBuilding } from 'src/app/module-blueprint/common/blueprint/io/oni/oni-building';
-import { SpriteModifier } from 'src/app/module-blueprint/drawing/sprite-modifier';
+import { SpriteModifier, SpriteTag } from 'src/app/module-blueprint/drawing/sprite-modifier';
 
 
 // PrimeNg imports
 import { TileInfo } from '../../common/tile-info';
 import { Blueprint } from '../../common/blueprint/blueprint';
-import { ZIndex, Overlay } from '../../common/overlay-type';
+import { ZIndex, Overlay, Display } from '../../common/overlay-type';
 import { ToolType } from '../../common/tools/tool';
 import { ComponentSideSelectionToolComponent } from '../side-bar/selection-tool/selection-tool.component';
 import { DrawPixi } from '../../drawing/draw-pixi';
@@ -32,6 +32,8 @@ import { IObsBuildItemChanged } from '../../common/tools/build-tool';
 import { DrawHelpers } from '../../drawing/draw-helpers';
 
 import { } from 'pixi.js-legacy';
+import { BExport } from '../../common/bexport/b-export';
+import { BSpriteModifier } from '../../common/bexport/b-sprite-modifier';
 declare var PIXI: any;
 
 
@@ -232,7 +234,7 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
     for (let k of SpriteInfo.keys) SpriteInfo.getSpriteInfo(k).getTexture();
   }
 
-  downloadUtility()
+  downloadUtility(database: BExport)
   {
     let allWhiteFilter = new PIXI.filters.ColorMatrixFilter();
     // 1 1 1 0 1
@@ -252,11 +254,36 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
     allWhiteFilter.matrix[12] = 1;
     allWhiteFilter.matrix[14] = 1;
 
+    let sourceSpriteModifiers = SpriteModifier.spriteModifiers.filter((s) => { return s.tags.indexOf(SpriteTag.solid) != -1; })
+
     ComponentCanvasComponent.zip = new JSZip();
     ComponentCanvasComponent.nbBlob = 0;
-    ComponentCanvasComponent.downloadFile = 'solidUtility.zip';
-    ComponentCanvasComponent.nbBlobMax = OniItem.oniItems.filter(o => o.isWire).length;
+    ComponentCanvasComponent.downloadFile = 'solidSprites.zip';
+    ComponentCanvasComponent.nbBlobMax = sourceSpriteModifiers.length;
     
+    for (let sourceSpriteModifier of sourceSpriteModifiers) {
+
+      let whiteSpriteModifierId = sourceSpriteModifier.spriteModifierId + '_white';
+      let whiteSpriteInfoId = sourceSpriteModifier.spriteInfoName + '_white';
+
+      for (let building of database.buildings)
+        if (building.sprites.spriteNames.indexOf(sourceSpriteModifier.spriteModifierId) != -1)
+          building.sprites.spriteNames.push(whiteSpriteModifierId);
+
+      let whiteSpriteModifier = new SpriteModifier(whiteSpriteModifierId);
+      whiteSpriteModifier.rotation = sourceSpriteModifier.rotation;
+      whiteSpriteModifier.scale = Vector2.clone(sourceSpriteModifier.scale);
+      whiteSpriteModifier.spriteInfoName = whiteSpriteInfoId;
+      whiteSpriteModifier.translation = Vector2.clone(sourceSpriteModifier.translation);
+      
+      whiteSpriteModifier.tags = [SpriteTag.white];
+      for (let tag of sourceSpriteModifier.tags) whiteSpriteModifier.tags.push(tag);
+
+      database.spriteModifiers.push(whiteSpriteModifier);
+
+      let sourceSpriteInfo = SpriteInfo.getSpriteInfo(sourceSpriteModifier.spriteInfoName);
+    }
+
     for (let oniItem of OniItem.oniItems)
     {
       // TODO bridge here also
@@ -281,70 +308,136 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
     }
   }
 
-  downloadGroups(database: any) {
+  downloadGroups(database: BExport) {
     console.log('downloadGroups')
+
+    let renderTextures: PIXI.RenderTexture[] = [];
+    let textureNames: string[] = [];
+
     for (let oniItem of OniItem.oniItems) {
-      if (oniItem.id != 'AdvancedDoctorStation') continue;
 
-      let container: PIXI.Container = new PIXI.Container();
-      container.sortableChildren = true;
+      let buildingInDatabase = database.buildings.find((building) => { return building.prefabId == oniItem.id });
+    
+      let spritesToGroup: SpriteModifier[] = [];
+      for (let spriteModifier of oniItem.spriteGroup.spriteModifiers)
+        if (spriteModifier.tags.indexOf(SpriteTag.solid) != -1 &&
+            spriteModifier.tags.indexOf(SpriteTag.tileable) == -1 &&
+            spriteModifier.tags.indexOf(SpriteTag.connection) == -1)
+          spritesToGroup.push(spriteModifier);
+      
+      if (spritesToGroup.length > 1) {
+        let container: PIXI.Container = new PIXI.Container();
+        container.sortableChildren = true;
 
-      let indexDrawPart = 0;
-      for (let spriteModifier of oniItem.spriteGroups.get('solid').spriteModifiers) {
-        let spriteInfo = SpriteInfo.getSpriteInfo(spriteModifier.spriteInfoName);
-        let texture = spriteInfo.getTexture();
-        let sprite = PIXI.Sprite.from(texture);
-        sprite.anchor.set(spriteInfo.pivot.x, 1-spriteInfo.pivot.y);
-        sprite.x = 0 + (spriteModifier.translation.x);
-        sprite.y = 0 - (spriteModifier.translation.y);
-        sprite.scale.x = spriteModifier.scale.x;
-        sprite.scale.y = spriteModifier.scale.y;
-        sprite.angle = -spriteModifier.rotation;
-        sprite.width = spriteInfo.realSize.x;
-        sprite.height = spriteInfo.realSize.y;
-        sprite.zIndex -= (indexDrawPart / 50)
+        let modifierId = oniItem.id + '_group_modifier';
+        let spriteInfoId = oniItem.id + '_group_sprite';
+        let textureName = oniItem.id + '_group_sprite'
 
-        container.addChild(sprite);
+        let indexDrawPart = 0;
+        for (let spriteModifier of oniItem.spriteGroup.spriteModifiers) {
 
-        indexDrawPart++;
-      }
+          if (spriteModifier.tags.indexOf(SpriteTag.solid) == -1 ||
+            spriteModifier.tags.indexOf(SpriteTag.tileable) != -1 ||
+            spriteModifier.tags.indexOf(SpriteTag.connection) != -1) continue;
 
-      container.calculateBounds();
-      let bounds = container.getBounds();
-      bounds.x = Math.floor(bounds.x);
-      bounds.y = Math.floor(bounds.y);
-      bounds.width = Math.ceil(bounds.width);
-      bounds.height = Math.ceil(bounds.height);
+          // Remove from the database building sprite list
+          let indexToRemove = buildingInDatabase.sprites.spriteNames.indexOf(spriteModifier.spriteModifierId);
+          buildingInDatabase.sprites.spriteNames.splice(indexToRemove, 1);
 
-      let diff = new Vector2(bounds.x, bounds.y);
-      for (let child of container.children) {
-        child.x -= diff.x;
-        child.y -= diff.y
-      }
+          // Then from the sprite modifiers
+          let spriteModifierToRemove = database.spriteModifiers.find((s) => { return s.name == spriteModifier.spriteModifierId; })
+          if (spriteModifierToRemove != null) {
+            indexToRemove = database.spriteModifiers.indexOf(spriteModifierToRemove);
+            database.spriteModifiers.splice(indexToRemove, 1);
+          }
 
-      console.log(bounds)
-      //container.x = -bounds.x;
-      //container.y = bounds.y;
+          let spriteInfoToRemove = database.uiSprites.find((s) => { return s.name == spriteModifier.spriteInfoName });
+          if (spriteInfoToRemove != null) {
+            indexToRemove = database.uiSprites.indexOf(spriteInfoToRemove);
+            database.uiSprites.splice(indexToRemove, 1);
+          }
 
-      let pivot = new Vector2(1 - ((bounds.width + bounds.x) / bounds.width), ((bounds.height + bounds.y) / bounds.height));
-      console.log(pivot);
+          let spriteInfo = SpriteInfo.getSpriteInfo(spriteModifier.spriteInfoName);
+          let texture = spriteInfo.getTexture();
+          let sprite = PIXI.Sprite.from(texture);
+          sprite.anchor.set(spriteInfo.pivot.x, 1-spriteInfo.pivot.y);
+          sprite.x = 0 + (spriteModifier.translation.x);
+          sprite.y = 0 - (spriteModifier.translation.y);
+          sprite.scale.x = spriteModifier.scale.x;
+          sprite.scale.y = spriteModifier.scale.y;
+          sprite.angle = -spriteModifier.rotation;
+          sprite.width = spriteInfo.realSize.x;
+          sprite.height = spriteInfo.realSize.y;
+          sprite.zIndex -= (indexDrawPart / 50)
 
-      let brt = new PIXI.BaseRenderTexture({width: bounds.width, height: bounds.height, scaleMode: PIXI.SCALE_MODES.NEAREST});
-      let rt = new PIXI.RenderTexture(brt);
+          container.addChild(sprite);
 
-      this.drawPixi.pixiApp.renderer.render(container, rt);
-      this.drawPixi.pixiApp.renderer.extract.canvas(rt).toBlob((blob) => { 
+          indexDrawPart++;
+        }
+
+        buildingInDatabase.sprites.spriteNames.push(modifierId);
+
         
-        // Test download
-        let a = document.createElement('a');
-          document.body.append(a);
-          a.download = 'test.png';
-          a.href = URL.createObjectURL(blob);
-          a.click();
-          a.remove();
-      }); 
+
+        container.calculateBounds();
+        let bounds = container.getBounds();
+        bounds.x = Math.floor(bounds.x);
+        bounds.y = Math.floor(bounds.y);
+        bounds.width = Math.ceil(bounds.width);
+        bounds.height = Math.ceil(bounds.height);
+
+        let diff = new Vector2(bounds.x, bounds.y);
+        for (let child of container.children) {
+          child.x -= diff.x;
+          child.y -= diff.y
+        }
+        
+        let pivot = new Vector2(1 - ((bounds.width + bounds.x) / bounds.width), ((bounds.height + bounds.y) / bounds.height));
+        console.log(pivot);
+
+        let brt = new PIXI.BaseRenderTexture({width: bounds.width, height: bounds.height, scaleMode: PIXI.SCALE_MODES.NEAREST});
+        let rt = new PIXI.RenderTexture(brt);
+
+        this.drawPixi.pixiApp.renderer.render(container, rt);
+
+        renderTextures.push(rt);
+        textureNames.push(textureName)
+
+        // Create and add the new sprite modifier to replace the group
+        let newSpriteModifier = new BSpriteModifier();
+        newSpriteModifier.name = modifierId;
+        newSpriteModifier.spriteInfoName = spriteInfoId;
+        newSpriteModifier.rotation = 0;
+        newSpriteModifier.scale = new Vector2(1, 1);
+        newSpriteModifier.translation = new Vector2(1, 1);
+        newSpriteModifier.tags = [SpriteTag.solid];
+        database.spriteModifiers.push(newSpriteModifier);
+
+        // Create and add the new spriteInfo
+        let newSpriteInfo = new BSpriteInfo();
+        newSpriteInfo.name = spriteInfoId;
+        newSpriteInfo.textureName = textureName;
+        newSpriteInfo.pivot = pivot;
+        newSpriteInfo.uvMin = new Vector2(0, 0);
+        newSpriteInfo.realSize = new Vector2(bounds.width, bounds.height);
+        newSpriteInfo.uvSize = new Vector2(bounds.width, bounds.height);
+        database.uiSprites.push(newSpriteInfo);
+      }
+      else console.log(oniItem.id + ' should not be grouped')
 
     }
+
+    ComponentCanvasComponent.zip = new JSZip();
+    ComponentCanvasComponent.nbBlob = 0;
+    ComponentCanvasComponent.downloadFile = 'solidGroups.zip';
+    ComponentCanvasComponent.nbBlobMax = renderTextures.length;
+
+    ComponentCanvasComponent.zip.file('database_groups.json', JSON.stringify(database, null, 2));
+    
+    for (let indexRt = 0; indexRt < renderTextures.length; indexRt++) this.drawPixi.pixiApp.renderer.extract.canvas(renderTextures[indexRt]).toBlob((b) => 
+    {
+      this.addBlob(b, textureNames[indexRt] + '.png');
+    }, 'image/png');
   }
 
   repackTextures(database: any)
@@ -410,10 +503,15 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
       container.addChild(graphics);
 
       for (let spriteInfo of newSpriteInfos.filter((s) => { return s.textureName == textureBaseString + trayIndex; })) {
-        let sprite = PIXI.Sprite.from(SpriteInfo.getSpriteInfo(spriteInfo.name).getTexture());
+        let repackBleed = 5;
+        let texture = SpriteInfo.getSpriteInfo(spriteInfo.name).getTextureWithBleed(repackBleed);
+        let sprite = PIXI.Sprite.from(texture);
+        //let sprite = PIXI.Sprite.from(SpriteInfo.getSpriteInfo(spriteInfo.name).getTexture()); 
 
-        sprite.x = spriteInfo.uvMin.x;
-        sprite.y = spriteInfo.uvMin.y;
+        sprite.x = spriteInfo.uvMin.x - repackBleed;
+        sprite.y = spriteInfo.uvMin.y - repackBleed;
+        //sprite.x = spriteInfo.uvMin.x; 
+        //sprite.y = spriteInfo.uvMin.y; 
         container.addChild(sprite);
 
         //graphics.beginFill(0x007AD9);
@@ -526,7 +624,7 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
 
     clone.blueprintItems.map((item) => { 
       item.prepareOverlayInfo(exportCamera.overlay);
-      item.prepareSpriteInfoModifier(clone);
+      item.updateTileables(clone);
       item.drawPixi(exportCamera, this.drawPixi);
     });
 
@@ -589,7 +687,7 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
       
       clone.blueprintItems.map((item) => { 
         item.prepareOverlayInfo(exportCamera.overlay);
-        item.prepareSpriteInfoModifier(clone);
+        item.updateTileables(clone);
         item.drawPixi(exportCamera, this.drawPixi);
       });
 
@@ -639,8 +737,9 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
     //let ctx: CanvasRenderingContext2D = this.canvasRef.nativeElement.getContext('2d');
 
     this.drawPixi.clearGraphics();
-    //this.drawPixi.FillRect(0x007AD9, 0, 0, this.width, this.height);
-    this.drawPixi.FillRect(0x888888, 0, 0, this.width, this.height); 
+
+    if (this.cameraService.display == Display.blueprint) this.drawPixi.FillRect(0x007AD9, 0, 0, this.width, this.height);
+    else this.drawPixi.FillRect(0x888888, 0, 0, this.width, this.height); 
     
     let alphaOrig: number = 0.4;
     let alpha: number = alphaOrig;
@@ -681,7 +780,7 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
     {
       for (var templateItem of this.blueprint.blueprintItems)
       {
-        templateItem.prepareSpriteInfoModifier(this.blueprint);
+        templateItem.updateTileables(this.blueprint);
         this.drawPixi.drawTemplateItem(templateItem, this.cameraService);
         //templateItem.draw(ctx, this.camera);
       }

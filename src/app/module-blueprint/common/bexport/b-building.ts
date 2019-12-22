@@ -27,11 +27,14 @@ export class BBuilding
   materialCategory: string[];
   materialMass: number[];
   uiScreens: BUiScreen[];
-  sprites: BSpriteGroup[];
+  sprites: BSpriteGroup;
 
   dragBuild: boolean;
   objectLayer: number;
   permittedRotations: PermittedRotations;
+
+  tileableLeftRight:boolean;
+  tileableTopBottom: boolean;
 }
 
 export class BSpriteGroup {

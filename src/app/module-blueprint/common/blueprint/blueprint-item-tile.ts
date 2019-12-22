@@ -3,6 +3,7 @@ import { Blueprint } from "./blueprint";
 import { BlueprintItem } from "./blueprint-item";
 import { DrawHelpers } from '../../drawing/draw-helpers';
 import { DrawPart } from '../../drawing/draw-part';
+import { CameraService } from '../../services/camera-service';
 
 export class BlueprintItemTile extends BlueprintItem
 {
@@ -44,15 +45,16 @@ export class BlueprintItemTile extends BlueprintItem
     return returnValue;
   }
 
-  public prepareSpriteInfoModifier(blueprint: Blueprint)
-  {
-    this.updateTileConnections(blueprint);
+  prepareSpriteVisibility(camera: CameraService) {
+    super.prepareSpriteVisibility(camera);
 
-    this.drawPart.prepareSpriteInfoModifier(this.oniItem.spriteModifierId + DrawHelpers.connectionString[this.tileConnections]);
+    let connectionTag = DrawHelpers.connectionTag[this.tileConnections];
 
+    for (let drawPart of this.drawParts)
+      drawPart.makeEverythingButThisTagInvisible(connectionTag);
   }
 
-  public updateTileConnections(blueprint: Blueprint)
+  public updateTileables(blueprint: Blueprint)
   {
     this.tileConnections = 0;
 

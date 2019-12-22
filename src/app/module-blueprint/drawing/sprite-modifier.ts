@@ -2,13 +2,12 @@ import { Vector2 } from "../common/vector2";
 import { BlueprintParams } from "../common/params";
 import { BBuilding } from "../common/bexport/b-building";
 import { BSpriteModifier } from "../common/bexport/b-sprite-modifier";
-import { DrawHelpers } from './draw-helpers';
 
 export class SpriteModifier
 {
   spriteModifierId: string;
   spriteInfoName: string;
-  tag: SpriteTag;
+  tags: SpriteTag[];
 
   rotation: number;
   scale: Vector2;
@@ -27,7 +26,10 @@ export class SpriteModifier
     this.translation = original.translation;
     this.scale = original.scale;
     this.rotation = original.rotation;
-    this.tag = original.tag;
+
+    this.tags = [];
+    if (original.tags != null && original.tags.length > 0)
+      for (let tag of original.tags) this.tags.push(tag);
   }
 
   public cleanUp()
@@ -35,7 +37,7 @@ export class SpriteModifier
     if (this.rotation == null) this.rotation = 0;
     if (this.scale == null) this.scale = Vector2.clone(Vector2.One);
     if (this.translation == null) this.translation = Vector2.clone(Vector2.Zero);
-    if (this.tag == null) this.tag = SpriteTag.none;
+    if (this.tags == null) this.tags = [];
   }
 
   public static AddSpriteModifier(bBuilding: BBuilding)
@@ -43,20 +45,7 @@ export class SpriteModifier
 
   }
 
-  public static addTileSpriteModifier(kanimPrefix: string)
-  {
-    for (let indexConnection = 0; indexConnection <= 15; indexConnection++)
-    {
-      let connectionModifier: SpriteModifier = new SpriteModifier(kanimPrefix + DrawHelpers.connectionString[indexConnection]);
-      
-      connectionModifier.cleanUp();
-      connectionModifier.translation.y = 50;
-      connectionModifier.spriteInfoName = kanimPrefix + DrawHelpers.connectionString[indexConnection];
-
-      SpriteModifier.spriteModifiersMap.set(connectionModifier.spriteModifierId, connectionModifier);
-    }
-  }
-
+  public static get spriteModifiers() { return Array.from(SpriteModifier.spriteModifiersMap.values()); }
   private static spriteModifiersMap: Map<string, SpriteModifier>;
   public static init()
   {
@@ -93,7 +82,11 @@ export class SpriteModifier
 }
 
 export enum SpriteTag {
-  none,
+  solid,
+  place,
+  ui,
+  connection,
+  tileable,
   tileable_left,
   tileable_right,
   tileable_up,
@@ -113,5 +106,7 @@ export enum SpriteTag {
   UD,
   LUD,
   RUD,
-  LRUD
+  LRUD,
+  none,
+  white
 }

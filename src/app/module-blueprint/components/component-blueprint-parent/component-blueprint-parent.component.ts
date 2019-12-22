@@ -14,7 +14,7 @@ import { SpriteInfo } from '../../drawing/sprite-info';
 import { Blueprint } from '../../common/blueprint/blueprint';
 import { SpriteModifier } from '../../drawing/sprite-modifier';
 import { ConnectionType } from '../../common/utility-connection';
-import { ZIndex, Overlay } from '../../common/overlay-type';
+import { ZIndex, Overlay, Display } from '../../common/overlay-type';
 import { SaveInfo } from '../../common/save-info';
 import { ActivatedRoute, Params, UrlSegment, convertToParamMap } from '@angular/router';
 import { BlueprintParams } from '../../common/params';
@@ -207,7 +207,7 @@ export class ComponentBlueprintParentComponent implements OnInit, IObsBlueprintC
     else if (menuCommand.type == MenuCommandType.fetchIcons) this.canvas.fetchIcons();
     else if (menuCommand.type == MenuCommandType.downloadIcons) this.canvas.downloadIcons();
     else if (menuCommand.type == MenuCommandType.downloadGroups) this.canvas.downloadGroups(this.database);
-    else if (menuCommand.type == MenuCommandType.downloadUtility) this.canvas.downloadUtility();
+    else if (menuCommand.type == MenuCommandType.downloadUtility) this.canvas.downloadUtility(this.database);
     else if (menuCommand.type == MenuCommandType.repackTextures) this.canvas.repackTextures(this.database);
     
   }

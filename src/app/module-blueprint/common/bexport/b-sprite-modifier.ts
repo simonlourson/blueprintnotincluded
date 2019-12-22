@@ -9,5 +9,5 @@ export class BSpriteModifier
   translation: Vector2;
   scale: Vector2;
   rotation: number;
-  tag: SpriteTag;
+  tags: SpriteTag[];
 }

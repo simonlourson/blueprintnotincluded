@@ -40,20 +40,26 @@ export enum ZIndex
 
 export enum Overlay
 {
-    Base,
-    Power,
-    Liquid,
-    Gas,
-    Automation,
-    Oxygen,
-    Conveyor,
-    Decor,
-    Light,
-    Temperature,
-    Room,
-    Unknown
+  Base,
+  Power,
+  Liquid,
+  Gas,
+  Automation,
+  Oxygen,
+  Conveyor,
+  Decor,
+  Light,
+  Temperature,
+  Room,
+  Unknown
 }
 
+export enum Display {
+  blueprint,
+  solid
+}
+
+// TODO is this useless ?
 export interface OverlayCheck {
   overlay: Overlay;
   name: string;

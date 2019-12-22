@@ -5,29 +5,16 @@ export class SpriteModifierGroup {
   groupName: string;
   spriteModifiers: SpriteModifier[];
 
-  constructor(groupName: string) {
-    this.groupName = groupName;
+  constructor() {
+    this.spriteModifiers = [];
   }
 
-  getModifierFromTag(tag: SpriteTag) {
-    for (let spriteModifier of this.spriteModifiers)
-      if (spriteModifier.tag == tag)
-        return spriteModifier;
+  importFrom(original: BSpriteGroup) {
+    this.groupName = original.groupName;
 
-    return null;
-  }
-
-  static copyFrom(original: BSpriteGroup) {
-    let returnValue = new SpriteModifierGroup(original.groupName);
-
-    returnValue.spriteModifiers = [];
-    
     for (let spriteName of original.spriteNames) {
       let spriteModifier = SpriteModifier.getSpriteModifer(spriteName);
-      if (spriteModifier != null) returnValue.spriteModifiers.push(spriteModifier);
+      if (spriteModifier != null) this.spriteModifiers.push(spriteModifier);
     }
-      
-
-    return returnValue;
   }
 }

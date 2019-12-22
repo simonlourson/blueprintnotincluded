@@ -111,4 +111,24 @@ export class SpriteInfo
 
       return this.texture;
     }
+
+    public getTextureWithBleed(bleed: number): PIXI.Texture
+    {
+      let baseTex = ImageSource.getBaseTexture(this.imageId);
+      if (baseTex == null) return null;
+
+      let rectangle: PIXI.Rectangle = new PIXI.Rectangle(
+        this.uvMin.x - bleed,
+        this.uvMin.y - bleed,
+        this.uvSize.x + bleed * 2,
+        this.uvSize.y + bleed * 2
+      );
+
+      if (rectangle.x < 0) rectangle.x = 0;
+      if (rectangle.y < 0) rectangle.y = 0;
+      if (rectangle.x + rectangle.width > baseTex.width) rectangle.width = baseTex.width - rectangle.x;
+      if (rectangle.y + rectangle.height > baseTex.height) rectangle.height = baseTex.height - rectangle.y;
+
+      return new PIXI.Texture(baseTex, rectangle);
+    }
 }

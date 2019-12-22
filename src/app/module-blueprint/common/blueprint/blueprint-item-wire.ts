@@ -19,6 +19,8 @@ export class BlueprintItemWire extends BlueprintItem
   static defaultConnections = 0;
   public connections: number;
 
+  visibleConnection: boolean;
+
   drawPartSolid_: DrawPart;
   get drawPartSolid() {
     if (this.drawPartSolid_ == null) this.drawPartSolid_ = new DrawPart();
@@ -113,6 +115,15 @@ export class BlueprintItemWire extends BlueprintItem
   }
   */
 
+  prepareSpriteVisibility(camera: CameraService) {
+    super.prepareSpriteVisibility(camera);
+
+    let connectionTag = DrawHelpers.connectionTag[this.connections];
+
+    for (let drawPart of this.drawParts)
+      drawPart.makeEverythingButThisTagInvisible(connectionTag);
+  }
+
   public copyFromForExport(original: BlueprintItemWire)
   {
     this.connections = original.connections;
@@ -125,11 +136,11 @@ export class BlueprintItemWire extends BlueprintItem
     super.deleteDefaultForExport();
   }
 
-  public prepareSpriteInfoModifier(blueprint: Blueprint)
+  public updateTileables(blueprint: Blueprint)
   {
     
     //this.drawPart.prepareSpriteInfoModifier(this.oniItem.spriteGroups.get("solid").getModifierFromTag(DrawHelpers.connectionTag[this.connections]).;
-    this.drawPartSolid.prepareSpriteInfoModifier(this.oniItem.spriteModifierId + DrawHelpers.connectionStringSolid[this.connections]);
+    //this.drawPartSolid.prepareSpriteInfoModifier(this.oniItem.spriteModifierId + DrawHelpers.connectionStringSolid[this.connections]);
   
     /*
     let spriteModifierConnection = this.oniItem.spriteGroups.get("solid").getModifierFromTag(DrawHelpers.connectionTag[this.connections]);
@@ -149,32 +160,40 @@ export class BlueprintItemWire extends BlueprintItem
 
     if (this.correctOverlay)
     {
-      this.drawPart.tint = this.oniItem.frontColor;
+      //this.drawPart.tint = this.oniItem.frontColor;
       this.drawPartSolid.tint = this.oniItem.backColor;
       
       this.drawPartSolid.alpha = 1;
     }
     else
     {
-      this.drawPart.tint = 0xFFFFFF;
+      //this.drawPart.tint = 0xFFFFFF;
       this.drawPartSolid.alpha = 0;
     }
+  }
+
+
+  public connectionChanged() {
+
   }
 
   public drawPixi(camera: CameraService, drawPixi: DrawPixi)
   {
     super.drawPixi(camera, drawPixi);
 
+
     this.drawPartSolid.selected = this.selected;
     let solidSprite = this.drawPartSolid.getPreparedSprite(camera, this.oniItem);
 
     if (solidSprite != null)
     {
+      /*
       if (!this.drawPartSolid.addedToContainer)
       {
         this.container.addChild(solidSprite);
         this.drawPartSolid.addedToContainer = true;
       }
+      */
 
       solidSprite.zIndex = -1;
       if (this.correctOverlay) solidSprite.alpha = 1;

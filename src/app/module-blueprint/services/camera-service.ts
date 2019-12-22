@@ -1,5 +1,5 @@
 import { Vector2 } from "src/app/module-blueprint/common/vector2";
-import { ZIndex, Overlay } from "../common/overlay-type";
+import { ZIndex, Overlay, Display } from "../common/overlay-type";
 import { Injectable } from '@angular/core';
 import { OniItem } from '../common/oni-item';
 import { DrawHelpers } from '../drawing/draw-helpers';
@@ -19,11 +19,18 @@ export class CameraService
   // Zoom is the number of pixels between cells
   currentZoom: number;
 
-  overlay_: Overlay
+  private overlay_: Overlay;
   get overlay() { return this.overlay_; }
   set overlay(value: Overlay) {
     this.observersToOverlayChange.map((observer) => {observer.overlayChanged(value); })
     this.overlay_ = value;
+  }
+
+  private display_: Display;
+  get display() { return this.display_; }
+  set display(value: Display) {
+    this.observersToDisplayChange.map((observer) => {observer.displayChanged(value); })
+    this.display_ = value;
   }
 
   spinner: number;
@@ -43,7 +50,8 @@ export class CameraService
   {
     this.cameraOffset = new Vector2();
     this.targetCameraOffset = new Vector2();
-    this.currentZoomIndex = 7;
+    //this.currentZoomIndex = 7;
+    this.currentZoomIndex = 13;
     this.targetZoom = this.currentZoom = this.zoomLevels[this.currentZoomIndex];
     this.sinWaveTime = 0;
     this.sinWave = 0;
@@ -51,6 +59,7 @@ export class CameraService
 
     this.observersToOverlayChange = [];
     this.observersToAnimationChange = [];
+    this.observersToDisplayChange = [];
 
     if (CameraService.cameraService == null) CameraService.cameraService = this;
   }
@@ -63,6 +72,11 @@ export class CameraService
     observersToAnimationChange: IObsAnimationChanged[];
     subscribeAnimationChange(observer: IObsAnimationChanged) {
       this.observersToAnimationChange.push(observer);
+    }
+
+    observersToDisplayChange: IObsDisplayChanged[];
+    subscribeDisplayChange(observer: IObsDisplayChanged) {
+      this.observersToDisplayChange.push(observer);
     }
 
     setOverlayForItem(item: OniItem) {
@@ -106,6 +120,7 @@ export class CameraService
     resetZoom(canvasSize: Vector2)
     {
       this.currentZoomIndex = 7;
+      //this.currentZoomIndex = 13;
       this.targetZoom = this.currentZoom = this.zoomLevels[this.currentZoomIndex];
 
       this.cameraOffset.x = canvasSize.x * 0.5 / this.currentZoom;
@@ -167,6 +182,10 @@ export class CameraService
 
 export interface IObsOverlayChanged {
   overlayChanged(newOverlay: Overlay);
+}
+
+export interface IObsDisplayChanged {
+  displayChanged(newDisplay: Display);
 }
 
 export interface IObsAnimationChanged {

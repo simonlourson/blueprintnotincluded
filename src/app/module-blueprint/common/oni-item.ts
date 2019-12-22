@@ -39,7 +39,10 @@ export class OniItem
   defaultElement: BuildableElement[];
   materialMass: number[];
   uiScreens: BUiScreen[];
-  spriteGroups: Map<string, SpriteModifierGroup>;
+  spriteGroup: SpriteModifierGroup;
+
+  tileableLeftRight: boolean;
+  tileableTopBottom: boolean;
   
   private permittedRotations_: PermittedRotations;
   get permittedRotations() { return this.permittedRotations_; }
@@ -82,6 +85,9 @@ export class OniItem
     this.objectLayer = original.objectLayer;
     this.permittedRotations = original.permittedRotations;
 
+    this.tileableLeftRight = original.tileableLeftRight;
+    this.tileableTopBottom = original.tileableTopBottom;
+
     let imageId: string = original.textureName;
     let imageUrl: string = DrawHelpers.createUrl(imageId, false);
     ImageSource.AddImagePixi(imageId, imageUrl);
@@ -100,7 +106,8 @@ export class OniItem
     this.uiScreens = [];
     for (let uiScreen of original.uiScreens) this.uiScreens.push(BUiScreen.clone(uiScreen));
 
-    this.spriteGroups = new Map<string, SpriteModifierGroup>();
+    this.spriteGroup = new SpriteModifierGroup();
+    this.spriteGroup.importFrom(original.sprites);
     /*
     for (let spriteGroup of original.sprites) {
       let newGroup = SpriteModifierGroup.copyFrom(spriteGroup);
@@ -151,7 +158,9 @@ export class OniItem
     if (this.frontColor == null) this.frontColor = 0xFFFFFF;
     if (this.buildableElementsArray == null) this.buildableElementsArray = [];
     if (this.uiScreens == null) this.uiScreens = [];
-    if (this.spriteGroups == null) this.spriteGroups = new Map<string, SpriteModifierGroup>();
+    if (this.spriteGroup == null) this.spriteGroup = new SpriteModifierGroup();
+    if (this.tileableLeftRight == null) this.tileableLeftRight = false;
+    if (this.tileableTopBottom == null) this.tileableTopBottom = false;
     
     if (Vector2.Zero.equals(this.size)) this.tileOffset = Vector2.Zero;
     else
@@ -182,8 +191,8 @@ export class OniItem
       // If the building is a tile, we need to generate its spriteInfos and sprite modifiers
       if (oniItem.isTile)
       {
-        SpriteInfo.addSpriteInfoArray(DrawHelpers.generateTileSpriteInfo(building.kanimPrefix, building.textureName));
-        SpriteModifier.addTileSpriteModifier(building.kanimPrefix);
+        //SpriteInfo.addSpriteInfoArray(DrawHelpers.generateTileSpriteInfo(building.kanimPrefix, building.textureName));
+        //SpriteModifier.addTileSpriteModifier(building.kanimPrefix);
       }
       
 
