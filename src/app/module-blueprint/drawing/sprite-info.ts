@@ -112,7 +112,7 @@ export class SpriteInfo
       return this.texture;
     }
 
-    public getTextureWithBleed(bleed: number): PIXI.Texture
+    public getTextureWithBleed(bleed: number, realBleed: Vector2 = new Vector2()): PIXI.Texture
     {
       let baseTex = ImageSource.getBaseTexture(this.imageId);
       if (baseTex == null) return null;
@@ -128,6 +128,9 @@ export class SpriteInfo
       if (rectangle.y < 0) rectangle.y = 0;
       if (rectangle.x + rectangle.width > baseTex.width) rectangle.width = baseTex.width - rectangle.x;
       if (rectangle.y + rectangle.height > baseTex.height) rectangle.height = baseTex.height - rectangle.y;
+
+      realBleed.x = this.uvMin.x - rectangle.x;
+      realBleed.y = this.uvMin.y - rectangle.y;
 
       return new PIXI.Texture(baseTex, rectangle);
     }

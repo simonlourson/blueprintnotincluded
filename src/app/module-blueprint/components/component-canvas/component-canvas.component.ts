@@ -254,42 +254,44 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
     allWhiteFilter.matrix[12] = 1;
     allWhiteFilter.matrix[14] = 1;
 
-    let sourceSpriteModifiers = SpriteModifier.spriteModifiers.filter((s) => { return s.tags.indexOf(SpriteTag.solid) != -1; })
+    let sourceSpriteModifiers = database.spriteModifiers.filter((s) => { return s.tags.indexOf(SpriteTag.solid) != -1; })
+
+    let sourceTextures: string[] = [];
+
+    for (let sourceSpriteModifier of sourceSpriteModifiers) {
+      let sourceSpriteInfo = database.uiSprites.find((s) => { return s.name == sourceSpriteModifier.spriteInfoName; })
+
+      if (sourceTextures.indexOf(sourceSpriteInfo.textureName) == -1) sourceTextures.push(sourceSpriteInfo.textureName);
+
+      let spriteModifierWhite = BSpriteModifier.clone(sourceSpriteModifier);
+      spriteModifierWhite.name = spriteModifierWhite.name + '_white';
+      spriteModifierWhite.spriteInfoName = spriteModifierWhite.spriteInfoName + '_white';
+      spriteModifierWhite.tags.push(SpriteTag.white);
+      database.spriteModifiers.push(spriteModifierWhite);
+
+      let spriteInfoWhite: BSpriteInfo = null;
+      for (let spriteInfo of database.uiSprites)
+        if (spriteInfo.name == sourceSpriteModifier.spriteInfoName)
+          spriteInfoWhite = BSpriteInfo.clone(spriteInfo);
+
+      if (spriteInfoWhite != null) {
+        spriteInfoWhite.name = spriteModifierWhite.spriteInfoName;
+        spriteInfoWhite.textureName = spriteInfoWhite.textureName + '_white';
+        database.uiSprites.push(spriteInfoWhite)
+      }
+    }
 
     ComponentCanvasComponent.zip = new JSZip();
     ComponentCanvasComponent.nbBlob = 0;
     ComponentCanvasComponent.downloadFile = 'solidSprites.zip';
-    ComponentCanvasComponent.nbBlobMax = sourceSpriteModifiers.length;
-    
-    for (let sourceSpriteModifier of sourceSpriteModifiers) {
+    ComponentCanvasComponent.nbBlobMax = sourceTextures.length;
 
-      let whiteSpriteModifierId = sourceSpriteModifier.spriteModifierId + '_white';
-      let whiteSpriteInfoId = sourceSpriteModifier.spriteInfoName + '_white';
+    ComponentCanvasComponent.zip.file('database_white.json', JSON.stringify(database, null, 2));
 
-      for (let building of database.buildings)
-        if (building.sprites.spriteNames.indexOf(sourceSpriteModifier.spriteModifierId) != -1)
-          building.sprites.spriteNames.push(whiteSpriteModifierId);
-
-      let whiteSpriteModifier = new SpriteModifier(whiteSpriteModifierId);
-      whiteSpriteModifier.rotation = sourceSpriteModifier.rotation;
-      whiteSpriteModifier.scale = Vector2.clone(sourceSpriteModifier.scale);
-      whiteSpriteModifier.spriteInfoName = whiteSpriteInfoId;
-      whiteSpriteModifier.translation = Vector2.clone(sourceSpriteModifier.translation);
-      
-      whiteSpriteModifier.tags = [SpriteTag.white];
-      for (let tag of sourceSpriteModifier.tags) whiteSpriteModifier.tags.push(tag);
-
-      database.spriteModifiers.push(whiteSpriteModifier);
-
-      let sourceSpriteInfo = SpriteInfo.getSpriteInfo(sourceSpriteModifier.spriteInfoName);
-    }
-
-    for (let oniItem of OniItem.oniItems)
+    for (let sourceTexture of sourceTextures)
     {
-      // TODO bridge here also
-      if (!oniItem.isWire) continue;
-
-      let baseTexture = ImageSource.getBaseTexture(oniItem.imageId);
+      console.log(sourceTexture)
+      let baseTexture = ImageSource.getBaseTexture(sourceTexture);
       
       let texture = new PIXI.Texture(baseTexture);
       
@@ -303,7 +305,7 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
 
       this.drawPixi.pixiApp.renderer.extract.canvas(rt).toBlob((b) => 
       {
-        this.addBlob(b, oniItem.imageId + '_solid.png');
+        this.addBlob(b, sourceTexture + '_white.png');
       }, 'image/png');
     }
   }
@@ -504,14 +506,12 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
 
       for (let spriteInfo of newSpriteInfos.filter((s) => { return s.textureName == textureBaseString + trayIndex; })) {
         let repackBleed = 5;
-        let texture = SpriteInfo.getSpriteInfo(spriteInfo.name).getTextureWithBleed(repackBleed);
+        let realBleed = new Vector2();
+        let texture = SpriteInfo.getSpriteInfo(spriteInfo.name).getTextureWithBleed(repackBleed, realBleed);
         let sprite = PIXI.Sprite.from(texture);
-        //let sprite = PIXI.Sprite.from(SpriteInfo.getSpriteInfo(spriteInfo.name).getTexture()); 
 
-        sprite.x = spriteInfo.uvMin.x - repackBleed;
-        sprite.y = spriteInfo.uvMin.y - repackBleed;
-        //sprite.x = spriteInfo.uvMin.x; 
-        //sprite.y = spriteInfo.uvMin.y; 
+        sprite.x = spriteInfo.uvMin.x - realBleed.x;
+        sprite.y = spriteInfo.uvMin.y - realBleed.y;
         container.addChild(sprite);
 
         //graphics.beginFill(0x007AD9);

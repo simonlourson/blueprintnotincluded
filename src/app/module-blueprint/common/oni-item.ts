@@ -88,9 +88,10 @@ export class OniItem
     this.tileableLeftRight = original.tileableLeftRight;
     this.tileableTopBottom = original.tileableTopBottom;
 
+    // TODO not sure if this is usefull still
     let imageId: string = original.textureName;
     let imageUrl: string = DrawHelpers.createUrl(imageId, false);
-    ImageSource.AddImagePixi(imageId, imageUrl);
+    //ImageSource.AddImagePixi(imageId, imageUrl);
 
     this.buildableElementsArray = BuildableElement.getElementsFromTags(original.materialCategory);
     this.defaultElement = [];
