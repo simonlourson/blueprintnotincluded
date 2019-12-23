@@ -279,6 +279,10 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
         spriteInfoWhite.textureName = spriteInfoWhite.textureName + '_white';
         database.uiSprites.push(spriteInfoWhite)
       }
+
+      for (let building of database.buildings)
+        if (building.sprites.spriteNames.indexOf(sourceSpriteModifier.name) != -1)
+          building.sprites.spriteNames.push(spriteModifierWhite.name);
     }
 
     ComponentCanvasComponent.zip = new JSZip();
