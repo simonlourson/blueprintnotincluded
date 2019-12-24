@@ -40,6 +40,10 @@ export class SpriteModifier
     if (this.tags == null) this.tags = [];
   }
 
+  public hasTag(tag: SpriteTag) {
+    return this.tags.indexOf(tag) != -1;
+  }
+
   public static AddSpriteModifier(bBuilding: BBuilding)
   {
 

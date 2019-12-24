@@ -158,18 +158,6 @@ export class BlueprintItemWire extends BlueprintItem
     super.prepareOverlayInfo(currentOverlay);
     
 
-    if (this.correctOverlay)
-    {
-      //this.drawPart.tint = this.oniItem.frontColor;
-      this.drawPartSolid.tint = this.oniItem.backColor;
-      
-      this.drawPartSolid.alpha = 1;
-    }
-    else
-    {
-      //this.drawPart.tint = 0xFFFFFF;
-      this.drawPartSolid.alpha = 0;
-    }
   }
 
 
@@ -196,8 +184,6 @@ export class BlueprintItemWire extends BlueprintItem
       */
 
       solidSprite.zIndex = -1;
-      if (this.correctOverlay) solidSprite.alpha = 1;
-      else solidSprite.alpha = 0;
     }
   }
 }

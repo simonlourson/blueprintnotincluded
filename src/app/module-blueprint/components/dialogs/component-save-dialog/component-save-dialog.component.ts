@@ -6,6 +6,7 @@ import { Blueprint } from '../../../common/blueprint/blueprint';
 import { MessageService } from 'primeng/api';
 import { AuthenticationService } from '../../../services/authentification-service';
 import { BlueprintNameValidationDirective } from 'src/app/module-blueprint/directives/blueprint-name-validation.directive';
+import { Display } from 'src/app/module-blueprint/common/overlay-type';
 
 @Component({
   selector: 'app-component-save-dialog',
@@ -17,9 +18,11 @@ export class ComponentSaveDialogComponent implements OnInit {
   visible: boolean = false;
 
   @Output() onSave = new EventEmitter();
+  @Output() onUpdateThumbnail = new EventEmitter();
   
   saveBlueprintForm = new FormGroup({
-    name: new FormControl('', [Validators.required, BlueprintNameValidationDirective.validateBlueprintName])
+    name: new FormControl('', [Validators.required, BlueprintNameValidationDirective.validateBlueprintName]),
+    //thumbnailType: new FormControl('Color')
   });
 
   get f() { return this.saveBlueprintForm.controls; }
@@ -128,7 +131,9 @@ export class ComponentSaveDialogComponent implements OnInit {
   {
     this.working = true;
 
+    console.log(this.saveBlueprintForm.value);
     this.blueprintService.name = this.saveBlueprintForm.value.name;
+    this.blueprintService.thumbnailStyle = this.saveBlueprintForm.value.thumbnailType == 'Color' ? Display.solid : Display.blueprint;
     this.blueprintService.saveBlueprint(true).subscribe({
       next: this.handleSaveNext.bind(this),
       error: this.handleSaveError.bind(this)

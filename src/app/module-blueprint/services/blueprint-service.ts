@@ -31,6 +31,7 @@ export class BlueprintService implements IObsOverlayChanged, IObsDisplayChanged,
     //this.observersBlueprintChanged.map((observer) => { observer.blueprintChanged(this.blueprint_); }) 
   }
   thumbnail: string;
+  thumbnailStyle: Display;
 
   get savedBlueprint() { return this.id != null; }
 

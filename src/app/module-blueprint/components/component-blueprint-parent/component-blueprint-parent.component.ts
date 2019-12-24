@@ -234,9 +234,13 @@ export class ComponentBlueprintParentComponent implements OnInit, IObsBlueprintC
     if (!this.authService.isLoggedIn()) this.messageService.add({severity:'error', summary:'Not logged in', detail:'You must be logged in to be able to save blueprints'});
     else if (this.blueprintService.blueprint.blueprintItems.length == 0) this.messageService.add({severity:'error', summary:'Empty blueprint', detail:'Add some buildings before trying to save'});
     else {
-      this.canvas.updateThumbnail();
+      this.updateThumbnail();
       this.saveDialog.showDialog();
     }
+  }
+
+  updateThumbnail() {
+    this.canvas.updateThumbnail();
   }
 
   shareUrl() {

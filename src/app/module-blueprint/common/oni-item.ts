@@ -26,6 +26,7 @@ export class OniItem
   spriteModifierId: string;
   isWire: boolean;
   isTile: boolean;
+  isBridge: boolean;
   isElement: boolean;
   size: Vector2;
   tileOffset: Vector2;
@@ -72,6 +73,7 @@ export class OniItem
     this.name = original.name;
     this.size = original.sizeInCells;
     this.isWire = original.isUtility;
+    this.isBridge = original.isBridge;
     this.isTile = original.isTile;
 
     this.spriteModifierId = original.kanimPrefix;
@@ -150,6 +152,7 @@ export class OniItem
   {
     if (this.isTile == null) this.isTile = false;
     if (this.isWire == null) this.isWire = false;
+    if (this.isBridge == null) this.isBridge = false;
     if (this.isElement == null) this.isElement = false;
     if (this.size == null) this.size = new Vector2();
     if (this.utilityConnections == null) this.utilityConnections = [];

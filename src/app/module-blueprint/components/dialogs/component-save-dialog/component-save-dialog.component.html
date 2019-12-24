@@ -11,6 +11,7 @@
   [resizable]="false" 
   >
 
+  
     <br>
     <span class="ui-float-label">
       <input class="float-input" type="text" size="60" formControlName="name" pInputText> 
@@ -23,6 +24,13 @@
     </div>
     <div *ngIf="overwrite" class="error-red">You already have a blueprint with this name. Overwrite?</div>
     <div *ngIf="!authService.isLoggedIn()" class="error-red">You must be logged in to save a blueprint</div>
+
+    <br>
+    <b>Thumbnail style :</b>
+    <div>
+      <p-radioButton name="thumbnailType" formControlName="thumbnailType" value="Blueprint" label="Blueprint" inputId="preopt1"></p-radioButton>
+      <p-radioButton name="thumbnailType" formControlName="thumbnailType" value="Color"     label="Color"     inputId="preopt2" class="radio-button" ></p-radioButton>
+    </div>
 
     <p-footer>
       

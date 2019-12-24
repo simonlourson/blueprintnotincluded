@@ -32,7 +32,9 @@
 </div>
 
 
-<app-component-save-dialog #saveDialog></app-component-save-dialog>
+<app-component-save-dialog 
+  #saveDialog
+  (onUpdateThumbnail)='updateThumbnail()'></app-component-save-dialog>
 <app-login-dialog #loginDialog></app-login-dialog>
 <app-dialog-share-url #shareUrlDialog></app-dialog-share-url>
 <app-dialog-browse #browseDialog></app-dialog-browse>

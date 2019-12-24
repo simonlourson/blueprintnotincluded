@@ -81,7 +81,6 @@ export class BlueprintItem
   depth: number;
   alpha: number;
   visible: boolean;
-  correctOverlay: boolean; 
 
   tileable: boolean[];
 
@@ -310,6 +309,7 @@ export class BlueprintItem
         if (spriteModifier.tags.indexOf(SpriteTag.ui) == -1) {
           let newDrawPart = new DrawPart();
           newDrawPart.zIndex = 1 - (drawPartIndex / (this.oniItem.spriteGroup.spriteModifiers.length * 2))
+          if (spriteModifier.tags.indexOf(SpriteTag.white) != -1) newDrawPart.zIndex = 1;
           newDrawPart.spriteModifier = spriteModifier;
           newDrawPart.visible = false;
           this.drawParts.push(newDrawPart);
@@ -452,12 +452,64 @@ export class BlueprintItem
   }
 
   prepareSpriteVisibility(camera: CameraService) {
-    for (let drawPart of this.drawParts) drawPart.prepareVisibilityBasedOnDisplay(camera.display);
+    for (let drawPart of this.drawParts) {
+      drawPart.prepareVisibilityBasedOnDisplay(camera.display);
+
+      if (drawPart.hasTag(SpriteTag.white)) {
+        drawPart.zIndex = 1;
+        drawPart.visible = false;
+      } 
+      drawPart.tint = 0xFFFFFF;
+      drawPart.alpha = 1;
+
+      drawPart.makeInvisibileIfHasTag(SpriteTag.white);
+
+      if (this.isOpaque && (this.oniItem.isWire || this.oniItem.isBridge)) {
+        if (camera.display == Display.solid) {
+          if (drawPart.hasTag(SpriteTag.white)) {
+            drawPart.visible = true;
+            drawPart.tint = this.oniItem.backColor;
+            drawPart.alpha = 0.7;
+          }
+        }
+        else if (camera.display == Display.blueprint) {
+          if (drawPart.hasTag(SpriteTag.place)) {
+            drawPart.visible = true;
+            drawPart.tint = this.oniItem.frontColor;
+          }
+          else if (drawPart.hasTag(SpriteTag.white)) {
+            drawPart.visible = true;
+            drawPart.tint = this.oniItem.backColor;
+            drawPart.zIndex = -1;
+          }
+        }
+      }
+
+      if (this.selected) {
+        if (camera.display == Display.solid) {
+          if (drawPart.spriteModifier.tags.indexOf(SpriteTag.white) != -1) {
+            drawPart.visible = true;
+            drawPart.tint = 0x4CFF00;
+            drawPart.alpha = camera.sinWave * 0.8;
+          }
+        }
+        else if (camera.display == Display.blueprint) {
+          if (drawPart.spriteModifier.tags.indexOf(SpriteTag.place) != -1) {
+            drawPart.tint = DrawHelpers.blendColor(0xFFFFFF, 0x4CFF00, camera.sinWave);
+          }else if (drawPart.hasTag(SpriteTag.white)) {
+            drawPart.visible = false;
+          }
+        }
+      }
+
+      
+
+      if (this.tileable[0]) drawPart.makeInvisibileIfHasTag(SpriteTag.tileable_left);
+      if (this.tileable[1]) drawPart.makeInvisibileIfHasTag(SpriteTag.tileable_right);
+      if (this.tileable[2]) drawPart.makeInvisibileIfHasTag(SpriteTag.tileable_up);
+      if (this.tileable[3]) drawPart.makeInvisibileIfHasTag(SpriteTag.tileable_down);
+    } 
   
-    if (this.tileable[0]) for (let drawPart of this.drawParts) drawPart.makeThisTagInvisible(SpriteTag.tileable_left);
-    if (this.tileable[1]) for (let drawPart of this.drawParts) drawPart.makeThisTagInvisible(SpriteTag.tileable_right);
-    if (this.tileable[2]) for (let drawPart of this.drawParts) drawPart.makeThisTagInvisible(SpriteTag.tileable_up);
-    if (this.tileable[3]) for (let drawPart of this.drawParts) drawPart.makeThisTagInvisible(SpriteTag.tileable_down);
   }
 
   // This is used by the selection tool to prioritize opaque buildings during selection
@@ -470,18 +522,13 @@ export class BlueprintItem
 
     this.isOpaque = this.oniItem.isOverlayPrimary(currentOverlay) || this.oniItem.isOverlaySecondary(currentOverlay);
 
-    if (this.isOpaque) this.alpha = 1;
-    else this.alpha = 0.3;
-
-    if (this.oniItem.isOverlayPrimary(currentOverlay))
-    {
-        this.depth = this.oniItem.zIndex + 50;
-        this.correctOverlay = true;
+    if (this.isOpaque) {
+      this.alpha = 1;
+      this.depth = this.oniItem.zIndex + 50;
     }
-    else
-    {
-        this.depth = this.oniItem.zIndex;
-        this.correctOverlay = false;
+    else {
+      this.alpha = 0.3;
+      this.depth = this.oniItem.zIndex;
     }
   }
 

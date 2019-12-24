@@ -37,6 +37,7 @@ import {ListboxModule} from 'primeng/listbox';
 import {VirtualScrollerModule} from 'primeng/virtualscroller';
 import {ToggleButtonModule} from 'primeng/togglebutton';
 import {SidebarModule} from 'primeng/sidebar';
+import {RadioButtonModule} from 'primeng/radiobutton';
 import { TileInfoComponent } from './components/side-bar/tile-info/tile-info.component';
 import { UsernameValidationDirective } from './directives/username-validation.directive';
 import { ComponentSideSelectionToolComponent } from './components/side-bar/selection-tool/selection-tool.component';
@@ -74,7 +75,7 @@ import { DialogAboutComponent } from './components/dialogs/dialog-about/dialog-a
     CommonModule, 
     HttpClientModule,
     FormsModule, ReactiveFormsModule,
-    PasswordModule, ColorPickerModule, InputTextModule, SliderModule, ButtonModule, CardModule, ScrollPanelModule, OverlayPanelModule, MenubarModule, TabMenuModule, SlideMenuModule, DialogModule, DropdownModule, AccordionModule, ToastModule, TooltipModule, PanelModule, InputSwitchModule, CheckboxModule, FieldsetModule, ListboxModule, VirtualScrollerModule, ToggleButtonModule, SidebarModule, 
+    PasswordModule, ColorPickerModule, InputTextModule, SliderModule, ButtonModule, CardModule, ScrollPanelModule, OverlayPanelModule, MenubarModule, TabMenuModule, SlideMenuModule, DialogModule, DropdownModule, AccordionModule, ToastModule, TooltipModule, PanelModule, InputSwitchModule, CheckboxModule, FieldsetModule, ListboxModule, VirtualScrollerModule, ToggleButtonModule, SidebarModule, RadioButtonModule, 
     RecaptchaV3Module,
     BrowserAnimationsModule
   ],

@@ -12,6 +12,7 @@ export class BBuilding
   prefabId: string;
   isTile: boolean;
   isUtility: boolean;
+  isBridge: boolean;
   sizeInCells: Vector2;
   sceneLayer: ZIndex;
   viewMode: Overlay;

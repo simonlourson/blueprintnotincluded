@@ -76,6 +76,7 @@ export class DrawPart
       this.sprite.y = 0 - (this.spriteModifier.translation.y + tileOffset.y) * camera.currentZoom / 100;
       
       this.sprite.alpha = this.alpha;
+      this.sprite.zIndex = this.zIndex;
 
       if (this.selected)
         this.sprite.tint = DrawHelpers.blendColor(this.tint, 0x4CFF00, camera.sinWave);
@@ -94,6 +95,10 @@ export class DrawPart
     }
   }
 
+  public hasTag(tag: SpriteTag) {
+    return this.spriteModifier.hasTag(tag);
+  }
+
   prepareVisibilityBasedOnDisplay(newDisplay: Display) {
     let tagFilter = newDisplay == Display.blueprint ? SpriteTag.place : SpriteTag.solid;
 
@@ -104,13 +109,16 @@ export class DrawPart
 
   makeEverythingButThisTagInvisible(tagFilter: SpriteTag) {
     if (this.spriteModifier == null) this.visible = false;
-    else if (this.spriteModifier.tags.indexOf(tagFilter) == -1) this.visible = false;
+    else if (!this.hasTag(tagFilter)) this.visible = false;
     else this.visible = this.visible && true;
   } 
 
-  makeThisTagInvisible(tagFilter: SpriteTag) {
+  makeInvisibileIfHasTag(tagFilter: SpriteTag) {
+    if (this.hasTag(tagFilter)) this.visible = false;
+  }
 
-    if (this.spriteModifier.tags.indexOf(tagFilter) != -1) this.visible = false;
+  makeVisibileIfHasTag(tagFilter: SpriteTag) {
+    if (this.hasTag(tagFilter)) this.visible = true;
   }
 
   public addToContainer(container: PIXI.Container) {
