@@ -28,8 +28,8 @@
     <br>
     <b>Thumbnail style :</b>
     <div>
-      <p-radioButton name="thumbnailType" formControlName="thumbnailType" value="Blueprint" label="Blueprint" inputId="preopt1"></p-radioButton>
-      <p-radioButton name="thumbnailType" formControlName="thumbnailType" value="Color"     label="Color"     inputId="preopt2" class="radio-button" ></p-radioButton>
+      <p-radioButton name="thumbnailTypeX" (ngModelChange)="changeThumbnail()" formControlName="thumbnailType" value="Color"     label="Color"     inputId="preopt2" ></p-radioButton>
+      <p-radioButton name="thumbnailTypeX" (ngModelChange)="changeThumbnail()" formControlName="thumbnailType" value="Blueprint" label="Blueprint" inputId="preopt1" class="radio-button"></p-radioButton>
     </div>
 
     <p-footer>

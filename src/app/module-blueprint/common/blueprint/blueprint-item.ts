@@ -468,8 +468,9 @@ export class BlueprintItem
         if (camera.display == Display.solid) {
           if (drawPart.hasTag(SpriteTag.white)) {
             drawPart.visible = true;
+            drawPart.zIndex = 1;
             drawPart.tint = this.oniItem.backColor;
-            drawPart.alpha = 0.7;
+            drawPart.alpha = 0.5;
           }
         }
         else if (camera.display == Display.blueprint) {
@@ -487,22 +488,35 @@ export class BlueprintItem
 
       if (this.selected) {
         if (camera.display == Display.solid) {
-          if (drawPart.spriteModifier.tags.indexOf(SpriteTag.white) != -1) {
-            drawPart.visible = true;
-            drawPart.tint = 0x4CFF00;
-            drawPart.alpha = camera.sinWave * 0.8;
+          if (drawPart.hasTag(SpriteTag.white)) {
+            if (drawPart.visible) {
+              // If the drawPart is visible, we assume the code before already set the correct values, and we just modulate the tint
+              drawPart.tint = DrawHelpers.blendColor(drawPart.tint, 0x4CFF00, camera.sinWave)
+            }
+            else {
+              drawPart.visible = true;
+              drawPart.zIndex = 1;
+              drawPart.tint = 0x4CFF00;
+              drawPart.alpha = camera.sinWave * 0.8;
+            }
           }
         }
         else if (camera.display == Display.blueprint) {
-          if (drawPart.spriteModifier.tags.indexOf(SpriteTag.place) != -1) {
-            drawPart.tint = DrawHelpers.blendColor(0xFFFFFF, 0x4CFF00, camera.sinWave);
-          }else if (drawPart.hasTag(SpriteTag.white)) {
-            drawPart.visible = false;
+          if (drawPart.hasTag(SpriteTag.place)) {
+            drawPart.tint = DrawHelpers.blendColor(drawPart.tint, 0x4CFF00, camera.sinWave);
+          }
+          else if (drawPart.hasTag(SpriteTag.white)) {
+            drawPart.tint = DrawHelpers.blendColor(drawPart.tint, 0x4CFF00, camera.sinWave);
           }
         }
       }
 
-      
+      if (drawPart.hasTag(SpriteTag.white)) {
+        //drawPart.visible = true;
+        //drawPart.zIndex = 1;
+        //drawPart.tint = 0xFFFFFF;
+        //drawPart.alpha = 0.5;
+      }
 
       if (this.tileable[0]) drawPart.makeInvisibileIfHasTag(SpriteTag.tileable_left);
       if (this.tileable[1]) drawPart.makeInvisibileIfHasTag(SpriteTag.tileable_right);

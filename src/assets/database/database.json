@@ -4044,8 +4044,8 @@
       "isBridge": true,
       "drawSolid": false,
       "dragBuild": false,
-      "backColor": 0,
-      "frontColor": 16777215,
+      "backColor": 13882839,
+      "frontColor": 8026746,
       "sizeInCells": {
         "x": 3,
         "y": 1
@@ -6640,8 +6640,8 @@
       "isBridge": true,
       "drawSolid": false,
       "dragBuild": false,
-      "backColor": 0,
-      "frontColor": 16777215,
+      "backColor": 13882839,
+      "frontColor": 8026746,
       "sizeInCells": {
         "x": 3,
         "y": 1
@@ -8632,8 +8632,8 @@
       "isBridge": true,
       "drawSolid": false,
       "dragBuild": false,
-      "backColor": 0,
-      "frontColor": 16777215,
+      "backColor": 14925539,
+      "frontColor": 12804983,
       "sizeInCells": {
         "x": 3,
         "y": 1
@@ -12174,8 +12174,8 @@
       "isBridge": true,
       "drawSolid": false,
       "dragBuild": false,
-      "backColor": 0,
-      "frontColor": 16777215,
+      "backColor": 9393436,
+      "frontColor": 6437652,
       "sizeInCells": {
         "x": 3,
         "y": 1
@@ -13875,8 +13875,8 @@
       "isBridge": true,
       "drawSolid": false,
       "dragBuild": false,
-      "backColor": 0,
-      "frontColor": 16777215,
+      "backColor": 13882839,
+      "frontColor": 8026746,
       "sizeInCells": {
         "x": 1,
         "y": 1
@@ -14188,8 +14188,8 @@
       "isBridge": true,
       "drawSolid": false,
       "dragBuild": false,
-      "backColor": 0,
-      "frontColor": 16777215,
+      "backColor": 11951450,
+      "frontColor": 11876133,
       "sizeInCells": {
         "x": 3,
         "y": 1
@@ -14226,7 +14226,7 @@
       "textureName": "heavywatttile_0",
       "isTile": false,
       "isUtility": false,
-      "isBridge": true,
+      "isBridge": false,
       "drawSolid": false,
       "dragBuild": false,
       "backColor": 0,
@@ -14450,8 +14450,8 @@
       "isBridge": true,
       "drawSolid": false,
       "dragBuild": false,
-      "backColor": 0,
-      "frontColor": 16777215,
+      "backColor": 11951450,
+      "frontColor": 11876133,
       "sizeInCells": {
         "x": 3,
         "y": 1
@@ -14488,7 +14488,7 @@
       "textureName": "heavywatttile_conductive_0",
       "isTile": false,
       "isUtility": false,
-      "isBridge": true,
+      "isBridge": false,
       "drawSolid": false,
       "dragBuild": false,
       "backColor": 0,

@@ -21,8 +21,9 @@ export class ComponentSaveDialogComponent implements OnInit {
   @Output() onUpdateThumbnail = new EventEmitter();
   
   saveBlueprintForm = new FormGroup({
+    thumbnailType: new FormControl('Color', [Validators.required]),
     name: new FormControl('', [Validators.required, BlueprintNameValidationDirective.validateBlueprintName]),
-    //thumbnailType: new FormControl('Color')
+    
   });
 
   get f() { return this.saveBlueprintForm.controls; }
@@ -93,6 +94,7 @@ export class ComponentSaveDialogComponent implements OnInit {
     this.reset();
     this.visible = true;
 
+    this.saveBlueprintForm.patchValue({thumbnailType: 'Color'});
     if (this.blueprintService.name != null && this.blueprintService.name != '') this.saveBlueprintForm.patchValue({name: this.blueprintService.name});
   }
 
@@ -106,6 +108,10 @@ export class ComponentSaveDialogComponent implements OnInit {
     this.thumbnailReady = this.blueprintService.thumbnail != null;
 
     if (this.thumbnailReady) this.tryClearInterval();
+  }
+
+  changeThumbnail() {
+    console.log(this.saveBlueprintForm.value.thumbnailType)
   }
 
   reset()
@@ -132,7 +138,7 @@ export class ComponentSaveDialogComponent implements OnInit {
     this.working = true;
 
     console.log(this.saveBlueprintForm.value);
-    this.blueprintService.name = this.saveBlueprintForm.value.name;
+    this.blueprintService.name = this.saveBlueprintForm.getRawValue().name; // Use get raw Value because it can be disabled
     this.blueprintService.thumbnailStyle = this.saveBlueprintForm.value.thumbnailType == 'Color' ? Display.solid : Display.blueprint;
     this.blueprintService.saveBlueprint(true).subscribe({
       next: this.handleSaveNext.bind(this),

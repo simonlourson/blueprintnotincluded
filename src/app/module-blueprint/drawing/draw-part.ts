@@ -103,7 +103,7 @@ export class DrawPart
     let tagFilter = newDisplay == Display.blueprint ? SpriteTag.place : SpriteTag.solid;
 
     if (this.spriteModifier == null) this.visible = false;
-    else if (this.spriteModifier.tags.indexOf(tagFilter) == -1) this.visible = false;
+    else if (!this.hasTag(tagFilter)) this.visible = false;
     else this.visible = true;
   } 
 
