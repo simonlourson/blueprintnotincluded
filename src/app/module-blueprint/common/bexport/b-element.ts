@@ -9,6 +9,10 @@ export class BuildableElement {
   icon: string;
   buildMenuSort: number;
 
+  color: number;
+  conduitColor: number;
+  uiColor: number;
+
   // Generated
   iconUrl: string
 
@@ -26,6 +30,10 @@ export class BuildableElement {
     this.iconUrl = DrawHelpers.createUrl(this.icon, true);
 
     this.buildMenuSort = original.buildMenuSort;
+
+    this.color = original.color;
+    this.conduitColor = original.conduitColor;
+    this.uiColor = original.conduitColor;
   }
 
   // static

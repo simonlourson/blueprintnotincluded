@@ -421,6 +421,15 @@ export class BlueprintItem
         }
       }
 
+      if (camera.visualization == Visualization.elements) {
+        if (drawPart.hasTag(SpriteTag.white)) {
+          drawPart.visible = true;
+          drawPart.zIndex = 1;
+          drawPart.tint = this.buildableElements[0].color;
+          drawPart.alpha = 0.8;
+        }
+      }
+
       if (this.selected) {
         if (camera.display == Display.solid) {
           if (drawPart.hasTag(SpriteTag.white)) {

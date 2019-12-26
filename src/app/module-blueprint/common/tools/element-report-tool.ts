@@ -7,6 +7,7 @@ import { Injectable } from '@angular/core';
 import { BuildableElement } from '../bexport/b-element';
 import { IObsBlueprintChange } from '../blueprint/blueprint';
 import { BlueprintItem } from '../blueprint/blueprint-item';
+import { DrawHelpers } from '../../drawing/draw-helpers';
 
 @Injectable()
 export class ElementReportTool implements ITool, IObsBlueprintChange {
@@ -44,6 +45,7 @@ export class ElementReportTool implements ITool, IObsBlueprintChange {
     if (!alreadyPresent) {
       this.data.push({
         buildableElement: buildableElement,
+        colorString: DrawHelpers.colorToHex(buildableElement.color), 
         totalMass: mass
       });
     }
@@ -91,5 +93,6 @@ export class ElementReportTool implements ITool, IObsBlueprintChange {
 
 export interface ElementReportDataItem {
   buildableElement: BuildableElement;
+  colorString: string;
   totalMass: number;
 }
