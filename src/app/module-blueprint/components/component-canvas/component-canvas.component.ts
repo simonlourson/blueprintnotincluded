@@ -415,7 +415,7 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
         newSpriteModifier.spriteInfoName = spriteInfoId;
         newSpriteModifier.rotation = 0;
         newSpriteModifier.scale = new Vector2(1, 1);
-        newSpriteModifier.translation = new Vector2(1, 1);
+        newSpriteModifier.translation = new Vector2(0, 0);
         newSpriteModifier.tags = [SpriteTag.solid];
         database.spriteModifiers.push(newSpriteModifier);
 
