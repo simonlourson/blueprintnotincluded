@@ -4,7 +4,6 @@ import {SelectItem} from 'primeng/api';
 import { BlueprintItem } from '../../../common/blueprint/blueprint-item';
 import { Blueprint } from '../../../common/blueprint/blueprint';
 import { ToolType } from '../../../common/tools/tool';
-import { TileInfo } from '../../../common/tile-info';
 import { BlueprintItemWire } from '../../../common/blueprint/blueprint-item-wire';
 import { CameraService } from '../../../services/camera-service';
 import { Vector2 } from '../../../common/vector2';

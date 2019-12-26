@@ -12,6 +12,12 @@
   (changeElement)="changeElement($event)">
 </app-buildable-element-picker>
 
+<app-temperature-picker
+  [blueprintItem]=itemCollection.items[0]
+  [temperatureWarning]="itemCollection.temperatureWarning"
+  (changeTemperature)="changeTemperature($event)">
+</app-temperature-picker>
+
 <app-ui-screen-container
   *ngIf="itemCollection.items.length == 1"
   [blueprintItem]="itemCollection.items[0]">

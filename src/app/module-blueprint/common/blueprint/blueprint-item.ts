@@ -23,12 +23,15 @@ declare var PIXI: any;
 
 export class BlueprintItem
 {
-  public static vacuumItem = new BlueprintItem();
   static defaultRotation = 0;
   static defaultScale = Vector2.One;
 
   public id: string;
   public temperature: number;
+  public get temperatureCelcius() { return this.temperature - 273.15; }
+  public set temperatureCelcius(value: number) { this.temperature = value + 273.15 }
+  public get temperatureScale() { return DrawHelpers.temperatureToScale(this.temperature); }
+  public set temperatureScale(value: number) { this.temperature = DrawHelpers.scaleToTemperature(value); }
 
   public buildableElements: BuildableElement[];
 
@@ -47,24 +50,10 @@ export class BlueprintItem
 
   // Each template item should remember where it was added, to make removal easier
   public tileIndexes: number[];
+
   private selected_: boolean;
   get selected() { return this.selected_; }
-  
-  // TODO some of these are not used anymore
-  // For selected single (used when a single tile is selected)
-  // We want each item to be responsible for the overlay switch
-  get selectedSingle() { return this.selected_; }
-  set selectedSingle(value: boolean) {
-    this.selected_ = value;
-    if (this.selected_) {
-      CameraService.cameraService.resetSinWave();
-      CameraService.cameraService.setOverlayForItem(this.oniItem);
-    }
-  }
-
-  // For selected muliple, the SameItemCollection is responsible for setting the overlay
-  get selectedMultiple() { return this.selected_; }
-  set selectedMultiple(value: boolean) { this.selected_ = value; }
+  set selected(value: boolean) { this.selected_ = value; }
 
   // TODO getter setter with prepare bounding box
   position: Vector2;
@@ -193,16 +182,25 @@ export class BlueprintItem
     this.prepareBoundingBox();
   }
 
-  public importOniCell(cell: OniCell)
+  
+  public importMdbBuilding(original: MdbBuilding)
   {
-    this.position = new Vector2(
-      cell.location_x == null ? 0 : cell.location_x,
-      cell.location_y == null ? 0 : cell.location_y
-    );
-
-    //this.element = cell.element;
-    this.temperature = Math.floor(cell.temperature);
+    this.position = Vector2.clone(original.position);
     
+    if (original.elements != null && original.elements.length > 0)
+      for (let indexElement = 0; indexElement < original.elements.length; indexElement++)
+        if (original.elements[indexElement] != null) this.setElement(original.elements[indexElement], indexElement);
+        else this.setElement(this.oniItem.defaultElement[indexElement].id, indexElement);
+    
+    if (original.settings != null && original.settings.length > 0) {
+      this.uiSaveSettings = [];
+      for (let setting of original.settings) this.uiSaveSettings.push(UiSaveSettings.clone(setting));
+    }
+
+    // TODO default temperature
+    this.temperature = original.temperature;
+    this.changeOrientation(original.orientation);
+
     this.cleanUp();
     this.prepareBoundingBox();
   }
@@ -241,83 +239,62 @@ export class BlueprintItem
     this.prepareBoundingBox();
   }
 
-    public importMdbBuilding(original: MdbBuilding)
-    {
-      this.position = Vector2.clone(original.position);
-      
-      if (original.elements != null && original.elements.length > 0)
-        for (let indexElement = 0; indexElement < original.elements.length; indexElement++)
-          if (original.elements[indexElement] != null) this.setElement(original.elements[indexElement], indexElement);
-          else this.setElement(this.oniItem.defaultElement[indexElement].id, indexElement);
-      
-      if (original.settings != null && original.settings.length > 0) {
-        this.uiSaveSettings = [];
-        for (let setting of original.settings) this.uiSaveSettings.push(UiSaveSettings.clone(setting));
-      }
 
-      // TODO default temperature
-      this.temperature = original.temperature;
-      this.changeOrientation(original.orientation);
+  nextOrientation() {
+    let indexCurrentOrientation = this.oniItem.orientations.indexOf(this.orientation);
+    indexCurrentOrientation = (indexCurrentOrientation + 1) % this.oniItem.orientations.length;
+    this.changeOrientation(this.oniItem.orientations[indexCurrentOrientation]);
+  }
 
-      this.cleanUp();
-      this.prepareBoundingBox();
-    }
+  changeOrientation(newOrientation: Orientation)
+  {
+    this.orientation = newOrientation;
+    this.updateRotationScale();
+  }
 
-    nextOrientation() {
-      let indexCurrentOrientation = this.oniItem.orientations.indexOf(this.orientation);
-      indexCurrentOrientation = (indexCurrentOrientation + 1) % this.oniItem.orientations.length;
-      this.changeOrientation(this.oniItem.orientations[indexCurrentOrientation]);
-    }
+  public cleanUp()
+  {
+    if (this.rotation == null) this.rotation = BlueprintItem.defaultRotation;
+    if (this.scale == null) this.scale = BlueprintItem.defaultScale;
+    
+    if (this.buildableElements == null) this.buildableElements = [];
+    for (let indexElement = 0; indexElement < this.oniItem.buildableElementsArray.length; indexElement++)
+      if (this.buildableElements[indexElement] == null)
+        this.setElement(this.oniItem.defaultElement[indexElement].id, indexElement);
 
-    changeOrientation(newOrientation: Orientation)
-    {
-      this.orientation = newOrientation;
-      this.updateRotationScale();
-    }
+    if (this.uiSaveSettings == null) this.uiSaveSettings = [];
+    for (let uiScreen of this.oniItem.uiScreens) {
+      if (this.getUiSettings(uiScreen.id) == null) {
+        let newSaveSettings = new UiSaveSettings(uiScreen.id);
 
-    public cleanUp()
-    {
-      if (this.rotation == null) this.rotation = BlueprintItem.defaultRotation;
-      if (this.scale == null) this.scale = BlueprintItem.defaultScale;
-      
-      if (this.buildableElements == null) this.buildableElements = [];
-      for (let indexElement = 0; indexElement < this.oniItem.buildableElementsArray.length; indexElement++)
-        if (this.buildableElements[indexElement] == null)
-          this.setElement(this.oniItem.defaultElement[indexElement].id, indexElement);
-
-      if (this.uiSaveSettings == null) this.uiSaveSettings = [];
-      for (let uiScreen of this.oniItem.uiScreens) {
-        if (this.getUiSettings(uiScreen.id) == null) {
-          let newSaveSettings = new UiSaveSettings(uiScreen.id);
-
-          for (let indexValue = 0; indexValue < uiScreen.inputs.length; indexValue++) {
-            newSaveSettings.values[indexValue] = uiScreen.getDefaultValue(indexValue);
-          }
-
-          this.uiSaveSettings.push(newSaveSettings);
-        }
-      }
-
-      if (this.orientation == null) this.changeOrientation(Orientation.Neutral);
-      this.selected_ = false;
-
-      this.tileable = [false, false, false, false];
-
-      this.drawParts = [];
-      let drawPartIndex = 0;
-      for (let spriteModifier of this.oniItem.spriteGroup.spriteModifiers) {
-        if (spriteModifier.tags.indexOf(SpriteTag.ui) == -1) {
-          let newDrawPart = new DrawPart();
-          newDrawPart.zIndex = 1 - (drawPartIndex / (this.oniItem.spriteGroup.spriteModifiers.length * 2))
-          if (spriteModifier.tags.indexOf(SpriteTag.white) != -1) newDrawPart.zIndex = 1;
-          newDrawPart.spriteModifier = spriteModifier;
-          newDrawPart.visible = false;
-          this.drawParts.push(newDrawPart);
+        for (let indexValue = 0; indexValue < uiScreen.inputs.length; indexValue++) {
+          newSaveSettings.values[indexValue] = uiScreen.getDefaultValue(indexValue);
         }
 
-        drawPartIndex++;
+        this.uiSaveSettings.push(newSaveSettings);
       }
     }
+
+    if (this.orientation == null) this.changeOrientation(Orientation.Neutral);
+    this.selected_ = false;
+
+    this.tileable = [false, false, false, false];
+
+    this.drawParts = [];
+    let drawPartIndex = 0;
+    for (let spriteModifier of this.oniItem.spriteGroup.spriteModifiers) {
+      if (spriteModifier.tags.indexOf(SpriteTag.ui) == -1) {
+        let newDrawPart = new DrawPart();
+        newDrawPart.zIndex = 1 - (drawPartIndex / (this.oniItem.spriteGroup.spriteModifiers.length * 2))
+        if (spriteModifier.tags.indexOf(SpriteTag.white) != -1) newDrawPart.zIndex = 1;
+        newDrawPart.spriteModifier = spriteModifier;
+        newDrawPart.visible = false;
+        this.drawParts.push(newDrawPart);
+      }
+
+      drawPartIndex++;
+    }
+  }
 
   public toMdbBuilding(): MdbBuilding {
     let returnValue: MdbBuilding = {
@@ -348,48 +325,6 @@ export class BlueprintItem
     if (this.orientation != Orientation.Neutral) returnValue.orientation = this.orientation;
 
     return returnValue;
-  }
-
-  public cloneForBuilding(): BlueprintItem
-  {
-    let returnValue = new BlueprintItem(this.id);
-
-    returnValue.copyFromForExport(this);
-    returnValue.cleanUp();
-
-    return returnValue;
-  }
-
-  public copyFromForExport(original: BlueprintItem)
-  {
-    if (original.buildableElements != null)
-        for (let indexElement = 0; indexElement < original.buildableElements.length; indexElement++)
-          if (original.buildableElements[indexElement] != null) this.setElement(original.buildableElements[indexElement].id, indexElement);
-          else this.setElement(this.oniItem.defaultElement[indexElement].id, indexElement);
-
-    this.temperature = original.temperature;
-    this.position = original.position;
-    this.changeOrientation(original.orientation);
-  }
-
-  public deleteDefaultForExport()
-  {
-    if (Orientation.Neutral == this.orientation) this.orientation = undefined;
-
-    this.tileIndexes = undefined;
-
-    // We already export the orientation
-    this.rotation = undefined;
-    this.scale = undefined;
-
-    this.selected_ = undefined;
-    this.destroyed = undefined;
-    this.isOpaque = undefined;
-
-    this.topLeft = undefined;
-    this.bottomRight = undefined;
-
-    this.buildableElements = undefined;
   }
 
   public prepareBoundingBox()
@@ -455,34 +390,23 @@ export class BlueprintItem
     for (let drawPart of this.drawParts) {
       drawPart.prepareVisibilityBasedOnDisplay(camera.display);
 
-      if (drawPart.hasTag(SpriteTag.white)) {
-        drawPart.zIndex = 1;
-        drawPart.visible = false;
-      } 
       drawPart.tint = 0xFFFFFF;
       drawPart.alpha = 1;
 
       drawPart.makeInvisibileIfHasTag(SpriteTag.white);
 
       if (this.isOpaque && (this.oniItem.isWire || this.oniItem.isBridge)) {
-        if (camera.display == Display.solid) {
-          if (drawPart.hasTag(SpriteTag.white)) {
-            drawPart.visible = true;
-            drawPart.zIndex = 1;
-            drawPart.tint = this.oniItem.backColor;
-            drawPart.alpha = 0.5;
-          }
+        
+        if (drawPart.hasTag(SpriteTag.white)) {
+          drawPart.visible = true;
+          drawPart.zIndex = 1;
+          drawPart.tint = this.oniItem.backColor;
+          drawPart.alpha = 0.7;
         }
-        else if (camera.display == Display.blueprint) {
-          if (drawPart.hasTag(SpriteTag.place)) {
-            drawPart.visible = true;
-            drawPart.tint = this.oniItem.frontColor;
-          }
-          else if (drawPart.hasTag(SpriteTag.white)) {
-            drawPart.visible = true;
-            drawPart.tint = this.oniItem.backColor;
-            drawPart.zIndex = -1;
-          }
+        
+        if (camera.display == Display.blueprint) {
+          drawPart.makeInvisibileIfHasTag(SpriteTag.place);
+          drawPart.makeVisibileIfHasTag(SpriteTag.solid);
         }
       }
 
@@ -538,18 +462,22 @@ export class BlueprintItem
 
     if (this.isOpaque) {
       this.alpha = 1;
-      this.depth = this.oniItem.zIndex + 50;
+      
     }
     else {
       this.alpha = 0.3;
-      this.depth = this.oniItem.zIndex;
+      
+    }
+
+    if (this.oniItem.isOverlayPrimary(currentOverlay)) {
+      this.depth = this.oniItem.zIndex + 100;
+    }
+    else {
+      this.depth = this.oniItem.zIndex + 50;
     }
   }
 
-  // TODO SOLID delete
-  displayChanged(newDisplay: Display) {
-  }
-
+  // This is used by the build tool, TODO something cleaner
   setInvisible() {
     this.position = new Vector2(-99999, -99999);
   }
@@ -600,127 +528,127 @@ export class BlueprintItem
       this.container.alpha = this.alpha;
     }
 
-    private drawPixiUtility(camera: CameraService, drawPixi: DrawPixi)
-    {
-      if (this.utilitySprites == null) this.utilitySprites = [];
+  private drawPixiUtility(camera: CameraService, drawPixi: DrawPixi)
+  {
+    if (this.utilitySprites == null) this.utilitySprites = [];
 
-      for (let connexionIndex=0; connexionIndex < this.oniItem.utilityConnections.length; connexionIndex++)
+    for (let connexionIndex=0; connexionIndex < this.oniItem.utilityConnections.length; connexionIndex++)
+    {
+      let connection = this.oniItem.utilityConnections[connexionIndex];
+
+      //console.log(camera.overlay)
+      // Pass to the next connection if this one should not be displayed on this overlay
+      if (camera.overlay != ConnectionHelper.getConnectionOverlay(connection.type)) 
       {
-        let connection = this.oniItem.utilityConnections[connexionIndex];
-
-        //console.log(camera.overlay)
-        // Pass to the next connection if this one should not be displayed on this overlay
-        if (camera.overlay != ConnectionHelper.getConnectionOverlay(connection.type)) 
-        {
-          // First we disable the sprites if they are created, then we move on the the next connection
-          if (this.utilitySprites[connexionIndex] != null) this.utilitySprites[connexionIndex].visible = false;
-          continue;
-        }
-        else if (this.utilitySprites[connexionIndex] != null) this.utilitySprites[connexionIndex].visible = true;
-
-        let connectionPosition = DrawHelpers.rotateVector2(connection.offset, Vector2.Zero, this.rotation);
-        connectionPosition = DrawHelpers.scaleVector2(connectionPosition, Vector2.Zero, this.scale);
-
-
-        let drawPos = new Vector2(
-            (this.position.x + connectionPosition.x + camera.cameraOffset.x + 0.25) * camera.currentZoom,
-            (-this.position.y - connectionPosition.y + camera.cameraOffset.y + 0.25) * camera.currentZoom
-        );
-        let drawSize = new Vector2(
-            0.5 * camera.currentZoom,
-            0.5 * camera.currentZoom
-        );
-
-        let connectionSprite = ConnectionHelper.getConnectionSprite(connection);
-        let tint = connectionSprite.color;
-        if (this.utilitySprites[connexionIndex] == null) 
-        {
-          let connectionSpriteInfo = SpriteInfo.getSpriteInfo(connectionSprite.spriteInfoId);
-          if (connectionSpriteInfo != null)
-          {
-            let connectionTexture = connectionSpriteInfo.getTexture();
-            if (connectionTexture != null)
-            {
-              this.utilitySprites[connexionIndex] = PIXI.Sprite.from(connectionTexture);
-              
-              this.utilitySprites[connexionIndex].tint = tint;
-              this.utilitySprites[connexionIndex].zIndex = 101;
-              camera.container.addChild(this.utilitySprites[connexionIndex]);
-            }
-          }
-        }
-
-        // TODO correct sizes pour incons
-        if (this.utilitySprites[connexionIndex] != null)
-        {
-          
-          this.utilitySprites[connexionIndex].x = drawPos.x;
-          this.utilitySprites[connexionIndex].y = drawPos.y;
-          this.utilitySprites[connexionIndex].width = drawSize.x;
-          this.utilitySprites[connexionIndex].height = drawSize.y;
-          
-
-          if (!this.utilitySprites[connexionIndex].texture.baseTexture.valid)
-          {
-            let delta = 0.25;
-            let rectanglePosition = new Vector2(
-              this.position.x + connectionPosition.x + 0.5,
-              this.position.y + connectionPosition.y - 0.5
-            );
-            drawPixi.drawTileRectangle(camera, 
-              new Vector2(rectanglePosition.x - delta, rectanglePosition.y + delta),
-              new Vector2(rectanglePosition.x + delta, rectanglePosition.y - delta),
-              true, 2, tint, 0, 1, 1);
-          }
-        }
-
-
-        //drawPixi.FillRect(0xFFFF00, drawPos.x, drawPos.y, drawSize.x, drawSize.y)
-
+        // First we disable the sprites if they are created, then we move on the the next connection
+        if (this.utilitySprites[connexionIndex] != null) this.utilitySprites[connexionIndex].visible = false;
+        continue;
       }
-    }
+      else if (this.utilitySprites[connexionIndex] != null) this.utilitySprites[connexionIndex].visible = true;
 
-    private drawPixiDebug(camera: CameraService, drawPixi: DrawPixi, positionCorrected: Vector2)
-    {
-      let delta = 0.2;
-      drawPixi.drawTileRectangle(
-        camera,
-        new Vector2(this.topLeft.x + delta, this.topLeft.y + 0 - delta),
-        new Vector2(this.bottomRight.x + 1 - delta, this.bottomRight.y - 1 + delta),
-        false,
-        2,
-        0xFF0000,
-        0x000000,
-        0.5,
-        0.5
+      let connectionPosition = DrawHelpers.rotateVector2(connection.offset, Vector2.Zero, this.rotation);
+      connectionPosition = DrawHelpers.scaleVector2(connectionPosition, Vector2.Zero, this.scale);
+
+
+      let drawPos = new Vector2(
+          (this.position.x + connectionPosition.x + camera.cameraOffset.x + 0.25) * camera.currentZoom,
+          (-this.position.y - connectionPosition.y + camera.cameraOffset.y + 0.25) * camera.currentZoom
+      );
+      let drawSize = new Vector2(
+          0.5 * camera.currentZoom,
+          0.5 * camera.currentZoom
       );
 
-      
-      drawPixi.backGraphics.lineStyle(2, 0x000000, 1);
-      drawPixi.backGraphics.moveTo(positionCorrected.x - 5, positionCorrected.y);
-      drawPixi.backGraphics.lineTo(positionCorrected.x + 5, positionCorrected.y);
-      drawPixi.backGraphics.moveTo(positionCorrected.x, positionCorrected.y - 5);
-      drawPixi.backGraphics.lineTo(positionCorrected.x, positionCorrected.y + 5);
-    }
-
-    destroyed: boolean = false;
-    public destroy()
-    {
-      // Return if this is already destoryed
-      if (this.destroyed) {
-        return;
+      let connectionSprite = ConnectionHelper.getConnectionSprite(connection);
+      let tint = connectionSprite.color;
+      if (this.utilitySprites[connexionIndex] == null) 
+      {
+        let connectionSpriteInfo = SpriteInfo.getSpriteInfo(connectionSprite.spriteInfoId);
+        if (connectionSpriteInfo != null)
+        {
+          let connectionTexture = connectionSpriteInfo.getTexture();
+          if (connectionTexture != null)
+          {
+            this.utilitySprites[connexionIndex] = PIXI.Sprite.from(connectionTexture);
+            
+            this.utilitySprites[connexionIndex].tint = tint;
+            this.utilitySprites[connexionIndex].zIndex = 200;
+            camera.container.addChild(this.utilitySprites[connexionIndex]);
+          }
+        }
       }
-      
-      // Destroy the main sprite
-      if (this.container != null) this.container.destroy({baseTexture: false, texture: false, children: true});
-      
-      // And the utility sprites
-      if (this.utilitySprites != null)
-        for (let s of this.utilitySprites)
-          if (s != null)
-            s.destroy();
 
-      this.destroyed = true;
+      // TODO correct sizes pour incons
+      if (this.utilitySprites[connexionIndex] != null)
+      {
+        
+        this.utilitySprites[connexionIndex].x = drawPos.x;
+        this.utilitySprites[connexionIndex].y = drawPos.y;
+        this.utilitySprites[connexionIndex].width = drawSize.x;
+        this.utilitySprites[connexionIndex].height = drawSize.y;
+        
+
+        if (!this.utilitySprites[connexionIndex].texture.baseTexture.valid)
+        {
+          let delta = 0.25;
+          let rectanglePosition = new Vector2(
+            this.position.x + connectionPosition.x + 0.5,
+            this.position.y + connectionPosition.y - 0.5
+          );
+          drawPixi.drawTileRectangle(camera, 
+            new Vector2(rectanglePosition.x - delta, rectanglePosition.y + delta),
+            new Vector2(rectanglePosition.x + delta, rectanglePosition.y - delta),
+            true, 2, tint, 0, 1, 1);
+        }
+      }
+
+
+      //drawPixi.FillRect(0xFFFF00, drawPos.x, drawPos.y, drawSize.x, drawSize.y)
+
     }
+  }
+
+  private drawPixiDebug(camera: CameraService, drawPixi: DrawPixi, positionCorrected: Vector2)
+  {
+    let delta = 0.2;
+    drawPixi.drawTileRectangle(
+      camera,
+      new Vector2(this.topLeft.x + delta, this.topLeft.y + 0 - delta),
+      new Vector2(this.bottomRight.x + 1 - delta, this.bottomRight.y - 1 + delta),
+      false,
+      2,
+      0xFF0000,
+      0x000000,
+      0.5,
+      0.5
+    );
+
+    
+    drawPixi.backGraphics.lineStyle(2, 0x000000, 1);
+    drawPixi.backGraphics.moveTo(positionCorrected.x - 5, positionCorrected.y);
+    drawPixi.backGraphics.lineTo(positionCorrected.x + 5, positionCorrected.y);
+    drawPixi.backGraphics.moveTo(positionCorrected.x, positionCorrected.y - 5);
+    drawPixi.backGraphics.lineTo(positionCorrected.x, positionCorrected.y + 5);
+  }
+
+  destroyed: boolean = false;
+  public destroy()
+  {
+    // Return if this is already destoryed
+    if (this.destroyed) {
+      return;
+    }
+    
+    // Destroy the main sprite
+    if (this.container != null) this.container.destroy({baseTexture: false, texture: false, children: true});
+    
+    // And the utility sprites
+    if (this.utilitySprites != null)
+      for (let s of this.utilitySprites)
+        if (s != null)
+          s.destroy();
+
+    this.destroyed = true;
+  }
 
 }

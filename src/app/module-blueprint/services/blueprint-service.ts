@@ -49,6 +49,8 @@ export class BlueprintService implements IObsOverlayChanged, IObsDisplayChanged,
     this.cameraService.subscribeOverlayChange(this);
     this.cameraService.subscribeDisplayChange(this);
 
+    this.thumbnailStyle = Display.solid;
+
 
     BlueprintService.blueprintService = this;
 

@@ -2,7 +2,7 @@ import { Component, OnInit, Output, EventEmitter, Testability } from '@angular/c
 
 import {MenuItem, Message, MessageService} from 'primeng/api';
 import { setDefaultService } from 'selenium-webdriver/opera';
-import { ZIndex, Overlay, Display } from '../../common/overlay-type';
+import { ZIndex, Overlay, Display, Visualization } from '../../common/overlay-type';
 import { OniItem } from '../../common/oni-item';
 import { ToolType } from '../../common/tools/tool';
 import { BlueprintItem } from '../../common/blueprint/blueprint-item';
@@ -10,7 +10,7 @@ import { AuthenticationService } from '../../services/authentification-service';
 import { Blueprint } from '../../common/blueprint/blueprint';
 import { BehaviorSubject } from 'rxjs';
 import { ToolService, ToolRequest, IObsToolChanged } from '../../services/tool-service';
-import { CameraService, IObsOverlayChanged, IObsDisplayChanged } from '../../services/camera-service';
+import { CameraService, IObsOverlayChanged, IObsDisplayChanged, IObsVisualizationChanged } from '../../services/camera-service';
 import { Router } from '@angular/router';
 import { BlueprintService, BlueprintFileType } from '../../services/blueprint-service';
 import { DrawHelpers } from '../../drawing/draw-helpers';
@@ -20,12 +20,14 @@ import { DrawHelpers } from '../../drawing/draw-helpers';
   templateUrl: './component-menu.component.html',
   styleUrls: ['./component-menu.component.css']
 })
-export class ComponentMenuComponent implements OnInit, IObsToolChanged, IObsOverlayChanged, IObsDisplayChanged {
+export class ComponentMenuComponent implements OnInit, IObsToolChanged, IObsOverlayChanged, IObsDisplayChanged, IObsVisualizationChanged {
 
   @Output() onMenuCommand = new EventEmitter<MenuCommand>();
 
   menuItems: MenuItem[];
   overlayMenuItems: MenuItem[];
+  displayMenuItems: MenuItem[];
+  visualizationMenuItems: MenuItem[];
   toolMenuItems: MenuItem[];
 
   static debugFps: number = 0
@@ -43,6 +45,7 @@ export class ComponentMenuComponent implements OnInit, IObsToolChanged, IObsOver
     this.toolService.subscribeToolChanged(this);
     this.cameraService.subscribeOverlayChange(this);
     this.cameraService.subscribeDisplayChange(this);
+    this.cameraService.subscribeVisualizationChange(this);
 
   }
 
@@ -67,12 +70,18 @@ export class ComponentMenuComponent implements OnInit, IObsToolChanged, IObsOver
 
     this.overlayMenuItems = [];
     overlayList.map((overlay) => {
-      //this.overlayMenuItems.push({label:'            '+DrawHelpers.overlayString[overlay], id:overlay.toString(), img:DrawHelpers.getOverlayUrl(overlay), command: (event) => { this.clickOverlay(event); }})
       this.overlayMenuItems.push({label:DrawHelpers.overlayString[overlay], id:overlay.toString(), command: (event) => { this.clickOverlay(event); }})
     });
-    this.overlayMenuItems.push({separator: true});
-    this.overlayMenuItems.push({label:"Blueprint",  id:Display.blueprint.toString(),  command: (event) => { this.clickDisplay(event); }});
-    this.overlayMenuItems.push({label:"Color",      id:Display.solid.toString(),      command: (event) => { this.clickDisplay(event); }});
+
+    this.displayMenuItems = [];
+    this.displayMenuItems.push({label:"Blueprint",  id:Display.blueprint.toString(),  command: (event) => { this.clickDisplay(event); }});
+    this.displayMenuItems.push({label:"Color",      id:Display.solid.toString(),      command: (event) => { this.clickDisplay(event); }});
+
+    this.visualizationMenuItems = [];
+    this.visualizationMenuItems.push({label:"None",         id:Visualization.none.toString(),         command: (event) => { this.clickVisualization(event); }});
+    this.visualizationMenuItems.push({label:"Temperature",  id:Visualization.temperature.toString(),  command: (event) => { this.clickVisualization(event); }});
+    this.visualizationMenuItems.push({label:"Elements",     id:Visualization.elements.toString(),     command: (event) => { this.clickVisualization(event); }});
+
 
     this.toolMenuItems = [
       {label: 'Select',         id:ToolType[ToolType.select],        command: (event) => { this.clickTool(ToolType.select); }},
@@ -112,8 +121,16 @@ export class ComponentMenuComponent implements OnInit, IObsToolChanged, IObsOver
       {
         label: 'Overlay',
         items: this.overlayMenuItems
+      },
+      {
+        label: 'Visualization',
+        items: this.visualizationMenuItems
       }
       ,
+      {
+        label: 'Display',
+        items: this.displayMenuItems
+      },
       {separator:true},
       {
         label: 'About',
@@ -136,6 +153,7 @@ export class ComponentMenuComponent implements OnInit, IObsToolChanged, IObsOver
     
     this.clickOverlay({item:{id:Overlay.Base}});
     this.clickDisplay({item:{id:Display.solid}});
+    this.clickVisualization({item:{id:Visualization.none}});
     this.clickTool(ToolType.select);
 
   }
@@ -176,12 +194,8 @@ export class ComponentMenuComponent implements OnInit, IObsToolChanged, IObsOver
 
   updateOverlayIcon(overlay: Overlay)
   {
-    let isOverlay = true;
     for (let menuItem of this.overlayMenuItems)
     {
-      if (menuItem.separator) isOverlay = false;
-      if (!isOverlay) continue;
-
       if (menuItem.id == overlay.toString()) {menuItem.icon = 'pi pi-fw pi-check';}
       else menuItem.icon = 'pi pi-fw pi-none';
     }
@@ -192,13 +206,21 @@ export class ComponentMenuComponent implements OnInit, IObsToolChanged, IObsOver
   }
 
   updateDisplayIcon(display: Display) {
-    let isDisplay = false;
-    for (let menuItem of this.overlayMenuItems)
+    for (let menuItem of this.displayMenuItems)
     {
-      if (menuItem.separator) isDisplay = true;
-      if (!isDisplay) continue;
-
       if (menuItem.id == display.toString()) {menuItem.icon = 'pi pi-fw pi-check';}
+      else menuItem.icon = 'pi pi-fw pi-none';
+    }
+  }
+
+  visualizationChanged(newVisualization: Visualization) {
+    this.updateVisualizationIcon(newVisualization)
+  }
+
+  updateVisualizationIcon(visualization: Visualization) {
+    for (let menuItem of this.visualizationMenuItems)
+    {
+      if (menuItem.id == visualization.toString()) {menuItem.icon = 'pi pi-fw pi-check';}
       else menuItem.icon = 'pi pi-fw pi-none';
     }
   }
@@ -211,6 +233,11 @@ export class ComponentMenuComponent implements OnInit, IObsToolChanged, IObsOver
   clickDisplay(event: any)
   {
     this.cameraService.display = (event.item.id as Display);
+  }
+
+  clickVisualization(event: any)
+  {
+    this.cameraService.visualization = (event.item.id as Visualization);
   }
 
   uploadYamlTemplate()

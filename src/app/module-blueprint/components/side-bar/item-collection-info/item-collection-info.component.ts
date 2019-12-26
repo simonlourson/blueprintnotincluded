@@ -63,4 +63,12 @@ export class ItemCollectionInfoComponent implements OnInit, IObsSelected {
     this.itemCollection.updateNbElements();
     this.blueprintService.blueprint.emitBlueprintChanged();
   }
+
+  changeTemperature(temperature: number) {
+    this.itemCollection.items.map((item) => {
+      item.temperature = temperature;
+    });
+
+    this.itemCollection.updateTemperatureWarning();
+  }
 }

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ToolService } from 'src/app/module-blueprint/services/tool-service';
 import { BuildableElement } from 'src/app/module-blueprint/common/bexport/b-element';
+import { CameraService } from 'src/app/module-blueprint/services/camera-service';
+import { Visualization } from 'src/app/module-blueprint/common/overlay-type';
 
 @Component({
   selector: 'app-element-report-tool',
@@ -11,7 +13,7 @@ export class ElementReportToolComponent implements OnInit {
 
   get data() { return this.toolService.elementReportTool.data }
 
-  constructor(private toolService: ToolService) { }
+  constructor(private toolService: ToolService, private cameraService: CameraService) { }
 
   getMass(m: number): string {
     if (m < 5000) return m + ' Kg';
@@ -25,4 +27,7 @@ export class ElementReportToolComponent implements OnInit {
   ngOnInit() {
   }
 
+  close() {
+    this.cameraService.visualization = Visualization.none;
+  }
 }
