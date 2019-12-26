@@ -6,7 +6,7 @@ import { SpriteInfo } from "../../drawing/sprite-info";
 import { SpriteModifier, SpriteTag } from "../../drawing/sprite-modifier";
 import { CameraService } from "../../services/camera-service";
 import { ConnectionType, ConnectionHelper } from "../utility-connection";
-import { ZIndex, Overlay, Display } from "../overlay-type";
+import { ZIndex, Overlay, Display, Visualization } from "../overlay-type";
 import { DrawHelpers, PermittedRotations } from "../../drawing/draw-helpers";
 import { Blueprint } from "./blueprint";
 import { OniCell } from "./io/oni/oni-cell";
@@ -25,6 +25,7 @@ export class BlueprintItem
 {
   static defaultRotation = 0;
   static defaultScale = Vector2.One;
+  static defaultTemperature = 30+273.15;
 
   public id: string;
   public temperature: number;
@@ -256,6 +257,7 @@ export class BlueprintItem
   {
     if (this.rotation == null) this.rotation = BlueprintItem.defaultRotation;
     if (this.scale == null) this.scale = BlueprintItem.defaultScale;
+    if (this.temperature == null) this.temperature = BlueprintItem.defaultTemperature;
     
     if (this.buildableElements == null) this.buildableElements = [];
     for (let indexElement = 0; indexElement < this.oniItem.buildableElementsArray.length; indexElement++)
@@ -302,7 +304,7 @@ export class BlueprintItem
     }
 
     returnValue.position = Vector2.clone(this.position);
-    returnValue.temperature = this.temperature;
+    if (this.temperature != BlueprintItem.defaultTemperature) returnValue.temperature = this.temperature;
 
     let elements: string[] = [];
     let exportElements = false;
@@ -407,6 +409,15 @@ export class BlueprintItem
         if (camera.display == Display.blueprint) {
           drawPart.makeInvisibileIfHasTag(SpriteTag.place);
           drawPart.makeVisibileIfHasTag(SpriteTag.solid);
+        }
+      }
+
+      if (camera.visualization == Visualization.temperature) {
+        if (drawPart.hasTag(SpriteTag.white)) {
+          drawPart.visible = true;
+          drawPart.zIndex = 1;
+          drawPart.tint = DrawHelpers.temperatureToColor(this.temperature);
+          drawPart.alpha = 0.7;
         }
       }
 

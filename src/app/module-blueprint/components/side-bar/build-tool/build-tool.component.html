@@ -17,6 +17,11 @@
       (changeElement)="changeElement($event)">
     </app-buildable-element-picker>
 
+    <app-temperature-picker
+      [blueprintItem]=currentItemToBuild
+      [temperatureWarning]="false">
+    </app-temperature-picker>
+
     <app-ui-screen-container
       [blueprintItem]="currentItemToBuild">
     </app-ui-screen-container>

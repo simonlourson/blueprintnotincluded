@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { BlueprintItem } from 'src/app/module-blueprint/common/blueprint/blueprint-item';
+import { DrawHelpers } from 'src/app/module-blueprint/drawing/draw-helpers';
 
 @Component({
   selector: 'app-temperature-picker',
@@ -14,9 +15,19 @@ export class TemperaturePickerComponent implements OnInit {
 
   @Output() changeTemperature: EventEmitter<number> = new EventEmitter<number>();
 
-  get temperatureLabel() { return this.blueprintItem.temperatureCelcius.toFixed(1) + '°C' }
+  get temperatureLabel() { return this.blueprintItem.temperatureCelcius.toFixed(0) + '°C' }
+  get temperatureHex() { return DrawHelpers.colorToHex(DrawHelpers.temperatureToColor(this.blueprintItem.temperature)); }
+  get temperatureThresholds() { return DrawHelpers.temperatureThresholds; }
 
   constructor() { }
+
+  temperatureOffset(index: number) {
+    return DrawHelpers.temperatureToScale(DrawHelpers.temperatureThresholds[index].temperature) / 100;
+  }
+
+  temperatureColor(index: number) {
+    return DrawHelpers.colorToHex(DrawHelpers.temperatureThresholds[index].color);
+  }
 
   ngOnInit() {
   }

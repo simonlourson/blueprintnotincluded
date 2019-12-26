@@ -3,10 +3,15 @@
   flex-flow: row;
   align-items: center;
   width: 100%;
+  margin-bottom: 10px
 }
 
 .temperature-slider {
   flex: 1;
+}
+
+.temperature-scale {
+  width: 100%;
 }
 
 .temperature-icon {

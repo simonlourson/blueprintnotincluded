@@ -16,7 +16,7 @@ import { SpriteModifier, SpriteTag } from 'src/app/module-blueprint/drawing/spri
 
 // PrimeNg imports
 import { Blueprint } from '../../common/blueprint/blueprint';
-import { ZIndex, Overlay, Display } from '../../common/overlay-type';
+import { ZIndex, Overlay, Display, Visualization } from '../../common/overlay-type';
 import { ToolType } from '../../common/tools/tool';
 import { ComponentSideSelectionToolComponent } from '../side-bar/selection-tool/selection-tool.component';
 import { DrawPixi } from '../../drawing/draw-pixi';
@@ -743,7 +743,8 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
 
     this.drawPixi.clearGraphics();
 
-    if (this.cameraService.display == Display.blueprint) this.drawPixi.FillRect(0x007AD9, 0, 0, this.width, this.height);
+    if (this.cameraService.visualization == Visualization.temperature) this.drawPixi.FillRect(0x000000, 0, 0, this.width, this.height);
+    else if (this.cameraService.display == Display.blueprint) this.drawPixi.FillRect(0x007AD9, 0, 0, this.width, this.height);
     else this.drawPixi.FillRect(0x007AD9, 0, 0, this.width, this.height); 
     
     let alphaOrig: number = 0.4;

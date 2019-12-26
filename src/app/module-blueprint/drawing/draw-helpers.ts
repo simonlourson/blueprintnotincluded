@@ -84,6 +84,20 @@ export class DrawHelpers
       .map(x => parseInt(x, 16));
   }
 
+  public static colorToHex(color: number) {
+    let R = ((color & 0xff0000) >> 16);
+    let G = ((color & 0xff00) >> 8);
+    let B = (color & 0xff);
+
+    return '#' + this.toHex(R) + this.toHex(G) + this.toHex(B)
+  }
+
+  private static toHex(colorComp: number) {
+    var hex = colorComp.toString(16);
+    while (hex.length < 2) {hex = "0" + hex; }
+    return hex;
+  }
+
   public static blendColor (a: number, b: number, ratio: number) {
     if (ratio > 1) ratio = 1;
     else if (ratio < 0) ratio = 0;
@@ -259,10 +273,40 @@ export class DrawHelpers
   }
 
   private static scaleSteps: ScaleStep[] = [
-    {xmin: 0,   xmax: 30,   ymin:0,       ymax: 273.15},
-    {xmin: 30,  xmax: 70,   ymin:273.15,  ymax: 373.15},
-    {xmin: 70,  xmax: 100,  ymin:373.15,  ymax: 10273.05}
+    {xmin: 0,   xmax: 15,   ymin:0,       ymax: 273.15},
+    {xmin: 15,  xmax: 60,   ymin:273.15,  ymax: 318.15},
+    {xmin: 60,  xmax: 80,   ymin:318.15,  ymax: 373.15},
+    {xmin: 80,  xmax: 90,   ymin:373.15,  ymax: 493.15},
+    {xmin: 90,  xmax: 100,  ymin:493.15,  ymax: 10272.15} 
   ];
+
+  public static temperatureThresholds: TemperatureThreshold[] = [
+  {temperature: 0,          color: 0x80fef0, label:'Absolute Zero'},
+    {temperature: 273,      color: 0x2bcbff, label:'Cold'},
+    {temperature: 283,      color: 0x1fa1ff, label:'Chilled'},
+    {temperature: 293,      color: 0x3bfe4a, label:'Temperate'},
+    {temperature: 303,      color: 0xefff00, label:'Warm'},
+    {temperature: 310,      color: 0xffa924, label:'Hot'},
+    {temperature: 373,      color: 0xfb5350, label:'Scorching'},
+    {temperature: 2073,     color: 0xfb0200, label:'Molten'},
+    {temperature: 10272.15, color: 0xfb0200, label:'Molten'},
+  ];
+
+  public static temperatureToColor(temperature: number) {
+    for (let indexThreshold = 1; indexThreshold < DrawHelpers.temperatureThresholds.length; indexThreshold++) {
+      if (temperature <= DrawHelpers.temperatureThresholds[indexThreshold].temperature) {
+        let coldColor = DrawHelpers.temperatureThresholds[indexThreshold - 1].color;
+        let hotColor = DrawHelpers.temperatureThresholds[indexThreshold].color;
+        let coldThreshold = DrawHelpers.temperatureThresholds[indexThreshold - 1].temperature;
+        let hotThreshold = DrawHelpers.temperatureThresholds[indexThreshold].temperature;
+        let ratio = (temperature - coldThreshold) / (hotThreshold - coldThreshold);
+
+        return DrawHelpers.blendColor(coldColor, hotColor, ratio);
+      }
+    }
+
+    return 0x000000;
+  }
 
   public static temperatureToScale(temperature: number) {
     for (let indexStep = 0; indexStep < DrawHelpers.scaleSteps.length; indexStep++) {
@@ -376,4 +420,10 @@ interface ScaleStep {
   xmax: number;
   ymin: number;
   ymax: number;
+}
+
+interface TemperatureThreshold {
+  temperature: number;
+  color:number;
+  label: string;
 }

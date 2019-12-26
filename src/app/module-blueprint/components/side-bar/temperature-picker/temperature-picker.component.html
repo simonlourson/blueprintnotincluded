@@ -9,11 +9,35 @@
             <path d="m1.6869 290.47 1.7786-0.0427"/>
             <path d="m1.78 292 1.6249-0.0214"/>
           </g>
-          <path d="m2.0903 293.64s-0.74626 0.1088-0.79927 1.0416c-0.0233 0.40933 0.26165 1.0551 1.2421 1.0718 0.61968 0.0106 1.1835-0.22958 1.2111-0.92088 0.0392-0.98349-0.83099-1.167-0.83099-1.167s0.69309-6.3037-0.33348-6.2453c-1.0266 0.0583-0.48942 6.2197-0.48942 6.2197z" fill="#0f0" stroke="#000" stroke-width=".34299"/>
+          <path d="m2.0903 293.64s-0.74626 0.1088-0.79927 1.0416c-0.0233 0.40933 0.26165 1.0551 1.2421 1.0718 0.61968 0.0106 1.1835-0.22958 1.2111-0.92088 0.0392-0.98349-0.83099-1.167-0.83099-1.167s0.69309-6.3037-0.33348-6.2453c-1.0266 0.0583-0.48942 6.2197-0.48942 6.2197z" 
+            [attr.fill]="temperatureHex" stroke="#000" stroke-width=".34299"/>
         </g>
       </svg>
     </div>
-    <div class="temperature-slider"><p-slider [(ngModel)]="blueprintItem.temperatureScale" [step]="0.1" (onSlideEnd)="onChange()"></p-slider></div>
+    <div class="temperature-slider">
+      <div class="temperature-scale">
+        <svg version="1.1" viewBox="0 0 100 20" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+          <defs>
+            <linearGradient id="linearGradient839" x2="100" y1="10" y2="10" gradientUnits="userSpaceOnUse">
+              <!--
+              <stop stop-color="#80fef0" offset="0"/>
+              <stop stop-color="#2bcbff" offset=".2998"/>
+              <stop stop-color="#1fa1ff" offset=".3394"/>
+              <stop stop-color="#3bfe4a" offset=".3794"/>
+              <stop stop-color="#efff00" offset=".4194"/>
+              <stop stop-color="#ffa924" offset=".4474"/>
+              <stop stop-color="#fb5350" offset=".6994"/>
+              <stop stop-color="#fb0200" offset=".7515"/>
+              <stop stop-color="#fb0200" offset="1"/>
+              -->
+              <stop *ngFor="let temperatureThreshold of temperatureThresholds; let index = index" [attr.stop-color]="temperatureColor(index)" [attr.offset]="temperatureOffset(index)"/>
+            </linearGradient>
+          </defs>
+          <rect width="100" height="20" fill="url(#linearGradient839)"/>
+        </svg>
+      </div>
+      <p-slider [(ngModel)]="blueprintItem.temperatureScale" [step]="0.1" (onSlideEnd)="onChange()"></p-slider>
+    </div>
     
       
   </div>
