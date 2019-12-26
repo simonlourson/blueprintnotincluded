@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TileInfoComponent } from './tile-info.component';
+import { TemperaturePickerComponent } from './temperature-picker.component';
 
-describe('ComponentTileInfoComponent', () => {
-  let component: TileInfoComponent;
-  let fixture: ComponentFixture<TileInfoComponent>;
+describe('TemperaturePickerComponent', () => {
+  let component: TemperaturePickerComponent;
+  let fixture: ComponentFixture<TemperaturePickerComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TileInfoComponent ]
+      declarations: [ TemperaturePickerComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TileInfoComponent);
+    fixture = TestBed.createComponent(TemperaturePickerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

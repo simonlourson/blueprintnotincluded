@@ -19,14 +19,6 @@ export class BlueprintItemWire extends BlueprintItem
   static defaultConnections = 0;
   public connections: number;
 
-  visibleConnection: boolean;
-
-  drawPartSolid_: DrawPart;
-  get drawPartSolid() {
-    if (this.drawPartSolid_ == null) this.drawPartSolid_ = new DrawPart();
-    return this.drawPartSolid_;
-  }
-
   constructor(id: string)
   {
     super(id);
@@ -59,26 +51,6 @@ export class BlueprintItemWire extends BlueprintItem
     super.cleanUp();
   }
 
-  public clone(): BlueprintItemWire
-  {
-    let returnValue = new BlueprintItemWire(this.id);
-
-    returnValue.copyFromForExport(this);
-    returnValue.cleanUp();
-
-    return returnValue;
-  }
-
-  public cloneForExport(): BlueprintItemWire
-  {
-    let returnValue = new BlueprintItemWire(this.id);
-
-    returnValue.copyFromForExport(this);
-    returnValue.deleteDefaultForExport()
-
-    return returnValue;
-  }
-
   public toMdbBuilding(): MdbBuilding {
     let returnValue = super.toMdbBuilding();
 
@@ -86,34 +58,6 @@ export class BlueprintItemWire extends BlueprintItem
 
     return returnValue;
   }
-
-  public cloneForBuilding(): BlueprintItemWire
-  {
-    let returnValue = new BlueprintItemWire(this.id);
-
-    returnValue.copyFromForExport(this);
-    returnValue.connections = 0;
-    returnValue.cleanUp();
-
-    return returnValue;
-  }
-
-  /*
-  public getDebug4(): string
-  {
-    let debug:any = {};
-    debug.connections = this.connections;
-    return JSON.stringify(debug);
-  }
-
-  
-  public getDebug3(): string
-  {
-    let debug:any = {};
-    debug.realSpriteModifier = this.realSpriteModifier;
-    return JSON.stringify(debug);
-  }
-  */
 
   prepareSpriteVisibility(camera: CameraService) {
     super.prepareSpriteVisibility(camera);
@@ -124,66 +68,18 @@ export class BlueprintItemWire extends BlueprintItem
       drawPart.makeEverythingButThisTagInvisible(connectionTag);
   }
 
-  public copyFromForExport(original: BlueprintItemWire)
-  {
-    this.connections = original.connections;
-    super.copyFromForExport(original);
-  }
-
-  public deleteDefaultForExport()
-  {
-    if (BlueprintItemWire.defaultConnections == this.connections) this.connections = undefined;
-    super.deleteDefaultForExport();
-  }
-
   public updateTileables(blueprint: Blueprint)
   {
-    
-    //this.drawPart.prepareSpriteInfoModifier(this.oniItem.spriteGroups.get("solid").getModifierFromTag(DrawHelpers.connectionTag[this.connections]).;
-    //this.drawPartSolid.prepareSpriteInfoModifier(this.oniItem.spriteModifierId + DrawHelpers.connectionStringSolid[this.connections]);
-  
-    /*
-    let spriteModifierConnection = this.oniItem.spriteGroups.get("solid").getModifierFromTag(DrawHelpers.connectionTag[this.connections]);
-    let indexDrawPart = 0;
-    for (let spriteModifier of this.oniItem.spriteGroups.get("solid").spriteModifiers) {
-      if (spriteModifier != null) this.testDrawParts[indexDrawPart].prepareSpriteInfoModifier(spriteModifier.spriteModifierId);
-
-      indexDrawPart++;
-    }
-    */
+    super.updateTileables(blueprint);
   }
 
   public prepareOverlayInfo(currentOverlay: Overlay)
   {
     super.prepareOverlayInfo(currentOverlay);
-    
-
-  }
-
-
-  public connectionChanged() {
-
   }
 
   public drawPixi(camera: CameraService, drawPixi: DrawPixi)
   {
     super.drawPixi(camera, drawPixi);
-
-
-    this.drawPartSolid.selected = this.selected;
-    let solidSprite = this.drawPartSolid.getPreparedSprite(camera, this.oniItem);
-
-    if (solidSprite != null)
-    {
-      /*
-      if (!this.drawPartSolid.addedToContainer)
-      {
-        this.container.addChild(solidSprite);
-        this.drawPartSolid.addedToContainer = true;
-      }
-      */
-
-      solidSprite.zIndex = -1;
-    }
   }
 }

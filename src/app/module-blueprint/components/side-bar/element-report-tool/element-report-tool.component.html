@@ -1,4 +1,8 @@
-<p-card header="Element Report" [style]="{width: '100%'}">
+<div class="element-card ui-widget">
+    <div class="header">
+      <span class="element-card-header">Element report</span>
+      <a class="ui-close-button" (click)="close()"><span class="pi pi-times"></span></a>
+    </div>
   <div class="scrollable">
     <div *ngFor="let dataItem of data" class="scroller-line">
       <img [src]="dataItem.buildableElement.iconUrl" class="element-image">
@@ -8,4 +12,4 @@
       <button pButton type="button" class="ui-button element-button" icon="pi pi-search-plus" (click)="selectEveryElement(dataItem.buildableElement)" pTooltip="Select every building made of {{dataItem.buildableElement.name}}" tooltipPosition="left"></button>
     </div>
   </div>
-</p-card>
+</div>

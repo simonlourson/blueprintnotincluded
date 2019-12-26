@@ -15,7 +15,6 @@ import { SpriteModifier, SpriteTag } from 'src/app/module-blueprint/drawing/spri
 
 
 // PrimeNg imports
-import { TileInfo } from '../../common/tile-info';
 import { Blueprint } from '../../common/blueprint/blueprint';
 import { ZIndex, Overlay, Display } from '../../common/overlay-type';
 import { ToolType } from '../../common/tools/tool';
@@ -593,6 +592,7 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
 
   updateThumbnail() {
 
+    //console.log('updateThumbnail')
     this.blueprintService.thumbnail = null;
 
 

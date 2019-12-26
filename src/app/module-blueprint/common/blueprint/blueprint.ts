@@ -7,7 +7,6 @@ import { ZIndex, Overlay, Display } from '../overlay-type';
 import { BlueprintItem } from './blueprint-item';
 import { BlueprintItemWire } from "./blueprint-item-wire";
 import { BlueprintItemTile } from "./blueprint-item-tile";
-import { TemplateItemElement } from './template-item-element';
 import { BniBlueprint } from './io/bni/bni-blueprint';
 import { BinaryReader, Encoding } from 'csharp-binary-stream';
 import { BniBuilding } from './io/bni/bni-building';
@@ -46,26 +45,6 @@ export class Blueprint
       newTemplateItem.importOniBuilding(building);
       
       this.addBlueprintItem(newTemplateItem);
-    }
-
-    // Copy the cells
-    for (let cell of oniBlueprint.cells)
-    {
-      let newTemplateItem = BlueprintHelpers.createInstance(OniItem.elementId);
-      if (newTemplateItem == null) continue;
-      // TODO add a warning on import
-
-      newTemplateItem.importOniCell(cell);
-
-      let elementAlreadyOnTile: boolean = false;
-      for (let t of this.getBlueprintItemsAt(newTemplateItem.position))
-      {
-        if (t.oniItem.isElement)
-        {
-          elementAlreadyOnTile = true;
-          //if (t.element != newTemplateItem.element) throw new Error('Two different elements on the same tile');
-        }
-      }
     }
 
     // Keep a copy of the yaml object in memory
@@ -170,7 +149,7 @@ export class Blueprint
   }
 
   refreshDisplay() {
-    for (let blueprintItem of this.blueprintItems) blueprintItem.displayChanged(this.currentDisplay);
+    //for (let blueprintItem of this.blueprintItems) blueprintItem.displayChanged(this.currentDisplay);
   }
 
   public addBlueprintItem(blueprintItem: BlueprintItem)

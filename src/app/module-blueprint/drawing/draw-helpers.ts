@@ -258,6 +258,36 @@ export class DrawHelpers
     return doc.body.textContent || '';
   }
 
+  private static scaleSteps: ScaleStep[] = [
+    {xmin: 0,   xmax: 30,   ymin:0,       ymax: 273.15},
+    {xmin: 30,  xmax: 70,   ymin:273.15,  ymax: 373.15},
+    {xmin: 70,  xmax: 100,  ymin:373.15,  ymax: 10273.05}
+  ];
+
+  public static temperatureToScale(temperature: number) {
+    for (let indexStep = 0; indexStep < DrawHelpers.scaleSteps.length; indexStep++) {
+      let scaleStep = DrawHelpers.scaleSteps[indexStep];
+
+      if (temperature < scaleStep.ymax || indexStep == DrawHelpers.scaleSteps.length - 1) {
+        return scaleStep.xmin + ((temperature - scaleStep.ymin) / (scaleStep.ymax - scaleStep.ymin)) * (scaleStep.xmax - scaleStep.xmin);
+      }
+    }
+
+    return 0;
+  }
+
+  public static scaleToTemperature(scale: number) {
+    for (let indexStep = 0; indexStep < DrawHelpers.scaleSteps.length; indexStep++) {
+      let scaleStep = DrawHelpers.scaleSteps[indexStep];
+
+      if (scale < scaleStep.xmax || indexStep == DrawHelpers.scaleSteps.length - 1) {
+        return scaleStep.ymin + ((scale - scaleStep.xmin) / (scaleStep.xmax - scaleStep.xmin)) * (scaleStep.ymax - scaleStep.ymin);
+      }
+    }
+
+    return 0;
+  }
+
   static connectionString: string[] = [
     'None_place',
     'L_place',
@@ -339,4 +369,11 @@ export enum PermittedRotations
     R360 = 2,
     FlipH = 3,
     FlipV = 4
+}
+
+interface ScaleStep {
+  xmin: number;
+  xmax: number;
+  ymin: number;
+  ymax: number;
 }

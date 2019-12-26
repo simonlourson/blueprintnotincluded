@@ -38,7 +38,6 @@ import {VirtualScrollerModule} from 'primeng/virtualscroller';
 import {ToggleButtonModule} from 'primeng/togglebutton';
 import {SidebarModule} from 'primeng/sidebar';
 import {RadioButtonModule} from 'primeng/radiobutton';
-import { TileInfoComponent } from './components/side-bar/tile-info/tile-info.component';
 import { UsernameValidationDirective } from './directives/username-validation.directive';
 import { ComponentSideSelectionToolComponent } from './components/side-bar/selection-tool/selection-tool.component';
 import { KeyboardDirective } from './directives/keyboard.directive';
@@ -69,6 +68,7 @@ import { SingleSliderScreenComponent } from './components/side-bar/ui-screens/si
 import { ThresholdSwhitchScreenComponent } from './components/side-bar/ui-screens/threshold-switch-screen/threshold-switch-screen.component';
 import { ActiveRangeScreenComponent } from './components/side-bar/ui-screens/active-range-screen/active-range-screen.component';
 import { DialogAboutComponent } from './components/dialogs/dialog-about/dialog-about.component';
+import { TemperaturePickerComponent } from './components/side-bar/temperature-picker/temperature-picker.component';
 
 @NgModule({
   imports: [
@@ -79,7 +79,7 @@ import { DialogAboutComponent } from './components/dialogs/dialog-about/dialog-a
     RecaptchaV3Module,
     BrowserAnimationsModule
   ],
-  declarations: [UsernameValidationDirective, BlueprintNameValidationDirective, ComponentCanvasComponent, MouseWheelDirective, DragAndDropDirective, KeyboardDirective, ComponentMenuComponent, ComponentBlueprintParentComponent, TileInfoComponent, ComponentSaveDialogComponent, ComponentSideBuildToolComponent, ComponentSideSelectionToolComponent, ComponentLoginDialogComponent, RegisterFormComponent, LoginFormComponent, DialogShareUrlComponent, ItemCollectionInfoComponent, DialogBrowseComponent, DialogExportImagesComponent, LikeWidgetComponent, BuildableElementPickerComponent, ElementReportToolComponent, UiScreenContainerComponent, SingleSliderScreenComponent, ThresholdSwhitchScreenComponent, ActiveRangeScreenComponent, DialogAboutComponent],
+  declarations: [UsernameValidationDirective, BlueprintNameValidationDirective, ComponentCanvasComponent, MouseWheelDirective, DragAndDropDirective, KeyboardDirective, ComponentMenuComponent, ComponentBlueprintParentComponent, ComponentSaveDialogComponent, ComponentSideBuildToolComponent, ComponentSideSelectionToolComponent, ComponentLoginDialogComponent, RegisterFormComponent, LoginFormComponent, DialogShareUrlComponent, ItemCollectionInfoComponent, DialogBrowseComponent, DialogExportImagesComponent, LikeWidgetComponent, BuildableElementPickerComponent, ElementReportToolComponent, UiScreenContainerComponent, SingleSliderScreenComponent, ThresholdSwhitchScreenComponent, ActiveRangeScreenComponent, DialogAboutComponent, TemperaturePickerComponent],
   providers: [CheckDuplicateService, AuthenticationService, BlueprintService, ToolService, SelectTool, BuildTool, ElementReportTool, DatePipe,
     { provide: RECAPTCHA_V3_SITE_KEY, useValue: '6LdS0b8UAAAAAGb8P_L33ypsdiS41Nu8q3CwRg_M' }
   ],

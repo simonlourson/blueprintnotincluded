@@ -29,6 +29,7 @@ export class ComponentSaveDialogComponent implements OnInit {
   get f() { return this.saveBlueprintForm.controls; }
   get icon() { return this.working || this.blueprintService.thumbnail == null ? 'pi pi-spin pi-spinner' : ''; }
   get saveLabel() { return this.blueprintService.thumbnail == null ? 'Generating thumbnail' : 'Save' }
+  get disabledSaveButton() { return !this.saveBlueprintForm.valid || this.saveBlueprintForm.pending || this.working || !this.authService.isLoggedIn() || this.blueprintService.thumbnail == null }
 
   working: boolean = false;
   thumbnailReady: boolean = false;
@@ -107,11 +108,22 @@ export class ComponentSaveDialogComponent implements OnInit {
     //console.log('updateThumbnailReady');
     this.thumbnailReady = this.blueprintService.thumbnail != null;
 
-    if (this.thumbnailReady) this.tryClearInterval();
+    if (this.thumbnailReady) {
+      //this.saveBlueprintForm.controls.thumbnailType.enable();
+      this.tryClearInterval();
+    }
   }
 
   changeThumbnail() {
-    console.log(this.saveBlueprintForm.value.thumbnailType)
+    if (this.saveBlueprintForm.value.thumbnailType != null) {
+      let newStyle = this.saveBlueprintForm.value.thumbnailType == 'Color' ? Display.solid : Display.blueprint;
+      if (newStyle != this.blueprintService.thumbnailStyle) {
+        this.blueprintService.thumbnailStyle = newStyle;
+        this.onUpdateThumbnail.emit();
+        //this.saveBlueprintForm.controls.thumbnailType.disable();
+        this.intervalId = window.setInterval(this.updateThumbnailReady.bind(this), 500);
+      }
+    }
   }
 
   reset()
@@ -137,9 +149,7 @@ export class ComponentSaveDialogComponent implements OnInit {
   {
     this.working = true;
 
-    console.log(this.saveBlueprintForm.value);
     this.blueprintService.name = this.saveBlueprintForm.getRawValue().name; // Use get raw Value because it can be disabled
-    this.blueprintService.thumbnailStyle = this.saveBlueprintForm.value.thumbnailType == 'Color' ? Display.solid : Display.blueprint;
     this.blueprintService.saveBlueprint(true).subscribe({
       next: this.handleSaveNext.bind(this),
       error: this.handleSaveError.bind(this)

@@ -21,6 +21,7 @@ export class SameItemCollection
   oniItem: OniItem;
   items: BlueprintItem[];
   nbElements: number[];
+  temperatureWarning: boolean;
 
   constructor(oniItem: OniItem) {
     this.oniItem = oniItem;
@@ -28,6 +29,8 @@ export class SameItemCollection
     this.nbElements = [];
     for (let indexElement = 0; indexElement < this.oniItem.buildableElementsArray.length; indexElement++)
       this.nbElements[indexElement] = 0;
+
+    this.temperatureWarning = false;
 
     this.observersSelected = [];
   }
@@ -38,6 +41,7 @@ export class SameItemCollection
       this.items.push(blueprintItem);
 
       this.updateNbElements();
+      this.updateTemperatureWarning();
     }
   }
 
@@ -53,9 +57,18 @@ export class SameItemCollection
     }
   }
 
+  updateTemperatureWarning() {
+    let firstTemperature = null;
+    this.temperatureWarning = false;
+
+    for (let item of this.items)
+      if (firstTemperature == null) firstTemperature = item.temperature;
+      else if (item.temperature != firstTemperature) this.temperatureWarning = true;
+  }
+
   setSelection() {
     for (let item of this.items) {
-      item.selectedMultiple = this.selected_;
+      item.selected = this.selected_;
     }
   }
 

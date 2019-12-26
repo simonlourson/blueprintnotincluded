@@ -15,36 +15,6 @@ export class BlueprintItemTile extends BlueprintItem
     super(id);
   }
 
-  public clone(): BlueprintItemTile
-  {
-    let returnValue = new BlueprintItemTile(this.id);
-
-    returnValue.copyFromForExport(this);
-    returnValue.cleanUp();
-
-    return returnValue;
-  }
-
-  public cloneForExport(): BlueprintItemTile
-  {
-    let returnValue = new BlueprintItemTile(this.id);
-
-    returnValue.copyFromForExport(this);
-    returnValue.deleteDefaultForExport()
-
-    return returnValue;
-  }
-
-  public cloneForBuilding(): BlueprintItemTile
-  {
-    let returnValue = new BlueprintItemTile(this.id);
-
-    returnValue.copyFromForExport(this);
-    returnValue.cleanUp();
-
-    return returnValue;
-  }
-
   prepareSpriteVisibility(camera: CameraService) {
     super.prepareSpriteVisibility(camera);
 

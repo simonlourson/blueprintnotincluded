@@ -59,6 +59,12 @@ export enum Display {
   solid
 }
 
+export enum Visualization {
+  none,
+  temperature,
+  elements
+}
+
 // TODO is this useless ?
 export interface OverlayCheck {
   overlay: Overlay;

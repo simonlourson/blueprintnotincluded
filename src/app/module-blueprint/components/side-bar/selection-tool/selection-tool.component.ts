@@ -1,5 +1,4 @@
 import { Component, OnInit, ChangeDetectorRef, Output, EventEmitter, ViewChild } from '@angular/core';
-import { TileInfo } from '../../../common/tile-info';
 import { BlueprintItem } from '../../../common/blueprint/blueprint-item';
 import { ToolType } from '../../../common/tools/tool';
 import { Blueprint } from '../../../common/blueprint/blueprint';

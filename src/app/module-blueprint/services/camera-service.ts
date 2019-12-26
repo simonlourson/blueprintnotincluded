@@ -1,5 +1,5 @@
 import { Vector2 } from "src/app/module-blueprint/common/vector2";
-import { ZIndex, Overlay, Display } from "../common/overlay-type";
+import { ZIndex, Overlay, Display, Visualization } from "../common/overlay-type";
 import { Injectable } from '@angular/core';
 import { OniItem } from '../common/oni-item';
 import { DrawHelpers } from '../drawing/draw-helpers';
@@ -33,6 +33,13 @@ export class CameraService
     this.display_ = value;
   }
 
+  private visualization_: Visualization;
+  get visualization() { return this.visualization_; }
+  set visualization(value: Visualization) {
+    this.observersToVisualizationChange.map((observer) => {observer.visualizationChanged(value); })
+    this.visualization_ = value;
+  }
+
   spinner: number;
 
   private sinWaveTime: number;
@@ -50,8 +57,8 @@ export class CameraService
   {
     this.cameraOffset = new Vector2();
     this.targetCameraOffset = new Vector2();
-    //this.currentZoomIndex = 7;
-    this.currentZoomIndex = 13;
+    this.currentZoomIndex = 7;
+    //this.currentZoomIndex = 13;
     this.targetZoom = this.currentZoom = this.zoomLevels[this.currentZoomIndex];
     this.sinWaveTime = 0;
     this.sinWave = 0;
@@ -60,6 +67,7 @@ export class CameraService
     this.observersToOverlayChange = [];
     this.observersToAnimationChange = [];
     this.observersToDisplayChange = [];
+    this.observersToVisualizationChange = [];
 
     if (CameraService.cameraService == null) CameraService.cameraService = this;
   }
@@ -77,6 +85,11 @@ export class CameraService
     observersToDisplayChange: IObsDisplayChanged[];
     subscribeDisplayChange(observer: IObsDisplayChanged) {
       this.observersToDisplayChange.push(observer);
+    }
+
+    observersToVisualizationChange: IObsVisualizationChanged[];
+    subscribeVisualizationChange(observer: IObsVisualizationChanged) {
+      this.observersToVisualizationChange.push(observer);
     }
 
     setOverlayForItem(item: OniItem) {
@@ -186,6 +199,10 @@ export interface IObsOverlayChanged {
 
 export interface IObsDisplayChanged {
   displayChanged(newDisplay: Display);
+}
+
+export interface IObsVisualizationChanged {
+  visualizationChanged(newVisualization: Visualization);
 }
 
 export interface IObsAnimationChanged {
