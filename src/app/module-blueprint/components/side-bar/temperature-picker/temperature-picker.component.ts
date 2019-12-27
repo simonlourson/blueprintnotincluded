@@ -1,6 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { BlueprintItem } from 'src/app/module-blueprint/common/blueprint/blueprint-item';
 import { DrawHelpers } from 'src/app/module-blueprint/drawing/draw-helpers';
+import { CameraService } from 'src/app/module-blueprint/services/camera-service';
+import { Visualization } from 'src/app/module-blueprint/common/overlay-type';
 
 @Component({
   selector: 'app-temperature-picker',
@@ -19,7 +21,7 @@ export class TemperaturePickerComponent implements OnInit {
   get temperatureHex() { return DrawHelpers.colorToHex(DrawHelpers.temperatureToColor(this.blueprintItem.temperature)); }
   get temperatureThresholds() { return DrawHelpers.temperatureThresholds; }
 
-  constructor() { }
+  constructor(private cameraService: CameraService) { }
 
   temperatureOffset(index: number) {
     return DrawHelpers.temperatureToScale(DrawHelpers.temperatureThresholds[index].temperature) / 100;
@@ -34,6 +36,10 @@ export class TemperaturePickerComponent implements OnInit {
 
   onChange() {
     this.changeTemperature.emit(this.blueprintItem.temperature);
+  }
+
+  temperatureVisualization() {
+    this.cameraService.visualization = Visualization.temperature
   }
 
 }

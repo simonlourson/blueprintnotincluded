@@ -11,7 +11,7 @@ import { Visualization } from 'src/app/module-blueprint/common/overlay-type';
 })
 export class ElementReportToolComponent implements OnInit {
 
-  get data() { return this.toolService.elementReportTool.data }
+  get data() { return this.toolService.elementReport.data }
 
   constructor(private toolService: ToolService, private cameraService: CameraService) { }
 

@@ -616,7 +616,7 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
     exportCamera.setHardZoom(thumbnailTileSize);
     exportCamera.cameraOffset = cameraOffset;
     exportCamera.overlay = Overlay.Base;
-    exportCamera.display = this.blueprintService.thumbnailStyle;
+    exportCamera.display = this.cameraService.display;
     exportCamera.container = new PIXI.Container();
     exportCamera.container.sortableChildren = true;
 
@@ -743,7 +743,7 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
 
     this.drawPixi.clearGraphics();
 
-    if (this.cameraService.visualization == Visualization.temperature) this.drawPixi.FillRect(0x000000, 0, 0, this.width, this.height);
+    if (this.cameraService.visualization == Visualization.temperature) this.drawPixi.FillRect(0x909090, 0, 0, this.width, this.height);
     else if (this.cameraService.display == Display.blueprint) this.drawPixi.FillRect(0x007AD9, 0, 0, this.width, this.height);
     else this.drawPixi.FillRect(0x007AD9, 0, 0, this.width, this.height); 
     

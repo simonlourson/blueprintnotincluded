@@ -281,8 +281,8 @@ export class DrawHelpers
   ];
 
   public static temperatureThresholds: TemperatureThreshold[] = [
-  {temperature: 0,          color: 0x80fef0, label:'Absolute Zero'},
-    {temperature: 273,      color: 0x2bcbff, label:'Cold'},
+    {temperature: 0,        color: 0x80fef0, label:'Absolute Zero'},
+    {temperature: 273.15,   color: 0x2bcbff, label:'Cold'},
     {temperature: 283,      color: 0x1fa1ff, label:'Chilled'},
     {temperature: 293,      color: 0x3bfe4a, label:'Temperate'},
     {temperature: 303,      color: 0xefff00, label:'Warm'},
@@ -422,7 +422,7 @@ interface ScaleStep {
   ymax: number;
 }
 
-interface TemperatureThreshold {
+export interface TemperatureThreshold {
   temperature: number;
   color:number;
   label: string;

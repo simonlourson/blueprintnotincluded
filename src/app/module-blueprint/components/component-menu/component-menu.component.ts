@@ -86,8 +86,6 @@ export class ComponentMenuComponent implements OnInit, IObsToolChanged, IObsOver
     this.toolMenuItems = [
       {label: 'Select',         id:ToolType[ToolType.select],        command: (event) => { this.clickTool(ToolType.select); }},
       {label: 'Build',          id:ToolType[ToolType.build],         command: (event) => { this.clickTool(ToolType.build); }},
-      {separator:true},
-      {label: 'Element Report', id:ToolType[ToolType.elementReport], command: (event) => { this.clickTool(ToolType.elementReport); }},
     ];
 
     this.menuItems = [
@@ -136,7 +134,7 @@ export class ComponentMenuComponent implements OnInit, IObsToolChanged, IObsOver
         label: 'About',
         icon:'pi pi-info-circle', command: (event) => { this.onMenuCommand.emit({type: MenuCommandType.about, data: null}); }
       }
-      
+      /*
       ,{
         label: 'Technical',
         items: [
@@ -147,7 +145,7 @@ export class ComponentMenuComponent implements OnInit, IObsToolChanged, IObsOver
           {label: 'Repack textures',       icon:'pi pi-download', command: (event) => { this.onMenuCommand.emit({type: MenuCommandType.repackTextures, data:null}); } }
         ]
       }
-      
+      */
     ];
    
     

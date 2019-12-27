@@ -3,6 +3,8 @@ import { OniItem } from 'src/app/module-blueprint/common/oni-item';
 import { SelectItem } from 'primeng/api';
 import { BuildableElement } from 'src/app/module-blueprint/common/bexport/b-element';
 import { OverlayPanel } from 'primeng/overlaypanel';
+import { CameraService } from 'src/app/module-blueprint/services/camera-service';
+import { Visualization } from 'src/app/module-blueprint/common/overlay-type';
 
 @Component({
   selector: 'app-buildable-element-picker',
@@ -20,7 +22,7 @@ export class BuildableElementPickerComponent implements OnInit {
   @ViewChildren(OverlayPanel) elementPanels !: QueryList<OverlayPanel>;
 
  
-  constructor() { }
+  constructor(private cameraService: CameraService) { }
 
   ngOnInit() {
   }
@@ -45,6 +47,10 @@ export class BuildableElementPickerComponent implements OnInit {
     this.elementPanels.forEach((elementPanel) => { elementPanel.hide(); });
 
     this.currentElement[index] = buildableElement;
+  }
+
+  elementsVisualization() {
+    this.cameraService.visualization = Visualization.elements;
   }
 }
 

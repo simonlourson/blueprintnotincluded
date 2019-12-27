@@ -6,7 +6,7 @@ import { DrawPixi } from '../drawing/draw-pixi';
 import { CameraService } from './camera-service';
 import { BuildTool } from '../common/tools/build-tool';
 import { BlueprintItem } from '../common/blueprint/blueprint-item';
-import { ElementReportTool } from '../common/tools/element-report-tool';
+import { ElementReport } from '../common/tools/element-report';
 
 @Injectable({ providedIn: 'root' })
 export class ToolService implements ITool, IChangeTool
@@ -24,7 +24,7 @@ export class ToolService implements ITool, IChangeTool
   constructor(
     public selectTool: SelectTool, 
     public buildTool: BuildTool,
-    public elementReportTool: ElementReportTool)
+    public elementReport: ElementReport)
   {
     this.observers = [];
 
@@ -33,10 +33,8 @@ export class ToolService implements ITool, IChangeTool
     this.allTools = [];
     this.allTools.push(this.selectTool);
     this.allTools.push(this.buildTool);
-    this.allTools.push(this.elementReportTool);
 
     this.buildTool.parent = this;
-    this.elementReportTool.parent = this;
   }
 
   subscribeToolChanged(observer: IObsToolChanged)

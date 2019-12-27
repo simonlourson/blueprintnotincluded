@@ -97,7 +97,7 @@ export class ComponentBlueprintParentComponent implements OnInit, IObsBlueprintC
     private route: ActivatedRoute,
     private authService: AuthenticationService,
     private blueprintService: BlueprintService,
-    private cameraService: CameraService,
+    public cameraService: CameraService,
     public toolService: ToolService) { }
 
   ngOnInit() {
@@ -147,17 +147,45 @@ export class ComponentBlueprintParentComponent implements OnInit, IObsBlueprintC
   {
     let promise = new Promise((resolve, reject) => {
 
-    JSZipUtils.getBinaryContent('/assets/database/database.zip', function(err, data) {
+    // Start comment here 
+    JSZipUtils.getBinaryContent('/assets/database/database.zip', (err, data) => {
       if(err) { throw err; }
   
       JSZip.loadAsync(data).then((zipped) => {
         zipped.files['database.json'].async('text').then((text) => {
-          // TODO when database is stable
-          //console.log(JSON.parse(text));
+          let json = JSON.parse(text);
+
+          this.database = json;
+
+          let elements: BuildableElement[] = json.elements;
+          BuildableElement.load(elements);
+  
+          let buildMenuCategories: BuildMenuCategory[] = json.buildMenuCategories;
+          BuildMenuCategory.load(buildMenuCategories);
+  
+          let buildMenuItems: BuildMenuItem[] = json.buildMenuItems;
+          BuildMenuItem.load(buildMenuItems);
+  
+          let uiSprites: BSpriteInfo[] = json.uiSprites;
+          SpriteInfo.load(uiSprites)
+  
+          let spriteModifiers: BSpriteModifier[] = json.spriteModifiers;
+          SpriteModifier.load(spriteModifiers);
+          
+          let buildings: BBuilding[] = json.buildings;
+          OniItem.load(buildings);
+  
+          resolve(0);
         })
+        
+      })
+      .catch((error) => {
+        reject(error);
       });
     });
+    // End comment here 
 
+    /*
     fetch("/assets/database/database.json")
       .then(response => { return response.json(); })
       .then(json => {
@@ -187,6 +215,7 @@ export class ComponentBlueprintParentComponent implements OnInit, IObsBlueprintC
     .catch((error) => {
       reject(error);
     })
+    */
 
     });
 

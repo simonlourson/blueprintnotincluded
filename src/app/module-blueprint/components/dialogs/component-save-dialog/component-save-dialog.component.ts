@@ -77,8 +77,6 @@ export class ComponentSaveDialogComponent implements OnInit {
       this.messageService.add({severity:'success', summary:summary , detail:detail});
       this.working = false;
     }
-
-
   }
 
   handleSaveError()

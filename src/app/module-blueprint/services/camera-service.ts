@@ -31,14 +31,21 @@ export class CameraService
   set display(value: Display) {
     this.observersToDisplayChange.map((observer) => {observer.displayChanged(value); })
     this.display_ = value;
+
+    if (value == Display.blueprint) this.visualization = Visualization.none;
   }
 
   private visualization_: Visualization;
   get visualization() { return this.visualization_; }
   set visualization(value: Visualization) {
-    this.observersToVisualizationChange.map((observer) => {observer.visualizationChanged(value); })
+    this.observersToVisualizationChange.map((observer) => {observer.visualizationChanged(value); });
     this.visualization_ = value;
+
+    if (value != Visualization.none) this.display = Display.solid;
   }
+
+  get showElementReport() { return this.visualization == Visualization.elements; } 
+  get showTemperatureScale() { return this.visualization == Visualization.temperature; }
 
   spinner: number;
 

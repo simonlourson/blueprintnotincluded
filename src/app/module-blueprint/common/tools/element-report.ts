@@ -10,9 +10,8 @@ import { BlueprintItem } from '../blueprint/blueprint-item';
 import { DrawHelpers } from '../../drawing/draw-helpers';
 
 @Injectable()
-export class ElementReportTool implements ITool, IObsBlueprintChange {
+export class ElementReport implements IObsBlueprintChange {
 
-  parent: IChangeTool;
   data: ElementReportDataItem[];
 
   constructor(private blueprintService: BlueprintService) {
@@ -57,38 +56,6 @@ export class ElementReportTool implements ITool, IObsBlueprintChange {
   blueprintChanged() {
     this.updateElementReport();
   }
-
-  // Tool interface
-  switchFrom() {
-  }  
-  switchTo() {
-    this.updateElementReport();
-  }
-  leftClick(tile: Vector2) {
-  }
-  rightClick(tile: Vector2) {
-    this.parent.changeTool(ToolType.select);
-  }
-  mouseDown(tile: Vector2) {
-  }
-  mouseOut() {
-  }
-  hover(tile: Vector2) {
-  }
-  drag(tileStart: Vector2, tileStop: Vector2) {
-  }
-  dragStop() {
-  }
-  keyDown(keyCode: string) {
-  }
-  draw(drawPixi: DrawPixi, camera: CameraService) {
-  }
-
-  toggleable: boolean = true;
-  visible: boolean = false;
-  captureInput: boolean = false;
-  toolType = ToolType.elementReport;
-  toolGroup: number = 2;
 }
 
 export interface ElementReportDataItem {

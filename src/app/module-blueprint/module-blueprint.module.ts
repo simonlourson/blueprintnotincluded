@@ -61,7 +61,7 @@ import { DialogExportImagesComponent } from './components/dialogs/dialog-export-
 import { BlueprintNameValidationDirective } from './directives/blueprint-name-validation.directive';
 import { LikeWidgetComponent } from './components/like-widget/like-widget.component';
 import { BuildableElementPickerComponent } from './components/side-bar/buildable-element-picker/buildable-element-picker.component';
-import { ElementReportTool } from './common/tools/element-report-tool';
+import { ElementReport } from './common/tools/element-report';
 import { ElementReportToolComponent } from './components/side-bar/element-report-tool/element-report-tool.component';
 import { UiScreenContainerComponent } from './components/side-bar/ui-screens/ui-screen-container/ui-screen-container.component';
 import { SingleSliderScreenComponent } from './components/side-bar/ui-screens/single-slider-screen/single-slider-screen.component';
@@ -69,6 +69,7 @@ import { ThresholdSwhitchScreenComponent } from './components/side-bar/ui-screen
 import { ActiveRangeScreenComponent } from './components/side-bar/ui-screens/active-range-screen/active-range-screen.component';
 import { DialogAboutComponent } from './components/dialogs/dialog-about/dialog-about.component';
 import { TemperaturePickerComponent } from './components/side-bar/temperature-picker/temperature-picker.component';
+import { TemperatureScaleComponent } from './components/side-bar/temperature-scale/temperature-scale.component';
 
 @NgModule({
   imports: [
@@ -79,8 +80,8 @@ import { TemperaturePickerComponent } from './components/side-bar/temperature-pi
     RecaptchaV3Module,
     BrowserAnimationsModule
   ],
-  declarations: [UsernameValidationDirective, BlueprintNameValidationDirective, ComponentCanvasComponent, MouseWheelDirective, DragAndDropDirective, KeyboardDirective, ComponentMenuComponent, ComponentBlueprintParentComponent, ComponentSaveDialogComponent, ComponentSideBuildToolComponent, ComponentSideSelectionToolComponent, ComponentLoginDialogComponent, RegisterFormComponent, LoginFormComponent, DialogShareUrlComponent, ItemCollectionInfoComponent, DialogBrowseComponent, DialogExportImagesComponent, LikeWidgetComponent, BuildableElementPickerComponent, ElementReportToolComponent, UiScreenContainerComponent, SingleSliderScreenComponent, ThresholdSwhitchScreenComponent, ActiveRangeScreenComponent, DialogAboutComponent, TemperaturePickerComponent],
-  providers: [CheckDuplicateService, AuthenticationService, BlueprintService, ToolService, SelectTool, BuildTool, ElementReportTool, DatePipe,
+  declarations: [UsernameValidationDirective, BlueprintNameValidationDirective, ComponentCanvasComponent, MouseWheelDirective, DragAndDropDirective, KeyboardDirective, ComponentMenuComponent, ComponentBlueprintParentComponent, ComponentSaveDialogComponent, ComponentSideBuildToolComponent, ComponentSideSelectionToolComponent, ComponentLoginDialogComponent, RegisterFormComponent, LoginFormComponent, DialogShareUrlComponent, ItemCollectionInfoComponent, DialogBrowseComponent, DialogExportImagesComponent, LikeWidgetComponent, BuildableElementPickerComponent, ElementReportToolComponent, UiScreenContainerComponent, SingleSliderScreenComponent, ThresholdSwhitchScreenComponent, ActiveRangeScreenComponent, DialogAboutComponent, TemperaturePickerComponent, TemperatureScaleComponent],
+  providers: [CheckDuplicateService, AuthenticationService, BlueprintService, ToolService, SelectTool, BuildTool, ElementReport, DatePipe,
     { provide: RECAPTCHA_V3_SITE_KEY, useValue: '6LdS0b8UAAAAAGb8P_L33ypsdiS41Nu8q3CwRg_M' }
   ],
   exports: [ComponentBlueprintParentComponent]

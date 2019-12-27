@@ -24,3 +24,8 @@
   font-size: smaller;
   text-align: justify;
 }
+
+.ui-fieldset-false-link {
+  cursor:pointer;
+  color: #007ad9;
+}
