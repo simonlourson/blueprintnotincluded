@@ -54,15 +54,6 @@ export class DrawPart
 
     if (this.sprite != null)
     {
-      //this.sprite.texture = this.spriteInfo.getTexture();
-      //this.sprite.anchor.set(this.spriteInfo.pivot.x, 1-this.spriteInfo.pivot.y);
-
-      // TODO this feels like it should be in the container  
-      let sizeCorrected = new Vector2(
-        camera.currentZoom / 100 * this.spriteInfo.realSize.x,
-        camera.currentZoom / 100 * this.spriteInfo.realSize.y
-      );
-
       let tileOffset: Vector2 = new Vector2(
         oniItem.size.x % 2 == 0 ? 50 : 0,
         -50
@@ -71,23 +62,23 @@ export class DrawPart
       this.sprite.visible = this.visible;
 
       // TODO invert translation in export
-      // TODO this feels like it should be in the container
-      this.sprite.x = 0 + (this.spriteModifier.translation.x + tileOffset.x) * 1;//camera.currentZoom / 100;
-      this.sprite.y = 0 - (this.spriteModifier.translation.y + tileOffset.y) * 1;//camera.currentZoom / 100;
+      this.sprite.x = 0 + (this.spriteModifier.translation.x + tileOffset.x);
+      this.sprite.y = 0 - (this.spriteModifier.translation.y + tileOffset.y);
       
       this.sprite.alpha = this.alpha;
       this.sprite.zIndex = this.zIndex;
 
-      this.sprite.scale.x = this.spriteModifier.scale.x;
-      this.sprite.scale.y = this.spriteModifier.scale.y;
-      // TODO invert rotation in export
-      this.sprite.angle = -this.spriteModifier.rotation;
-
-      // TODO this feels like it should be in the container
-      //this.sprite.width = sizeCorrected.x;
-      //this.sprite.height = sizeCorrected.y;
+      this.sprite.scale.x = 1;
+      this.sprite.scale.y = 1;
       this.sprite.width = this.spriteInfo.realSize.x;
       this.sprite.height = this.spriteInfo.realSize.y;
+      this.sprite.scale.x *=  this.spriteModifier.scale.x;
+      this.sprite.scale.y *= this.spriteModifier.scale.y;
+
+      this.sprite.tint = this.tint;
+
+      // TODO invert rotation in export
+      this.sprite.angle = -this.spriteModifier.rotation;
 
     }
   }

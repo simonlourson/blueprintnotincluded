@@ -368,11 +368,11 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
           sprite.anchor.set(spriteInfo.pivot.x, 1-spriteInfo.pivot.y);
           sprite.x = 0 + (spriteModifier.translation.x);
           sprite.y = 0 - (spriteModifier.translation.y);
+          sprite.width = spriteInfo.realSize.x;
+          sprite.height = spriteInfo.realSize.y;
           sprite.scale.x = spriteModifier.scale.x;
           sprite.scale.y = spriteModifier.scale.y;
           sprite.angle = -spriteModifier.rotation;
-          sprite.width = spriteInfo.realSize.x;
-          sprite.height = spriteInfo.realSize.y;
           sprite.zIndex -= (indexDrawPart / 50)
 
           container.addChild(sprite);
@@ -398,7 +398,7 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
         }
         
         let pivot = new Vector2(1 - ((bounds.width + bounds.x) / bounds.width), ((bounds.height + bounds.y) / bounds.height));
-        console.log(pivot);
+        //console.log(pivot);
 
         let brt = new PIXI.BaseRenderTexture({width: bounds.width, height: bounds.height, scaleMode: PIXI.SCALE_MODES.NEAREST});
         let rt = new PIXI.RenderTexture(brt);

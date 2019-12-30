@@ -146,6 +146,7 @@ export class ComponentBlueprintParentComponent implements OnInit, IObsBlueprintC
   {
     let promise = new Promise((resolve, reject) => {
 
+      
     // Start comment here 
     JSZipUtils.getBinaryContent('/assets/database/database.zip', (err, data) => {
       if(err) { throw err; }
@@ -183,6 +184,7 @@ export class ComponentBlueprintParentComponent implements OnInit, IObsBlueprintC
       });
     });
     // End comment here 
+    
 
     /*
     fetch("/assets/database/database.json")

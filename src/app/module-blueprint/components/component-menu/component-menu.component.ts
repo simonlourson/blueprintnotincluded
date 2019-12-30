@@ -134,7 +134,7 @@ export class ComponentMenuComponent implements OnInit, IObsToolChanged, IObsOver
         label: 'About',
         icon:'pi pi-info-circle', command: (event) => { this.onMenuCommand.emit({type: MenuCommandType.about, data: null}); }
       }
-      /*
+      
       ,{
         label: 'Technical',
         items: [
@@ -145,7 +145,7 @@ export class ComponentMenuComponent implements OnInit, IObsToolChanged, IObsOver
           {label: 'Repack textures',       icon:'pi pi-download', command: (event) => { this.onMenuCommand.emit({type: MenuCommandType.repackTextures, data:null}); } }
         ]
       }
-      */
+      
     ];
    
     
