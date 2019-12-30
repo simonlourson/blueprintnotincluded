@@ -6,6 +6,7 @@ import { ZIndex, Overlay } from '../overlay-type';
 import { PermittedRotations } from '../../drawing/draw-helpers';
 import { BUiScreen } from './b-ui-screen';
 
+// A building (exported from the game)
 export class BBuilding
 {
   name: string;
@@ -38,6 +39,8 @@ export class BBuilding
   tileableTopBottom: boolean;
 }
 
+// All sprites for a building
+// TODO since all sprites for a building are inside the same group, we don't need this class anymore. spriteNames should go directly into the BBuilding class
 export class BSpriteGroup {
   groupName: string;
   spriteNames: string[];

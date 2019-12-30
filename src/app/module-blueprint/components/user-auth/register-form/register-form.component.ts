@@ -1,5 +1,4 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { LoginInfo } from 'src/app/module-blueprint/common/api/login-info';
 import { FormGroup, FormControl, Validators, AbstractControl, FormBuilder } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { CheckDuplicateService } from '../../../services/check-duplicate-service';

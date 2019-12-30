@@ -520,7 +520,10 @@ export class BlueprintItem
 
     for (let drawPart of this.drawParts) drawPart.prepareSprite(camera, this.container, this.oniItem);
     
-
+      let sizeCorrected = new Vector2(
+        camera.currentZoom / 100 * 1,
+        camera.currentZoom / 100 * 1
+      );
 
       let positionCorrected = new Vector2(
         ( this.position.x + camera.cameraOffset.x + 0.5) * camera.currentZoom,
@@ -539,9 +542,11 @@ export class BlueprintItem
       this.container.x = positionCorrected.x;
       this.container.y = positionCorrected.y;
       
-      this.container.scale.x = this.scale.x;
-      this.container.scale.y = this.scale.y;
+      this.container.scale.x = this.scale.x * sizeCorrected.x;
+      this.container.scale.y = this.scale.y * sizeCorrected.y;
       this.container.angle = this.rotation;
+
+      //this.container.width
 
       // Overlay stuff
       this.container.zIndex = this.depth;

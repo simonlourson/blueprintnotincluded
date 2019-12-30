@@ -1,6 +1,7 @@
 import { DrawHelpers } from '../../drawing/draw-helpers';
 import { OniItem } from '../oni-item';
 
+// Categories for the build tool (exported from the game) 
 export class BuildMenuCategory
 {
   category: number;
@@ -62,6 +63,7 @@ export class BuildMenuCategory
   }
 }
 
+// Buildings for the build tool (exported from the game) 
 export class BuildMenuItem
 {
   category: number;

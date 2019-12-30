@@ -72,16 +72,11 @@ export class DrawPart
 
       // TODO invert translation in export
       // TODO this feels like it should be in the container
-      this.sprite.x = 0 + (this.spriteModifier.translation.x + tileOffset.x) * camera.currentZoom / 100;
-      this.sprite.y = 0 - (this.spriteModifier.translation.y + tileOffset.y) * camera.currentZoom / 100;
+      this.sprite.x = 0 + (this.spriteModifier.translation.x + tileOffset.x) * 1;//camera.currentZoom / 100;
+      this.sprite.y = 0 - (this.spriteModifier.translation.y + tileOffset.y) * 1;//camera.currentZoom / 100;
       
       this.sprite.alpha = this.alpha;
       this.sprite.zIndex = this.zIndex;
-
-      if (this.selected)
-        this.sprite.tint = DrawHelpers.blendColor(this.tint, 0x4CFF00, camera.sinWave);
-      else
-        this.sprite.tint = this.tint;
 
       this.sprite.scale.x = this.spriteModifier.scale.x;
       this.sprite.scale.y = this.spriteModifier.scale.y;
@@ -89,8 +84,10 @@ export class DrawPart
       this.sprite.angle = -this.spriteModifier.rotation;
 
       // TODO this feels like it should be in the container
-      this.sprite.width = sizeCorrected.x;
-      this.sprite.height = sizeCorrected.y;
+      //this.sprite.width = sizeCorrected.x;
+      //this.sprite.height = sizeCorrected.y;
+      this.sprite.width = this.spriteInfo.realSize.x;
+      this.sprite.height = this.spriteInfo.realSize.y;
 
     }
   }

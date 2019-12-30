@@ -1,5 +1,7 @@
 import { DrawHelpers } from '../../drawing/draw-helpers';
 
+// Elements that buildings can be made of (Exported from the game)
+// TODO we don't currently handle "exotic" elements (ie reed fibers for paintings, or bleach stone for sanitation stations)
 export class BuildableElement {
 
   // From export
@@ -62,6 +64,7 @@ export class BuildableElement {
     return null;
   }
 
+  // Get a list of elements that have the parameter tag
   public static getElementsFromTag(tag: string): BuildableElement[] {
     
     let returnValue: BuildableElement[] = []; 
@@ -76,17 +79,14 @@ export class BuildableElement {
     return returnValue;
   }
 
+  // Some buildings are made from more than one element (Steam Turbine)
   public static getElementsFromTags(tags: string[]): BuildableElement[][] {
-    //console.log('getElementsFromTags')
-
     let returnValue: BuildableElement[][] = [];
 
     for (let indexTag = 0; indexTag < tags.length; indexTag++) {
       returnValue[indexTag] = [];
       returnValue[indexTag] = this.getElementsFromTag(tags[indexTag]);
     }
-
-    //console.log(returnValue)
     
     return returnValue;
   }

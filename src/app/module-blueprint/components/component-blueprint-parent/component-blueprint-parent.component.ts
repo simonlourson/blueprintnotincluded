@@ -28,7 +28,6 @@ import { BSpriteInfo } from '../../common/bexport/b-sprite-info';
 import { BSpriteModifier } from '../../common/bexport/b-sprite-modifier';
 import { BniBlueprint } from '../../common/blueprint/io/bni/bni-blueprint';
 import { ComponentLoginDialogComponent } from '../user-auth/login-dialog/login-dialog.component';
-import { LoginInfo } from '../../common/api/login-info';
 import { BlueprintService, IObsBlueprintChanged, ExportImageOptions } from '../../services/blueprint-service';
 import { ComponentSaveDialogComponent } from '../dialogs/component-save-dialog/component-save-dialog.component';
 import { DialogShareUrlComponent } from '../dialogs/dialog-share-url/dialog-share-url.component';
