@@ -6,7 +6,7 @@
   <app-component-menu #menu (onMenuCommand)="menuCommand($event)">
   </app-component-menu>
   <div>
-    <div class="side-panel">
+    <div #sidePanelLeft class="side-panel">
       <app-selection-tool 
         #selectionTool 
         [hidden]="!toolService.selectTool.visible || !toolService.selectTool.showTool">

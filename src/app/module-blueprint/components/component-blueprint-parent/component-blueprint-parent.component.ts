@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ChangeDetectorRef, ElementRef, Renderer2 } from '@angular/core';
 import {MessageService, Message} from 'primeng/api';
 import { ComponentCanvasComponent } from '../component-canvas/component-canvas.component';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
@@ -40,6 +40,7 @@ import { AuthenticationService } from '../../services/authentification-service';
 import { BuildableElement } from '../../common/bexport/b-element';
 import { ComponentSideBuildToolComponent } from '../side-bar/build-tool/build-tool.component';
 import { DialogAboutComponent } from '../dialogs/dialog-about/dialog-about.component';
+import { ComponentSideSelectionToolComponent } from '../side-bar/selection-tool/selection-tool.component';
 
 /*
 TODO Feature List before release :
@@ -91,13 +92,20 @@ export class ComponentBlueprintParentComponent implements OnInit, IObsBlueprintC
   @ViewChild('aboutDialog', {static: false})
   aboutDialog: DialogAboutComponent;
 
+  @ViewChild('sidePanelLeft', {static: true})
+  sidePanelLeft: ElementRef;
+
+  @ViewChild('selectionTool', {static: true})
+  selectionTool: ComponentSideSelectionToolComponent;
+
   constructor(
     private messageService: MessageService, 
     private route: ActivatedRoute,
     private authService: AuthenticationService,
     private blueprintService: BlueprintService,
     public cameraService: CameraService,
-    public toolService: ToolService) { }
+    public toolService: ToolService,
+    private renderer: Renderer2) { }
 
   ngOnInit() {
     
@@ -135,6 +143,17 @@ export class ComponentBlueprintParentComponent implements OnInit, IObsBlueprintC
       this.messageService.add({severity:'error', summary:'Error loading database' , detail:error, sticky:true});   
     });*/
 
+    this.renderer.listen('window', 'load', () => {
+      this.resizeTools();
+    });
+    this.renderer.listen('window', 'resize', () => {
+      this.resizeTools();
+    });
+  }
+
+  resizeTools() {
+    let sidePanelPosition: number = this.sidePanelLeft.nativeElement.getBoundingClientRect().y;
+    this.selectionTool.setMaxHeight(sidePanelPosition);
   }
 
   blueprintChanged(blueprint: Blueprint) {

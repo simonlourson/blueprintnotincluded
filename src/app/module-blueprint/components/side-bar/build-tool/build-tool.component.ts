@@ -11,7 +11,6 @@ import { DrawHelpers } from '../../../drawing/draw-helpers';
 import { DrawPixi } from '../../../drawing/draw-pixi';
 import { BuildMenuCategory, BuildMenuItem } from '../../../common/bexport/b-build-order';
 import { ToolService, IObsToolChanged } from 'src/app/module-blueprint/services/tool-service';
-import { IObsTemplateItemChanged } from 'src/app/module-blueprint/common/tools/select-tool';
 import { IObsBuildItemChanged } from 'src/app/module-blueprint/common/tools/build-tool';
 import { BlueprintHelpers } from 'src/app/module-blueprint/common/blueprint/blueprint-helpers';
 import { Dropdown } from 'primeng/dropdown';

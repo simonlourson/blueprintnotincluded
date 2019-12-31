@@ -19,6 +19,8 @@ export class SelectTool implements ITool
 {
   public sameItemCollections: SameItemCollection[];
 
+  public observersSelectionChanged: IObsSelectionChanged[] = [];
+
   constructor(private blueprintService: BlueprintService, private cameraService: CameraService) {
 
     // TODO also do this on blueprint loading
@@ -33,6 +35,14 @@ export class SelectTool implements ITool
   {
     this.deselectAll();
     this.sameItemCollections = [];
+  }
+
+  public subscribeSelectionChanged(observer: IObsSelectionChanged) {
+    this.observersSelectionChanged.push(observer);
+  }
+
+  private emitSelectionChanged() {
+    this.observersSelectionChanged.map((observer) => { observer.selectionChanged(); });
   }
 
   private lastSelected: BlueprintItem;
@@ -78,6 +88,8 @@ export class SelectTool implements ITool
 
       if (firstSelected == null) this.currentMultipleSelectionIndex = 0;
     }
+
+    this.emitSelectionChanged();
   }
 
   selectAll(oniItem: OniItem) {
@@ -88,6 +100,8 @@ export class SelectTool implements ITool
     });
 
     this.currentMultipleSelectionIndex = 0;
+
+    this.emitSelectionChanged();
   }
 
   selectEveryElement(buildableElement: BuildableElement) {
@@ -101,6 +115,8 @@ export class SelectTool implements ITool
     this.sameItemCollections = this.sameItemCollections.sort((i1, i2) => { return i2.oniItem.zIndex - i1.oniItem.zIndex; });
 
     this.currentMultipleSelectionIndex = 0;
+
+    this.emitSelectionChanged();
   }
 
   addToCollection(blueprintItem: BlueprintItem) {
@@ -119,6 +135,8 @@ export class SelectTool implements ITool
   deselectAll() {
     if (this.sameItemCollections != null) this.sameItemCollections.map((itemCollection) => { itemCollection.selected = false; });
     this.sameItemCollections= [];
+
+    this.emitSelectionChanged();
   }
 
   buildingsDestroy(itemCollection: SameItemCollection) {
@@ -129,6 +147,8 @@ export class SelectTool implements ITool
     this.blueprintService.blueprint.resumeChangeEvents();
 
     this.sameItemCollections.splice(this.sameItemCollections.indexOf(itemCollection), 1);
+
+    this.emitSelectionChanged();
   }
 
   get currentMultipleSelectionIndex() {
@@ -265,14 +285,7 @@ export class SelectTool implements ITool
   toolGroup: number = 1;
 }
 
-export interface IObsTemplateItemChanged
+export interface IObsSelectionChanged
 {
-  newSelection();
-  nextSelection();
-}
-
-export enum SelectionType {
-  Single,
-  Multiple,
-  None
+  selectionChanged();
 }
