@@ -5,7 +5,7 @@
     </div>
   <div class="scrollable">
     <div *ngFor="let dataItem of data" class="scroller-line">
-      <img [src]="dataItem.buildableElement.iconUrl" class="element-image">
+      <div class="element-image"><app-element-icon [element]="dataItem.buildableElement" [width]="'30px'" [height]="'30px'"></app-element-icon></div>
       <div class="element-color" [style.background-color]="dataItem.colorString"></div>
       <div class="element-text">{{dataItem.buildableElement.name}}</div>
       <div class="element-spacer"></div>

@@ -38,6 +38,10 @@ export class BuildableElement {
     this.uiColor = original.conduitColor;
   }
 
+  public hasTag(tag: string) {
+    return this.oreTags.indexOf(tag) != -1;
+  }
+
   // static
   public static elements: BuildableElement[]
   public static init()

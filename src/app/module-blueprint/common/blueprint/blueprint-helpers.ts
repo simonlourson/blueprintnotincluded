@@ -2,6 +2,7 @@ import { BlueprintItem } from './blueprint-item';
 import { OniItem } from '../oni-item';
 import { BlueprintItemWire } from './blueprint-item-wire';
 import { BlueprintItemTile } from './blueprint-item-tile';
+import { BlueprintItemElement } from './blueprint-item-element';
 
 export class BlueprintHelpers
 {
@@ -14,6 +15,7 @@ export class BlueprintHelpers
 
     if (oniItem.isWire) newTemplateItem = new BlueprintItemWire(id);
     else if (oniItem.isTile) newTemplateItem = new BlueprintItemTile(id);
+    else if (oniItem.id == 'Element') newTemplateItem = new BlueprintItemElement(id);
     else newTemplateItem = new BlueprintItem(id);
   
     return newTemplateItem;

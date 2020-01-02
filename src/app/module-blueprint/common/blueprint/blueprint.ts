@@ -14,6 +14,8 @@ import { BlueprintHelpers } from './blueprint-helpers';
 import { DrawHelpers } from '../../drawing/draw-helpers';
 import { ControlContainer } from '@angular/forms';
 import { MdbBlueprint } from './io/mdb/mdb-blueprint';
+import { BuildableElement } from '../bexport/b-element';
+import { BlueprintItemElement } from './blueprint-item-element';
 
 export class Blueprint
 {
@@ -45,6 +47,35 @@ export class Blueprint
       newTemplateItem.importOniBuilding(building);
       
       this.addBlueprintItem(newTemplateItem);
+    }
+
+    // Copy the cells
+    for (let cell of oniBlueprint.cells) {
+
+      let elementPosition = new Vector2();
+      if (cell.location_x != null) elementPosition.x = cell.location_x;
+      if (cell.location_y != null) elementPosition.y = cell.location_y;
+
+      let currentElement: BlueprintItemElement;
+      let buildingsAtPosition = this.getBlueprintItemsAt(elementPosition);
+
+      
+      for (let building of buildingsAtPosition)
+        if (building.oniItem.id == 'Element') {
+          currentElement = building as BlueprintItemElement;
+          currentElement.setElement(cell.element, 0);
+        }
+
+      if (currentElement == null) {
+        currentElement = new BlueprintItemElement('Element');
+        currentElement.position = elementPosition;
+        currentElement.temperature = cell.temperature;
+        currentElement.setElement(cell.element, 0);
+        currentElement.cleanUp();
+
+        this.addBlueprintItem(currentElement);
+      }
+
     }
 
     // Keep a copy of the yaml object in memory

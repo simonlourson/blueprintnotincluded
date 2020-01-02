@@ -160,12 +160,16 @@ export class OniItem
     if (this.permittedRotations == null) this.permittedRotations = PermittedRotations.Unrotatable;
     if (this.backColor == null) this.backColor = 0x000000;
     if (this.frontColor == null) this.frontColor = 0xFFFFFF;
-    if (this.buildableElementsArray == null) this.buildableElementsArray = [];
+    if (this.buildableElementsArray == null) this.buildableElementsArray = [[BuildableElement.getElement('Vacuum')]];
+    if (this.materialMass == null) this.materialMass = [0];
     if (this.uiScreens == null) this.uiScreens = [];
     if (this.spriteGroup == null) this.spriteGroup = new SpriteModifierGroup();
     if (this.tileableLeftRight == null) this.tileableLeftRight = false;
     if (this.tileableTopBottom == null) this.tileableTopBottom = false;
+    if (this.defaultElement == null) this.defaultElement = [BuildableElement.getElement('Vacuum')];
+    if (this.overlay == null) this.overlay = Overlay.Base;
     
+
     if (Vector2.Zero.equals(this.size)) this.tileOffset = Vector2.Zero;
     else
     {
@@ -204,6 +208,11 @@ export class OniItem
       
       OniItem.oniItemsMap.set(oniItem.id, oniItem);
     }
+
+    let elementOniItem = new OniItem('Element');
+    elementOniItem.name = 'Element';
+    elementOniItem.cleanUp();
+    OniItem.oniItemsMap.set(elementOniItem.id, elementOniItem);
   }
 
   public isOverlayPrimary(overlay: Overlay): boolean {

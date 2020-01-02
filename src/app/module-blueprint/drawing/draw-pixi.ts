@@ -94,9 +94,7 @@ export class DrawPixi
 
   }
   drawTemplateItem(templateItem: BlueprintItem, camera: CameraService) {
-    
     templateItem.drawPixi(camera, this);
-
   }
 
   public drawTileRectangle(camera: CameraService, topLeft: Vector2, bottomRight: Vector2, frontGraphics: boolean, borderWidth: number, fillColor: number, borderColor: number, fillAlpha: number, borderAlpha: number)
