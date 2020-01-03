@@ -54,14 +54,18 @@ export class BlueprintItem
 
   private selected_: boolean;
   get selected() { return this.selected_; }
-  set selected(value: boolean) { this.selected_ = value; }
+  set selected(value: boolean) { 
+    this.selected_ = value; 
+    if (!this.selected) this.reloadCamera = true;
+  }
 
   // TODO getter setter with prepare bounding box
   position: Vector2;
   orientation: Orientation;
   rotation: number;
   scale: Vector2;
-  get oniItem() { return OniItem.getOniItem(this.id); };
+  //get oniItem() { return OniItem.getOniItem(this.id); };
+  oniItem: OniItem;
 
   topLeft: Vector2;
   bottomRight: Vector2;
@@ -78,7 +82,8 @@ export class BlueprintItem
 
   constructor(id: string = 'Vacuum')
   {
-      this.id = id;
+    this.id = id;
+    this.oniItem = OniItem.getOniItem(this.id);
   }
 
   getName(): string
@@ -287,7 +292,7 @@ export class BlueprintItem
     for (let spriteModifier of this.oniItem.spriteGroup.spriteModifiers) {
       if (spriteModifier.tags.indexOf(SpriteTag.ui) == -1) {
         let newDrawPart = new DrawPart();
-        newDrawPart.zIndex = 1 - (drawPartIndex / (this.oniItem.spriteGroup.spriteModifiers.length * 2))
+        newDrawPart.zIndex = 1 + (drawPartIndex / (this.oniItem.spriteGroup.spriteModifiers.length * 2))
         if (spriteModifier.tags.indexOf(SpriteTag.white) != -1) newDrawPart.zIndex = 1;
         newDrawPart.spriteModifier = spriteModifier;
         newDrawPart.visible = false;
@@ -365,6 +370,7 @@ export class BlueprintItem
     //console.log(this.tileIndexes); 
   }
 
+  private updateTileableParts: boolean = false;
   public updateTileables(blueprint: Blueprint)
   {
     for (let i = 0; i < 4; i++) this.tileable[i] = false;
@@ -377,6 +383,8 @@ export class BlueprintItem
 
       if (blueprint.getBlueprintItemsAt(new Vector2(this.position.x + 1, this.position.y)).filter(b => b.id == this.id).length > 0)
         this.tileable[1] = true;
+
+      this.updateTileableParts = true;
     }
 
     if (this.oniItem.tileableTopBottom) {
@@ -385,10 +393,33 @@ export class BlueprintItem
       
       if (blueprint.getBlueprintItemsAt(new Vector2(this.position.x, this.position.y -  1)).filter(b => b.id == this.id).length > 0)
         this.tileable[3] = true;
+
+      this.updateTileableParts = true;
     }
   }
 
-  prepareSpriteVisibility(camera: CameraService) {
+  // This is used by the build tool, TODO something cleaner
+  setInvisible() {
+    this.position = new Vector2(-99999, -99999);
+  }
+
+  // This is used by the selection tool to prioritize opaque buildings during selection
+  isOpaque: boolean;
+  visualizationTint: number;
+  cameraChanged(camera: CameraService) {
+    // Special case : we show the buildings in element mode
+    // TODO general case for elements
+    if (camera.overlay == Overlay.Unknown) Overlay.Base;
+
+    this.isOpaque = this.oniItem.isOverlayPrimary(camera.overlay) || this.oniItem.isOverlaySecondary(camera.overlay);
+
+    if (this.isOpaque) this.alpha = 1;
+    else this.alpha = 0.3;
+
+    if (this.oniItem.isOverlayPrimary(camera.overlay)) this.depth = this.oniItem.zIndex + 100;
+    else this.depth = this.oniItem.zIndex + 50;
+
+    this.visualizationTint = -1;
     for (let drawPart of this.drawParts) {
       drawPart.prepareVisibilityBasedOnDisplay(camera.display);
 
@@ -402,7 +433,7 @@ export class BlueprintItem
         if (drawPart.hasTag(SpriteTag.white)) {
           drawPart.visible = true;
           drawPart.zIndex = 1;
-          drawPart.tint = this.oniItem.backColor;
+          this.visualizationTint = this.oniItem.backColor;
           drawPart.alpha = 0.7;
         }
         
@@ -416,7 +447,7 @@ export class BlueprintItem
         if (drawPart.hasTag(SpriteTag.white)) {
           drawPart.visible = true;
           drawPart.zIndex = 1;
-          drawPart.tint = DrawHelpers.temperatureToColor(this.temperature);
+          this.visualizationTint = DrawHelpers.temperatureToColor(this.temperature);
           drawPart.alpha = 0.7;
         }
       }
@@ -425,133 +456,119 @@ export class BlueprintItem
         if (drawPart.hasTag(SpriteTag.white)) {
           drawPart.visible = true;
           drawPart.zIndex = 1;
-          drawPart.tint = this.buildableElements[0].color;
+          this.visualizationTint = this.buildableElements[0].color;
           drawPart.alpha = 0.8;
         }
       }
 
-      if (this.selected) {
-        if (camera.display == Display.solid) {
-          if (drawPart.hasTag(SpriteTag.white)) {
-            if (drawPart.visible) {
-              // If the drawPart is visible, we assume the code before already set the correct values, and we just modulate the tint
-              drawPart.tint = DrawHelpers.blendColor(drawPart.tint, 0x4CFF00, camera.sinWave)
-            }
-            else {
-              drawPart.visible = true;
-              drawPart.zIndex = 1;
-              drawPart.tint = 0x4CFF00;
-              drawPart.alpha = camera.sinWave * 0.8;
-            }
-          }
-        }
-        else if (camera.display == Display.blueprint) {
-          if (drawPart.hasTag(SpriteTag.place)) {
-            drawPart.tint = DrawHelpers.blendColor(drawPart.tint, 0x4CFF00, camera.sinWave);
-          }
-          else if (drawPart.hasTag(SpriteTag.white)) {
-            drawPart.tint = DrawHelpers.blendColor(drawPart.tint, 0x4CFF00, camera.sinWave);
-          }
-        }
-      }
-
       if (drawPart.hasTag(SpriteTag.white)) {
-        //drawPart.visible = true;
-        //drawPart.zIndex = 1;
-        //drawPart.tint = 0xFFFFFF;
-        //drawPart.alpha = 0.5;
+        drawPart.tint = this.visualizationTint;
       }
 
-      if (this.tileable[0]) drawPart.makeInvisibileIfHasTag(SpriteTag.tileable_left);
-      if (this.tileable[1]) drawPart.makeInvisibileIfHasTag(SpriteTag.tileable_right);
-      if (this.tileable[2]) drawPart.makeInvisibileIfHasTag(SpriteTag.tileable_up);
-      if (this.tileable[3]) drawPart.makeInvisibileIfHasTag(SpriteTag.tileable_down);
+      this.applyTileablesToDrawPart(drawPart);
     } 
-  
   }
 
-  // This is used by the selection tool to prioritize opaque buildings during selection
-  isOpaque: boolean;
-  public prepareOverlayInfo(currentOverlay: Overlay)
-  {
-    // Special case : we show the buildings in element mode
-    // TODO general case for elements
-    if (currentOverlay == Overlay.Unknown) Overlay.Base;
+  modulateSelectedTint(camera: CameraService) {
+    for (let drawPart of this.drawParts) {
+      if (camera.display == Display.solid) {
+        if (drawPart.hasTag(SpriteTag.white)) {
+          if (this.visualizationTint != -1) {
+            // If the drawPart is visible, we assume the code before already set the correct values, and we just modulate the tint
+            drawPart.tint = DrawHelpers.blendColor(this.visualizationTint, 0x4CFF00, camera.sinWave)
+          }
+          else {
+            drawPart.visible = true;
+            drawPart.zIndex = 1;
+            drawPart.tint = 0x4CFF00;
+            drawPart.alpha = camera.sinWave * 0.8;
+          }
+        }
+      }
+      else if (camera.display == Display.blueprint) {
+        if (drawPart.hasTag(SpriteTag.place)) {
+          drawPart.tint = DrawHelpers.blendColor(drawPart.tint, 0x4CFF00, camera.sinWave);
+        }
+        else if (drawPart.hasTag(SpriteTag.white)) {
+          drawPart.tint = DrawHelpers.blendColor(drawPart.tint, 0x4CFF00, camera.sinWave);
+        }
+      }
 
-    this.isOpaque = this.oniItem.isOverlayPrimary(currentOverlay) || this.oniItem.isOverlaySecondary(currentOverlay);
-
-    if (this.isOpaque) {
-      this.alpha = 1;
-      
-    }
-    else {
-      this.alpha = 0.3;
-      
-    }
-
-    if (this.oniItem.isOverlayPrimary(currentOverlay)) {
-      this.depth = this.oniItem.zIndex + 100;
-    }
-    else {
-      this.depth = this.oniItem.zIndex + 50;
+      this.applyTileablesToDrawPart(drawPart);
     }
   }
 
-  // This is used by the build tool, TODO something cleaner
-  setInvisible() {
-    this.position = new Vector2(-99999, -99999);
+  applyTileablesToDrawPart(drawPart: DrawPart) {
+    if (this.tileable[0]) drawPart.makeInvisibileIfHasTag(SpriteTag.tileable_left);
+    if (this.tileable[1]) drawPart.makeInvisibileIfHasTag(SpriteTag.tileable_right);
+    if (this.tileable[2]) drawPart.makeInvisibileIfHasTag(SpriteTag.tileable_up);
+    if (this.tileable[3]) drawPart.makeInvisibileIfHasTag(SpriteTag.tileable_down);
   }
 
   // Pixi stuff
   utilitySprites: PIXI.Sprite[];
   container: PIXI.Container;
+  containerCreated: boolean = false;
+  reloadCamera: boolean = true;
   public drawPixi(camera: CameraService, drawPixi: DrawPixi)
-  {
-    this.prepareSpriteVisibility(camera);
+  { 
+    
     this.drawPixiUtility(camera, drawPixi);
 
+    if (this.reloadCamera) {
+      this.cameraChanged(camera);
+      this.reloadCamera = false;
+    }
+
+    if (this.updateTileableParts) {
+      for (let drawPart of this.drawParts) this.applyTileablesToDrawPart(drawPart);
+
+      this.updateTileableParts = false;
+    }
+
+    if (this.selected) this.modulateSelectedTint(camera);
+
     // Create the container
-    if (this.container == null) 
+    if (!this.containerCreated) 
     {
       this.container = new PIXI.Container();
-      this.container.sortableChildren = true;
-      camera.container.addChild(this.container);
+      //this.container.sortableChildren = true;
+      camera.addToContainer(this.container)
+      this.containerCreated = true;
+
+      for (let drawPart of this.drawParts) drawPart.prepareSprite(this.container, this.oniItem);
     }
 
-    for (let drawPart of this.drawParts) drawPart.prepareSprite(camera, this.container, this.oniItem);
     
-      let sizeCorrected = new Vector2(
-        camera.currentZoom / 100 * 1,
-        camera.currentZoom / 100 * 1
-      );
+    
+    let sizeCorrected = new Vector2(
+      camera.currentZoom / 100 * 1,
+      camera.currentZoom / 100 * 1
+    );
+ 
+    let positionCorrected = new Vector2(
+      ( this.position.x + camera.cameraOffset.x + 0.5) * camera.currentZoom,
+      (-this.position.y + camera.cameraOffset.y + 0.5) * camera.currentZoom
+    );
 
-      let positionCorrected = new Vector2(
-        ( this.position.x + camera.cameraOffset.x + 0.5) * camera.currentZoom,
-        (-this.position.y + camera.cameraOffset.y + 0.5) * camera.currentZoom
-      );
+    // If the texture has not loaded, draw a debug rectangle
+    // TODO draw debug until all drawParts are ready
+    //if (!sprite.texture.baseTexture.valid) this.drawPixiDebug(camera, drawPixi, positionCorrected);
+    
+    // Debug
+    //this.drawPixiDebug(camera, drawPixi, positionCorrected);
 
-      // If the texture has not loaded, draw a debug rectangle
-      // TODO draw debug until all drawParts are ready
-      //if (!sprite.texture.baseTexture.valid) this.drawPixiDebug(camera, drawPixi, positionCorrected);
-      
-      // Debug
-      //this.drawPixiDebug(camera, drawPixi, positionCorrected);
+    this.container.x = positionCorrected.x;
+    this.container.y = positionCorrected.y;
+    
+    this.container.scale.x = this.scale.x * sizeCorrected.x;
+    this.container.scale.y = this.scale.y * sizeCorrected.y;
+    this.container.angle = this.rotation;
 
-      //sprite.zIndex = 0;
-
-      this.container.x = positionCorrected.x;
-      this.container.y = positionCorrected.y;
-      
-      this.container.scale.x = this.scale.x * sizeCorrected.x;
-      this.container.scale.y = this.scale.y * sizeCorrected.y;
-      this.container.angle = this.rotation;
-
-      //this.container.width
-
-      // Overlay stuff
-      this.container.zIndex = this.depth;
-      this.container.alpha = this.alpha;
-    }
+    // Overlay stuff
+    this.container.zIndex = this.depth;
+    this.container.alpha = this.alpha;
+  }
 
   private drawPixiUtility(camera: CameraService, drawPixi: DrawPixi)
   {
@@ -663,7 +680,7 @@ export class BlueprintItem
     if (this.destroyed) {
       return;
     }
-    
+
     // Destroy the main sprite
     if (this.container != null) this.container.destroy({baseTexture: false, texture: false, children: true});
     

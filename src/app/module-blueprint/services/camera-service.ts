@@ -22,15 +22,23 @@ export class CameraService
   private overlay_: Overlay;
   get overlay() { return this.overlay_; }
   set overlay(value: Overlay) {
-    this.observersToOverlayChange.map((observer) => {observer.overlayChanged(value); })
+    let emitChange = this.overlay_ != value;
     this.overlay_ = value;
+    if (emitChange) {
+      this.triggerSortChildren = true;
+      this.observersCameraChange.map((observer) => {observer.cameraChanged(this); });
+    }
   }
 
   private display_: Display;
   get display() { return this.display_; }
   set display(value: Display) {
-    this.observersToDisplayChange.map((observer) => {observer.displayChanged(value); })
+    let emitChange = this.display_ != value;
     this.display_ = value;
+    if (emitChange) {
+      this.triggerSortChildren = true;
+      this.observersCameraChange.map((observer) => {observer.cameraChanged(this); });
+    }
 
     if (value == Display.blueprint) this.visualization = Visualization.none;
   }
@@ -38,8 +46,12 @@ export class CameraService
   private visualization_: Visualization;
   get visualization() { return this.visualization_; }
   set visualization(value: Visualization) {
-    this.observersToVisualizationChange.map((observer) => {observer.visualizationChanged(value); });
+    let emitChange = this.visualization_ != value;
     this.visualization_ = value;
+    if (emitChange) {
+      this.triggerSortChildren = true;
+      this.observersCameraChange.map((observer) => {observer.cameraChanged(this); });
+    }
 
     if (value != Visualization.none) this.display = Display.solid;
   }
@@ -55,7 +67,13 @@ export class CameraService
   private targetZoom: number;
   private lastZoomCenter: Vector2;
 
-  container: PIXI.Container;
+  public triggerSortChildren: boolean;
+
+  public container: PIXI.Container;
+  public addToContainer(child: any) {
+    this.container.addChild(child);
+    this.triggerSortChildren = true;
+  }
 
   // For classes that want to use the service and are not created by angular
   static cameraService: CameraService;
@@ -71,81 +89,75 @@ export class CameraService
     this.sinWave = 0;
     this.spinner = 0;
 
-    this.observersToOverlayChange = [];
+    this.triggerSortChildren = true;
+
+    this.observersCameraChange = [];
     this.observersToAnimationChange = [];
-    this.observersToDisplayChange = [];
-    this.observersToVisualizationChange = [];
+
+    this.overlay = Overlay.Base;
+    this.display = Display.solid;
+    this.visualization = Visualization.none;
 
     if (CameraService.cameraService == null) CameraService.cameraService = this;
   }
 
-    observersToOverlayChange: IObsOverlayChanged[];
-    subscribeOverlayChange(observer: IObsOverlayChanged) {
-      this.observersToOverlayChange.push(observer);
-    }
+  observersCameraChange: IObsCameraChanged[];
+  subscribeCameraChange(observer: IObsCameraChanged) {
+    this.observersCameraChange.push(observer);
+  }
 
-    observersToAnimationChange: IObsAnimationChanged[];
-    subscribeAnimationChange(observer: IObsAnimationChanged) {
-      this.observersToAnimationChange.push(observer);
-    }
+  observersToAnimationChange: IObsAnimationChanged[];
+  subscribeAnimationChange(observer: IObsAnimationChanged) {
+    this.observersToAnimationChange.push(observer);
+  }
 
-    observersToDisplayChange: IObsDisplayChanged[];
-    subscribeDisplayChange(observer: IObsDisplayChanged) {
-      this.observersToDisplayChange.push(observer);
-    }
+  setOverlayForItem(item: OniItem) {
+    this.overlay = item.overlay;
+  }
 
-    observersToVisualizationChange: IObsVisualizationChanged[];
-    subscribeVisualizationChange(observer: IObsVisualizationChanged) {
-      this.observersToVisualizationChange.push(observer);
-    }
+  updateZoom()
+  {
+    // Snap if close enough
+    if (this.currentZoom == this.targetZoom)
+      return;
+    if (Math.abs(this.currentZoom - this.targetZoom) < 0.1)
+      this.changeZoom(this.targetZoom - this.currentZoom, this.lastZoomCenter);
+    else
+      this.changeZoom((this.targetZoom - this.currentZoom) / 10, this.lastZoomCenter);
+  }
 
-    setOverlayForItem(item: OniItem) {
-      this.overlay = item.overlay;
-    }
+  resetSinWave() {
+    this.sinWaveTime = 45;
+  }
 
-    updateZoom()
-    {
-        // Snap if close enough
-        if (this.currentZoom == this.targetZoom)
-            return;
-        if (Math.abs(this.currentZoom - this.targetZoom) < 0.1)
-            this.changeZoom(this.targetZoom - this.currentZoom, this.lastZoomCenter);
-        else
-            this.changeZoom((this.targetZoom - this.currentZoom) / 10, this.lastZoomCenter);
-    }
+  updateAnimations(deltaTime: number) {
+    this.updateSinWave(deltaTime);
+    this.updateSpinner(deltaTime);
 
-    resetSinWave() {
-      this.sinWaveTime = 45;
-    }
+    this.observersToAnimationChange.map((observer) => { observer.animationChanged(); })
+  }
 
-    updateAnimations(deltaTime: number) {
-      this.updateSinWave(deltaTime);
-      this.updateSpinner(deltaTime);
+  updateSinWave(deltaTime: number) {
+    this.sinWaveTime += deltaTime / 3;
+    if (this.sinWaveTime > 360) this.sinWaveTime -= 360;
 
-      this.observersToAnimationChange.map((observer) => { observer.animationChanged(); })
-    }
+    this.sinWave = Math.sin(this.sinWaveTime * Math.PI / 180) / 2 + 0.5;
+  }
 
-    updateSinWave(deltaTime: number) {
-      this.sinWaveTime += deltaTime / 3;
-      if (this.sinWaveTime > 360) this.sinWaveTime -= 360;
+  updateSpinner(deltaTime: number) {
+    this.spinner += deltaTime / 6;
+    if (this.spinner > 360) this.spinner -= 360;
+  }
 
-      this.sinWave = Math.sin(this.sinWaveTime * Math.PI / 180) / 2 + 0.5;
-    }
+  resetZoom(canvasSize: Vector2)
+  {
+    this.currentZoomIndex = 7;
+    //this.currentZoomIndex = 13;
+    this.targetZoom = this.currentZoom = this.zoomLevels[this.currentZoomIndex];
 
-    updateSpinner(deltaTime: number) {
-      this.spinner += deltaTime / 6;
-      if (this.spinner > 360) this.spinner -= 360;
-    }
-
-    resetZoom(canvasSize: Vector2)
-    {
-      this.currentZoomIndex = 7;
-      //this.currentZoomIndex = 13;
-      this.targetZoom = this.currentZoom = this.zoomLevels[this.currentZoomIndex];
-
-      this.cameraOffset.x = canvasSize.x * 0.5 / this.currentZoom;
-      this.cameraOffset.y = canvasSize.y * 0.5 / this.currentZoom;
-    }
+    this.cameraOffset.x = canvasSize.x * 0.5 / this.currentZoom;
+    this.cameraOffset.y = canvasSize.y * 0.5 / this.currentZoom;
+  }
 
     // Public because this is used by the export images dialog
     public zoomLevels: number[] = [16, 18, 20, 23, 27, 32, 38, 45, 54, 64, 76, 90, 108, 128]
@@ -200,16 +212,8 @@ export class CameraService
 
 }
 
-export interface IObsOverlayChanged {
-  overlayChanged(newOverlay: Overlay);
-}
-
-export interface IObsDisplayChanged {
-  displayChanged(newDisplay: Display);
-}
-
-export interface IObsVisualizationChanged {
-  visualizationChanged(newVisualization: Visualization);
+export interface IObsCameraChanged {
+  cameraChanged(camera: CameraService);
 }
 
 export interface IObsAnimationChanged {

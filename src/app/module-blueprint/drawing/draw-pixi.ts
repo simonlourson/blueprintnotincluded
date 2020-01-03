@@ -39,9 +39,10 @@ export class DrawPixi
     this.backGraphics.zIndex = -100;
     this.frontGraphics = new PIXI.Graphics();
     this.frontGraphics.zIndex = 100;
+    this.pixiApp.stage.interactiveChildren = false;
     this.pixiApp.stage.addChild(this.backGraphics);
     this.pixiApp.stage.addChild(this.frontGraphics);
-    this.pixiApp.stage.sortableChildren = true;
+    //this.pixiApp.stage.sortableChildren = true; 
     this.pixiApp.ticker.add(() => {this.drawAll();});
   }   
   
@@ -64,6 +65,11 @@ export class DrawPixi
     }
 
     this.parent.drawAll();
+  }
+
+  public sortChildren() {
+    console.log('sortChildren')
+    this.pixiApp.stage.sortChildren();
   }
 
   animateAll() {

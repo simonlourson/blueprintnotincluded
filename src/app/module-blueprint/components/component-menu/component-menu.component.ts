@@ -10,7 +10,7 @@ import { AuthenticationService } from '../../services/authentification-service';
 import { Blueprint } from '../../common/blueprint/blueprint';
 import { BehaviorSubject } from 'rxjs';
 import { ToolService, ToolRequest, IObsToolChanged } from '../../services/tool-service';
-import { CameraService, IObsOverlayChanged, IObsDisplayChanged, IObsVisualizationChanged } from '../../services/camera-service';
+import { CameraService, IObsCameraChanged } from '../../services/camera-service';
 import { Router } from '@angular/router';
 import { BlueprintService, BlueprintFileType } from '../../services/blueprint-service';
 import { DrawHelpers } from '../../drawing/draw-helpers';
@@ -20,7 +20,7 @@ import { DrawHelpers } from '../../drawing/draw-helpers';
   templateUrl: './component-menu.component.html',
   styleUrls: ['./component-menu.component.css']
 })
-export class ComponentMenuComponent implements OnInit, IObsToolChanged, IObsOverlayChanged, IObsDisplayChanged, IObsVisualizationChanged {
+export class ComponentMenuComponent implements OnInit, IObsToolChanged, IObsCameraChanged {
 
   @Output() onMenuCommand = new EventEmitter<MenuCommand>();
 
@@ -43,9 +43,7 @@ export class ComponentMenuComponent implements OnInit, IObsToolChanged, IObsOver
     private router: Router) 
   {
     this.toolService.subscribeToolChanged(this);
-    this.cameraService.subscribeOverlayChange(this);
-    this.cameraService.subscribeDisplayChange(this);
-    this.cameraService.subscribeVisualizationChange(this);
+    this.cameraService.subscribeCameraChange(this);
 
   }
 
@@ -186,8 +184,10 @@ export class ComponentMenuComponent implements OnInit, IObsToolChanged, IObsOver
     this.onMenuCommand.emit({type: MenuCommandType.browseBlueprints, data: userFilter});
   }
 
-  overlayChanged(newOverlay: Overlay) {
-    this.updateOverlayIcon(newOverlay);
+  cameraChanged(camera: CameraService) {
+    this.updateOverlayIcon(camera.overlay);
+    this.updateVisualizationIcon(camera.visualization);
+    this.updateDisplayIcon(camera.display);
   }
 
   updateOverlayIcon(overlay: Overlay)
@@ -199,20 +199,12 @@ export class ComponentMenuComponent implements OnInit, IObsToolChanged, IObsOver
     }
   }
 
-  displayChanged(newDisplay: Display) {
-    this.updateDisplayIcon(newDisplay);
-  }
-
   updateDisplayIcon(display: Display) {
     for (let menuItem of this.displayMenuItems)
     {
       if (menuItem.id == display.toString()) {menuItem.icon = 'pi pi-fw pi-check';}
       else menuItem.icon = 'pi pi-fw pi-none';
     }
-  }
-
-  visualizationChanged(newVisualization: Visualization) {
-    this.updateVisualizationIcon(newVisualization)
   }
 
   updateVisualizationIcon(visualization: Visualization) {

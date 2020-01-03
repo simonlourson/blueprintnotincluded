@@ -4,7 +4,7 @@ import { Component, OnInit, OnDestroy, ViewChild, ElementRef, NgZone, Output, Ev
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 // Engine imports
-import { CameraService, IObsOverlayChanged } from 'src/app/module-blueprint/services/camera-service';
+import { CameraService, IObsCameraChanged } from 'src/app/module-blueprint/services/camera-service';
 import { Vector2 } from 'src/app/module-blueprint/common/vector2';
 import { SpriteInfo } from 'src/app/module-blueprint/drawing/sprite-info';
 import { ImageSource } from 'src/app/module-blueprint/drawing/image-source';
@@ -15,7 +15,7 @@ import { SpriteModifier, SpriteTag } from 'src/app/module-blueprint/drawing/spri
 
 
 // PrimeNg imports
-import { Blueprint } from '../../common/blueprint/blueprint';
+import { Blueprint, IObsBlueprintChange } from '../../common/blueprint/blueprint';
 import { ZIndex, Overlay, Display, Visualization } from '../../common/overlay-type';
 import { ToolType } from '../../common/tools/tool';
 import { ComponentSideSelectionToolComponent } from '../side-bar/selection-tool/selection-tool.component';
@@ -41,7 +41,7 @@ declare var PIXI: any;
   templateUrl: './component-canvas.component.html',
   styleUrls: ['./component-canvas.component.css']
 })
-export class ComponentCanvasComponent implements OnInit, OnDestroy  {
+export class ComponentCanvasComponent implements OnInit, OnDestroy, IObsCameraChanged  {
 
   width: number;
   height: number;
@@ -65,7 +65,7 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
     private toolService: ToolService) {
     
     this.drawPixi = new DrawPixi();
-
+    this.cameraService.subscribeCameraChange(this);
   }
 
   private running: boolean;
@@ -628,7 +628,6 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
     graphics.endFill();
 
     clone.blueprintItems.map((item) => { 
-      item.prepareOverlayInfo(exportCamera.overlay);
       item.updateTileables(clone);
       item.drawPixi(exportCamera, this.drawPixi);
     });
@@ -691,7 +690,6 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
       exportCamera.overlay = overlay;
       
       clone.blueprintItems.map((item) => { 
-        item.prepareOverlayInfo(exportCamera.overlay);
         item.updateTileables(clone);
         item.drawPixi(exportCamera, this.drawPixi);
       });
@@ -786,12 +784,17 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
     {
       for (var templateItem of this.blueprint.blueprintItems)
       {
-        templateItem.updateTileables(this.blueprint);
+        //templateItem.updateTileables(this.blueprint);
         this.drawPixi.drawTemplateItem(templateItem, this.cameraService);
         //templateItem.draw(ctx, this.camera);
       }
       
       this.toolService.draw(this.drawPixi, this.cameraService);
+    }
+
+    if (this.cameraService.triggerSortChildren) {
+      this.drawPixi.sortChildren();
+      this.cameraService.triggerSortChildren = false;
     }
 
     // Schedule next
@@ -812,6 +815,12 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy  {
     ctx.lineWidth = lineWidth;
     ctx.lineTo(Math.floor(xEnd) + offset, Math.floor(yEnd) + offset);
     ctx.stroke();
+  }
+
+  cameraChanged(camera: CameraService) {
+    if (this.blueprint != null)
+      for (let blueprintItem of this.blueprint.blueprintItems)
+        blueprintItem.cameraChanged(camera);
   }
 
 }

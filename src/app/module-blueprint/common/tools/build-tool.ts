@@ -57,7 +57,6 @@ export class BuildTool implements ITool
 
     let newItem = BlueprintHelpers.cloneBlueprintItem(this.templateItemToBuild, false, true);
 
-    newItem.prepareOverlayInfo(this.cameraService.overlay);
     newItem.prepareBoundingBox();
     newItem.updateTileables(this.blueprintService.blueprint);
     this.blueprintService.blueprint.addBlueprintItem(newItem);

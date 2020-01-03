@@ -170,17 +170,7 @@ export class Blueprint
 
   public refreshOverlayInfo()
   {
-    for (let blueprintItem of this.blueprintItems) blueprintItem.prepareOverlayInfo(this.currentOverlay);
-  }
-
-  private currentDisplay: Display
-  displayChanged(newDisplay: Display) {
-    this.currentDisplay = newDisplay;
-    this.refreshDisplay();
-  }
-
-  refreshDisplay() {
-    //for (let blueprintItem of this.blueprintItems) blueprintItem.displayChanged(this.currentDisplay);
+    //for (let blueprintItem of this.blueprintItems) blueprintItem.overlayChanged(this.currentOverlay);
   }
 
   public addBlueprintItem(blueprintItem: BlueprintItem)
@@ -288,7 +278,12 @@ export class Blueprint
   }
 
   public emitBlueprintChanged() {
-    if (!this.pauseChangeEvents_) this.observersBlueprintChanged.map((observer) => { observer.blueprintChanged(); });
+    if (!this.pauseChangeEvents_) {
+      this.observersBlueprintChanged.map((observer) => { observer.blueprintChanged(); });
+
+      for (let blueprintItem of this.blueprintItems)
+        blueprintItem.updateTileables(this);
+    }
   }
 
   public toMdbBlueprint(): MdbBlueprint

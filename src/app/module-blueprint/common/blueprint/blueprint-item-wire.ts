@@ -10,14 +10,20 @@ import { ImageSource } from "../../drawing/image-source";
 import { DrawHelpers } from "../../drawing/draw-helpers";
 import { DrawPixi } from '../../drawing/draw-pixi';
 import { DrawPart } from '../../drawing/draw-part';
-import { Overlay } from '../overlay-type';
+import { Overlay, Display } from '../overlay-type';
 import { BniBuilding } from './io/bni/bni-building';
 import { MdbBuilding } from './io/mdb/mdb-building';
 
 export class BlueprintItemWire extends BlueprintItem 
 {
   static defaultConnections = 0;
-  public connections: number;
+
+  private connections_: number;
+  public get connections() { return this.connections_; }
+  public set connections(value: number) { 
+    if (value != this.connections_) this.reloadCamera = true;
+    this.connections_ = value;
+  }
 
   constructor(id: string)
   {
@@ -26,16 +32,14 @@ export class BlueprintItemWire extends BlueprintItem
 
   public importOniBuilding(building: OniBuilding)
   {
-      super.importOniBuilding(building);
-      
-      this.connections = building.connections == null ? BlueprintItemWire.defaultConnections : building.connections
+    this.connections = building.connections;
+    super.importOniBuilding(building);
   }
 
   public importBniBuilding(building: BniBuilding)
   {
-      super.importBniBuilding(building);
-      
-      this.connections = building.flags == null ? BlueprintItemWire.defaultConnections : building.flags
+    this.connections = building.flags;
+    super.importBniBuilding(building);
   }
 
   public importMdbBuilding(original: MdbBuilding)
@@ -47,9 +51,27 @@ export class BlueprintItemWire extends BlueprintItem
   public cleanUp()
   {
     if (this.connections == null) this.connections = BlueprintItemWire.defaultConnections;
-    
     super.cleanUp();
+
+    this.updateDrawPartVisibilityBasedOnConnections();
   }
+  
+  cameraChanged(camera: CameraService) {
+    super.cameraChanged(camera);
+    this.updateDrawPartVisibilityBasedOnConnections();
+  }
+
+  modulateSelectedTint(camera: CameraService) {
+    super.modulateSelectedTint(camera);
+    this.updateDrawPartVisibilityBasedOnConnections();
+  }
+
+  private updateDrawPartVisibilityBasedOnConnections() {
+    if (this.drawParts != null)
+      for (let drawPart of this.drawParts)
+        drawPart.makeEverythingButThisTagInvisible(DrawHelpers.connectionTag[this.connections]);
+  }
+
 
   public toMdbBuilding(): MdbBuilding {
     let returnValue = super.toMdbBuilding();
@@ -59,23 +81,9 @@ export class BlueprintItemWire extends BlueprintItem
     return returnValue;
   }
 
-  prepareSpriteVisibility(camera: CameraService) {
-    super.prepareSpriteVisibility(camera);
-
-    let connectionTag = DrawHelpers.connectionTag[this.connections];
-
-    for (let drawPart of this.drawParts)
-      drawPart.makeEverythingButThisTagInvisible(connectionTag);
-  }
-
   public updateTileables(blueprint: Blueprint)
   {
     super.updateTileables(blueprint);
-  }
-
-  public prepareOverlayInfo(currentOverlay: Overlay)
-  {
-    super.prepareOverlayInfo(currentOverlay);
   }
 
   public drawPixi(camera: CameraService, drawPixi: DrawPixi)

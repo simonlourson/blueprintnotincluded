@@ -68,7 +68,7 @@ export class DragAndDropDirective {
     this.myMouseOut.emit(event);
   }
 
-  @HostListener('mousemove', ['$event']) onMouseMove(event: any) {
+  @HostListener('mousemove.out-zone', ['$event']) onMouseMove(event: any) {
     var event = window.event || event; // old IE support
     
     let isDragging = false;

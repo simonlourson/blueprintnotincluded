@@ -13,13 +13,30 @@ export class DrawPart
   spriteInfo: SpriteInfo;
   sprite: PIXI.Sprite;
 
-  alpha: number;
-  tint: number;
-  zIndex: number;
-
-  visible: boolean;
-
-  selected: boolean;
+  private alpha_: number;
+  get alpha() { return this.alpha_; }
+  set alpha(value: number) { 
+    if (this.sprite != null) this.sprite.alpha = value;
+    this.alpha_ = value; 
+  }
+  private tint_: number;
+  get tint() { return this.tint_; }
+  set tint(value: number) { 
+    if (this.sprite != null) this.sprite.tint = value;
+    this.tint_ = value; 
+  }
+  private zIndex_: number;
+  get zIndex() { return this.zIndex_; }
+  set zIndex(value: number) { 
+    if (this.sprite != null) this.sprite.zIndex = value;
+    this.zIndex_ = value; 
+  }
+  private visible_: boolean;
+  get visible() { return this.visible_; }
+  set visible(value: boolean) { 
+    if (this.sprite != null) this.sprite.visible = value;
+    this.visible_ = value; 
+  }
 
   isReady: boolean;
 
@@ -30,9 +47,9 @@ export class DrawPart
     this.tint = 0xFFFFFF;
   }
 
-  public prepareSprite(camera: CameraService, container: PIXI.Container, oniItem: OniItem) {
+  public prepareSprite(container: PIXI.Container, oniItem: OniItem) {
 
-    if (this.sprite == null) {
+    if (!this.isReady) {
       if (this.spriteModifier != null)
         this.spriteInfo = SpriteInfo.getSpriteInfo(this.spriteModifier.spriteInfoName);
 
@@ -45,41 +62,35 @@ export class DrawPart
         // TODO Invert pivoTY in export
         this.sprite = PIXI.Sprite.from(texture);
         this.sprite.anchor.set(this.spriteInfo.pivot.x, 1-this.spriteInfo.pivot.y);
+
+        this.sprite.alpha = this.alpha;
+        this.sprite.tint = this.tint;
         this.sprite.zIndex = this.zIndex;
+        this.sprite.visible = this.visible;
+
+
+        let tileOffset: Vector2 = new Vector2(
+          oniItem.size.x % 2 == 0 ? 50 : 0,
+          -50
+        );
+
+        // TODO invert translation in export
+        this.sprite.x = 0 + (this.spriteModifier.translation.x + tileOffset.x);
+        this.sprite.y = 0 - (this.spriteModifier.translation.y + tileOffset.y);
+
+        this.sprite.scale.x = 1;
+        this.sprite.scale.y = 1;
+        this.sprite.width = this.spriteInfo.realSize.x;
+        this.sprite.height = this.spriteInfo.realSize.y;
+        this.sprite.scale.x *=  this.spriteModifier.scale.x;
+        this.sprite.scale.y *= this.spriteModifier.scale.y;
+
+        // TODO invert rotation in export
+        this.sprite.angle = -this.spriteModifier.rotation;
 
         container.addChild(this.sprite);
         this.isReady = true;
       }
-    }
-
-    if (this.sprite != null)
-    {
-      let tileOffset: Vector2 = new Vector2(
-        oniItem.size.x % 2 == 0 ? 50 : 0,
-        -50
-      );
-
-      this.sprite.visible = this.visible;
-
-      // TODO invert translation in export
-      this.sprite.x = 0 + (this.spriteModifier.translation.x + tileOffset.x);
-      this.sprite.y = 0 - (this.spriteModifier.translation.y + tileOffset.y);
-      
-      this.sprite.alpha = this.alpha;
-      this.sprite.zIndex = this.zIndex;
-
-      this.sprite.scale.x = 1;
-      this.sprite.scale.y = 1;
-      this.sprite.width = this.spriteInfo.realSize.x;
-      this.sprite.height = this.spriteInfo.realSize.y;
-      this.sprite.scale.x *=  this.spriteModifier.scale.x;
-      this.sprite.scale.y *= this.spriteModifier.scale.y;
-
-      this.sprite.tint = this.tint;
-
-      // TODO invert rotation in export
-      this.sprite.angle = -this.spriteModifier.rotation;
-
     }
   }
 
@@ -114,65 +125,6 @@ export class DrawPart
       this.spriteInfo = SpriteInfo.getSpriteInfo(this.spriteModifier.spriteInfoName);
 
     
-  }
-
-  public getPreparedSprite(camera: CameraService, oniItem: OniItem): PIXI.Sprite
-  {
-    
-    
-
-    if (this.sprite == null)
-    {
-      let texture: PIXI.Texture;
-
-      if (this.spriteInfo != null)
-        texture = this.spriteInfo.getTexture();
-
-      if (texture != null) 
-      {
-        // TODO Invert pivoTY in export
-        this.sprite = PIXI.Sprite.from(texture);
-        this.sprite.anchor.set(this.spriteInfo.pivot.x, 1-this.spriteInfo.pivot.y);
-      }
-    }
-
-    if (this.sprite != null)
-    {
-      this.sprite.texture = this.spriteInfo.getTexture();
-      this.sprite.anchor.set(this.spriteInfo.pivot.x, 1-this.spriteInfo.pivot.y);
-
-          
-      let sizeCorrected = new Vector2(
-        camera.currentZoom / 100 * this.spriteInfo.realSize.x,
-        camera.currentZoom / 100 * this.spriteInfo.realSize.y
-      );
-
-      let tileOffset: Vector2 = new Vector2(
-        oniItem.size.x % 2 == 0 ? 50 : 0,
-        -50
-      );
-
-      // TODO invert translation in export
-      this.sprite.x = 0 + (this.spriteModifier.translation.x + tileOffset.x) * camera.currentZoom / 100;
-      this.sprite.y = 0 - (this.spriteModifier.translation.y + tileOffset.y) * camera.currentZoom / 100;
-      
-      this.sprite.alpha = this.alpha;
-
-      if (this.selected)
-        this.sprite.tint = DrawHelpers.blendColor(this.tint, 0x4CFF00, camera.sinWave);
-      else
-        this.sprite.tint = this.tint;
-
-      this.sprite.scale.x = this.spriteModifier.scale.x;
-      this.sprite.scale.y = this.spriteModifier.scale.y;
-      // TODO invert rotation in export
-      this.sprite.angle = -this.spriteModifier.rotation;
-      this.sprite.width = sizeCorrected.x;
-      this.sprite.height = sizeCorrected.y;
-
-    }
-
-    return this.sprite;
   }
 
 }
