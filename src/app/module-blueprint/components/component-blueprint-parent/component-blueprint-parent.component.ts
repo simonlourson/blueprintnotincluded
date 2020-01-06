@@ -109,9 +109,9 @@ export class ComponentBlueprintParentComponent implements OnInit, IObsBlueprintC
 
   ngOnInit() {
     
+    SpriteModifier.init();
     OniItem.init();
     ImageSource.init();
-    SpriteModifier.init();
     SpriteInfo.init();
     BuildMenuCategory.init();
     BuildMenuItem.init();
@@ -165,7 +165,7 @@ export class ComponentBlueprintParentComponent implements OnInit, IObsBlueprintC
   {
     let promise = new Promise((resolve, reject) => {
 
-      
+    /*
     // Start comment here 
     JSZipUtils.getBinaryContent('/assets/database/database.zip', (err, data) => {
       if(err) { throw err; }
@@ -203,9 +203,10 @@ export class ComponentBlueprintParentComponent implements OnInit, IObsBlueprintC
       });
     });
     // End comment here 
-    
+    */
 
-    /*
+    
+    // Start comment here 
     fetch("/assets/database/database.json")
       .then(response => { return response.json(); })
       .then(json => {
@@ -234,8 +235,9 @@ export class ComponentBlueprintParentComponent implements OnInit, IObsBlueprintC
     })
     .catch((error) => {
       reject(error);
-    })
-    */
+    });
+    // End comment here 
+    
 
     });
 
@@ -258,6 +260,7 @@ export class ComponentBlueprintParentComponent implements OnInit, IObsBlueprintC
     else if (menuCommand.type == MenuCommandType.downloadGroups) this.canvas.downloadGroups(this.database);
     else if (menuCommand.type == MenuCommandType.downloadUtility) this.canvas.downloadUtility(this.database);
     else if (menuCommand.type == MenuCommandType.repackTextures) this.canvas.repackTextures(this.database);
+    else if (menuCommand.type == MenuCommandType.addElementsTiles) this.addElementsTiles();
     
   }
 
@@ -307,5 +310,55 @@ export class ComponentBlueprintParentComponent implements OnInit, IObsBlueprintC
   exportImages() {
     if (this.blueprintService.blueprint.blueprintItems.length == 0) this.messageService.add({severity:'error', summary:'Empty blueprint', detail:'Add some buildings before trying to export images'});
     else this.exportImagesDialog.showDialog();
+  }
+
+  addElementsTiles() {
+    /*
+	  {
+      "name": "liquid_tile",
+      "uvMin": {
+        "x": 0,
+        "y": 0
+      },
+      "uvSize": {
+        "x": 128,
+        "y": 128
+      },
+      "realSize": {
+        "x": 100,
+        "y": 100
+      },
+      "pivot": {
+        "x": 0,
+        "y": 0
+      },
+      "isIcon": false,
+      "textureName": "liquid_tile"
+    },
+
+    {
+      "name": "liquid_tile",
+      "type": 0,
+      "spriteInfoName": "liquid_tile",
+      "translation": {
+        "x": 0,
+        "y": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1
+      },
+      "rotation": 0,
+      "multColour": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      },
+      "tags": [
+        0
+      ]
+    },
+    */
   }
 }

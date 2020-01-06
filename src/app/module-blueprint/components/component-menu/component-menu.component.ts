@@ -132,18 +132,19 @@ export class ComponentMenuComponent implements OnInit, IObsToolChanged, IObsCame
         label: 'About',
         icon:'pi pi-info-circle', command: (event) => { this.onMenuCommand.emit({type: MenuCommandType.about, data: null}); }
       }
-      /*
+      
       ,{
-        label: 'Technical',
+        label: 'Technical', 
         items: [
           {label: 'Fetch images',          icon:'pi pi-download', command: (event) => { this.onMenuCommand.emit({type: MenuCommandType.fetchIcons, data:null}); } },
           {label: 'Download groups',       icon:'pi pi-download', command: (event) => { this.onMenuCommand.emit({type: MenuCommandType.downloadGroups, data:null}); } },
+          {label: 'Add element tiles',     icon:'pi pi-download', command: (event) => { this.onMenuCommand.emit({type: MenuCommandType.addElementsTiles, data:null}); } },
           {label: 'Download icons',        icon:'pi pi-download', command: (event) => { this.onMenuCommand.emit({type: MenuCommandType.downloadIcons, data:null}); } },
           {label: 'Download white',        icon:'pi pi-download', command: (event) => { this.onMenuCommand.emit({type: MenuCommandType.downloadUtility, data:null}); } },
           {label: 'Repack textures',       icon:'pi pi-download', command: (event) => { this.onMenuCommand.emit({type: MenuCommandType.repackTextures, data:null}); } }
         ]
       }
-      */
+      
     ];
    
     
@@ -301,6 +302,7 @@ export enum MenuCommandType
   downloadGroups,
   downloadUtility,
   repackTextures,
+  addElementsTiles,
 
 
   showLoginDialog

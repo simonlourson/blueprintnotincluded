@@ -14544,6 +14544,27 @@
       "isIcon": false,
       "textureName": "repack_0"
     },
+	{
+      "name": "liquid_tile",
+      "uvMin": {
+        "x": 0,
+        "y": 0
+      },
+      "uvSize": {
+        "x": 128,
+        "y": 128
+      },
+      "realSize": {
+        "x": 100,
+        "y": 100
+      },
+      "pivot": {
+        "x": 1,
+        "y": 0
+      },
+      "isIcon": false,
+      "textureName": "liquid_tile"
+    },
     {
       "name": "CrewCapsule_tower_0",
       "uvMin": {
@@ -56505,6 +56526,29 @@
       },
       "tags": [
         1
+      ]
+    },
+	{
+      "name": "liquid_tile",
+      "type": 0,
+      "spriteInfoName": "liquid_tile",
+      "translation": {
+        "x": 0,
+        "y": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1
+      },
+      "rotation": 0,
+      "multColour": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      },
+      "tags": [
+        0
       ]
     },
     {

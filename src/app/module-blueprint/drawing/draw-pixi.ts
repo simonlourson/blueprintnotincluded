@@ -68,7 +68,7 @@ export class DrawPixi
   }
 
   public sortChildren() {
-    console.log('sortChildren')
+    //console.log('sortChildren')
     this.pixiApp.stage.sortChildren();
   }
 

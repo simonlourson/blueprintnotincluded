@@ -741,9 +741,9 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy, IObsCameraCh
 
     this.drawPixi.clearGraphics();
 
-    if (this.cameraService.visualization == Visualization.temperature) this.drawPixi.FillRect(0x909090, 0, 0, this.width, this.height);
-    else if (this.cameraService.display == Display.blueprint) this.drawPixi.FillRect(0x007AD9, 0, 0, this.width, this.height);
-    else this.drawPixi.FillRect(0x007AD9, 0, 0, this.width, this.height); 
+    //if (this.cameraService.visualization == Visualization.temperature) this.drawPixi.FillRect(0x909090, 0, 0, this.width, this.height);
+    if (this.cameraService.display == Display.blueprint) this.drawPixi.FillRect(0x007AD9, 0, 0, this.width, this.height);
+    else this.drawPixi.FillRect(0x909090, 0, 0, this.width, this.height); 
     
     let alphaOrig: number = 0.4;
     let alpha: number = alphaOrig;
@@ -794,6 +794,7 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy, IObsCameraCh
 
     if (this.cameraService.triggerSortChildren) {
       this.drawPixi.sortChildren();
+      this.blueprint.sortChildren();
       this.cameraService.triggerSortChildren = false;
     }
 

@@ -140,7 +140,7 @@ export class BuildTool implements ITool
   hover(tile: Vector2) {
     this.templateItemToBuild.position = Vector2.clone(tile);
     this.templateItemToBuild.prepareBoundingBox();
-    this.templateItemToBuild.updateTileables(this.blueprintService.blueprint);
+    this.templateItemToBuild.sortChildren();
   }
 
   drag(tileStart: Vector2, tileStop: Vector2) {

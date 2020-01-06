@@ -292,7 +292,7 @@ export class BlueprintItem
     for (let spriteModifier of this.oniItem.spriteGroup.spriteModifiers) {
       if (spriteModifier.tags.indexOf(SpriteTag.ui) == -1) {
         let newDrawPart = new DrawPart();
-        newDrawPart.zIndex = 1 + (drawPartIndex / (this.oniItem.spriteGroup.spriteModifiers.length * 2))
+        newDrawPart.zIndex = 1 - (drawPartIndex / (this.oniItem.spriteGroup.spriteModifiers.length * 2))
         if (spriteModifier.tags.indexOf(SpriteTag.white) != -1) newDrawPart.zIndex = 1;
         newDrawPart.spriteModifier = spriteModifier;
         newDrawPart.visible = false;
@@ -522,7 +522,6 @@ export class BlueprintItem
 
     if (this.updateTileableParts) {
       for (let drawPart of this.drawParts) this.applyTileablesToDrawPart(drawPart);
-
       this.updateTileableParts = false;
     }
 
@@ -671,6 +670,10 @@ export class BlueprintItem
     drawPixi.backGraphics.lineTo(positionCorrected.x + 5, positionCorrected.y);
     drawPixi.backGraphics.moveTo(positionCorrected.x, positionCorrected.y - 5);
     drawPixi.backGraphics.lineTo(positionCorrected.x, positionCorrected.y + 5);
+  }
+
+  sortChildren() {
+    if (this.container != null) this.container.sortChildren();
   }
 
   destroyed: boolean = false;

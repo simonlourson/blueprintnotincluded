@@ -326,6 +326,10 @@ export class Blueprint
     return [topLeft, bottomRight];
   }
 
+  public sortChildren() {
+    for (let blueprintItem of this.blueprintItems) blueprintItem.sortChildren();
+  }
+
   public destroy(emitChanges: boolean = true)
   {
     if (this.blueprintItems != null) {

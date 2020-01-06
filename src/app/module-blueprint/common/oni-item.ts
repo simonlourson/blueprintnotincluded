@@ -211,6 +211,10 @@ export class OniItem
 
     let elementOniItem = new OniItem('Element');
     elementOniItem.name = 'Element';
+    // TODO use enum
+    elementOniItem.zIndex = 17;
+    elementOniItem.spriteGroup = new SpriteModifierGroup();
+    elementOniItem.spriteGroup.spriteModifiers.push(SpriteModifier.getSpriteModifer('liquid_tile'));
     elementOniItem.cleanUp();
     OniItem.oniItemsMap.set(elementOniItem.id, elementOniItem);
   }
