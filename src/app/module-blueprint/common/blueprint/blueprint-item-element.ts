@@ -38,6 +38,7 @@ export class BlueprintItemElement extends BlueprintItem
       drawPart.alpha = 0.5;
 
       if (camera.visualization == Visualization.temperature) {
+        drawPart.tint = DrawHelpers.temperatureToColor(this.temperature);
         /*
         if (drawPart.hasTag(SpriteTag.white)) {
           drawPart.visible = true;
