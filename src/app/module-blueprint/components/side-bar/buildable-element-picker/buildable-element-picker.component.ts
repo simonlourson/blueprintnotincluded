@@ -16,6 +16,7 @@ export class BuildableElementPickerComponent implements OnInit {
   @Input() buildableElementsArray: BuildableElement[][];
   @Input() currentElement: BuildableElement[];
   @Input() nbElements: number[];
+  @Input() isGasLiquid: boolean;
 
   @Output() changeElement: EventEmitter<ElementChangeInfo> = new EventEmitter<ElementChangeInfo>();
 

@@ -34,6 +34,8 @@ export class BlueprintItem
   public get temperatureScale() { return DrawHelpers.temperatureToScale(this.temperature); }
   public set temperatureScale(value: number) { this.temperature = DrawHelpers.scaleToTemperature(value); }
 
+  get header() { return this.oniItem.name; }
+
   public buildableElements: BuildableElement[];
 
   public uiSaveSettings: UiSaveSettings[];
@@ -47,6 +49,8 @@ export class BlueprintItem
   public setElement(elementId: string, index: number) {
     if (this.buildableElements == null) this.buildableElements = [];
     this.buildableElements[index] = BuildableElement.getElement(elementId);
+
+    this.reloadCamera = true;
   }
 
   // Each template item should remember where it was added, to make removal easier
@@ -417,7 +421,7 @@ export class BlueprintItem
     else this.alpha = 0.3;
 
     if (this.oniItem.isOverlayPrimary(camera.overlay)) this.depth = this.oniItem.zIndex + 100;
-    else this.depth = this.oniItem.zIndex + 50;
+    else this.depth = this.oniItem.zIndex;// + 50;
 
     this.visualizationTint = -1;
     for (let drawPart of this.drawParts) {

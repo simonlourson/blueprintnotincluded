@@ -35,6 +35,8 @@ export class SameItemCollection
     this.observersSelected = [];
   }
 
+  get header() { return this.items[0].header; }
+
   addItem(blueprintItem: BlueprintItem) {
     // We need to test if the item was already added to this collection, (some items are bigger than one tile)
     if (this.items.indexOf(blueprintItem) == -1) {

@@ -214,7 +214,9 @@ export class OniItem
     // TODO use enum
     elementOniItem.zIndex = 17;
     elementOniItem.spriteGroup = new SpriteModifierGroup();
-    elementOniItem.spriteGroup.spriteModifiers.push(SpriteModifier.getSpriteModifer('liquid_tile'));
+    elementOniItem.spriteGroup.spriteModifiers.push(SpriteModifier.getSpriteModifer('gas_tile'));
+    elementOniItem.spriteGroup.spriteModifiers.push(SpriteModifier.getSpriteModifer('gas_tile_front'));
+    elementOniItem.spriteGroup.spriteModifiers.push(SpriteModifier.getSpriteModifer('liquid_tile_front'));
     elementOniItem.cleanUp();
     OniItem.oniItemsMap.set(elementOniItem.id, elementOniItem);
   }

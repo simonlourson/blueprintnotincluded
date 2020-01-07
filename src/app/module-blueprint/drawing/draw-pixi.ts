@@ -84,7 +84,6 @@ export class DrawPixi
     
   FillRect(color: number, x: number, y: number, w: number, h: number) 
   {
-    
     this.backGraphics.beginFill(color);
     this.backGraphics.drawRect(x, y, w, h);
     this.backGraphics.endFill();

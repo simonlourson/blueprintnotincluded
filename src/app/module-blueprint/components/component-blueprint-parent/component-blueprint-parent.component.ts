@@ -314,7 +314,8 @@ export class ComponentBlueprintParentComponent implements OnInit, IObsBlueprintC
 
   addElementsTiles() {
     /*
-	  {
+	  
+	{
       "name": "liquid_tile",
       "uvMin": {
         "x": 0,
@@ -329,11 +330,32 @@ export class ComponentBlueprintParentComponent implements OnInit, IObsBlueprintC
         "y": 100
       },
       "pivot": {
-        "x": 0,
+        "x": 1,
         "y": 0
       },
       "isIcon": false,
       "textureName": "liquid_tile"
+    },
+	{
+      "name": "liquid_tile_front",
+      "uvMin": {
+        "x": 0,
+        "y": 0
+      },
+      "uvSize": {
+        "x": 128,
+        "y": 128
+      },
+      "realSize": {
+        "x": 100,
+        "y": 100
+      },
+      "pivot": {
+        "x": 1,
+        "y": 0
+      },
+      "isIcon": false,
+      "textureName": "liquid_tile_front"
     },
 
     {

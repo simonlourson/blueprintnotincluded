@@ -26,6 +26,9 @@ export class ItemCollectionInfoComponent implements OnInit, IObsSelected {
     return JSON.stringify(debugInfo);
   }
 
+  // TODO boolean in export
+  get isGasLiquid() { return this.itemCollection.items[0].buildableElements[0].hasTag('Gas') || this.itemCollection.items[0].buildableElements[0].hasTag('Liquid') }
+
   constructor(private blueprintService: BlueprintService, private toolService: ToolService) { }
 
   ngOnInit() {

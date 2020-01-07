@@ -11,14 +11,13 @@
   [contentStyle]=""
   >
   
-  <span class="ui-float-label search">
+  <div>
     <input class="float-input" type="text" size="30" 
+      placeholder="Search"
       [(ngModel)]="filterName" 
       (ngModelChange)="filterNameSubject.next($event)" pInputText > 
-    
-    <label for="float-input">Search</label>
-  </span>
-  
+  </div>
+
     
   
   <p-checkbox [(ngModel)]="getDuplicates" binary="true" label="Show duplicate blueprints" (onChange)="duplicateChange()"></p-checkbox>

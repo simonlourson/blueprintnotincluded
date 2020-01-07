@@ -94,9 +94,9 @@ export class CameraService
     this.observersCameraChange = [];
     this.observersToAnimationChange = [];
 
-    this.overlay = Overlay.Base;
-    this.display = Display.solid;
-    this.visualization = Visualization.none;
+    this.overlay = -1;//Overlay.Base;
+    this.display = -1;//Display.solid;
+    this.visualization = -1;//Visualization.none;
 
     if (CameraService.cameraService == null) CameraService.cameraService = this;
   }

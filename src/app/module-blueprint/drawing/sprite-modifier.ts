@@ -112,5 +112,9 @@ export enum SpriteTag {
   RUD,
   LRUD,
   none,
-  white
+  white,
+  element_gas_back,
+  element_gas_front,
+  element_liquid_back,
+  element_liquid_front
 }

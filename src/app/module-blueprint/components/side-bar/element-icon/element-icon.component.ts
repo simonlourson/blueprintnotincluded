@@ -19,6 +19,7 @@ export class ElementIconComponent implements OnInit {
   get isLiquid() { return this.element.hasTag('Liquid'); }
   get isGas() { return this.element.hasTag('Gas'); }
   get tint() { return DrawHelpers.colorToHex(this.element.uiColor); }
+  get style() { return 'height: '+this.height+';' }
 
 
   constructor() { }

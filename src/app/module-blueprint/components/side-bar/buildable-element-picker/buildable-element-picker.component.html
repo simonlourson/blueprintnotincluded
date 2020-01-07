@@ -17,14 +17,18 @@
           Warning : Not every selected building is made of {{currentElement[indexElement].name}}
         </div>
     
-        <p-overlayPanel [appendTo]="'body'">
-          <div class="element-panel-content">
+        <p-overlayPanel *ngIf="!isGasLiquid" [appendTo]="'body'" [dismissable]="true">
+          <div  class="element-panel-content">
             <div *ngFor="let buildableElement of buildableElementsArray[indexElement]">
               <div class="ui-clickable-icon element-button" (click)="chooseElement(buildableElement, indexElement)" [pTooltip]="buildableElement.name" tooltipPosition="bottom" life="5000">
                 <app-element-icon [element]="buildableElement" [width]="'40px'" [height]="'40px'"></app-element-icon>
               </div>
             </div>
           </div>
+        </p-overlayPanel>
+
+        <p-overlayPanel *ngIf="isGasLiquid" [appendTo]="'body'" [dismissable]="true">
+          <app-cell-element-picker *ngIf="isGasLiquid"></app-cell-element-picker>
         </p-overlayPanel>
       </div>
     </div>

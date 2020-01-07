@@ -7,7 +7,7 @@
   </div>
   <div class="scrollable">
     <p-accordion #buildingsAccordion>
-      <p-accordionTab *ngFor="let itemCollection of toolService.selectTool.sameItemCollections" [(selected)]="itemCollection.selected" [header]="itemCollection.oniItem.name" [transitionOptions]="'0ms'">
+      <p-accordionTab *ngFor="let itemCollection of toolService.selectTool.sameItemCollections" [(selected)]="itemCollection.selected" [header]="itemCollection.header" [transitionOptions]="'0ms'">
         <app-item-collection-info [itemCollection]=itemCollection>
         </app-item-collection-info>
       </p-accordionTab>
