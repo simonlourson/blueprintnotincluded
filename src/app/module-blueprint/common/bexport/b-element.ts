@@ -35,7 +35,7 @@ export class BuildableElement {
 
     this.color = original.color;
     this.conduitColor = original.conduitColor;
-    this.uiColor = original.conduitColor;
+    this.uiColor = original.uiColor;
   }
 
   public hasTag(tag: string) {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Subject } from 'rxjs';
 import { BuildableElement } from 'src/app/module-blueprint/common/bexport/b-element';
 
@@ -14,6 +14,8 @@ export class CellElementPickerComponent implements OnInit {
 
   selectedTags: string[] = ['Gas', 'Liquid'];
   elements: BuildableElement[];
+
+  @Output() onSelectElement = new EventEmitter<BuildableElement>();
 
   constructor() { 
 
@@ -55,5 +57,9 @@ export class CellElementPickerComponent implements OnInit {
 
       if (filterString && filterTag && filterMissing) this.elements.push(element);
     }
+  }
+
+  selectElement(element: BuildableElement) {
+    this.onSelectElement.emit(element);
   }
 }

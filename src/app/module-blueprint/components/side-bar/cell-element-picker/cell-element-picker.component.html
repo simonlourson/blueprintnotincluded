@@ -6,10 +6,10 @@
 </div>
 
 <p-checkbox name="groupTag" (onChange)="tagChanged($event)" value="Gas" label="Gas" [(ngModel)]="selectedTags" inputId="Gas"></p-checkbox>
-<p-checkbox name="groupTag" (onChange)="tagChanged($event)" value="Liquid" label="Liquid" [(ngModel)]="selectedTags" inputId="Liquid"></p-checkbox>
+<span class="second-checkbox"><p-checkbox name="groupTag" (onChange)="tagChanged($event)" value="Liquid" label="Liquid" [(ngModel)]="selectedTags" inputId="Liquid"></p-checkbox></span>
 
 <div class="element-list">
-  <div *ngFor="let element of elements" class="ui-clickable-icon element-button" (click)="showElements($event, indexElement)" style="margin-bottom: 5px;">
+  <div *ngFor="let element of elements" class="ui-clickable-icon element-button" (click)="selectElement(element)" style="margin-bottom: 5px;">
     <div class="element-panel-content">
       <app-element-icon [element]="element" [width]="'25px'" [height]="'25px'"></app-element-icon>
       <div class="element-panel-text">{{element.name}}</div>

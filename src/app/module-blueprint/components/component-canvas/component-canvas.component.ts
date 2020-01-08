@@ -214,7 +214,7 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy, IObsCameraCh
     if (event.key == 'z' && event.ctrlKey) this.blueprintService.undo();
     if (event.key == 'y' && event.ctrlKey) this.blueprintService.redo();
 
-    this.canvasRef.nativeElement.click();
+    //this.canvasRef.nativeElement.click();
   }
 
   prepareOverlayInfo()
