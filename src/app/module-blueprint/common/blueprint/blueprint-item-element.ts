@@ -4,7 +4,7 @@ import { BlueprintItem } from "./blueprint-item";
 import { DrawHelpers } from '../../drawing/draw-helpers';
 import { DrawPart } from '../../drawing/draw-part';
 import { CameraService } from '../../services/camera-service';
-import { Visualization, Overlay } from '../overlay-type';
+import { Visualization, Overlay, Display } from '../overlay-type';
 import { SpriteTag } from '../../drawing/sprite-modifier';
 
 export class BlueprintItemElement extends BlueprintItem
@@ -45,7 +45,7 @@ export class BlueprintItemElement extends BlueprintItem
       drawPart.visible = false;
 
       // TODO boolean in export
-      if (this.buildableElements[0].hasTag('Gas') && (camera.overlay == Overlay.Base || camera.overlay == Overlay.Gas)) {
+      if (this.buildableElements[0].hasTag('Gas') && camera.display == Display.solid && (camera.overlay == Overlay.Base || camera.overlay == Overlay.Gas)) {
         if (drawPart.hasTag(SpriteTag.element_gas_back)) {
           drawPart.visible = true;
           drawPart.zIndex = 0;
@@ -63,7 +63,7 @@ export class BlueprintItemElement extends BlueprintItem
           drawPart.tint = 0xffffff;
         }
       }
-      else if (this.buildableElements[0].hasTag('Liquid') && (camera.overlay == Overlay.Base || camera.overlay == Overlay.Liquid)) {
+      else if (this.buildableElements[0].hasTag('Liquid') && camera.display == Display.solid && (camera.overlay == Overlay.Base || camera.overlay == Overlay.Liquid)) {
         if (drawPart.hasTag(SpriteTag.element_gas_back)) {
           drawPart.visible = true;
           drawPart.zIndex = 0;
