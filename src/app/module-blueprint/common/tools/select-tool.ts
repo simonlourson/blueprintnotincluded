@@ -64,18 +64,17 @@ export class SelectTool implements ITool
         for (let item of itemsInTile) this.addToCollection(item);
       }
 
-      // TODO adjusted zindex here
-      this.sameItemCollections = this.sameItemCollections.sort((i1, i2) => { return i2.oniItem.zIndex - i1.oniItem.zIndex; });
+      this.sameItemCollections = this.sameItemCollections.sort((i1, i2) => { return i2.items[0].depth - i1.items[0].depth; });
 
       let firstSelected: BlueprintItem = null;
       let selectedOne = false;
       this.sameItemCollections.map((itemCollection) => {
-        if (!selectedOne && itemCollection.items != null && itemCollection.items.length > 0 && itemCollection.items[0].isOpaque) {
+        if (!selectedOne && itemCollection.items != null && itemCollection.items.length > 0) {
           selectedOne = true;
           firstSelected = itemCollection.items[0];
 
           let newDate = new Date();
-          if (firstSelected == this.lastSelected && this.lastSelectedDate != null && newDate.getTime() - this.lastSelectedDate.getTime() < 500) this.selectAll(firstSelected.oniItem);
+          if (firstSelected == this.lastSelected && this.lastSelectedDate != null && newDate.getTime() - this.lastSelectedDate.getTime() < 500) this.selectAllLike(firstSelected);
           else {
             itemCollection.selected = true;
             
@@ -104,6 +103,21 @@ export class SelectTool implements ITool
     this.emitSelectionChanged();
   }
 
+  selectAllLike(original: BlueprintItem) {
+    this.deselectAll();
+
+    this.blueprintService.blueprint.blueprintItems.filter((item) => { 
+      if (original.oniItem.isElement) return original.oniItem == item.oniItem && original.buildableElements[0] == item.buildableElements[0];
+      else return original.oniItem == item.oniItem;
+      }).map((item) => {
+      this.addToCollection(item);
+    });
+
+    this.currentMultipleSelectionIndex = 0;
+
+    this.emitSelectionChanged();
+  }
+
   selectEveryElement(buildableElement: BuildableElement) {
     this.deselectAll();
 
@@ -122,7 +136,11 @@ export class SelectTool implements ITool
   addToCollection(blueprintItem: BlueprintItem) {
 
     // Find if there is already an item collection for this oniItem
-    let itemCollectionArray = this.sameItemCollections.filter((sameItem) => { return blueprintItem.oniItem.id == sameItem.oniItem.id; });
+    let itemCollectionArray = this.sameItemCollections.filter((sameItem) => { 
+      if (blueprintItem.oniItem.isElement)
+        return blueprintItem.oniItem.id == sameItem.oniItem.id && blueprintItem.buildableElements[0].id == sameItem.items[0].buildableElements[0].id
+      else return blueprintItem.oniItem.id == sameItem.oniItem.id; 
+    });
     if (itemCollectionArray.length == 0) {
       let newItemCollection = new SameItemCollection(blueprintItem.oniItem);
       newItemCollection.addItem(blueprintItem);

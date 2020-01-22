@@ -17,6 +17,7 @@ import { Dropdown } from 'primeng/dropdown';
 import { OverlayPanel } from 'primeng/overlaypanel';
 import { BuildableElement } from 'src/app/module-blueprint/common/bexport/b-element';
 import { ElementChangeInfo } from '../buildable-element-picker/buildable-element-picker.component';
+import { BlueprintItemElement } from 'src/app/module-blueprint/common/blueprint/blueprint-item-element';
 
 
 
@@ -35,6 +36,7 @@ export class ComponentSideBuildToolComponent implements OnInit, IObsBuildItemCha
   currentItem: OniItem;
 
   get currentItemToBuild() { return this.toolService.buildTool.templateItemToBuild; }
+  get isGasLiquid() { return this.currentItemToBuild.oniItem.isElement; }
 
   @ViewChild('categoryPanel', {static: false}) categoryPanel: OverlayPanel;
   @ViewChildren(OverlayPanel) itemPanels !: QueryList<OverlayPanel>;
@@ -62,6 +64,16 @@ export class ComponentSideBuildToolComponent implements OnInit, IObsBuildItemCha
   showCategories(event: any) {
     this.categoryPanel.toggle(event);
     this.itemPanels.forEach((itemPanel) => { if (itemPanel != this.itemPanels.last) itemPanel.hide(); });
+  }
+
+  paintElement() {
+
+    let newElement = new BlueprintItemElement(OniItem.elementId);
+    newElement.setElement('Water', 0);
+
+    this.toolService.buildTool.changeItem(newElement);
+
+    this.categoryPanel.hide();
   }
 
   showItems(event: any, buildMenuCategory: BuildMenuCategory, indexCategory) {
@@ -110,6 +122,7 @@ export class ComponentSideBuildToolComponent implements OnInit, IObsBuildItemCha
   }
 
   changeElement(elementChangeInfo: ElementChangeInfo) {
+    this.toolService.buildTool.templateItemToBuild.reloadCamera = true;
     //this.toolService.buildTool.templateItemToBuild.setElement(elementChangeInfo.newElement.id, elementChangeInfo.index);
   }
 

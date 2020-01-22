@@ -14587,6 +14587,27 @@
       "textureName": "liquid_tile_front"
     },
 	{
+      "name": "vacuum_tile_front",
+      "uvMin": {
+        "x": 0,
+        "y": 0
+      },
+      "uvSize": {
+        "x": 128,
+        "y": 128
+      },
+      "realSize": {
+        "x": 100,
+        "y": 100
+      },
+      "pivot": {
+        "x": 1,
+        "y": 0
+      },
+      "isIcon": false,
+      "textureName": "vacuum_tile_front"
+    },
+	{
       "name": "gas_tile",
       "uvMin": {
         "x": 0,
@@ -56637,6 +56658,29 @@
       },
       "tags": [
         30
+      ]
+    },
+	{
+      "name": "vacuum_tile_front",
+      "type": 0,
+      "spriteInfoName": "vacuum_tile_front",
+      "translation": {
+        "x": 0,
+        "y": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1
+      },
+      "rotation": 0,
+      "multColour": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      },
+      "tags": [
+        31
       ]
     },
     {

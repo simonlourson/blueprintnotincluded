@@ -314,9 +314,10 @@ export class ComponentBlueprintParentComponent implements OnInit, IObsBlueprintC
 
   addElementsTiles() {
     /*
-	  
+
+    Ui Sprites
 	{
-      "name": "liquid_tile",
+      "name": "gas_tile_front",
       "uvMin": {
         "x": 0,
         "y": 0
@@ -334,7 +335,7 @@ export class ComponentBlueprintParentComponent implements OnInit, IObsBlueprintC
         "y": 0
       },
       "isIcon": false,
-      "textureName": "liquid_tile"
+      "textureName": "gas_tile_front"
     },
 	{
       "name": "liquid_tile_front",
@@ -357,11 +358,56 @@ export class ComponentBlueprintParentComponent implements OnInit, IObsBlueprintC
       "isIcon": false,
       "textureName": "liquid_tile_front"
     },
+	{
+      "name": "vacuum_tile_front",
+      "uvMin": {
+        "x": 0,
+        "y": 0
+      },
+      "uvSize": {
+        "x": 128,
+        "y": 128
+      },
+      "realSize": {
+        "x": 100,
+        "y": 100
+      },
+      "pivot": {
+        "x": 1,
+        "y": 0
+      },
+      "isIcon": false,
+      "textureName": "vacuum_tile_front"
+    },
+	{
+      "name": "gas_tile",
+      "uvMin": {
+        "x": 0,
+        "y": 0
+      },
+      "uvSize": {
+        "x": 128,
+        "y": 128
+      },
+      "realSize": {
+        "x": 100,
+        "y": 100
+      },
+      "pivot": {
+        "x": 1,
+        "y": 0
+      },
+      "isIcon": false,
+      "textureName": "gas_tile"
+    },
 
-    {
-      "name": "liquid_tile",
+
+
+    // Sprite Modifiers
+    	{
+      "name": "gas_tile",
       "type": 0,
-      "spriteInfoName": "liquid_tile",
+      "spriteInfoName": "gas_tile",
       "translation": {
         "x": 0,
         "y": 0
@@ -378,7 +424,76 @@ export class ComponentBlueprintParentComponent implements OnInit, IObsBlueprintC
         "a": 1
       },
       "tags": [
-        0
+        27
+      ]
+    },
+	{
+      "name": "gas_tile_front",
+      "type": 0,
+      "spriteInfoName": "gas_tile_front",
+      "translation": {
+        "x": 0,
+        "y": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1
+      },
+      "rotation": 0,
+      "multColour": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      },
+      "tags": [
+        28
+      ]
+    },
+	{
+      "name": "liquid_tile_front",
+      "type": 0,
+      "spriteInfoName": "liquid_tile_front",
+      "translation": {
+        "x": 0,
+        "y": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1
+      },
+      "rotation": 0,
+      "multColour": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      },
+      "tags": [
+        30
+      ]
+    },
+	{
+      "name": "vacuum_tile_front",
+      "type": 0,
+      "spriteInfoName": "liquid_tile_front",
+      "translation": {
+        "x": 0,
+        "y": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1
+      },
+      "rotation": 0,
+      "multColour": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      },
+      "tags": [
+        30
       ]
     },
     */

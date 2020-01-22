@@ -408,6 +408,7 @@ export class BlueprintItem
   }
 
   // This is used by the selection tool to prioritize opaque buildings during selection
+  // TODO probably not used anymore, could delete
   isOpaque: boolean;
   visualizationTint: number;
   cameraChanged(camera: CameraService) {

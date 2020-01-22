@@ -49,7 +49,7 @@ export class ItemCollectionInfoComponent implements OnInit, IObsSelected {
   }
 
   selectEvery() {
-    this.toolService.selectTool.selectAll(this.itemCollection.oniItem);
+    this.toolService.selectTool.selectAllLike(this.itemCollection.items[0]);
   }
 
   selected() {

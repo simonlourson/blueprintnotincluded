@@ -116,5 +116,6 @@ export enum SpriteTag {
   element_gas_back,
   element_gas_front,
   element_liquid_back,
-  element_liquid_front
+  element_liquid_front,
+  element_vacuum_front
 }

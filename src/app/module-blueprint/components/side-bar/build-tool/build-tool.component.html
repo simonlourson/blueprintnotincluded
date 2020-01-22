@@ -2,7 +2,11 @@
   <div *ngIf="databaseLoaded">
     <div class="ui-clickable-icon element-button-width" (click)="showCategories($event)" style="margin-bottom: 5px;">
       <div class="building-panel-content">
-        <img src="{{currentItem.iconUrl}}" height="40px" />
+        <img *ngIf="!currentItem.isElement" src="{{currentItem.iconUrl}}" height="40px" />
+        <app-element-icon *ngIf="currentItem.isElement"
+          [element]="currentItemToBuild.buildableElements[0]"
+          [width]="'40px'"
+          [height]="'40px'"></app-element-icon>
         <div class="left"></div>
         <div>{{currentItem.name}}</div>
         <div class="right"></div>
@@ -14,6 +18,7 @@
     <app-buildable-element-picker 
       [currentElement]="currentItemToBuild.buildableElements"
       [buildableElementsArray]="currentItem.buildableElementsArray"
+      [isGasLiquid]="isGasLiquid"
       (changeElement)="changeElement($event)">
     </app-buildable-element-picker>
 
@@ -43,6 +48,9 @@
 
 <p-overlayPanel #categoryPanel [appendTo]="'body'">
   <div class="building-panel-content">
+    <div class="ui-clickable-icon element-button" (click)="paintElement()" [pTooltip]="'Paint Element'" tooltipPosition="bottom" life="5000">
+      <img src="assets/images/ui/manual/liquid_icon.png" height="40px" />
+    </div>
     <div *ngFor="let buildMenuCategory of buildMenuCategories; let indexCategory = index">
       <div class="ui-clickable-icon element-button" (click)="showItems($event, buildMenuCategory, indexCategory)" [pTooltip]="buildMenuCategory.categoryName" tooltipPosition="bottom" life="5000">
         <img src="{{buildMenuCategory.categoryIconUrl}}" height="40px" />

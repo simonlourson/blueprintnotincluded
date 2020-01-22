@@ -14,6 +14,7 @@ import { CameraService, IObsCameraChanged } from '../../services/camera-service'
 import { Router } from '@angular/router';
 import { BlueprintService, BlueprintFileType } from '../../services/blueprint-service';
 import { DrawHelpers } from '../../drawing/draw-helpers';
+import { BlueprintItemElement } from '../../common/blueprint/blueprint-item-element';
 
 @Component({
   selector: 'app-component-menu',
@@ -174,7 +175,7 @@ export class ComponentMenuComponent implements OnInit, IObsToolChanged, IObsCame
   {
     this.toolService.changeTool(toolType);
   }
-
+  
   userProfile() {
     let userFilter: BrowseData = {
       filterUserId: this.authService.getUserDetails()._id,

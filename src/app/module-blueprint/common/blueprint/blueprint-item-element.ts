@@ -45,16 +45,21 @@ export class BlueprintItemElement extends BlueprintItem
       drawPart.visible = false;
 
       // TODO boolean in export
+      // TODO Refactor most of this
       if (this.buildableElements[0].hasTag('Gas') && camera.display == Display.solid && (camera.overlay == Overlay.Base || camera.overlay == Overlay.Gas)) {
         if (drawPart.hasTag(SpriteTag.element_gas_back)) {
           drawPart.visible = true;
           drawPart.zIndex = 0;
           drawPart.alpha = 0.5;
 
+
+          // We use visualization tint here because this could be modulated by the selection
           if (camera.visualization == Visualization.temperature)
-            drawPart.tint = DrawHelpers.temperatureToColor(this.temperature);
+            this.visualizationTint = DrawHelpers.temperatureToColor(this.temperature);
           else
-            drawPart.tint = this.buildableElements[0].uiColor;
+            this.visualizationTint = this.buildableElements[0].uiColor;
+
+          drawPart.tint = this.visualizationTint;
         }
         else if (drawPart.hasTag(SpriteTag.element_gas_front)) {
           drawPart.visible = true;
@@ -70,15 +75,39 @@ export class BlueprintItemElement extends BlueprintItem
           drawPart.alpha = 0.5;
 
           if (camera.visualization == Visualization.temperature)
-            drawPart.tint = DrawHelpers.temperatureToColor(this.temperature);
+            this.visualizationTint = DrawHelpers.temperatureToColor(this.temperature);
           else
-            drawPart.tint = this.buildableElements[0].uiColor;
+            this.visualizationTint = this.buildableElements[0].uiColor;
+
+          drawPart.tint = this.visualizationTint;
         }
         else if (drawPart.hasTag(SpriteTag.element_liquid_front)) {
           drawPart.visible = true;
           drawPart.zIndex = 1;
           drawPart.alpha = 0.8;
           drawPart.tint = 0xffffff;
+        }
+      }
+      else if (camera.display == Display.solid && (camera.overlay == Overlay.Base || camera.overlay == Overlay.Gas)) {
+        if (drawPart.hasTag(SpriteTag.element_vacuum_front)) {
+          drawPart.visible = true;
+          drawPart.zIndex = 1;
+          drawPart.alpha = 0.8;
+          drawPart.tint = 0xffffff;
+        }
+      }
+
+      
+    }
+  }
+
+  modulateSelectedTint(camera: CameraService) {
+    if (camera.display == Display.solid) {
+      for (let drawPart of this.drawParts) {
+        
+        // TODO maybe the gas and liquid element should have different tintable backs? fine for now
+        if (drawPart.hasTag(SpriteTag.element_gas_back) && drawPart.visible && this.visualizationTint != -1) {
+          drawPart.tint = DrawHelpers.blendColor(this.visualizationTint, 0x4CFF00, camera.sinWave)
         }
       }
     }

@@ -209,14 +209,16 @@ export class OniItem
       OniItem.oniItemsMap.set(oniItem.id, oniItem);
     }
 
-    let elementOniItem = new OniItem('Element');
-    elementOniItem.name = 'Element';
+    let elementOniItem = new OniItem(OniItem.elementId);
+    elementOniItem.name = OniItem.elementId;
+    elementOniItem.isElement = true;
     // TODO use enum
     elementOniItem.zIndex = 17;
     elementOniItem.spriteGroup = new SpriteModifierGroup();
     elementOniItem.spriteGroup.spriteModifiers.push(SpriteModifier.getSpriteModifer('gas_tile'));
     elementOniItem.spriteGroup.spriteModifiers.push(SpriteModifier.getSpriteModifer('gas_tile_front'));
     elementOniItem.spriteGroup.spriteModifiers.push(SpriteModifier.getSpriteModifer('liquid_tile_front'));
+    elementOniItem.spriteGroup.spriteModifiers.push(SpriteModifier.getSpriteModifer('vacuum_tile_front'));
     elementOniItem.cleanUp();
     OniItem.oniItemsMap.set(elementOniItem.id, elementOniItem);
   }
