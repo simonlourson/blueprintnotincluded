@@ -8,6 +8,7 @@ import { BuildableElement } from '../bexport/b-element';
 import { IObsBlueprintChange } from '../blueprint/blueprint';
 import { BlueprintItem } from '../blueprint/blueprint-item';
 import { DrawHelpers } from '../../drawing/draw-helpers';
+import { BlueprintItemElement } from '../blueprint/blueprint-item-element';
 
 @Injectable()
 export class ElementReport implements IObsBlueprintChange {
@@ -24,9 +25,13 @@ export class ElementReport implements IObsBlueprintChange {
     this.data = [];
 
     this.blueprintService.blueprint.blueprintItems.map((item) => {
-      for (let elementIndex = 0; elementIndex < item.oniItem.buildableElementsArray.length; elementIndex++) {
-        this.addElementToReport(item.buildableElements[elementIndex], item.oniItem.materialMass[elementIndex])
-      }
+
+      if (item.oniItem.isElement)
+        this.addElementToReport(item.buildableElements[0], (item as BlueprintItemElement).mass);
+      else
+        for (let elementIndex = 0; elementIndex < item.oniItem.buildableElementsArray.length; elementIndex++) {
+          this.addElementToReport(item.buildableElements[elementIndex], item.oniItem.materialMass[elementIndex])
+        }
     });
 
     this.data = this.data.sort((i1, i2) => { return i2.totalMass - i1.totalMass; });

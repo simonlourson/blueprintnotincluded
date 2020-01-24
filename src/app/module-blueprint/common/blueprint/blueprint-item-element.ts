@@ -6,9 +6,12 @@ import { DrawPart } from '../../drawing/draw-part';
 import { CameraService } from '../../services/camera-service';
 import { Visualization, Overlay, Display } from '../overlay-type';
 import { SpriteTag } from '../../drawing/sprite-modifier';
+import { MdbBuilding } from './io/mdb/mdb-building';
 
 export class BlueprintItemElement extends BlueprintItem
 {
+  static defaultMass = 0;
+  mass: number;
 
   get header() { return this.buildableElements[0].name; }
 
@@ -26,6 +29,25 @@ export class BlueprintItemElement extends BlueprintItem
   drawTemplateItem(templateItem: BlueprintItem, camera: CameraService) {
   }
 
+  public importMdbBuilding(original: MdbBuilding)
+  {
+    this.mass = original.mass;
+    super.importMdbBuilding(original);
+  }
+
+  public toMdbBuilding(): MdbBuilding {
+    let returnValue = super.toMdbBuilding();
+
+    if (this.mass != BlueprintItemElement.defaultMass) returnValue.mass = this.mass;
+
+    return returnValue;
+  }
+
+  public cleanUp()
+  {
+    if (this.mass == null) this.mass = BlueprintItemElement.defaultMass;
+    super.cleanUp();
+  }
   
   cameraChanged(camera: CameraService) {
 
@@ -35,7 +57,7 @@ export class BlueprintItemElement extends BlueprintItem
 
     // TODO use enum
     if (camera.overlay == Overlay.Gas)
-      this.depth = 17 + 100;
+      this.depth = 17 + 50;
     else this.depth = 17;
 
     this.alpha = 1;
@@ -88,7 +110,7 @@ export class BlueprintItemElement extends BlueprintItem
           drawPart.tint = 0xffffff;
         }
       }
-      else if (camera.display == Display.solid && (camera.overlay == Overlay.Base || camera.overlay == Overlay.Gas)) {
+      else if (this.buildableElements[0].hasTag('Vacuum') && camera.display == Display.solid && (camera.overlay == Overlay.Base || camera.overlay == Overlay.Gas)) {
         if (drawPart.hasTag(SpriteTag.element_vacuum_front)) {
           drawPart.visible = true;
           drawPart.zIndex = 1;

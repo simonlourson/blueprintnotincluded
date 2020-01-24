@@ -422,7 +422,8 @@ export class BlueprintItem
     else this.alpha = 0.3;
 
     if (this.oniItem.isOverlayPrimary(camera.overlay)) this.depth = this.oniItem.zIndex + 100;
-    else this.depth = this.oniItem.zIndex;// + 50;
+    else if (this.oniItem.isOverlaySecondary(camera.overlay)) this.depth = this.oniItem.zIndex + 50;
+    else this.depth = this.oniItem.zIndex;
 
     this.visualizationTint = -1;
     for (let drawPart of this.drawParts) {

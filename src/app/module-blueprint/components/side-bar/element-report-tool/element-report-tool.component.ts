@@ -15,11 +15,6 @@ export class ElementReportToolComponent implements OnInit {
 
   constructor(private toolService: ToolService, private cameraService: CameraService) { }
 
-  getMass(m: number): string {
-    if (m < 5000) return m + ' Kg';
-    else return (m / 1000).toFixed(1) + ' Tons';
-  }
-
   selectEveryElement(buildableElement: BuildableElement) {
     this.toolService.selectTool.selectEveryElement(buildableElement);
   }

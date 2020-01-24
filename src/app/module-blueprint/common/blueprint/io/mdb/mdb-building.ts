@@ -9,4 +9,5 @@ export interface MdbBuilding {
   settings?: UiSaveSettings[];
   connections?: number;
   orientation?: number;
+  mass?: number;
 }

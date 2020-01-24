@@ -623,9 +623,9 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy, IObsCameraCh
     let graphics = new PIXI.Graphics();
     exportCamera.container.addChild(graphics);
 
-    graphics.beginFill(0x007AD9);
-    graphics.drawRect(0, 0, thumbnailSize, thumbnailSize);
-    graphics.endFill();
+    //graphics.beginFill(0x00000000);
+    //graphics.drawRect(0, 0, thumbnailSize, thumbnailSize);
+    //graphics.endFill();
 
     clone.blueprintItems.map((item) => { 
       item.updateTileables(clone);

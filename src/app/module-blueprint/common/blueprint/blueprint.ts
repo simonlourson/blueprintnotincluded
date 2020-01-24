@@ -70,10 +70,13 @@ export class Blueprint
         currentElement = new BlueprintItemElement('Element');
         currentElement.position = elementPosition;
         currentElement.temperature = cell.temperature;
+        currentElement.mass = cell.mass;
         currentElement.setElement(cell.element, 0);
         currentElement.cleanUp();
 
-        this.addBlueprintItem(currentElement);
+        // TODO boolean in export insteal
+        if (currentElement.buildableElements[0].hasTag('Liquid') || currentElement.buildableElements[0].hasTag('Gas') || currentElement.buildableElements[0].hasTag('Vacuum'))
+          this.addBlueprintItem(currentElement);
       }
 
     }
