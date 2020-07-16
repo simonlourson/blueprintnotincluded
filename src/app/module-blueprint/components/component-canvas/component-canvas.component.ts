@@ -324,11 +324,15 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy, IObsCameraCh
       let buildingInDatabase = database.buildings.find((building) => { return building.prefabId == oniItem.id });
     
       let spritesToGroup: SpriteModifier[] = [];
-      for (let spriteModifier of oniItem.spriteGroup.spriteModifiers)
+      for (let spriteModifier of oniItem.spriteGroup.spriteModifiers) {
+
+        if (spriteModifier == undefined) console.log(oniItem);
+
         if (spriteModifier.tags.indexOf(SpriteTag.solid) != -1 &&
             spriteModifier.tags.indexOf(SpriteTag.tileable) == -1 &&
             spriteModifier.tags.indexOf(SpriteTag.connection) == -1)
           spritesToGroup.push(spriteModifier);
+      }
       
       if (spritesToGroup.length > 1) {
         let container: PIXI.Container = new PIXI.Container();

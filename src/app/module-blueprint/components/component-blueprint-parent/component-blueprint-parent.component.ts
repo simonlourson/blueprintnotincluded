@@ -253,6 +253,7 @@ export class ComponentBlueprintParentComponent implements OnInit, IObsBlueprintC
     else if (menuCommand.type == MenuCommandType.getShareableUrl) this.shareUrl();
     else if (menuCommand.type == MenuCommandType.exportImages) this.exportImages();
     else if (menuCommand.type == MenuCommandType.saveBlueprint) this.saveBlueprint();
+    else if (menuCommand.type == MenuCommandType.exportBlueprint) this.exportBlueprint();
 
     // Technical (repack, generate solid sprites, etc)
     else if (menuCommand.type == MenuCommandType.fetchIcons) this.canvas.fetchIcons();
@@ -289,6 +290,10 @@ export class ComponentBlueprintParentComponent implements OnInit, IObsBlueprintC
       this.updateThumbnail();
       this.saveDialog.showDialog();
     }
+  }
+
+  exportBlueprint() {
+    console.log('Export blueprint');
   }
 
   updateThumbnail() {
@@ -404,7 +409,7 @@ export class ComponentBlueprintParentComponent implements OnInit, IObsBlueprintC
 
 
     // Sprite Modifiers
-    	{
+    {
       "name": "gas_tile",
       "type": 0,
       "spriteInfoName": "gas_tile",

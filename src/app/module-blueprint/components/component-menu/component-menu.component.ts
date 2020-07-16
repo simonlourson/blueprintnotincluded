@@ -99,6 +99,9 @@ export class ComponentMenuComponent implements OnInit, IObsToolChanged, IObsCame
             {label: 'Blueprint (json)', command: (event) => { this.uploadJsonTemplate(); } },
             {label: 'Blueprint (binary)', command: (event) => { this.uploadBsonTemplate(); } }
           ]},
+          {label: 'Download', icon:'pi pi-download', items:[
+            {label: 'Blueprint (json)', command: (event) => { this.onMenuCommand.emit({type: MenuCommandType.exportBlueprint, data: null}); } }
+          ]},
           {label: 'Browse', icon:'pi pi-search', command: (event) => { this.onMenuCommand.emit({type: MenuCommandType.browseBlueprints, data: null}); } },
           {label: 'Get shareable Url', icon:'pi pi-share-alt', command: (event) => { this.onMenuCommand.emit({type: MenuCommandType.getShareableUrl, data: null}); } },
           {label: 'Export images', icon:'pi pi-images', command: (event) => { this.onMenuCommand.emit({type: MenuCommandType.exportImages, data: null}); } }
@@ -137,13 +140,17 @@ export class ComponentMenuComponent implements OnInit, IObsToolChanged, IObsCame
         label: 'Discord',
         icon:'fab fa-discord', url:'https://discord.gg/69vRZZT', target:'discord'
       },
+      {
+        label: 'Github',
+        icon:'fab fa-github', url:'https://github.com/simonlourson/blueprintnotincluded/', target:'github'
+      }
       /*
       ,{
         label: 'Technical', 
         items: [
           {label: 'Fetch images',          icon:'pi pi-download', command: (event) => { this.onMenuCommand.emit({type: MenuCommandType.fetchIcons, data:null}); } },
-          {label: 'Download groups',       icon:'pi pi-download', command: (event) => { this.onMenuCommand.emit({type: MenuCommandType.downloadGroups, data:null}); } },
           {label: 'Add element tiles',     icon:'pi pi-download', command: (event) => { this.onMenuCommand.emit({type: MenuCommandType.addElementsTiles, data:null}); } },
+          {label: 'Download groups',       icon:'pi pi-download', command: (event) => { this.onMenuCommand.emit({type: MenuCommandType.downloadGroups, data:null}); } },
           {label: 'Download icons',        icon:'pi pi-download', command: (event) => { this.onMenuCommand.emit({type: MenuCommandType.downloadIcons, data:null}); } },
           {label: 'Download white',        icon:'pi pi-download', command: (event) => { this.onMenuCommand.emit({type: MenuCommandType.downloadUtility, data:null}); } },
           {label: 'Repack textures',       icon:'pi pi-download', command: (event) => { this.onMenuCommand.emit({type: MenuCommandType.repackTextures, data:null}); } }
@@ -301,6 +308,7 @@ export enum MenuCommandType
   saveBlueprint,
   getShareableUrl,
   exportImages,
+  exportBlueprint,
 
   fetchIcons,
   downloadIcons,
