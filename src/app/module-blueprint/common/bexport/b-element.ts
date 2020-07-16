@@ -7,6 +7,7 @@ export class BuildableElement {
   // From export
   id: string;
   name: string;
+  tag: number;
   oreTags: string[];
   icon: string;
   buildMenuSort: number;
@@ -22,6 +23,7 @@ export class BuildableElement {
   {
     this.id = original.id;
     this.name = original.name;
+    this.tag = original.tag;
     
     this.oreTags = [];
     if (original.oreTags != null)

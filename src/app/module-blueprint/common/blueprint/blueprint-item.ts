@@ -338,6 +338,27 @@ export class BlueprintItem
     return returnValue;
   }
 
+  public toBniBuilding(): BniBuilding {
+    let returnValue: BniBuilding = {
+      buildingdef: this.id,
+      flags: 0,
+      offset: new Vector2(this.position.x, this.position.y),
+      orientation: this.orientation,
+      selected_elements: this.getSelectedElementsTag()
+    }
+
+    return returnValue;
+  }
+
+  public getSelectedElementsTag(): number[] {
+    let returnValue: number[] = [];
+
+    for (let element of this.buildableElements)
+      returnValue.push(element.tag);
+
+    return returnValue;
+  }
+
   public prepareBoundingBox()
   {
     let realSize = this.oniItem.size;

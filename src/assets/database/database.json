@@ -124986,6 +124986,7 @@
     {
       "name": "Crushed Ice",
       "id": "CrushedIce",
+      "tag": -2123557039,
       "oreTags": [
         "IceOre",
         "Unstable",
@@ -125001,6 +125002,7 @@
     {
       "name": "Diamond",
       "id": "Diamond",
+      "tag": -2079931820,
       "oreTags": [
         "BuildableAny",
         "Transparent",
@@ -125017,6 +125019,7 @@
     {
       "name": "Aerogel",
       "id": "Aerogel",
+      "tag": -2070223827,
       "oreTags": [
         "Solid"
       ],
@@ -125029,6 +125032,7 @@
     {
       "name": "Isoresin",
       "id": "Isoresin",
+      "tag": -2008682336,
       "oreTags": [
         "BuildableRaw",
         "Solid",
@@ -125043,6 +125047,7 @@
     {
       "name": "Phosphate Nodules",
       "id": "PhosphateNodules",
+      "tag": -1901832310,
       "oreTags": [
         "Solid",
         "Agriculture"
@@ -125056,6 +125061,7 @@
     {
       "name": "Algae",
       "id": "Algae",
+      "tag": -1870043872,
       "oreTags": [
         "Solid",
         "Organics"
@@ -125069,6 +125075,7 @@
     {
       "name": "Niobium",
       "id": "Niobium",
+      "tag": -1779895821,
       "oreTags": [
         "Metal",
         "RefinedMetal",
@@ -125085,6 +125092,7 @@
     {
       "name": "Copper Ore",
       "id": "Cuprite",
+      "tag": -1736594426,
       "oreTags": [
         "Ore",
         "BuildableAny",
@@ -125100,6 +125108,7 @@
     {
       "name": "Copper",
       "id": "Copper",
+      "tag": -1725038055,
       "oreTags": [
         "BuildableAny",
         "Solid",
@@ -125114,6 +125123,7 @@
     {
       "name": "Crushed Rock",
       "id": "CrushedRock",
+      "tag": -1714565729,
       "oreTags": [
         "Unstable",
         "Solid",
@@ -125128,6 +125138,7 @@
     {
       "name": "Insulation",
       "id": "SuperInsulator",
+      "tag": -1713958528,
       "oreTags": [
         "BuildableRaw",
         "Plumbable",
@@ -125145,6 +125156,7 @@
     {
       "name": "MISSING.STRINGS.ELEMENTS.YELLOWCAKE.NAME",
       "id": "Yellowcake",
+      "tag": -1624413844,
       "oreTags": [
         "Solid"
       ],
@@ -125157,6 +125169,7 @@
     {
       "name": "Brine Ice",
       "id": "BrineIce",
+      "tag": -1561279013,
       "oreTags": [
         "IceOre",
         "BuildableAny",
@@ -125172,6 +125185,7 @@
     {
       "name": "Visco-Gel",
       "id": "SolidViscoGel",
+      "tag": -1495120499,
       "oreTags": [
         "Plastic",
         "Solid",
@@ -125186,6 +125200,7 @@
     {
       "name": "Ceramic",
       "id": "Ceramic",
+      "tag": -1467370314,
       "oreTags": [
         "Plumbable",
         "Crushable",
@@ -125202,6 +125217,7 @@
     {
       "name": "Fertilizer",
       "id": "Fertilizer",
+      "tag": -1396791454,
       "oreTags": [
         "Solid",
         "Agriculture"
@@ -125215,6 +125231,7 @@
     {
       "name": "Crude Oil",
       "id": "SolidCrudeOil",
+      "tag": -1224086026,
       "oreTags": [
         "Solid",
         "Liquifiable"
@@ -125228,6 +125245,7 @@
     {
       "name": "Wolframite",
       "id": "Wolframite",
+      "tag": -1208854194,
       "oreTags": [
         "Plumbable",
         "BuildableAny",
@@ -125243,6 +125261,7 @@
     {
       "name": "Slime",
       "id": "SlimeMold",
+      "tag": -1153056158,
       "oreTags": [
         "FlyingCritterEdible",
         "Solid",
@@ -125257,6 +125276,7 @@
     {
       "name": "Plastic",
       "id": "Polypropylene",
+      "tag": -1142341158,
       "oreTags": [
         "Antiseptic",
         "Plastic",
@@ -125273,6 +125293,7 @@
     {
       "name": "Naphtha",
       "id": "SolidNaphtha",
+      "tag": -1112594153,
       "oreTags": [
         "Solid",
         "Liquifiable"
@@ -125286,6 +125307,7 @@
     {
       "name": "Tungsten",
       "id": "Tungsten",
+      "tag": -1058835580,
       "oreTags": [
         "Plumbable",
         "BuildableAny",
@@ -125301,6 +125323,7 @@
     {
       "name": "Sand Cement",
       "id": "SandCement",
+      "tag": -1038746460,
       "oreTags": [
         "BuildableAny",
         "Solid",
@@ -125315,6 +125338,7 @@
     {
       "name": "Refined Carbon",
       "id": "RefinedCarbon",
+      "tag": -902240476,
       "oreTags": [
         "Solid",
         "ConsumableOre"
@@ -125328,6 +125352,7 @@
     {
       "name": "Steel",
       "id": "Steel",
+      "tag": -899253461,
       "oreTags": [
         "Metal",
         "RefinedMetal",
@@ -125344,6 +125369,7 @@
     {
       "name": "Phosphorite",
       "id": "Phosphorite",
+      "tag": -877427037,
       "oreTags": [
         "FlyingCritterEdible",
         "Solid",
@@ -125358,6 +125384,7 @@
     {
       "name": "Hydrogen",
       "id": "SolidHydrogen",
+      "tag": -858172533,
       "oreTags": [
         "Solid",
         "Liquifiable"
@@ -125371,6 +125398,7 @@
     {
       "name": "Bleach Stone",
       "id": "BleachStone",
+      "tag": -839728230,
       "oreTags": [
         "FlyingCritterEdible",
         "Solid",
@@ -125385,6 +125413,7 @@
     {
       "name": "Lead",
       "id": "Lead",
+      "tag": -755153220,
       "oreTags": [
         "BuildableAny",
         "Solid",
@@ -125399,6 +125428,7 @@
     {
       "name": "Sulfur",
       "id": "Sulfur",
+      "tag": -729385479,
       "oreTags": [
         "Solid",
         "Other"
@@ -125412,6 +125442,7 @@
     {
       "name": "Lime",
       "id": "Lime",
+      "tag": -721320011,
       "oreTags": [
         "Solid",
         "ConsumableOre"
@@ -125425,6 +125456,7 @@
     {
       "name": "MISSING.STRINGS.ELEMENTS.SOLIDSYNGAS.NAME",
       "id": "SolidSyngas",
+      "tag": -690658692,
       "oreTags": [
         "Solid",
         "Liquifiable"
@@ -125438,6 +125470,7 @@
     {
       "name": "Chlorine",
       "id": "SolidChlorine",
+      "tag": -690060127,
       "oreTags": [
         "Solid",
         "Liquifiable"
@@ -125451,6 +125484,7 @@
     {
       "name": "Mercury",
       "id": "SolidMercury",
+      "tag": -537625624,
       "oreTags": [
         "Metal",
         "BuildableAny",
@@ -125466,6 +125500,7 @@
     {
       "name": "Obsidian",
       "id": "Obsidian",
+      "tag": -474151749,
       "oreTags": [
         "Plumbable",
         "Crushable",
@@ -125483,6 +125518,7 @@
     {
       "name": "Petroleum",
       "id": "SolidPetroleum",
+      "tag": -473261502,
       "oreTags": [
         "Solid",
         "Liquifiable"
@@ -125496,6 +125532,7 @@
     {
       "name": "Super Coolant",
       "id": "SolidSuperCoolant",
+      "tag": -389019570,
       "oreTags": [
         "Solid",
         "ManufacturedMaterial"
@@ -125509,6 +125546,7 @@
     {
       "name": "Igneous Rock",
       "id": "IgneousRock",
+      "tag": -355957251,
       "oreTags": [
         "Plumbable",
         "Crushable",
@@ -125525,6 +125563,7 @@
     {
       "name": "MISSING.STRINGS.ELEMENTS.ENRICHEDURANIUM.NAME",
       "id": "EnrichedUranium",
+      "tag": -348942381,
       "oreTags": [
         "Solid"
       ],
@@ -125537,6 +125576,7 @@
     {
       "name": "Brick",
       "id": "Brick",
+      "tag": -325269471,
       "oreTags": [
         "BuildableAny",
         "Solid",
@@ -125551,6 +125591,7 @@
     {
       "name": "Gold",
       "id": "Gold",
+      "tag": -279785280,
       "oreTags": [
         "BuildableAny",
         "Solid",
@@ -125565,6 +125606,7 @@
     {
       "name": "Rust",
       "id": "Rust",
+      "tag": -233232444,
       "oreTags": [
         "Solid",
         "ConsumableOre"
@@ -125578,6 +125620,7 @@
     {
       "name": "Phosphorus",
       "id": "Phosphorus",
+      "tag": -220394187,
       "oreTags": [
         "FlyingCritterEdible",
         "Solid",
@@ -125592,6 +125635,7 @@
     {
       "name": "Granite",
       "id": "Granite",
+      "tag": -105943486,
       "oreTags": [
         "Plumbable",
         "Crushable",
@@ -125609,6 +125653,7 @@
     {
       "name": "Radium",
       "id": "Radium",
+      "tag": -47820500,
       "oreTags": [
         "Solid"
       ],
@@ -125621,6 +125666,7 @@
     {
       "name": "Electrum",
       "id": "Electrum",
+      "tag": 28407099,
       "oreTags": [
         "Ore",
         "BuildableAny",
@@ -125636,6 +125682,7 @@
     {
       "name": "Carbon Dioxide",
       "id": "SolidCarbonDioxide",
+      "tag": 83003332,
       "oreTags": [
         "Solid",
         "Liquifiable"
@@ -125649,6 +125696,7 @@
     {
       "name": "Carbon Fiber",
       "id": "CarbonFibre",
+      "tag": 118518245,
       "oreTags": [
         "BuildableAny",
         "Solid"
@@ -125662,6 +125710,7 @@
     {
       "name": "MISSING.STRINGS.ELEMENTS.URANIUMORE.NAME",
       "id": "UraniumOre",
+      "tag": 134298891,
       "oreTags": [
         "Solid"
       ],
@@ -125674,6 +125723,7 @@
     {
       "name": "Propane",
       "id": "SolidPropane",
+      "tag": 166493482,
       "oreTags": [
         "BuildableAny",
         "Solid",
@@ -125688,6 +125738,7 @@
     {
       "name": "Aluminum Ore",
       "id": "AluminumOre",
+      "tag": 167973730,
       "oreTags": [
         "Ore",
         "BuildableAny",
@@ -125703,6 +125754,7 @@
     {
       "name": "Sedimentary Rock",
       "id": "SedimentaryRock",
+      "tag": 183408504,
       "oreTags": [
         "Plumbable",
         "Crushable",
@@ -125719,6 +125771,7 @@
     {
       "name": "Fullerene",
       "id": "Fullerene",
+      "tag": 245514112,
       "oreTags": [
         "Solid",
         "RareMaterials"
@@ -125732,6 +125785,7 @@
     {
       "name": "Gold Amalgam",
       "id": "GoldAmalgam",
+      "tag": 361868060,
       "oreTags": [
         "Ore",
         "BuildableAny",
@@ -125747,6 +125801,7 @@
     {
       "name": "Salt",
       "id": "Salt",
+      "tag": 381665462,
       "oreTags": [
         "Solid",
         "ConsumableOre"
@@ -125760,6 +125815,7 @@
     {
       "name": "Sand",
       "id": "Sand",
+      "tag": 381796644,
       "oreTags": [
         "Unstable",
         "Solid",
@@ -125774,6 +125830,7 @@
     {
       "name": "Snow",
       "id": "Snow",
+      "tag": 489261827,
       "oreTags": [
         "IceOre",
         "Unstable",
@@ -125789,6 +125846,7 @@
     {
       "name": "Sandstone",
       "id": "SandStone",
+      "tag": 493438017,
       "oreTags": [
         "Plumbable",
         "Crushable",
@@ -125805,6 +125863,7 @@
     {
       "name": "Glass",
       "id": "Glass",
+      "tag": 623986332,
       "oreTags": [
         "BuildableAny",
         "Transparent",
@@ -125820,6 +125879,7 @@
     {
       "name": "Clay",
       "id": "Clay",
+      "tag": 867327137,
       "oreTags": [
         "BuildableAny",
         "Solid",
@@ -125834,6 +125894,7 @@
     {
       "name": "Polluted Dirt",
       "id": "ToxicSand",
+      "tag": 869554203,
       "oreTags": [
         "Unstable",
         "Compostable",
@@ -125849,6 +125910,7 @@
     {
       "name": "Ice",
       "id": "Ice",
+      "tag": 873952427,
       "oreTags": [
         "IceOre",
         "BuildableAny",
@@ -125864,6 +125926,7 @@
     {
       "name": "Coal",
       "id": "Carbon",
+      "tag": 947100397,
       "oreTags": [
         "Coal",
         "BuildableAny",
@@ -125879,6 +125942,7 @@
     {
       "name": "Oxygen",
       "id": "SolidOxygen",
+      "tag": 973502379,
       "oreTags": [
         "Solid",
         "Liquifiable"
@@ -125892,6 +125956,7 @@
     {
       "name": "Genetic Ooze",
       "id": "Creature",
+      "tag": 976099455,
       "oreTags": [
         "Solid"
       ],
@@ -125904,6 +125969,7 @@
     {
       "name": "MISSING.STRINGS.ELEMENTS.DEPLETEDURANIUM.NAME",
       "id": "DepletedUranium",
+      "tag": 1064294988,
       "oreTags": [
         "Solid"
       ],
@@ -125916,6 +125982,7 @@
     {
       "name": "Abyssalite",
       "id": "Katairite",
+      "tag": 1071649902,
       "oreTags": [
         "Solid",
         "Other"
@@ -125929,6 +125996,7 @@
     {
       "name": "Methane",
       "id": "SolidMethane",
+      "tag": 1183979137,
       "oreTags": [
         "Solid",
         "ConsumableOre"
@@ -125942,6 +126010,7 @@
     {
       "name": "Oxylite",
       "id": "OxyRock",
+      "tag": 1262005685,
       "oreTags": [
         "FlyingCritterEdible",
         "Solid",
@@ -125956,6 +126025,7 @@
     {
       "name": "Mafic Rock",
       "id": "MaficRock",
+      "tag": 1282846257,
       "oreTags": [
         "BuildableAny",
         "Solid",
@@ -125970,6 +126040,7 @@
     {
       "name": "Iron",
       "id": "Iron",
+      "tag": 1306370440,
       "oreTags": [
         "BuildableAny",
         "Solid",
@@ -125984,6 +126055,7 @@
     {
       "name": "Regolith",
       "id": "Regolith",
+      "tag": 1362238252,
       "oreTags": [
         "Unstable",
         "Solid",
@@ -125998,6 +126070,7 @@
     {
       "name": "Building Slab",
       "id": "Slabs",
+      "tag": 1412740729,
       "oreTags": [
         "BuildableAny",
         "Solid",
@@ -126012,6 +126085,7 @@
     {
       "name": "Bitumen",
       "id": "Bitumen",
+      "tag": 1433229102,
       "oreTags": [
         "Solid"
       ],
@@ -126024,6 +126098,7 @@
     {
       "name": "Thermium",
       "id": "TempConductorSolid",
+      "tag": 1559722904,
       "oreTags": [
         "Metal",
         "RefinedMetal",
@@ -126041,6 +126116,7 @@
     {
       "name": "Iron Ore",
       "id": "IronOre",
+      "tag": 1608833498,
       "oreTags": [
         "Ore",
         "BuildableAny",
@@ -126056,6 +126132,7 @@
     {
       "name": "Dirt",
       "id": "Dirt",
+      "tag": 1624244999,
       "oreTags": [
         "BuildableAny",
         "Solid",
@@ -126070,6 +126147,7 @@
     {
       "name": "Cement",
       "id": "Cement",
+      "tag": 1627140480,
       "oreTags": [
         "BuildableAny",
         "Solid",
@@ -126084,6 +126162,7 @@
     {
       "name": "Polluted Ice",
       "id": "DirtyIce",
+      "tag": 1664334585,
       "oreTags": [
         "IceOre",
         "Mixture",
@@ -126100,6 +126179,7 @@
     {
       "name": "Cement Mix",
       "id": "CementMix",
+      "tag": 1668719292,
       "oreTags": [
         "BuildableAny",
         "Solid"
@@ -126113,6 +126193,7 @@
     {
       "name": "Fossil",
       "id": "Fossil",
+      "tag": 1757792140,
       "oreTags": [
         "Solid",
         "BuildableRaw"
@@ -126126,6 +126207,7 @@
     {
       "name": "Neutronium",
       "id": "Unobtanium",
+      "tag": 1838482828,
       "oreTags": [
         "Solid",
         "Special"
@@ -126139,6 +126221,7 @@
     {
       "name": "Ethanol",
       "id": "SolidEthanol",
+      "tag": 1937241528,
       "oreTags": [
         "Solid"
       ],
@@ -126151,6 +126234,7 @@
     {
       "name": "Pyrite",
       "id": "FoolsGold",
+      "tag": 2059777261,
       "oreTags": [
         "Ore",
         "BuildableAny",
@@ -126166,6 +126250,7 @@
     {
       "name": "Aluminum",
       "id": "Aluminum",
+      "tag": 2108244480,
       "oreTags": [
         "BuildableAny",
         "Solid",
@@ -126180,6 +126265,7 @@
     {
       "name": "Helium",
       "id": "LiquidHelium",
+      "tag": -1934139602,
       "oreTags": [
         "Liquid"
       ],
@@ -126192,6 +126278,7 @@
     {
       "name": "Oxygen",
       "id": "LiquidOxygen",
+      "tag": -1908044868,
       "oreTags": [
         "Liquid"
       ],
@@ -126204,6 +126291,7 @@
     {
       "name": "Visco-Gel",
       "id": "ViscoGel",
+      "tag": -1683093854,
       "oreTags": [
         "Liquid"
       ],
@@ -126216,6 +126304,7 @@
     {
       "name": "Molten Aluminum",
       "id": "MoltenAluminum",
+      "tag": -1637472877,
       "oreTags": [
         "Metal",
         "RefinedMetal",
@@ -126231,6 +126320,7 @@
     {
       "name": "Molten Lead",
       "id": "MoltenLead",
+      "tag": -1558864561,
       "oreTags": [
         "Metal",
         "RefinedMetal",
@@ -126246,6 +126336,7 @@
     {
       "name": "Carbon Dioxide",
       "id": "LiquidCarbonDioxide",
+      "tag": -1526513293,
       "oreTags": [
         "Liquid"
       ],
@@ -126258,6 +126349,7 @@
     {
       "name": "Crude Oil",
       "id": "CrudeOil",
+      "tag": -1412059381,
       "oreTags": [
         "Liquid"
       ],
@@ -126270,6 +126362,7 @@
     {
       "name": "Molten Glass",
       "id": "MoltenGlass",
+      "tag": -1312713527,
       "oreTags": [
         "EmitsLight",
         "Liquid"
@@ -126283,6 +126376,7 @@
     {
       "name": "Liquid Sulfur",
       "id": "LiquidSulfur",
+      "tag": -1108652427,
       "oreTags": [
         "Liquid"
       ],
@@ -126295,6 +126389,7 @@
     {
       "name": "Gold",
       "id": "MoltenGold",
+      "tag": -1083496621,
       "oreTags": [
         "Metal",
         "RefinedMetal",
@@ -126310,6 +126405,7 @@
     {
       "name": "Magma",
       "id": "Magma",
+      "tag": -1075911705,
       "oreTags": [
         "EmitsLight",
         "Liquid"
@@ -126323,6 +126419,7 @@
     {
       "name": "Chlorine",
       "id": "Chlorine",
+      "tag": -878033482,
       "oreTags": [
         "Liquid"
       ],
@@ -126335,6 +126432,7 @@
     {
       "name": "Hydrogen",
       "id": "LiquidHydrogen",
+      "tag": -751997156,
       "oreTags": [
         "Liquid"
       ],
@@ -126347,6 +126445,7 @@
     {
       "name": "Propane",
       "id": "LiquidPropane",
+      "tag": -645698215,
       "oreTags": [
         "Liquid"
       ],
@@ -126359,6 +126458,7 @@
     {
       "name": "Tungsten",
       "id": "MoltenTungsten",
+      "tag": -509585641,
       "oreTags": [
         "Metal",
         "RefinedMetal",
@@ -126373,6 +126473,7 @@
     {
       "name": "Petroleum",
       "id": "Petroleum",
+      "tag": -486269331,
       "oreTags": [
         "CombustibleLiquid",
         "Liquid"
@@ -126386,6 +126487,7 @@
     {
       "name": "Molten Salt",
       "id": "MoltenSalt",
+      "tag": -422045879,
       "oreTags": [
         "Liquid"
       ],
@@ -126398,6 +126500,7 @@
     {
       "name": "Brine",
       "id": "Brine",
+      "tag": -324547888,
       "oreTags": [
         "AnyWater",
         "Liquid"
@@ -126411,6 +126514,7 @@
     {
       "name": "MISSING.STRINGS.ELEMENTS.NUCLEARWASTE.NAME",
       "id": "NuclearWaste",
+      "tag": -232430636,
       "oreTags": [
         "Metal",
         "RefinedMetal",
@@ -126426,6 +126530,7 @@
     {
       "name": "Super Coolant",
       "id": "SuperCoolant",
+      "tag": -123825053,
       "oreTags": [
         "Liquid"
       ],
@@ -126438,6 +126543,7 @@
     {
       "name": "Ethanol",
       "id": "Ethanol",
+      "tag": -87974045,
       "oreTags": [
         "CombustibleLiquid",
         "Liquid"
@@ -126451,6 +126557,7 @@
     {
       "name": "Methane",
       "id": "LiquidMethane",
+      "tag": 371787440,
       "oreTags": [
         "Liquid"
       ],
@@ -126463,6 +126570,7 @@
     {
       "name": "Iron",
       "id": "MoltenIron",
+      "tag": 502659099,
       "oreTags": [
         "Metal",
         "RefinedMetal",
@@ -126478,6 +126586,7 @@
     {
       "name": "Carbon",
       "id": "MoltenCarbon",
+      "tag": 505665536,
       "oreTags": [
         "Liquid"
       ],
@@ -126490,6 +126599,7 @@
     {
       "name": "MISSING.STRINGS.ELEMENTS.MOLTENSYNGAS.NAME",
       "id": "MoltenSyngas",
+      "tag": 660593444,
       "oreTags": [
         "Liquid"
       ],
@@ -126502,6 +126612,7 @@
     {
       "name": "Naphtha",
       "id": "Naphtha",
+      "tag": 1157157570,
       "oreTags": [
         "Oil",
         "Liquid"
@@ -126515,6 +126626,7 @@
     {
       "name": "Phosphorus",
       "id": "LiquidPhosphorus",
+      "tag": 1323821489,
       "oreTags": [
         "EmitsLight",
         "Liquid"
@@ -126528,6 +126640,7 @@
     {
       "name": "Steel",
       "id": "MoltenSteel",
+      "tag": 1459013976,
       "oreTags": [
         "Metal",
         "RefinedMetal",
@@ -126543,6 +126656,7 @@
     {
       "name": "Niobium",
       "id": "MoltenNiobium",
+      "tag": 1499134368,
       "oreTags": [
         "Metal",
         "RefinedMetal",
@@ -126558,6 +126672,7 @@
     {
       "name": "Mercury",
       "id": "Mercury",
+      "tag": 1732126099,
       "oreTags": [
         "Metal",
         "Liquid"
@@ -126571,6 +126686,7 @@
     {
       "name": "Polluted Water",
       "id": "DirtyWater",
+      "tag": 1832607973,
       "oreTags": [
         "Mixture",
         "AnyWater",
@@ -126585,6 +126701,7 @@
     {
       "name": "Water",
       "id": "Water",
+      "tag": 1836671383,
       "oreTags": [
         "AnyWater",
         "Liquid"
@@ -126598,6 +126715,7 @@
     {
       "name": "Salt Water",
       "id": "SaltWater",
+      "tag": 1911997537,
       "oreTags": [
         "AnyWater",
         "Liquid"
@@ -126611,6 +126729,7 @@
     {
       "name": "MISSING.STRINGS.ELEMENTS.MOLTENURANIUM.NAME",
       "id": "MoltenUranium",
+      "tag": 1937473860,
       "oreTags": [
         "Metal",
         "RefinedMetal",
@@ -126626,6 +126745,7 @@
     {
       "name": "Copper",
       "id": "MoltenCopper",
+      "tag": 2128494380,
       "oreTags": [
         "Metal",
         "RefinedMetal",
@@ -126641,6 +126761,7 @@
     {
       "name": "Sulfur",
       "id": "SulfurGas",
+      "tag": -2120504832,
       "oreTags": [
         "Gas",
         "Unbreathable"
@@ -126654,6 +126775,7 @@
     {
       "name": "Salt Gas",
       "id": "SaltGas",
+      "tag": -1946026749,
       "oreTags": [
         "Gas",
         "Unbreathable"
@@ -126667,6 +126789,7 @@
     {
       "name": "Propane",
       "id": "Propane",
+      "tag": -1858722091,
       "oreTags": [
         "Gas",
         "Unbreathable"
@@ -126680,6 +126803,7 @@
     {
       "name": "Niobium",
       "id": "NiobiumGas",
+      "tag": -1616033402,
       "oreTags": [
         "Metal",
         "RefinedMetal",
@@ -126696,6 +126820,7 @@
     {
       "name": "Helium",
       "id": "Helium",
+      "tag": -1554872654,
       "oreTags": [
         "Gas",
         "Unbreathable"
@@ -126709,6 +126834,7 @@
     {
       "name": "Oxygen",
       "id": "Oxygen",
+      "tag": -1528777920,
       "oreTags": [
         "Gas",
         "Breathable"
@@ -126722,6 +126848,7 @@
     {
       "name": "Steel",
       "id": "SteelGas",
+      "tag": -1406916018,
       "oreTags": [
         "Metal",
         "Alloy",
@@ -126739,6 +126866,7 @@
     {
       "name": "Chlorine",
       "id": "ChlorineGas",
+      "tag": -1324664829,
       "oreTags": [
         "Gas",
         "Unbreathable"
@@ -126752,6 +126880,7 @@
     {
       "name": "Hydrogen",
       "id": "Hydrogen",
+      "tag": -1046145888,
       "oreTags": [
         "Gas",
         "Unbreathable"
@@ -126765,6 +126894,7 @@
     {
       "name": "Sour Gas",
       "id": "SourGas",
+      "tag": -927923200,
       "oreTags": [
         "Gas",
         "Unbreathable"
@@ -126778,6 +126908,7 @@
     {
       "name": "Steam",
       "id": "Steam",
+      "tag": -899515856,
       "oreTags": [
         "Gas",
         "Unbreathable"
@@ -126791,6 +126922,7 @@
     {
       "name": "Natural Gas",
       "id": "Methane",
+      "tag": -841236436,
       "oreTags": [
         "CombustibleGas",
         "Gas",
@@ -126805,6 +126937,7 @@
     {
       "name": "Mercury",
       "id": "MercuryGas",
+      "tag": -839856666,
       "oreTags": [
         "Metal",
         "Gas",
@@ -126819,6 +126952,7 @@
     {
       "name": "Gold",
       "id": "GoldGas",
+      "tag": -805366663,
       "oreTags": [
         "Metal",
         "RefinedMetal",
@@ -126835,6 +126969,7 @@
     {
       "name": "Ethanol",
       "id": "EthanolGas",
+      "tag": -756961258,
       "oreTags": [
         "Gas",
         "Unbreathable"
@@ -126848,6 +126983,7 @@
     {
       "name": "Rock Gas",
       "id": "RockGas",
+      "tag": -432557516,
       "oreTags": [
         "EmitsLight",
         "Gas",
@@ -126862,6 +126998,7 @@
     {
       "name": "Carbon",
       "id": "CarbonGas",
+      "tag": -314016756,
       "oreTags": [
         "EmitsLight",
         "Gas",
@@ -126876,6 +127013,7 @@
     {
       "name": "Super Coolant",
       "id": "SuperCoolantGas",
+      "tag": -3376362,
       "oreTags": [
         "Gas",
         "Unbreathable"
@@ -126889,6 +127027,7 @@
     {
       "name": "Aluminum",
       "id": "AluminumGas",
+      "tag": 100766521,
       "oreTags": [
         "Metal",
         "RefinedMetal",
@@ -126905,6 +127044,7 @@
     {
       "name": "Tungsten",
       "id": "TungstenGas",
+      "tag": 431998133,
       "oreTags": [
         "Metal",
         "RefinedMetal",
@@ -126920,6 +127060,7 @@
     {
       "name": "Polluted Oxygen",
       "id": "ContaminatedOxygen",
+      "tag": 721531317,
       "oreTags": [
         "Gas",
         "Breathable"
@@ -126933,6 +127074,7 @@
     {
       "name": "Lead",
       "id": "LeadGas",
+      "tag": 905042813,
       "oreTags": [
         "Metal",
         "RefinedMetal",
@@ -126949,6 +127091,7 @@
     {
       "name": "MISSING.STRINGS.ELEMENTS.SYNGAS.NAME",
       "id": "Syngas",
+      "tag": 1102028305,
       "oreTags": [
         "CombustibleGas",
         "Gas",
@@ -126963,6 +127106,7 @@
     {
       "name": "Iron",
       "id": "IronGas",
+      "tag": 1541626289,
       "oreTags": [
         "Metal",
         "RefinedMetal",
@@ -126979,6 +127123,7 @@
     {
       "name": "Phosphorus",
       "id": "PhosphorusGas",
+      "tag": 1887387588,
       "oreTags": [
         "EmitsLight",
         "Gas",
@@ -126993,6 +127138,7 @@
     {
       "name": "Carbon Dioxide",
       "id": "CarbonDioxide",
+      "tag": 1960575215,
       "oreTags": [
         "Gas",
         "Unbreathable"
@@ -127006,6 +127152,7 @@
     {
       "name": "Copper",
       "id": "CopperGas",
+      "tag": 1966552544,
       "oreTags": [
         "Metal",
         "RefinedMetal",
@@ -127022,6 +127169,7 @@
     {
       "name": "Void",
       "id": "Void",
+      "tag": -1456075980,
       "oreTags": [
         "Vacuum",
         "Special"
@@ -127035,6 +127183,7 @@
     {
       "name": "Vacuum",
       "id": "Vacuum",
+      "tag": 758759285,
       "oreTags": [
         "Vacuum",
         "Special"

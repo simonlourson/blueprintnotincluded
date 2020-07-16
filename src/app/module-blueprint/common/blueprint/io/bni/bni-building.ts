@@ -7,4 +7,5 @@ export class BniBuilding
   public buildingdef: string;
   public orientation: Orientation;
   public flags: number;
+  public selected_elements: number[];
 }

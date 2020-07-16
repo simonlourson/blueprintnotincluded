@@ -301,6 +301,21 @@ export class Blueprint
     return returnValue;
   }
 
+  public toBniBlueprint(friendlyname: string): BniBlueprint
+  {
+    let returnValue: BniBlueprint = {
+      friendlyname: friendlyname,
+      buildings: [],
+      digcommands: []
+    }
+
+    for (let originalTemplateItem of this.blueprintItems)
+      if (originalTemplateItem.id != 'Element')
+        returnValue.buildings.push(originalTemplateItem.toBniBuilding());
+    
+    return returnValue;
+  }
+
   public clone(): Blueprint
   {
     let mdb = this.toMdbBlueprint();

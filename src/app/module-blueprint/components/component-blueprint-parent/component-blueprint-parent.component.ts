@@ -1,8 +1,10 @@
-import { Component, OnInit, ViewChild, ChangeDetectorRef, ElementRef, Renderer2 } from '@angular/core';
+import { Component, OnInit, ViewChild, ChangeDetectorRef, ElementRef, Renderer2, Sanitizer } from '@angular/core';
 import {MessageService, Message} from 'primeng/api';
 import { ComponentCanvasComponent } from '../component-canvas/component-canvas.component';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import {BinaryReader, Encoding} from 'csharp-binary-stream';
+var sanitize = require("sanitize-filename");
+import { } from 'sanitize-filename';
 import * as JSZipUtils from 'jszip-utils';
 import * as JSZip from 'jszip';
 
@@ -293,7 +295,20 @@ export class ComponentBlueprintParentComponent implements OnInit, IObsBlueprintC
   }
 
   exportBlueprint() {
-    console.log('Export blueprint');
+    if (this.blueprintService.blueprint.blueprintItems.length == 0) this.messageService.add({severity:'error', summary:'Empty blueprint', detail:'Add some buildings before trying to save'});
+    else {
+      let friendlyname = "new blueprint";
+      if (this.blueprintService.name != undefined) friendlyname = this.blueprintService.name;
+      
+      let bniBlueprint = this.blueprintService.blueprint.toBniBlueprint(friendlyname);
+      
+      let a = document.createElement('a');
+      document.body.append(a);
+      a.download = sanitize(friendlyname) + '.blueprint';
+      a.href = URL.createObjectURL(new Blob([JSON.stringify(bniBlueprint)], {}));
+      a.click();
+      a.remove();
+    }
   }
 
   updateThumbnail() {

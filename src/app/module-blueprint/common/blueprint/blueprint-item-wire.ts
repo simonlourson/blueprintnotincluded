@@ -81,6 +81,14 @@ export class BlueprintItemWire extends BlueprintItem
     return returnValue;
   }
 
+  public toBniBuilding(): BniBuilding {
+    let returnValue = super.toBniBuilding();
+
+    returnValue.flags = this.connections;
+
+    return returnValue;
+  }
+
   public updateTileables(blueprint: Blueprint)
   {
     super.updateTileables(blueprint);
