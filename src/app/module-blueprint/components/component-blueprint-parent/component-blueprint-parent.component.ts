@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ChangeDetectorRef, ElementRef, Renderer2, Sanitizer } from '@angular/core';
+import { Component, OnInit, ViewChild, ChangeDetectorRef, ElementRef, Renderer2 } from '@angular/core';
 import {MessageService, Message} from 'primeng/api';
 import { ComponentCanvasComponent } from '../component-canvas/component-canvas.component';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
