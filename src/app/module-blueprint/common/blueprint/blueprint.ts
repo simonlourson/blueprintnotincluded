@@ -1,12 +1,10 @@
-import { OniItem } from '../oni-item';
 import { Vector2 } from "../../../../../../blueprintnotincluded-lib/index";
-import { Overlay } from '../overlay-type';
 import { BlueprintItem } from './blueprint-item';
 import { BlueprintItemWire } from "./blueprint-item-wire";
 import { BinaryReader, Encoding } from 'csharp-binary-stream';
 import { BlueprintHelpers } from './blueprint-helpers';
 import { DrawHelpers } from '../../drawing/draw-helpers';
-import { BniBlueprint, BniBuilding, MdbBlueprint, OniTemplate } from '../../../../../../blueprintnotincluded-lib/index';
+import { OniItem, Overlay, BniBlueprint, BniBuilding, MdbBlueprint, OniTemplate } from '../../../../../../blueprintnotincluded-lib/index';
 import { BlueprintItemElement } from './blueprint-item-element';
 
 export class Blueprint

@@ -1,10 +1,6 @@
-import { PermittedRotations, ConnectionHelper, Vector2 } from "../../../../../../blueprintnotincluded-lib/index";
-import { OniItem, Orientation } from "../oni-item";
-import { ImageSource } from "../../drawing/image-source";
+import { OniItem, Orientation, Overlay, Display, Visualization, ConnectionHelper, Vector2 } from "../../../../../../blueprintnotincluded-lib/index";
 import { SpriteInfo } from "../../drawing/sprite-info";
-import { SpriteModifier } from "../../drawing/sprite-modifier";
 import { CameraService } from "../../services/camera-service";
-import { ZIndex, Overlay, Display, Visualization } from "../overlay-type";
 import { DrawHelpers,  } from "../../drawing/draw-helpers";
 import { Blueprint } from "./blueprint";
 import { DrawPixi } from '../../drawing/draw-pixi';

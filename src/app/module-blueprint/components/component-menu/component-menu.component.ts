@@ -1,20 +1,14 @@
-import { Component, OnInit, Output, EventEmitter, Testability } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
-import {MenuItem, Message, MessageService} from 'primeng/api';
-import { setDefaultService } from 'selenium-webdriver/opera';
-import { ZIndex, Overlay, Display, Visualization } from '../../common/overlay-type';
-import { OniItem } from '../../common/oni-item';
+import { MenuItem, MessageService} from 'primeng/api';
+import { Overlay, Display, Visualization } from '../../../../../../blueprintnotincluded-lib/index'
 import { ToolType } from '../../common/tools/tool';
-import { BlueprintItem } from '../../common/blueprint/blueprint-item';
 import { AuthenticationService } from '../../services/authentification-service';
-import { Blueprint } from '../../common/blueprint/blueprint';
-import { BehaviorSubject } from 'rxjs';
-import { ToolService, ToolRequest, IObsToolChanged } from '../../services/tool-service';
+import { ToolService, IObsToolChanged } from '../../services/tool-service';
 import { CameraService, IObsCameraChanged } from '../../services/camera-service';
 import { Router } from '@angular/router';
 import { BlueprintService, BlueprintFileType } from '../../services/blueprint-service';
 import { DrawHelpers } from '../../drawing/draw-helpers';
-import { BlueprintItemElement } from '../../common/blueprint/blueprint-item-element';
 
 @Component({
   selector: 'app-component-menu',

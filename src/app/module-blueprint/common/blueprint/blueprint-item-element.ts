@@ -3,8 +3,7 @@ import { BlueprintItem } from "./blueprint-item";
 import { DrawHelpers } from '../../drawing/draw-helpers';
 import { DrawPart } from '../../drawing/draw-part';
 import { CameraService } from '../../services/camera-service';
-import { Visualization, Overlay, Display } from '../overlay-type';
-import { MdbBuilding, SpriteTag } from '../../../../../../blueprintnotincluded-lib/index';
+import { MdbBuilding, SpriteTag, Visualization, Overlay, Display } from '../../../../../../blueprintnotincluded-lib/index';
 
 export class BlueprintItemElement extends BlueprintItem
 {

@@ -5,16 +5,13 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 // Engine imports
 import { CameraService, IObsCameraChanged } from 'src/app/module-blueprint/services/camera-service';
-import { BExport, BSpriteInfo, BSpriteModifier, Vector2, SpriteTag } from '../../../../../../blueprintnotincluded-lib/index'
+import { OniItem, SpriteModifier, Overlay, Display, BExport, BSpriteInfo, BSpriteModifier, Vector2, SpriteTag } from '../../../../../../blueprintnotincluded-lib/index'
 import { SpriteInfo } from 'src/app/module-blueprint/drawing/sprite-info';
 import { ImageSource } from 'src/app/module-blueprint/drawing/image-source';
-import { OniItem } from 'src/app/module-blueprint/common/oni-item';
-import { SpriteModifier } from 'src/app/module-blueprint/drawing/sprite-modifier';
 
 
 // PrimeNg imports
 import { Blueprint, IObsBlueprintChange } from '../../common/blueprint/blueprint';
-import { ZIndex, Overlay, Display, Visualization } from '../../common/overlay-type';
 import { ToolType } from '../../common/tools/tool';
 import { ComponentSideSelectionToolComponent } from '../side-bar/selection-tool/selection-tool.component';
 import { DrawPixi } from '../../drawing/draw-pixi';

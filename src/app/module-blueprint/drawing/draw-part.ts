@@ -1,11 +1,6 @@
 import { SpriteInfo } from './sprite-info';
-import { SpriteModifier } from './sprite-modifier';
-import { CameraService } from '../services/camera-service';
-import { DrawPixi } from './draw-pixi';
-import { OniItem } from '../common/oni-item';
-import { Vector2, SpriteTag } from '../../../../../blueprintnotincluded-lib/index'
+import { OniItem, SpriteModifier, Display, Vector2, SpriteTag } from '../../../../../blueprintnotincluded-lib/index'
 import { DrawHelpers } from './draw-helpers';
-import { Display } from '../common/overlay-type';
 
 export class DrawPart
 {

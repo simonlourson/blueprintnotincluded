@@ -1,14 +1,8 @@
-import { OniItem } from "../oni-item";
 import { Blueprint } from "./blueprint";
 import { BlueprintItem } from "./blueprint-item";
-import { SpriteModifier } from "../../drawing/sprite-modifier";
 import { CameraService } from "../../services/camera-service";
-import { SpriteInfo } from "../../drawing/sprite-info";
-import { ImageSource } from "../../drawing/image-source";
 import { DrawHelpers } from "../../drawing/draw-helpers";
 import { DrawPixi } from '../../drawing/draw-pixi';
-import { DrawPart } from '../../drawing/draw-part';
-import { Overlay, Display } from '../overlay-type';
 import { BniBuilding, MdbBuilding, OniBuilding } from '../../../../../../blueprintnotincluded-lib/index';
 
 export class BlueprintItemWire extends BlueprintItem 

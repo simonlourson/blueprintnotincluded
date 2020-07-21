@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ToolService } from 'src/app/module-blueprint/services/tool-service';
-import { BuildableElement } from '../../../../../../../blueprintnotincluded-lib/index';
+import { Visualization, BuildableElement } from '../../../../../../../blueprintnotincluded-lib/index';
 import { CameraService } from 'src/app/module-blueprint/services/camera-service';
-import { Visualization } from 'src/app/module-blueprint/common/overlay-type';
 
 @Component({
   selector: 'app-element-report-tool',

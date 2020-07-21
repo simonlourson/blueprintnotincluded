@@ -6,7 +6,7 @@ import { Blueprint } from '../../../common/blueprint/blueprint';
 import { MessageService } from 'primeng/api';
 import { AuthenticationService } from '../../../services/authentification-service';
 import { BlueprintNameValidationDirective } from 'src/app/module-blueprint/directives/blueprint-name-validation.directive';
-import { Display } from 'src/app/module-blueprint/common/overlay-type';
+import { Display } from '../../../../../../../blueprintnotincluded-lib/index'
 
 @Component({
   selector: 'app-component-save-dialog',

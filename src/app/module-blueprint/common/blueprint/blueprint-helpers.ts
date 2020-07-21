@@ -1,5 +1,5 @@
 import { BlueprintItem } from './blueprint-item';
-import { OniItem } from '../oni-item';
+import { OniItem } from '../../../../../../blueprintnotincluded-lib/index'
 import { BlueprintItemWire } from './blueprint-item-wire';
 import { BlueprintItemTile } from './blueprint-item-tile';
 import { BlueprintItemElement } from './blueprint-item-element';

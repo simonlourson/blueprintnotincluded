@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CameraService } from 'src/app/module-blueprint/services/camera-service';
-import { Visualization } from 'src/app/module-blueprint/common/overlay-type';
+import { Visualization } from '../../../../../../../blueprintnotincluded-lib/index';
 import { DrawHelpers, TemperatureThreshold } from 'src/app/module-blueprint/drawing/draw-helpers';
 
 @Component({

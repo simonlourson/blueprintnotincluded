@@ -1,16 +1,12 @@
 import { BlueprintService } from '../../services/blueprint-service';
 import { BlueprintItem } from '../blueprint/blueprint-item';
-import { ConnectionHelper, Vector2, BuildableElement } from "../../../../../../blueprintnotincluded-lib/index";
-import { Injectable, ChangeDetectorRef } from '@angular/core';
-import { Observable } from 'rxjs';
-import { ITool, IChangeTool, ToolType } from './tool';
+import { OniItem, Vector2, BuildableElement } from "../../../../../../blueprintnotincluded-lib/index";
+import { Injectable } from '@angular/core';
+import { ITool, ToolType } from './tool';
 import { DrawPixi } from '../../drawing/draw-pixi';
 import { CameraService } from '../../services/camera-service';
-import { IObsBlueprintChange } from '../blueprint/blueprint';
 import { DrawHelpers } from '../../drawing/draw-helpers';
 import { SameItemCollection } from './same-item-collection';
-import { OniItem } from '../oni-item';
-import { BuildTool } from './build-tool';
 
 @Injectable()
 export class SelectTool implements ITool

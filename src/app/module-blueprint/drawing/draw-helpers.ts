@@ -1,5 +1,4 @@
-import { BSpriteInfo, Vector2, SpriteTag } from '../../../../../blueprintnotincluded-lib/index'
-import { Overlay } from '../common/overlay-type';
+import { Overlay, BSpriteInfo, Vector2, SpriteTag } from '../../../../../blueprintnotincluded-lib/index'
 
 export class DrawHelpers
 {

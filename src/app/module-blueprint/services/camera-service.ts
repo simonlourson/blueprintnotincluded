@@ -1,8 +1,5 @@
-import { Vector2 } from '../../../../../blueprintnotincluded-lib/index'
-import { ZIndex, Overlay, Display, Visualization } from "../common/overlay-type";
+import { Overlay, Display, Visualization, OniItem, Vector2 } from '../../../../../blueprintnotincluded-lib/index'
 import { Injectable } from '@angular/core';
-import { OniItem } from '../common/oni-item';
-import { DrawHelpers } from '../drawing/draw-helpers';
 
 import {  } from 'pixi.js-legacy';
 declare var PIXI: any;

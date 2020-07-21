@@ -4,9 +4,8 @@ import { Blueprint, IObsBlueprintChange } from '../common/blueprint/blueprint';
 import { AuthenticationService } from './authentification-service';
 import { map } from 'rxjs/operators';
 import { CameraService } from './camera-service';
-import { Overlay, Display } from '../common/overlay-type';
 import { ComponentMenuComponent } from '../components/component-menu/component-menu.component';
-import { BniBlueprint, MdbBlueprint, OniTemplate, BlueprintListItem, BlueprintLike, BlueprintResponse } from '../../../../../blueprintnotincluded-lib/index';
+import { Overlay, Display, BniBlueprint, MdbBlueprint, OniTemplate, BlueprintListItem, BlueprintLike, BlueprintResponse } from '../../../../../blueprintnotincluded-lib/index';
 import * as yaml from 'node_modules/js-yaml/lib/js-yaml';
 import { BlueprintItem } from '../common/blueprint/blueprint-item';
 

@@ -4,7 +4,6 @@ import { BlueprintItem } from "./blueprint-item";
 import { DrawHelpers } from '../../drawing/draw-helpers';
 import { DrawPart } from '../../drawing/draw-part';
 import { CameraService } from '../../services/camera-service';
-import { Display } from '../overlay-type';
 
 export class BlueprintItemTile extends BlueprintItem
 {
