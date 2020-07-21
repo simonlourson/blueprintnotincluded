@@ -1,7 +1,6 @@
 import { BlueprintItem } from '../blueprint/blueprint-item';
-import { CameraService } from '../../services/camera-service';
 import { BlueprintService } from '../../services/blueprint-service';
-import { OniItem, BuildableElement } from '../../../../../../blueprintnotincluded-lib/index'
+import { CameraService, OniItem, BuildableElement } from '../../../../../../blueprintnotincluded-lib/index'
 
 export class SameItemCollection
 {

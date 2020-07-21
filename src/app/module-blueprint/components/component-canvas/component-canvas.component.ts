@@ -4,8 +4,7 @@ import { Component, OnInit, OnDestroy, ViewChild, ElementRef, NgZone, Output, Ev
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 // Engine imports
-import { CameraService, IObsCameraChanged } from 'src/app/module-blueprint/services/camera-service';
-import { SpriteInfo, DrawHelpers, ImageSource, OniItem, SpriteModifier, Overlay, Display, BExport, BSpriteInfo, BSpriteModifier, Vector2, SpriteTag } from '../../../../../../blueprintnotincluded-lib/index'
+import { CameraService, IObsCameraChanged, SpriteInfo, DrawHelpers, ImageSource, OniItem, SpriteModifier, Overlay, Display, BExport, BSpriteInfo, BSpriteModifier, Vector2, SpriteTag } from '../../../../../../blueprintnotincluded-lib/index'
 
 // PrimeNg imports
 import { Blueprint, IObsBlueprintChange } from '../../common/blueprint/blueprint';
@@ -44,14 +43,16 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy, IObsCameraCh
 
   drawPixi: DrawPixi;
 
+  private cameraService: CameraService
+
   public get blueprint() { return this.blueprintService.blueprint; }
   constructor(
     private ngZone: NgZone,
     private blueprintService: BlueprintService,
-    private cameraService: CameraService,
     private toolService: ToolService) {
     
     this.drawPixi = new DrawPixi();
+    this.cameraService = CameraService.cameraService;
     this.cameraService.subscribeCameraChange(this);
   }
 

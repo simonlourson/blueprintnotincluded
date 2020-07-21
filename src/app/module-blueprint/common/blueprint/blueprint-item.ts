@@ -1,9 +1,8 @@
 import { DrawPart, SpriteInfo, DrawHelpers, OniItem, Orientation, Overlay, Display, Visualization, ConnectionHelper, Vector2 } from "../../../../../../blueprintnotincluded-lib/index";
-import { CameraService } from "../../services/camera-service";
 import { Blueprint } from "./blueprint";
 import { DrawPixi } from '../../drawing/draw-pixi';
 import { Inject } from '@angular/core';
-import { SpriteTag, BniBuilding, MdbBuilding, OniBuilding, BuildableElement, UiSaveSettings } from '../../../../../../blueprintnotincluded-lib/index';
+import { CameraService, SpriteTag, BniBuilding, MdbBuilding, OniBuilding, BuildableElement, UiSaveSettings } from '../../../../../../blueprintnotincluded-lib/index';
 
 import {  } from 'pixi.js-legacy';
 declare var PIXI: any;

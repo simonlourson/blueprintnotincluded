@@ -1,7 +1,6 @@
 import { Blueprint } from "./blueprint";
 import { BlueprintItem } from "./blueprint-item";
-import { CameraService } from '../../services/camera-service';
-import { DrawHelpers, MdbBuilding, SpriteTag, Visualization, Overlay, Display } from '../../../../../../blueprintnotincluded-lib/index';
+import { CameraService, DrawHelpers, MdbBuilding, SpriteTag, Visualization, Overlay, Display } from '../../../../../../blueprintnotincluded-lib/index';
 
 export class BlueprintItemElement extends BlueprintItem
 {

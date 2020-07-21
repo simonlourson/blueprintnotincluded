@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { ToolType, ITool, IChangeTool } from '../common/tools/tool';
 import { SelectTool } from '../common/tools/select-tool';
-import { Vector2 } from '../../../../../blueprintnotincluded-lib/index'
+import { CameraService, Vector2 } from '../../../../../blueprintnotincluded-lib/index'
 import { DrawPixi } from '../drawing/draw-pixi';
-import { CameraService } from './camera-service';
 import { BuildTool } from '../common/tools/build-tool';
 import { BlueprintItem } from '../common/blueprint/blueprint-item';
 import { ElementReport } from '../common/tools/element-report';

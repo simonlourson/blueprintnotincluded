@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { Blueprint, IObsBlueprintChange } from '../common/blueprint/blueprint';
 import { AuthenticationService } from './authentification-service';
 import { map } from 'rxjs/operators';
-import { CameraService } from './camera-service';
 import { ComponentMenuComponent } from '../components/component-menu/component-menu.component';
 import { Overlay, Display, BniBlueprint, MdbBlueprint, OniTemplate, BlueprintListItem, BlueprintLike, BlueprintResponse } from '../../../../../blueprintnotincluded-lib/index';
 import * as yaml from 'node_modules/js-yaml/lib/js-yaml';
@@ -33,7 +32,7 @@ export class BlueprintService implements IObsBlueprintChange
   static blueprintService: BlueprintService;
 
   // TODO camera service does not need to be injected
-  constructor(private http: HttpClient, private authService: AuthenticationService, private cameraService: CameraService) {
+  constructor(private http: HttpClient, private authService: AuthenticationService) {
     this.blueprint = new Blueprint();
 
     // Undo / Redo stuff

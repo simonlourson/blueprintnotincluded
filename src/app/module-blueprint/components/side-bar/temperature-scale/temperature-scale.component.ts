@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CameraService } from 'src/app/module-blueprint/services/camera-service';
-import { DrawHelpers, TemperatureThreshold, Visualization } from '../../../../../../../blueprintnotincluded-lib/index';
+import { CameraService, DrawHelpers, TemperatureThreshold, Visualization } from '../../../../../../../blueprintnotincluded-lib/index';
 
 @Component({
   selector: 'app-temperature-scale',
@@ -11,7 +10,12 @@ export class TemperatureScaleComponent implements OnInit {
 
   temperatureData: TemperatureThreshold[];
 
-  constructor(private cameraService: CameraService) { 
+  private cameraService: CameraService
+
+  constructor() { 
+
+    this.cameraService = CameraService.cameraService;
+
     this.temperatureData = [];
     for (let i = DrawHelpers.temperatureThresholds.length - 2; i >= 0; i--)
       this.temperatureData.push(DrawHelpers.temperatureThresholds[i]);

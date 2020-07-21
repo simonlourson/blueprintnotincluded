@@ -1,8 +1,7 @@
 import { Blueprint } from "./blueprint";
 import { BlueprintItem } from "./blueprint-item";
-import { CameraService } from "../../services/camera-service";
 import { DrawPixi } from '../../drawing/draw-pixi';
-import { DrawHelpers, BniBuilding, MdbBuilding, OniBuilding } from '../../../../../../blueprintnotincluded-lib/index';
+import { CameraService, DrawHelpers, BniBuilding, MdbBuilding, OniBuilding } from '../../../../../../blueprintnotincluded-lib/index';
 
 export class BlueprintItemWire extends BlueprintItem 
 {

@@ -1,11 +1,10 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 import { MenuItem, MessageService} from 'primeng/api';
-import { DrawHelpers, Overlay, Display, Visualization } from '../../../../../../blueprintnotincluded-lib/index'
+import { CameraService, IObsCameraChanged, DrawHelpers, Overlay, Display, Visualization } from '../../../../../../blueprintnotincluded-lib/index'
 import { ToolType } from '../../common/tools/tool';
 import { AuthenticationService } from '../../services/authentification-service';
 import { ToolService, IObsToolChanged } from '../../services/tool-service';
-import { CameraService, IObsCameraChanged } from '../../services/camera-service';
 import { Router } from '@angular/router';
 import { BlueprintService, BlueprintFileType } from '../../services/blueprint-service';
 
@@ -27,16 +26,18 @@ export class ComponentMenuComponent implements OnInit, IObsToolChanged, IObsCame
   static debugFps: number = 0
   public getFps() { return ComponentMenuComponent.debugFps; }
 
+  private cameraService: CameraService
+
   constructor(
     //TODO should not be public
     public authService: AuthenticationService, 
     private messageService: MessageService,
     private toolService: ToolService,
-    private cameraService: CameraService,
     private blueprintService: BlueprintService,
     private router: Router) 
   {
     this.toolService.subscribeToolChanged(this);
+    this.cameraService = CameraService.cameraService;
     this.cameraService.subscribeCameraChange(this);
 
   }

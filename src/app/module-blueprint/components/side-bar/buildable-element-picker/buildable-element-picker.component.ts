@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter, ViewChildren, QueryList } from '@angular/core';
-import { Visualization, BuildableElement } from '../../../../../../../blueprintnotincluded-lib/index';
+import { CameraService, Visualization, BuildableElement } from '../../../../../../../blueprintnotincluded-lib/index';
 import { OverlayPanel } from 'primeng/overlaypanel';
-import { CameraService } from 'src/app/module-blueprint/services/camera-service';
 
 @Component({
   selector: 'app-buildable-element-picker',
@@ -19,8 +18,11 @@ export class BuildableElementPickerComponent implements OnInit {
 
   @ViewChildren(OverlayPanel) elementPanels !: QueryList<OverlayPanel>;
 
- 
-  constructor(private cameraService: CameraService) { }
+  private cameraService: CameraService
+
+  constructor() { 
+    this.cameraService = CameraService.cameraService;
+  }
 
   ngOnInit() {
   }

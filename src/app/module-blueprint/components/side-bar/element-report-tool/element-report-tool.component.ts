@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ToolService } from 'src/app/module-blueprint/services/tool-service';
-import { Visualization, BuildableElement } from '../../../../../../../blueprintnotincluded-lib/index';
-import { CameraService } from 'src/app/module-blueprint/services/camera-service';
+import { CameraService, Visualization, BuildableElement } from '../../../../../../../blueprintnotincluded-lib/index';
 
 @Component({
   selector: 'app-element-report-tool',
@@ -12,7 +11,11 @@ export class ElementReportToolComponent implements OnInit {
 
   get data() { return this.toolService.elementReport.data }
 
-  constructor(private toolService: ToolService, private cameraService: CameraService) { }
+  private cameraService: CameraService
+
+  constructor(private toolService: ToolService) {
+    this.cameraService = CameraService.cameraService;
+  }
 
   selectEveryElement(buildableElement: BuildableElement) {
     this.toolService.selectTool.selectEveryElement(buildableElement);

@@ -1,10 +1,9 @@
 import { BlueprintService } from '../../services/blueprint-service';
 import { BlueprintItem } from '../blueprint/blueprint-item';
-import { DrawHelpers, Vector2 } from "../../../../../../blueprintnotincluded-lib/index";
+import { CameraService, DrawHelpers, Vector2 } from "../../../../../../blueprintnotincluded-lib/index";
 import { Injectable } from '@angular/core';
 import { ITool, IChangeTool, ToolType } from './tool';
 import { DrawPixi } from '../../drawing/draw-pixi';
-import { CameraService } from '../../services/camera-service';
 import { BlueprintItemWire } from '../blueprint/blueprint-item-wire';
 import { BlueprintHelpers } from '../blueprint/blueprint-helpers';
 
@@ -14,12 +13,14 @@ export class BuildTool implements ITool
 
   templateItemToBuild: BlueprintItem;
   private observers: IObsBuildItemChanged[];
+  private cameraService: CameraService
 
   parent: IChangeTool;
 
-  constructor(private blueprintService: BlueprintService, private cameraService: CameraService) 
+  constructor(private blueprintService: BlueprintService) 
   {
     this.observers = [];
+    this.cameraService = CameraService.cameraService
   }
 
   subscribeBuildItemChanged(observer: IObsBuildItemChanged)

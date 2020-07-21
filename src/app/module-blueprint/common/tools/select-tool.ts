@@ -1,10 +1,9 @@
 import { BlueprintService } from '../../services/blueprint-service';
 import { BlueprintItem } from '../blueprint/blueprint-item';
-import { DrawHelpers, OniItem, Vector2, BuildableElement } from "../../../../../../blueprintnotincluded-lib/index";
+import { CameraService, DrawHelpers, OniItem, Vector2, BuildableElement } from "../../../../../../blueprintnotincluded-lib/index";
 import { Injectable } from '@angular/core';
 import { ITool, ToolType } from './tool';
 import { DrawPixi } from '../../drawing/draw-pixi';
-import { CameraService } from '../../services/camera-service';
 import { SameItemCollection } from './same-item-collection';
 
 @Injectable()
@@ -14,8 +13,10 @@ export class SelectTool implements ITool
 
   public observersSelectionChanged: IObsSelectionChanged[] = [];
 
-  constructor(private blueprintService: BlueprintService, private cameraService: CameraService) {
+  private cameraService: CameraService
+  constructor(private blueprintService: BlueprintService) {
 
+    this.cameraService = CameraService.cameraService;
     // TODO also do this on blueprint loading
     this.reset();
   }

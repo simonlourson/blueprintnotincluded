@@ -1,6 +1,5 @@
-import { Vector2 } from "../../../../../../blueprintnotincluded-lib/index";
+import { CameraService, Vector2 } from "../../../../../../blueprintnotincluded-lib/index";
 import { DrawPixi } from '../../drawing/draw-pixi';
-import { CameraService } from '../../services/camera-service';
 
 export enum ToolType
 {

@@ -11,12 +11,11 @@ import { Blueprint } from '../../common/blueprint/blueprint';
 import { ActivatedRoute, Params, UrlSegment } from '@angular/router';
 import { MenuCommand, MenuCommandType, BrowseData } from '../component-menu/component-menu.component';
 import { ToolType } from '../../common/tools/tool';
-import { SpriteInfo, ImageSource, OniItem, SpriteModifier, Overlay, BSpriteInfo, BBuilding, BSpriteModifier, BuildMenuCategory, BuildMenuItem, BuildableElement } from '../../../../../../blueprintnotincluded-lib/index';
+import { CameraService, SpriteInfo, ImageSource, OniItem, SpriteModifier, Overlay, BSpriteInfo, BBuilding, BSpriteModifier, BuildMenuCategory, BuildMenuItem, BuildableElement } from '../../../../../../blueprintnotincluded-lib/index';
 import { ComponentLoginDialogComponent } from '../user-auth/login-dialog/login-dialog.component';
 import { BlueprintService, IObsBlueprintChanged, ExportImageOptions } from '../../services/blueprint-service';
 import { ComponentSaveDialogComponent } from '../dialogs/component-save-dialog/component-save-dialog.component';
 import { DialogShareUrlComponent } from '../dialogs/dialog-share-url/dialog-share-url.component';
-import { CameraService } from '../../services/camera-service';
 import { DialogBrowseComponent } from '../dialogs/dialog-browse/dialog-browse.component';
 import { DialogExportImagesComponent } from '../dialogs/dialog-export-images/dialog-export-images.component';
 import { ToolService } from '../../services/tool-service';
@@ -81,14 +80,17 @@ export class ComponentBlueprintParentComponent implements OnInit, IObsBlueprintC
   @ViewChild('selectionTool', {static: true})
   selectionTool: ComponentSideSelectionToolComponent;
 
+  public cameraService: CameraService
+
   constructor(
     private messageService: MessageService, 
     private route: ActivatedRoute,
     private authService: AuthenticationService,
     private blueprintService: BlueprintService,
-    public cameraService: CameraService,
     public toolService: ToolService,
-    private renderer: Renderer2) { }
+    private renderer: Renderer2) { 
+      this.cameraService = CameraService.cameraService;
+    }
 
   ngOnInit() {
     

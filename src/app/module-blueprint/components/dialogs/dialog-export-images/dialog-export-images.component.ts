@@ -1,9 +1,8 @@
 import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
 import { BlueprintService, ExportImageOptions } from 'src/app/module-blueprint/services/blueprint-service';
-import { CameraService } from 'src/app/module-blueprint/services/camera-service';
 import { SelectItem } from 'primeng/api';
 import { Dropdown } from 'primeng/dropdown';
-import { DrawHelpers, Vector2, Overlay } from '../../../../../../../blueprintnotincluded-lib/index'
+import { CameraService, DrawHelpers, Vector2, Overlay } from '../../../../../../../blueprintnotincluded-lib/index'
 
 @Component({
   selector: 'app-dialog-export-images',
@@ -28,7 +27,12 @@ export class DialogExportImagesComponent implements OnInit {
   get finalSize(): string { return this.blueprintSize == null ? '' : this.blueprintSize.x * this.exportOptions.pixelsPerTile + 'x' + this.blueprintSize.y * this.exportOptions.pixelsPerTile }
   get finalSizeMb(): number { return this.blueprintSize == null ? 0 : this.blueprintSize.x * this.exportOptions.pixelsPerTile * this.blueprintSize.y * this.exportOptions.pixelsPerTile * this.exportOptions.selectedOverlays.length * 0.00000068120021446078431372549 }
 
-  constructor(private blueprintService: BlueprintService, private cameraService: CameraService) { 
+  private cameraService: CameraService
+
+  constructor(private blueprintService: BlueprintService) { 
+
+    this.cameraService = CameraService.cameraService;
+
     this.pixelPerTile = [
       {label:'16 pixels per tile', value:16},
       {label:'24 pixels per tile', value:24},

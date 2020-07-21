@@ -2,7 +2,6 @@ import { Component, OnInit, ViewChild, ChangeDetectorRef, HostListener, AfterCon
 import { BlueprintListItem, BlueprintListResponse } from '../../../../../../../blueprintnotincluded-lib/index';
 import { BlueprintService } from 'src/app/module-blueprint/services/blueprint-service';
 import { Dialog } from 'primeng/dialog';
-import { CameraService, IObsAnimationChanged } from 'src/app/module-blueprint/services/camera-service';
 import { DatePipe } from '@angular/common';
 import { AuthenticationService } from 'src/app/module-blueprint/services/authentification-service';
 import { timingSafeEqual } from 'crypto';

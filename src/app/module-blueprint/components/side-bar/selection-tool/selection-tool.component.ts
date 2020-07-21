@@ -1,12 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef, Output, EventEmitter, ViewChild, ElementRef, Renderer2, OnChanges, AfterViewChecked, AfterViewInit } from '@angular/core';
-import { BlueprintItem } from '../../../common/blueprint/blueprint-item';
-import { ToolType } from '../../../common/tools/tool';
-import { Blueprint } from '../../../common/blueprint/blueprint';
-import { CameraService } from '../../../services/camera-service';
 import { BlueprintService } from '../../../services/blueprint-service';
 import { ToolService } from '../../../services/tool-service';
 import { Accordion } from 'primeng/accordion';
-import { IObsSelectionChanged } from 'src/app/module-blueprint/common/tools/select-tool';
 
 @Component({
   selector: 'app-selection-tool',
@@ -19,7 +14,6 @@ export class ComponentSideSelectionToolComponent implements OnInit {
   @ViewChild('selectToolCard', {static: true}) selectToolCard: ElementRef;
 
   constructor(
-    private blueprintService: BlueprintService, 
     public toolService: ToolService,
     private renderer: Renderer2) 
   { 

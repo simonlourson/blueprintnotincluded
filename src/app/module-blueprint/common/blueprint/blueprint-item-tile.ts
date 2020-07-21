@@ -1,7 +1,6 @@
-import { DrawHelpers, Vector2 } from "../../../../../../blueprintnotincluded-lib/index";
+import { CameraService, DrawHelpers, Vector2 } from "../../../../../../blueprintnotincluded-lib/index";
 import { Blueprint } from "./blueprint";
 import { BlueprintItem } from "./blueprint-item";
-import { CameraService } from '../../services/camera-service';
 
 export class BlueprintItemTile extends BlueprintItem
 {
