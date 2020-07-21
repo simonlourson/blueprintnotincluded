@@ -1,6 +1,6 @@
 // SHARED CODE
-
-export class Vector2
+/*
+export class Vector2old
 {
     x: number;
     y: number;
@@ -65,4 +65,4 @@ export class Vector2
     public static Right = new Vector2(1, 0);
     public static Up = new Vector2(0, 1);
     public static Down = new Vector2(0, -1);
-}
+}*/

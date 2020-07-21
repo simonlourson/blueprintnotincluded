@@ -1,9 +1,4 @@
-import { Vector2 } from "../common/vector2";
-import { CameraService } from "../services/camera-service";
-import { SpriteInfo } from "./sprite-info";
-import { SpriteModifier, SpriteTag } from "./sprite-modifier";
-import { ImageSource } from "./image-source";
-import { BSpriteInfo } from '../common/bexport/b-sprite-info';
+import { BSpriteInfo, Vector2, SpriteTag } from '../../../../../blueprintnotincluded-lib/index'
 import { Overlay } from '../common/overlay-type';
 
 export class DrawHelpers
@@ -60,6 +55,7 @@ export class DrawHelpers
     return 'rgba(' + Math.floor(Math.random() * 256) + ',' + Math.floor(Math.random() * 256) + ',' + Math.floor(Math.random() * 256) + ',1)';
   }
 
+  /*
   public static drawFullRectangle(ctx: CanvasRenderingContext2D, camera: CameraService, topLeft: Vector2, bottomRight: Vector2, color: string)
   {
     let rectanglePosition = new Vector2(
@@ -75,6 +71,7 @@ export class DrawHelpers
     ctx.fillStyle = color;
      ctx.fillRect(rectanglePosition.x, rectanglePosition.y, rectangleSize.x, rectangleSize.y);
   }
+  */
 
   public static hexToRgb(hex: string): number[]
   {
@@ -248,7 +245,7 @@ export class DrawHelpers
 
   public static getTileIndex(position: Vector2): number
   {
-    return (position.x + 500) + 1001 * (position.y + 500);;
+    return (position.x + 500) + 1001 * (position.y + 500);
   }
 
   public static getTilePosition(index: number): Vector2
@@ -404,15 +401,6 @@ export class DrawHelpers
     'Unknown'
   ]
 
-}
-
-export enum PermittedRotations
-{
-    Unrotatable = 0,
-    R90 = 1,
-    R360 = 2,
-    FlipH = 3,
-    FlipV = 4
 }
 
 interface ScaleStep {

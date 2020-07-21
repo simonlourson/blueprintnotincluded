@@ -1,6 +1,4 @@
-import { Vector2 } from "../vector2";
 import { OniItem } from "../oni-item";
-import { OniBuilding } from "./io/oni/oni-building";
 import { Blueprint } from "./blueprint";
 import { BlueprintItem } from "./blueprint-item";
 import { SpriteModifier } from "../../drawing/sprite-modifier";
@@ -11,8 +9,7 @@ import { DrawHelpers } from "../../drawing/draw-helpers";
 import { DrawPixi } from '../../drawing/draw-pixi';
 import { DrawPart } from '../../drawing/draw-part';
 import { Overlay, Display } from '../overlay-type';
-import { BniBuilding } from './io/bni/bni-building';
-import { MdbBuilding } from './io/mdb/mdb-building';
+import { BniBuilding, MdbBuilding, OniBuilding } from '../../../../../../blueprintnotincluded-lib/index';
 
 export class BlueprintItemWire extends BlueprintItem 
 {

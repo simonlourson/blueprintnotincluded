@@ -19,6 +19,9 @@
       "dom"
     ]
   },
+  "references": [
+    { "path": "../blueprintnotincluded-lib" }
+  ],
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
     "strictInjectionParameters": true

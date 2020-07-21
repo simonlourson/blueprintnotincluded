@@ -1,4 +1,4 @@
-import { Vector2 } from '../vector2';
+import { Vector2 } from "../../../../../../blueprintnotincluded-lib/index";
 import { DrawPixi } from '../../drawing/draw-pixi';
 import { CameraService } from '../../services/camera-service';
 

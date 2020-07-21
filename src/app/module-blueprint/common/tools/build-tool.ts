@@ -1,6 +1,6 @@
 import { BlueprintService } from '../../services/blueprint-service';
 import { BlueprintItem } from '../blueprint/blueprint-item';
-import { Vector2 } from '../vector2';
+import { Vector2 } from "../../../../../../blueprintnotincluded-lib/index";
 import { Injectable, ChangeDetectorRef } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ITool, IChangeTool, ToolType } from './tool';

@@ -1,15 +1,10 @@
-import { Vector2 } from "./vector2";
-import { UtilityConnection, ConnectionType, ConnectionHelper } from "./utility-connection";
+import { UtilityConnection, ConnectionHelper, BBuilding, BSpriteGroup, PermittedRotations, Vector2, BuildMenuItem, BuildMenuCategory, BuildableElement, BUiScreen } from "../../../../../blueprintnotincluded-lib/index";
 import { ZIndex, Overlay } from "./overlay-type";
 import { BlueprintParams } from "./params";
-import { DrawHelpers, PermittedRotations } from "../drawing/draw-helpers";
-import { BBuilding, BSpriteGroup } from "./bexport/b-building";
+import { DrawHelpers,  } from "../drawing/draw-helpers";
 import { ImageSource } from "../drawing/image-source";
 import { SpriteInfo } from "../drawing/sprite-info";
 import { SpriteModifier } from "../drawing/sprite-modifier";
-import { BSpriteInfo } from './bexport/b-sprite-info';
-import { BuildableElement } from './bexport/b-element';
-import { BUiScreen } from './bexport/b-ui-screen';
 import { SpriteModifierGroup } from '../drawing/sprite-modifier-group';
 
 export class OniItem
@@ -229,6 +224,16 @@ export class OniItem
 
   public isOverlaySecondary(overlay: Overlay): boolean {
     return overlay == this.overlay
+  }
+
+  public getCategoryFromItem(): BuildMenuCategory
+  {
+    if (BuildMenuItem.buildMenuItems != null)
+      for (let buildMenuItem of BuildMenuItem.buildMenuItems)
+        if (buildMenuItem.buildingId == this.id)
+          return BuildMenuCategory.getCategory(buildMenuItem.category);
+        
+    return null;
   }
 
   public static getOniItem(id: string): OniItem

@@ -1,5 +1,5 @@
-import { SpriteModifier, SpriteTag } from './sprite-modifier';
-import { BSpriteGroup } from '../common/bexport/b-building';
+import { SpriteModifier } from './sprite-modifier';
+import { BSpriteGroup } from '../../../../../blueprintnotincluded-lib/index'
 
 export class SpriteModifierGroup {
   groupName: string;

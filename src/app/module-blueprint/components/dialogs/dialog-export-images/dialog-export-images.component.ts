@@ -1,11 +1,11 @@
 import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
 import { BlueprintService, ExportImageOptions } from 'src/app/module-blueprint/services/blueprint-service';
-import { OverlayCheck, Overlay } from 'src/app/module-blueprint/common/overlay-type';
+import { Overlay } from 'src/app/module-blueprint/common/overlay-type';
 import { DrawHelpers } from 'src/app/module-blueprint/drawing/draw-helpers';
 import { CameraService } from 'src/app/module-blueprint/services/camera-service';
 import { SelectItem } from 'primeng/api';
 import { Dropdown } from 'primeng/dropdown';
-import { Vector2 } from 'src/app/module-blueprint/common/vector2';
+import { Vector2 } from '../../../../../../../blueprintnotincluded-lib/index'
 
 @Component({
   selector: 'app-dialog-export-images',

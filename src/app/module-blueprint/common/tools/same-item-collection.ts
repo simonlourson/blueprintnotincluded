@@ -2,7 +2,7 @@ import { BlueprintItem } from '../blueprint/blueprint-item';
 import { OniItem } from '../oni-item';
 import { CameraService } from '../../services/camera-service';
 import { BlueprintService } from '../../services/blueprint-service';
-import { BuildableElement } from '../bexport/b-element';
+import { BuildableElement } from '../../../../../../blueprintnotincluded-lib/index'
 
 export class SameItemCollection
 {

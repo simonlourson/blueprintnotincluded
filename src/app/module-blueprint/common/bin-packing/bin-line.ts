@@ -1,4 +1,4 @@
-import { Vector2 } from '../vector2';
+import { Vector2 } from "../../../../../../blueprintnotincluded-lib/index";
 
 export class BinLine {
 

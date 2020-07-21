@@ -1,4 +1,4 @@
-import { Vector2 } from "../vector2";
+import { Vector2 } from "../../../../../../blueprintnotincluded-lib/index";
 import { Blueprint } from "./blueprint";
 import { BlueprintItem } from "./blueprint-item";
 import { DrawHelpers } from '../../drawing/draw-helpers';

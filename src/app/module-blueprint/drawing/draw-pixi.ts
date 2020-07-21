@@ -2,7 +2,7 @@ import { ElementRef } from "@angular/core";
 import { ComponentCanvasComponent } from "../components/component-canvas/component-canvas.component";
 import { BlueprintItem } from "../common/blueprint/blueprint-item";
 import { CameraService } from "../services/camera-service";
-import { Vector2 } from "../common/vector2";
+import { Vector2 } from '../../../../../blueprintnotincluded-lib/index'
 import { SpriteInfo } from './sprite-info';
 import { ComponentMenuComponent } from '../components/component-menu/component-menu.component';
 

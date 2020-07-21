@@ -11,11 +11,9 @@ import * as JSZip from 'jszip';
 // Library imports
 import { OniItem } from '../../common/oni-item';
 import { ImageSource } from '../../drawing/image-source';
-import { Vector2 } from '../../common/vector2';
 import { SpriteInfo } from '../../drawing/sprite-info';
 import { Blueprint } from '../../common/blueprint/blueprint';
 import { SpriteModifier } from '../../drawing/sprite-modifier';
-import { ConnectionType } from '../../common/utility-connection';
 import { ZIndex, Overlay, Display } from '../../common/overlay-type';
 import { SaveInfo } from '../../common/save-info';
 import { ActivatedRoute, Params, UrlSegment, convertToParamMap } from '@angular/router';
@@ -24,11 +22,7 @@ import { ComponentMenuComponent, MenuCommand, MenuCommandType, BrowseData } from
 import { ToolType } from '../../common/tools/tool';
 import { BlueprintItem } from '../../common/blueprint/blueprint-item';
 import { BlueprintItemTile } from '../../common/blueprint/blueprint-item-tile';
-import { BuildMenuCategory, BuildMenuItem } from '../../common/bexport/b-build-order';
-import { BBuilding } from '../../common/bexport/b-building';
-import { BSpriteInfo } from '../../common/bexport/b-sprite-info';
-import { BSpriteModifier } from '../../common/bexport/b-sprite-modifier';
-import { BniBlueprint } from '../../common/blueprint/io/bni/bni-blueprint';
+import { BSpriteInfo, BBuilding, BSpriteModifier, BuildMenuCategory, BuildMenuItem, BuildableElement } from '../../../../../../blueprintnotincluded-lib/index';
 import { ComponentLoginDialogComponent } from '../user-auth/login-dialog/login-dialog.component';
 import { BlueprintService, IObsBlueprintChanged, ExportImageOptions } from '../../services/blueprint-service';
 import { ComponentSaveDialogComponent } from '../dialogs/component-save-dialog/component-save-dialog.component';
@@ -39,7 +33,6 @@ import { DialogExportImagesComponent } from '../dialogs/dialog-export-images/dia
 import { ToolService } from '../../services/tool-service';
 import { DrawHelpers } from '../../drawing/draw-helpers';
 import { AuthenticationService } from '../../services/authentification-service';
-import { BuildableElement } from '../../common/bexport/b-element';
 import { ComponentSideBuildToolComponent } from '../side-bar/build-tool/build-tool.component';
 import { DialogAboutComponent } from '../dialogs/dialog-about/dialog-about.component';
 import { ComponentSideSelectionToolComponent } from '../side-bar/selection-tool/selection-tool.component';

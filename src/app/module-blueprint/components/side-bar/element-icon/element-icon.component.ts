@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { BuildableElement } from 'src/app/module-blueprint/common/bexport/b-element';
+import { BuildableElement } from '../../../../../../../blueprintnotincluded-lib/index';
 import { DrawHelpers } from 'src/app/module-blueprint/drawing/draw-helpers';
 
 @Component({

@@ -5,13 +5,11 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 // Engine imports
 import { CameraService, IObsCameraChanged } from 'src/app/module-blueprint/services/camera-service';
-import { Vector2 } from 'src/app/module-blueprint/common/vector2';
+import { BExport, BSpriteInfo, BSpriteModifier, Vector2, SpriteTag } from '../../../../../../blueprintnotincluded-lib/index'
 import { SpriteInfo } from 'src/app/module-blueprint/drawing/sprite-info';
 import { ImageSource } from 'src/app/module-blueprint/drawing/image-source';
-import { OniTemplate } from 'src/app/module-blueprint/common/blueprint/io/oni/oni-template';
 import { OniItem } from 'src/app/module-blueprint/common/oni-item';
-import { OniBuilding } from 'src/app/module-blueprint/common/blueprint/io/oni/oni-building';
-import { SpriteModifier, SpriteTag } from 'src/app/module-blueprint/drawing/sprite-modifier';
+import { SpriteModifier } from 'src/app/module-blueprint/drawing/sprite-modifier';
 
 
 // PrimeNg imports
@@ -21,7 +19,6 @@ import { ToolType } from '../../common/tools/tool';
 import { ComponentSideSelectionToolComponent } from '../side-bar/selection-tool/selection-tool.component';
 import { DrawPixi } from '../../drawing/draw-pixi';
 import * as JSZip from 'jszip';
-import { BSpriteInfo } from '../../common/bexport/b-sprite-info';
 import { BlueprintItem } from '../../common/blueprint/blueprint-item';
 import { BlueprintService, ExportImageOptions } from '../../services/blueprint-service';
 import { ToolService } from '../../services/tool-service';
@@ -31,8 +28,6 @@ import { IObsBuildItemChanged } from '../../common/tools/build-tool';
 import { DrawHelpers } from '../../drawing/draw-helpers';
 
 import { } from 'pixi.js-legacy';
-import { BExport } from '../../common/bexport/b-export';
-import { BSpriteModifier } from '../../common/bexport/b-sprite-modifier';
 declare var PIXI: any;
 
 

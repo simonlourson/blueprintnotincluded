@@ -6,16 +6,14 @@ import { Blueprint } from '../../../common/blueprint/blueprint';
 import { ToolType } from '../../../common/tools/tool';
 import { BlueprintItemWire } from '../../../common/blueprint/blueprint-item-wire';
 import { CameraService } from '../../../services/camera-service';
-import { Vector2 } from '../../../common/vector2';
 import { DrawHelpers } from '../../../drawing/draw-helpers';
 import { DrawPixi } from '../../../drawing/draw-pixi';
-import { BuildMenuCategory, BuildMenuItem } from '../../../common/bexport/b-build-order';
+import { BuildMenuCategory, BuildMenuItem } from '../../../../../../../blueprintnotincluded-lib/index';
 import { ToolService, IObsToolChanged } from 'src/app/module-blueprint/services/tool-service';
 import { IObsBuildItemChanged } from 'src/app/module-blueprint/common/tools/build-tool';
 import { BlueprintHelpers } from 'src/app/module-blueprint/common/blueprint/blueprint-helpers';
 import { Dropdown } from 'primeng/dropdown';
 import { OverlayPanel } from 'primeng/overlaypanel';
-import { BuildableElement } from 'src/app/module-blueprint/common/bexport/b-element';
 import { ElementChangeInfo } from '../buildable-element-picker/buildable-element-picker.component';
 import { BlueprintItemElement } from 'src/app/module-blueprint/common/blueprint/blueprint-item-element';
 

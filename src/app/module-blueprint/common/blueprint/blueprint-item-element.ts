@@ -1,12 +1,10 @@
-import { Vector2 } from "../vector2";
 import { Blueprint } from "./blueprint";
 import { BlueprintItem } from "./blueprint-item";
 import { DrawHelpers } from '../../drawing/draw-helpers';
 import { DrawPart } from '../../drawing/draw-part';
 import { CameraService } from '../../services/camera-service';
 import { Visualization, Overlay, Display } from '../overlay-type';
-import { SpriteTag } from '../../drawing/sprite-modifier';
-import { MdbBuilding } from './io/mdb/mdb-building';
+import { MdbBuilding, SpriteTag } from '../../../../../../blueprintnotincluded-lib/index';
 
 export class BlueprintItemElement extends BlueprintItem
 {

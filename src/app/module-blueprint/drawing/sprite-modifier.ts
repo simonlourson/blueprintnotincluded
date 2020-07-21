@@ -1,7 +1,5 @@
-import { Vector2 } from "../common/vector2";
+import { BBuilding, BSpriteModifier, Vector2, SpriteTag } from '../../../../../blueprintnotincluded-lib/index'
 import { BlueprintParams } from "../common/params";
-import { BBuilding } from "../common/bexport/b-building";
-import { BSpriteModifier } from "../common/bexport/b-sprite-modifier";
 
 export class SpriteModifier
 {
@@ -85,37 +83,3 @@ export class SpriteModifier
   }
 }
 
-export enum SpriteTag {
-  solid,
-  place,
-  ui,
-  connection,
-  tileable,
-  tileable_left,
-  tileable_right,
-  tileable_up,
-  tileable_down,
-  noConnection,
-  L,
-  R,
-  LR,
-  U,
-  LU,
-  RU,
-  LRU,
-  D,
-  LD,
-  RD,
-  LRD,
-  UD,
-  LUD,
-  RUD,
-  LRUD,
-  none,
-  white,
-  element_gas_back,
-  element_gas_front,
-  element_liquid_back,
-  element_liquid_front,
-  element_vacuum_front
-}

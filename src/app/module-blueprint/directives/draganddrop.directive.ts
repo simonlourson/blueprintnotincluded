@@ -1,5 +1,5 @@
 import { Directive, Output, HostListener, EventEmitter, ViewChild, ElementRef } from '@angular/core';
-import { Vector2 } from 'src/app/module-blueprint/common/vector2';
+import { Vector2 } from '../../../../../blueprintnotincluded-lib/index'
 
 @Directive({ selector: '[dragAndDrop]' })
 export class DragAndDropDirective {

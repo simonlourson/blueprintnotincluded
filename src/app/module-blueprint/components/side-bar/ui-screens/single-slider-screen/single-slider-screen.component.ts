@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { BlueprintItem } from 'src/app/module-blueprint/common/blueprint/blueprint-item';
-import { BSingleSliderSideScreen } from 'src/app/module-blueprint/common/bexport/b-ui-screen';
+import { BSingleSliderSideScreen } from '../../../../../../../../blueprintnotincluded-lib/index';
 import { stringify } from 'querystring';
 
 @Component({

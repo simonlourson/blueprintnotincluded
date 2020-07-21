@@ -5,13 +5,9 @@ import { AuthenticationService } from './authentification-service';
 import { map } from 'rxjs/operators';
 import { CameraService } from './camera-service';
 import { Overlay, Display } from '../common/overlay-type';
-import { BlueprintListItem, BlueprintLike } from './messages/blueprint-list-response';
 import { ComponentMenuComponent } from '../components/component-menu/component-menu.component';
-import { OniTemplate } from '../common/blueprint/io/oni/oni-template';
+import { BniBlueprint, MdbBlueprint, OniTemplate, BlueprintListItem, BlueprintLike, BlueprintResponse } from '../../../../../blueprintnotincluded-lib/index';
 import * as yaml from 'node_modules/js-yaml/lib/js-yaml';
-import { BniBlueprint } from '../common/blueprint/io/bni/bni-blueprint';
-import { BlueprintResponse } from './messages/blueprint-response';
-import { MdbBlueprint } from '../common/blueprint/io/mdb/mdb-blueprint';
 import { BlueprintItem } from '../common/blueprint/blueprint-item';
 
 @Injectable({ providedIn: 'root' })

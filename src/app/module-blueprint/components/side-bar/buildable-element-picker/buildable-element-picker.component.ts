@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, ViewChild, Output, EventEmitter, ViewChildren, QueryList } from '@angular/core';
 import { OniItem } from 'src/app/module-blueprint/common/oni-item';
 import { SelectItem } from 'primeng/api';
-import { BuildableElement } from 'src/app/module-blueprint/common/bexport/b-element';
+import { BuildableElement } from '../../../../../../../blueprintnotincluded-lib/index';
 import { OverlayPanel } from 'primeng/overlaypanel';
 import { CameraService } from 'src/app/module-blueprint/services/camera-service';
 import { Visualization } from 'src/app/module-blueprint/common/overlay-type';

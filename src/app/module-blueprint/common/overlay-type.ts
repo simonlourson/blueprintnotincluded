@@ -64,10 +64,3 @@ export enum Visualization {
   temperature,
   elements
 }
-
-// TODO is this useless ?
-export interface OverlayCheck {
-  overlay: Overlay;
-  name: string;
-  checked: boolean;
-}

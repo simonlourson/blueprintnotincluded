@@ -1,7 +1,5 @@
-import { Vector2 } from "src/app/module-blueprint/common/vector2";
+import { BSpriteInfo, Vector2 } from '../../../../../blueprintnotincluded-lib/index'
 import { BlueprintParams } from "../common/params";
-import { BBuilding } from "../common/bexport/b-building";
-import { BSpriteInfo } from "../common/bexport/b-sprite-info";
 import { ImageSource } from './image-source';
 import { DrawHelpers } from './draw-helpers';
 import { BlueprintItemTile } from '../common/blueprint/blueprint-item-tile';

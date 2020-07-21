@@ -5,7 +5,7 @@ import { ToolService } from 'src/app/module-blueprint/services/tool-service';
 import { ToolType } from 'src/app/module-blueprint/common/tools/tool';
 import { Blueprint } from 'src/app/module-blueprint/common/blueprint/blueprint';
 import { BlueprintHelpers } from 'src/app/module-blueprint/common/blueprint/blueprint-helpers';
-import { BuildableElement } from 'src/app/module-blueprint/common/bexport/b-element';
+import { BuildableElement } from '../../../../../../../blueprintnotincluded-lib/index';
 import { ElementChangeInfo } from '../buildable-element-picker/buildable-element-picker.component';
 
 @Component({

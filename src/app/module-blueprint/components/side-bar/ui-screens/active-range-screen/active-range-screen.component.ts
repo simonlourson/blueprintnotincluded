@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { BlueprintItem } from 'src/app/module-blueprint/common/blueprint/blueprint-item';
-import { BActiveRangeSideScreen } from 'src/app/module-blueprint/common/bexport/b-ui-screen';
+import { BActiveRangeSideScreen } from '../../../../../../../../blueprintnotincluded-lib/index';
 
 @Component({
   selector: 'app-active-range-screen',

@@ -1,22 +1,16 @@
-import { Vector2 } from "../vector2";
+import { PermittedRotations, ConnectionHelper, Vector2 } from "../../../../../../blueprintnotincluded-lib/index";
 import { OniItem, Orientation } from "../oni-item";
-import { OniBuilding } from "./io/oni/oni-building";
 import { ImageSource } from "../../drawing/image-source";
 import { SpriteInfo } from "../../drawing/sprite-info";
-import { SpriteModifier, SpriteTag } from "../../drawing/sprite-modifier";
+import { SpriteModifier } from "../../drawing/sprite-modifier";
 import { CameraService } from "../../services/camera-service";
-import { ConnectionType, ConnectionHelper } from "../utility-connection";
 import { ZIndex, Overlay, Display, Visualization } from "../overlay-type";
-import { DrawHelpers, PermittedRotations } from "../../drawing/draw-helpers";
+import { DrawHelpers,  } from "../../drawing/draw-helpers";
 import { Blueprint } from "./blueprint";
-import { OniCell } from "./io/oni/oni-cell";
 import { DrawPixi } from '../../drawing/draw-pixi';
 import { DrawPart } from '../../drawing/draw-part';
-import { BniBuilding } from './io/bni/bni-building';
 import { Inject } from '@angular/core';
-import { BuildableElement } from '../bexport/b-element';
-import { MdbBuilding } from './io/mdb/mdb-building';
-import { UiSaveSettings } from '../bexport/b-ui-screen';
+import { SpriteTag, BniBuilding, MdbBuilding, OniBuilding, BuildableElement, UiSaveSettings } from '../../../../../../blueprintnotincluded-lib/index';
 
 import {  } from 'pixi.js-legacy';
 declare var PIXI: any;

@@ -1,5 +1,5 @@
 import { BinTray } from './bin-tray';
-import { Vector2 } from '../vector2';
+import { Vector2 } from "../../../../../../blueprintnotincluded-lib/index";
 import { BinItem } from './bin-line';
 
 // This is used to repack all the textures into power of two spritesheets, so we can get mipmaps

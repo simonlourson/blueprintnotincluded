@@ -1,4 +1,4 @@
-import { Vector2 } from "src/app/module-blueprint/common/vector2";
+import { Vector2 } from '../../../../../blueprintnotincluded-lib/index'
 import { ZIndex, Overlay, Display, Visualization } from "../common/overlay-type";
 import { Injectable } from '@angular/core';
 import { OniItem } from '../common/oni-item';

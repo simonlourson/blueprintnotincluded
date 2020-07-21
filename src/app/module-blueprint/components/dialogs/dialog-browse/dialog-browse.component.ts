@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ChangeDetectorRef, HostListener, AfterContentInit, ElementRef } from '@angular/core';
-import { BlueprintListItem, BlueprintListResponse } from 'src/app/module-blueprint/services/messages/blueprint-list-response';
+import { BlueprintListItem, BlueprintListResponse } from '../../../../../../../blueprintnotincluded-lib/index';
 import { BlueprintService } from 'src/app/module-blueprint/services/blueprint-service';
 import { Dialog } from 'primeng/dialog';
 import { CameraService, IObsAnimationChanged } from 'src/app/module-blueprint/services/camera-service';

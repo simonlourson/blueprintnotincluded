@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Subject } from 'rxjs';
-import { BuildableElement } from 'src/app/module-blueprint/common/bexport/b-element';
+import { BuildableElement } from '../../../../../../../blueprintnotincluded-lib/index';
 
 @Component({
   selector: 'app-cell-element-picker',

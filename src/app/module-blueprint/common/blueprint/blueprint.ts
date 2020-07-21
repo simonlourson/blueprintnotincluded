@@ -1,20 +1,12 @@
-import {OniBuilding} from './io/oni/oni-building'
-import {OniCell} from './io/oni/oni-cell'
-import { OniTemplate } from './io/oni/oni-template';
 import { OniItem } from '../oni-item';
-import { Vector2 } from '../vector2';
-import { ZIndex, Overlay, Display } from '../overlay-type';
+import { Vector2 } from "../../../../../../blueprintnotincluded-lib/index";
+import { Overlay } from '../overlay-type';
 import { BlueprintItem } from './blueprint-item';
 import { BlueprintItemWire } from "./blueprint-item-wire";
-import { BlueprintItemTile } from "./blueprint-item-tile";
-import { BniBlueprint } from './io/bni/bni-blueprint';
 import { BinaryReader, Encoding } from 'csharp-binary-stream';
-import { BniBuilding } from './io/bni/bni-building';
 import { BlueprintHelpers } from './blueprint-helpers';
 import { DrawHelpers } from '../../drawing/draw-helpers';
-import { ControlContainer } from '@angular/forms';
-import { MdbBlueprint } from './io/mdb/mdb-blueprint';
-import { BuildableElement } from '../bexport/b-element';
+import { BniBlueprint, BniBuilding, MdbBlueprint, OniTemplate } from '../../../../../../blueprintnotincluded-lib/index';
 import { BlueprintItemElement } from './blueprint-item-element';
 
 export class Blueprint
