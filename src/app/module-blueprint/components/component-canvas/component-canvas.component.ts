@@ -5,9 +5,7 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 // Engine imports
 import { CameraService, IObsCameraChanged } from 'src/app/module-blueprint/services/camera-service';
-import { DrawHelpers, ImageSource, OniItem, SpriteModifier, Overlay, Display, BExport, BSpriteInfo, BSpriteModifier, Vector2, SpriteTag } from '../../../../../../blueprintnotincluded-lib/index'
-import { SpriteInfo } from 'src/app/module-blueprint/drawing/sprite-info';
-
+import { SpriteInfo, DrawHelpers, ImageSource, OniItem, SpriteModifier, Overlay, Display, BExport, BSpriteInfo, BSpriteModifier, Vector2, SpriteTag } from '../../../../../../blueprintnotincluded-lib/index'
 
 // PrimeNg imports
 import { Blueprint, IObsBlueprintChange } from '../../common/blueprint/blueprint';

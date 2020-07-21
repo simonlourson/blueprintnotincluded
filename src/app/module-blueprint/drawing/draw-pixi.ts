@@ -2,8 +2,7 @@ import { ElementRef } from "@angular/core";
 import { ComponentCanvasComponent } from "../components/component-canvas/component-canvas.component";
 import { BlueprintItem } from "../common/blueprint/blueprint-item";
 import { CameraService } from "../services/camera-service";
-import { Vector2 } from '../../../../../blueprintnotincluded-lib/index'
-import { SpriteInfo } from './sprite-info';
+import { SpriteInfo, Vector2 } from '../../../../../blueprintnotincluded-lib/index'
 import { ComponentMenuComponent } from '../components/component-menu/component-menu.component';
 
 import {  } from 'pixi.js-legacy';

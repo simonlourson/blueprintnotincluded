@@ -1,5 +1,4 @@
-import { SpriteInfo } from './sprite-info';
-import { OniItem, SpriteModifier, Display, Vector2, SpriteTag } from '../../../../../blueprintnotincluded-lib/index'
+import { SpriteInfo, OniItem, SpriteModifier, Display, Vector2, SpriteTag } from '../../../../../blueprintnotincluded-lib/index'
 
 export class DrawPart
 {
