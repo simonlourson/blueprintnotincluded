@@ -1,13 +1,10 @@
 import { Component, OnInit, Output, EventEmitter, ViewChild, ElementRef, ViewChildren, QueryList } from '@angular/core';
-import { BlueprintItem } from '../../../common/blueprint/blueprint-item';
 import { ToolType } from '../../../common/tools/tool';
-import { OniItem, BuildMenuCategory, BuildMenuItem } from '../../../../../../../blueprintnotincluded-lib/index';
+import { BlueprintItemElement, BlueprintHelpers, BlueprintItem, OniItem, BuildMenuCategory, BuildMenuItem } from '../../../../../../../blueprintnotincluded-lib/index';
 import { ToolService, IObsToolChanged } from 'src/app/module-blueprint/services/tool-service';
 import { IObsBuildItemChanged } from 'src/app/module-blueprint/common/tools/build-tool';
-import { BlueprintHelpers } from 'src/app/module-blueprint/common/blueprint/blueprint-helpers';
 import { OverlayPanel } from 'primeng/overlaypanel';
 import { ElementChangeInfo } from '../buildable-element-picker/buildable-element-picker.component';
-import { BlueprintItemElement } from 'src/app/module-blueprint/common/blueprint/blueprint-item-element';
 
 
 

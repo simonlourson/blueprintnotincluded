@@ -1,12 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Blueprint, IObsBlueprintChange } from '../common/blueprint/blueprint';
 import { AuthenticationService } from './authentification-service';
 import { map } from 'rxjs/operators';
 import { ComponentMenuComponent } from '../components/component-menu/component-menu.component';
-import { Overlay, Display, BniBlueprint, MdbBlueprint, OniTemplate, BlueprintListItem, BlueprintLike, BlueprintResponse } from '../../../../../blueprintnotincluded-lib/index';
+import { Blueprint, IObsBlueprintChange, BlueprintItem, Overlay, Display, BniBlueprint, MdbBlueprint, OniTemplate, BlueprintListItem, BlueprintLike, BlueprintResponse } from '../../../../../blueprintnotincluded-lib/index';
 import * as yaml from 'node_modules/js-yaml/lib/js-yaml';
-import { BlueprintItem } from '../common/blueprint/blueprint-item';
 
 @Injectable({ providedIn: 'root' })
 export class BlueprintService implements IObsBlueprintChange

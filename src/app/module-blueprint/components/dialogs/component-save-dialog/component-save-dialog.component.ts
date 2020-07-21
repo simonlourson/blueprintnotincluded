@@ -2,7 +2,6 @@ import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { SaveInfo } from '../../../common/save-info';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { BlueprintService } from '../../../services/blueprint-service';
-import { Blueprint } from '../../../common/blueprint/blueprint';
 import { MessageService } from 'primeng/api';
 import { AuthenticationService } from '../../../services/authentification-service';
 import { BlueprintNameValidationDirective } from 'src/app/module-blueprint/directives/blueprint-name-validation.directive';

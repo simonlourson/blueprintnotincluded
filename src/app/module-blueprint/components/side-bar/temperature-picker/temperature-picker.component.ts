@@ -1,6 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { BlueprintItem } from 'src/app/module-blueprint/common/blueprint/blueprint-item';
-import { CameraService, DrawHelpers, Visualization } from '../../../../../../../blueprintnotincluded-lib/index';
+import { BlueprintItem, CameraService, DrawHelpers, Visualization } from '../../../../../../../blueprintnotincluded-lib/index';
 
 @Component({
   selector: 'app-temperature-picker',

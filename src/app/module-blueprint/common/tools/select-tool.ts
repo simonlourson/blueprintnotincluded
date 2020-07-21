@@ -1,6 +1,5 @@
 import { BlueprintService } from '../../services/blueprint-service';
-import { BlueprintItem } from '../blueprint/blueprint-item';
-import { CameraService, DrawHelpers, OniItem, Vector2, BuildableElement } from "../../../../../../blueprintnotincluded-lib/index";
+import { BlueprintItem, CameraService, DrawHelpers, OniItem, Vector2, BuildableElement } from "../../../../../../blueprintnotincluded-lib/index";
 import { Injectable } from '@angular/core';
 import { ITool, ToolType } from './tool';
 import { DrawPixi } from '../../drawing/draw-pixi';

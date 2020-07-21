@@ -1,7 +1,6 @@
 import { ElementRef } from "@angular/core";
 import { ComponentCanvasComponent } from "../components/component-canvas/component-canvas.component";
-import { BlueprintItem } from "../common/blueprint/blueprint-item";
-import { CameraService, Vector2 } from '../../../../../blueprintnotincluded-lib/index'
+import { BlueprintItem, CameraService, Vector2 } from '../../../../../blueprintnotincluded-lib/index'
 import { ComponentMenuComponent } from '../components/component-menu/component-menu.component';
 
 import {  } from 'pixi.js-legacy';
@@ -97,7 +96,7 @@ export class DrawPixi
 
   }
   drawTemplateItem(templateItem: BlueprintItem, camera: CameraService) {
-    templateItem.drawPixi(camera, this);
+    templateItem.drawPixi(camera);
   }
 
   public drawTileRectangle(camera: CameraService, topLeft: Vector2, bottomRight: Vector2, frontGraphics: boolean, borderWidth: number, fillColor: number, borderColor: number, fillAlpha: number, borderAlpha: number)

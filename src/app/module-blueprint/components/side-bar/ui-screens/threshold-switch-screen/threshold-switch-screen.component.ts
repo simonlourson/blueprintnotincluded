@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { BlueprintItem } from 'src/app/module-blueprint/common/blueprint/blueprint-item';
-import { BThresholdSwitchSideScreen } from '../../../../../../../../blueprintnotincluded-lib/index';
+import { BlueprintItem, BThresholdSwitchSideScreen } from '../../../../../../../../blueprintnotincluded-lib/index';
 
 @Component({
   selector: 'app-threshold-switch-screen',

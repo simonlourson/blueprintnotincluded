@@ -1,9 +1,6 @@
 import { BlueprintService } from '../../services/blueprint-service';
 import { Injectable } from '@angular/core';
-import { DrawHelpers, BuildableElement } from '../../../../../../blueprintnotincluded-lib/index'
-import { IObsBlueprintChange } from '../blueprint/blueprint';
-import { BlueprintItem } from '../blueprint/blueprint-item';
-import { BlueprintItemElement } from '../blueprint/blueprint-item-element';
+import { BlueprintItemElement, BlueprintItem, IObsBlueprintChange, DrawHelpers, BuildableElement } from '../../../../../../blueprintnotincluded-lib/index'
 
 @Injectable()
 export class ElementReport implements IObsBlueprintChange {

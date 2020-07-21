@@ -1,4 +1,4 @@
-import { Blueprint } from "./blueprint/blueprint";
+import { Blueprint } from "../../../../../blueprintnotincluded-lib/index"
 
 export class SaveInfo
 {

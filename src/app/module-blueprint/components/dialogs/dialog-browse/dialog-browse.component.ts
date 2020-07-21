@@ -7,7 +7,6 @@ import { AuthenticationService } from 'src/app/module-blueprint/services/authent
 import { timingSafeEqual } from 'crypto';
 import { timer, Subject } from 'rxjs';
 import { switchMap, debounceTime, distinctUntilChanged } from 'rxjs/operators';
-import { BlueprintItem } from 'src/app/module-blueprint/common/blueprint/blueprint-item';
 
 @Component({
   selector: 'app-dialog-browse',

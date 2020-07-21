@@ -1,11 +1,8 @@
 import { BlueprintService } from '../../services/blueprint-service';
-import { BlueprintItem } from '../blueprint/blueprint-item';
-import { CameraService, DrawHelpers, Vector2 } from "../../../../../../blueprintnotincluded-lib/index";
+import { BlueprintHelpers, BlueprintItemWire, BlueprintItem, CameraService, DrawHelpers, Vector2 } from "../../../../../../blueprintnotincluded-lib/index";
 import { Injectable } from '@angular/core';
 import { ITool, IChangeTool, ToolType } from './tool';
 import { DrawPixi } from '../../drawing/draw-pixi';
-import { BlueprintItemWire } from '../blueprint/blueprint-item-wire';
-import { BlueprintHelpers } from '../blueprint/blueprint-helpers';
 
 @Injectable()
 export class BuildTool implements ITool
@@ -309,7 +306,7 @@ export class BuildTool implements ITool
     //if (this.canBuild()) this.templateItemToBuild.drawPart.tint = DrawHelpers.whiteColor;
     //else this.templateItemToBuild.drawPart.tint = 0xD40000;
 
-    this.templateItemToBuild.drawPixi(camera, drawPixi);
+    this.templateItemToBuild.drawPixi(camera);
     // TODO correct red and alpha when building outside of overlay 
   }
 

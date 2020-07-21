@@ -4,15 +4,12 @@ import { Component, OnInit, OnDestroy, ViewChild, ElementRef, NgZone, Output, Ev
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 // Engine imports
-import { CameraService, IObsCameraChanged, SpriteInfo, DrawHelpers, ImageSource, OniItem, SpriteModifier, Overlay, Display, BExport, BSpriteInfo, BSpriteModifier, Vector2, SpriteTag } from '../../../../../../blueprintnotincluded-lib/index'
+import { Blueprint, IObsBlueprintChange, CameraService, IObsCameraChanged, SpriteInfo, DrawHelpers, ImageSource, OniItem, SpriteModifier, Overlay, Display, BExport, BSpriteInfo, BSpriteModifier, Vector2, SpriteTag } from '../../../../../../blueprintnotincluded-lib/index'
 
 // PrimeNg imports
-import { Blueprint, IObsBlueprintChange } from '../../common/blueprint/blueprint';
-import { ToolType } from '../../common/tools/tool';
 import { ComponentSideSelectionToolComponent } from '../side-bar/selection-tool/selection-tool.component';
 import { DrawPixi } from '../../drawing/draw-pixi';
 import * as JSZip from 'jszip';
-import { BlueprintItem } from '../../common/blueprint/blueprint-item';
 import { BlueprintService, ExportImageOptions } from '../../services/blueprint-service';
 import { ToolService } from '../../services/tool-service';
 import { read } from 'fs';
@@ -621,7 +618,7 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy, IObsCameraCh
 
     clone.blueprintItems.map((item) => { 
       item.updateTileables(clone);
-      item.drawPixi(exportCamera, this.drawPixi);
+      item.drawPixi(exportCamera);
     });
 
     let brt = new PIXI.BaseRenderTexture({width: thumbnailSize, height: thumbnailSize, scaleMode: PIXI.SCALE_MODES.LINEAR});
@@ -683,7 +680,7 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy, IObsCameraCh
       
       clone.blueprintItems.map((item) => { 
         item.updateTileables(clone);
-        item.drawPixi(exportCamera, this.drawPixi);
+        item.drawPixi(exportCamera);
       });
 
       let brt = new PIXI.BaseRenderTexture({width: sizeInPixels.x, height: sizeInPixels.y, scaleMode: PIXI.SCALE_MODES.LINEAR});

@@ -46,7 +46,6 @@ import { RegisterFormComponent } from './components/user-auth/register-form/regi
 import { CheckDuplicateService } from './services/check-duplicate-service';
 import { LoginFormComponent } from './components/user-auth/login-form/login-form.component';
 import { AuthenticationService } from './services/authentification-service';
-import { Blueprint } from './common/blueprint/blueprint';
 import { BlueprintService } from './services/blueprint-service';
 import { RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module } from 'ng-recaptcha';
 import { ToolService } from './services/tool-service';
