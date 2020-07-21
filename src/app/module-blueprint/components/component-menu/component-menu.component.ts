@@ -1,14 +1,13 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 import { MenuItem, MessageService} from 'primeng/api';
-import { Overlay, Display, Visualization } from '../../../../../../blueprintnotincluded-lib/index'
+import { DrawHelpers, Overlay, Display, Visualization } from '../../../../../../blueprintnotincluded-lib/index'
 import { ToolType } from '../../common/tools/tool';
 import { AuthenticationService } from '../../services/authentification-service';
 import { ToolService, IObsToolChanged } from '../../services/tool-service';
 import { CameraService, IObsCameraChanged } from '../../services/camera-service';
 import { Router } from '@angular/router';
 import { BlueprintService, BlueprintFileType } from '../../services/blueprint-service';
-import { DrawHelpers } from '../../drawing/draw-helpers';
 
 @Component({
   selector: 'app-component-menu',

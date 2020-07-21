@@ -1,8 +1,5 @@
-import { BSpriteInfo, Vector2 } from '../../../../../blueprintnotincluded-lib/index'
-import { BlueprintParams } from "../common/params";
-import { ImageSource } from './image-source';
-import { DrawHelpers } from './draw-helpers';
-import { BlueprintItemTile } from '../common/blueprint/blueprint-item-tile';
+import { DrawHelpers, ImageSource, BSpriteInfo, Vector2 } from '../../../../../blueprintnotincluded-lib/index'
+
 declare var PIXI: any;
 
 export class SpriteInfo 

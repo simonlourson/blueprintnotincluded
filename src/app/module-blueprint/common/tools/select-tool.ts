@@ -1,11 +1,10 @@
 import { BlueprintService } from '../../services/blueprint-service';
 import { BlueprintItem } from '../blueprint/blueprint-item';
-import { OniItem, Vector2, BuildableElement } from "../../../../../../blueprintnotincluded-lib/index";
+import { DrawHelpers, OniItem, Vector2, BuildableElement } from "../../../../../../blueprintnotincluded-lib/index";
 import { Injectable } from '@angular/core';
 import { ITool, ToolType } from './tool';
 import { DrawPixi } from '../../drawing/draw-pixi';
 import { CameraService } from '../../services/camera-service';
-import { DrawHelpers } from '../../drawing/draw-helpers';
 import { SameItemCollection } from './same-item-collection';
 
 @Injectable()

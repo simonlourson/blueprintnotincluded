@@ -1,12 +1,8 @@
-import { ITool, IChangeTool, ToolType } from './tool';
-import { DrawPixi } from '../../drawing/draw-pixi';
-import { CameraService } from '../../services/camera-service';
 import { BlueprintService } from '../../services/blueprint-service';
 import { Injectable } from '@angular/core';
-import { BuildableElement } from '../../../../../../blueprintnotincluded-lib/index'
+import { DrawHelpers, BuildableElement } from '../../../../../../blueprintnotincluded-lib/index'
 import { IObsBlueprintChange } from '../blueprint/blueprint';
 import { BlueprintItem } from '../blueprint/blueprint-item';
-import { DrawHelpers } from '../../drawing/draw-helpers';
 import { BlueprintItemElement } from '../blueprint/blueprint-item-element';
 
 @Injectable()

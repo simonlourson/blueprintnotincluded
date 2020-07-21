@@ -5,9 +5,8 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 // Engine imports
 import { CameraService, IObsCameraChanged } from 'src/app/module-blueprint/services/camera-service';
-import { OniItem, SpriteModifier, Overlay, Display, BExport, BSpriteInfo, BSpriteModifier, Vector2, SpriteTag } from '../../../../../../blueprintnotincluded-lib/index'
+import { DrawHelpers, ImageSource, OniItem, SpriteModifier, Overlay, Display, BExport, BSpriteInfo, BSpriteModifier, Vector2, SpriteTag } from '../../../../../../blueprintnotincluded-lib/index'
 import { SpriteInfo } from 'src/app/module-blueprint/drawing/sprite-info';
-import { ImageSource } from 'src/app/module-blueprint/drawing/image-source';
 
 
 // PrimeNg imports
@@ -21,8 +20,6 @@ import { BlueprintService, ExportImageOptions } from '../../services/blueprint-s
 import { ToolService } from '../../services/tool-service';
 import { read } from 'fs';
 import { BinController } from '../../common/bin-packing/bin-controller';
-import { IObsBuildItemChanged } from '../../common/tools/build-tool';
-import { DrawHelpers } from '../../drawing/draw-helpers';
 
 import { } from 'pixi.js-legacy';
 declare var PIXI: any;

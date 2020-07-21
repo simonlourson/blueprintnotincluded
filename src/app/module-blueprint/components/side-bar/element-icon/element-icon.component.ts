@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { BuildableElement } from '../../../../../../../blueprintnotincluded-lib/index';
-import { DrawHelpers } from 'src/app/module-blueprint/drawing/draw-helpers';
+import { DrawHelpers, BuildableElement } from '../../../../../../../blueprintnotincluded-lib/index';
 
 @Component({
   selector: 'app-element-icon',

@@ -7,13 +7,12 @@ import * as JSZipUtils from 'jszip-utils';
 import * as JSZip from 'jszip';
 
 // Library imports
-import { ImageSource } from '../../drawing/image-source';
 import { SpriteInfo } from '../../drawing/sprite-info';
 import { Blueprint } from '../../common/blueprint/blueprint';
 import { ActivatedRoute, Params, UrlSegment } from '@angular/router';
 import { MenuCommand, MenuCommandType, BrowseData } from '../component-menu/component-menu.component';
 import { ToolType } from '../../common/tools/tool';
-import { OniItem, SpriteModifier, Overlay, BSpriteInfo, BBuilding, BSpriteModifier, BuildMenuCategory, BuildMenuItem, BuildableElement } from '../../../../../../blueprintnotincluded-lib/index';
+import { ImageSource, OniItem, SpriteModifier, Overlay, BSpriteInfo, BBuilding, BSpriteModifier, BuildMenuCategory, BuildMenuItem, BuildableElement } from '../../../../../../blueprintnotincluded-lib/index';
 import { ComponentLoginDialogComponent } from '../user-auth/login-dialog/login-dialog.component';
 import { BlueprintService, IObsBlueprintChanged, ExportImageOptions } from '../../services/blueprint-service';
 import { ComponentSaveDialogComponent } from '../dialogs/component-save-dialog/component-save-dialog.component';

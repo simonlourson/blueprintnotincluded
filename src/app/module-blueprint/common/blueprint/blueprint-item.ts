@@ -1,7 +1,6 @@
-import { OniItem, Orientation, Overlay, Display, Visualization, ConnectionHelper, Vector2 } from "../../../../../../blueprintnotincluded-lib/index";
+import { DrawHelpers, OniItem, Orientation, Overlay, Display, Visualization, ConnectionHelper, Vector2 } from "../../../../../../blueprintnotincluded-lib/index";
 import { SpriteInfo } from "../../drawing/sprite-info";
 import { CameraService } from "../../services/camera-service";
-import { DrawHelpers,  } from "../../drawing/draw-helpers";
 import { Blueprint } from "./blueprint";
 import { DrawPixi } from '../../drawing/draw-pixi';
 import { DrawPart } from '../../drawing/draw-part';

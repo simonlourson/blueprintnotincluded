@@ -1,6 +1,5 @@
 import { SpriteInfo } from './sprite-info';
 import { OniItem, SpriteModifier, Display, Vector2, SpriteTag } from '../../../../../blueprintnotincluded-lib/index'
-import { DrawHelpers } from './draw-helpers';
 
 export class DrawPart
 {

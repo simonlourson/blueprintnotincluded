@@ -1,14 +1,11 @@
 import { BlueprintService } from '../../services/blueprint-service';
 import { BlueprintItem } from '../blueprint/blueprint-item';
-import { Vector2 } from "../../../../../../blueprintnotincluded-lib/index";
-import { Injectable, ChangeDetectorRef } from '@angular/core';
-import { Observable } from 'rxjs';
+import { DrawHelpers, Vector2 } from "../../../../../../blueprintnotincluded-lib/index";
+import { Injectable } from '@angular/core';
 import { ITool, IChangeTool, ToolType } from './tool';
 import { DrawPixi } from '../../drawing/draw-pixi';
 import { CameraService } from '../../services/camera-service';
 import { BlueprintItemWire } from '../blueprint/blueprint-item-wire';
-import { Blueprint } from '../blueprint/blueprint';
-import { DrawHelpers } from '../../drawing/draw-helpers';
 import { BlueprintHelpers } from '../blueprint/blueprint-helpers';
 
 @Injectable()

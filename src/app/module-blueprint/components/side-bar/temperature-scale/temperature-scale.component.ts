@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CameraService } from 'src/app/module-blueprint/services/camera-service';
-import { Visualization } from '../../../../../../../blueprintnotincluded-lib/index';
-import { DrawHelpers, TemperatureThreshold } from 'src/app/module-blueprint/drawing/draw-helpers';
+import { DrawHelpers, TemperatureThreshold, Visualization } from '../../../../../../../blueprintnotincluded-lib/index';
 
 @Component({
   selector: 'app-temperature-scale',
