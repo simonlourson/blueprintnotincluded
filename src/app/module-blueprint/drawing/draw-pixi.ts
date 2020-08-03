@@ -30,6 +30,31 @@ export class DrawPixi
     options.autoResize = true;
     //options.forceCanvas = true;
     
+    /*
+    // Tests : remove!!!!
+    let data = Uint8Array.from([
+      89,  72, 34, 255,  
+      97,  80, 42, 255, 
+      105,  93, 43, 255,
+      117, 105, 55, 255,
+      89,  72, 34, 255,  
+      97,  80, 42, 255, 
+      105,  93, 43, 255,
+      117, 105, 55, 255,
+      89,  72, 34, 255,  
+      97,  80, 42, 255, 
+      105,  93, 43, 255,
+      117, 105, 55, 255,
+      89,  72, 34, 255,  
+      97,  80, 42, 255, 
+      105,  93, 43, 255,
+      117, 105, 55, 255 ])
+    let imageTexture = PIXI.Texture.fromBuffer(data, 4, 4);
+    let sprite = PIXI.Sprite.from(imageTexture);
+    sprite.x = 100;
+    sprite.y = 100;
+    */
+
     PIXI.utils.skipHello();
     this.pixiApp = new PIXI.Application(options);
     this.backGraphics = new PIXI.Graphics();
@@ -39,6 +64,7 @@ export class DrawPixi
     this.pixiApp.stage.interactiveChildren = false;
     this.pixiApp.stage.addChild(this.backGraphics);
     this.pixiApp.stage.addChild(this.frontGraphics);
+    //this.pixiApp.stage.addChild(sprite);
     //this.pixiApp.stage.sortableChildren = true; 
     this.pixiApp.ticker.add(() => {this.drawAll();});
   }   
