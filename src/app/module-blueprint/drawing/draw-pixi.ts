@@ -28,7 +28,7 @@ export class DrawPixi
     options.width = canvas.nativeElement.width;
     options.height = canvas.nativeElement.height;
     options.autoResize = true;
-    options.forceCanvas = true;
+    //options.forceCanvas = true;
     
     /*
     // Tests : remove!!!!
