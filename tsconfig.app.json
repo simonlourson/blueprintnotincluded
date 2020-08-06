@@ -4,6 +4,10 @@
     "outDir": "./out-tsc/app",
     "types": []
   },
+  "files": [
+    "src/main.ts",
+    "src/polyfills.ts"
+  ],
   /*
   "files": [
     "src/main.ts",
@@ -11,14 +15,10 @@
   ],
   */
   "include": [
-    "src/**/*.ts",
+    "src/**/*.d.ts",
     
     // Move to files after doc
     "src/main.ts",
     "src/polyfills.ts"
-  ],
-  "exclude": [
-    "src/test.ts",
-    "src/**/*.spec.ts"
   ]
 }

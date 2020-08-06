@@ -15,8 +15,8 @@ export class ComponentLoginDialogComponent implements OnInit {
   loginType: LoginType = LoginType.Login;
   
   @ViewChild('loginDialog', {static: true}) loginDialog: Dialog
-  @ViewChild('loginForm', {static: false}) loginForm: LoginFormComponent
-  @ViewChild('registerForm', {static: false}) registerForm: RegisterFormComponent
+  @ViewChild('loginForm') loginForm: LoginFormComponent
+  @ViewChild('registerForm') registerForm: RegisterFormComponent
 
 
   get label() { return this.isLogin ? 'Login' : 'Register' } //!loginForm.valid || loginForm.pending || working

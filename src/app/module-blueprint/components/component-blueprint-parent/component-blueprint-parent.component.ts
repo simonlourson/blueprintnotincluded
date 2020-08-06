@@ -70,7 +70,7 @@ export class ComponentBlueprintParentComponent implements OnInit, IObsBlueprintC
   @ViewChild('shareUrlDialog', {static: true})
   shareUrlDialog: DialogShareUrlComponent;
 
-  @ViewChild('aboutDialog', {static: false})
+  @ViewChild('aboutDialog')
   aboutDialog: DialogAboutComponent;
 
   @ViewChild('sidePanelLeft', {static: true})

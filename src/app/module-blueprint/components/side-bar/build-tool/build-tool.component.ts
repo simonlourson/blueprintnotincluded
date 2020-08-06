@@ -25,7 +25,7 @@ export class ComponentSideBuildToolComponent implements OnInit, IObsBuildItemCha
   get currentItemToBuild() { return this.toolService.buildTool.templateItemToBuild; }
   get isGasLiquid() { return this.currentItemToBuild.oniItem.isElement; }
 
-  @ViewChild('categoryPanel', {static: false}) categoryPanel: OverlayPanel;
+  @ViewChild('categoryPanel') categoryPanel: OverlayPanel;
   @ViewChildren(OverlayPanel) itemPanels !: QueryList<OverlayPanel>;
 
   constructor(public toolService: ToolService) 
