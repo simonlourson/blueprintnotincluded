@@ -1,9 +1,9 @@
 <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
 
   <br>
-  <span class="ui-float-label">
+  <span class="p-float-label">
     <input class="float-input" type="text" size="30" id="email" formControlName="email" pInputText> 
-    <label for="float-input">E-Mail</label>
+    <label for="inputtext">E-Mail</label>
   </span>
   <div *ngIf="f.email.invalid && (f.email.dirty || f.email.touched)" class="error-red" >
     <div *ngIf="f.email.errors.required">E-Mail is required.</div>
@@ -11,9 +11,9 @@
   </div>
 
   <br>
-  <span class="ui-float-label">
-    <input class="float-input" type="text" size="30" formControlName="username" pInputText> 
-    <label for="float-input">Username</label>
+  <span class="p-float-label">
+    <input type="text" size="30" formControlName="username" pInputText> 
+    <label for="inputtext">Username</label>
   </span>
   <div *ngIf="f.username.invalid && (f.username.dirty || f.username.touched)" class="error-red" >
     <div *ngIf="f.username.errors.required">Username is required.</div>
@@ -24,18 +24,18 @@
   <div *ngIf="f.username.valid" class="valid-green" >Username is available</div>
 
   <br>
-  <span class="ui-float-label">
+  <span class="p-float-label">
     <input pPassword type="password" size="30" formControlName="password" [feedback]="false"/>
-    <label for="float-input">Password</label>
+    <label for="inputtext">Password</label>
   </span>
   <div *ngIf="f.password.invalid && (f.password.dirty || f.password.touched)" class="error-red" >
     <div *ngIf="f.password.errors.required">Password is required.</div>
   </div>
 
   <br>
-  <span class="ui-float-label">
+  <span class="p-float-label">
     <input pPassword type="password" size="30" formControlName="confirmPassword" [feedback]="false" />
-    <label for="float-input">Confirm Password</label>
+    <label for="inputtext">Confirm Password</label>
   </span>
   <div *ngIf="registerForm.errors?.invalid" class="error-red" >Passwords must match.</div>
   <div *ngIf="authError" class="error-red" >Authentification error</div>

@@ -80,7 +80,7 @@ export class ComponentLoginDialogComponent implements OnInit {
 
   recenter()
   {
-    setTimeout(() => {this.loginDialog.positionOverlay();}, 0)
+    //setTimeout(() => {this.loginDialog.positionOverlay();}, 0)
   }
 
 }
