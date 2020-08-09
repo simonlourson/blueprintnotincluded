@@ -1,6 +1,6 @@
 import { ElementRef } from "@angular/core";
 import { ComponentCanvasComponent } from "../components/component-canvas/component-canvas.component";
-import { BlueprintItem, CameraService, Vector2 } from '../../../../../blueprintnotincluded-lib/index'
+import { BlueprintItem, CameraService, Vector2, PixiPolyfill } from '../../../../../blueprintnotincluded-lib/index'
 import { ComponentMenuComponent } from '../components/component-menu/component-menu.component';
 
 import {  } from 'pixi.js-legacy';
@@ -30,30 +30,9 @@ export class DrawPixi
     options.autoResize = true;
     //options.forceCanvas = true;
     
-    /*
-    // Tests : remove!!!!
-    let data = Uint8Array.from([
-      89,  72, 34, 255,  
-      97,  80, 42, 255, 
-      105,  93, 43, 255,
-      117, 105, 55, 255,
-      89,  72, 34, 255,  
-      97,  80, 42, 255, 
-      105,  93, 43, 255,
-      117, 105, 55, 255,
-      89,  72, 34, 255,  
-      97,  80, 42, 255, 
-      105,  93, 43, 255,
-      117, 105, 55, 255,
-      89,  72, 34, 255,  
-      97,  80, 42, 255, 
-      105,  93, 43, 255,
-      117, 105, 55, 255 ])
-    let imageTexture = PIXI.Texture.fromBuffer(data, 4, 4);
-    let sprite = PIXI.Sprite.from(imageTexture);
-    sprite.x = 100;
-    sprite.y = 100;
-    */
+    
+    
+    
 
     PIXI.utils.skipHello();
     this.pixiApp = new PIXI.Application(options);
@@ -64,9 +43,54 @@ export class DrawPixi
     this.pixiApp.stage.interactiveChildren = false;
     this.pixiApp.stage.addChild(this.backGraphics);
     this.pixiApp.stage.addChild(this.frontGraphics);
-    //this.pixiApp.stage.addChild(sprite);
+    
     //this.pixiApp.stage.sortableChildren = true; 
     this.pixiApp.ticker.add(() => {this.drawAll();});
+
+    // Tests : remove!!!!
+    /*
+    let data = Uint8Array.from([
+      255, 0, 255, 20,  
+      255, 0, 255, 20, 
+      255, 0, 255, 20,
+      255, 0, 255, 20,
+      255, 0, 255, 20,  
+      255, 0, 255, 20, 
+      255, 0, 255, 20,
+      255, 0, 255, 20,
+      255, 0, 255, 20,  
+      255, 0, 255, 20, 
+      255, 0, 255, 20,
+      255, 0, 255, 20,
+      255, 0, 255, 20,  
+      255, 0, 255, 20, 
+      255, 0, 255, 20,
+      255, 0, 255, 20 ])
+    let imageTexture = PIXI.Texture.fromBuffer(data, 4, 4);
+    */
+    let brt = PixiPolyfill.pixiPolyfill.getNewBaseRenderTexture({width: 20, height: 20 });
+    let rt = PixiPolyfill.pixiPolyfill.getNewRenderTexture(brt);
+
+    let graphics = PixiPolyfill.pixiPolyfill.getNewGraphics();
+
+    let container = PixiPolyfill.pixiPolyfill.getNewContainer();
+    container.addChild(graphics);
+
+    let index: number = 0;
+    for (let x = 0; x < 20; x++)
+      for (let y = 0; y < 20; y++) {
+
+        graphics.beginFill(0xFF00FF, 0.5);
+        graphics.drawRect(x, y, 1, 1);
+        graphics.endFill();
+      }
+
+    PixiPolyfill.pixiPolyfill.pixiApp.renderer.render(container, rt, true);
+    let sprite = PIXI.Sprite.from(rt);
+    console.log(sprite)
+    sprite.x = 100;
+    sprite.y = 100;
+    this.pixiApp.stage.addChild(sprite);
   }   
   
   InitAnimation() {

@@ -125,20 +125,25 @@ export class ComponentMenuComponent implements OnInit, IObsToolChanged, IObsCame
         label: 'Display',
         items: this.displayMenuItems
       },
-      {separator:true},
       {
-        label: 'About',
-        icon:'pi pi-info-circle', command: (event) => { this.onMenuCommand.emit({type: MenuCommandType.about, data: null}); }
-      },
-      {
-        label: 'Discord',
-        icon:'fab fa-discord', url:'https://discord.gg/69vRZZT', target:'discord'
-      },
-      {
-        label: 'Github',
-        icon:'fab fa-github', url:'https://github.com/simonlourson/blueprintnotincluded/', target:'github'
+        label: 'More',
+        items : [
+          {
+            label: 'About',
+            icon:'pi pi-info-circle', command: (event) => { this.onMenuCommand.emit({type: MenuCommandType.about, data: null}); }
+          },
+          {
+            label: 'Discord',
+            icon:'fab fa-discord', url:'https://discord.gg/69vRZZT', target:'discord'
+          },
+          {
+            label: 'Github',
+            icon:'fab fa-github', url:'https://github.com/simonlourson/blueprintnotincluded/', target:'github'
+          }
+        ]
       }
-      /*
+      
+      
       ,{
         label: 'Technical', 
         items: [
@@ -150,7 +155,7 @@ export class ComponentMenuComponent implements OnInit, IObsToolChanged, IObsCame
           {label: 'Repack textures',       icon:'pi pi-download', command: (event) => { this.onMenuCommand.emit({type: MenuCommandType.repackTextures, data:null}); } }
         ]
       }
-      */
+      
     ];
    
     
