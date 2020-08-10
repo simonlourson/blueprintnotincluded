@@ -49,12 +49,14 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy, IObsCameraCh
     private toolService: ToolService) {
     
     this.drawPixi = new DrawPixi();
-    this.cameraService = CameraService.cameraService;
+    this.cameraService = new CameraService(this.drawPixi.getNewContainer());
     this.cameraService.subscribeCameraChange(this);
   }
 
   private running: boolean;
   ngOnInit() {
+    // Init the camera service (maybe this should be elsewhere?)
+
     // Start the rendering loop
     this.running = true;
     this.ngZone.runOutsideAngular(() => {
@@ -214,8 +216,8 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy, IObsCameraCh
   */
   fetchIcons()
   {
-    for (let k of ImageSource.keys) ImageSource.getBaseTexture(k);
-    for (let k of SpriteInfo.keys) SpriteInfo.getSpriteInfo(k).getTexture();
+    for (let k of ImageSource.keys) ImageSource.getBaseTexture(k, this.drawPixi);
+    for (let k of SpriteInfo.keys) SpriteInfo.getSpriteInfo(k).getTexture(this.drawPixi);
   }
 
   downloadUtility(database: BExport)
@@ -278,8 +280,7 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy, IObsCameraCh
 
     for (let sourceTexture of sourceTextures)
     {
-      console.log(sourceTexture)
-      let baseTexture = ImageSource.getBaseTexture(sourceTexture);
+      let baseTexture = ImageSource.getBaseTexture(sourceTexture, this.drawPixi);
       
       let texture = new PIXI.Texture(baseTexture);
       
@@ -352,7 +353,7 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy, IObsCameraCh
           }
 
           let spriteInfo = SpriteInfo.getSpriteInfo(spriteModifier.spriteInfoName);
-          let texture = spriteInfo.getTexture();
+          let texture = spriteInfo.getTexture(this.drawPixi);
           let sprite = PIXI.Sprite.from(texture);
           sprite.anchor.set(spriteInfo.pivot.x, 1-spriteInfo.pivot.y);
           sprite.x = 0 + (spriteModifier.translation.x);
@@ -499,7 +500,7 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy, IObsCameraCh
       for (let spriteInfo of newSpriteInfos.filter((s) => { return s.textureName == textureBaseString + trayIndex; })) {
         let repackBleed = 5;
         let realBleed = new Vector2();
-        let texture = SpriteInfo.getSpriteInfo(spriteInfo.name).getTextureWithBleed(repackBleed, realBleed);
+        let texture = SpriteInfo.getSpriteInfo(spriteInfo.name).getTextureWithBleed(repackBleed, realBleed, this.drawPixi);
         let sprite = PIXI.Sprite.from(texture);
 
         sprite.x = spriteInfo.uvMin.x - realBleed.x;
@@ -531,7 +532,7 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy, IObsCameraCh
     for (let k of SpriteInfo.keys.filter(s => SpriteInfo.getSpriteInfo(s).isIcon))
     {
       let uiSpriteInfo = SpriteInfo.getSpriteInfo(k);
-      let texture = uiSpriteInfo.getTexture();
+      let texture = uiSpriteInfo.getTexture(this.drawPixi);
       let uiSprite =  PIXI.Sprite.from(texture);
 
       let size = Math.max(texture.width, texture.height)
@@ -601,7 +602,7 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy, IObsCameraCh
     if (totalTileSize.x > totalTileSize.y) cameraOffset.y += totalTileSize.x / 2 - totalTileSize.y / 2;
     if (totalTileSize.y > totalTileSize.x) cameraOffset.x += totalTileSize.y / 2 - totalTileSize.x / 2;
     
-    let exportCamera = new CameraService();
+    let exportCamera = new CameraService(this.drawPixi.getNewContainer());
     exportCamera.setHardZoom(thumbnailTileSize);
     exportCamera.cameraOffset = cameraOffset;
     exportCamera.overlay = Overlay.Base;
@@ -618,7 +619,7 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy, IObsCameraCh
 
     clone.blueprintItems.map((item) => { 
       item.updateTileables(clone);
-      item.drawPixi(exportCamera);
+      item.drawPixi(exportCamera, this.drawPixi);
     });
 
     let brt = new PIXI.BaseRenderTexture({width: thumbnailSize, height: thumbnailSize, scaleMode: PIXI.SCALE_MODES.LINEAR});
@@ -655,7 +656,7 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy, IObsCameraCh
     console.log(totalTileSize)
     let sizeInPixels = new Vector2(totalTileSize.x * tileSize, totalTileSize.y * tileSize)
 
-    let exportCamera = new CameraService();
+    let exportCamera = new CameraService(this.drawPixi.getNewContainer());
     exportCamera.setHardZoom(tileSize);
     exportCamera.cameraOffset = new Vector2(-topLeft.x + 1, bottomRight.y + 1);
     exportCamera.container = new PIXI.Container();
@@ -680,7 +681,7 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy, IObsCameraCh
       
       clone.blueprintItems.map((item) => { 
         item.updateTileables(clone);
-        item.drawPixi(exportCamera);
+        item.drawPixi(exportCamera, this.drawPixi);
       });
 
       let brt = new PIXI.BaseRenderTexture({width: sizeInPixels.x, height: sizeInPixels.y, scaleMode: PIXI.SCALE_MODES.LINEAR});

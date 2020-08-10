@@ -1,13 +1,44 @@
 import { ElementRef } from "@angular/core";
 import { ComponentCanvasComponent } from "../components/component-canvas/component-canvas.component";
-import { BlueprintItem, CameraService, Vector2, PixiPolyfill } from '../../../../../blueprintnotincluded-lib/index'
+import { BlueprintItem, CameraService, Vector2, PixiUtil } from '../../../../../blueprintnotincluded-lib/index'
 import { ComponentMenuComponent } from '../components/component-menu/component-menu.component';
 
 import {  } from 'pixi.js-legacy';
 declare var PIXI: any;
 
-export class DrawPixi
+export class DrawPixi implements PixiUtil
 {
+  getNewContainer() {
+    return new PIXI.Container();
+  }
+  getNewGraphics() {
+    return new PIXI.Graphics();
+  }
+  getSpriteFrom(ressource: any) {
+    return PIXI.Sprite.from(ressource);
+  }
+  getNewBaseTexture(url: string) {
+    return PIXI.Texture.from(url)
+  }
+  getNewTexture(baseTex: any, rectangle: any) {
+    return new PIXI.Texture(baseTex, rectangle);
+  }
+  getNewTextureWhole(baseTex: any) {
+    return new PIXI.Texture(baseTex);
+  }
+  getNewRectangle(x1: number, y1: number, x2: number, y2: number) {
+    return new PIXI.Rectangle(x1, y1, x2, y2);
+  }
+  getNewBaseRenderTexture(options: any) {
+    return new PIXI.BaseRenderTexture(options);
+  }
+  getNewRenderTexture(brt: any) {
+    return new PIXI.RenderTexture(brt);
+  }
+  getNewPixiApp(options: any) {
+    return this.pixiApp;
+  }
+
   static instance: DrawPixi;
 
   pixiApp: PIXI.Application;
@@ -46,51 +77,6 @@ export class DrawPixi
     
     //this.pixiApp.stage.sortableChildren = true; 
     this.pixiApp.ticker.add(() => {this.drawAll();});
-
-    // Tests : remove!!!!
-    /*
-    let data = Uint8Array.from([
-      255, 0, 255, 20,  
-      255, 0, 255, 20, 
-      255, 0, 255, 20,
-      255, 0, 255, 20,
-      255, 0, 255, 20,  
-      255, 0, 255, 20, 
-      255, 0, 255, 20,
-      255, 0, 255, 20,
-      255, 0, 255, 20,  
-      255, 0, 255, 20, 
-      255, 0, 255, 20,
-      255, 0, 255, 20,
-      255, 0, 255, 20,  
-      255, 0, 255, 20, 
-      255, 0, 255, 20,
-      255, 0, 255, 20 ])
-    let imageTexture = PIXI.Texture.fromBuffer(data, 4, 4);
-    */
-    let brt = PixiPolyfill.pixiPolyfill.getNewBaseRenderTexture({width: 20, height: 20 });
-    let rt = PixiPolyfill.pixiPolyfill.getNewRenderTexture(brt);
-
-    let graphics = PixiPolyfill.pixiPolyfill.getNewGraphics();
-
-    let container = PixiPolyfill.pixiPolyfill.getNewContainer();
-    container.addChild(graphics);
-
-    let index: number = 0;
-    for (let x = 0; x < 20; x++)
-      for (let y = 0; y < 20; y++) {
-
-        graphics.beginFill(0xFF00FF, 0.5);
-        graphics.drawRect(x, y, 1, 1);
-        graphics.endFill();
-      }
-
-    PixiPolyfill.pixiPolyfill.pixiApp.renderer.render(container, rt, true);
-    let sprite = PIXI.Sprite.from(rt);
-    console.log(sprite)
-    sprite.x = 100;
-    sprite.y = 100;
-    this.pixiApp.stage.addChild(sprite);
   }   
   
   InitAnimation() {
@@ -146,7 +132,7 @@ export class DrawPixi
 
   }
   drawTemplateItem(templateItem: BlueprintItem, camera: CameraService) {
-    templateItem.drawPixi(camera);
+    templateItem.drawPixi(camera, this);
   }
 
   public drawTileRectangle(camera: CameraService, topLeft: Vector2, bottomRight: Vector2, frontGraphics: boolean, borderWidth: number, fillColor: number, borderColor: number, fillAlpha: number, borderAlpha: number)

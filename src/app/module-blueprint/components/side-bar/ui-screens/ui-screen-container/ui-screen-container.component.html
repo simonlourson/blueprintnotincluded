@@ -1,4 +1,7 @@
-<p-fieldset *ngIf="showSettings" legend="Settings">
+<fieldset *ngIf="showSettings" legend="Settings" class="ui-fieldset ui-widget ui-widget-content ui-corner-all">
+  <legend class="ui-fieldset-legend ui-corner-all ui-state-default ui-unselectable-text">
+    <span class="ui-fieldset-legend-text">Settings</span>
+  </legend>
   <div *ngFor="let uiScreen of uiScreens">
       <app-single-slider-screen
         *ngIf="uiScreen.id=='SingleSliderSideScreen'"
@@ -16,4 +19,4 @@
         [activeRangeSideScreen]="uiScreen">
       </app-active-range-screen>
   </div>
-</p-fieldset>
+</fieldset>

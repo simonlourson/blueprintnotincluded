@@ -1,5 +1,5 @@
 import { BlueprintService } from '../../services/blueprint-service';
-import { BlueprintHelpers, BlueprintItemWire, BlueprintItem, CameraService, DrawHelpers, Vector2 } from "../../../../../../blueprintnotincluded-lib/index";
+import { BlueprintHelpers, BlueprintItemWire, BlueprintItem, CameraService, DrawHelpers, Vector2, PixiUtil } from "../../../../../../blueprintnotincluded-lib/index";
 import { Injectable } from '@angular/core';
 import { ITool, IChangeTool, ToolType } from './tool';
 import { DrawPixi } from '../../drawing/draw-pixi';
@@ -10,14 +10,12 @@ export class BuildTool implements ITool
 
   templateItemToBuild: BlueprintItem;
   private observers: IObsBuildItemChanged[];
-  private cameraService: CameraService
 
   parent: IChangeTool;
 
   constructor(private blueprintService: BlueprintService) 
   {
     this.observers = [];
-    this.cameraService = CameraService.cameraService
   }
 
   subscribeBuildItemChanged(observer: IObsBuildItemChanged)
@@ -36,13 +34,26 @@ export class BuildTool implements ITool
   private canBuild(): boolean
   {
     let alreadyPresent = false;
-    for (let tileIndex of this.templateItemToBuild.tileIndexes) {
-      for (let templateItem of this.blueprintService.blueprint.getBlueprintItemsAtIndex(tileIndex)) 
-        if (this.templateItemToBuild.oniItem.isWire && templateItem.oniItem.objectLayer == this.templateItemToBuild.oniItem.objectLayer) 
+
+    // Special case if this is a bridge : only disallow if there is a bridge on the exact same tile, in the exact same orientation
+    if (this.templateItemToBuild.oniItem.isBridge) {
+      for (let templateItem of this.blueprintService.blueprint.getBlueprintItemsAtIndex(DrawHelpers.getTileIndex(this.templateItemToBuild.position))) {
+        if (templateItem.oniItem.id == this.templateItemToBuild.oniItem.id && templateItem.position.equals(this.templateItemToBuild.position) && templateItem.orientation == this.templateItemToBuild.orientation) {
           alreadyPresent = true;
-        else if (templateItem.oniItem.id == this.templateItemToBuild.oniItem.id) 
-          alreadyPresent = true;
+        }
+      }
     }
+    else {
+      for (let tileIndex of this.templateItemToBuild.tileIndexes) {
+        for (let templateItem of this.blueprintService.blueprint.getBlueprintItemsAtIndex(tileIndex)) 
+          // Special case, can't build radiant and insulated conduits on the same tile
+          if (this.templateItemToBuild.oniItem.isWire && templateItem.oniItem.objectLayer == this.templateItemToBuild.oniItem.objectLayer) 
+            alreadyPresent = true;
+          else if (templateItem.oniItem.id == this.templateItemToBuild.oniItem.id) 
+            alreadyPresent = true;
+      }
+    }
+
     return !alreadyPresent;
   }
 
@@ -73,7 +84,7 @@ export class BuildTool implements ITool
   {
     if (this.templateItemToBuild != null) this.templateItemToBuild.destroy();
 
-    this.cameraService.setOverlayForItem(item.oniItem);
+    CameraService.cameraService.setOverlayForItem(item.oniItem);
 
     this.templateItemToBuild = item;
     this.templateItemToBuild.setInvisible();
@@ -306,7 +317,7 @@ export class BuildTool implements ITool
     //if (this.canBuild()) this.templateItemToBuild.drawPart.tint = DrawHelpers.whiteColor;
     //else this.templateItemToBuild.drawPart.tint = 0xD40000;
 
-    this.templateItemToBuild.drawPixi(camera);
+    this.templateItemToBuild.drawPixi(camera, drawPixi);
     // TODO correct red and alpha when building outside of overlay 
   }
 

@@ -13,9 +13,9 @@
 
   
     <br>
-    <span class="ui-float-label">
-      <input class="float-input" type="text" size="60" formControlName="name" pInputText> 
-      <label for="float-input">Blueprint name</label>
+    <span class="p-float-label">
+      <input type="text" size="60" formControlName="name" pInputText> 
+      <label for="inputtext">Blueprint name</label>
     </span>
     <div *ngIf="f.name.invalid && (f.name.dirty || f.name.touched)" class="error-red" >
       <div *ngIf="f.name.errors.required">Blueprint name is required.</div>

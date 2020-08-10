@@ -79,8 +79,6 @@ export class ComponentBlueprintParentComponent implements OnInit, IObsBlueprintC
   @ViewChild('selectionTool', {static: true})
   selectionTool: ComponentSideSelectionToolComponent;
 
-  public cameraService: CameraService
-
   constructor(
     private messageService: MessageService, 
     private route: ActivatedRoute,
@@ -88,8 +86,18 @@ export class ComponentBlueprintParentComponent implements OnInit, IObsBlueprintC
     private blueprintService: BlueprintService,
     public toolService: ToolService,
     private renderer: Renderer2) { 
-      this.cameraService = CameraService.cameraService;
+      
     }
+
+  get showElementReport() {
+    if (CameraService.cameraService == null) return false;
+    else return CameraService.cameraService.showElementReport
+  }
+
+  get showTemperatureScale() {
+    if (CameraService.cameraService == null) return false;
+    else return CameraService.cameraService.showTemperatureScale
+  }
 
   ngOnInit() {
     
@@ -256,7 +264,7 @@ export class ComponentBlueprintParentComponent implements OnInit, IObsBlueprintC
   loadTemplateIntoCanvas(template: Blueprint)
   {
     this.canvas.loadNewBlueprint(template);
-    this.cameraService.overlay = Overlay.Base;
+    CameraService.cameraService.overlay = Overlay.Base;
     this.toolService.changeTool(ToolType.select);
 
     let summary: string = "Loaded blueprint : " + this.blueprintService.name;

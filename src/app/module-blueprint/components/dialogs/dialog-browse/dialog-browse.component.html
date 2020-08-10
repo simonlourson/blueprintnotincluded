@@ -45,12 +45,14 @@
         <div class="title-line">
           <b>{{item.name}}</b>
           <div *ngIf="isReal(item.thumbnail)" class="like-widget">
+            <!--
             <app-like-widget
               [blueprintId]="item.id" 
               [nbLikes]="item.nbLikes" 
               [likedByMe]="item.likedByMe"
               [disabled]="!authService.isLoggedIn() || item.thumbnail == 'svg'">
             </app-like-widget>
+            -->
           </div>
         </div>
         <br>

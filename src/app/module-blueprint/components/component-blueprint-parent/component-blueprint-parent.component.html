@@ -18,11 +18,11 @@
     </div>
     <div class="side-panel-right">
       <app-element-report-tool  
-        *ngIf="cameraService.showElementReport && !aboutDialog.visible" 
+        *ngIf="showElementReport && !aboutDialog.visible" 
         #elementReportTool>
       </app-element-report-tool>
       <app-temperature-scale
-        *ngIf="cameraService.showTemperatureScale && !aboutDialog.visible" 
+        *ngIf="showTemperatureScale && !aboutDialog.visible" 
         #temperatureScale>
       </app-temperature-scale>
     </div>
