@@ -13,7 +13,6 @@ import * as JSZip from 'jszip';
 import { BlueprintService, ExportImageOptions } from '../../services/blueprint-service';
 import { ToolService } from '../../services/tool-service';
 import { read } from 'fs';
-import { BinController } from '../../common/bin-packing/bin-controller';
 
 import { } from 'pixi.js-legacy';
 declare var PIXI: any;
@@ -437,6 +436,7 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy, IObsCameraCh
 
   repackTextures(database: any)
   {
+    /*
     // Tests bintrays
     let traySize = 1024;
     let textureBaseString = 'repack_';
@@ -450,7 +450,7 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy, IObsCameraCh
     binController.addItem('test_2', new Vector2(10, 50), bleed);
     binController.addItem('test_3', new Vector2(10, 50), bleed);
     */
-
+/*
     // First, we clone the existing spriteInfos into a new array :
     let newSpriteInfos: BSpriteInfo[] = [];
 
@@ -519,6 +519,7 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy, IObsCameraCh
         this.addBlob(b, textureBaseString + trayIndex + '.png');
       }, 'image/png');
     }
+    */
   }
   
   downloadIcons()

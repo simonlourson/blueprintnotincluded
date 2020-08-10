@@ -53,8 +53,8 @@ export class ThresholdSwhitchScreenComponent implements OnInit {
     return html;
   }
 
-  get classAbove() { return "button-item " + (this.above ? "ui-button-info" : "ui-button-secondary") }
-  get classBelow() { return "button-item " + (this.above ? "ui-button-secondary" : "ui-button-info") }
+  get classAbove() { return "button-item " + (this.above ? "p-button-info" : "p-button-secondary") }
+  get classBelow() { return "button-item " + (this.above ? "p-button-secondary" : "p-button-info") }
 
   constructor() { }
 

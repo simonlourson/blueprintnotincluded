@@ -143,7 +143,8 @@ export class ComponentMenuComponent implements OnInit, IObsToolChanged, IObsCame
         ]
       }
       
-      
+      /* 
+      // This is done on the node backend now
       ,{
         label: 'Technical', 
         items: [
@@ -155,6 +156,7 @@ export class ComponentMenuComponent implements OnInit, IObsToolChanged, IObsCame
           {label: 'Repack textures',       icon:'pi pi-download', command: (event) => { this.onMenuCommand.emit({type: MenuCommandType.repackTextures, data:null}); } }
         ]
       }
+      */
       
     ];
    
