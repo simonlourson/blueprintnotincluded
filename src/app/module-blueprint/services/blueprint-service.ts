@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { AuthenticationService } from './authentification-service';
 import { map } from 'rxjs/operators';
 import { ComponentMenuComponent } from '../components/component-menu/component-menu.component';
-import { Blueprint, IObsBlueprintChange, BlueprintItem, Overlay, Display, BniBlueprint, MdbBlueprint, OniTemplate, BlueprintListItem, BlueprintLike, BlueprintResponse } from '../../../../../blueprintnotincluded-lib/index';
+import { Blueprint, IObsBlueprintChange, BlueprintItem, Overlay, Display, BniBlueprint, MdbBlueprint, OniTemplate, BlueprintListItem, BlueprintLike, BlueprintResponse, BlueprintDelete } from '../../../../../blueprintnotincluded-lib/index';
 import * as yaml from 'node_modules/js-yaml/lib/js-yaml';
 
 @Injectable({ providedIn: 'root' })
@@ -273,6 +273,20 @@ export class BlueprintService implements IObsBlueprintChange
       map((response: any) => {
         let blueprintListItems = response as BlueprintListItem[];
         return blueprintListItems;
+      })
+    );
+
+    return request;
+  }
+
+  deleteBlueprint(id: string) {
+
+    let body: BlueprintDelete = {blueprintId:id};
+
+    const request = this.http.post('/api/deleteblueprint', body, { headers: { Authorization: `Bearer ${this.authService.getToken()}` }}).pipe(
+      map((response: any) => {
+        if (response.id) { this.id = response.id; }
+        return response;
       })
     );
 

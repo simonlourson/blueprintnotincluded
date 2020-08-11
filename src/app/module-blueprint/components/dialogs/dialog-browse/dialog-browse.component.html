@@ -44,7 +44,8 @@
       <div style="width: 100%;">
         <div class="title-line">
           <b>{{item.name}}</b>
-          <div *ngIf="isReal(item.thumbnail)" class="like-widget">
+          <div *ngIf="isReal(item.thumbnail) && item.ownedByMe" class="like-widget">
+            <button pButton type="button" class="p-button-danger" icon="pi pi-trash" (click)="deleteBlueprint(item)" pTooltip="Delete this blueprint"></button>
             <!--
             <app-like-widget
               [blueprintId]="item.id" 

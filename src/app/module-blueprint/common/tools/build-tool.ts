@@ -16,7 +16,6 @@ export class BuildTool implements ITool
   constructor(private blueprintService: BlueprintService, private appRef: ApplicationRef) 
   {
     this.observers = [];
-    console.log(appRef)
   }
 
   subscribeBuildItemChanged(observer: IObsBuildItemChanged)
@@ -51,33 +50,24 @@ export class BuildTool implements ITool
           this.templateItemToBuild.buildCandidateResult.canBuild = false;
           this.templateItemToBuild.buildCandidateResult.cantBuildReason = 'Can\'t build here : ' + templateItem.oniItem.name + ' is in the way';
         }
+      }
+    }
 
+    for (let connectionToBuild of this.templateItemToBuild.oniItem.utilityConnections) {
+      // We rotate and scale the offset, and add to the position
+      let connectionToBuildPosition = Vector2.cloneNullToZero(connectionToBuild.offset);
+      connectionToBuildPosition = DrawHelpers.rotateVector2(connectionToBuildPosition, Vector2.Zero, this.templateItemToBuild.rotation);
+      connectionToBuildPosition = DrawHelpers.scaleVector2(connectionToBuildPosition, Vector2.Zero, this.templateItemToBuild.scale);
+      connectionToBuildPosition.x += this.templateItemToBuild.position.x;
+      connectionToBuildPosition.y += this.templateItemToBuild.position.y;
+
+      let utilitiesAtIndex = this.blueprintService.blueprint.getUtilityConnectionsAtIndex(DrawHelpers.getTileIndex(connectionToBuildPosition));
+      for (let trackedUtilities of utilitiesAtIndex) {
         
-        
-        for (let connectionToBuild of this.templateItemToBuild.oniItem.utilityConnections) {
-          // We rotate and scale the offset, and add to the position
-          let connectionToBuildPosition = Vector2.cloneNullToZero(connectionToBuild.offset);
-          connectionToBuildPosition = DrawHelpers.rotateVector2(connectionToBuildPosition, Vector2.Zero, this.templateItemToBuild.rotation);
-          connectionToBuildPosition = DrawHelpers.scaleVector2(connectionToBuildPosition, Vector2.Zero, this.templateItemToBuild.scale);
-          connectionToBuildPosition.x += this.templateItemToBuild.position.x;
-          connectionToBuildPosition.y += this.templateItemToBuild.position.y;
-
-          for (let connection of templateItem.oniItem.utilityConnections) {
-            // We rotate and scale the offset, and add to the position
-            let connectionPosition = Vector2.cloneNullToZero(connection.offset);
-            connectionPosition = DrawHelpers.rotateVector2(connectionPosition, Vector2.Zero, templateItem.rotation);
-            connectionPosition = DrawHelpers.scaleVector2(connectionPosition, Vector2.Zero, templateItem.scale);
-            connectionPosition.x += templateItem.position.x;
-            connectionPosition.y += templateItem.position.y;
-
-            if (connectionToBuildPosition.equals(connectionPosition) && ConnectionHelper.getConnectionOverlay(connectionToBuild.type) == ConnectionHelper.getConnectionOverlay(connection.type)) {
-              this.templateItemToBuild.buildCandidateResult.canBuild = false;
-              this.templateItemToBuild.buildCandidateResult.cantBuildReason = 'Can\'t build here : The ' + ConnectionHelper.getConnectionName(connection.type) + ' from ' + templateItem.oniItem.name + ' is in the way';
-            }
-
-          }
+        if (ConnectionHelper.getConnectionOverlay(connectionToBuild.type) == ConnectionHelper.getConnectionOverlay(trackedUtilities.utilityConnection.type)) {
+          this.templateItemToBuild.buildCandidateResult.canBuild = false;
+          this.templateItemToBuild.buildCandidateResult.cantBuildReason = 'Can\'t build here : The ' + ConnectionHelper.getConnectionName(trackedUtilities.utilityConnection.type) + ' from ' + trackedUtilities.blueprintItem.oniItem.name + ' is in the way';
         }
-        
       }
     }
 

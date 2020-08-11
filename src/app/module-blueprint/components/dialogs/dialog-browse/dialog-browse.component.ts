@@ -53,6 +53,7 @@ export class DialogBrowseComponent implements OnInit {
       thumbnail: 'svg',
       tags: null,
       likedByMe: false,
+      ownedByMe: false,
       nbLikes: 0
     };
 
@@ -66,6 +67,7 @@ export class DialogBrowseComponent implements OnInit {
       thumbnail: 'svg_nothing',
       tags: null,
       likedByMe: false,
+      ownedByMe: false,
       nbLikes: 0
     };
 
@@ -134,6 +136,25 @@ export class DialogBrowseComponent implements OnInit {
       next: this.handleGetBlueprints.bind(this)
     });
   }
+
+  deleteBlueprint(item: BlueprintListItem) {
+    this.blueprintService.deleteBlueprint(item.id).subscribe({
+      next: this.handleDeleteNext.bind(this),
+      error: this.handleDeleteError.bind(this)
+    });
+  }
+
+  handleDeleteNext() {
+    // TODO Just splice the blueprint here, and assume it worked
+    this.removeAll();
+    this.getBlueprints();
+  }
+
+  handleDeleteError() {
+    // TODO cleaner handling here, but I don't remember how to do it
+    console.log('Error when deleting blueprint')
+  }
+
 
   reset() {
     
