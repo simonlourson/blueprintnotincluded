@@ -813,6 +813,9 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy, IObsCameraCh
     if (this.blueprint != null)
       for (let blueprintItem of this.blueprint.blueprintItems)
         blueprintItem.cameraChanged(camera);
+
+    if (this.toolService != null && this.toolService.buildTool != null && this.toolService.buildTool.templateItemToBuild != null)
+      this.toolService.buildTool.templateItemToBuild.cameraChanged(camera);
   }
 
 }

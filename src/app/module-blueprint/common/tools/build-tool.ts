@@ -1,6 +1,6 @@
 import { BlueprintService } from '../../services/blueprint-service';
-import { BlueprintHelpers, BlueprintItemWire, BlueprintItem, CameraService, DrawHelpers, Vector2, PixiUtil } from "../../../../../../blueprintnotincluded-lib/index";
-import { Injectable } from '@angular/core';
+import { BlueprintHelpers, BlueprintItemWire, BlueprintItem, CameraService, DrawHelpers, Vector2, PixiUtil, BuildCandidateResult, BuildLocationRule, ConnectionHelper } from "../../../../../../blueprintnotincluded-lib/index";
+import { Injectable, ApplicationRef } from '@angular/core';
 import { ITool, IChangeTool, ToolType } from './tool';
 import { DrawPixi } from '../../drawing/draw-pixi';
 
@@ -13,9 +13,10 @@ export class BuildTool implements ITool
 
   parent: IChangeTool;
 
-  constructor(private blueprintService: BlueprintService) 
+  constructor(private blueprintService: BlueprintService, private appRef: ApplicationRef) 
   {
     this.observers = [];
+    console.log(appRef)
   }
 
   subscribeBuildItemChanged(observer: IObsBuildItemChanged)
@@ -31,42 +32,75 @@ export class BuildTool implements ITool
     }
   }
 
-  private canBuild(): boolean
-  {
-    let alreadyPresent = false;
+  private updateBuildCandidateResult() {
+    let previousCanBuild = this.templateItemToBuild.buildCandidateResult.canBuild.valueOf();
+    let previousCantBuildReason = this.templateItemToBuild.buildCandidateResult.cantBuildReason.valueOf();
 
-    // Special case if this is a bridge : only disallow if there is a bridge on the exact same tile, in the exact same orientation
-    if (this.templateItemToBuild.oniItem.isBridge) {
-      for (let templateItem of this.blueprintService.blueprint.getBlueprintItemsAtIndex(DrawHelpers.getTileIndex(this.templateItemToBuild.position))) {
-        if (templateItem.oniItem.id == this.templateItemToBuild.oniItem.id && templateItem.position.equals(this.templateItemToBuild.position) && templateItem.orientation == this.templateItemToBuild.orientation) {
-          alreadyPresent = true;
+    this.templateItemToBuild.buildCandidateResult.canBuild = true;
+    this.templateItemToBuild.buildCandidateResult.cantBuildReason = '';
+
+    // First : iterate all the buildings on each tile of this building
+    
+    let isBridge = this.templateItemToBuild.oniItem.buildLocationRule == BuildLocationRule.Conduit || this.templateItemToBuild.oniItem.buildLocationRule == BuildLocationRule.WireBridge || this.templateItemToBuild.oniItem.buildLocationRule == BuildLocationRule.LogicBridge;
+    
+    for (let tileIndex of this.templateItemToBuild.tileIndexes) {
+      for (let templateItem of this.blueprintService.blueprint.getBlueprintItemsAtIndex(tileIndex)) {
+        // If at least one of them is in the same object layer, we can't build
+        // We skip this step for bridges, who only care about their utility ports
+        if (!isBridge && this.templateItemToBuild.oniItem.objectLayer == templateItem.oniItem.objectLayer) {
+          this.templateItemToBuild.buildCandidateResult.canBuild = false;
+          this.templateItemToBuild.buildCandidateResult.cantBuildReason = 'Can\'t build here : ' + templateItem.oniItem.name + ' is in the way';
         }
-      }
-    }
-    else {
-      for (let tileIndex of this.templateItemToBuild.tileIndexes) {
-        for (let templateItem of this.blueprintService.blueprint.getBlueprintItemsAtIndex(tileIndex)) 
-          // Special case, can't build radiant and insulated conduits on the same tile
-          if (this.templateItemToBuild.oniItem.isWire && templateItem.oniItem.objectLayer == this.templateItemToBuild.oniItem.objectLayer) 
-            alreadyPresent = true;
-          else if (templateItem.oniItem.id == this.templateItemToBuild.oniItem.id) 
-            alreadyPresent = true;
+
+        
+        
+        for (let connectionToBuild of this.templateItemToBuild.oniItem.utilityConnections) {
+          // We rotate and scale the offset, and add to the position
+          let connectionToBuildPosition = Vector2.cloneNullToZero(connectionToBuild.offset);
+          connectionToBuildPosition = DrawHelpers.rotateVector2(connectionToBuildPosition, Vector2.Zero, this.templateItemToBuild.rotation);
+          connectionToBuildPosition = DrawHelpers.scaleVector2(connectionToBuildPosition, Vector2.Zero, this.templateItemToBuild.scale);
+          connectionToBuildPosition.x += this.templateItemToBuild.position.x;
+          connectionToBuildPosition.y += this.templateItemToBuild.position.y;
+
+          for (let connection of templateItem.oniItem.utilityConnections) {
+            // We rotate and scale the offset, and add to the position
+            let connectionPosition = Vector2.cloneNullToZero(connection.offset);
+            connectionPosition = DrawHelpers.rotateVector2(connectionPosition, Vector2.Zero, templateItem.rotation);
+            connectionPosition = DrawHelpers.scaleVector2(connectionPosition, Vector2.Zero, templateItem.scale);
+            connectionPosition.x += templateItem.position.x;
+            connectionPosition.y += templateItem.position.y;
+
+            if (connectionToBuildPosition.equals(connectionPosition) && ConnectionHelper.getConnectionOverlay(connectionToBuild.type) == ConnectionHelper.getConnectionOverlay(connection.type)) {
+              this.templateItemToBuild.buildCandidateResult.canBuild = false;
+              this.templateItemToBuild.buildCandidateResult.cantBuildReason = 'Can\'t build here : The ' + ConnectionHelper.getConnectionName(connection.type) + ' from ' + templateItem.oniItem.name + ' is in the way';
+            }
+
+          }
+        }
+        
       }
     }
 
-    return !alreadyPresent;
+    if (previousCanBuild != this.templateItemToBuild.buildCandidateResult.canBuild ||
+        previousCantBuildReason != this.templateItemToBuild.buildCandidateResult.cantBuildReason) {
+
+        // The mousemouse is outside the angular zone, so we have to force a full update here.
+        this.appRef.tick();
+      }
+    
   }
 
   build()
   {
-    if (!this.canBuild()) return;
+    if (!this.templateItemToBuild.buildCandidateResult.canBuild) return;
 
     let newItem = BlueprintHelpers.cloneBlueprintItem(this.templateItemToBuild, false, true);
 
     newItem.prepareBoundingBox();
     newItem.updateTileables(this.blueprintService.blueprint);
     this.blueprintService.blueprint.addBlueprintItem(newItem);
-    this.blueprintService.blueprint.refreshOverlayInfo()
+    this.blueprintService.blueprint.refreshOverlayInfo();
+    this.updateBuildCandidateResult();
   }
 
   private connectAToB(a: BlueprintItemWire, b: BlueprintItemWire)
@@ -91,6 +125,7 @@ export class BuildTool implements ITool
     this.templateItemToBuild.alpha = 1;
     this.templateItemToBuild.cleanUp();
     
+    this.templateItemToBuild.isBuildCandidate = true;
     this.templateItemToBuild.prepareBoundingBox();
     this.templateItemToBuild.updateTileables(this.blueprintService.blueprint);
     this.observers.map((observer) => observer.itemChanged(item) );
@@ -99,6 +134,7 @@ export class BuildTool implements ITool
   buildAndConnect(tileStart: Vector2, tileStop: Vector2) {
     this.templateItemToBuild.position = Vector2.clone(tileStop);
     this.templateItemToBuild.prepareBoundingBox();
+    this.updateBuildCandidateResult();
     this.build();
     
     if (this.templateItemToBuild.oniItem.isWire)
@@ -147,6 +183,7 @@ export class BuildTool implements ITool
     this.templateItemToBuild.position = Vector2.clone(tile);
     this.templateItemToBuild.prepareBoundingBox();
     this.templateItemToBuild.sortChildren();
+    this.updateBuildCandidateResult();
   }
 
   drag(tileStart: Vector2, tileStop: Vector2) {
@@ -307,7 +344,10 @@ export class BuildTool implements ITool
 
   keyDown(keyCode: string) {
     if (keyCode == 'o') {
-      if (this.templateItemToBuild != null) this.templateItemToBuild.nextOrientation();
+      if (this.templateItemToBuild != null) {
+        this.templateItemToBuild.nextOrientation();
+        this.updateBuildCandidateResult();
+      }
     }
   }
 
