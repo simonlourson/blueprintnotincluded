@@ -18,5 +18,10 @@
         [blueprintItem]="blueprintItem"
         [activeRangeSideScreen]="uiScreen">
       </app-active-range-screen>
+      <app-bit-selection-screen
+        *ngIf="uiScreen.id=='LogicBitSelectorSideScreen'"
+        [blueprintItem]="blueprintItem"
+        [bitSelectorSideScreen]="uiScreen">
+      </app-bit-selection-screen>
   </div>
 </fieldset>

@@ -75,6 +75,7 @@ import { FilterElementSolidPipe } from './pipes/filter-element-solid.pipe';
 import { FilterElementLiquidPipe } from './pipes/filter-element-liquid.pipe';
 import { FilterElementGasPipe } from './pipes/filter-element-gas.pipe';
 import { AddMassUnitPipe } from './pipes/add-mass-unit.pipe';
+import { BitSelectionScreenComponent } from './components/side-bar/ui-screens/bit-selection-screen/bit-selection-screen.component';
 
 @NgModule({
   imports: [
@@ -85,7 +86,7 @@ import { AddMassUnitPipe } from './pipes/add-mass-unit.pipe';
     RecaptchaV3Module,
     BrowserAnimationsModule
   ],
-  declarations: [UsernameValidationDirective, BlueprintNameValidationDirective, ComponentCanvasComponent, MouseWheelDirective, DragAndDropDirective, KeyboardDirective, ComponentMenuComponent, ComponentBlueprintParentComponent, ComponentSaveDialogComponent, ComponentSideBuildToolComponent, ComponentSideSelectionToolComponent, ComponentLoginDialogComponent, RegisterFormComponent, LoginFormComponent, DialogShareUrlComponent, ItemCollectionInfoComponent, DialogBrowseComponent, DialogExportImagesComponent, LikeWidgetComponent, BuildableElementPickerComponent, ElementReportToolComponent, UiScreenContainerComponent, SingleSliderScreenComponent, ThresholdSwhitchScreenComponent, ActiveRangeScreenComponent, DialogAboutComponent, TemperaturePickerComponent, TemperatureScaleComponent, ElementIconComponent, CellElementPickerComponent, FilterElementSolidPipe, FilterElementLiquidPipe, FilterElementGasPipe, AddMassUnitPipe],
+  declarations: [UsernameValidationDirective, BlueprintNameValidationDirective, ComponentCanvasComponent, MouseWheelDirective, DragAndDropDirective, KeyboardDirective, ComponentMenuComponent, ComponentBlueprintParentComponent, ComponentSaveDialogComponent, ComponentSideBuildToolComponent, ComponentSideSelectionToolComponent, ComponentLoginDialogComponent, RegisterFormComponent, LoginFormComponent, DialogShareUrlComponent, ItemCollectionInfoComponent, DialogBrowseComponent, DialogExportImagesComponent, LikeWidgetComponent, BuildableElementPickerComponent, ElementReportToolComponent, UiScreenContainerComponent, SingleSliderScreenComponent, ThresholdSwhitchScreenComponent, ActiveRangeScreenComponent, DialogAboutComponent, TemperaturePickerComponent, TemperatureScaleComponent, ElementIconComponent, CellElementPickerComponent, FilterElementSolidPipe, FilterElementLiquidPipe, FilterElementGasPipe, AddMassUnitPipe, BitSelectionScreenComponent],
   providers: [CheckDuplicateService, AuthenticationService, BlueprintService, ToolService, SelectTool, BuildTool, ElementReport, DatePipe,
     { provide: RECAPTCHA_V3_SITE_KEY, useValue: '6LdS0b8UAAAAAGb8P_L33ypsdiS41Nu8q3CwRg_M' }
   ],
