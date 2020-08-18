@@ -5,6 +5,7 @@ import { ToolService, IObsToolChanged } from 'src/app/module-blueprint/services/
 import { IObsBuildItemChanged } from 'src/app/module-blueprint/common/tools/build-tool';
 import { OverlayPanel } from 'primeng/overlaypanel';
 import { ElementChangeInfo } from '../buildable-element-picker/buildable-element-picker.component';
+import { BlueprintItemInfo } from '../../../../../../../blueprintnotincluded-lib/src/blueprint/blueprint-item-info';
 
 
 
@@ -59,6 +60,13 @@ export class ComponentSideBuildToolComponent implements OnInit, IObsBuildItemCha
     newElement.setElement('Water', 0);
 
     this.toolService.buildTool.changeItem(newElement);
+
+    this.categoryPanel.hide();
+  }
+
+  addInfo() {
+    let newInfo = new BlueprintItemInfo(OniItem.infoId);
+    this.toolService.buildTool.changeItem(newInfo);
 
     this.categoryPanel.hide();
   }

@@ -51,6 +51,9 @@
 
 <p-overlayPanel #categoryPanel [appendTo]="'body'">
   <div class="building-panel-content">
+    <div class="ui-clickable-icon element-button" (click)="addInfo()" [pTooltip]="'Add info tip'" tooltipPosition="bottom" life="5000">
+      <img src="assets/images/ui/manual/info-indicator-icon.png" height="40px" />
+    </div>
     <div class="ui-clickable-icon element-button" (click)="paintElement()" [pTooltip]="'Paint Element'" tooltipPosition="bottom" life="5000">
       <img src="assets/images/ui/manual/liquid_icon.png" height="40px" />
     </div>

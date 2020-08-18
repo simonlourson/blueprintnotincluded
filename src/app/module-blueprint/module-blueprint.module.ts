@@ -38,6 +38,7 @@ import {VirtualScrollerModule} from 'primeng/virtualscroller';
 import {ToggleButtonModule} from 'primeng/togglebutton';
 import {SidebarModule} from 'primeng/sidebar';
 import {RadioButtonModule} from 'primeng/radiobutton';
+import {InputTextareaModule} from 'primeng/inputtextarea';
 import { UsernameValidationDirective } from './directives/username-validation.directive';
 import { ComponentSideSelectionToolComponent } from './components/side-bar/selection-tool/selection-tool.component';
 import { KeyboardDirective } from './directives/keyboard.directive';
@@ -76,17 +77,19 @@ import { FilterElementLiquidPipe } from './pipes/filter-element-liquid.pipe';
 import { FilterElementGasPipe } from './pipes/filter-element-gas.pipe';
 import { AddMassUnitPipe } from './pipes/add-mass-unit.pipe';
 import { BitSelectionScreenComponent } from './components/side-bar/ui-screens/bit-selection-screen/bit-selection-screen.component';
+import { InfoInputComponent } from './components/side-bar/info-input/info-input.component';
+import { InfoInputIconComponent } from './components/side-bar/info-input-icon/info-input-icon.component';
 
 @NgModule({
   imports: [
     CommonModule, 
     HttpClientModule,
     FormsModule, ReactiveFormsModule,
-    PasswordModule, ColorPickerModule, InputTextModule, SliderModule, ButtonModule, CardModule, ScrollPanelModule, OverlayPanelModule, MenubarModule, TabMenuModule, SlideMenuModule, DialogModule, DropdownModule, AccordionModule, ToastModule, TooltipModule, PanelModule, InputSwitchModule, CheckboxModule, FieldsetModule, ListboxModule, VirtualScrollerModule, ToggleButtonModule, SidebarModule, RadioButtonModule, 
+    InputTextareaModule, PasswordModule, ColorPickerModule, InputTextModule, SliderModule, ButtonModule, CardModule, ScrollPanelModule, OverlayPanelModule, MenubarModule, TabMenuModule, SlideMenuModule, DialogModule, DropdownModule, AccordionModule, ToastModule, TooltipModule, PanelModule, InputSwitchModule, CheckboxModule, FieldsetModule, ListboxModule, VirtualScrollerModule, ToggleButtonModule, SidebarModule, RadioButtonModule, 
     RecaptchaV3Module,
     BrowserAnimationsModule
   ],
-  declarations: [UsernameValidationDirective, BlueprintNameValidationDirective, ComponentCanvasComponent, MouseWheelDirective, DragAndDropDirective, KeyboardDirective, ComponentMenuComponent, ComponentBlueprintParentComponent, ComponentSaveDialogComponent, ComponentSideBuildToolComponent, ComponentSideSelectionToolComponent, ComponentLoginDialogComponent, RegisterFormComponent, LoginFormComponent, DialogShareUrlComponent, ItemCollectionInfoComponent, DialogBrowseComponent, DialogExportImagesComponent, LikeWidgetComponent, BuildableElementPickerComponent, ElementReportToolComponent, UiScreenContainerComponent, SingleSliderScreenComponent, ThresholdSwhitchScreenComponent, ActiveRangeScreenComponent, DialogAboutComponent, TemperaturePickerComponent, TemperatureScaleComponent, ElementIconComponent, CellElementPickerComponent, FilterElementSolidPipe, FilterElementLiquidPipe, FilterElementGasPipe, AddMassUnitPipe, BitSelectionScreenComponent],
+  declarations: [UsernameValidationDirective, BlueprintNameValidationDirective, ComponentCanvasComponent, MouseWheelDirective, DragAndDropDirective, KeyboardDirective, ComponentMenuComponent, ComponentBlueprintParentComponent, ComponentSaveDialogComponent, ComponentSideBuildToolComponent, ComponentSideSelectionToolComponent, ComponentLoginDialogComponent, RegisterFormComponent, LoginFormComponent, DialogShareUrlComponent, ItemCollectionInfoComponent, DialogBrowseComponent, DialogExportImagesComponent, LikeWidgetComponent, BuildableElementPickerComponent, ElementReportToolComponent, UiScreenContainerComponent, SingleSliderScreenComponent, ThresholdSwhitchScreenComponent, ActiveRangeScreenComponent, DialogAboutComponent, TemperaturePickerComponent, TemperatureScaleComponent, ElementIconComponent, CellElementPickerComponent, FilterElementSolidPipe, FilterElementLiquidPipe, FilterElementGasPipe, AddMassUnitPipe, BitSelectionScreenComponent, InfoInputComponent, InfoInputIconComponent],
   providers: [CheckDuplicateService, AuthenticationService, BlueprintService, ToolService, SelectTool, BuildTool, ElementReport, DatePipe,
     { provide: RECAPTCHA_V3_SITE_KEY, useValue: '6LdS0b8UAAAAAGb8P_L33ypsdiS41Nu8q3CwRg_M' }
   ],
