@@ -6,6 +6,7 @@ import { ComponentBlueprintParentComponent } from './module-blueprint/components
 const routes: Routes = [
   { path: '', component: ComponentBlueprintParentComponent },
   { path: 'b/:id', component: ComponentBlueprintParentComponent },
+  { path: 'b/:id/hideui/:width/:height', component: ComponentBlueprintParentComponent },
   { path: 'openfromurl/:url', component: ComponentBlueprintParentComponent },
   { path: 'browse', component: ComponentBlueprintParentComponent },
   { path: 'about', component: ComponentBlueprintParentComponent },

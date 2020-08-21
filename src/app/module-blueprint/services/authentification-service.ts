@@ -31,7 +31,6 @@ export class AuthenticationService {
   constructor(private http: HttpClient, private router: Router) {}
 
   private saveToken(token: string): void {
-    console.log(token);
     localStorage.setItem(AuthenticationService.localStorage, token);
     this.token = token;
   }

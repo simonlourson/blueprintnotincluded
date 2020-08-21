@@ -31,9 +31,21 @@
   <app-info-input [blueprintIteminfo]="itemCollection.items[0]">
   </app-info-input>
 </div>
+<div *ngIf="itemCollection.oniItem.isInfo && itemCollection.items.length > 1">
+  <div *ngFor="let info of itemCollection.items">
+    <div class="ui-clickable-icon info-button" (click)="selectThisInfo(info)">
+      <div class="info-panel-content">
+        <app-info-input-icon [width]="40" [height]="40" [frontColor]="info.htmlFrontColor" [backColor]="info.htmlBackColor" [svgPath]="info.htmlSvgPath"></app-info-input-icon>
+        <div class="left"></div>
+        <div>{{info.title}}</div>
+        <div class="right"></div>
+      </div>
+    </div>
+  </div>
+</div>
 <br>
-<button pButton type="button" class="ui-button buttonspace" icon="pi pi-clone" (click)="buildingsCopy()" pTooltip="Build this type of building"></button>
-<button pButton type="button" class="ui-button buttonspace" icon="pi pi-search-plus" (click)="selectEvery()" pTooltip="Select every {{itemCollection.oniItem.name}}"></button>
-<button pButton type="button" class="ui-button buttonspace" icon="pi pi-trash" (click)="buildingsDestroy()" pTooltip="Destroy these buildings (Delete key)"></button>
+<button *ngIf="!itemCollection.oniItem.isInfo || itemCollection.items.length == 1" pButton type="button" class="ui-button buttonspace" icon="pi pi-clone" (click)="buildingsCopy()" pTooltip="Build this type of building"></button>
+<button *ngIf="!itemCollection.oniItem.isInfo || itemCollection.items.length == 1" pButton type="button" class="ui-button buttonspace" icon="pi pi-search-plus" (click)="selectEvery()" pTooltip="Select every {{itemCollection.oniItem.name}}"></button>
+<button *ngIf="!itemCollection.oniItem.isInfo || itemCollection.items.length == 1" pButton type="button" class="ui-button buttonspace" icon="pi pi-trash" (click)="buildingsDestroy()" pTooltip="Destroy these buildings (Delete key)"></button>
 
-
+<!-- padding:5px;"-->

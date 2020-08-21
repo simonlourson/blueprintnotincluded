@@ -14,11 +14,13 @@ export class ActiveRangeScreenComponent implements OnInit {
   get activateTooltip() {
     let toolip = this.activeRangeSideScreen.activateTooltip;  
     toolip = toolip.replace('{0}', this.values[1].toString());
+    toolip = toolip.replace('{1}', this.values[0].toString());
     return toolip;
   }
   get deactivateTooltip() {
     let toolip = this.activeRangeSideScreen.deactivateTooltip;  
     toolip = toolip.replace('{0}', this.values[0].toString());
+    toolip = toolip.replace('{1}', this.values[1].toString());
     return toolip;
   }
 

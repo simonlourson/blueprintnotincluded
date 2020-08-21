@@ -33,7 +33,7 @@ export class InfoInputComponent implements OnInit {
   set infoString(value: string) { this.blueprintIteminfo.infoString = value; }
   get title(): string { return this.blueprintIteminfo.title; }
   set title(value: string) { this.blueprintIteminfo.title = value; }
-  get iconSvgPath() { return this.iconSvgPathFromIcon(this.blueprintIteminfo.icon); }
+  get iconSvgPath() { return this.blueprintIteminfo.htmlSvgPath; }
 
   frontColor: string = '#ffffff';
   backColor: string = '#007AD9';
@@ -41,8 +41,8 @@ export class InfoInputComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.frontColor = DrawHelpers.colorToHex(this.blueprintIteminfo.frontColor);
-    this.backColor = DrawHelpers.colorToHex(this.blueprintIteminfo.backColor);
+    this.frontColor = this.blueprintIteminfo.htmlFrontColor;
+    this.backColor = this.blueprintIteminfo.htmlBackColor;
   }
 
   showIcons(event: any) {

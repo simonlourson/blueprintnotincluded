@@ -1,9 +1,13 @@
 
-<p-toast position="top-center" [style]="{marginTop: '40px'}"></p-toast>
+<p-toast *ngIf="!forceSize" position="top-center" [style]="{marginTop: '40px'}"></p-toast>
 
-<app-component-canvas #canvas></app-component-canvas>
-<div class="outer">
-  <app-component-menu #menu (onMenuCommand)="menuCommand($event)">
+<app-component-canvas 
+  #canvas
+  [forceSize]="forceSize"
+  [forcedSize]="forcedSize">
+</app-component-canvas>
+<div *ngIf="!forceSize" class="outer">
+  <app-component-menu *ngIf="!forceSize" #menu (onMenuCommand)="menuCommand($event)">
   </app-component-menu>
   <div>
     <div #sidePanelLeft class="side-panel">
@@ -37,11 +41,12 @@
 
 
 <app-component-save-dialog 
+*ngIf="!forceSize"
   #saveDialog
   (onUpdateThumbnail)='updateThumbnail()'></app-component-save-dialog>
-<app-login-dialog #loginDialog></app-login-dialog>
-<app-dialog-share-url #shareUrlDialog></app-dialog-share-url>
-<app-dialog-browse #browseDialog></app-dialog-browse>
-<app-dialog-export-images #exportImagesDialog (onSaveImages)="saveImages($event)"></app-dialog-export-images>
+<app-login-dialog *ngIf="!forceSize" #loginDialog></app-login-dialog>
+<app-dialog-share-url *ngIf="!forceSize" #shareUrlDialog></app-dialog-share-url>
+<app-dialog-browse *ngIf="!forceSize" #browseDialog></app-dialog-browse>
+<app-dialog-export-images *ngIf="!forceSize" #exportImagesDialog (onSaveImages)="saveImages($event)"></app-dialog-export-images>
 
 

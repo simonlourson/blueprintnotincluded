@@ -13,3 +13,24 @@
   margin-left: auto;
   margin-right: auto
 }
+
+.info-panel-content {
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+}
+
+.left {
+  flex: 1;
+}
+
+.right {
+  flex: 2;
+}
+
+.info-button {
+  height: 50px;
+  padding: 5px;
+  width: 100%;
+  margin-bottom: 5px;
+}

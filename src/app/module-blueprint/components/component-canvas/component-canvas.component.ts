@@ -1,5 +1,5 @@
 // Angular imports
-import { Component, OnInit, OnDestroy, ViewChild, ElementRef, NgZone, Output, EventEmitter, HostListener, Pipe } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, ElementRef, NgZone, Output, EventEmitter, HostListener, Pipe, Input } from '@angular/core';
 //import { Http, Response } from "@angular/http"
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 
@@ -9,6 +9,7 @@ import { Blueprint, IObsBlueprintChange, CameraService, IObsCameraChanged, Sprit
 // PrimeNg imports
 import { ComponentSideSelectionToolComponent } from '../side-bar/selection-tool/selection-tool.component';
 import { DrawPixi } from '../../drawing/draw-pixi';
+import { DrawMiniUi } from '../../drawing/draw-mini-ui';
 import * as JSZip from 'jszip';
 import { BlueprintService, ExportImageOptions } from '../../services/blueprint-service';
 import { ToolService } from '../../services/tool-service';
@@ -37,6 +38,12 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy, IObsCameraCh
   @ViewChild('divCalcHeight', {static: true})
   divCalcHeight: ElementRef;
 
+  @Input('forceSize')
+  forceSize: boolean;
+  @Input('forcedSize')
+  forcedSize: Vector2;
+
+
   drawPixi: DrawPixi;
 
   private cameraService: CameraService
@@ -61,7 +68,14 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy, IObsCameraCh
     this.ngZone.runOutsideAngular(() => {
       this.drawPixi.Init(this.canvasRef, this);
       this.drawPixi.InitAnimation();
-      this.cameraService.container = this.drawPixi.pixiApp.stage;
+      this.cameraService.container = this.drawPixi.blueprintContainer;
+
+      if (this.forceSize) {
+        let miniUi = new DrawMiniUi();
+        miniUi.init(this.drawPixi.pixiApp.stage);
+        this.cameraService.subscribeCameraChange(miniUi);
+      }
+
     });
 
     //this.drawAbstraction.Init(this.canvasRef, this)
@@ -90,8 +104,19 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy, IObsCameraCh
       let boundingBox = this.blueprint.getBoundingBox();
       let topLeft = boundingBox[0];
       let bottomRight = boundingBox[1];
+
+      let totalTileSize = new Vector2(bottomRight.x - topLeft.x + 3, bottomRight.y - topLeft.y + 3);
+      let maxTotalSize = Math.max(totalTileSize.x, totalTileSize.y);
+      let minCanvasSize = Math.min(this.canvasRef.nativeElement.width, this.canvasRef.nativeElement.height);
+      let thumbnailTileSize = minCanvasSize / maxTotalSize;
+
       this.cameraService.cameraOffset.x = -topLeft.x + 1;
-      this.cameraService.cameraOffset.y = bottomRight.y + 2; // (add 2 instead of 1, one tile will probably be hidden by the menu)
+      this.cameraService.cameraOffset.y = bottomRight.y + 1; // (add 2 instead of 1, one tile will probably be hidden by the menu)
+      
+      if (totalTileSize.x > totalTileSize.y) this.cameraService.cameraOffset.y += totalTileSize.x / 2 - totalTileSize.y / 2;
+      if (totalTileSize.y > totalTileSize.x) this.cameraService.cameraOffset.x += totalTileSize.y / 2 - totalTileSize.x / 2;
+
+      this.cameraService.setHardZoom(thumbnailTileSize);
     }
   }
 
@@ -136,8 +161,11 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy, IObsCameraCh
 
   mouseClick(event: any)
   {
-    if (event.button == 0) this.toolService.leftClick(this.getCurrentTile(event));
-    else if (event.button == 2) this.toolService.rightClick(this.getCurrentTile(event));
+    // Don't send the clicks to the tools if we are in an iframe
+    if (!this.forceSize) {
+      if (event.button == 0) this.toolService.leftClick(this.getCurrentTile(event));
+      else if (event.button == 2) this.toolService.rightClick(this.getCurrentTile(event));
+    }
   }
 
   storePreviousTileFloat: Vector2;
@@ -154,8 +182,8 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy, IObsCameraCh
     }
     else if (event.dragButton[0])
     {
-      this.toolService.drag(previousTileFloat, currentTileFloat);
-
+      // Don't send the clicks to the tools if we are in an iframe
+      if (!this.forceSize) this.toolService.drag(previousTileFloat, currentTileFloat);
     }
 
     this.storePreviousTileFloat = Vector2.clone(currentTileFloat);
@@ -717,10 +745,19 @@ export class ComponentCanvasComponent implements OnInit, OnDestroy, IObsCameraCh
     //if (this.canvasRef == null) return;
 
     //console.log(this.divCalcHeight.nativeElement.offsetHeight)
-    this.canvasRef.nativeElement.width = window.innerWidth;
+    
     //this.canvasRef.nativeElement.height = 500;
-    this.canvasRef.nativeElement.height = window.innerHeight;
+    
     //this.canvasRef.nativeElement.height = this.divCalcHeight.nativeElement.offsetHeight - 7;
+
+    if (this.forceSize) {
+      this.canvasRef.nativeElement.width = this.forcedSize.x;
+      this.canvasRef.nativeElement.height = this.forcedSize.y;
+    }
+    else {
+      this.canvasRef.nativeElement.width = window.innerWidth;
+      this.canvasRef.nativeElement.height = window.innerHeight;
+    }
 
     
     this.cameraService.updateZoom();

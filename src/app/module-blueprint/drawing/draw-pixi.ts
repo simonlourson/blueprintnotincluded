@@ -44,6 +44,7 @@ export class DrawPixi implements PixiUtil
   pixiApp: PIXI.Application;
   backGraphics: PIXI.Graphics;
   frontGraphics: PIXI.Graphics;
+  blueprintContainer: PIXI.Container;
   parent: ComponentCanvasComponent;
   
   Init(canvas: ElementRef, parent: ComponentCanvasComponent) 
@@ -71,9 +72,11 @@ export class DrawPixi implements PixiUtil
     this.backGraphics.zIndex = -100;
     this.frontGraphics = new PIXI.Graphics();
     this.frontGraphics.zIndex = 100;
-    this.pixiApp.stage.interactiveChildren = false;
+    this.blueprintContainer = new PIXI.Container();
+    this.blueprintContainer.interactiveChildren = false;
     this.pixiApp.stage.addChild(this.backGraphics);
     this.pixiApp.stage.addChild(this.frontGraphics);
+    this.pixiApp.stage.addChild(this.blueprintContainer);
     
     //this.pixiApp.stage.sortableChildren = true; 
     this.pixiApp.ticker.add(() => {this.drawAll();});
@@ -102,7 +105,7 @@ export class DrawPixi implements PixiUtil
 
   public sortChildren() {
     //console.log('sortChildren')
-    this.pixiApp.stage.sortChildren();
+    this.blueprintContainer.sortChildren();
   }
 
   animateAll() {

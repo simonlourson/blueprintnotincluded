@@ -18,8 +18,7 @@ export class BitSelectionScreenComponent implements OnInit {
   }
 
   get title() {
-    return 'Fix String'
-    //return this.bitSelectorSideScreen.title;
+    return this.bitSelectorSideScreen.title;
   }
 
   get description() {

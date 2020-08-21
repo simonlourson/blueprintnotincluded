@@ -10,7 +10,7 @@ import * as JSZip from 'jszip';
 import { ActivatedRoute, Params, UrlSegment } from '@angular/router';
 import { MenuCommand, MenuCommandType, BrowseData } from '../component-menu/component-menu.component';
 import { ToolType } from '../../common/tools/tool';
-import { Blueprint, CameraService, SpriteInfo, ImageSource, OniItem, SpriteModifier, Overlay, BSpriteInfo, BBuilding, BSpriteModifier, BuildMenuCategory, BuildMenuItem, BuildableElement } from '../../../../../../blueprintnotincluded-lib/index';
+import { Blueprint, CameraService, SpriteInfo, ImageSource, OniItem, SpriteModifier, Overlay, BSpriteInfo, BBuilding, BSpriteModifier, BuildMenuCategory, BuildMenuItem, BuildableElement, Vector2 } from '../../../../../../blueprintnotincluded-lib/index';
 import { ComponentLoginDialogComponent } from '../user-auth/login-dialog/login-dialog.component';
 import { BlueprintService, IObsBlueprintChanged, ExportImageOptions } from '../../services/blueprint-service';
 import { ComponentSaveDialogComponent } from '../dialogs/component-save-dialog/component-save-dialog.component';
@@ -52,31 +52,32 @@ export class ComponentBlueprintParentComponent implements OnInit, IObsBlueprintC
   @ViewChild('canvas', {static: true})
   canvas: ComponentCanvasComponent;
 
-  @ViewChild('buildTool', {static: true})
+  @ViewChild('buildTool', {static: false})
   buildTool: ComponentSideBuildToolComponent;
   
-  @ViewChild('saveDialog', {static: true})
+  @ViewChild('saveDialog', {static: false})
   saveDialog: ComponentSaveDialogComponent;
 
-  @ViewChild('browseDialog', {static: true})
+  @ViewChild('browseDialog', {static: false})
   browseDialog: DialogBrowseComponent;
 
-  @ViewChild('loginDialog', {static: true})
+  @ViewChild('loginDialog', {static: false})
   loginDialog: ComponentLoginDialogComponent;
 
-  @ViewChild('exportImagesDialog', {static: true})
+  @ViewChild('exportImagesDialog', {static: false})
   exportImagesDialog: DialogExportImagesComponent;
 
-  @ViewChild('shareUrlDialog', {static: true})
+  @ViewChild('shareUrlDialog', {static: false})
   shareUrlDialog: DialogShareUrlComponent;
 
   @ViewChild('aboutDialog')
   aboutDialog: DialogAboutComponent;
 
-  @ViewChild('sidePanelLeft', {static: true})
+  // The left ui panel is not static, because when in a iframe we don't load it
+  @ViewChild('sidePanelLeft', {static: false})
   sidePanelLeft: ElementRef;
 
-  @ViewChild('selectionTool', {static: true})
+  @ViewChild('selectionTool', {static: false})
   selectionTool: ComponentSideSelectionToolComponent;
 
   constructor(
@@ -86,8 +87,7 @@ export class ComponentBlueprintParentComponent implements OnInit, IObsBlueprintC
     private blueprintService: BlueprintService,
     public toolService: ToolService,
     private renderer: Renderer2) { 
-      
-    }
+  }
 
   get showElementReport() {
     if (CameraService.cameraService == null) return false;
@@ -99,7 +99,20 @@ export class ComponentBlueprintParentComponent implements OnInit, IObsBlueprintC
     else return CameraService.cameraService.showTemperatureScale
   }
 
+  forceSize: boolean = false;
+  forcedSize: Vector2 = Vector2.zero();
+
   ngOnInit() {
+
+    this.route.params.subscribe((params: Params): void => {
+      let width = Number(params.width);
+      let height = Number(params.height);
+      if (Number.isInteger(width) && Number.isInteger(height)) {
+        this.forceSize = true;
+        this.forcedSize = new Vector2(width, height);
+      }
+      else this.forceSize = false;
+    });
     
     SpriteModifier.init();
     OniItem.init();
@@ -113,7 +126,9 @@ export class ComponentBlueprintParentComponent implements OnInit, IObsBlueprintC
 
     this.fetchDatabase().then(() => {
       
-      this.buildTool.oniItemsLoaded();
+      if (!this.forceSize) {
+        this.buildTool.oniItemsLoaded();
+      }
 
       this.route.url.subscribe((url: UrlSegment[]) => {
         if (url != null && url.length > 0 && url[0].path == 'browse') {
@@ -144,8 +159,10 @@ export class ComponentBlueprintParentComponent implements OnInit, IObsBlueprintC
   }
 
   resizeTools() {
-    let sidePanelPosition: number = this.sidePanelLeft.nativeElement.getBoundingClientRect().y;
-    this.selectionTool.setMaxHeight(sidePanelPosition);
+    if (!this.forceSize) {
+      let sidePanelPosition: number = this.sidePanelLeft.nativeElement.getBoundingClientRect().y;
+      this.selectionTool.setMaxHeight(sidePanelPosition);
+    }
   }
 
   blueprintChanged(blueprint: Blueprint) {
@@ -157,7 +174,7 @@ export class ComponentBlueprintParentComponent implements OnInit, IObsBlueprintC
   {
     let promise = new Promise((resolve, reject) => {
 
-    /*
+    
     // Start comment here 
     JSZipUtils.getBinaryContent('/assets/database/database.zip', (err, data) => {
       if(err) { throw err; }
@@ -195,9 +212,9 @@ export class ComponentBlueprintParentComponent implements OnInit, IObsBlueprintC
       });
     });
     // End comment here 
-    */
-
     
+
+    /*
     // Start comment here 
     fetch("/assets/database/database.json")
       .then(response => { return response.json(); })
@@ -229,7 +246,7 @@ export class ComponentBlueprintParentComponent implements OnInit, IObsBlueprintC
       reject(error);
     });
     // End comment here 
-    
+    */
 
     });
 

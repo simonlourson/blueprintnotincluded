@@ -19,6 +19,7 @@
     <div *ngIf="!currentItemToBuild.buildCandidateResult.canBuild" class = "error-red">{{currentItemToBuild.buildCandidateResult.cantBuildReason}}</div>
     
     <app-buildable-element-picker 
+      *ngIf="!currentItem.isInfo"
       [currentElement]="currentItemToBuild.buildableElements"
       [buildableElementsArray]="currentItem.buildableElementsArray"
       [isGasLiquid]="isGasLiquid"
@@ -26,13 +27,20 @@
     </app-buildable-element-picker>
 
     <app-temperature-picker
+      *ngIf="!currentItem.isInfo"
       [blueprintItem]=currentItemToBuild
       [temperatureWarning]="false">
     </app-temperature-picker>
 
     <app-ui-screen-container
+      *ngIf="!currentItem.isInfo"
       [blueprintItem]="currentItemToBuild">
     </app-ui-screen-container>
+
+    <div *ngIf="currentItem.isInfo">
+      <app-info-input [blueprintIteminfo]="currentItemToBuild">
+      </app-info-input>
+    </div>
     
     <!-- These go first so we don't have to add one to the index when querying them -->
     <p-overlayPanel [appendTo]="'body'" *ngFor="let buildMenuCategory of buildMenuCategories; let indexCategory = index">
