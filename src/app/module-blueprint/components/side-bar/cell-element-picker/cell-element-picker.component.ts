@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { Subject } from 'rxjs';
 import { BuildableElement } from '../../../../../../../blueprintnotincluded-lib/index';
 
@@ -16,6 +16,9 @@ export class CellElementPickerComponent implements OnInit {
   elements: BuildableElement[];
 
   @Output() onSelectElement = new EventEmitter<BuildableElement>();
+
+  @Input() forceTag: string;
+  get isForcedTag() { return this.forceTag != undefined; }
 
   constructor() { 
 
@@ -39,6 +42,7 @@ export class CellElementPickerComponent implements OnInit {
 
   filterElements() {
     this.elements = [];
+    this.elements.push(BuildableElement.getElement('None'));
     for (let element of BuildableElement.elements) {
 
       let addToList = false;
@@ -47,8 +51,12 @@ export class CellElementPickerComponent implements OnInit {
       let filterTag = false;
       let filterMissing = true;
 
-      for (let tag of this.selectedTags)
-        if (element.hasTag(tag)) filterTag = true;
+      if (this.forceTag == undefined) {
+        for (let tag of this.selectedTags)
+          if (element.hasTag(tag)) filterTag = true;
+      }
+      else if (element.hasTag(this.forceTag)) filterTag = true;
+      
 
       if (this.filterName == null || this.filterName == '') filterString = true;
       else if (element.name.toUpperCase().indexOf(this.filterName.toUpperCase()) != -1) filterString = true;

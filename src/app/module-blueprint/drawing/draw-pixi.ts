@@ -1,6 +1,6 @@
 import { ElementRef } from "@angular/core";
 import { ComponentCanvasComponent } from "../components/component-canvas/component-canvas.component";
-import { BlueprintItem, CameraService, Vector2, PixiUtil } from '../../../../../blueprintnotincluded-lib/index'
+import { BlueprintItem, CameraService, Vector2, PixiUtil, ZIndex } from '../../../../../blueprintnotincluded-lib/index'
 import { ComponentMenuComponent } from '../components/component-menu/component-menu.component';
 
 import {  } from 'pixi.js-legacy';
@@ -8,6 +8,12 @@ declare var PIXI: any;
 
 export class DrawPixi implements PixiUtil
 {
+  getUtilityGraphicsBack() {
+    return this.utilityGraphicsBack;
+  }
+  getUtilityGraphicsFront() {
+    return this.utilityGraphicsFront;
+  }
   getNewContainer() {
     return new PIXI.Container();
   }
@@ -44,6 +50,8 @@ export class DrawPixi implements PixiUtil
   pixiApp: PIXI.Application;
   backGraphics: PIXI.Graphics;
   frontGraphics: PIXI.Graphics;
+  utilityGraphicsBack: PIXI.Graphics;
+  utilityGraphicsFront: PIXI.Graphics;
   blueprintContainer: PIXI.Container;
   parent: ComponentCanvasComponent;
   
@@ -72,8 +80,14 @@ export class DrawPixi implements PixiUtil
     this.backGraphics.zIndex = -100;
     this.frontGraphics = new PIXI.Graphics();
     this.frontGraphics.zIndex = 100;
+    this.utilityGraphicsBack = new PIXI.Graphics();
+    this.utilityGraphicsBack.zIndex = ZIndex.GasConduits + 100 - 1;
+    this.utilityGraphicsFront = new PIXI.Graphics();
+    this.utilityGraphicsFront.zIndex = ZIndex.LiquidConduits + 100 + 1;
     this.blueprintContainer = new PIXI.Container();
     this.blueprintContainer.interactiveChildren = false;
+    this.blueprintContainer.addChild(this.utilityGraphicsBack);
+    this.blueprintContainer.addChild(this.utilityGraphicsFront);
     this.pixiApp.stage.addChild(this.backGraphics);
     this.pixiApp.stage.addChild(this.frontGraphics);
     this.pixiApp.stage.addChild(this.blueprintContainer);
@@ -116,6 +130,8 @@ export class DrawPixi implements PixiUtil
   {
     this.backGraphics.clear();
     this.frontGraphics.clear();
+    this.utilityGraphicsBack.clear();
+    this.utilityGraphicsFront.clear();
   }
     
   FillRect(color: number, x: number, y: number, w: number, h: number) 

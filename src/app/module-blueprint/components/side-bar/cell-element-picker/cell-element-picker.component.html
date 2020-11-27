@@ -5,8 +5,10 @@
     (ngModelChange)="filterNameSubject.next($event)" pInputText > 
 </div>
 
-<p-checkbox name="groupTag" (onChange)="tagChanged($event)" value="Gas" label="Gas" [(ngModel)]="selectedTags" inputId="Gas"></p-checkbox>
-<span class="second-checkbox"><p-checkbox name="groupTag" (onChange)="tagChanged($event)" value="Liquid" label="Liquid" [(ngModel)]="selectedTags" inputId="Liquid"></p-checkbox></span>
+<div *ngIf="!isForcedTag">
+  <p-checkbox name="groupTag" (onChange)="tagChanged($event)" value="Gas" label="Gas" [(ngModel)]="selectedTags" inputId="Gas"></p-checkbox>
+  <span class="second-checkbox"><p-checkbox name="groupTag" (onChange)="tagChanged($event)" value="Liquid" label="Liquid" [(ngModel)]="selectedTags" inputId="Liquid"></p-checkbox></span>
+</div>
 
 <div class="element-list">
   <div *ngFor="let element of elements" class="ui-clickable-icon element-button" (click)="selectElement(element)" style="margin-bottom: 5px;">

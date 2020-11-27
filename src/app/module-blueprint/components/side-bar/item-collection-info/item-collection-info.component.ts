@@ -3,7 +3,7 @@ import { SameItemCollection, IObsSelected } from 'src/app/module-blueprint/commo
 import { BlueprintService } from 'src/app/module-blueprint/services/blueprint-service';
 import { ToolService } from 'src/app/module-blueprint/services/tool-service';
 import { ToolType } from 'src/app/module-blueprint/common/tools/tool';
-import { BlueprintHelpers } from '../../../../../../../blueprintnotincluded-lib/index';
+import { BlueprintHelpers, ZIndex, BuildableElement, BlueprintItemWire } from '../../../../../../../blueprintnotincluded-lib/index';
 import { ElementChangeInfo } from '../buildable-element-picker/buildable-element-picker.component';
 import { BlueprintItemInfo } from '../../../../../../../blueprintnotincluded-lib/src/blueprint/blueprint-item-info';
 
@@ -25,8 +25,21 @@ export class ItemCollectionInfoComponent implements OnInit, IObsSelected {
     return JSON.stringify(debugInfo);
   }
 
+  get forceTag() {
+    if (this.itemCollection.oniItem.zIndex == ZIndex.LiquidConduits) return 'Liquid';
+    else if (this.itemCollection.oniItem.zIndex == ZIndex.GasConduits) return 'Gas';
+    else return undefined;
+  }
+
+  getPipeElement() {
+    let blueprintItemWire = this.itemCollection.items[0] as BlueprintItemWire;
+    if (blueprintItemWire != null && this.showPipeContent) return blueprintItemWire.pipeElement;
+    else return undefined;
+  }
+
   // TODO boolean in export
-  get isGasLiquid() { return this.itemCollection.items[0].buildableElements[0].hasTag('Gas') || this.itemCollection.items[0].buildableElements[0].hasTag('Liquid') }
+  get isGasLiquid() { return this.itemCollection.items[0].buildableElements[0].hasTag('Gas') || this.itemCollection.items[0].buildableElements[0].hasTag('Liquid'); }
+  get showPipeContent() { return this.itemCollection.oniItem.zIndex == ZIndex.LiquidConduits || this.itemCollection.oniItem.zIndex == ZIndex.GasConduits; }
 
   constructor(private blueprintService: BlueprintService, private toolService: ToolService) { }
 
@@ -67,6 +80,16 @@ export class ItemCollectionInfoComponent implements OnInit, IObsSelected {
     });
 
     this.itemCollection.updateNbElements();
+    this.blueprintService.blueprint.emitBlueprintChanged();
+  }
+
+  changePipeElement(element: BuildableElement) {
+    this.itemCollection.items.map((item) => {
+      let blueprintItemWire = item as BlueprintItemWire;
+      if (blueprintItemWire != null) blueprintItemWire.pipeElement = element;
+    });
+
+    // TODO Warning message update if not all pipes have the same element
     this.blueprintService.blueprint.emitBlueprintChanged();
   }
 

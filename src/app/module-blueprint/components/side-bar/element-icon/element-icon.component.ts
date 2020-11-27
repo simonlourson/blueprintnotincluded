@@ -14,7 +14,7 @@ export class ElementIconComponent implements OnInit {
 
   // TODO boolean in export
   get isIcon() { return !this.element.hasTag('Gas') && !this.element.hasTag('Liquid'); }
-  get nullIcon() { return this.element.icon == null; }
+  get nullIcon() { return this.element.icon == null || this.element.icon == ''; }
   get isLiquid() { return this.element.hasTag('Liquid'); }
   get isGas() { return this.element.hasTag('Gas'); }
   get tint() { return DrawHelpers.colorToHex(this.element.uiColor); }
