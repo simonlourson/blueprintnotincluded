@@ -1,9 +1,10 @@
 import { BlueprintService } from '../../services/blueprint-service';
-import { BlueprintItem, CameraService, DrawHelpers, OniItem, Vector2, BuildableElement } from "../../../../../../blueprintnotincluded-lib/index";
+import { BlueprintHelpers, BlueprintItem, CameraService, DrawHelpers, OniItem, Vector2, BuildableElement } from "../../../../../../blueprintnotincluded-lib/index";
 import { Injectable } from '@angular/core';
 import { ITool, ToolType } from './tool';
 import { DrawPixi } from '../../drawing/draw-pixi';
 import { SameItemCollection } from './same-item-collection';
+import { ToolService } from 'src/app/module-blueprint/services/tool-service';
 
 @Injectable()
 export class SelectTool implements ITool
@@ -11,6 +12,8 @@ export class SelectTool implements ITool
   public sameItemCollections: SameItemCollection[];
 
   public observersSelectionChanged: IObsSelectionChanged[] = [];
+
+  parent: ToolService;
 
   private cameraService: CameraService
   constructor(private blueprintService: BlueprintService) {
@@ -292,6 +295,20 @@ export class SelectTool implements ITool
     if (keyCode == 'Delete') {
       let itemGroupToDestroyIndex = this.currentMultipleSelectionIndex;
       if (itemGroupToDestroyIndex != -1) this.buildingsDestroy(this.sameItemCollections[itemGroupToDestroyIndex]);
+    } else if (keyCode == 'b') {
+      // find the currently selected item
+      let newItem = null;
+      let itemGroupToDestroyIndex = this.currentMultipleSelectionIndex;
+      if (itemGroupToDestroyIndex != -1) {
+        newItem = BlueprintHelpers.cloneBlueprintItem(this.sameItemCollections[itemGroupToDestroyIndex].items[0]);
+      }
+
+      // change tool
+      this.parent.changeTool(ToolType.build);
+      if (newItem != null) {
+        this.parent.buildTool.changeItem(newItem);
+      }
+
     }
   }
 

@@ -33,6 +33,7 @@ export class ToolService implements ITool, IChangeTool
     this.allTools.push(this.buildTool);
 
     this.buildTool.parent = this;
+    this.selectTool.parent = this;
   }
 
   subscribeToolChanged(observer: IObsToolChanged)
