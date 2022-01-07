@@ -267,6 +267,7 @@ export class SelectTool implements ITool
   }
 
   rightClick(tile: Vector2) {
+    this.deselectAll();
   }
 
   hover(tile: Vector2) {
