@@ -252,7 +252,18 @@ export class SelectTool implements ITool
   mouseDown(tile: Vector2) {}
   
   leftClick(tile: Vector2) {
-    this.selectFromBox(tile, tile);
+    let doSelectFromBox = true;
+
+    if (this.currentMultipleSelectionIndex != -1) {
+      let next_group = (this.currentMultipleSelectionIndex + 1)% this.sameItemCollections.length;
+      doSelectFromBox = this.sameItemCollections[next_group].items.find(item => item.position.equals(tile)) === undefined;
+    }
+
+    if (doSelectFromBox) {
+      this.selectFromBox(tile, tile);
+    } else {
+      this.itemGroupeNext();
+    }
   }
 
   rightClick(tile: Vector2) {
