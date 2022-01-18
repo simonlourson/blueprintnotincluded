@@ -10,7 +10,7 @@ import * as yaml from 'node_modules/js-yaml/lib/js-yaml';
 export class BlueprintService implements IObsBlueprintChange
 {
   //static baseUrl: string = 'blueprintnotincluded.com/';
-  static baseUrl: string = 'https://blueprintnotincluded.com/';
+  static baseUrl: string = location.origin;
 
   id: string;
   name: string;
@@ -18,9 +18,9 @@ export class BlueprintService implements IObsBlueprintChange
   // TODO not sure getter setters are useful
   blueprint_: Blueprint;
   get blueprint() { return this.blueprint_; }
-  set blueprint(value: Blueprint) { 
+  set blueprint(value: Blueprint) {
     this.blueprint_ = value;
-    //this.observersBlueprintChanged.map((observer) => { observer.blueprintChanged(this.blueprint_); }) 
+    //this.observersBlueprintChanged.map((observer) => { observer.blueprintChanged(this.blueprint_); })
   }
   thumbnail: string;
   thumbnailStyle: Display;
@@ -92,7 +92,7 @@ export class BlueprintService implements IObsBlueprintChange
     let newBlueprint = new Blueprint();
     this.name = templateJson.friendlyname;
     newBlueprint.importFromBni(templateJson);
-    
+
     this.observersBlueprintChanged.map((observer) => { observer.blueprintChanged(newBlueprint); })
   }
 
@@ -106,7 +106,7 @@ export class BlueprintService implements IObsBlueprintChange
   {
     let newBlueprint = new Blueprint();
     newBlueprint.importFromBinary(template);
-    
+
     this.observersBlueprintChanged.map((observer) => { observer.blueprintChanged(newBlueprint); })
   }
 
@@ -130,7 +130,7 @@ export class BlueprintService implements IObsBlueprintChange
   reset() {
     this.id = null;
     this.likedByMe = false;
-  }  
+  }
 
   suppressChanges: boolean;
   undoStates: MdbBlueprint[];
@@ -181,7 +181,7 @@ export class BlueprintService implements IObsBlueprintChange
     // If we are in the middle of the states, doing anythings scraps the further redos
     if (this.undoIndex < this.undoStates.length - 1) this.undoStates.splice(this.undoIndex + 1);
 
-    
+
     let newState = this.blueprint.toMdbBlueprint();
     /*if (this.undoStates.length > 0) {
       let oldState = this.undoStates[this.undoStates.length - 1];
@@ -191,8 +191,8 @@ export class BlueprintService implements IObsBlueprintChange
     }
     else */this.undoStates.push(newState);
 
-    
-    
+
+
 
     while (this.undoStates.length > 50) this.undoStates.splice(0, 1);
 
@@ -250,10 +250,10 @@ export class BlueprintService implements IObsBlueprintChange
 
     return request;
   }
- 
-  getBlueprints(olderThan: Date, filterUserId: string, filterName: string, getDuplicates: boolean) { 
+
+  getBlueprints(olderThan: Date, filterUserId: string, filterName: string, getDuplicates: boolean) {
     let parameterOlderThan = 'olderthan='+olderThan.getTime().toString();
-    
+
     let parameterFilterUserId = '';
     if (filterUserId != null) parameterFilterUserId = '&filterUserId='+filterUserId;
 
@@ -265,7 +265,7 @@ export class BlueprintService implements IObsBlueprintChange
 
     let parameters = parameterOlderThan+parameterFilterUserId+parameterGetDuplicates+parameterFilterName;
 
-    let request = this.authService.isLoggedIn() ? 
+    let request = this.authService.isLoggedIn() ?
       this.http.get('/api/getblueprintsSecure?'+parameters, { headers: { Authorization: `Bearer ${this.authService.getToken()}` }}) :
       this.http.get('/api/getblueprints?'+parameters) ;
 
